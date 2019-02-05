@@ -3,6 +3,11 @@ import App from './App'
 import store from './store'
 import router from './router'
 import $ from "jquery";
+import '@mapbox/assembly/dist/assembly.min.css';
+import '@mapbox/assembly/dist/assembly.js';
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+
 import * as funcUtils from "./assets/js/utils/funcUtils";
 import RequestApi from "./assets/js/api/requestApi";
 import * as formStack from './assets/js/api/formStack';

@@ -8,8 +8,8 @@
         v-html="model.name">
       </div>
       <span v-if="isFolder">
-      <img v-if='open' @click="toggle" src='../assets/controls-switch-chevron-up.svg'>
-      <img v-else @click="toggle" src='../assets/controls-switch-chevron-down.svg'>
+      <img v-if='open' @click="toggle" src='../assets/images/controls-switch-chevron-up.svg'>
+      <img v-else @click="toggle" src='../assets/images/controls-switch-chevron-down.svg'>
     </span>
     </div>
     <div v-show="open" v-if="isFolder">

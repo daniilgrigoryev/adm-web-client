@@ -4,6 +4,10 @@ import Authorization from '../components/Authorization';
 import DeloReestr from '../components/reestrPassport/DeloReestr';
 import DeloTreeCardView from '../components/viewData/DeloTreeCardView';
 import WizardExecuter from '../components/wizard/WizardExecuter';
+
+// верстка
+import Accounting from '../components/verstka/Accounting.vue';
+
 import * as funcUtils from "./../assets/js/utils/funcUtils";
 import * as ConstantUtils from "./../assets/js/utils/constantUtils";
 import * as formStack from './../assets/js/api/formStack';
@@ -35,7 +39,12 @@ const router = new Router({
       name: 'WizardExecuter',
       component: WizardExecuter,
       props: true
-    }
+    },
+    {
+      path: ConstantUtils.contextPath + '/accounting',
+      name: 'Accounting',
+      component: Accounting,
+    },
   ]
 });
 
