@@ -21,7 +21,7 @@
           eCID: this.info.eCID
         }
       });
-      this.data = JSON.parse(eventResponse.response).data
+      this.data = JSON.parse(eventResponse.response).data;
     },
     data() {
       return {

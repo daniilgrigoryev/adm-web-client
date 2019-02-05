@@ -119,7 +119,6 @@
           }
         }
         this.pathes = pathes;
-        debugger;
       } catch (e) {
         alert(e.message);
       }
@@ -143,6 +142,16 @@
         } else {
           return this.pathes[path];
         }
+      },
+      async storeElementData(params) {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getElementData',
+          params: {
+            eCID: params.eCID,
+            data: JSON.stringify(params.data)
+          }
+        });
+        // this.data = JSON.parse(eventResponse.response).data;
       },
       getPrev() {
         try {
