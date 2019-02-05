@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import VueResource from 'vue-resource'
 
 import authorization from './modules/authorization';
+import accounting from './modules/accounting';
 import deloReestr from './modules/deloReestr';
 import deloTreeCardView from './modules/deloTreeCardView';
 import wizardExecuter from './modules/wizardExecuter';
@@ -97,6 +98,7 @@ const store = new Vuex.Store({
     wizardItemPlace,
     wizardItemPredDoc,
     wizardItemVehs,
+    accounting,
     authorization
   }
 });

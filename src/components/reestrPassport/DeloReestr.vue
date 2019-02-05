@@ -75,6 +75,7 @@
 
       <div>
         <button type="button" @click="filterClick">Фильтровать</button>
+        <button type="button" @click="verstka">Верстка</button>
         <button type="button" @click="createWizard">Создать</button>
       </div>
     </div>
@@ -398,6 +399,18 @@
           }
         });
         await this.$store.dispatch('fillModule', {'event': eventResponse});
+      },
+      verstka() {
+        try {
+          formStack.toNext({
+            module: this.$store.state.accounting,
+            vm: this,
+            notRemoved: true,
+            withCreate: false
+          });
+        } catch (e) {
+          alert(e.message);
+        }
       },
       getDelo(deloId) {
         try {

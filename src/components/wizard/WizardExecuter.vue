@@ -3,33 +3,51 @@
     <button type="button" @click="getPrev">Назад</button>
 
     <div>
+      <wizard-item-doc-post-first v-if="isVisible('DocPostFirst')"></wizard-item-doc-post-first>
+
+        <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')"></wizard-item-place>
+
+      <wizard-item-lvok v-if="isVisible('LVOK')"></wizard-item-lvok>
+
+        <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')"></wizard-item-pred-doc>
+
+        <wizard-item-individual v-if="isVisible('LVOK.Individual')"></wizard-item-individual>
+
+          <wizard-item-address v-if="isVisible('LVOK.Individual.regAddr')"></wizard-item-address>
+
+          <wizard-item-address v-if="isVisible('LVOK.Individual.factAddr')"></wizard-item-address>
+
+        <wizard-item-organization v-if="isVisible('LVOK.Organization')"></wizard-item-organization>
+
+          <wizard-item-address v-if="isVisible('LVOK.Organization.regAddr')"></wizard-item-address>
+
+          <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')"></wizard-item-address>
+
+      <wizard-item-vehs v-if="isVisible('Vehs')"></wizard-item-vehs>
+
+      <wizard-item-owner v-if="isVisible('Owner')"></wizard-item-owner>
+
+      <wizard-item-individual v-if="isVisible('Owner.Individual')"></wizard-item-individual>
+
+      <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')"></wizard-item-address>
+
+      <wizard-item-address v-if="isVisible('Owner.Individual.factAddr')"></wizard-item-address>
+
+      <wizard-item-organization v-if="isVisible()"></wizard-item-organization>
+
       <wizard-item-address v-if="isVisible()"></wizard-item-address>
 
-      <wizard-item-decis></wizard-item-decis>
+      <wizard-item-address v-if="isVisible()"></wizard-item-address>
 
-      <wizard-item-doc-post-final></wizard-item-doc-post-final>
+      <wizard-item-decis v-if="isVisible()"></wizard-item-decis>
 
-      <wizard-item-doc-post-first></wizard-item-doc-post-first>
+      <wizard-item-doc-post-final v-if="isVisible()"></wizard-item-doc-post-final>
 
-      <wizard-item-doc-post-second></wizard-item-doc-post-second>
+      <wizard-item-doc-post-second v-if="isVisible()"></wizard-item-doc-post-second>
 
-      <wizard-item-doc-prot2025></wizard-item-doc-prot2025>
+      <wizard-item-doc-prot2025 v-if="isVisible()"></wizard-item-doc-prot2025>
 
-      <wizard-item-individual></wizard-item-individual>
-
-      <wizard-item-lvok></wizard-item-lvok>
-
-      <wizard-item-lvok2025></wizard-item-lvok2025>
-
-      <wizard-item-organization></wizard-item-organization>
-
-      <wizard-item-owner></wizard-item-owner>
-
-      <wizard-item-place></wizard-item-place>
-
-      <wizard-item-pred-doc></wizard-item-pred-doc>
-
-      <wizard-item-vehs></wizard-item-vehs>
+      <wizard-item-lvok2025 v-if="isVisible()"></wizard-item-lvok2025>
     </div>
   </div>
 </template>
