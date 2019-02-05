@@ -6,6 +6,20 @@ import authorization from './modules/authorization';
 import deloReestr from './modules/deloReestr';
 import deloTreeCardView from './modules/deloTreeCardView';
 import wizardExecuter from './modules/wizardExecuter';
+import wizardItemAddress from './modules/wizardItemAddress';
+import wizardItemDecis from './modules/wizardItemDecis';
+import wizardItemDocPostFinal from './modules/wizardItemDocPostFinal';
+import wizardItemDocPostFirst from './modules/wizardItemDocPostFirst';
+import wizardItemDocPostSecond from './modules/wizardItemDocPostSecond';
+import wizardItemDocProt2025 from './modules/wizardItemDocProt2025';
+import wizardItemIndividual from './modules/wizardItemIndividual';
+import wizardItemLvok from './modules/wizardItemLvok';
+import wizardItemLvok2025 from './modules/wizardItemLvok2025';
+import wizardItemOrganization from './modules/wizardItemOrganization';
+import wizardItemOwner from './modules/wizardItemOwner';
+import wizardItemPlace from './modules/wizardItemPlace';
+import wizardItemPredDoc from './modules/wizardItemPredDoc';
+import wizardItemVehs from './modules/wizardItemVehs';
 import * as funcUtils from "./../assets/js/utils/funcUtils";
 
 Vue.use(Vuex);
@@ -69,6 +83,20 @@ const store = new Vuex.Store({
     deloReestr,
     deloTreeCardView,
     wizardExecuter,
+    wizardItemAddress,
+    wizardItemDecis,
+    wizardItemDocPostFinal,
+    wizardItemDocPostFirst,
+    wizardItemDocPostSecond,
+    wizardItemDocProt2025,
+    wizardItemIndividual,
+    wizardItemLvok,
+    wizardItemLvok2025,
+    wizardItemOrganization,
+    wizardItemOwner,
+    wizardItemPlace,
+    wizardItemPredDoc,
+    wizardItemVehs,
     authorization
   }
 });
