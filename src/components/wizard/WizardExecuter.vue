@@ -3,9 +3,9 @@
     <button type="button" @click="getPrev">Назад</button>
 
     <div>
-      <wizard-item-doc-post-first v-if="isVisible('DocPostFirst')" :info="getInfo('DocPostFirst')"></wizard-item-doc-post-first>
+      <wizard-item-doc-post-first v-if="isVisible('DocPostFirst')" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData"></wizard-item-doc-post-first>
 
-        <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" :info="getInfo('DocPostFirst.PlaceSost')"></wizard-item-place>
+        <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" :info="getInfo('DocPostFirst.PlaceSost')" @storeElementData="storeElementData"></wizard-item-place>
 
       <wizard-item-lvok v-if="isVisible('LVOK')" :info="getInfo('LVOK')"></wizard-item-lvok>
 
@@ -145,13 +145,38 @@
       },
       async storeElementData(params) {
         let eventResponse = await RequestApi.prepareData({
-          method: 'getElementData',
+          method: 'storeElementData',
           params: {
             eCID: params.eCID,
             data: JSON.stringify(params.data)
           }
         });
-        // this.data = JSON.parse(eventResponse.response).data;
+        let cids = JSON.parse(eventResponse.response).data;
+        for (let prop in cids) {
+          if (cids.hasOwnProperty(prop)) {
+            eventResponse = await RequestApi.prepareData({
+              method: 'getElementInfo',
+              params: {
+                eCID: prop
+              }
+            });
+            let info = JSON.parse(eventResponse.response).data;
+            if (funcUtils.isEmpty(cids[prop])) {
+              delete this.pathes[info.path];
+            } else if (funcUtils.isEmpty(this.pathes[info.path])) {
+              info.eCID = prop;
+              this.pathes[info.path] = info;
+            } else if (funcUtils.isNotEmpty(cids[prop])) {
+              let children = this.$children;
+              for (let i = 0; i < children.length; i++) {
+                let child = children[i];
+                if (child.info && child.info.eCID === prop) {
+                  child.initData();
+                }
+              }
+            }
+          }
+        }
       },
       getPrev() {
         try {
