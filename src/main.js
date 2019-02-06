@@ -8,6 +8,8 @@ import '@mapbox/assembly/dist/assembly.js';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 
+import './assets/scss/common.scss';
+
 import * as funcUtils from "./assets/js/utils/funcUtils";
 import RequestApi from "./assets/js/api/requestApi";
 import * as formStack from './assets/js/api/formStack';
@@ -16,7 +18,7 @@ import Stack from './assets/js/api/stack';
 
 import moment from 'moment';
 moment.locale('ru');
-
+Vue.use(iView);
 Vue.config.productionTip = false;
 
 let vue = new Vue({

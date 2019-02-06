@@ -1,0 +1,70 @@
+@import './variables.scss';
+
+.adm-h1{
+	font-size: 36px;
+	font-weight: 300;
+	letter-spacing: 0.4px;
+	line-height: 42px;
+}
+.adm-h2{
+	font-size: 24px;
+	letter-spacing: 0.1px;
+	line-height: 32px;
+}
+.adm-h2{
+	font-size: 20px;
+	letter-spacing: 0.2px;
+	line-height: 32px;
+}
+.adm-h4{
+	font-size: 20px;
+	letter-spacing: 0.2px;
+	line-height: 32px;
+}
+.adm-text-big{
+	font-size: 15px;
+	letter-spacing: 0.1px;
+	line-height: 26px;
+}
+.adm-txt-regular{
+	font-size: 13px;	
+	line-height: 22px;
+}
+.adm-text-italic{
+	font-style: italic;
+	letter-spacing: 0.2px;
+	line-height: 22px;
+}
+.adm-text-small {
+	font-size: 10px;
+	letter-spacing: 0.2px;
+	line-height: 14px;
+}
+.adm-text-small-italic{
+	font-size: 9px;
+	font-style: italic;
+	letter-spacing: 0.2px;
+	line-height: 14px;
+}
+.adm-btn-regular{
+	font-size: 14px;
+	letter-spacing: 0.2px;
+	line-height: 16px;
+}
+.adm-btn-small{
+	font-size: 12px;
+	letter-spacing: 0.2px;
+	line-height: 16px;
+	text-align: center;
+}
+
+
+
+
+.wmax1280{
+	max-width: 1280px;
+}
+
+.color-gray-medium{
+    color: $gray-medium;
+}

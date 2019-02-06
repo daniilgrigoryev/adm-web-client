@@ -18,13 +18,36 @@ module.exports = (options = {}) => ({
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader']
-      },      {
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader"
+        }, {
+          loader: "css-loader"
+        }, {
+          loader: "sass-loader",
+          options: {
+            javascriptEnabled: true
+          }
+        }]
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {}
-          // other vue-loader options go here
-        }
+          loaders: {
+            css: ['vue-style-loader', {
+              loader: 'css-loader',
+            }],
+            js: [
+              'babel-loader',
+            ],
+            query: {
+              presets: ['es2015'],
+            }
+          }
+        },
       },
       {
         test: /\.js$/,
@@ -68,11 +91,13 @@ module.exports = (options = {}) => ({
   devServer: {
     host: '0.0.0.0',
     disableHostCheck: true,
-    port: 8010,
+    port: 8040,
     open: true,
     historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname
     },
+    // contentBase: resolve('./src/assets'),
+    // watchContentBase: true,
     watchOptions: {
       ignored: /node_modules/
     }
