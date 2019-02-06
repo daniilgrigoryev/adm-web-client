@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <button type="button" @click="getPrev">Назад</button> -->
+		<button type="button" @click="getPrev">Назад</button>
 	
 		<div class="wmax1280 mx-auto">
 			<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
@@ -43,9 +43,9 @@
 							<Col :xs="24" :sm="24" :md="24" :lg="8">
 							<FormItem class="w-full">
 								<div slot="label">Дата заведения дела</div>
-								<Select>
+								<Select placeholder="Выбрать">
 									<Option value="1">За текущий год</Option>
-									<Option value="2">За периуд</Option>
+									<Option value="1">За периуд</Option>
 								</Select>
 							</FormItem>
 							</Col>
@@ -59,19 +59,19 @@
 							<div slot="label">Физическое лицо - ЛВОК</div>
 							<Row type="flex">
 								<Col :xs="24" :sm="24" :md="24" :lg="8">
-								<Input placeholder="Фамилия"></Input>
+									<Input placeholder="Фамилия"></Input>
 								</Col>
 								<Col :xs="24" :sm="24" :md="24" :lg="1">
 								<div class="align-center">/</div>
 								</Col>
 								<Col :xs="24" :sm="24" :md="24" :lg="6">
-								<Input placeholder="Имя"></Input>
+									<Input placeholder="Имя"></Input>
 								</Col>
 								<Col :xs="24" :sm="24" :md="24" :lg="1">
-								<div class="align-center">|</div>
+									<div class="align-center">|</div>
 								</Col>
 								<Col :xs="24" :sm="24" :md="24" :lg="8">
-								<Input placeholder="Отчество"></Input>
+									<Input placeholder="Отчество"></Input>
 								</Col>
 							</Row>
 						</FormItem>
@@ -90,14 +90,14 @@
 							<Row type="flex" :gutter="8">
 								<Col :lg="12">
 								<Select placeholder="Выбрать">
-									<Option>Не выбранно</Option>
-									<Option>Водительское удостоверение</Option>
-									<Option>Временное разрешение</Option>
-									<Option>Опред. о возбуждении дела</Option>
-									<Option>Постановление</Option>
-									<Option>Протокол</Option>
-									<Option>Постановление квитанция</Option>
-									<Option>Прекращено</Option>
+									<Option value="1">Не выбранно</Option>
+									<Option value="1">Водительское удостоверение</Option>
+									<Option value="1">Временное разрешение</Option>
+									<Option value="1">Опред. о возбуждении дела</Option>
+									<Option value="1">Постановление</Option>
+									<Option value="1">Протокол</Option>
+									<Option value="1">Постановление квитанция</Option>
+									<Option value="1">Прекращено</Option>
 								</Select>
 								</Col>
 								<Col :lg="12">
@@ -110,13 +110,13 @@
 							<Row type="flex" :gutter="8">
 								<Col :lg="12">
 								<Select placeholder="Выбрать">
-									<Option>Возбужденно</Option>
-									<Option>Рассмотрение</Option>
-									<Option>Обжалование</Option>
-									<Option>Пересмотр</Option>
-									<Option>Исполнение</Option>
-									<Option>Исполненно</Option>
-									<Option>Прекращено</Option>
+									<Option value="1">Возбужденно</Option>
+									<Option value="1">Рассмотрение</Option>
+									<Option value="1">Обжалование</Option>
+									<Option value="1">Пересмотр</Option>
+									<Option value="1">Исполнение</Option>
+									<Option value="1">Исполненно</Option>
+									<Option value="1">Прекращено</Option>
 								</Select>
 								</Col>
 								<Col :lg="12">
@@ -129,7 +129,7 @@
 							<div slot="label">Номер УПИ</div>
 							<Row type="flex" :gutter="8">
 								<Col :lg="12">
-								<Input placeholder="Номер УПИ"></Input>
+									<Input placeholder="Номер УПИ"></Input>
 								</Col>
 							</Row>
 						</FormItem>
@@ -138,15 +138,11 @@
 				</Form>
 			</div>
 		</div>
-	
 		<div class="bg-white">
 			<div class="wmax1280 mx-auto">
-				<Table ref="selection" :columns="columnsOption" :data="rowsData" size="small" @on-row-click="setPackageRegister" height="400">
-				</Table>
+				<Table ref="selection" :columns="columnsOption" :data="rowsData" size="small" height="400"></Table>
 			</div>
 		</div>
-	
-	
 	</div>
 </template>
 
@@ -205,7 +201,9 @@ export default {
 					ellipsis: true,
 					tooltip: true,
 					renderHeader: (h, params) => {
-						return h('h4', params.column.title)
+						return h('h4', {
+							class: 'adm-h4',
+						}, params.column.title)
 					}
 				},
 				{
