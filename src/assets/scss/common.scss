@@ -57,6 +57,10 @@
 	line-height: 16px;
 }
 
+.my-auto { margin-top: auto; margin-bottom: auto; }
+
+
+
 
 html, body, #app{
 	height: 100%;
@@ -67,7 +71,6 @@ html, body, #app{
 .layout--inner{
 	background: #ffff;
 }
-
 .sider{
 	background: $white-light;
 	position: absolute;
@@ -80,4 +83,16 @@ html, body, #app{
 .product_header{
 	letter-spacing: 0.2px;	
 	line-height: 30px;
+}
+
+.menu-link{
+	border-right: 5px solid transparent;
+	transition: 200ms border ease;
+}
+.menu-link:hover{
+	border-right: 5px solid $blue-light;
+}
+
+.menu-link.active-link{
+	border-right: 5px solid $blue-light;
 }
