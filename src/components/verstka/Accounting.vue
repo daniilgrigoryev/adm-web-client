@@ -1,155 +1,171 @@
 <template>
-	<div>
+	<div class="layout h-full">
 		<button type="button" @click="getPrev">Назад</button>
-	
-		<div class="wmax1280 mx-auto">
-			<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
-				<div class="flex-parent flex-parent--center-cross mr64">
-					<div class="icon-main mx12 my6">
-						<img src='../../assets/images/burger.svg'>
+		<Layout class="layout--inner h-full wmax1280 mx-auto">
+           <Sider class="sider" ref="side1" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
+				<Button @click="isCollapsed = true">X</Button>
+
+
+            </Sider>
+			<Layout class="layout--inner">
+				<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
+					<div class="flex-parent flex-parent--center-cross mr64">
+							<Icon @click.native="collapsedSider" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
+						<!-- <div class="icon-main mx12 my6" @click.native="collapsedSider" :class="rotateIcon">
+							<img src='../../assets/images/burger.svg'>
+						</div> -->
+						<div>
+							<h1 class="adm-h2 color-gray-medium txt-uppercase">Исод Мади</h1>
+						</div>
 					</div>
-					<div>
-						<h1 class="adm-h2 color-gray-medium txt-uppercase">Исод Мади</h1>
+					<Menu mode="horizontal" active-name="1">
+						<MenuItem name="1"> Административный учет
+						</MenuItem>
+						<MenuItem name="2"> Возбудить дело
+						</MenuItem>
+						<MenuItem name="3"> Учет спецпродукции
+						</MenuItem>
+						<MenuItem name="3"> Состояние выгрузки
+						</MenuItem>
+						<MenuItem name="3"> Обработка документов
+						</MenuItem>
+						<MenuItem name="3"> Почтовые реестры
+						</MenuItem>
+					</Menu>
+				</div>
+				<div class="bg-gray-faint">
+					<div class="wmax1280 mx-auto px36 py18">
+						<Form inline label-position="top">
+							<Row :gutter="8">
+								<Col :xs="24" :sm="24" :md="24" :lg="12">
+									<Row type="flex" :gutter="8" align="bottom">
+										<Col :xs="24" :sm="24" :md="24" :lg="8">
+											<FormItem class="w-full" label="">
+												<Input placeholder="Номер дела"></Input>
+											</FormItem>
+										</Col>
+										<Col :xs="24" :sm="24" :md="24" :lg="8">
+											<FormItem class="w-full">
+												<div slot="label">Дата заведения дела</div>
+												<Select placeholder="Выбрать">
+													<Option value="1">За текущий год</Option>
+													<Option value="1">За периуд</Option>
+												</Select>
+											</FormItem>
+										</Col>
+										<Col :xs="24" :sm="24" :md="24" :lg="8">
+											<FormItem class="w-full">
+												<Input placeholder="ГРЗ автомобил"></Input>
+											</FormItem>
+										</Col>
+									</Row>
+								</Col>
+								<Col :xs="24" :sm="24" :md="24" :lg="12">
+									<FormItem class="w-full">
+										<div slot="label">Документ прикрепленный к делу</div>
+										<Row type="flex" :gutter="8">
+											<Col :lg="12">
+												<Select placeholder="Выбрать">
+													<Option value="1">Не выбранно</Option>
+													<Option value="1">Водительское удостоверение</Option>
+													<Option value="1">Временное разрешение</Option>
+													<Option value="1">Опред. о возбуждении дела</Option>
+													<Option value="1">Постановление</Option>
+													<Option value="1">Протокол</Option>
+													<Option value="1">Постановление квитанция</Option>
+													<Option value="1">Прекращено</Option>
+												</Select>
+											</Col>
+											<Col :lg="12">
+												<Input placeholder="Номер документа"></Input>
+											</Col>
+										</Row>
+									</FormItem>
+								</Col>
+							</Row>
+							<Row :gutter="8">
+								<Col :xs="24" :sm="24" :md="24" :lg="12">
+									<FormItem class="w-full">
+										<div slot="label">Физическое лицо - ЛВОК</div>
+										<Row type="flex">
+											<Col :xs="24" :sm="24" :md="24" :lg="8">
+												<Input placeholder="Фамилия"></Input>
+											</Col>
+											<Col :xs="24" :sm="24" :md="24" :lg="1">
+											<div class="align-center">/</div>
+											</Col>
+											<Col :xs="24" :sm="24" :md="24" :lg="6">
+												<Input placeholder="Имя"></Input>
+											</Col>
+											<Col :xs="24" :sm="24" :md="24" :lg="1">
+												<div class="align-center">|</div>
+											</Col>
+											<Col :xs="24" :sm="24" :md="24" :lg="8">
+												<Input placeholder="Отчество"></Input>
+											</Col>
+										</Row>
+									</FormItem>
+								</Col>
+								<Col :xs="24" :sm="24" :md="24" :lg="12">
+									<FormItem class="w-full">
+										<div slot="label">Стадия дела</div>
+										<Row type="flex" :gutter="8">
+											<Col :lg="12">
+												<Select placeholder="Выбрать">
+													<Option value="1">Возбужденно</Option>
+													<Option value="1">Рассмотрение</Option>
+													<Option value="1">Обжалование</Option>
+													<Option value="1">Пересмотр</Option>
+													<Option value="1">Исполнение</Option>
+													<Option value="1">Исполненно</Option>
+													<Option value="1">Прекращено</Option>
+												</Select>
+											</Col>
+											<Col :lg="12">
+												<Input placeholder="По статье"></Input>
+											</Col>
+										</Row>
+									</FormItem>
+								</Col>
+							</Row>
+							<Row :gutter="8">
+								<Col :xs="24" :sm="24" :md="24" :lg="12">
+									<FormItem class="w-full">
+										<div slot="label">Юридическое лицо - ЛВОК</div>
+										<Row type="flex">
+											<Col :lg="12">
+												<Input placeholder="Название организации"></Input>
+											</Col>
+										</Row>
+									</FormItem>
+								</Col>
+								<Col :xs="24" :sm="24" :md="24" :lg="12">
+									<FormItem class="w-full">
+										<div slot="label">Номер УПИ</div>
+										<Row type="flex" :gutter="8">
+											<Col :lg="12">
+												<Input placeholder="Номер УПИ"></Input>
+											</Col>
+										</Row>
+									</FormItem>
+								</Col>
+							</Row>
+						</Form>
+						<div class="flex-parent flex-parent--end-main">
+							<a href='#Links' class='link color-blue-base adm-btn-small txt-underline-on-hover'>Больше параметров</a>
+						</div>
 					</div>
 				</div>
-				<Menu mode="horizontal" active-name="1">
-					<MenuItem name="1"> Административный учет
-					</MenuItem>
-					<MenuItem name="2"> Возбудить дело
-					</MenuItem>
-					<MenuItem name="3"> Учет спецпродукции
-					</MenuItem>
-					<MenuItem name="3"> Состояние выгрузки
-					</MenuItem>
-					<MenuItem name="3"> Обработка документов
-					</MenuItem>
-					<MenuItem name="3"> Почтовые реестры
-					</MenuItem>
-				</Menu>
-			</div>
-		</div>
-	
-		<div class="bg-gray-faint">
-			<div class="wmax1280 mx-auto px36 py18">
-				<Form inline label-position="top">
-					<Row :gutter="8">
-						<Col :xs="24" :sm="24" :md="24" :lg="12">
-						<Row type="flex" :gutter="8" align="bottom">
-							<Col :xs="24" :sm="24" :md="24" :lg="8">
-							<FormItem class="w-full" label="">
-								<Input placeholder="Номер дела"></Input>
-							</FormItem>
-							</Col>
-							<Col :xs="24" :sm="24" :md="24" :lg="8">
-							<FormItem class="w-full">
-								<div slot="label">Дата заведения дела</div>
-								<Select placeholder="Выбрать">
-									<Option value="1">За текущий год</Option>
-									<Option value="1">За периуд</Option>
-								</Select>
-							</FormItem>
-							</Col>
-							<Col :xs="24" :sm="24" :md="24" :lg="8">
-							<FormItem class="w-full">
-								<Input placeholder="ГРЗ автомобил"></Input>
-							</FormItem>
-							</Col>
-						</Row>
-						<FormItem class="w-full">
-							<div slot="label">Физическое лицо - ЛВОК</div>
-							<Row type="flex">
-								<Col :xs="24" :sm="24" :md="24" :lg="8">
-									<Input placeholder="Фамилия"></Input>
-								</Col>
-								<Col :xs="24" :sm="24" :md="24" :lg="1">
-								<div class="align-center">/</div>
-								</Col>
-								<Col :xs="24" :sm="24" :md="24" :lg="6">
-									<Input placeholder="Имя"></Input>
-								</Col>
-								<Col :xs="24" :sm="24" :md="24" :lg="1">
-									<div class="align-center">|</div>
-								</Col>
-								<Col :xs="24" :sm="24" :md="24" :lg="8">
-									<Input placeholder="Отчество"></Input>
-								</Col>
-							</Row>
-						</FormItem>
-						<FormItem class="w-full">
-							<div slot="label">Юридическое лицо - ЛВОК</div>
-							<Row type="flex">
-								<Col :lg="12">
-								<Input placeholder="Название организации"></Input>
-								</Col>
-							</Row>
-						</FormItem>
-						</Col>
-						<Col :xs="24" :sm="24" :md="24" :lg="12">
-						<FormItem class="w-full">
-							<div slot="label">Документ прикрепленный к делу</div>
-							<Row type="flex" :gutter="8">
-								<Col :lg="12">
-								<Select placeholder="Выбрать">
-									<Option value="1">Не выбранно</Option>
-									<Option value="1">Водительское удостоверение</Option>
-									<Option value="1">Временное разрешение</Option>
-									<Option value="1">Опред. о возбуждении дела</Option>
-									<Option value="1">Постановление</Option>
-									<Option value="1">Протокол</Option>
-									<Option value="1">Постановление квитанция</Option>
-									<Option value="1">Прекращено</Option>
-								</Select>
-								</Col>
-								<Col :lg="12">
-								<Input placeholder="Номер документа"></Input>
-								</Col>
-							</Row>
-						</FormItem>
-						<FormItem class="w-full">
-							<div slot="label">Стадия дела</div>
-							<Row type="flex" :gutter="8">
-								<Col :lg="12">
-								<Select placeholder="Выбрать">
-									<Option value="1">Возбужденно</Option>
-									<Option value="1">Рассмотрение</Option>
-									<Option value="1">Обжалование</Option>
-									<Option value="1">Пересмотр</Option>
-									<Option value="1">Исполнение</Option>
-									<Option value="1">Исполненно</Option>
-									<Option value="1">Прекращено</Option>
-								</Select>
-								</Col>
-								<Col :lg="12">
-								<Input placeholder="По статье"></Input>
-								</Col>
-							</Row>
-						</FormItem>
-	
-						<FormItem class="w-full">
-							<div slot="label">Номер УПИ</div>
-							<Row type="flex" :gutter="8">
-								<Col :lg="12">
-									<Input placeholder="Номер УПИ"></Input>
-								</Col>
-							</Row>
-						</FormItem>
-						</Col>
-					</Row>
-				</Form>
-			</div>
-		</div>
-		<div class="bg-white">
-			<div class="wmax1280 mx-auto">
-				<Table ref="selection" :columns="columnsOption" :data="rowsData" size="small" height="400"></Table>
-			</div>
-		</div>
+				<div class="bg-white">
+					<div class="wmax1280 mx-auto">
+						<Table ref="selection" :columns="columnsOption" :data="rowsData" size="large" :stripe="false" :border="false" height="400"></Table>
+					</div>
+				</div>
+			</Layout>
+		</Layout>
 	</div>
 </template>
 
-
-<style lang="scss">
-
-</style>
 
 
 <script>
@@ -164,14 +180,18 @@ export default {
 			columnsOption: [{
 					title: ' ',
 					key: 'status',
-					width: 50,
+					width: 140,
 					render: (h, params) => {
-						return h('Icon', {
+						const row = params.row;
+						const color = row.status === 1 ? 'primary' : row.status === 2 ? 'success' : 'error';
+						const text = row.status === 1 ? 'Working' : row.status === 2 ? 'Success' : 'Ошибка';
+
+						return h('Tag', {
 							props: {
-								size: 20,
-								type: 'ios-eye'
+								type: 'dot',
+								color: color
 							}
-						});
+						}, text);
 					}
 				},
 				{
@@ -339,6 +359,15 @@ export default {
 					grz: 'E459TС 50',
 					docsDeal: '86975860098'
 				}
+			],
+			isCollapsed: false
+		}
+	},
+	computed: {
+		menuitemClasses () {
+			return [
+				'menu-item',
+				this.isCollapsed ? 'collapsed-menu' : ''
 			]
 		}
 	},
@@ -352,6 +381,9 @@ export default {
 				alert(e.message);
 			}
 		},
+		collapsedSider () {
+			this.$refs.side1.toggleCollapse();
+		}
 	}
 }
 </script>

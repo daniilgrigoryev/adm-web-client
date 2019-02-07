@@ -55,16 +55,22 @@
 	font-size: 12px;
 	letter-spacing: 0.2px;
 	line-height: 16px;
-	text-align: center;
 }
 
 
-
-
+html, body, #app{
+	height: 100%;
+}
 .wmax1280{
 	max-width: 1280px;
 }
+.layout--inner{
+	background: #ffff;
+}
 
-.color-gray-medium{
-    color: $gray-medium;
+.sider{
+	background: $white-light;
+	position: absolute;
+	height: 100%;
+	z-index: 999;
 }
