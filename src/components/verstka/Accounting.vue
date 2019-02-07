@@ -2,15 +2,31 @@
 	<div class="layout h-full">
 		<button type="button" @click="getPrev">Назад</button>
 		<Layout class="layout--inner h-full wmax1280 mx-auto">
+
+
            <Sider class="sider" ref="side1" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
-				<Button @click="isCollapsed = true">X</Button>
+			   <div class="px18 py18 relative">
+
+				   <Icon @click="isCollapsed = true" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
+
+					<div class="flex-parent flex-parent--column flex-parent--center-cross">
+						<div style="width: 100px; height: 100px;" class="bg-red"></div>
 
 
+						<b class="my18 product_header adm-text-big color-gray-medium align-center">
+							Информационная Система<br>
+							Обеспечения Деятельности<br> 
+							Московской Административной<br>
+							Дорожной Инспекции
+						</b>
+					</div>
+
+			   </div>
             </Sider>
 			<Layout class="layout--inner">
 				<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
 					<div class="flex-parent flex-parent--center-cross mr64">
-							<Icon @click.native="collapsedSider" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
+							<Icon @click.native="collapsedSider" type="md-menu" size="24" class="mx12 cursor-pointer"></Icon>
 						<!-- <div class="icon-main mx12 my6" @click.native="collapsedSider" :class="rotateIcon">
 							<img src='../../assets/images/burger.svg'>
 						</div> -->
