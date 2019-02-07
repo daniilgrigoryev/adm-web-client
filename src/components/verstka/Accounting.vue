@@ -83,10 +83,10 @@
 			<Layout class="layout--inner">
 				<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
 					<div class="flex-parent flex-parent--center-cross mr64">
-							<Icon @click.native="collapsedSider" type="md-menu" size="24" class="mx12 cursor-pointer"></Icon>
-						<!-- <div class="icon-main mx12 my6" @click.native="collapsedSider" :class="rotateIcon">
-							<img src='../../assets/images/burger.svg'>
-						</div> -->
+						<!-- <Icon @click.native="collapsedSider" type="md-menu" size="24" class="mx12 cursor-pointer"></Icon> -->
+						<Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer" @click.native="collapsedSider" :class="rotateIcon">
+							<img src='../../assets/images/burger.svg' class="wmax-none">
+						</Button>
 						<div>
 							<h1 class="adm-h2 color-gray-medium txt-uppercase">Исод Мади</h1>
 						</div>
@@ -238,7 +238,6 @@
 		</Layout>
 	</div>
 </template>
-
 
 
 <script>
