@@ -97,9 +97,12 @@ html, body, #app{
 }
 
 
-.tree{
+.tree *{
 	// outline: 1px solid;	
 	// box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+	&__inner *{
+		// outline: 1px solid;
+	}
 }
 .tree a.tree__link{
 	background-color: #F5FAFD;

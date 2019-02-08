@@ -167,6 +167,7 @@
 									</a>
 								</li>
 								<li>
+
 									<a href="#" class="flex-parent flex-parent--wrap tree__link border-t border-b border--gray-faint py12">
 										<div class="bg-red ml18" style="width: 40px; height: 40px;">
 											<img src="" alt="">
@@ -175,8 +176,35 @@
 											<div class="flex-parent flex-parent--space-between-main">
 												<p class="adm-txt-regular color-dark-base">Почтовое уведомление</p>
 												<i class="adm-txt-regular color-blue-base">12.05.2019</i>
-											</div>	
+											</div>
 											<p class="adm-text-big color-dark-base txt-bold">Последний статус</p>
+
+											<ul class="tree__inner">
+												<li>
+													<a href="#" class="flex-parent flex-parent--center-cross flex-parent--wrap py12  border-b border--gray-light">
+														<div class="bg-red mx12" style="width: 10px; height: 13px;">
+															<img src="" alt="">
+														</div>
+														<div class="col">
+															<p class="adm-text-big color-dark-base">Передано в доставку по России</p>
+															<i class="adm-txt-regular color-blue-base">12.10.2018 - 05:15</i>
+														</div>
+													</a>
+												</li>
+												<li>
+													<a href="#" class="flex-parent flex-parent--center-cross flex-parent--wrap py12">
+														<div class="bg-red mx12" style="width: 10px; height: 13px;">
+															<img src="" alt="">
+														</div>
+														<div class="col">
+															<p class="adm-text-big color-dark-base">Передано в доставку по России</p>
+															<i class="adm-txt-regular color-blue-base">12.10.2018 - 05:15</i>
+														</div>
+													</a>
+												</li>
+											</ul>
+
+
 											<a class="link block adm-btn-regular txt-underline my6" href="">
 												<span>Показать историю обработки</span>
 												<Icon type="md-arrow-dropdown" size="18"/>
