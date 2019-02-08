@@ -73,10 +73,15 @@
         <input type="text" v-model="filter.upi.value" />
       </div>
 
+      <div class="prose my24 border">
+        <h4 class="my0 px0 inline align-middle">Верстка:</h4>
+        <button  class="txt-kbd" type="button" @click="admAccounting">админ учет</button>
+        <button  class="txt-kbd" type="button" @click="admDelo">дело</button>
+      </div>
+
+
       <div>
         <button type="button" @click="filterClick">Фильтровать</button>
-        <button type="button" @click="admAccounting">Верстка административного учета</button>
-        <button type="button" @click="admDelo">Верстка дела</button>
         <button type="button" @click="createWizard">Создать</button>
       </div>
     </div>
