@@ -4,6 +4,7 @@ import VueResource from 'vue-resource'
 
 import authorization from './modules/authorization';
 import accounting from './modules/accounting';
+import delo from './modules/delo';
 import deloReestr from './modules/deloReestr';
 import deloTreeCardView from './modules/deloTreeCardView';
 import wizardExecuter from './modules/wizardExecuter';
@@ -99,6 +100,7 @@ const store = new Vuex.Store({
     wizardItemPredDoc,
     wizardItemVehs,
     accounting,
+    delo,
     authorization
   }
 });

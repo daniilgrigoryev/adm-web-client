@@ -2,8 +2,6 @@
 	<div class="layout h-full">
 		<button type="button" @click="getPrev">Назад</button>
 		<Layout class="layout--inner h-full wmax1280 mx-auto">
-
-
            <Sider class="sider" ref="side1" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
 			   <div class="py18 relative h-full">
 				   <div class="flex-parent flex-parent--column h-full">
@@ -69,7 +67,6 @@
 							</li>
 						</ul>
 						<div class="flex-parent flex-parent--column flex-parent--center-main align-center mx-auto my-auto mb18">
-
 							<div style="width: 50px; height: 50px;" class="bg-red mx-auto round-full txt-truncate">
 								<img src="" alt="">
 							</div>
@@ -77,14 +74,13 @@
 							<a href='#Links' class='link color-blue-base adm-btn-small txt-underline-on-hover'>Выйти из профиля</a>
 						</div>
 					</div>
- 					
 			   </div>
             </Sider>
 			<Layout class="layout--inner">
 				<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
 					<div class="flex-parent flex-parent--center-cross mr64">
 						<!-- <Icon @click.native="collapsedSider" type="md-menu" size="24" class="mx12 cursor-pointer"></Icon> -->
-						<Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer" @click.native="collapsedSider" :class="rotateIcon">
+						<Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer" @click.native="collapsedSider">
 							<img src='../../assets/images/burger.svg' class="wmax-none">
 						</Button>
 						<div>

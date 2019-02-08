@@ -7,6 +7,7 @@ import WizardExecuter from '../components/wizard/WizardExecuter';
 
 // верстка
 import Accounting from '../components/verstka/Accounting.vue';
+import Delo from '../components/verstka/Delo.vue';
 
 import * as funcUtils from "./../assets/js/utils/funcUtils";
 import * as ConstantUtils from "./../assets/js/utils/constantUtils";
@@ -44,6 +45,11 @@ const router = new Router({
       path: ConstantUtils.contextPath + '/accounting',
       name: 'Accounting',
       component: Accounting,
+    },
+    {
+      path: ConstantUtils.contextPath + '/delo',
+      name: 'Delo',
+      component: Delo,
     },
   ]
 });
