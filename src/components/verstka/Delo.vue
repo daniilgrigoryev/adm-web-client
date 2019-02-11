@@ -295,8 +295,26 @@
 								</li>
 							</ul>
 						</Col>
-						<Col :xs="24" :sm="16" :md="16" :lg="16">
-							<p>some</p>
+						<Col :xs="24" :sm="16" :md="16" :lg="16" style="padding: 0">
+
+							<div class="">
+
+								<div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px36 py12 bg-white-light border-t border-b border--gray-faint">
+									<b class="adm-text-big">Заголовок открытой формы</b>
+									<Button type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer">
+										<img src='../../assets/images/wiki.svg' class="wmax-none">
+									</Button>
+								</div>
+								
+								<div class="hmin360 px36 py12" style="background-color: rgba(255,2,2,0.11)">
+										ljdf;lskdjf
+								</div>
+
+								<div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+									<Button type="text">Отменить изменения</Button>
+									<Button type="primary" class="ml12">Сохранить</Button>
+								</div>
+							</div>
 						</Col>
 					</Row>
 				</div>
