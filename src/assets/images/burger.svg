@@ -1,21 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="23px" height="17px" viewBox="0 0 23 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
-    <title>54957E7C-E27B-4DD7-9FAD-16E20FCB40DE</title>
-    <desc>Created with sketchtool.</desc>
+<svg width="23" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
-        <path d="M10,12.5 C10,11.6715729 10.6654358,11 11.5032506,11 L28.4967494,11 C29.3269718,11 30,11.6657972 30,12.5 C30,13.3284271 29.3345642,14 28.4967494,14 L11.5032506,14 C10.6730282,14 10,13.3342028 10,12.5 Z M13,19.5 C13,18.6715729 13.6654358,18 14.5032506,18 L31.4967494,18 C32.3269718,18 33,18.6657972 33,19.5 C33,20.3284271 32.3345642,21 31.4967494,21 L14.5032506,21 C13.6730282,21 13,20.3342028 13,19.5 Z M10,26.5 C10,25.6715729 10.6654358,25 11.5032506,25 L28.4967494,25 C29.3269718,25 30,25.6657972 30,26.5 C30,27.3284271 29.3345642,28 28.4967494,28 L11.5032506,28 C10.6730282,28 10,27.3342028 10,26.5 Z" id="path-1"></path>
+        <path d="M10 12.5c0-.828.665-1.5 1.503-1.5h16.994c.83 0 1.503.666 1.503 1.5 0 .828-.665 1.5-1.503 1.5H11.503c-.83 0-1.503-.666-1.503-1.5zm3 7c0-.828.665-1.5 1.503-1.5h16.994c.83 0 1.503.666 1.503 1.5 0 .828-.665 1.5-1.503 1.5H14.503c-.83 0-1.503-.666-1.503-1.5zm-3 7c0-.828.665-1.5 1.503-1.5h16.994c.83 0 1.503.666 1.503 1.5 0 .828-.665 1.5-1.503 1.5H11.503c-.83 0-1.503-.666-1.503-1.5z" id="a" />
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="администранивный-учет---список-дел---поиск" transform="translate(-20.000000, -31.000000)">
-            <g id="menu-/-main-menu">
-                <g id="menu-/-icon-/-burger" transform="translate(10.000000, 20.000000)">
-                    <mask id="mask-2" fill="white">
-                        <use xlink:href="#path-1"></use>
-                    </mask>
-                    <use id="Combined-Shape" fill="#CCCCCC" xlink:href="#path-1"></use>
-                </g>
-            </g>
-        </g>
-    </g>
+    <use fill="#1888CC" xlink:href="#a" transform="translate(-10 -11)" fill-rule="evenodd" />
 </svg>

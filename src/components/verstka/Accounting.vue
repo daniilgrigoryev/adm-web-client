@@ -77,7 +77,7 @@
 			   </div>
             </Sider>
 			<Layout class="layout--inner">
-				<div>
+				<div class="header">
 					<Row type="flex" align="middle" justify="space-between">
 						<Col>
 							<div class="flex-parent flex-parent--center-cross mr64">
@@ -96,9 +96,9 @@
 									<MenuItem name="1" class="header-menu__item">Административный учет</MenuItem>
 									<MenuItem name="2" class="header-menu__item">Возбудить дело</MenuItem>
 									<MenuItem name="3" class="header-menu__item">Учет спецпродукции</MenuItem>
-									<MenuItem name="3" class="header-menu__item">Состояние выгрузки</MenuItem>
-									<MenuItem name="3" class="header-menu__item">Обработка документов</MenuItem>
-									<MenuItem name="3" class="header-menu__item">Почтовые реестры</MenuItem>
+									<MenuItem name="4" class="header-menu__item">Состояние выгрузки</MenuItem>
+									<MenuItem name="5" class="header-menu__item">Обработка документов</MenuItem>
+									<MenuItem name="6" class="header-menu__item">Почтовые реестры</MenuItem>
 								</div>
 							</Menu>
 						</Col>

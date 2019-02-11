@@ -79,7 +79,7 @@
 			   </div>
             </Sider>
 			<Layout class="layout--inner">
-				<div>
+				<div class="header">
 					<Row type="flex" align="middle" justify="space-between">
 						<Col>
 							<div class="flex-parent flex-parent--center-cross mr64">
@@ -98,9 +98,9 @@
 									<MenuItem name="1" class="header-menu__item">Административный учет</MenuItem>
 									<MenuItem name="2" class="header-menu__item">Возбудить дело</MenuItem>
 									<MenuItem name="3" class="header-menu__item">Учет спецпродукции</MenuItem>
-									<MenuItem name="3" class="header-menu__item">Состояние выгрузки</MenuItem>
-									<MenuItem name="3" class="header-menu__item">Обработка документов</MenuItem>
-									<MenuItem name="3" class="header-menu__item">Почтовые реестры</MenuItem>
+									<MenuItem name="4" class="header-menu__item">Состояние выгрузки</MenuItem>
+									<MenuItem name="5" class="header-menu__item">Обработка документов</MenuItem>
+									<MenuItem name="6" class="header-menu__item">Почтовые реестры</MenuItem>
 								</div>
 							</Menu>
 						</Col>
@@ -120,6 +120,7 @@
 						<p class="adm-txt-regular color-gray-medium">Описание нарушения по указанной статье и подпунту статьи. Описание нарушения по указанной статье и подпунту статьи.Описание нарушения по указанной статье и подпунту статьи.Описание нарушения по указанной статье и подпунту статьи.</p>
 					</div>
 				</div>
+				<hr class="txt-hr my0">
 				<div>
 					<Row>
 						<Col :xs="24" :sm="8" :md="8" :lg="8">
@@ -203,8 +204,6 @@
 													</a>
 												</li>
 											</ul>
-
-
 											<a class="link block adm-btn-regular txt-underline my6" href="">
 												<span>Показать историю обработки</span>
 												<Icon type="md-arrow-dropdown" size="18"/>

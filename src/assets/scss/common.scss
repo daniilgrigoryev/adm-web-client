@@ -113,10 +113,20 @@ html, body, #app{
 	}
 }
 
-
+.header{
+	border-bottom: 1px solid #CCCCCC;
+}
 .header-menu{
 	height: inherit;
+	&:after{
+		content: none!important;
+	}
 }
 .header-menu__item{
 	float: none!important;
+	border-bottom: 5px solid transparent;
+	&:hover,
+	&.ivu-menu-item-active{
+		border-bottom: 5px solid $blue-base!important;
+	}
 }
