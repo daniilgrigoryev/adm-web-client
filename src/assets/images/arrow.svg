@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="78px" viewBox="0 0 21 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
+    <title>2CAEB053-79E5-49F7-90D3-4D642DABF4A1</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M0,0 L0.343308252,0 C1.68133836,-2.45792144e-16 2.85761478,0.886096669 3.22683204,2.17217722 L12.9034687,35.87844 C13.0095459,36.2479347 13.0068889,36.6401719 12.8958158,37.0081956 L3.24704483,68.9779218 C2.8647861,70.2444776 1.6979839,71.1111111 0.375000389,71.1111111 L0,71.1111111 L0,0 Z" id="path-1"></path>
+        <filter x="-46.2%" y="-8.4%" width="192.2%" height="116.9%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter2"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter2" result="shadowBlurOuter2"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.26 0" type="matrix" in="shadowBlurOuter2" result="shadowMatrixOuter2"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="администранивный-lt---список-дел-gide" transform="translate(-1541.000000, -338.000000)">
+            <g id="arrow-copy-2" transform="translate(1545.000000, 337.000000)">
+                <g id="arrow-copy" transform="translate(0.000000, 4.444444)">
+                    <g id="bg-copy">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <path d="M0,0 L0.343308252,0 C1.68133836,-2.45792144e-16 2.85761478,0.886096669 3.22683204,2.17217722 L12.9034687,35.87844 C13.0095459,36.2479347 13.0068889,36.6401719 12.8958158,37.0081956 L3.24704483,68.9779218 C2.8647861,70.2444776 1.6979839,71.1111111 0.375000389,71.1111111 L0,71.1111111 L0,0 Z" id="bg-copy-3" fill="#E4EEF5"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,5 +1,5 @@
 <template>
-	<div class="layout h-full">
+	<div class="layout">
 		<button type="button" @click="getPrev">Назад</button>
 		<Layout class="layout--inner h-full wmax1280 mx-auto">
            <Sider class="sider" ref="side1" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
@@ -17,7 +17,7 @@
 						</div>					
 						<ul>
 							<li>
-								<a href="#" class="flex-parent flex-parent--center-cross py18 menu-link active-link">
+								<a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link active-link">
 									<div class="bg-red mx18" style="width: 40px; height: 40px;">
 										<img src="" alt="">
 									</div>
@@ -25,7 +25,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="#" class="flex-parent flex-parent--center-cross py18 menu-link">
+								<a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
 									<div class="bg-red mx18" style="width: 40px; height: 40px;">
 										<img src="" alt="">
 									</div>
@@ -33,7 +33,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="#" class="flex-parent flex-parent--center-cross py18 menu-link">
+								<a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
 									<div class="bg-red mx18" style="width: 40px; height: 40px;">
 										<img src="" alt="">
 									</div>
@@ -41,7 +41,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="#" class="flex-parent flex-parent--center-cross py18 menu-link">
+								<a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
 									<div class="bg-red mx18" style="width: 40px; height: 40px;">
 										<img src="" alt="">
 									</div>
@@ -49,7 +49,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="#" class="flex-parent flex-parent--center-cross py18 menu-link">
+								<a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
 									<div class="bg-red mx18" style="width: 40px; height: 40px;">
 										<img src="" alt="">
 									</div>
@@ -58,7 +58,7 @@
 							</li>
 							<hr class='txt-hr mx18'>
 							<li>
-								<a href="#" class="flex-parent flex-parent--center-cross py18 menu-link">
+								<a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
 									<div class="bg-red mx18" style="width: 40px; height: 40px;">
 										<img src="" alt="">
 									</div>
@@ -77,30 +77,32 @@
 			   </div>
             </Sider>
 			<Layout class="layout--inner">
-				<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
-					<div class="flex-parent flex-parent--center-cross mr64">
-						<!-- <Icon @click.native="collapsedSider" type="md-menu" size="24" class="mx12 cursor-pointer"></Icon> -->
-						<Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer" @click.native="collapsedSider">
-							<img src='../../assets/images/burger.svg' class="wmax-none">
-						</Button>
-						<div>
-							<h1 class="adm-h2 color-gray-medium txt-uppercase">Исод Мади</h1>
-						</div>
-					</div>
-					<Menu mode="horizontal" active-name="1">
-						<MenuItem name="1"> Административный учет
-						</MenuItem>
-						<MenuItem name="2"> Возбудить дело
-						</MenuItem>
-						<MenuItem name="3"> Учет спецпродукции
-						</MenuItem>
-						<MenuItem name="3"> Состояние выгрузки
-						</MenuItem>
-						<MenuItem name="3"> Обработка документов
-						</MenuItem>
-						<MenuItem name="3"> Почтовые реестры
-						</MenuItem>
-					</Menu>
+				<div>
+					<Row type="flex" align="middle" justify="space-between">
+						<Col>
+							<div class="flex-parent flex-parent--center-cross mr64">
+								<!-- <Icon @click.native="collapsedSider" type="md-menu" size="24" class="mx12 cursor-pointer"></Icon> -->
+								<Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer" @click.native="collapsedSider">
+									<img src='../../assets/images/burger.svg' class="wmax-none">
+								</Button>
+								<div>
+									<h1 class="adm-h2 color-gray-medium txt-uppercase">Исод Мади</h1>
+								</div>
+							</div>
+						</Col>
+						<Col>
+							<Menu mode="horizontal" active-name="1" class="header-menu">
+								<div class="grid">
+									<MenuItem name="1" class="header-menu__item">Административный учет</MenuItem>
+									<MenuItem name="2" class="header-menu__item">Возбудить дело</MenuItem>
+									<MenuItem name="3" class="header-menu__item">Учет спецпродукции</MenuItem>
+									<MenuItem name="3" class="header-menu__item">Состояние выгрузки</MenuItem>
+									<MenuItem name="3" class="header-menu__item">Обработка документов</MenuItem>
+									<MenuItem name="3" class="header-menu__item">Почтовые реестры</MenuItem>
+								</div>
+							</Menu>
+						</Col>
+					</Row>
 				</div>
 				<div class="bg-gray-faint">
 					<div class="wmax1280 mx-auto px36 py18">
