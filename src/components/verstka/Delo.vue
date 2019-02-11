@@ -2,7 +2,7 @@
 	<div class="layout h-full">
 		<button type="button" @click="getPrev">Назад</button>
 		<Layout class="layout--inner h-full wmax1280 mx-auto">
-           <Sider class="sider" ref="side1" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
+           <Sider class="sider transition " ref="side1" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
 			   <div class="py18 relative h-full">
 				   <div class="flex-parent flex-parent--column h-full">
 						<Icon @click="isCollapsed = true" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
@@ -118,7 +118,6 @@
 						<p class="adm-txt-regular color-gray-medium">Описание нарушения по указанной статье и подпунту статьи. Описание нарушения по указанной статье и подпунту статьи.Описание нарушения по указанной статье и подпунту статьи.Описание нарушения по указанной статье и подпунту статьи.</p>
 					</div>
 				</div>
-
 				<div>
 					<Row>
 						<Col :xs="24" :sm="8" :md="8" :lg="8">
@@ -130,11 +129,11 @@
 										</div>
 										<div class="col mx18">
 											<div class="flex-parent flex-parent--space-between-main">
-												<p class="adm-txt-regular color-dark-base">Возбуждение дела</p>
-												<i class="adm-txt-regular color-blue-base">12.05.2019</i>
+												<p class="adm-txt-regular color-dark-base txt-break-word">Возбуждение дела</p>
+												<i class="adm-txt-regular color-blue-base txt-break-word">12.05.2019</i>
 											</div>
-											<p class="adm-text-big color-dark-base txt-bold">1234343</p>
-											<small class="adm-text-small color-dark-base">по статье 12.5 ч5</small>
+											<p class="adm-text-big color-dark-base txt-bold txt-break-word">1234343</p>
+											<small class="adm-text-small color-dark-base txt-break-word">по статье 12.5 ч5</small>
 										</div>
 									</a>
 								</li>
@@ -145,10 +144,10 @@
 										</div>
 										<div class="col mx18">
 											<div class="flex-parent flex-parent--space-between-main">
-												<p class="adm-txt-regular color-dark-base">Постановление</p>
-												<i class="adm-txt-regular color-blue-base">12.05.2019</i>
+												<p class="adm-txt-regular color-dark-base txt-break-word">Постановление</p>
+												<i class="adm-txt-regular color-blue-base txt-break-word">12.05.2019</i>
 											</div>	
-											<p class="adm-text-big color-dark-base txt-bold">173648594739504826492</p>
+											<p class="adm-text-big color-dark-base txt-bold txt-break-word">173648594739504826492</p>
 										</div>
 									</a>
 								</li>
@@ -159,10 +158,10 @@
 										</div>
 										<div class="col mx18">
 											<div class="flex-parent flex-parent--space-between-main">
-												<p class="adm-txt-regular color-dark-base">Штраф</p>
-												<i class="adm-txt-regular color-blue-base">12.05.2019</i>
+												<p class="adm-txt-regular color-dark-base txt-break-word">Штраф</p>
+												<i class="adm-txt-regular color-blue-base txt-break-word">12.05.2019</i>
 											</div>	
-											<p class="adm-text-big color-red">500 ₽</p>
+											<p class="adm-text-big color-red txt-break-word">500 ₽</p>
 										</div>
 									</a>
 								</li>
@@ -174,10 +173,10 @@
 										</div>
 										<div class="col mx18">
 											<div class="flex-parent flex-parent--space-between-main">
-												<p class="adm-txt-regular color-dark-base">Почтовое уведомление</p>
-												<i class="adm-txt-regular color-blue-base">12.05.2019</i>
+												<p class="adm-txt-regular color-dark-base txt-break-word">Почтовое уведомление</p>
+												<i class="adm-txt-regular color-blue-base txt-break-word">12.05.2019</i>
 											</div>
-											<p class="adm-text-big color-dark-base txt-bold">Последний статус</p>
+											<p class="adm-text-big color-dark-base txt-bold txt-break-word">Последний статус</p>
 
 											<ul class="tree__inner">
 												<li>
@@ -186,8 +185,8 @@
 															<img src="" alt="">
 														</div>
 														<div class="col">
-															<p class="adm-text-big color-dark-base">Передано в доставку по России</p>
-															<i class="adm-txt-regular color-blue-base">12.10.2018 - 05:15</i>
+															<p class="adm-text-big color-dark-base txt-break-word">Передано в доставку по России</p>
+															<i class="adm-txt-regular color-blue-base txt-break-word">12.10.2018 - 05:15</i>
 														</div>
 													</a>
 												</li>
@@ -197,8 +196,8 @@
 															<img src="" alt="">
 														</div>
 														<div class="col">
-															<p class="adm-text-big color-dark-base">Передано в доставку по России</p>
-															<i class="adm-txt-regular color-blue-base">12.10.2018 - 05:15</i>
+															<p class="adm-text-big color-dark-base txt-break-word">Передано в доставку по России</p>
+															<i class="adm-txt-regular color-blue-base txt-break-word">12.10.2018 - 05:15</i>
 														</div>
 													</a>
 												</li>
