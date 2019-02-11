@@ -88,7 +88,7 @@
 									<img src='../../assets/images/burger.svg' class="wmax-none">
 								</Button>
 								<div>
-									<h1 class="adm-h2 color-gray-medium txt-uppercase">Исод Мади</h1>
+									<h1 class="adm-h2 color-dark-light txt-uppercase">Исод Мади</h1>
 								</div>
 							</div>
 						</Col>
@@ -126,7 +126,7 @@
 						<Col :xs="24" :sm="8" :md="8" :lg="8">
 							<ul class="tree">
 								<li>
-									<a href="#" class="flex-parent flex-parent--wrap tree__link border-t border-b border--gray-faint py12">
+									<a href="#" class="flex-parent flex-parent--wrap tree__link tree__link--selected border-t border-b border--gray-faint py12">
 										<div class="bg-red ml18" style="width: 40px; height: 40px;">
 											<img src="" alt="">
 										</div>
@@ -169,7 +169,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="#" class="flex-parent flex-parent--wrap tree__link border-t border-b border--gray-faint py12">
+									<a href="#" class="flex-parent flex-parent--wrap tree__link  border-t border-b border--gray-faint py12">
 										<div class="bg-red ml18" style="width: 40px; height: 40px;">
 											<img src="" alt="">
 										</div>

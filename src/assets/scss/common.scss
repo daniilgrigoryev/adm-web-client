@@ -86,8 +86,6 @@ html, body, #app{
 	letter-spacing: 0.2px;	
 	line-height: 30px;
 }
-
-
 .sider__menu-link{
 	border-right: 5px solid transparent;
 	transition: 200ms border ease;
@@ -99,20 +97,43 @@ html, body, #app{
 .sider__menu-link.active-link{
 	border-right: 5px solid $blue-light;
 }
-
-
 .tree {
 	a.tree__link{
 		background-color: #F5FAFD;
-		a.tree__link--selected{
+		position: relative;
+		&.tree__link--selected{
+			z-index: 9;
 			background-color: #E4EEF5;
+			&::after{
+				content: "";
+				position: absolute;
+				width: 26px;
+				top: 0;
+				bottom: 0;
+				background-image: url(../images/arrow.svg);
+				background-repeat: no-repeat;
+				background-size: 100% 110%;
+				background-position: -5px;
+				right: -25px;
+			}
 		}
 		&:hover{
 			background-color: #E4EEF5;
+			&::after{
+				content: "";
+				position: absolute;
+				width: 26px;
+				top: 0;
+				bottom: 0;
+				background-image: url(../images/arrow.svg);
+				background-repeat: no-repeat;
+				background-size: 100% 110%;
+				background-position: -5px;
+				right: -25px;
+			}
 		}
 	}
 }
-
 .header{
 	border-bottom: 1px solid #CCCCCC;
 }
