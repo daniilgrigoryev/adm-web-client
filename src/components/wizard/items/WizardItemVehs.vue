@@ -1,6 +1,42 @@
 <template>
-  <div>
-    {{info}}
+  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
+    <div>
+      <span>Регистрационный знак ТС</span>
+
+      <input v-model="data.regno" @change="storeElementData" />
+    </div>
+
+    <div>
+      <span>Тип кузова ТС</span>
+
+      <Select v-model="data.tipkuzKod" clearable @on-change="storeElementData">
+        <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+      </Select>
+    </div>
+
+    <div>
+      <span>Марка ТС</span>
+
+      <Select v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto">
+        <Option v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+      </Select>
+    </div>
+
+    <div>
+      <span>Модель ТС</span>
+
+      <Select v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()">
+        <Option v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+      </Select>
+    </div>
+
+    <div>
+      <span>Принадлежность ТС</span>
+
+      <Select v-model="data.ownerTip" clearable @on-change="storeElementData">
+        <Option v-for="item in ownerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+      </Select>
+    </div>
   </div>
 </template>
 
@@ -15,19 +51,121 @@
       info: Object
     },
     async created() {
-      let eventResponse = await RequestApi.prepareData({
-        method: 'getElementData',
-        params: {
-          eCID: this.info.eCID
-        }
-      });
-      this.data = JSON.parse(eventResponse.response).data
+      await this.initData();
     },
     data() {
       return {
-        data: null
+        data: null,
+        markAvtoList: null,
+        kuzovTypeList: null,
+        modelList: null,
+        ownerList: [
+          {
+            label: 'ЛВОК',
+            value: 1
+          },
+          {
+            label: 'Другое лицо',
+            value: 2
+          }
+        ]
       }
     },
+    methods: {
+      async initData() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getElementData',
+          params: {
+            eCID: this.info.eCID
+          }
+        });
+        this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+
+        await this.fillKuzovTypeList();
+        await this.fillMarkAvtoList();
+        if (this.isNotEmptyMarkId()) {
+          await this.fillModelList();
+        }
+      },
+      async fillMarkAvtoList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getMarkAvtoDictionary',
+            data: null
+          }
+        });
+        let markAvtoList = [];
+        let markAvtoDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < markAvtoDict.length; i++) {
+          let markAvto = markAvtoDict[i];
+          markAvtoList.push({
+            label: markAvto.MARKA_AVTO,
+            value: markAvto.MARKA_AVTO // MARK_ID
+          });
+        }
+        this.markAvtoList = markAvtoList;
+      },
+      async fillKuzovTypeList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getKuzovTypeDictionary',
+            data: null
+          }
+        });
+        let kuzovTypeList = [];
+        let kuzovTypeDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < kuzovTypeDict.length; i++) {
+          let kuzovType = kuzovTypeDict[i];
+          kuzovTypeList.push({
+            label: kuzovType.TIPKUZ_NAME,
+            value: kuzovType.TIPKUZ_KOD
+          });
+        }
+        this.kuzovTypeList = kuzovTypeList;
+      },
+      async fillModelList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getModelListByMark',
+            data: JSON.stringify({
+              markName: this.data.markaAvto
+            })
+          }
+        });
+        let modelList = [];
+        let modelDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < modelDict.length; i++) {
+          let model = modelDict[i];
+          modelList.push({
+            label: model.modName,
+            value: model.modName // id
+          });
+        }
+        this.modelList = modelList;
+      },
+      async changeMarkaAvto() {
+        this.modelList = null;
+        if (this.isNotEmptyMarkId()) {
+          await this.fillModelList();
+        }
+        this.storeElementData();
+      },
+      isNotEmptyMarkId() {
+        return funcUtils.isNotEmpty(this.data.markaAvto);
+      },
+      storeElementData() {
+        this.$emit('storeElementData', {
+          eCID: this.info.eCID,
+          data: this.data
+        });
+      },
+    }
   }
 </script>
 

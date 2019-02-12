@@ -1,30 +1,9 @@
 <template>
-  <div v-if="data">
-    <div v-if="dolzModal.visible" class="modal dolz" style="width: 50vw; height: 50vh;">
-      <button type="button" @click="showDolzModal" style="width: 20px; height: 20px; background: black;"></button>
+  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
+    <div v-if="dolzModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
+      <button type="button" @click="showDolzModal(false)" style="width: 20px; height: 20px; background: white;"></button>
 
-      <div>
-        <span>Нагрудный знак</span>
-        <input v-model="data.inspSostKod" @change="changeInspSostKod" />
-      </div>
-
-      <div>
-        <span>ФИО</span>
-        <input v-model="data.inspSostName" @change="clearInspSostDolz" />
-        <button type="button" @click="showSispList" style="width: 20px; height: 20px; background: black;"></button>
-      </div>
-
-      <div>
-        <span>Должность</span>
-        <input v-model="data.inspSostDolz" @change="clearInspSostDolz" />
-      </div>
-
-      <div>
-        <span>Звание</span>
-        <input v-model="data.inspSostRang" @change="clearInspSostDolz" />
-      </div>
-
-      <div v-if="dolzModal.visibleSispList" style="height: 40vh; width: 50vw; overflow-y: auto;">
+      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
         <table>
           <thead>
             <tr>
@@ -59,8 +38,8 @@
 
     </div>
 
-    <div v-if="organModal.visible" class="modal dolz" style="width: 50vw; height: 50vh;">
-      <button type="button" @click="showOrganModal" style="width: 20px; height: 20px; background: black;"></button>
+    <div v-if="organModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
+      <button type="button" @click="showOrganModal(false)" style="width: 20px; height: 20px; background: white;"></button>
 
       <div style="height: 40vh; width: 50vw; overflow-y: auto;">
         <table>
@@ -101,28 +80,59 @@
       </div>
 
       <div>
+        <span>№ дела</span>
+        <input :disabled="data.deloN" v-model="data.deloN" />
+        <button :disabled="data.deloN" type="button" @click="createNewDeloNum" style="width: 20px; height: 20px; background: black;"></button>
+      </div>
+
+      <div>
         <span>Уникальный номер АПН</span>
-        <input v-model="data.apn" />
+        <input v-model="data.apn" @change="storeElementData" />
       </div>
 
       <div>
         <span>Время вынесения</span>
-        <input type="date" v-model="data.dateSost" />
+        <input type="date" v-model="data.dateSost" @change="storeElementData" />
       </div>
 
       <div>
         <span>Должностное лицо</span>
-        <input v-model="inspSostDolz" @change="changeInspSostDolz" />
-        <button type="button" @click="showDolzModal" style="width: 20px; height: 20px; background: black;"></button>
+        <div>
+          <span>Нагрудный знак</span>
+          <input v-model="data.inspSostKod" @change="changeInspSostKod" />
+        </div>
+
+        <div>
+          <span>ФИО</span>
+          <input v-model="data.inspSostName" @change="changeFIO" />
+          <button type="button" @click="showDolzModal(true)" style="width: 20px; height: 20px; background: black;"></button>
+        </div>
+
+        <div>
+          <span>Должность</span>
+          <input v-model="data.inspSostDolz" @change="clearInspSostKod" />
+        </div>
+
+        <div>
+          <span>Звание</span>
+          <input v-model="data.inspSostRang" @change="clearInspSostKod" />
+        </div>
       </div>
 
       <div>
-        <span>Орган</span>
-        <input v-model="data.organSostName" @change="changeOrganSostName" />
-        <button type="button" @click="showOrganModal" style="width: 20px; height: 20px; background: black;"></button>
+        <div>
+          <span>Код подразделения</span>
+          <input v-model="data.organSostKod" @change="changeOrganSostKod" />
+        </div>
+
+        <div>
+          <span>Подразделение</span>
+          <input v-model="data.organSostName" disabled="true" />
+          <button type="button" @click="showOrganModal(true)" style="width: 20px; height: 20px; background: black;"></button>
+        </div>
+
       </div>
     </div>
-
   </div>
 </template>
 
@@ -142,11 +152,8 @@
     data() {
       return {
         data: null,
-        inspSostDolz: null,
         dolzModal: {
           visible: false,
-          fio: null,
-          visibleSispList: false,
           sispList: null
         },
         organModal: {
@@ -164,63 +171,8 @@
           }
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
-        if (funcUtils.isNotEmpty(this.data.inspSostName) && funcUtils.isNotEmpty(this.data.inspSostDolz)) {
-          this.inspSostDolz = this.data.inspSostName + ', ' + this.data.inspSostDolz;
-        }
       },
-      async changeOrganSostName() {
-        let isInteger = Number.isInteger(+this.data.organSostName);
-        if (this.data.organSostName.length !== 0 && isInteger) {
-          let eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
-            params: {
-              eCID: this.info.eCID,
-              methodName: 'getGibddDict',
-              data: JSON.stringify({
-                organKod: this.data.organSostName
-              })
-            }
-          });
-          let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
-          if (gibddList.length > 0) {
-            this.organModal.visible = !this.organModal.visible;
-            this.organModal.gibddList = gibddList;
-          }
-        }
-      },
-      async changeInspSostDolz() {
-        let isInteger = Number.isInteger(+this.inspSostDolz);
-        if (this.inspSostDolz.length === 0 || !isInteger) {
-          this.clearInspSostDolz();
-        } else if (funcUtils.isNotEmpty(this.inspSostDolz) && this.inspSostDolz.length !== 0) {
-          let eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
-            params: {
-              eCID: this.info.eCID,
-              methodName: 'getSinspList',
-              data: JSON.stringify({
-                inspKod: this.inspSostDolz
-              })
-            }
-          });
-          let data = JSON.parse(JSON.parse(eventResponse.response).data);
-          if (funcUtils.isNotEmpty(data) && data.length > 0) {
-            data = data[0];
-            this.data.inspSostId = data.inspId;
-            this.data.inspSostKod = data.inspKod;
-            this.data.inspSostName = data.inspName;
-            this.data.inspSostDolz = data.inspDolz;
-            this.data.inspSostRang = data.inspRang;
-            this.data.organSostId = data.ogaiId;
-            this.data.organSostKod = data.organKod;
-            this.data.organSostName = data.ogaiName;
-            this.inspSostDolz = data.inspName + ', ' + data.inspDolz;
-          } else {
-            this.clearInspSostDolz();
-          }
-        }
-        this.storeElementData();
-      },
+
       async createNewUIN() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
@@ -233,12 +185,40 @@
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
         this.storeElementData();
       },
-      showDolzModal() {
-        this.dolzModal.visible = !this.dolzModal.visible;
+      async createNewDeloNum() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'createDeloNum',
+            data: null
+          }
+        });
+        this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+        this.storeElementData();
       },
-      async showOrganModal() {
-        this.organModal.visible = !this.organModal.visible;
-        if (this.organModal.visible) {
+
+      async showDolzModal(visible) {
+        this.dolzModal.visible = visible;
+        if (visible) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getSinspList',
+              data: JSON.stringify({
+                inspKod: null
+              })
+            }
+          });
+          this.dolzModal.sispList = JSON.parse(JSON.parse(eventResponse.response).data);
+        } else {
+          this.dolzModal.sispList = null;
+        }
+      },
+      async showOrganModal(visible) {
+        this.organModal.visible = visible;
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
@@ -250,13 +230,39 @@
             }
           });
           this.organModal.gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
+        } else {
+          this.organModal.gibddList = null;
         }
       },
+
+      async changeOrganSostKod() {
+        let express = /^\d+$/;
+        if (funcUtils.isNotEmpty(this.data.organSostKod) && express.test(this.data.organSostKod)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getGibddDict',
+              data: JSON.stringify({
+                organKod: this.data.organSostKod
+              })
+            }
+          });
+          let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
+          if (gibddList.length > 0) {
+            this.organModal.visible = true;
+            this.organModal.gibddList = gibddList;
+          } else {
+            this.clearOrganSost();
+          }
+        } else {
+          this.clearOrganSost();
+        }
+        this.storeElementData();
+      },
       async changeInspSostKod() {
-        let isInteger = Number.isInteger(+this.data.inspSostKod);
-        if (this.data.inspSostKod.length === 0 || !isInteger) {
-          this.clearInspSostDolz();
-        } else if (funcUtils.isNotEmpty(this.data.inspSostKod) && this.data.inspSostKod.length !== 0) {
+        let express = /^\d+$/;
+        if (funcUtils.isNotEmpty(this.data.inspSostKod) && express.test(this.data.inspSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
@@ -278,27 +284,42 @@
             this.data.organSostId = data.ogaiId;
             this.data.organSostKod = data.organKod;
             this.data.organSostName = data.ogaiName;
-            this.inspSostDolz = data.inspName + ', ' + data.inspDolz;
           } else {
-            this.clearInspSostDolz();
+            this.clearInspSost();
           }
+        } else {
+          this.clearInspSost();
         }
         this.storeElementData();
       },
-      async showSispList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'getSinspList',
-            data: JSON.stringify({
-              inspKod: null
-            })
+      changeFIO() {
+        let fioLength = 0;
+        let fioArr = this.data.inspSostName.split(' ');
+        this.data.inspSostName = '';
+        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
+          let express = /^[а-яА-ЯёЁ]+$/;
+          let item = fioArr[i];
+          if (item.length > 0 && express.test(item)) {
+            switch (fioLength) {
+              case 0: {
+                this.data.inspSostName += item;
+                break;
+              }
+              case 1: {
+                this.data.inspSostName += ' ' + item;
+                break;
+              }
+              case 2: {
+                this.data.inspSostName += ' ' + item;
+                break;
+              }
+            }
+            fioLength++;
           }
-        });
-        this.dolzModal.sispList = JSON.parse(JSON.parse(eventResponse.response).data);
-        this.dolzModal.visibleSispList = !this.dolzModal.visibleSispList;
+        }
+        this.clearInspSostKod();
       },
+
       onSispClick(data) {
         this.data.inspSostId = data.inspId;
         this.data.inspSostKod = data.inspKod;
@@ -308,21 +329,23 @@
         this.data.organSostId = data.ogaiId;
         this.data.organSostKod = data.organKod;
         this.data.organSostName = data.ogaiName;
-        this.inspSostDolz = data.inspName + ', ' + data.inspDolz;
-        this.dolzModal.visibleSispList = !this.dolzModal.visibleSispList;
-        this.dolzModal.visible = !this.dolzModal.visible;
+        this.dolzModal.visible = false;
+        this.dolzModal.sispList = null;
         this.storeElementData();
       },
       onGibddClick(data) {
         this.data.organSostId = data.ID;
         this.data.organSostKod = data.ORGAN_KOD;
         this.data.organSostName = data.ORGAN_NAME;
-        this.organModal.visible = !this.organModal.visible;
+        this.organModal.gibddList = null;
+        this.organModal.visible = false;
         this.storeElementData();
       },
-      clearInspSostDolz() {
-        this.clearInspSost();
-        this.inspSostDolz = null;
+
+      clearInspSostKod() {
+        this.data.inspSostId = null;
+        this.data.inspSostKod = null;
+        this.storeElementData();
       },
       clearInspSost() {
         this.data.inspSostId = null;
@@ -332,6 +355,13 @@
         this.data.inspSostRang = null;
         this.storeElementData();
       },
+      clearOrganSost() {
+        this.data.organSostId = null;
+        this.data.organSostKod = null;
+        this.data.organSostName = null;
+        this.storeElementData();
+      },
+
       storeElementData() {
         this.$emit('storeElementData', {
           eCID: this.info.eCID,
