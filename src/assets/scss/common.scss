@@ -25,7 +25,7 @@
 	line-height: 32px;
 }
 .adm-text-big{
-	font-size: 15px;
+	font-size: 16px;
 	letter-spacing: 0.1px;
 	line-height: 26px;
 }
@@ -130,6 +130,7 @@ html, body, #app{
 				background-size: 100% 110%;
 				background-position: -5px;
 				right: -25px;
+				z-index: 9;
 			}
 		}
 	}

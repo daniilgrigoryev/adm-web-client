@@ -1,6 +1,7 @@
 $blue-base: #1888CC;
 $blue-medium: #1172AC;
 $blue-light: #53A4D6;
+$blue-thin: #F5FAFD;
 
 $yellow-base: #FFC020;
 $yellow-medium: #E1A100;
@@ -22,9 +23,12 @@ $white-base: #ffffff;
 $white-medium: #EBF4FC;
 $white-light: #FAFAFA;
 
+
+
 .color-blue-base        {color: $blue-base;}
 .color-blue-medium      {color: $blue-medium;}
 .color-blue-light       {color: $blue-light;}
+.color-blue-thin        {color: $blue-thin;}
 .color-yellow-base      {color: $yellow-base;}
 .color-yellow-medium    {color: $yellow-medium;}
 .color-yellow-light     {color: $yellow-light;}
@@ -44,6 +48,7 @@ $white-light: #FAFAFA;
 .bg-blue-base        {background-color: $blue-base;}
 .bg-blue-medium      {background-color: $blue-medium;}
 .bg-blue-light       {background-color: $blue-light;}
+.bg-blue-thin        {background-color: $blue-thin;}
 .bg-yellow-base      {background-color: $yellow-base;}
 .bg-yellow-medium    {background-color: $yellow-medium;}
 .bg-yellow-light     {background-color: $yellow-light;}

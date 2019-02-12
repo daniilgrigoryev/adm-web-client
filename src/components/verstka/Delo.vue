@@ -296,9 +296,7 @@
 							</ul>
 						</Col>
 						<Col :xs="24" :sm="16" :md="16" :lg="16" style="padding: 0">
-
 							<div class="">
-
 								<div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px36 py12 bg-white-light border-t border-b border--gray-faint">
 									<b class="adm-text-big">Заголовок открытой формы</b>
 									<Button type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer">

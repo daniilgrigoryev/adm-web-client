@@ -6,6 +6,7 @@ import $ from "jquery";
 import '@mapbox/assembly/dist/assembly.min.css';
 import '@mapbox/assembly/dist/assembly.js';
 import iView from 'iview';
+import locale from 'iview/dist/locale/ru-RU';
 import 'iview/dist/styles/iview.css';
 
 import './assets/scss/common.scss';
@@ -18,7 +19,9 @@ import Stack from './assets/js/api/stack';
 
 import moment from 'moment';
 moment.locale('ru');
-Vue.use(iView);
+Vue.use(iView, {
+  locale
+});
 Vue.config.productionTip = false;
 
 let vue = new Vue({

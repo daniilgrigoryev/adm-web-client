@@ -77,6 +77,7 @@
         <h4 class="my0 px0 inline align-middle">Верстка:</h4>
         <button  class="txt-kbd" type="button" @click="admAccounting">админ учет</button>
         <button  class="txt-kbd" type="button" @click="admDelo">дело</button>
+        <button  class="txt-kbd" type="button" @click="admOffense">возбуждение адм. правонарушения</button>
       </div>
 
 
@@ -410,6 +411,18 @@
         try {
           formStack.toNext({
             module: this.$store.state.accounting,
+            vm: this,
+            notRemoved: true,
+            withCreate: false
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      admOffense() {
+        try {
+          formStack.toNext({
+            module: this.$store.state.offense,
             vm: this,
             notRemoved: true,
             withCreate: false
