@@ -103,39 +103,11 @@
       try {
         let current = formStack.getCurrent();
         let cid = funcUtils.getfromLocalStorage(this.$store.state.deloReestr.moduleName);
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getStageDeloDictionary'
-        });
-        let stateDeloDict = JSON.parse(eventResponse.response).data;
-        stateDeloDict.forEach((item) => {
-          this.stateDeloDict.push({
-            label: item.values['STAD_DELO_NAME'],
-            value: item.values['STAD_DELO_KOD']
-          })
-        });
+        let eventResponse;
 
-        eventResponse = await RequestApi.prepareData({
-          method: 'getDocumetVidDictionary'
-        });
-        let documentVidDict = JSON.parse(eventResponse.response).data;
-        documentVidDict.forEach((item) => {
-          this.documentVidDict.push({
-            label: item.values['DOC_VID_NAME'],
-            value: item.values['DOC_VID']
-          })
-        });
-
-        eventResponse = await RequestApi.prepareData({
-          method: 'getArticleProcDictionary'
-        });
-        let articleProcDict = JSON.parse(eventResponse.response).data;
-        articleProcDict.forEach((item) => {
-          this.articleProcDict.push({
-            label: item.values['STOTV_NAME'],
-            value: item.values['STOTV_KOD'],
-            id: item.values['STOTV_ID']
-          })
-        });
+        this.fillStateDeloDict();
+        this.fillDocumentVidDict();
+        this.fillArticleProcDict();
 
         if (funcUtils.isNull(cid)) {
           funcUtils.addToLocalStorage(this.$store.state.deloReestr.moduleName, current.cid);
@@ -152,16 +124,7 @@
           });
 
           let filter = JSON.parse(eventResponse.response).data.find;
-          if (funcUtils.isNotEmpty(filter)) {
-            for (let prop in filter) {
-              if (filter.hasOwnProperty(prop)) {
-                let item = filter[prop];
-                if (this.filter[prop] && funcUtils.isNotEmpty(item)) {
-                  this.filter[prop].value = item + '';
-                }
-              }
-            }
-          }
+          this.parseFilter(filter);
         }
 
         await this.$store.dispatch('deloReestrSetCid', current.cid);
@@ -627,6 +590,118 @@
         }
 
         return filterObj;
+      },
+      parseFilter(filter) {
+        if (funcUtils.isNotEmpty(filter)) {
+          for (let prop in filter) {
+            if (filter.hasOwnProperty(prop)) {
+              let item = filter[prop];
+              if (this.filter[prop] && funcUtils.isNotEmpty(item)) {
+                switch (prop) {
+                  case 'flagYear': {
+                    this.filter[prop].value = item + '';
+                    break;
+                  }
+                  case 'deloN': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'deloDat': {
+                    this.filter[prop].value = new Date(item);
+                    break;
+                  }
+                  case 'docVid': {
+                    this.filter[prop].value = item + '';
+                    break;
+                  }
+                  case 'stadDeloKod': {
+                    this.filter[prop].value = item + '';
+                    break;
+                  }
+                  case 'stotvId': {
+                    this.filter[prop].value = item + '';
+                    break;
+                  }
+                  case 'checkPriority': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'docN': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'ulName': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'firstName': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'secondName': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'birthday': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'regno': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'upi': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      async fillStateDeloDict() {
+        let stateDeloDict = [];
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getStageDeloDictionary'
+        });
+        let stateDeloList = JSON.parse(eventResponse.response).data;
+        stateDeloList.forEach((item) => {
+          stateDeloDict.push({
+            label: item.values['STAD_DELO_NAME'],
+            value: item.values['STAD_DELO_KOD'] + ''
+          })
+        });
+        this.stateDeloDict = stateDeloDict;
+      },
+      async fillDocumentVidDict() {
+        let documentVidDict = [];
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getDocumetVidDictionary'
+        });
+        let documentVidList = JSON.parse(eventResponse.response).data;
+        documentVidList.forEach((item) => {
+          documentVidDict.push({
+            label: item.values['DOC_VID_NAME'],
+            value: item.values['DOC_VID'] + ''
+          })
+        });
+        this.documentVidDict = documentVidDict;
+      },
+      async fillArticleProcDict() {
+        let articleProcDict = [];
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getArticleProcDictionary'
+        });
+        let articleProcList = JSON.parse(eventResponse.response).data;
+        articleProcList.forEach((item) => {
+          articleProcDict.push({
+            label: item.values['STOTV_NAME'],
+            value: item.values['STOTV_KOD'],
+            id: item.values['STOTV_ID'] + ''
+          })
+        });
+        this.articleProcDict = articleProcDict;
       },
       async filterClick() {
         let filter = this.getFilterFields();
