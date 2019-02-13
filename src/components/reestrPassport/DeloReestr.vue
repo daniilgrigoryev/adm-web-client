@@ -2,77 +2,6 @@
 	<div v-if="dataStore">
 
     <div>
-      <div>
-        <span>{{filter.flagYear.name}}</span>
-        <input name="one" type="radio" v-model="filter.flagYear.value" />
-        <input name="one" type="radio" v-model="filter.flagYear.value" />
-      </div>
-      <div>
-        <span>{{filter.deloN.name}}</span>
-        <input type="text" v-model="filter.deloN.value" />
-      </div>
-      <div>
-        <span>{{filter.deloDat.name}}</span>
-        <input type="date" v-model="filter.deloDat.value" />
-      </div>
-      <div>
-        <span>{{filter.docVid.name}}</span>
-        <select v-model="filter.docVid.value" :name="filter.docVid.value">
-          <option value="null"> </option>
-          <option v-for="(item, index) in this.documentVidDict" v-model="item.value" :value="item.value" :key="index">{{item.label}}</option>
-        </select>
-      </div>
-      <div>
-        <span>{{filter.stadDeloKod.name}}</span>
-        <select v-model="filter.stadDeloKod.value" :name="filter.stadDeloKod.value">
-          <option value="null"> </option>
-          <option v-for="(item, index) in this.stateDeloDict" v-model="item.value" :value="item.value" :key="index">{{item.label}}</option>
-        </select>
-      </div>
-      <div>
-        <span>{{filter.stotvId.name}}</span>
-        <select v-model="filter.stotvId.value" :name="filter.stotvId.value">
-          <option value="null"> </option>
-          <option v-for="(item, index) in this.articleProcDict" v-model="item.value" :value="item.value" :key="index">{{item.label}}</option>
-        </select>
-      </div>
-      <div>
-        <span>{{filter.checkPriority.name}}</span>
-        <input type="number" v-model="filter.checkPriority.value" />
-      </div>
-      <div>
-        <span>{{filter.docN.name}}</span>
-        <input type="text" v-model="filter.docN.value" />
-      </div>
-      <div>
-        <span>{{filter.ulName.name}}</span>
-        <input type="text" v-model="filter.ulName.value" />
-      </div>
-      <div>
-        <span>{{filter.firstName.name}}</span>
-        <input type="text" v-model="filter.firstName.value" />
-      </div>
-      <div>
-        <span>{{filter.secondName.name}}</span>
-        <input type="text" v-model="filter.secondName.value" />
-      </div>
-      <div>
-        <span>{{filter.thirdName.name}}</span>
-        <input type="text" v-model="filter.thirdName.value" />
-      </div>
-      <div>
-        <span>{{filter.birthday.name}}</span>
-        <input type="text" v-model="filter.birthday.value" />
-      </div>
-      <div>
-        <span>{{filter.regno.name}}</span>
-        <input type="text" v-model="filter.regno.value" />
-      </div>
-      <div>
-        <span>{{filter.upi.name}}</span>
-        <input type="text" v-model="filter.upi.value" />
-      </div>
-
       <div class="prose my24 border">
         <h4 class="my0 px0 inline align-middle">Верстка:</h4>
         <button  class="txt-kbd" type="button" @click="admAccounting">админ учет</button>
@@ -87,26 +16,77 @@
       </div>
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th v-for="(field, key, index) in tableColumns" :key="index" style="border: 1px solid black;">
-            {{key + ' - ' + field}}
-          </th>
-          <th style="border: 1px solid black;">Операции</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(delo, index) in cases" :key="index">
-          <td v-for="(deloField, key, index) in tableColumns" :key="index" style="border: 1px solid black;">
-            {{delo[key]}}
-          </td>
-          <td style="border: 1px solid black;">
-            <button type="button" @click="getDelo(delo.deloId)">Открыть дело</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <div>
+        <span>{{filter.flagYear.name}}</span>
+
+        <RadioGroup v-model="filter.flagYear.value">
+          <Radio label="true">Да</Radio>
+          <Radio label="false">Нет</Radio>
+        </RadioGroup>
+      </div>
+      <div>
+        <Input :placeholder="filter.deloN.name" v-model="filter.deloN.value"></Input>
+      </div>
+      <div>
+        <DatePicker type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value"
+                    :placeholder="filter.deloDat.name"></DatePicker>
+      </div>
+      <div>
+        <span>{{filter.docVid.name}}</span>
+        <Select v-model="filter.docVid.value" filterable clearable>
+          <option value="null"> </option>
+          <Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+        </Select>
+      </div>
+      <div>
+        <span>{{filter.stadDeloKod.name}}</span>
+        <Select v-model="filter.stadDeloKod.value" filterable clearable>
+          <option value="null"> </option>
+          <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+        </Select>
+      </div>
+      <div>
+        <span>{{filter.stotvId.name}}</span>
+        <Select v-model="filter.stotvId.value" filterable clearable>
+          <option value="null"> </option>
+          <Option v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+        </Select>
+      </div>
+      <div>
+        <Input :placeholder="filter.checkPriority.name" v-model="filter.checkPriority.value"></Input>
+      </div>
+      <div>
+        <Input :placeholder="filter.docN.name" v-model="filter.docN.value"></Input>
+      </div>
+      <div>
+        <Input :placeholder="filter.ulName.name" v-model="filter.ulName.value"></Input>
+      </div>
+      <div>
+        <Input :placeholder="filter.firstName.name" v-model="filter.firstName.value"></Input>
+      </div>
+      <div>
+        <Input :placeholder="filter.secondName.name" v-model="filter.secondName.value"></Input>
+      </div>
+      <div>
+        <Input :placeholder="filter.thirdName.name" v-model="filter.thirdName.value"></Input>
+      </div>
+      <div>
+        <Input :placeholder="filter.birthday.name" v-model="filter.birthday.value"></Input>
+      </div>
+      <div>
+        <Input :placeholder="filter.regno.name" v-model="filter.regno.value"></Input>
+      </div>
+      <div>
+        <Input :placeholder="filter.upi.name" v-model="filter.upi.value"></Input>
+      </div>
+    </div>
+
+    <div class="bg-white">
+      <div class="wmax1280 mx-auto">
+        <Table ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :border="false" height="400"></Table>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -123,38 +103,11 @@
       try {
         let current = formStack.getCurrent();
         let cid = funcUtils.getfromLocalStorage(this.$store.state.deloReestr.moduleName);
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getStageDeloDictionary'
-        });
-        let stateDeloDict = JSON.parse(eventResponse.response).data;
-        stateDeloDict.forEach((item) => {
-          this.stateDeloDict.push({
-            label: item.values['STAD_DELO_NAME'],
-            value: item.values['STAD_DELO_KOD']
-          })
-        });
+        let eventResponse;
 
-        eventResponse = await RequestApi.prepareData({
-          method: 'getDocumetVidDictionary'
-        });
-        let documentVidDict = JSON.parse(eventResponse.response).data;
-        documentVidDict.forEach((item) => {
-          this.documentVidDict.push({
-            label: item.values['DOC_VID_NAME'],
-            value: item.values['DOC_VID']
-          })
-        });
-
-        eventResponse = await RequestApi.prepareData({
-          method: 'getArticleProcDictionary'
-        });
-        let articleProcDict = JSON.parse(eventResponse.response).data;
-        articleProcDict.forEach((item) => {
-          this.articleProcDict.push({
-            label: item.values['STOTV_NAME'],
-            value: item.values['STOTV_ID']
-          })
-        });
+        this.fillStateDeloDict();
+        this.fillDocumentVidDict();
+        this.fillArticleProcDict();
 
         if (funcUtils.isNull(cid)) {
           funcUtils.addToLocalStorage(this.$store.state.deloReestr.moduleName, current.cid);
@@ -169,6 +122,9 @@
           eventResponse = await RequestApi.prepareData({
             method: 'restore'
           });
+
+          let filter = JSON.parse(eventResponse.response).data.find;
+          this.parseFilter(filter);
         }
 
         await this.$store.dispatch('deloReestrSetCid', current.cid);
@@ -188,78 +144,67 @@
         articleProcDict: [],
         filter: {
           flagYear: {
-            name: 'flagYear',
+            name: 'Искать только в текущем году',
             value: null
           },
           deloN: {
-            name: 'deloN',
+            name: 'Номер дела',
             value: null
           },
           deloDat: {
-            name: 'deloDat',
+            name: 'Дата дела',
             value: null
           },
           docVid: {
-            name: 'docVid',
-            value: null
-          },
-          docVidName: {
-            name: 'docVidName',
+            name: 'Тип документа',
             value: null
           },
           stadDeloKod: {
-            name: 'stadDeloKod',
-            value: null
-          },
-          stadDeloName: {
-            name: 'stadDeloName',
+            name: 'Стадия дела',
             value: null
           },
           stotvId: {
-            name: 'stotvId',
-            value: null
-          },
-          stotvKod: {
-            name: 'stotvKod',
+            name: 'Ст.ответственности',
             value: null
           },
           checkPriority: {
-            name: 'checkPriority',
+            name: 'Приоритет ошибки',
             value: null
           },
           docN: {
-            name: 'docN',
+            name: '№ документа',
             value: null
           },
           ulName: {
-            name: 'ulName',
+            name: 'Наименование ЮЛ',
             value: null
           },
           firstName: {
-            name: 'firstName',
+            name: 'Фамилия',
             value: null
           },
           secondName: {
-            name: 'secondName',
+            name: 'Имя',
             value: null
           },
           thirdName: {
-            name: 'thirdName',
+            name: 'Отчество',
             value: null
           },
           birthday: {
-            name: 'birthday',
+            name: 'Дата рождения',
             value: null
           },
           regno: {
-            name: 'regno',
+            name: 'Рег.знак',
             value: null
           },
           upi: {
-            name: 'upi',
+            name: 'УПИ (ШПИ)',
             value: null
           }
-        }
+        },
+        columnsOption: []
       }
     },
     computed: {
@@ -267,115 +212,365 @@
         dataStore: 'deloReestrGetData'
       }),
       cases() {
-        let res = {};
+        let res = [];
         if (this.dataStore) {
           res = this.dataStore.data.data;
         }
         return res;
       },
       tableColumns() {
-        let res = {};
+        let res = [];
         if (this.dataStore) {
           this.dataStore.data.fields.forEach((item) => {
             switch (item) {
               case 'deloId': {
-                res[item] = '1';
+                res.push({
+                  title: 'Код дела',
+                  key: 'deloId',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'birthday': {
-                res[item] = '2';
+                res.push({
+                  title: 'Дата рождения',
+                  key: 'birthday',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'checkPriority': {
-                res[item] = '3';
+                res.push({
+                  title: 'Приоритет ошибки',
+                  key: 'checkPriority',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'DateStadIspolnLast': {
-                res[item] = '4';
-                break;
+                res.push({
+                  title: 'Дата посл.ст.исп.',
+                  key: 'DateStadIspolnLast',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });                break;
               }
               case 'decisDateFirst': {
-                res[item] = '5';
-                break;
+                res.push({
+                  title: 'Дата реш.',
+                  key: 'decisDateFirst',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });                break;
               }
               case 'decisDateLast': {
-                res[item] = '6';
-                break;
+                res.push({
+                  title: 'Дата посл.реш.',
+                  key: 'decisDateLast',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });                break;
               }
               case 'decisNameFirst': {
-                res[item] = '7';
-                break;
+                res.push({
+                  title: 'Перв.реш.',
+                  key: 'decisNameFirst',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });                break;
               }
               case 'decisNameLast': {
-                res[item] = '8';
-                break;
+                res.push({
+                  title: 'Посл.реш.',
+                  key: 'decisNameLast',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });                break;
               }
               case 'deloDate': {
-                res[item] = '9';
-                break;
+                res.push({
+                  title: 'Дата оформления',
+                  key: 'deloDate',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });                break;
               }
               case 'deloN': {
-                res[item] = '10';
+                res.push({
+                  title: 'Номер дела',
+                  key: 'deloN',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'deloVidName': {
-                res[item] = '11';
+                res.push({
+                  title: 'Вид дела',
+                  key: 'deloVidName',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'docN': {
-                res[item] = '12';
+                res.push({
+                  title: 'Протокол',
+                  key: 'docN',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'lockName': {
-                res[item] = '13';
+                res.push({
+                  title: 'Блок.дела',
+                  key: 'lockName',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'lvokName': {
-                res[item] = '14';
+                res.push({
+                  title: 'ЛВОК',
+                  key: 'lvokName',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'opredN': {
-                res[item] = '15';
+                res.push({
+                  title: 'Определение/Доп.прот.',
+                  key: 'opredN',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'postN': {
-                res[item] = '16';
+                res.push({
+                  title: 'Постан./ПК',
+                  key: 'postN',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'protN': {
-                res[item] = '17';
+                res.push({
+                  title: 'Протокол АПН',
+                  key: 'protN',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'regno': {
-                res[item] = '18';
+                res.push({
+                  title: 'РегЗнак',
+                  key: 'regno',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'stadDeloName': {
-                res[item] = '19';
+                res.push({
+                  title: 'Стадия',
+                  key: 'stadDeloName',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'stadIspolnNameLast': {
-                res[item] = '20';
+                res.push({
+                  title: 'Посл.ст.исп.',
+                  key: 'stadIspolnNameLast',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'stotv': {
-                res[item] = '21';
+                res.push({
+                  title: 'Статья',
+                  key: 'stotv',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'stotvKod': {
-                res[item] = '22';
+                res.push({
+                  title: 'Ст.-основание',
+                  key: 'stotvKod',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'uchastName': {
-                res[item] = '23';
+                res.push({
+                  title: 'Участник',
+                  key: 'uchastName',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
               case 'ulName': {
-                res[item] = '24';
+                res.push({
+                  title: 'Участник',
+                  key: 'ulName',
+                  minWidth: 120,
+                  ellipsis: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('h4', params.column.title)
+                  }
+                });
                 break;
               }
             }
           });
+          if (res.length > 0) {
+            res.push({
+              title: "Действия",
+              width: 80,
+              align: "center",
+              visible: true,
+              fixed: "right",
+              renderHeader: (h, params) => {
+                return h('Tooltip', {
+                  props: {
+                    placement: 'left',
+                    content: params.column.title,
+                    transfer: true,
+                  }
+                }, [
+                  h('span', params.column.title)
+                ])
+              },
+              render: (h, params) => {
+                return h("Icon", {
+                  props: {
+                    type: "ios-open-outline",
+                    size: 18,
+                  },
+                  style: {
+                    cursor: "pointer",
+                    color: "#2d8cf0"
+                  },
+                  attrs: {
+                    title: 'открыть'
+                  },
+                  on: {
+                    click: () => {
+                      this.getDelo(params.row.deloId);
+                    }
+                  }
+                });
+              },
+            });
+          }
         }
         return res;
       },
@@ -395,6 +590,118 @@
         }
 
         return filterObj;
+      },
+      parseFilter(filter) {
+        if (funcUtils.isNotEmpty(filter)) {
+          for (let prop in filter) {
+            if (filter.hasOwnProperty(prop)) {
+              let item = filter[prop];
+              if (this.filter[prop] && funcUtils.isNotEmpty(item)) {
+                switch (prop) {
+                  case 'flagYear': {
+                    this.filter[prop].value = item + '';
+                    break;
+                  }
+                  case 'deloN': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'deloDat': {
+                    this.filter[prop].value = new Date(item);
+                    break;
+                  }
+                  case 'docVid': {
+                    this.filter[prop].value = item + '';
+                    break;
+                  }
+                  case 'stadDeloKod': {
+                    this.filter[prop].value = item + '';
+                    break;
+                  }
+                  case 'stotvId': {
+                    this.filter[prop].value = item + '';
+                    break;
+                  }
+                  case 'checkPriority': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'docN': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'ulName': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'firstName': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'secondName': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'birthday': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'regno': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                  case 'upi': {
+                    this.filter[prop].value = item;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      async fillStateDeloDict() {
+        let stateDeloDict = [];
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getStageDeloDictionary'
+        });
+        let stateDeloList = JSON.parse(eventResponse.response).data;
+        stateDeloList.forEach((item) => {
+          stateDeloDict.push({
+            label: item.values['STAD_DELO_NAME'],
+            value: item.values['STAD_DELO_KOD'] + ''
+          })
+        });
+        this.stateDeloDict = stateDeloDict;
+      },
+      async fillDocumentVidDict() {
+        let documentVidDict = [];
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getDocumetVidDictionary'
+        });
+        let documentVidList = JSON.parse(eventResponse.response).data;
+        documentVidList.forEach((item) => {
+          documentVidDict.push({
+            label: item.values['DOC_VID_NAME'],
+            value: item.values['DOC_VID'] + ''
+          })
+        });
+        this.documentVidDict = documentVidDict;
+      },
+      async fillArticleProcDict() {
+        let articleProcDict = [];
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getArticleProcDictionary'
+        });
+        let articleProcList = JSON.parse(eventResponse.response).data;
+        articleProcList.forEach((item) => {
+          articleProcDict.push({
+            label: item.values['STOTV_NAME'],
+            value: item.values['STOTV_KOD'],
+            id: item.values['STOTV_ID'] + ''
+          })
+        });
+        this.articleProcDict = articleProcDict;
       },
       async filterClick() {
         let filter = this.getFilterFields();

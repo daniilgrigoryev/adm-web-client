@@ -317,7 +317,8 @@ export default {
 					}
 				},
 			],
-			rowsData: [{
+			rowsData: [
+			  {
 					dealNum: '8765',
 					dealArticle: '12.3 ч5',
 					lvok: 'Иванов Иван Иванович',

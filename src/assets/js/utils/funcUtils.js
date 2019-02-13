@@ -108,3 +108,10 @@ export function parseDateTime(dateTime, format) {
 export function formatDateTime(dateTime) {
   return moment(dateTime, 'dd.MM.yyyy HH:mm').toString();
 }
+
+export function replacer(key, value) {
+  if (typeof value === 'undefined') {
+    return null;
+  }
+  return value;
+}

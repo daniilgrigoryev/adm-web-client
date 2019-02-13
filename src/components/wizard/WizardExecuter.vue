@@ -5,49 +5,49 @@
     <div>
       <wizard-item-doc-post-first v-if="isVisible('DocPostFirst')" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData"></wizard-item-doc-post-first>
 
-        <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" :info="getInfo('DocPostFirst.PlaceSost')" @storeElementData="storeElementData"></wizard-item-place>
+        <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData"></wizard-item-place>
 
-      <wizard-item-lvok v-if="isVisible('LVOK')" :info="getInfo('LVOK')"></wizard-item-lvok>
+      <wizard-item-lvok v-if="isVisible('LVOK')" :info="getInfo('LVOK')" @storeElementData="storeElementData"></wizard-item-lvok>
 
-        <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" :info="getInfo('LVOK.PredDoc')"></wizard-item-pred-doc>
+        <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData"></wizard-item-pred-doc>
 
-        <wizard-item-individual v-if="isVisible('LVOK.Individual')" :info="getInfo('LVOK.Individual')"></wizard-item-individual>
+        <wizard-item-individual v-if="isVisible('LVOK.Individual')" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData"></wizard-item-individual>
 
-          <wizard-item-address v-if="isVisible('LVOK.Individual.regAddr')" :info="getInfo('LVOK.Individual.regAddr')"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('LVOK.Individual.regAddr')" :info="getInfo('LVOK.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData"></wizard-item-address>
 
-          <wizard-item-address v-if="isVisible('LVOK.Individual.factAddr')" :info="getInfo('LVOK.Individual.factAddr')"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('LVOK.Individual.factAddr')" :info="getInfo('LVOK.Individual.factAddr')" title="Адрес места жительства" @storeElementData="storeElementData"></wizard-item-address>
 
-        <wizard-item-organization v-if="isVisible('LVOK.Organization')" :info="getInfo('LVOK.Organization')"></wizard-item-organization>
+        <wizard-item-organization v-if="isVisible('LVOK.Organization')" :info="getInfo('LVOK.Organization')" @storeElementData="storeElementData"></wizard-item-organization>
 
-          <wizard-item-address v-if="isVisible('LVOK.Organization.regAddr')" :info="getInfo('LVOK.Organization.regAddr')"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('LVOK.Organization.regAddr')" :info="getInfo('LVOK.Organization.regAddr')" @storeElementData="storeElementData"></wizard-item-address>
 
-          <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" :info="getInfo('LVOK.Organization.factAddr')"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" :info="getInfo('LVOK.Organization.factAddr')" @storeElementData="storeElementData"></wizard-item-address>
 
-      <wizard-item-vehs v-if="isVisible('Vehs')" :info="getInfo('Vehs')"></wizard-item-vehs>
+      <wizard-item-vehs v-if="isVisible('Vehs')" :info="getInfo('Vehs')" @storeElementData="storeElementData"></wizard-item-vehs>
 
-      <wizard-item-owner v-if="isVisible('Owner')" :info="getInfo('Owner')"></wizard-item-owner>
+      <wizard-item-owner v-if="isVisible('Owner')" :info="getInfo('Owner')" @storeElementData="storeElementData"></wizard-item-owner>
 
-        <wizard-item-individual v-if="isVisible('Owner.Individual')" :info="getInfo('Owner.Individual')"></wizard-item-individual>
+        <wizard-item-individual v-if="isVisible('Owner.Individual')" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData"></wizard-item-individual>
 
-          <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')" :info="getInfo('Owner.Individual.regAddr')"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')" :info="getInfo('Owner.Individual.regAddr')" @storeElementData="storeElementData"></wizard-item-address>
 
-          <wizard-item-address v-if="isVisible('Owner.Individual.factAddr')" :info="getInfo('Owner.Individual.factAddr')"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('Owner.Individual.factAddr')" :info="getInfo('Owner.Individual.factAddr')" @storeElementData="storeElementData"></wizard-item-address>
 
-        <wizard-item-organization v-if="isVisible('Owner.Organization')" :info="getInfo('Owner.Organization')"></wizard-item-organization>
+        <wizard-item-organization v-if="isVisible('Owner.Organization')" :info="getInfo('Owner.Organization')" @storeElementData="storeElementData"></wizard-item-organization>
 
-          <wizard-item-address v-if="isVisible('Owner.Organization.regAddr')" :info="getInfo('Owner.Organization.regAddr')"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('Owner.Organization.regAddr')" :info="getInfo('Owner.Organization.regAddr')" @storeElementData="storeElementData"></wizard-item-address>
 
-          <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" :info="getInfo('Owner.Organization.factAddr')"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData"></wizard-item-address>
 
-      <wizard-item-doc-post-second v-if="isVisible('DocPostSecond')" :info="getInfo('DocPostSecond')"></wizard-item-doc-post-second>
+      <wizard-item-doc-post-second v-if="isVisible('DocPostSecond')" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData"></wizard-item-doc-post-second>
 
-        <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" :info="getInfo('DocPostSecond.PlaceNar')"></wizard-item-place>
+        <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" :info="getInfo('DocPostSecond.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData"></wizard-item-place>
 
-      <wizard-item-decis v-if="isVisible('DecisMain')" :info="getInfo('DecisMain')"></wizard-item-decis>
+      <wizard-item-decis v-if="isVisible('DecisMain')" :info="getInfo('DecisMain')" @storeElementData="storeElementData"></wizard-item-decis>
 
-      <wizard-item-decis v-if="isVisible('DecisAdd')" :info="getInfo('DecisAdd')"></wizard-item-decis>
+      <wizard-item-decis v-if="isVisible('DecisAdd')" :info="getInfo('DecisAdd')" @storeElementData="storeElementData"></wizard-item-decis>
 
-      <wizard-item-doc-post-final v-if="isVisible('DocPostFinal')" :info="getInfo('DocPostFinal')"></wizard-item-doc-post-final>
+      <wizard-item-doc-post-final v-if="isVisible('DocPostFinal')" :info="getInfo('DocPostFinal')" @storeElementData="storeElementData"></wizard-item-doc-post-final>
     </div>
   </div>
 </template>
@@ -128,6 +128,9 @@
         pathes: null
       }
     },
+    computed: {
+
+    },
     methods: {
       isVisible(path) {
         if (funcUtils.isEmpty(this.pathes)) {
@@ -148,35 +151,47 @@
           method: 'storeElementData',
           params: {
             eCID: params.eCID,
-            data: JSON.stringify(params.data)
-          }
+            data: JSON.stringify(params.data, funcUtils.replacer)
+          },
+          withSpinner: false
         });
         let cids = JSON.parse(eventResponse.response).data;
-        for (let prop in cids) {
-          if (cids.hasOwnProperty(prop)) {
+        let cidsKeySet = Object.keys(cids);
+        for (let i = 0; i < cidsKeySet.length; i++) {
+          let cid = cidsKeySet[i];
+          let prop = cids[cid];
+          let child = this.getChild(cid);
+          if (child && funcUtils.isEmpty(prop)) {
+            delete this.pathes[child.info.path];
+            this.$forceUpdate();
+          } else if (child && funcUtils.isNotEmpty(prop)) {
+            child.initData();
+          } else if (!child && funcUtils.isNotEmpty(prop)) {
             eventResponse = await RequestApi.prepareData({
               method: 'getElementInfo',
               params: {
-                eCID: prop
+                eCID: cid
               }
             });
             let info = JSON.parse(eventResponse.response).data;
-            if (funcUtils.isEmpty(cids[prop])) {
-              delete this.pathes[info.path];
-            } else if (funcUtils.isEmpty(this.pathes[info.path])) {
-              info.eCID = prop;
+            if (funcUtils.isEmpty(this.pathes[info.path])) {
+              info.eCID = cid;
               this.pathes[info.path] = info;
-            } else if (funcUtils.isNotEmpty(cids[prop])) {
-              let children = this.$children;
-              for (let i = 0; i < children.length; i++) {
-                let child = children[i];
-                if (child.info && child.info.eCID === prop) {
-                  child.initData();
-                }
-              }
+              this.$forceUpdate();
             }
           }
         }
+      },
+      getChild(cid) {
+        let res = null;
+        let children = this.$children;
+        for (let i = 0; i < children.length; i++) {
+          let child = children[i];
+          if (child.info && child.info.eCID === cid) {
+            return child;
+          }
+        }
+        return res;
       },
       getPrev() {
         try {
