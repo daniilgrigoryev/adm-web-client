@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    <div v-if="dolzModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
+    <div v-if="dolzModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
       <button type="button" @click="showDolzModal(false)" style="width: 20px; height: 20px; background: white;"></button>
 
       <div style="height: 40vh; width: 50vw; overflow-y: auto;">
@@ -38,7 +38,7 @@
 
     </div>
 
-    <div v-if="organModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
+    <div v-if="organModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
       <button type="button" @click="showOrganModal(false)" style="width: 20px; height: 20px; background: white;"></button>
 
       <div style="height: 40vh; width: 50vw; overflow-y: auto;">
