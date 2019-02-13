@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <Row type="flex" align="middle" justify="space-between" class="wmax1280 mx-auto">
+        <Row type="flex" align="middle" justify="center">
             <Col>
                 <div class="flex-parent flex-parent--center-cross mr64">
                     <Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer" @click.native="collapsedSider">
@@ -13,7 +13,7 @@
             </Col>
             <Col>
                 <Menu mode="horizontal" active-name="1" class="header-menu">
-                    <div class="grid">
+                    <div class="flex-parent flex-parent--wrap flex-parent--center-main">
                         <MenuItem name="1" class="header-menu__item">Административный учет</MenuItem>
                         <MenuItem name="2" class="header-menu__item">Возбудить дело</MenuItem>
                         <MenuItem name="3" class="header-menu__item">Учет спецпродукции</MenuItem>

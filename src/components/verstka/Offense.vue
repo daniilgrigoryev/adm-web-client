@@ -6,10 +6,10 @@
             </div>
         </div>
         <hr class="txt-hr my0">
-        <div>
+        <div class="wmax1920">
             <Row type="flex">
-                <Col>
-                    <div class="nav-menu bg-blue-thin wmax360 h-full scroll-hidden">
+                <Col :xs="24" :sm="8" :md="6" :lg="6" >
+                    <div class="bg-blue-thin h-full scroll-hidden">
                         <ul class="ml60 mr24 my24">
                             <li class=""><a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
                             <li class=""><a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
@@ -20,17 +20,17 @@
                         </ul>
                     </div>
                 </Col>
-                <Col :xs="24" :sm="24" :md="24" :lg="16" class="border">
-                    <div class="wmax1280 mx-auto border">
+                <Col :xs="24" :sm="16" :md="18" :lg="18"  class="border">
+                    <div>
                         <div class="hmin360 px36 py12">
-                            <Form :label-width="200" label-position="right">
+                            <Form :label-width="180" label-position="right">
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="24" :md="8" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
-                                        <Col :xs="24" :sm="24" :md="8" :lg="8">
+                                        <Col :xs="24" :md="10" :lg="8">
                                             <a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
                                         </Col>
                                     </Row>
@@ -38,7 +38,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер правонарушения</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -46,8 +46,8 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
-                                            <Row type="flex" justify="space-between">
+                                        <Col :xs="24" :md="14" :lg="16">
+                                            <Row type="flex" :gutter="8">
                                                 <Col>
                                                     <DatePicker type="date" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
                                                 </Col>
@@ -61,10 +61,10 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Место вынесения</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                                         </Col>
-                                        <Col :xs="24" :sm="6" :md="6" :lg="8">
+                                        <Col :xs="24" :md="10" :lg="8">
                                             <a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
                                         </Col>
                                     </Row>
@@ -78,10 +78,10 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
-                                        <Col :xs="24" :sm="6" :md="6" :lg="8">
+                                        <Col :xs="24" :md="14" :lg="8">
                                             <a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
                                         </Col>
                                     </Row>
@@ -89,7 +89,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -97,7 +97,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -105,7 +105,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -113,10 +113,10 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
-                                        <Col :xs="24" :sm="6" :md="6" :lg="8">
+                                        <Col :xs="24" :md="14" :lg="8">
                                             <a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
                                         </Col>
                                     </Row>
@@ -124,7 +124,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                                         </Col>
                                     </Row>
@@ -148,7 +148,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Тип физического лица:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Select class="wmin180" value="0" placeholder=""> 
                                                 <Option value="0">Водитель</Option>
                                                 <Option value="1">Не водитель</Option>
@@ -159,7 +159,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Гражданство:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Select class="wmin180" value="0" placeholder=""> 
                                                 <Option value="0">Россия</Option>
                                                 <Option value="1">Узбекистан</Option>
@@ -170,7 +170,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Документ удостоверяющий личность:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Select class="wmin180" value="0" placeholder=""> 
                                                 <Option value="0">Паспорт</Option>
                                                 <Option value="1">Права</Option>
@@ -181,7 +181,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Номер документа:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -189,7 +189,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Фамилия:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -197,7 +197,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Имя:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -205,7 +205,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Отчество:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -213,7 +213,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Пол:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Select class="wmin180" value="0" placeholder=""> 
                                                 <Option value="0">Мужской</Option>
                                                 <Option value="1">Женский</Option>
@@ -224,7 +224,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Дата рождения:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <DatePicker type="date" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
                                         </Col>
                                     </Row>
@@ -232,7 +232,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Место рождения</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                                         </Col>
                                     </Row>
@@ -240,7 +240,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Прописка</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                                         </Col>
                                     </Row>
@@ -248,7 +248,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Адрес фактического проживания</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                                         </Col>
                                     </Row>
@@ -256,7 +256,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Телефон:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -270,7 +270,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Номер ГРЗ автомобиля:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -278,7 +278,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Марка:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Select filterable class="wmin180" value="0" placeholder="" > 
                                                 <Option value="0">Мерседес</Option>
                                                 <Option value="1">Тайота</Option>
@@ -289,7 +289,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Модель:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Select filterable class="wmin180" value="0" placeholder="" > 
                                                 <Option value="0">Мерседес</Option>
                                                 <Option value="1">Тайота</Option>
@@ -300,7 +300,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Тип кузова:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Select filterable class="wmin180" value="0" placeholder="" > 
                                                 <Option value="0">Мерседес</Option>
                                                 <Option value="1">Тайота</Option>
@@ -333,8 +333,8 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
-                                            <Row type="flex" justify="space-between">
+                                        <Col :xs="24" :md="14" :lg="16">
+                                            <Row type="flex" :gutter="8">
                                                 <Col>
                                                     <DatePicker type="date" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
                                                 </Col>
@@ -348,7 +348,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Место нарушения</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                                         </Col>
                                     </Row>
@@ -356,10 +356,10 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">По пункту Нормативно-Правового Акта</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
-                                        <Col :xs="24" :sm="6" :md="6" :lg="8">
+                                        <Col :xs="24" :md="14" :lg="8">
                                             <div class="border-l  border--gray-light  pl12">
                                                 <p class="adm-text-small txt-em">коментарии по данному пункту</p>
                                             </div>
@@ -369,10 +369,10 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
-                                        <Col :xs="24" :sm="6" :md="6" :lg="8">
+                                        <Col :xs="24" :md="14" :lg="8">
                                             <div class="border-l  border--gray-light  pl12">
                                                 <p class="adm-text-small txt-em">коментарии по даной статье Аднинистративного кодекса</p>
                                             </div>
@@ -382,7 +382,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Код бютжетной классификации</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -390,7 +390,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Сведенья по нарушению</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                                         </Col>
                                     </Row>
@@ -404,7 +404,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Решение по правонарушению:</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Select filterable class="wmin180" value="0" placeholder="" > 
                                                 <Option value="0">Административный штраф</Option>
                                             </Select>
@@ -415,7 +415,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Сумма штрафа</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
                                     </Row>
@@ -424,7 +424,7 @@
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Дата вручения постановления</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :md="14" :lg="16">
                                             <Row type="flex">
                                                 <Col>
                                                     <DatePicker type="date" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
@@ -448,9 +448,7 @@
 </template>
 
 <style lang="scss" scoped>
-    .nav-menu{
-        max-width: 100%;
-    }
+
 </style>
 
 <script>
