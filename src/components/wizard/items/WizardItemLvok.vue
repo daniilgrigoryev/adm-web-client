@@ -1,22 +1,22 @@
 <template>
   <div v-if="data">
-    <Form :label-width="200" abel-position="right">
+    <Form :label-width="180" label-position="right">
       <Row :gutter="16" type="flex" align="middle">
         <Col>
           <h2 class="adm-text-big color-dark-light my12">Лицо в отношении которого заводится дело (ЛВОК)</h2>
         </Col>
         <Col>
           <Select class="wmax240 wmin180" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
-            <Option v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            <Option class="wmax360 txt-break-word" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
       </Row>
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Тип ЛВОКа:</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Select class="wmax240 wmin180" placeholder="" v-model="data.tip" clearable @on-change="changeTip" :disabled="!data.status">
-              <Option v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              <Option class="wmax360 txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
         </Row>

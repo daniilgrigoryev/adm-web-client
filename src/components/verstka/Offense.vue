@@ -8,7 +8,7 @@
         <hr class="txt-hr my0">
         <div class="wmax1920">
             <Row type="flex">
-                <Col :xs="24" :sm="8" :md="6" :lg="6" >
+                <Col :xs="24" :sm="8" :md="6" :lg="6">
                     <div class="bg-blue-thin h-full scroll-hidden">
                         <ul class="ml60 mr24 my24">
                             <li class=""><a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>

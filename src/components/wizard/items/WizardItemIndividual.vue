@@ -1,12 +1,12 @@
 <template>
   <div v-if="data">
-    <Form :label-width="200" abel-position="right">
+    <Form :label-width="180" label-position="right">
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Гражданство:</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+         <Col :xs="24" :md="14" :lg="16">
             <Select v-model="data.gragdKod" filterable clearable @on-change="storeElementData" class="wmin180" placeholder="">
-              <Option v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+              <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
         </Row>
@@ -14,7 +14,7 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">ФИО:</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+         <Col :xs="24" :md="14" :lg="16">
             <Input v-model="fio" @on-change="changeFIO" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -22,7 +22,7 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Пол:</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+         <Col :xs="24" :md="14" :lg="16">
             <Select v-model="data.sex" @on-change="storeElementData" class="wmin180" placeholder="">
               <Option value="0">Мужской</Option>
               <Option value="1">Женский</Option>
@@ -33,7 +33,7 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата рождения:</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+         <Col :xs="24" :md="14" :lg="16">
             <DatePicker type="date" v-model="data.birthdayDay" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
           </Col>
         </Row>
@@ -41,9 +41,9 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Место рождения</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+         <Col :xs="24" :md="14" :lg="16">
             <Select class="wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
-              <Option v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+              <Option class="wmax360 txt-break-word" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
         </Row>
@@ -51,7 +51,7 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Место работы:</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+         <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.workPlace" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -59,7 +59,7 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Телефон:</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+         <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.phone" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>

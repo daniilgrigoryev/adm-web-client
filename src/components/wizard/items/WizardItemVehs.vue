@@ -1,190 +1,189 @@
 <template>
-  <div v-if="data">
-    <Form :label-width="200" abel-position="right">
-      <Row :gutter="16" type="flex" align="middle">
-        <Col>
-          <h2 class="adm-text-big color-dark-light my12">Транспортное средство</h2>
-        </Col>
-      </Row>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Регистрационный знак ТС</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.regno" @on-change="storeElementData" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Тип кузова ТС</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" clearable @on-change="storeElementData">
-              <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Марка ТС</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto">
-              <Option v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Модель ТС</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()">
-              <Option v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Принадлежность ТС</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.ownerTip" clearable @on-change="storeElementData">
-              <Option v-for="item in ownerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </FormItem>
-    </Form>
-  </div>
+    <div v-if="data">
+        <Form :label-width="180" дbel-position="right">
+            <Row :gutter="16" type="flex" align="middle">
+                <Col>
+                <h2 class="adm-text-big color-dark-light my12">Транспортное средство</h2>
+                </Col>
+            </Row>
+            <FormItem class="my12">
+                <small class="adm-text-small color-gray-medium" slot="label">Регистрационный знак ТС</small>
+                <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="14" :lg="16">
+                    <Input v-model="data.regno" @on-change="storeElementData" placeholder="Enter something..."></Input>
+                    </Col>
+                </Row>
+            </FormItem>
+            <FormItem class="my12">
+                <small class="adm-text-small color-gray-medium" slot="label">Тип кузова ТС</small>
+                <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="14" :lg="16">
+                    <Select class="wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" clearable @on-change="storeElementData">
+                  <Option class="wmax360 txt-break-word" v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+                    </Col>
+                </Row>
+            </FormItem>
+            <FormItem class="my12">
+                <small class="adm-text-small color-gray-medium" slot="label">Марка ТС</small>
+                <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="14" :lg="16">
+                    <Select class="wmax240 wmin180" placeholder="" v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto">
+                  <Option class="wmax360 txt-break-word" v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+                    </Col>
+                </Row>
+            </FormItem>
+            <FormItem class="my12">
+                <small class="adm-text-small color-gray-medium" slot="label">Модель ТС</small>
+                <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="14" :lg="16">
+                    <Select class="wmax240 wmin180" placeholder="" v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()">
+                  <Option class="wmax360 txt-break-word" v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+                    </Col>
+                </Row>
+            </FormItem>
+            <FormItem class="my12">
+                <small class="adm-text-small color-gray-medium" slot="label">Принадлежность ТС</small>
+                <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="14" :lg="16">
+                    <Select class="wmax240 wmin180" placeholder="" v-model="data.ownerTip" clearable @on-change="storeElementData">
+                  <Option class="wmax360 txt-break-word" v-for="item in ownerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+                    </Col>
+                </Row>
+            </FormItem>
+        </Form>
+    </div>
 </template>
 
 <script>
-  import * as funcUtils from "../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../assets/js/api/formStack';
-  import RequestApi from "../../../assets/js/api/requestApi";
+import * as funcUtils from "../../../assets/js/utils/funcUtils";
+import * as formStack from '../../../assets/js/api/formStack';
+import RequestApi from "../../../assets/js/api/requestApi";
 
-  export default {
+export default {
     name: "WizardItemVehs",
     props: {
-      info: Object
+        info: Object
     },
     async created() {
-      await this.initData();
+        await this.initData();
     },
     data() {
-      return {
-        data: null,
-        markAvtoList: null,
-        kuzovTypeList: null,
-        modelList: null,
-        ownerList: [
-          {
-            label: 'ЛВОК',
-            value: 1
-          },
-          {
-            label: 'Другое лицо',
-            value: 2
-          }
-        ]
-      }
+        return {
+            data: null,
+            markAvtoList: null,
+            kuzovTypeList: null,
+            modelList: null,
+            ownerList: [{
+                    label: 'ЛВОК',
+                    value: 1
+                },
+                {
+                    label: 'Другое лицо',
+                    value: 2
+                }
+            ]
+        }
     },
     methods: {
-      async initData() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getElementData',
-          params: {
-            eCID: this.info.eCID
-          }
-        });
-        this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+        async initData() {
+            let eventResponse = await RequestApi.prepareData({
+                method: 'getElementData',
+                params: {
+                    eCID: this.info.eCID
+                }
+            });
+            this.data = JSON.parse(JSON.parse(eventResponse.response).data);
 
-        await this.fillKuzovTypeList();
-        await this.fillMarkAvtoList();
-        if (this.isNotEmptyMarkId()) {
-          await this.fillModelList();
-        }
-      },
-      async fillMarkAvtoList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'getMarkAvtoDictionary',
-            data: null
-          }
-        });
-        let markAvtoList = [];
-        let markAvtoDict = JSON.parse(JSON.parse(eventResponse.response).data);
-        for (let i = 0; i < markAvtoDict.length; i++) {
-          let markAvto = markAvtoDict[i];
-          markAvtoList.push({
-            label: markAvto.MARKA_AVTO,
-            value: markAvto.MARKA_AVTO // MARK_ID
-          });
-        }
-        this.markAvtoList = markAvtoList;
-      },
-      async fillKuzovTypeList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'getKuzovTypeDictionary',
-            data: null
-          }
-        });
-        let kuzovTypeList = [];
-        let kuzovTypeDict = JSON.parse(JSON.parse(eventResponse.response).data);
-        for (let i = 0; i < kuzovTypeDict.length; i++) {
-          let kuzovType = kuzovTypeDict[i];
-          kuzovTypeList.push({
-            label: kuzovType.TIPKUZ_NAME,
-            value: kuzovType.TIPKUZ_KOD
-          });
-        }
-        this.kuzovTypeList = kuzovTypeList;
-      },
-      async fillModelList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'getModelListByMark',
-            data: JSON.stringify({
-              markName: this.data.markaAvto
-            })
-          }
-        });
-        let modelList = [];
-        let modelDict = JSON.parse(JSON.parse(eventResponse.response).data);
-        for (let i = 0; i < modelDict.length; i++) {
-          let model = modelDict[i];
-          modelList.push({
-            label: model.modName,
-            value: model.modName // id
-          });
-        }
-        this.modelList = modelList;
-      },
-      async changeMarkaAvto() {
-        this.modelList = null;
-        if (this.isNotEmptyMarkId()) {
-          await this.fillModelList();
-        }
-        this.storeElementData();
-      },
-      isNotEmptyMarkId() {
-        return funcUtils.isNotEmpty(this.data.markaAvto);
-      },
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
-        });
-      },
+            await this.fillKuzovTypeList();
+            await this.fillMarkAvtoList();
+            if (this.isNotEmptyMarkId()) {
+                await this.fillModelList();
+            }
+        },
+        async fillMarkAvtoList() {
+            let eventResponse = await RequestApi.prepareData({
+                method: 'invokeElementMethod',
+                params: {
+                    eCID: this.info.eCID,
+                    methodName: 'getMarkAvtoDictionary',
+                    data: null
+                }
+            });
+            let markAvtoList = [];
+            let markAvtoDict = JSON.parse(JSON.parse(eventResponse.response).data);
+            for (let i = 0; i < markAvtoDict.length; i++) {
+                let markAvto = markAvtoDict[i];
+                markAvtoList.push({
+                    label: markAvto.MARKA_AVTO,
+                    value: markAvto.MARKA_AVTO // MARK_ID
+                });
+            }
+            this.markAvtoList = markAvtoList;
+        },
+        async fillKuzovTypeList() {
+            let eventResponse = await RequestApi.prepareData({
+                method: 'invokeElementMethod',
+                params: {
+                    eCID: this.info.eCID,
+                    methodName: 'getKuzovTypeDictionary',
+                    data: null
+                }
+            });
+            let kuzovTypeList = [];
+            let kuzovTypeDict = JSON.parse(JSON.parse(eventResponse.response).data);
+            for (let i = 0; i < kuzovTypeDict.length; i++) {
+                let kuzovType = kuzovTypeDict[i];
+                kuzovTypeList.push({
+                    label: kuzovType.TIPKUZ_NAME,
+                    value: kuzovType.TIPKUZ_KOD
+                });
+            }
+            this.kuzovTypeList = kuzovTypeList;
+        },
+        async fillModelList() {
+            let eventResponse = await RequestApi.prepareData({
+                method: 'invokeElementMethod',
+                params: {
+                    eCID: this.info.eCID,
+                    methodName: 'getModelListByMark',
+                    data: JSON.stringify({
+                        markName: this.data.markaAvto
+                    })
+                }
+            });
+            let modelList = [];
+            let modelDict = JSON.parse(JSON.parse(eventResponse.response).data);
+            for (let i = 0; i < modelDict.length; i++) {
+                let model = modelDict[i];
+                modelList.push({
+                    label: model.modName,
+                    value: model.modName // id
+                });
+            }
+            this.modelList = modelList;
+        },
+        async changeMarkaAvto() {
+            this.modelList = null;
+            if (this.isNotEmptyMarkId()) {
+                await this.fillModelList();
+            }
+            this.storeElementData();
+        },
+        isNotEmptyMarkId() {
+            return funcUtils.isNotEmpty(this.data.markaAvto);
+        },
+        storeElementData() {
+            this.$emit('storeElementData', {
+                eCID: this.info.eCID,
+                data: this.data
+            });
+        },
     }
-  }
+}
 </script>
 
 <style scoped>

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Form :label-width="200" abel-position="right">
+    <Form :label-width="180" label-position="right">
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">{{title}}</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
-          <Col :xs="24" :sm="6" :md="6" :lg="8">
+          <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showAddressModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
           </Col>
         </Row>
@@ -31,7 +31,7 @@
         <span>Регион</span>
 
         <Select v-model="data.regionId" filterable clearable @on-change="changeRegion">
-          <Option v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
+          <Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
         </Select>
       </div>
 
@@ -43,7 +43,7 @@
                 clearable
                 :disabled="!isNotEmptyRegionId()"
                 @on-change="changeRayon">
-          <Option v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </Select>
       </div>
 
@@ -57,7 +57,7 @@
                 @on-clear="changeCity"
                 remote
                 :remote-method="changeCity">
-          <Option v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          <Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </Select>
       </div>
 
@@ -71,7 +71,7 @@
                 @on-clear="changeStreet"
                 remote
                 :remote-method="changeStreet">
-          <Option v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </Select>
       </div>
 

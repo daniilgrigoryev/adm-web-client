@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    <Form :label-width="200" abel-position="right">
+    <Form :label-width="180" label-position="right">
       <Row :gutter="16" type="flex" align="middle">
         <Col>
           <h2 class="adm-text-big color-dark-light my12">Нарушение</h2>
@@ -9,7 +9,7 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Время нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <DatePicker type="datetime" v-model="data.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
           </Col>
         </Row>
@@ -17,9 +17,9 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">п.НПА нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Select class="wmax240 wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
-              <Option v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+              <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
         </Row>
@@ -27,9 +27,9 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Статья ответственности</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Select class="wmax240 wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-clear="changeStotvSearchInfo" @on-change="changeStotvSearchInfo">
-              <Option v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+              <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
         </Row>
@@ -37,9 +37,9 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">КБК</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Select class="wmax240 wmin180" placeholder="" v-model="data.kbk" clearable filterable :disabled="!data.stotvId" @on-clear="storeElementData" @on-change="storeElementData">
-              <Option v-for="item in KBKSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+              <Option class="wmax360 txt-break-word" v-for="item in KBKSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
         </Row>

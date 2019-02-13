@@ -1,12 +1,12 @@
 <template>
   <div v-if="data">
-    <Form :label-width="200" abel-position="right">
+    <Form :label-width="180" дabel-position="right">
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Решение</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Select class="wmax240 wmin180" placeholder="" v-model="data.decisKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
-              <Option v-for="item in decisList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+              <Option class="wmax360 txt-break-word" v-for="item in decisList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
         </Row>
@@ -14,7 +14,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.shtraf)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Сумма штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.sumShtraf" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -22,7 +22,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Срок лишения (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.lishMes" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -30,7 +30,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата изъятия ВУ</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <DatePicker type="date" v-model="data.dateLishBeg" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
           </Col>
         </Row>
@@ -38,7 +38,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.discval)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Срок дисквалификации (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.diskvMes" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -46,7 +46,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Срок ареста (дни)</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.arestDay" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -54,7 +54,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Время начала ареста</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <DatePicker type="date" v-model="data.arestTimeBeg" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
           </Col>
         </Row>
@@ -62,7 +62,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.hoursToWork)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Кол-во часов обяз-х работ</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.hoursToWork" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -70,7 +70,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Количество суток</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.stopWorkDay" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -78,7 +78,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата начала</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <DatePicker type="date" v-model="data.stopWorkBeg" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
           </Col>
         </Row>
@@ -86,7 +86,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1, decisKods.decis.decis2)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.decisMes" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
@@ -94,7 +94,7 @@
       <FormItem v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1, decisKods.decis.decis2)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.decisDay" @on-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>

@@ -48,7 +48,7 @@
                   <Col :lg="12">
                     <Select placeholder="Выбрать" v-model="filter.docVid.value" filterable clearable>
                       <option value="null"> </option>
-                      <Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      <Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                   </Col>
                   <Col :lg="12">
@@ -88,13 +88,13 @@
                   <Col :lg="12">
                     <Select placeholder="Выбрать" v-model="filter.stadDeloKod.value" filterable clearable>
                       <option value="null"> </option>
-                      <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      <Option class="wmax360 txt-break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                   </Col>
                   <Col :lg="12">
                     <Select placeholder="По статье" v-model="filter.stotvId.value" filterable clearable>
                       <option value="null"> </option>
-                      <Option v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                      <Option class="wmax360 txt-break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                     </Select>
                   </Col>
                 </Row>

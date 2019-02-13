@@ -1,10 +1,10 @@
 <template>
   <div v-if="data">
-    <Form :label-width="200" abel-position="right">
+    <Form :label-width="180" label-position="right">
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата уведомления</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <DatePicker type="date" v-model="data.dateUved" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
           </Col>
         </Row>
@@ -12,7 +12,7 @@
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата исполнения</small>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :sm="6" :md="6" :lg="16">
+          <Col :xs="24" :md="14" :lg="16">
             <DatePicker type="date" v-model="data.dateIspoln" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
           </Col>
         </Row>

@@ -119,8 +119,8 @@
 											<FormItem class="w-full">
 												<div slot="label">Дата заведения дела</div>
 												<Select placeholder="Выбрать">
-													<Option value="1">За текущий год</Option>
-													<Option value="1">За периуд</Option>
+													<Option class="wmax360 txt-break-word" value="1">За текущий год</Option>
+													<Option class="wmax360 txt-break-word" value="1">За периуд</Option>
 												</Select>
 											</FormItem>
 										</Col>
@@ -137,14 +137,14 @@
 										<Row type="flex" :gutter="8">
 											<Col :lg="12">
 												<Select placeholder="Выбрать">
-													<Option value="1">Не выбранно</Option>
-													<Option value="1">Водительское удостоверение</Option>
-													<Option value="1">Временное разрешение</Option>
-													<Option value="1">Опред. о возбуждении дела</Option>
-													<Option value="1">Постановление</Option>
-													<Option value="1">Протокол</Option>
-													<Option value="1">Постановление квитанция</Option>
-													<Option value="1">Прекращено</Option>
+													<Option class="wmax360 txt-break-word" value="1">Не выбранно</Option>
+													<Option class="wmax360 txt-break-word" value="1">Водительское удостоверение</Option>
+													<Option class="wmax360 txt-break-word" value="1">Временное разрешение</Option>
+													<Option class="wmax360 txt-break-word" value="1">Опред. о возбуждении дела</Option>
+													<Option class="wmax360 txt-break-word" value="1">Постановление</Option>
+													<Option class="wmax360 txt-break-word" value="1">Протокол</Option>
+													<Option class="wmax360 txt-break-word" value="1">Постановление квитанция</Option>
+													<Option class="wmax360 txt-break-word" value="1">Прекращено</Option>
 												</Select>
 											</Col>
 											<Col :lg="12">
@@ -183,13 +183,13 @@
 										<Row type="flex" :gutter="8">
 											<Col :lg="12">
 												<Select placeholder="Выбрать">
-													<Option value="1">Возбужденно</Option>
-													<Option value="1">Рассмотрение</Option>
-													<Option value="1">Обжалование</Option>
-													<Option value="1">Пересмотр</Option>
-													<Option value="1">Исполнение</Option>
-													<Option value="1">Исполненно</Option>
-													<Option value="1">Прекращено</Option>
+													<Option class="wmax360 txt-break-word" value="1">Возбужденно</Option>
+													<Option class="wmax360 txt-break-word" value="1">Рассмотрение</Option>
+													<Option class="wmax360 txt-break-word" value="1">Обжалование</Option>
+													<Option class="wmax360 txt-break-word" value="1">Пересмотр</Option>
+													<Option class="wmax360 txt-break-word" value="1">Исполнение</Option>
+													<Option class="wmax360 txt-break-word" value="1">Исполненно</Option>
+													<Option class="wmax360 txt-break-word" value="1">Прекращено</Option>
 												</Select>
 											</Col>
 											<Col :lg="12">
