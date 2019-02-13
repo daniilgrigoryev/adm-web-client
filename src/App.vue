@@ -7,7 +7,7 @@
 		<Layout class="layout--inner h-full mx-auto"><!-- wmax1280 -->
 			<SiderMenu ref="siderMenu" :isCollapsed="isCollapsed"></SiderMenu>
 			<Layout class="layout--inner">
-				<MainMenu @collapsedSider="collapsedSider"></MainMenu>
+				<MainMenu v-if="isHeaderRender()" @collapsedSider="collapsedSider"></MainMenu>
 				<div class="px12 py12">
 					<router-view></router-view>
 				</div>
@@ -21,6 +21,8 @@
   import Indicator from './components/Indicator.vue';
   import MainMenu from './components/MainMenu';
   import SiderMenu from './components/SiderMenu.vue';
+  import * as funcUtils from "./assets/js/utils/funcUtils";
+  import * as formStack from './assets/js/api/formStack';
 
   export default {
     name: 'app',
@@ -37,6 +39,9 @@
     methods: {
       logout() {
         this.$root.logout();
+      },
+      isHeaderRender() {
+        return funcUtils.getfromLocalStorage('auth') && formStack.getCurrent().routeName !== 'Authorization';
       },
       collapsedSider() {
         this.$refs.siderMenu.$refs.sider.toggleCollapse();
