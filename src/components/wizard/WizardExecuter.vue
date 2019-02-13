@@ -15,7 +15,7 @@
       </Col>
       <Col :xs="24" :sm="18" :md="18" :lg="18">
         <div class="bg-white">
-          <div class="hmin360 px36 py12">
+          <Layout ref="Main" class="hmin360 px36 py12">
             <wizard-item-doc-post-first v-if="isVisible('DocPostFirst')" ref="DocPostFirst" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData"></wizard-item-doc-post-first>
 
             <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
@@ -67,7 +67,7 @@
             <wizard-item-decis v-if="isVisible('DecisAdd')" ref="DecisAdd" :info="getInfo('DecisAdd')" @storeElementData="storeElementData"></wizard-item-decis>
 
             <wizard-item-doc-post-final v-if="isVisible('DocPostFinal')" ref="DocPostFirst" :info="getInfo('DocPostFinal')" @storeElementData="storeElementData"></wizard-item-doc-post-final>
-          </div>
+          </Layout>
           <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
             <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
             <Button @click="save" type="primary" class="ml12">Возбудить</Button>
