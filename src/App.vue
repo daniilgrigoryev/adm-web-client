@@ -1,28 +1,54 @@
 <template>
   <div id="app">
-    <button type="button" @click="logout">Выйти</button>
+    <!-- <button type="button" @click="logout">Выйти</button> -->
     <Indicator/>
-    <router-view></router-view>
+
+	<div class="layout">
+		<button type="button" @click="getPrev">Назад</button>
+		<Layout class="layout--inner h-full mx-auto"><!-- wmax1280 -->
+			<SiderMenu ref="siderMenu" :isCollapsed="isCollapsed"></SiderMenu>
+			<Layout ref="siderMenu1" class="layout--inner">
+				<MainMenu @collapsedSider="collapsedSider"></MainMenu>
+				<div class="px12 py12">
+					<router-view></router-view>
+				</div>
+			</Layout>
+		</Layout>
+	</div>
   </div>
 </template>
 
 <script>
-  import Indicator from './components/Indicator.vue';
+import Indicator from './components/Indicator.vue';
+import MainMenu from './components/MainMenu';
+import SiderMenu from './components/SiderMenu.vue';
 
-  export default {
+export default {
     name: 'app',
     components: {
-      Indicator
+	  Indicator,
+	  MainMenu,
+	  SiderMenu
     },
-    data() {
-      return {}
-    },
+	data(){
+		return {
+			isCollapsed: true,
+		}
+	},
     methods: {
-      logout() {
-        this.$root.logout();
-      }}
-  }
+		collapsedSider () {
+			this.$refs.siderMenu.$refs.sider.toggleCollapse();
+		},
+		getPrev() {
+			try {
+				formStack.toPrev({
+					vm: this
+				});
+			} catch (e) {
+				alert(e.message);
+			}
+		},
+	}
+}
 </script>
 
-<style lang="scss">
-</style>
