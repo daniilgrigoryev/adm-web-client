@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-     <button type="button" @click="logout">Выйти</button>
     <Indicator/>
 
-	<div class="layout">
-		<Layout class="layout--inner h-full mx-auto"><!-- wmax1280 -->
-			<SiderMenu ref="siderMenu" :isCollapsed="isCollapsed"></SiderMenu>
-			<Layout class="layout--inner">
-				<MainMenu v-if="isHeaderRender()" @collapsedSider="collapsedSider"></MainMenu>
-				<div class="px12 py12">
-					<router-view></router-view>
-				</div>
-			</Layout>
-		</Layout>
-	</div>
+    <div class="layout">
+      <Layout class="layout--inner h-full mx-auto"><!-- wmax1280 -->
+        <SiderMenu ref="siderMenu" :isCollapsed="isCollapsed"></SiderMenu>
+        <Layout class="layout--inner">
+          <MainMenu v-if="isHeaderRender()" @collapsedSider="collapsedSider"></MainMenu>
+          <div class="px12 py12">
+            <router-view></router-view>
+          </div>
+        </Layout>
+      </Layout>
+    </div>
   </div>
 </template>
 
@@ -37,9 +36,6 @@
       }
     },
     methods: {
-      logout() {
-        this.$root.logout();
-      },
       isHeaderRender() {
         return funcUtils.getfromLocalStorage('auth') && formStack.getCurrent().routeName !== 'Authorization';
       },
