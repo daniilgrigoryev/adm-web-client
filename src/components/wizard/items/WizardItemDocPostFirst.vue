@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
+  <div v-if="data">
     <div v-if="dolzModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
       <button type="button" @click="showDolzModal(false)" style="width: 20px; height: 20px; background: white;"></button>
 
@@ -72,67 +72,106 @@
 
     </div>
 
-    <div>
-      <div>
-        <span>№ постановления</span>
-        <input v-model="data.docN" />
-        <button type="button" @click="createNewUIN" style="width: 20px; height: 20px; background: black;"></button>
-      </div>
+    <Form :label-width="200" abel-position="right">
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.docN" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :sm="6" :md="6" :lg="8">
+            <a href="#" @click="createNewUIN" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер правонарушения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.apn" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер дела</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input :disabled="data.deloN !== null" @on-change="storeElementData" v-model="data.deloN" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :sm="6" :md="6" :lg="8">
+            <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <DatePicker type="datetime" v-model="data.dateSost" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
 
-      <div>
-        <span>№ дела</span>
-        <input :disabled="data.deloN" v-model="data.deloN" />
-        <button :disabled="data.deloN" type="button" @click="createNewDeloNum" style="width: 20px; height: 20px; background: black;"></button>
-      </div>
+    <hr class="txt-hr my24">
 
-      <div>
-        <span>Уникальный номер АПН</span>
-        <input v-model="data.apn" @change="storeElementData" />
-      </div>
-
-      <div>
-        <span>Время вынесения</span>
-        <input type="date" v-model="data.dateSost" @change="storeElementData" />
-      </div>
-
-      <div>
-        <span>Должностное лицо</span>
-        <div>
-          <span>Нагрудный знак</span>
-          <input v-model="data.inspSostKod" @change="changeInspSostKod" />
-        </div>
-
-        <div>
-          <span>ФИО</span>
-          <input v-model="data.inspSostName" @change="changeFIO" />
-          <button type="button" @click="showDolzModal(true)" style="width: 20px; height: 20px; background: black;"></button>
-        </div>
-
-        <div>
-          <span>Должность</span>
-          <input v-model="data.inspSostDolz" @change="clearInspSostKod" />
-        </div>
-
-        <div>
-          <span>Звание</span>
-          <input v-model="data.inspSostRang" @change="clearInspSostKod" />
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <span>Код подразделения</span>
-          <input v-model="data.organSostKod" @change="changeOrganSostKod" />
-        </div>
-
-        <div>
-          <span>Подразделение</span>
-          <input v-model="data.organSostName" disabled="true" />
-          <button type="button" @click="showOrganModal(true)" style="width: 20px; height: 20px; background: black;"></button>
-        </div>
-
-      </div>
-    </div>
+    <Form :label-width="200" abel-position="right">
+      <h2 class="adm-text-big color-dark-light my12">Составил</h2>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.inspSostKod" search @on-search="changeInspSostKod" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :sm="6" :md="6" :lg="8">
+            <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.inspSostName" @on-change="changeFIO" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.inspSostDolz" @on-change="clearInspSostKod" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.inspSostRang" @on-change="clearInspSostKod" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.organSostKod" search @on-search="changeOrganSostKod" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :sm="6" :md="6" :lg="8">
+            <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
   </div>
 </template>
 
@@ -171,6 +210,10 @@
           }
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+
+        if (funcUtils.isNotEmpty(this.data.dateSost)) {
+          this.data.dateSost = new Date(this.data.dateSost);
+        }
       },
 
       async createNewUIN() {
@@ -183,6 +226,10 @@
           }
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+
+        if (funcUtils.isNotEmpty(this.data.dateSost)) {
+          this.data.dateSost = new Date(this.data.dateSost);
+        }
         this.storeElementData();
       },
       async createNewDeloNum() {
@@ -195,6 +242,10 @@
           }
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+
+        if (funcUtils.isNotEmpty(this.data.dateSost)) {
+          this.data.dateSost = new Date(this.data.dateSost);
+        }
         this.storeElementData();
       },
 

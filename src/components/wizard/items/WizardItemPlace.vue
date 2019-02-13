@@ -1,17 +1,20 @@
 <template>
-  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
+  <div>
+    <Form :label-width="200" abel-position="right">
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">{{title}}</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+          </Col>
+          <Col :xs="24" :sm="6" :md="6" :lg="8">
+            <a href="#" @click="showPlaceModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
 
-    <div>
-
-      <div>
-        <span>{{title}}</span>
-        <input v-model="fullAddress" disabled="true" />
-        <button type="button" @click="showPlaceModal(true)" style="width: 20px; height: 20px; background: black;"></button>
-      </div>
-
-    </div>
-
-    <div v-if="placeModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
+    <div v-if="data && placeModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
       <button type="button" @click="showPlaceModal(false)" style="width: 20px; height: 20px; background: white;"></button>
 
       <div>
@@ -151,21 +154,21 @@
       </div>
 
       <div style="margin: 20px 0 20px 0;">
-        <input type="checkbox" v-model="data.placeTip1" @change="changePlaceTip('placeTip1')" />
+        <Checkbox v-model="data.placeTip1" @on-change="changePlaceTip('placeTip1')"></Checkbox>
 
-        <input type="checkbox" v-model="data.placeTip2" @change="changePlaceTip('placeTip2')" />
+        <Checkbox v-model="data.placeTip2" @on-change="changePlaceTip('placeTip2')"></Checkbox>
 
-        <input type="checkbox" v-model="data.placeTip3" @change="changePlaceTip('placeTip3')" />
+        <Checkbox v-model="data.placeTip3" @on-change="changePlaceTip('placeTip3')"></Checkbox>
 
-        <input type="checkbox" v-model="data.placeTip4" @change="changePlaceTip('placeTip4')" />
+        <Checkbox v-model="data.placeTip4" @on-change="changePlaceTip('placeTip4')"></Checkbox>
 
-        <input type="checkbox" v-model="data.placeTip5" @change="changePlaceTip('placeTip5')" />
+        <Checkbox v-model="data.placeTip5" @on-change="changePlaceTip('placeTip5')"></Checkbox>
 
-        <input type="checkbox" v-model="data.placeTip6" @change="changePlaceTip('placeTip6')" />
+        <Checkbox v-model="data.placeTip6" @on-change="changePlaceTip('placeTip6')"></Checkbox>
 
-        <input type="checkbox" v-model="data.placeTip7" @change="changePlaceTip('placeTip7')" />
+        <Checkbox v-model="data.placeTip7" @on-change="changePlaceTip('placeTip7')"></Checkbox>
 
-        <input type="checkbox" v-model="data.placeTip8" @change="changePlaceTip('placeTip8')" />
+        <Checkbox v-model="data.placeTip8" @on-change="changePlaceTip('placeTip8')"></Checkbox>
       </div>
 
       <div style="margin-top: 50px;" v-if="showDopAddress">
@@ -249,6 +252,8 @@
           <input v-model="data.dopDopSved" @change="storeElementData" />
         </div>
       </div>
+
+      <button type="button" @click="save" style="width: 20px; height: 20px; background: red;"></button>
     </div>
 
   </div>
@@ -290,39 +295,57 @@
       showDopAddress() {
         let res = false;
         if (this.data) {
-          res = funcUtils.isNotEmpty(this.data.placeTip5) || funcUtils.isNotEmpty(this.data.placeTip6) || funcUtils.isNotEmpty(this.data.placeTip8);
+          res = this.data.placeTip5 === true || this.data.placeTip6 === true || this.data.placeTip8 === true;
         }
         return res;
       }
     },
     methods: {
-      async initData() {
+      async getData() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getElementData',
           params: {
             eCID: this.info.eCID
           }
         });
-        this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+        let data = JSON.parse(JSON.parse(eventResponse.response).data);
+        return data;
+      },
+      async initData() {
+        let data = await this.getData();
+        if (this.placeModal.visible) {
+          data['placeTip1'] = data['placeTip1'] == 1 ? true : false;
+          data['placeTip2'] = data['placeTip2'] == 1 ? true : false;
+          data['placeTip3'] = data['placeTip3'] == 1 ? true : false;
+          data['placeTip4'] = data['placeTip4'] == 1 ? true : false;
+          data['placeTip5'] = data['placeTip5'] == 1 ? true : false;
+          data['placeTip6'] = data['placeTip6'] == 1 ? true : false;
+          data['placeTip7'] = data['placeTip7'] == 1 ? true : false;
+          data['placeTip8'] = data['placeTip8'] == 1 ? true : false;
 
-        await this.fillRegionList();
-        await this.fillRayonList();
-        if (funcUtils.isNotEmpty(this.data.adr.cityId)) {
-          await this.fillCityList();
-        }
-        await this.fillRoadList();
-        await this.fillPlaceList();
-        if (funcUtils.isNotEmpty(this.data.adr.streetId)) {
-          await this.fillStreetList();
-        }
+          this.data = data;
 
-        if (this.showDopAddress) {
-          await this.fillDopRoadList();
-          await this.fillDopPlaceList();
-          if (funcUtils.isNotEmpty(this.data.adrDop.streetId)) {
-            await this.fillDopStreetList();
+          await this.fillRegionList();
+          await this.fillRayonList();
+          if (funcUtils.isNotEmpty(this.data.adr.cityId)) {
+            await this.fillCityList();
+          }
+          await this.fillRoadList();
+          await this.fillPlaceList();
+          if (funcUtils.isNotEmpty(this.data.adr.streetId)) {
+            await this.fillStreetList();
+          }
+
+          if (this.showDopAddress) {
+            await this.fillDopRoadList();
+            await this.fillDopPlaceList();
+            if (funcUtils.isNotEmpty(this.data.adrDop.streetId)) {
+              await this.fillDopStreetList();
+            }
           }
         }
+
+        this.fullAddress = data.placeFull;
       },
 
       async changeRegion() {
@@ -425,19 +448,19 @@
         this.storeElementData();
       },
       async changePlaceTip(placeTip) {
-        let val = this.data[placeTip] = this.data[placeTip] ? 1 : null;
+        let val = this.data[placeTip];
         if (placeTip === 'placeTip5' || placeTip === 'placeTip6' || placeTip === 'placeTip8') {
-          this.data['placeTip1'] = null;
-          this.data['placeTip2'] = null;
-          this.data['placeTip3'] = null;
-          this.data['placeTip4'] = null;
-          this.data['placeTip7'] = null;
+          this.data['placeTip1'] = false;
+          this.data['placeTip2'] = false;
+          this.data['placeTip3'] = false;
+          this.data['placeTip4'] = false;
+          this.data['placeTip7'] = false;
           this.clearDopAddress();
 
           if (val) {
-            this.data['placeTip5'] = placeTip === 'placeTip5' ? val : null;
-            this.data['placeTip6'] = placeTip === 'placeTip6' ? val : null;
-            this.data['placeTip8'] = placeTip === 'placeTip8' ? val : null;
+            this.data['placeTip5'] = placeTip === 'placeTip5' ? val : false;
+            this.data['placeTip6'] = placeTip === 'placeTip6' ? val : false;
+            this.data['placeTip8'] = placeTip === 'placeTip8' ? val : false;
 
             if (funcUtils.isEmpty(this.dopStreetsList) && funcUtils.isEmpty(this.dopPlacesList)) {
               await this.fillDopRoadList();
@@ -445,9 +468,9 @@
             }
           }
         } else if (placeTip !== 'placeTip5' && placeTip !== 'placeTip6' && placeTip !== 'placeTip8' && this.showDopAddress) {
-          this.data['placeTip5'] = null;
-          this.data['placeTip6'] = null;
-          this.data['placeTip8'] = null;
+          this.data['placeTip5'] = false;
+          this.data['placeTip6'] = false;
+          this.data['placeTip8'] = false;
           this.clearDopAddress();
         }
 
@@ -750,8 +773,52 @@
         }
       },
 
-      showPlaceModal(visible) {
+      async showPlaceModal(visible) {
         this.placeModal.visible = visible;
+
+        let methodName;
+        if (visible) {
+          methodName = 'start';
+          this.initData();
+        } else {
+          methodName = 'cancel';
+          this.clearComponent();
+        }
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: methodName,
+            data: null
+          }
+        });
+      },
+      async save() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'save',
+            data: null
+          }
+        });
+        let response = JSON.parse(JSON.parse(eventResponse.response).data);
+        if (response) {
+          this.placeModal.visible = false;
+          this.clearComponent();
+          this.$emit('updateComponents', response);
+        }
+      },
+      clearComponent() {
+        this.data = null;
+        this.regionsList = null;
+        this.rayonsList = null;
+        this.citiesList = null;
+        this.roadsList = null;
+        this.placesList = null;
+        this.dopStreetsList = null;
+        this.dopRoadsList = null;
+        this.dopPlacesList = null;
       },
       isNotEmptyRegionId() {
         return funcUtils.isNotEmpty(this.data.adr.regionId);
@@ -763,9 +830,19 @@
         return funcUtils.isNotEmpty(this.data.adr.rayonId);
       },
       storeElementData() {
+        let copyData = JSON.parse(JSON.stringify(this.data));
+        copyData['placeTip1'] = copyData['placeTip1'] ? 1 : null;
+        copyData['placeTip2'] = copyData['placeTip2'] ? 1 : null;
+        copyData['placeTip3'] = copyData['placeTip3'] ? 1 : null;
+        copyData['placeTip4'] = copyData['placeTip4'] ? 1 : null;
+        copyData['placeTip5'] = copyData['placeTip5'] ? 1 : null;
+        copyData['placeTip6'] = copyData['placeTip6'] ? 1 : null;
+        copyData['placeTip7'] = copyData['placeTip7'] ? 1 : null;
+        copyData['placeTip8'] = copyData['placeTip8'] ? 1 : null;
+
         this.$emit('storeElementData', {
           eCID: this.info.eCID,
-          data: this.data
+          data: copyData
         });
       },
     }

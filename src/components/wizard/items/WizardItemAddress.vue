@@ -1,17 +1,20 @@
 <template>
-  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
+  <div>
+    <Form :label-width="200" abel-position="right">
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">{{title}}</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+          </Col>
+          <Col :xs="24" :sm="6" :md="6" :lg="8">
+            <a href="#" @click="showAddressModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
 
-    <div>
-
-      <div>
-        <span>{{title}}</span>
-        <input v-model="fullAddress" disabled="true" />
-        <button type="button" @click="showAddressModal(true)" style="width: 20px; height: 20px; background: black;"></button>
-      </div>
-
-    </div>
-
-    <div v-if="addressModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
+    <div v-if="data && addressModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
       <button type="button" @click="showAddressModal(false)" style="width: 20px; height: 20px; background: white;"></button>
 
       <div>
@@ -101,6 +104,8 @@
 
         <input v-model="data.dopSved" @change="storeElementData" />
       </div>
+
+      <button type="button" @click="save" style="width: 20px; height: 20px; background: red;"></button>
     </div>
   </div>
 </template>
@@ -130,27 +135,35 @@
         rayonsList: null,
         citiesList: null,
         streetsList: null,
-        fakeRegionKod: null
       }
     },
     methods: {
-      async initData() {
+      async getData() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getElementData',
           params: {
             eCID: this.info.eCID
           }
         });
-        this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+        let data = JSON.parse(JSON.parse(eventResponse.response).data);
+        return data;
+      },
+      async initData() {
+        let data = await this.getData();
+        if (this.addressModal.visible) {
+          this.data = data;
 
-        await this.fillRegionList();
-        await this.fillRayonList();
-        if (funcUtils.isNotEmpty(this.data.cityId)) {
-          await this.fillCityList();
+          await this.fillRegionList();
+          await this.fillRayonList();
+          if (funcUtils.isNotEmpty(this.data.cityId)) {
+            await this.fillCityList();
+          }
+          if (funcUtils.isNotEmpty(this.data.streetId)) {
+            await this.fillStreetList();
+          }
         }
-        if (funcUtils.isNotEmpty(this.data.streetId)) {
-          await this.fillStreetList();
-        }
+
+        this.fullAddress = data.adrFull;
       },
 
       async changeRegion() {
@@ -370,8 +383,48 @@
       isNotEmptyRayonId() {
         return funcUtils.isNotEmpty(this.data.rayonId);
       },
-      showAddressModal(visible) {
+      async showAddressModal(visible) {
         this.addressModal.visible = visible;
+
+        let methodName;
+        if (visible) {
+          methodName = 'start';
+          this.initData();
+        } else {
+          methodName = 'cancel';
+          this.clearComponent();
+        }
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: methodName,
+            data: null
+          }
+        });
+      },
+      async save() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'save',
+            data: null
+          }
+        });
+        let response = JSON.parse(JSON.parse(eventResponse.response).data);
+        if (response) {
+          this.addressModal.visible = false;
+          this.clearComponent();
+          this.$emit('updateComponents', response);
+        }
+      },
+      clearComponent() {
+        this.data = null;
+        this.regionsList = null;
+        this.rayonsList = null;
+        this.citiesList = null;
+        this.streetsList = null;
       },
 
       storeElementData() {

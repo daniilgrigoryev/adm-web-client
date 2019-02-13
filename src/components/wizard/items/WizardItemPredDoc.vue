@@ -1,18 +1,25 @@
 <template>
-  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
-    <div>
-      <span>Номер документа</span>
-
-      <input v-model="data.docNum" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>Тип документа</span>
-
-      <Select v-model="data.docTip" clearable @on-change="changeTipDoc">
-        <Option v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </div>
+  <div v-if="data">
+    <Form :label-width="200" abel-position="right">
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Номер документа</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.docNum" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Документ удостоверяющий личность:</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Select class="wmax240 wmin180" placeholder="" v-model="data.docTip" clearable @on-change="changeTipDoc">
+              <Option v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
   </div>
 </template>
 

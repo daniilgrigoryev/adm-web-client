@@ -1,20 +1,27 @@
 <template>
-  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
-    <div>
-      <span>Статус ЛВОКа</span>
-
-      <Select v-model="data.status" clearable @on-change="changeStatus">
-        <Option v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </div>
-
-    <div>
-      <span>Тип ЛВОКа</span>
-
-      <Select v-model="data.tip" clearable @on-change="changeTip" :disabled="!data.status">
-        <Option v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </div>
+  <div v-if="data">
+    <Form :label-width="200" abel-position="right">
+      <Row :gutter="16" type="flex" align="middle">
+        <Col>
+          <h2 class="adm-text-big color-dark-light my12">Лицо в отношении которого заводится дело (ЛВОК)</h2>
+        </Col>
+        <Col>
+          <Select class="wmax240 wmin180" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+            <Option v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
+        </Col>
+      </Row>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Тип ЛВОКа:</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Select class="wmax240 wmin180" placeholder="" v-model="data.tip" clearable @on-change="changeTip" :disabled="!data.status">
+              <Option v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
   </div>
 </template>
 
@@ -102,6 +109,7 @@
         this.storeElementData();
       },
       storeElementData() {
+        debugger;
         this.$emit('storeElementData', {
           eCID: this.info.eCID,
           data: this.data
