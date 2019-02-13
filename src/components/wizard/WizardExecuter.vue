@@ -24,7 +24,7 @@
 
             <wizard-item-lvok v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData"></wizard-item-lvok>
 
-            <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData"></wizard-item-pred-doc>
+            <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData"></wizard-item-pred-doc>
 
             <wizard-item-individual v-if="isVisible('LVOK.Individual')" ref="LVOK.Individual" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData"></wizard-item-individual>
 

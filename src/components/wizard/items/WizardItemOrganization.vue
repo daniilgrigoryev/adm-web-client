@@ -5,7 +5,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.name" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.name" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -13,7 +13,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ИНН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.inn" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.inn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -21,7 +21,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ИНН кем выдан</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.innKemVydan" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.innKemVydan" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -29,7 +29,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ОГРН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.ogrn" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.ogrn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -37,7 +37,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">КПП</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.kpp" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.kpp" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -45,7 +45,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ОКПО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.okpo" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.okpo" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -53,7 +53,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Дата регистрации Юр. лица</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.dateReg" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.dateReg" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>

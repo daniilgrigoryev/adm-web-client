@@ -15,7 +15,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ФИО:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="fio" @on-change="changeFIO" placeholder="Enter something..."></Input>
+            <Input v-model="fio" @on-input-change="changeFIO" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -52,7 +52,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Место работы:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.workPlace" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -60,7 +60,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Телефон:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.phone" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.phone" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>

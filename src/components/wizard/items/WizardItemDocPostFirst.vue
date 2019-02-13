@@ -77,7 +77,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.docN" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.docN" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :sm="6" :md="6" :lg="8">
             <a href="#" @click="createNewUIN" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
@@ -88,7 +88,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер правонарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.apn" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.apn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -96,7 +96,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер дела</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input :disabled="data.deloN !== null" @on-change="storeElementData" v-model="data.deloN" placeholder="Enter something..."></Input>
+            <Input :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :sm="6" :md="6" :lg="8">
             <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
@@ -121,7 +121,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.inspSostKod" search @on-search="changeInspSostKod" placeholder="Enter something..."></Input>
+            <Input v-model="data.inspSostKod" @on-input-change="changeInspSostKod" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :sm="6" :md="6" :lg="8">
             <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
@@ -132,7 +132,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.inspSostName" @on-change="changeFIO" placeholder="Enter something..."></Input>
+            <Input v-model="data.inspSostName" @on-input-change="changeFIO" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -140,7 +140,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.inspSostDolz" @on-change="clearInspSostKod" placeholder="Enter something..."></Input>
+            <Input v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -148,7 +148,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.inspSostRang" @on-change="clearInspSostKod" placeholder="Enter something..."></Input>
+            <Input v-model="data.inspSostRang" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -156,7 +156,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :sm="6" :md="6" :lg="16">
-            <Input v-model="data.organSostKod" search @on-search="changeOrganSostKod" placeholder="Enter something..."></Input>
+            <Input v-model="data.organSostKod" @on-input-change="changeOrganSostKod" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :sm="6" :md="6" :lg="8">
             <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
