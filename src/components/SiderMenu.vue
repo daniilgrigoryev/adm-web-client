@@ -94,9 +94,9 @@ export default {
 		}
     },
     methods: {
-		logout() {
-			this.$root.logout();
-		},
+      logout() {
+        this.$root.logout();
+      },
     }
 }
 </script>
