@@ -6,11 +6,11 @@
             </div>
         </div>
         <hr class="txt-hr my0">
-        <div class="bg-blue-thin">
-            <Row>
-                <Col :xs="24" :sm="6" :md="6" :lg="6">
-                    <div class="bg-blue-thin">
-                        <ul class="ml60 mr24 mt24">
+        <div>
+            <Row type="flex">
+                <Col>
+                    <div class="nav-menu bg-blue-thin wmax360 h-full scroll-hidden">
+                        <ul class="ml60 mr24 my24">
                             <li class=""><a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
                             <li class=""><a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
                             <li class=""><a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
@@ -20,17 +20,17 @@
                         </ul>
                     </div>
                 </Col>
-                <Col :xs="24" :sm="18" :md="18" :lg="18" class="bg-white">
-                    <div class="wmax1280 mx-auto">
+                <Col :xs="24" :sm="24" :md="24" :lg="16" class="border">
+                    <div class="wmax1280 mx-auto border">
                         <div class="hmin360 px36 py12">
                             <Form :label-width="200" label-position="right">
                                 <FormItem class="my12">
                                     <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
                                     <Row :gutter="16" type="flex" align="middle">
-                                        <Col :xs="24" :sm="6" :md="6" :lg="16">
+                                        <Col :xs="24" :sm="24" :md="8" :lg="16">
                                             <Input  placeholder="Enter something..."></Input>
                                         </Col>
-                                        <Col :xs="24" :sm="6" :md="6" :lg="8">
+                                        <Col :xs="24" :sm="24" :md="8" :lg="8">
                                             <a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
                                         </Col>
                                     </Row>
@@ -447,8 +447,10 @@
     </div>
 </template>
 
-<style>
-
+<style lang="scss" scoped>
+    .nav-menu{
+        max-width: 100%;
+    }
 </style>
 
 <script>
