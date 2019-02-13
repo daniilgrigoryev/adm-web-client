@@ -2,7 +2,7 @@
 	<div class="layout">
 		<button type="button" @click="getPrev">Назад</button>
 		<Layout class="layout--inner h-full wmax1280 mx-auto">
-           <Sider class="sider" ref="side1" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
+            <!-- <Sider class="sider" ref="side1" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
 			   <div class="py18 relative h-full">
 				   <div class="flex-parent flex-parent--column h-full">
 						<Icon @click="isCollapsed = true" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
@@ -75,7 +75,7 @@
 						</div>
 					</div>
 			   </div>
-            </Sider>
+            </Sider> -->
 			<Layout class="layout--inner">
 				<div class="header">
 					<Row type="flex" align="middle" justify="space-between">
@@ -236,8 +236,6 @@
 		</Layout>
 	</div>
 </template>
-
-
 <script>
 import * as funcUtils from "../../assets/js/utils/funcUtils";
 import * as formStack from '../../assets/js/api/formStack';

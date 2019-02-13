@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <Row type="flex" align="middle" justify="space-between">
+        <Row type="flex" align="middle" justify="space-between" class="wmax1280 mx-auto">
             <Col>
                 <div class="flex-parent flex-parent--center-cross mr64">
                     <Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer" @click.native="collapsedSider">

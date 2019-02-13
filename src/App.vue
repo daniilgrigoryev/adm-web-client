@@ -7,7 +7,7 @@
 		<button type="button" @click="getPrev">Назад</button>
 		<Layout class="layout--inner h-full mx-auto"><!-- wmax1280 -->
 			<SiderMenu ref="siderMenu" :isCollapsed="isCollapsed"></SiderMenu>
-			<Layout ref="siderMenu1" class="layout--inner">
+			<Layout class="layout--inner">
 				<MainMenu @collapsedSider="collapsedSider"></MainMenu>
 				<div class="px12 py12">
 					<router-view></router-view>
