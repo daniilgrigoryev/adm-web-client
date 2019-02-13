@@ -1,54 +1,80 @@
 <template>
-  <div>
-    <button type="button" @click="getPrev">Назад</button>
+  <div class="bg-blue-thin">
+    <Row>
+      <Col :xs="24" :sm="6" :md="6" :lg="6">
+        <div class="bg-blue-thin">
+          <ul class="ml60 mr24 mt24">
+            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
+            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
+            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
+            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
+            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
+            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
+          </ul>
+        </div>
+      </Col>
+      <Col :xs="24" :sm="18" :md="18" :lg="18">
+        <div class="bg-white">
+          <div class="hmin360 px36 py12">
+            <wizard-item-doc-post-first v-if="isVisible('DocPostFirst')" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData"></wizard-item-doc-post-first>
 
-    <div>
-      <wizard-item-doc-post-first v-if="isVisible('DocPostFirst')" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData"></wizard-item-doc-post-first>
+            <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
-        <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData"></wizard-item-place>
+            <hr class="txt-hr my24">
 
-      <wizard-item-lvok v-if="isVisible('LVOK')" :info="getInfo('LVOK')" @storeElementData="storeElementData"></wizard-item-lvok>
+            <wizard-item-lvok v-if="isVisible('LVOK')" :info="getInfo('LVOK')" @storeElementData="storeElementData"></wizard-item-lvok>
 
-        <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData"></wizard-item-pred-doc>
+            <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData"></wizard-item-pred-doc>
 
-        <wizard-item-individual v-if="isVisible('LVOK.Individual')" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData"></wizard-item-individual>
+            <wizard-item-individual v-if="isVisible('LVOK.Individual')" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData"></wizard-item-individual>
 
-          <wizard-item-address v-if="isVisible('LVOK.Individual.regAddr')" :info="getInfo('LVOK.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData"></wizard-item-address>
+            <wizard-item-address v-if="isVisible('LVOK.Individual.regAddr')" :info="getInfo('LVOK.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-          <wizard-item-address v-if="isVisible('LVOK.Individual.factAddr')" :info="getInfo('LVOK.Individual.factAddr')" title="Адрес места жительства" @storeElementData="storeElementData"></wizard-item-address>
+            <wizard-item-address v-if="isVisible('LVOK.Individual.factAddr')" :info="getInfo('LVOK.Individual.factAddr')" title="Адрес места жительства" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-        <wizard-item-organization v-if="isVisible('LVOK.Organization')" :info="getInfo('LVOK.Organization')" @storeElementData="storeElementData"></wizard-item-organization>
+            <wizard-item-organization v-if="isVisible('LVOK.Organization')" :info="getInfo('LVOK.Organization')" @storeElementData="storeElementData"></wizard-item-organization>
 
-          <wizard-item-address v-if="isVisible('LVOK.Organization.regAddr')" :info="getInfo('LVOK.Organization.regAddr')" @storeElementData="storeElementData"></wizard-item-address>
+            <wizard-item-address v-if="isVisible('LVOK.Organization.regAddr')" :info="getInfo('LVOK.Organization.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-          <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" :info="getInfo('LVOK.Organization.factAddr')" @storeElementData="storeElementData"></wizard-item-address>
+            <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" :info="getInfo('LVOK.Organization.factAddr')" title="Адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-      <wizard-item-vehs v-if="isVisible('Vehs')" :info="getInfo('Vehs')" @storeElementData="storeElementData"></wizard-item-vehs>
+            <hr class="txt-hr my24">
 
-      <wizard-item-owner v-if="isVisible('Owner')" :info="getInfo('Owner')" @storeElementData="storeElementData"></wizard-item-owner>
+            <wizard-item-vehs v-if="isVisible('Vehs')" :info="getInfo('Vehs')" @storeElementData="storeElementData"></wizard-item-vehs>
 
-        <wizard-item-individual v-if="isVisible('Owner.Individual')" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData"></wizard-item-individual>
+            <wizard-item-owner v-if="isVisible('Owner')" :info="getInfo('Owner')" @storeElementData="storeElementData"></wizard-item-owner>
 
-          <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')" :info="getInfo('Owner.Individual.regAddr')" @storeElementData="storeElementData"></wizard-item-address>
+            <hr class="txt-hr my24">
 
-          <wizard-item-address v-if="isVisible('Owner.Individual.factAddr')" :info="getInfo('Owner.Individual.factAddr')" @storeElementData="storeElementData"></wizard-item-address>
+            <wizard-item-individual v-if="isVisible('Owner.Individual')" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData"></wizard-item-individual>
 
-        <wizard-item-organization v-if="isVisible('Owner.Organization')" :info="getInfo('Owner.Organization')" @storeElementData="storeElementData"></wizard-item-organization>
+            <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')" :info="getInfo('Owner.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-          <wizard-item-address v-if="isVisible('Owner.Organization.regAddr')" :info="getInfo('Owner.Organization.regAddr')" @storeElementData="storeElementData"></wizard-item-address>
+            <wizard-item-address v-if="isVisible('Owner.Individual.factAddr')" :info="getInfo('Owner.Individual.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-          <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData"></wizard-item-address>
+            <wizard-item-organization v-if="isVisible('Owner.Organization')" :info="getInfo('Owner.Organization')" @storeElementData="storeElementData"></wizard-item-organization>
 
-      <wizard-item-doc-post-second v-if="isVisible('DocPostSecond')" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData"></wizard-item-doc-post-second>
+            <wizard-item-address v-if="isVisible('Owner.Organization.regAddr')" :info="getInfo('Owner.Organization.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-        <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" :info="getInfo('DocPostSecond.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData"></wizard-item-place>
+            <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-      <wizard-item-decis v-if="isVisible('DecisMain')" :info="getInfo('DecisMain')" @storeElementData="storeElementData"></wizard-item-decis>
+            <wizard-item-doc-post-second v-if="isVisible('DocPostSecond')" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData"></wizard-item-doc-post-second>
 
-      <wizard-item-decis v-if="isVisible('DecisAdd')" :info="getInfo('DecisAdd')" @storeElementData="storeElementData"></wizard-item-decis>
+            <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" :info="getInfo('DocPostSecond.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
-      <wizard-item-doc-post-final v-if="isVisible('DocPostFinal')" :info="getInfo('DocPostFinal')" @storeElementData="storeElementData"></wizard-item-doc-post-final>
-    </div>
+            <wizard-item-decis v-if="isVisible('DecisMain')" :info="getInfo('DecisMain')" @storeElementData="storeElementData"></wizard-item-decis>
+
+            <wizard-item-decis v-if="isVisible('DecisAdd')" :info="getInfo('DecisAdd')" @storeElementData="storeElementData"></wizard-item-decis>
+
+            <wizard-item-doc-post-final v-if="isVisible('DocPostFinal')" :info="getInfo('DocPostFinal')" @storeElementData="storeElementData"></wizard-item-doc-post-final>
+          </div>
+          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+            <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
+            <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+          </div>
+        </div>
+      </Col>
+    </Row>
   </div>
 </template>
 
@@ -156,6 +182,9 @@
           withSpinner: false
         });
         let cids = JSON.parse(eventResponse.response).data;
+        await this.updateComponents(cids);
+      },
+      async updateComponents(cids) {
         let cidsKeySet = Object.keys(cids);
         for (let i = 0; i < cidsKeySet.length; i++) {
           let cid = cidsKeySet[i];
@@ -167,7 +196,7 @@
           } else if (child && funcUtils.isNotEmpty(prop)) {
             child.initData();
           } else if (!child && funcUtils.isNotEmpty(prop)) {
-            eventResponse = await RequestApi.prepareData({
+            let eventResponse = await RequestApi.prepareData({
               method: 'getElementInfo',
               params: {
                 eCID: cid
@@ -192,6 +221,12 @@
           }
         }
         return res;
+      },
+      async save() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'make'
+        });
+        debugger;
       },
       getPrev() {
         try {

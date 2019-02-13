@@ -1,73 +1,103 @@
 <template>
-  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
-
-    <div>
-      <span>Название организации</span>
-      <input v-model="data.name" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>ИНН</span>
-      <input v-model="data.inn" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>ИНН кем выдан</span>
-      <input v-model="data.innKemVydan" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>ОГРН</span>
-      <input v-model="data.ogrn" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>КПП</span>
-      <input v-model="data.kpp" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>ОКПО</span>
-      <input v-model="data.okpo" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>Дата регистрации Юр. лица</span>
-      <input v-model="data.dateReg" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>Тип ЮЛ</span>
-
-      <Select v-model="data.tip" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
-        <Option v-for="item in tipULList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </div>
-
-    <div>
-      <span>Форма собственности</span>
-
-      <Select v-model="data.fsobstKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
-        <Option v-for="item in formSobstvList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </div>
-
-    <div>
-      <span>ОПФ</span>
-
-      <Select v-model="data.orgformKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
-        <Option v-for="item in orgFormList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </div>
-
-    <div>
-      <span>Ведомство</span>
-
-      <Select v-model="data.vedomstvoId" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
-        <Option v-for="item in vedomstList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </div>
-
+  <div v-if="data">
+    <Form :label-width="200" abel-position="right">
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Название организации</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.name" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">ИНН</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.inn" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">ИНН кем выдан</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.innKemVydan" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">ОГРН</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.ogrn" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">КПП</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.kpp" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">ОКПО</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.okpo" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Дата регистрации Юр. лица</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Input v-model="data.dateReg" @on-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Тип ЮЛ</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Select class="wmax240 wmin180" placeholder="" v-model="data.tip" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+              <Option v-for="item in tipULList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Форма собственности</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Select class="wmax240 wmin180" placeholder="" v-model="data.fsobstKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+              <Option v-for="item in formSobstvList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">ОПФ</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Select class="wmax240 wmin180" placeholder="" v-model="data.orgformKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+              <Option v-for="item in orgFormList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Ведомство</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Select class="wmax240 wmin180" v-model="data.vedomstvoId" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+              <Option v-for="item in vedomstList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
   </div>
 </template>
 

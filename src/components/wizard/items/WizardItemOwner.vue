@@ -1,12 +1,22 @@
 <template>
-  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
-    <div>
-      <span>Статус</span>
-
-      <Select v-model="data.status" clearable @on-change="storeElementData">
-        <Option v-for="item in ownerStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </div>
+  <div v-if="data">
+    <Form :label-width="200" abel-position="right">
+      <Row :gutter="16" type="flex" align="middle">
+        <Col>
+          <h2 class="adm-text-big color-dark-light my12">Владелец транспортного средства</h2>
+        </Col>
+      </Row>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Статус</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <Select class="wmax240 wmin180" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
+              <Option v-for="item in ownerStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
   </div>
 </template>
 

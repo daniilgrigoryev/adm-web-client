@@ -1,14 +1,23 @@
 <template>
-  <div v-if="data" style="margin-bottom: 50px; border-bottom: 1px solid black;">
-    <div>
-      <span>Дата уведомления</span>
-      <input type="date" v-model="data.dateUved" @change="storeElementData" />
-    </div>
-
-    <div>
-      <span>Дата исполнения</span>
-      <input type="date" v-model="data.dateIspoln" @change="storeElementData" />
-    </div>
+  <div v-if="data">
+    <Form :label-width="200" abel-position="right">
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Дата уведомления</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <DatePicker type="date" v-model="data.dateUved" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Дата исполнения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :sm="6" :md="6" :lg="16">
+            <DatePicker type="date" v-model="data.dateIspoln" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
   </div>
 </template>
 
@@ -39,6 +48,14 @@
           }
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+
+        if (funcUtils.isNotEmpty(this.data.dateUved)) {
+          this.data.dateUved = new Date(this.data.dateUved);
+        }
+
+        if (funcUtils.isNotEmpty(this.data.dateIspoln)) {
+          this.data.dateIspoln = new Date(this.data.dateIspoln);
+        }
       },
 
       storeElementData() {
