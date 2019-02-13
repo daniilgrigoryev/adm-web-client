@@ -226,9 +226,7 @@
 										</div>
 									</a>
 								</li>
-
 								<hr class="txt-hr my0">
-
 								<li>
 									<a href="#" class="flex-parent flex-parent--wrap tree__link border-t border-b border--gray-faint py12">
 										<div class="bg-red ml18" style="width: 40px; height: 40px;">
@@ -303,11 +301,9 @@
 										<img src='../../assets/images/wiki.svg' class="wmax-none">
 									</Button>
 								</div>
-								
 								<div class="hmin360 px36 py12" style="background-color: rgba(255,2,2,0.11)">
 										ljdf;lskdjf
 								</div>
-
 								<div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
 									<Button type="text">Отменить изменения</Button>
 									<Button type="primary" class="ml12">Сохранить</Button>
@@ -316,7 +312,6 @@
 						</Col>
 					</Row>
 				</div>
-
 			</Layout>
 		</Layout>
 	</div>

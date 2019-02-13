@@ -14,7 +14,7 @@
 								Московской Административной<br>
 								Дорожной Инспекции
 							</b>
-						</div>					
+						</div>
 						<ul>
 							<li>
 								<a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link active-link">
@@ -127,7 +127,7 @@
 						<Col :xs="24" :sm="18" :md="18" :lg="18">
 							<div class="bg-white">
 								<div class="hmin360 px36 py12">
-                                    <Form :label-width="200" abel-position="right">
+                                    <Form :label-width="200" label-position="right">
                                         <FormItem class="my12">
                                             <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
                                             <Row :gutter="16" type="flex" align="middle">
@@ -177,7 +177,7 @@
 
                                     <hr class="txt-hr my24">
 
-                                    <Form :label-width="200" abel-position="right">
+                                    <Form :label-width="200" label-position="right">
                                         <h2 class="adm-text-big color-dark-light my12">Составил</h2>
                                         <FormItem class="my12">
                                             <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
@@ -237,7 +237,7 @@
 
                                     <hr class="txt-hr my24">
 
-                                    <Form :label-width="200" abel-position="right">
+                                    <Form :label-width="200" label-position="right">
                                         <Row :gutter="16" type="flex" align="middle">
                                             <Col>
                                                 <h2 class="adm-text-big color-dark-light my12">Лицо в отношении которого заводится дело</h2>
@@ -369,7 +369,7 @@
 
                                     <hr class="txt-hr my24">
 
-                                    <Form :label-width="200" abel-position="right">
+                                    <Form :label-width="200" label-position="right">
                                         <h2 class="adm-text-big color-dark-light my12">Транспортное средство</h2>
                                         <FormItem class="my12">
                                             <small class="adm-text-small color-gray-medium" slot="label">Номер ГРЗ автомобиля:</small>
@@ -414,10 +414,9 @@
                                         </FormItem>
                                     </Form>
 
-
                                     <hr class="txt-hr my24">
 
-                                    <Form :label-width="200" abel-position="right">
+                                    <Form :label-width="200" label-position="right">
                                         <Row :gutter="16" type="flex" align="middle">
                                             <Col>
                                                 <h2 class="adm-text-big color-dark-light my12">Владелец транспортного средства</h2>
@@ -431,10 +430,9 @@
                                         </Row>
                                     </Form>
 
-
                                     <hr class="txt-hr my24">
 
-                                    <Form :label-width="200" abel-position="right">
+                                    <Form :label-width="200" label-position="right">
                                         <h2 class="adm-text-big color-dark-light my12">Нарушение</h2>
                                         <FormItem class="my12">
                                             <small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
@@ -505,9 +503,8 @@
 
                                     <hr class="txt-hr my24">
 
-                                    <Form :label-width="200" abel-position="right">
+                                    <Form :label-width="200" label-position="right">
                                         <h2 class="adm-text-big color-dark-light my12">Решение по делу</h2>
-
                                        <FormItem class="my12">
                                             <small class="adm-text-small color-gray-medium" slot="label">Решение по правонарушению:</small>
                                             <Row :gutter="16" type="flex" align="middle">
