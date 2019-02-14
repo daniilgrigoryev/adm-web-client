@@ -13,6 +13,7 @@
       <div>
         <button type="button" @click="filterClick">Фильтровать</button>
         <button type="button" @click="createWizardScenarioPost">Создать постановление</button>
+        <button type="button" @click="createWizardScenario2025">Создать 2025</button>
       </div>
     </div>
 
@@ -854,7 +855,24 @@
           };
 
           formStack.toNext({
-            module: this.$store.state.wizardExecuter,
+            module: this.$store.state.wizardScenarioPost,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenario2025() {
+        try {
+          let params = {
+            scenarioName: 'CreateProt2025'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardScenario2025,
             vm: this,
             notRemoved: true,
             params: params,

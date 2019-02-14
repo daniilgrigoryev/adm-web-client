@@ -1,39 +1,39 @@
 export default {
   state: {
-    moduleName: 'wizardExecuter',
+    moduleName: 'wizardScenario2025',
     cid: null,
     bean: 'WizardExecuter',
-    routeName: 'WizardExecuter',
+    routeName: 'WizardScenario2025',
     data: null,
     command: null
   },
   mutations: {
-    wizardExecuterSetCid(state, cid) {
+    wizardScenario2025SetCid(state, cid) {
       state.cid = cid;
     },
-    wizardExecuterSetData(state, data) {
+    wizardScenario2025SetData(state, data) {
       state.data = data;
     },
-    wizardExecuterSetCommand(state, command) {
+    wizardScenario2025SetCommand(state, command) {
       state.command = command;
     }
   },
   actions: {
-    wizardExecuterSetCid(vm, cid) {
+    wizardScenario2025SetCid(vm, cid) {
       vm.state.cid = cid;
     },
-    wizardExecuterSetData(vm, data) {
+    wizardScenario2025SetData(vm, data) {
       vm.state.data = data;
     },
-    wizardExecuterSetCommand(vm, command) {
+    wizardScenario2025SetCommand(vm, command) {
       vm.state.command = command;
     }
   },
   getters: {
-    wizardExecuterGetCommand: state => () => {
+    wizardScenario2025GetCommand: state => () => {
       return state.command
     },
-    wizardExecuterGetData: state => {
+    wizardScenario2025GetData: state => {
       return state.data
     }
   }

@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import Authorization from '../components/Authorization';
 import DeloReestr from '../components/reestrPassport/DeloReestr';
 import DeloTreeCardView from '../components/viewData/DeloTreeCardView';
-import WizardExecuter from '../components/wizard/WizardExecuter';
+import WizardScenarioPost from '../components/wizard/WizardScenarioPost';
+import WizardScenario2025 from '../components/wizard/WizardScenario2025';
 
 // верстка
 import Accounting from '../components/verstka/Accounting.vue';
@@ -36,9 +37,15 @@ const router = new Router({
       props: true
     },
     {
-      path: ConstantUtils.contextPath + '/wizardExecuter',
-      name: 'WizardExecuter',
-      component: WizardExecuter,
+      path: ConstantUtils.contextPath + '/wizardScenarioPost',
+      name: 'WizardScenarioPost',
+      component: WizardScenarioPost,
+      props: true
+    },
+    {
+      path: ConstantUtils.contextPath + '/WizardScenario2025',
+      name: 'WizardScenario2025',
+      component: WizardScenario2025,
       props: true
     },
     {

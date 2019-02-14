@@ -96,7 +96,7 @@
   import WizardItemVehs from "~/components/wizard/items/WizardItemVehs";
 
   export default {
-    name: "WizardExecuter",
+    name: "WizardScenario2025",
     components: {
       WizardItemAddress,
       WizardItemDecis,
