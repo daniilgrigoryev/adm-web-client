@@ -182,6 +182,15 @@
           withSpinner: false
         });
         let cids = JSON.parse(eventResponse.response).data;
+        if (funcUtils.isEmpty(cids)) {
+          let error = JSON.parse(eventResponse.response).error.errorMsg;
+          alert(error);
+          eventResponse = await RequestApi.prepareData({
+            method: 'getChain',
+            withSpinner: false
+          });
+          cids = JSON.parse(eventResponse.response).data;
+        }
         await this.updateComponents(cids);
       },
       async updateComponents(cids) {

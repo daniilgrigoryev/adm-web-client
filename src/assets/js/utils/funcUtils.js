@@ -105,8 +105,8 @@ export function parseDateTime(dateTime, format) {
   return moment(dateTime).format(format);
 }
 
-export function formatDateTime(dateTime) {
-  return moment(dateTime, 'dd.MM.yyyy HH:mm').toString();
+export function formatDateTime(dateTime, format) {
+  return moment(dateTime, format).toString();
 }
 
 export function replacer(key, value) {
