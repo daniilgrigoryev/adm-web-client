@@ -189,7 +189,6 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'make'
         });
-        debugger;
       },
       getPrev() {
         try {

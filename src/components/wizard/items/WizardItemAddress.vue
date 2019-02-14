@@ -15,16 +15,16 @@
     </Form>
 
     <div v-if="data && addressModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <button type="button" @click="showAddressModal(false)" style="width: 20px; height: 20px; background: white;"></button>
+      <Button @click="showAddressModal(false)" type="primary" class="ml12">Закрыть</Button>
 
       <div>
         <span>Страна</span>
 
         <span>Код</span>
-        <input v-model="data.countryCode" disabled="true" />
+        <Input v-model="data.countryCode" disabled placeholder="Enter something..."></Input>
 
         <span>Название</span>
-        <input v-model="data.countryName" disabled="true" />
+        <Input v-model="data.countryName" disabled placeholder="Enter something..."></Input>
       </div>
 
       <div>
@@ -78,34 +78,34 @@
       <div>
         <span>Дом</span>
 
-        <input v-model="data.ndom" @change="storeElementData" />
+        <Input v-model="data.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
       </div>
 
       <div>
         <span>Корпус</span>
 
-        <input v-model="data.nkorpus" @change="storeElementData" />
+        <Input v-model="data.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
       </div>
 
       <div>
         <span>Строение</span>
 
-        <input v-model="data.nstroenie" @change="storeElementData" />
+        <Input v-model="data.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
       </div>
 
       <div>
         <span>Почтовый индекс</span>
 
-        <input v-model="data.pindex" disabled="true" />
+        <Input v-model="data.nstroenie" @on-input-change="storeElementData" disabled placeholder="Enter something..."></Input>
       </div>
 
       <div>
         <span>Дополнительные сведения</span>
 
-        <input v-model="data.dopSved" @change="storeElementData" />
+        <Input v-model="data.dopSved" @on-input-change="storeElementData" disabled placeholder="Enter something..."></Input>
       </div>
 
-      <button type="button" @click="save" style="width: 20px; height: 20px; background: red;"></button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
     </div>
   </div>
 </template>

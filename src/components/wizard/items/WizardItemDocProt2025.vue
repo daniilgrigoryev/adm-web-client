@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
     <div v-if="dolzModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <button type="button" @click="showDolzModal(false)" style="width: 20px; height: 20px; background: white;"></button>
+      <Button @click="showDolzModal(false)" type="primary" class="ml12">Закрыть</Button>
 
       <div style="height: 40vh; width: 50vw; overflow-y: auto;">
         <table>
@@ -39,7 +39,7 @@
     </div>
 
     <div v-if="sudModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <button type="button" @click="showSudModal(false)" style="width: 20px; height: 20px; background: white;"></button>
+      <Button @click="showSudModal(false)" type="primary" class="ml12">Закрыть</Button>
 
       <div style="height: 40vh; width: 50vw; overflow-y: auto;">
         <table>
@@ -73,7 +73,7 @@
     </div>
 
     <div v-if="deloModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <button type="button" @click="showDeloModal(false)" style="width: 20px; height: 20px; background: white;"></button>
+      <Button @click="showDeloModal(false)" type="primary" class="ml12">Закрыть</Button>
 
       <RadioGroup v-model="deloModal.paramKey">
         <Radio label="deloNum">По номеру дела</Radio>
