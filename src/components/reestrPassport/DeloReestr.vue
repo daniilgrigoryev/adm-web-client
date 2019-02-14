@@ -1,11 +1,11 @@
 <template>
-	<div v-if="dataStore">
+  <div v-if="dataStore">
     <div>
       <div class="prose my24">
         <h4 class="my0 px0 inline align-middle">Верстка:</h4>
-        <button  class="txt-kbd" type="button" @click="admAccounting">админ учет</button>
-        <button  class="txt-kbd" type="button" @click="admDelo">дело</button>
-        <button  class="txt-kbd" type="button" @click="admOffense">возбуждение адм. правонарушения</button>
+        <button class="txt-kbd" type="button" @click="admAccounting">админ учет</button>
+        <button class="txt-kbd" type="button" @click="admDelo">дело</button>
+        <button class="txt-kbd" type="button" @click="admOffense">возбуждение адм. правонарушения</button>
       </div>
       <div>
         <button type="button" @click="filterClick">Фильтровать</button>
@@ -26,7 +26,8 @@
             <Col :xs="24" :md="12" :lg="4">
               <FormItem class="w-full">
                 <div slot="label" class="adm-text-small color-gray-medium">Дата заведения дела</div>
-                <DatePicker type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value" placeholder="Дата заведения дела"></DatePicker>
+                <DatePicker type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value"
+                            placeholder="Дата заведения дела"></DatePicker>
               </FormItem>
             </Col>
             <Col :xs="24" :md="12" :lg="4">
@@ -41,8 +42,10 @@
                 <Row type="flex" :gutter="6">
                   <Col :xs="24" :md="12" :lg="12">
                     <Select placeholder="Выбрать" v-model="filter.docVid.value" filterable clearable>
-                      <option value="null"> </option>
-                      <Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      <option value="null"></option>
+                      <Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value"
+                              :key="item.value">{{ item.label }}
+                      </Option>
                     </Select>
                   </Col>
                   <Col :xs="24" :md="12" :lg="12">
@@ -73,14 +76,18 @@
                 <Row type="flex" :gutter="6">
                   <Col :xs="24" :md="12" :lg="12">
                     <Select placeholder="Выбрать" v-model="filter.stadDeloKod.value" filterable clearable>
-                      <option value="null"> </option>
-                      <Option class="wmax360 txt-break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      <option value="null"></option>
+                      <Option class="wmax360 txt-break-word" v-for="item in stateDeloDict" :value="item.value"
+                              :key="item.value">{{ item.label }}
+                      </Option>
                     </Select>
                   </Col>
                   <Col :xs="24" :md="12" :lg="12">
                     <Select placeholder="По статье" v-model="filter.stotvId.value" filterable clearable>
-                      <option value="null"> </option>
-                      <Option class="wmax360 txt-break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                      <option value="null"></option>
+                      <Option class="wmax360 txt-break-word" v-for="item in articleProcDict" :value="item.id"
+                              :key="item.id">{{ item.value + ', ' + item.label }}
+                      </Option>
                     </Select>
                   </Col>
                 </Row>
@@ -129,7 +136,8 @@
 
     <div class="bg-white">
       <div class="mx-auto">
-        <Table class="custom-table" ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :border="false" :height="tableHeight"></Table>
+        <Table class="custom-table" ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false"
+               :border="false" :height="tableHeight"></Table>
       </div>
     </div>
 
@@ -140,7 +148,7 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import { mapGetters } from 'vuex';
+  import {mapGetters} from 'vuex';
 
   export default {
     name: "DeloReestr",
@@ -293,7 +301,7 @@
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                  return h('div', [
+                    return h('div', [
                       h('p', {
                         class: {
                           'color-gray-medium': true,
@@ -320,7 +328,7 @@
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                  return h('div', [
+                    return h('div', [
                       h('p', {
                         class: {
                           'color-gray-medium': true,
@@ -341,7 +349,7 @@
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                  return h('div', [
+                    return h('div', [
                       h('p', {
                         class: {
                           'color-gray-medium': true,
@@ -363,28 +371,32 @@
               case 'DateStadIspolnLast': {
                 res.push({
                   title: 'Дата посл.ст.исп.',
-                  key: 'DateStadIspolnLast',
+                  key: 'dateStadIspolnLast',
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
-                        h('p', {
-                          class: {
-                            'color-gray-medium': true,
-                            'adm-text-big': true,
-                            'adm-font-light': true,
-                          },
-                        }, params.column.title),
-                        h('p', {
-                          class: {
-                            'color-gray-medium': true,
-                            'adm-text-small': true
-                          },
-                        }, 'Дата оформления'),
-                      ])
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
+                  },
+                  render: (h, params) => {
+                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
                   }
-                });                break;
+                });
+                break;
               }
               case 'decisDateFirst': {
                 res.push({
@@ -409,8 +421,12 @@
                         },
                       }, 'Дата оформления'),
                     ])
+                  },
+                  render: (h, params) => {
+                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
                   }
-                });                break;
+                });
+                break;
               }
               case 'decisDateLast': {
                 res.push({
@@ -435,8 +451,12 @@
                         },
                       }, 'Дата оформления'),
                     ])
+                  },
+                  render: (h, params) => {
+                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
                   }
-                });                break;
+                });
+                break;
               }
               case 'decisNameFirst': {
                 res.push({
@@ -462,7 +482,8 @@
                       }, 'Дата оформления'),
                     ])
                   }
-                });                break;
+                });
+                break;
               }
               case 'decisNameLast': {
                 res.push({
@@ -488,7 +509,8 @@
                       }, 'Дата оформления'),
                     ])
                   }
-                });                break;
+                });
+                break;
               }
               case 'deloDate': {
                 res.push({
@@ -513,8 +535,12 @@
                         },
                       }, 'Дата оформления'),
                     ])
+                  },
+                  render: (h, params) => {
+                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
                   }
-                });                break;
+                });
+                break;
               }
               case 'deloN': {
                 res.push({
@@ -938,15 +964,15 @@
                     transfer: true,
                   }
                 }, [
-                    h('div', [
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-big': true,
-                          'adm-font-light': true,
-                        },
-                      }, params.column.title),
-                    ])
+                  h('div', [
+                    h('p', {
+                      class: {
+                        'color-gray-medium': true,
+                        'adm-text-big': true,
+                        'adm-font-light': true,
+                      },
+                    }, params.column.title),
+                  ])
                 ])
               },
               render: (h, params) => {
@@ -976,7 +1002,7 @@
       },
     },
     methods: {
-      changeTableHeight(){
+      changeTableHeight() {
         let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
         this.tableHeight = window.innerHeight - tableBounds.y;
       },
