@@ -4,36 +4,7 @@
       <Button @click="showDolzModal(false)" type="primary" class="ml12">Закрыть</Button>
 
       <div style="height: 40vh; width: 50vw; overflow-y: auto;">
-        <table>
-          <thead>
-          <tr>
-            <td>Нагрудный знак</td>
-            <td>ФИО</td>
-            <td>Должность</td>
-            <td>Звание</td>
-            <td>Код подразделения</td>
-            <td>Подразделение</td>
-            <td>Отдел</td>
-            <td>Телефон</td>
-            <td>Дата начала действия</td>
-            <td>Дата окончания действия</td>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(item, index) in dolzModal.sispList" :key="index" @dblclick="onSispClick(item)">
-            <td>{{item.inspKod}}</td>
-            <td>{{item.inspName}}</td>
-            <td>{{item.inspDolz}}</td>
-            <td>{{item.inspRang}}</td>
-            <td>{{item.organKod}}</td>
-            <td>{{item.ogaiName}}</td>
-            <td>{{item.otdName}}</td>
-            <td>{{item.phone}}</td>
-            <td>{{item.dateBeg}}</td>
-            <td>{{item.dateEnd}}</td>
-          </tr>
-          </tbody>
-        </table>
+        <Table :columns="dolzModal.columnsOptions" @on-row-dblclick="onSispClick" :data="dolzModal.sispList"></Table>
       </div>
 
     </div>
@@ -42,32 +13,7 @@
       <Button @click="showSudModal(false)" type="primary" class="ml12">Закрыть</Button>
 
       <div style="height: 40vh; width: 50vw; overflow-y: auto;">
-        <table>
-          <thead>
-          <tr>
-            <td>Код органа</td>
-            <td>Название</td>
-            <td>Тип</td>
-            <td>Код региона</td>
-            <td>Регион</td>
-            <td>Адрес</td>
-            <td>Контакты</td>
-            <td>Район</td>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="(item, index) in sudModal.sudList" :key="index" @dblclick="onSudClick(item)">
-            <td>{{item.ORGAN_KOD}}</td>
-            <td>{{item.ORGAN_NAME}}</td>
-            <td>{{item.TIP}}</td>
-            <td>{{item.RESP_KOD}}</td>
-            <td>{{item.REGION_NAME}}</td>
-            <td>{{item.KA_ADR_FULL}}</td>
-            <td>{{item.CONTACTS}}</td>
-            <td>{{item.REGION_NAME}}</td>
-          </tr>
-          </tbody>
-        </table>
+        <Table :columns="sudModal.columnsOptions" @on-row-dblclick="onSudClick" :data="sudModal.sudList"></Table>
       </div>
 
     </div>
@@ -232,11 +178,197 @@
         data: null,
         dolzModal: {
           visible: false,
-          sispList: null
+          sispList: null,
+          columnsOptions:
+            [
+              {
+                title: 'Нагрудный знак',
+                key: 'inspKod',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'ФИО',
+                key: 'inspName',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Должность',
+                key: 'inspDolz',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Звание',
+                key: 'inspRang',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Код подразделения',
+                key: 'organKod',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Подразделение',
+                key: 'ogaiName',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Отдел',
+                key: 'otdName',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Телефон',
+                key: 'phone',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Дата начала действия',
+                key: 'dateBeg',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Дата окончания действия',
+                key: 'dateEnd',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              }
+            ]
         },
         sudModal: {
           visible: false,
-          sudList: null
+          sudList: null,
+          columnsOptions:
+            [
+              {
+                title: 'Код органа',
+                key: 'ORGAN_KOD',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Код региона',
+                key: 'RESP_KOD',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Регион',
+                key: 'REGION_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Район',
+                key: 'RAYON_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Тип',
+                key: 'TIP',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Название',
+                key: 'ORGAN_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Контакты',
+                key: 'CONTACTS',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Адрес',
+                key: 'KA_ADR_FULL',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              }
+            ]
         },
         deloModal: {
           visible: false,
@@ -346,7 +478,6 @@
       },
 
       async showDolzModal(visible) {
-        this.dolzModal.visible = visible;
         if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
@@ -362,9 +493,9 @@
         } else {
           this.dolzModal.sispList = null;
         }
+        this.dolzModal.visible = visible;
       },
       async showSudModal(visible) {
-        this.sudModal.visible = visible;
         if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
@@ -378,6 +509,7 @@
         } else {
           this.sudModal.sudList = null;
         }
+        this.sudModal.visible = visible;
       },
       async showDeloModal(visible) {
         this.deloModal.visible = visible;
