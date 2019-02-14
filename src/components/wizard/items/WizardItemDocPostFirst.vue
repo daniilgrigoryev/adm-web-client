@@ -1,178 +1,178 @@
 <template>
-	<div v-if="data">
-		<div v-if="dolzModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
-			<button type="button" @click="showDolzModal(false)" style="width: 20px; height: 20px; background: white;"></button>
-	
-			<div style="height: 40vh; width: 50vw; overflow-y: auto;">
-				<table>
-					<thead>
-						<tr>
-							<td>Нагрудный знак</td>
-							<td>ФИО</td>
-							<td>Должность</td>
-							<td>Звание</td>
-							<td>Код подразделения</td>
-							<td>Подразделение</td>
-							<td>Отдел</td>
-							<td>Телефон</td>
-							<td>Дата начала действия</td>
-							<td>Дата окончания действия</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="(item, index) in dolzModal.sispList" :key="index" @dblclick="onSispClick(item)">
-							<td>{{item.inspKod}}</td>
-							<td>{{item.inspName}}</td>
-							<td>{{item.inspDolz}}</td>
-							<td>{{item.inspRang}}</td>
-							<td>{{item.organKod}}</td>
-							<td>{{item.ogaiName}}</td>
-							<td>{{item.otdName}}</td>
-							<td>{{item.phone}}</td>
-							<td>{{item.dateBeg}}</td>
-							<td>{{item.dateEnd}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-	
-		</div>
-	
-		<div v-if="organModal.visible" class="modal dolz" style="width: 50vw; height: 50vh; position: absolute; background: black; color: white; z-index: 2;">
-			<button type="button" @click="showOrganModal(false)" style="width: 20px; height: 20px; background: white;"></button>
-	
-			<div style="height: 40vh; width: 50vw; overflow-y: auto;">
-				<table>
-					<thead>
-						<tr>
-							<td>Код органа</td>
-							<td>Код региона</td>
-							<td>Регион</td>
-							<td>Район</td>
-							<td>Тип</td>
-							<td>Название</td>
-							<td>Контакты</td>
-							<td>Адрес</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="(item, index) in organModal.gibddList" :key="index" @dblclick="onGibddClick(item)">
-							<td>{{item.ORGAN_KOD}}</td>
-							<td>{{item.RESP_KOD}}</td>
-							<td>{{item.REGION_NAME}}</td>
-							<td>{{item.RAYON_NAME}}</td>
-							<td>{{item.TIP}}</td>
-							<td>{{item.ORGAN_NAME}}</td>
-							<td>{{item.CONTACTS}}</td>
-							<td>{{item.KA_ADR_FULL}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-	
-		</div>
-	
-		<Form :label-width="180" label-position="right">
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-						<Input v-model="data.docN" @on-change="storeElementData" placeholder="Enter something..."></Input>
-					</Col>
-					<Col :xs="24" :md="10" :lg="8">
-						<a href="#" @click="createNewUIN" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
-					</Col>
-				</Row>
-			</FormItem>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Уникальный номер правонарушения</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<Input v-model="data.apn" @on-change="storeElementData" placeholder="Enter something..."></Input>
-					</Col>
-				</Row>
-			</FormItem>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Уникальный номер дела</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<Input :disabled="data.deloN !== null" @on-change="storeElementData" v-model="data.deloN" placeholder="Enter something..."></Input>
-					</Col>
-					<Col :xs="24" :md="10" :lg="8">
-					<a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
-					</Col>
-				</Row>
-			</FormItem>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<DatePicker type="datetime" v-model="data.dateSost" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
-					</Col>
-				</Row>
-			</FormItem>
-		</Form>
-	
-		<hr class="txt-hr my24">
-	
-		<Form :label-width="180" label-position="right">
-			<h2 class="adm-text-big color-dark-light my12">Составил</h2>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<Input v-model="data.inspSostKod" search @on-search="changeInspSostKod" placeholder="Enter something..."></Input>
-					</Col>
-					<Col :xs="24" :md="10" :lg="8">
-					<a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
-					</Col>
-				</Row>
-			</FormItem>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<Input v-model="data.inspSostName" @on-change="changeFIO" placeholder="Enter something..."></Input>
-					</Col>
-				</Row>
-			</FormItem>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<Input v-model="data.inspSostDolz" @on-change="clearInspSostKod" placeholder="Enter something..."></Input>
-					</Col>
-				</Row>
-			</FormItem>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Звание</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<Input v-model="data.inspSostRang" @on-change="clearInspSostKod" placeholder="Enter something..."></Input>
-					</Col>
-				</Row>
-			</FormItem>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<Input v-model="data.organSostKod" search @on-search="changeOrganSostKod" placeholder="Enter something..."></Input>
-					</Col>
-					<Col :xs="24" :md="10" :lg="8">
-					<a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
-					</Col>
-				</Row>
-			</FormItem>
-			<FormItem class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
-				<Row :gutter="16" type="flex" align="middle">
-					<Col :xs="24" :md="14" :lg="16">
-					<Input v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-					</Col>
-				</Row>
-			</FormItem>
-		</Form>
-	</div>
+  <div v-if="data">
+    <div v-if="dolzModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
+      <button type="button" @click="showDolzModal(false)" style="width: 20px; height: 20px; background: white;"></button>
+
+      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
+        <table>
+          <thead>
+            <tr>
+              <td>Нагрудный знак</td>
+              <td>ФИО</td>
+              <td>Должность</td>
+              <td>Звание</td>
+              <td>Код подразделения</td>
+              <td>Подразделение</td>
+              <td>Отдел</td>
+              <td>Телефон</td>
+              <td>Дата начала действия</td>
+              <td>Дата окончания действия</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in dolzModal.sispList" :key="index" @dblclick="onSispClick(item)">
+              <td>{{item.inspKod}}</td>
+              <td>{{item.inspName}}</td>
+              <td>{{item.inspDolz}}</td>
+              <td>{{item.inspRang}}</td>
+              <td>{{item.organKod}}</td>
+              <td>{{item.ogaiName}}</td>
+              <td>{{item.otdName}}</td>
+              <td>{{item.phone}}</td>
+              <td>{{item.dateBeg}}</td>
+              <td>{{item.dateEnd}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div v-if="organModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
+      <button type="button" @click="showOrganModal(false)" style="width: 20px; height: 20px; background: white;"></button>
+
+      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
+        <table>
+          <thead>
+          <tr>
+            <td>Код органа</td>
+            <td>Код региона</td>
+            <td>Регион</td>
+            <td>Район</td>
+            <td>Тип</td>
+            <td>Название</td>
+            <td>Контакты</td>
+            <td>Адрес</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(item, index) in organModal.gibddList" :key="index" @dblclick="onGibddClick(item)">
+            <td>{{item.ORGAN_KOD}}</td>
+            <td>{{item.RESP_KOD}}</td>
+            <td>{{item.REGION_NAME}}</td>
+            <td>{{item.RAYON_NAME}}</td>
+            <td>{{item.TIP}}</td>
+            <td>{{item.ORGAN_NAME}}</td>
+            <td>{{item.CONTACTS}}</td>
+            <td>{{item.KA_ADR_FULL}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <Form :label-width="180" abel-position="right">
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input v-model="data.docN" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="createNewUIN" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер правонарушения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input v-model="data.apn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер дела</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePicker type="datetime" v-model="data.dateSost" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
+
+    <hr class="txt-hr my24">
+
+    <Form :label-width="200" abel-position="right">
+      <h2 class="adm-text-big color-dark-light my12">Составил</h2>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input v-model="data.inspSostKod" @on-input-change="changeInspSostKod" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input v-model="data.inspSostName" @on-input-change="changeFIO" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input v-model="data.inspSostRang" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input v-model="data.organSostKod" @on-input-change="changeOrganSostKod" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
+  </div>
 </template>
 
 <script>

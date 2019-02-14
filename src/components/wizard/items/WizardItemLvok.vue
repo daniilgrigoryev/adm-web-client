@@ -109,7 +109,6 @@
         this.storeElementData();
       },
       storeElementData() {
-        debugger;
         this.$emit('storeElementData', {
           eCID: this.info.eCID,
           data: this.data

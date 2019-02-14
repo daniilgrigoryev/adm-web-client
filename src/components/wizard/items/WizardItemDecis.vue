@@ -15,7 +15,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Сумма штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.sumShtraf" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.sumShtraf" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -23,7 +23,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Срок лишения (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.lishMes" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.lishMes" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -39,7 +39,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Срок дисквалификации (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.diskvMes" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.diskvMes" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -47,7 +47,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Срок ареста (дни)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.arestDay" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.arestDay" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -63,7 +63,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Кол-во часов обяз-х работ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.hoursToWork" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.hoursToWork" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -71,7 +71,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Количество суток</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.stopWorkDay" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.stopWorkDay"  @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -87,7 +87,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.decisMes" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.decisMes" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -95,7 +95,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.decisDay" @on-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input v-model="data.decisDay" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
