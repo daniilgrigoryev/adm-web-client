@@ -60,7 +60,9 @@
 	letter-spacing: 0.2px;
 	line-height: 16px;
 }
-
+.adm-font-light{
+	font-family: "open_sanslight";
+}
 
 .my-auto { margin-top: auto; margin-bottom: auto; }
 
@@ -77,7 +79,6 @@ html, body, #app{
 .layout--inner{
 	background: #ffff;
 }
-
 .sider{
 	background: $white-light;
 	position: absolute;
@@ -153,5 +154,49 @@ html, body, #app{
 	&:hover,
 	&.ivu-menu-item-active{
 		border-bottom: 5px solid $blue-base!important;
+	}
+}
+
+
+
+
+.custom-table{
+	.ivu-table-header{
+		thead{
+			tr{
+				th{
+					height: 70px;
+					background-color: #fff;
+					.ivu-table-cell{
+
+					}
+				}
+			}
+		}
+	}
+	.ivu-table-body{
+		table{
+			.ivu-table-tbody{
+				tr{
+					td{
+						font-family: 'open_sansregular';
+						// font-size: 13px;
+						color: $dark-base;
+					}
+				}
+			}
+		}
+	}
+	.ivu-table-fixed-right{
+		.ivu-table-fixed-header{
+			thead{
+				tr{
+					th{
+						height: 70px;
+						background-color: #fff;
+					}
+				}
+			}
+		}
 	}
 }

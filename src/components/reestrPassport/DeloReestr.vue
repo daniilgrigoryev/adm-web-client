@@ -1,7 +1,7 @@
 <template>
 	<div v-if="dataStore">
     <div>
-      <div class="prose my24 border">
+      <div class="prose my24">
         <h4 class="my0 px0 inline align-middle">Верстка:</h4>
         <button  class="txt-kbd" type="button" @click="admAccounting">админ учет</button>
         <button  class="txt-kbd" type="button" @click="admDelo">дело</button>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="bg-gray-faint py24 px12">
-      <div class="wmax1920 mx-auto">
+      <div class="mx-auto"><!-- wmax1920 -->
         <Form inline label-position="top">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="12" :lg="4">
@@ -129,7 +129,7 @@
 
     <div class="bg-white">
       <div class="mx-auto">
-        <Table ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :border="false" height="400"></Table>
+        <Table class="custom-table" ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :border="false" :height="tableHeight"></Table>
       </div>
     </div>
 
@@ -178,12 +178,29 @@
         alert(e.message);
       }
     },
+    updated() {
+      try {
+        this.$nextTick(() => {
+          this.changeTableHeight();
+        });
+        window.addEventListener('resize', () => {
+          this.changeTableHeight();
+        });
+      } catch (e) {
+        this.$Notice.warning({
+          title: 'Ошибка получения данных',
+          desc: e.message,
+          duration: 10
+        });
+      }
+    },
     destroyed() {
       this.$store.dispatch('deloReestrSetCid', null);
       this.$store.dispatch('deloReestrSetData', null);
     },
     data() {
       return {
+        tableHeight: 0,
         stateDeloDict: [],
         documentVidDict: [],
         articleProcDict: [],
@@ -270,13 +287,27 @@
             switch (item) {
               case 'deloId': {
                 res.push({
-                  title: 'Код дела',
+                  title: 'Номер дела',
                   key: 'deloId',
-                  minWidth: 120,
+                  minWidth: 160,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                  return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -285,11 +316,19 @@
                 res.push({
                   title: 'Дата рождения',
                   key: 'birthday',
-                  minWidth: 120,
+                  minWidth: 160,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                  return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title)
+                    ])
                   }
                 });
                 break;
@@ -298,11 +337,25 @@
                 res.push({
                   title: 'Приоритет ошибки',
                   key: 'checkPriority',
-                  minWidth: 120,
+                  minWidth: 190,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                  return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -311,23 +364,51 @@
                 res.push({
                   title: 'Дата посл.ст.исп.',
                   key: 'DateStadIspolnLast',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                        h('p', {
+                          class: {
+                            'color-gray-medium': true,
+                            'adm-text-big': true,
+                            'adm-font-light': true,
+                          },
+                        }, params.column.title),
+                        h('p', {
+                          class: {
+                            'color-gray-medium': true,
+                            'adm-text-small': true
+                          },
+                        }, 'Дата оформления'),
+                      ])
                   }
                 });                break;
               }
               case 'decisDateFirst': {
                 res.push({
-                  title: 'Дата реш.',
+                  title: 'Дата решения',
                   key: 'decisDateFirst',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });                break;
               }
@@ -335,11 +416,25 @@
                 res.push({
                   title: 'Дата посл.реш.',
                   key: 'decisDateLast',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });                break;
               }
@@ -347,11 +442,25 @@
                 res.push({
                   title: 'Перв.реш.',
                   key: 'decisNameFirst',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });                break;
               }
@@ -359,11 +468,25 @@
                 res.push({
                   title: 'Посл.реш.',
                   key: 'decisNameLast',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });                break;
               }
@@ -371,11 +494,25 @@
                 res.push({
                   title: 'Дата оформления',
                   key: 'deloDate',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });                break;
               }
@@ -383,11 +520,25 @@
                 res.push({
                   title: 'Номер дела',
                   key: 'deloN',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -396,11 +547,25 @@
                 res.push({
                   title: 'Вид дела',
                   key: 'deloVidName',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -409,11 +574,25 @@
                 res.push({
                   title: 'Протокол',
                   key: 'docN',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -422,11 +601,25 @@
                 res.push({
                   title: 'Блок.дела',
                   key: 'lockName',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -435,11 +628,25 @@
                 res.push({
                   title: 'ЛВОК',
                   key: 'lvokName',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -448,11 +655,25 @@
                 res.push({
                   title: 'Определение/Доп.прот.',
                   key: 'opredN',
-                  minWidth: 120,
+                  minWidth: 220,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -461,11 +682,25 @@
                 res.push({
                   title: 'Постан./ПК',
                   key: 'postN',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -474,11 +709,25 @@
                 res.push({
                   title: 'Протокол АПН',
                   key: 'protN',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -487,11 +736,25 @@
                 res.push({
                   title: 'РегЗнак',
                   key: 'regno',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -500,11 +763,25 @@
                 res.push({
                   title: 'Стадия',
                   key: 'stadDeloName',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -513,11 +790,25 @@
                 res.push({
                   title: 'Посл.ст.исп.',
                   key: 'stadIspolnNameLast',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -526,11 +817,25 @@
                 res.push({
                   title: 'Статья',
                   key: 'stotv',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -539,11 +844,25 @@
                 res.push({
                   title: 'Ст.-основание',
                   key: 'stotvKod',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -552,11 +871,25 @@
                 res.push({
                   title: 'Участник',
                   key: 'uchastName',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -565,11 +898,25 @@
                 res.push({
                   title: 'Участник',
                   key: 'ulName',
-                  minWidth: 120,
+                  minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                    return h('h4', params.column.title)
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
                   }
                 });
                 break;
@@ -579,7 +926,7 @@
           if (res.length > 0) {
             res.push({
               title: "Действия",
-              width: 80,
+              width: 130,
               align: "center",
               visible: true,
               fixed: "right",
@@ -591,7 +938,15 @@
                     transfer: true,
                   }
                 }, [
-                  h('span', params.column.title)
+                    h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                    ])
                 ])
               },
               render: (h, params) => {
@@ -621,6 +976,10 @@
       },
     },
     methods: {
+      changeTableHeight(){
+        let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
+        this.tableHeight = window.innerHeight - tableBounds.y;
+      },
       getFilterFields() {
         let filterObj = {};
         let filter = this.filter;
