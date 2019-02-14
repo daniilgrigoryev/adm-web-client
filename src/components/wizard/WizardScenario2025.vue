@@ -19,7 +19,7 @@
 
             <wizard-item-doc-prot2025 v-if="isVisible('DocProt')" ref="DocProt" :info="getInfo('DocProt')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot2025>
 
-              <wizard-item-place v-if="isVisible('DocProt.PlaceSost')" ref="DocProt.PlaceSost" :info="getInfo('DocProt.PlaceSost')" title="" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+              <wizard-item-place v-if="isVisible('DocProt.PlaceSost')" ref="DocProt.PlaceSost" :info="getInfo('DocProt.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
             <wizard-item-lvok2025 v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok2025>
 
@@ -134,6 +134,15 @@
           withSpinner: false
         });
         let cids = JSON.parse(eventResponse.response).data;
+        if (funcUtils.isEmpty(cids)) {
+          let error = JSON.parse(eventResponse.response).error.errorMsg;
+          alert(error);
+          eventResponse = await RequestApi.prepareData({
+            method: 'getChain',
+            withSpinner: false
+          });
+          cids = JSON.parse(eventResponse.response).data;
+        }
         await this.updateComponents(cids);
       },
       async updateComponents(cids) {
@@ -180,7 +189,6 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'make'
         });
-        debugger;
       },
       getPrev() {
         try {

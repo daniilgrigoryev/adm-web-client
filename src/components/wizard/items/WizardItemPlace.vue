@@ -15,17 +15,17 @@
 		</Form>
 	
 		<div v-if="data && placeModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-			<button type="button" @click="showPlaceModal(false)" style="width: 20px; height: 20px; background: white;"></button>
+      <Button @click="showPlaceModal(false)" type="primary" class="ml12">Закрыть</Button>
 	
 			<div>
 				<div>
 					<span>Страна</span>
 	
 					<span>Код</span>
-					<input v-model="data.adr.countryCode" disabled="true" />
+          <Input v-model="data.adr.countryCode" disabled placeholder="Enter something..."></Input>
 	
 					<span>Название</span>
-					<input v-model="data.adr.countryName" disabled="true" />
+          <Input v-model="data.adr.countryName" disabled placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
@@ -62,20 +62,20 @@
 	
 				<div>
 					<span>МГО</span>
-	
-					<input v-model="data.machta" @change="storeElementData" />
+
+          <Input v-model="data.machta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>МГТ</span>
-	
-					<input v-model="data.mgt" @change="storeElementData" />
+
+          <Input v-model="data.mgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>км, метр</span>
-	
-					<input v-model="data.km" @change="storeElementData" />
+
+          <Input v-model="data.km" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
@@ -96,44 +96,44 @@
 	
 				<div>
 					<span>Дом</span>
-	
-					<input v-model="data.adr.ndom" @change="storeElementData" />
+
+          <Input v-model="data.adr.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Корпус</span>
-	
-					<input v-model="data.adr.nkorpus" @change="storeElementData" />
+
+          <Input v-model="data.adr.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Строение</span>
-	
-					<input v-model="data.adr.nstroenie" @change="storeElementData" />
+
+          <Input v-model="data.adr.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Почтовый индекс</span>
-	
-					<input v-model="data.adr.pindex" disabled="true" />
+
+          <Input v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Дополнительные сведения</span>
-	
-					<input v-model="data.dopSved" @change="storeElementData" />
+
+          <Input v-model="data.dopSved" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Широта</span>
-	
-					<input v-model="data.y" @change="storeElementData" />
+
+          <Input v-model="data.y" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Долгота</span>
-	
-					<input v-model="data.x" @change="storeElementData" />
+
+          <Input v-model="data.x" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 			</div>
 	
@@ -166,27 +166,25 @@
 	
 				<div>
 					<span>МГО</span>
-	
-					<input v-model="data.dopMachta" @change="storeElementData" />
+
+          <Input v-model="data.dopMachta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>МГТ</span>
-	
-					<input v-model="data.dopMgt" @change="storeElementData" />
+
+          <Input v-model="data.dopMgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>км, метр</span>
-	
-					<input v-model="data.dopKm" @change="storeElementData" />
+
+          <Input v-model="data.dopKm" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Место</span>
-	
-					<!--<input v-model="data.dopPlaceId" @change="changeDopPlace" />-->
-	
+
 					<Select v-model="data.dopPlaceId" filterable clearable @on-query-change="changeDopPlace" @on-clear="changeDopPlace">
 	                <Option class="wmax360 txt-break-word" v-for="item in dopPlacesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 	              </Select>
@@ -202,36 +200,36 @@
 	
 				<div>
 					<span>Дом</span>
-	
-					<input v-model="data.adrDop.ndom" @change="storeElementData" />
+
+          <Input v-model="data.adrDop.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Корпус</span>
-	
-					<input v-model="data.adrDop.nkorpus" @change="storeElementData" />
+
+          <Input v-model="data.adrDop.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Строение</span>
-	
-					<input v-model="data.adrDop.nstroenie" @change="storeElementData" />
+
+          <Input v-model="data.adrDop.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Почтовый индекс</span>
-	
-					<input v-model="data.adr.pindex" disabled="true" />
+
+          <Input v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Дополнительные сведения</span>
-	
-					<input v-model="data.dopDopSved" @change="storeElementData" />
+
+          <Input v-model="data.adrDop.dopDopSved" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 			</div>
 	
-			<button type="button" @click="save" style="width: 20px; height: 20px; background: red;"></button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
 		</div>
 	
 	</div>

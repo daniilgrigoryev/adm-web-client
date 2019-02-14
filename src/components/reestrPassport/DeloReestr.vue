@@ -1,5 +1,5 @@
 <template>
-	<div v-if="dataStore">
+  <div v-if="dataStore">
     <div>
       <div class="prose my24">
         <h4 class="my0 px0 inline align-middle">Верстка:</h4>
@@ -18,7 +18,6 @@
         <Form inline label-position="top">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="22">
-
               <!-- в каждом Row не должно быть больше 4 Col -->
               <Row type="flex" justify="start" :gutter="8">
                 <Col :xs="24" :md="12" :lg="6">
@@ -134,8 +133,6 @@
                   </FormItem>
                 </Col>
               </Row>
-
-
             </Col>
             <Col :xs="24" :md="4" :lg="2">
               <div class="h-full flex-parent flex-parent--center-cross flex-parent--center-main">
@@ -148,7 +145,7 @@
     </div>
     <div class="bg-white">
       <div class="wmax1920 mx-auto">
-        <Table class="custom-table" ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :="false" :height="tableHeight"></Table>
+        <Table class="custom-table" ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :border="false" :height="tableHeight"></Table>
       </div>
     </div>
 
@@ -159,7 +156,7 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import { mapGetters } from 'vuex';
+  import {mapGetters} from 'vuex';
 
   export default {
     name: "DeloReestr",
@@ -312,7 +309,7 @@
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                  return h('div', [
+                    return h('div', [
                       h('p', {
                         class: {
                           'color-gray-medium': true,
@@ -339,7 +336,7 @@
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                  return h('div', [
+                    return h('div', [
                       h('p', {
                         class: {
                           'color-gray-medium': true,
@@ -360,7 +357,7 @@
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
-                  return h('div', [
+                    return h('div', [
                       h('p', {
                         class: {
                           'color-gray-medium': true,
@@ -382,28 +379,32 @@
               case 'DateStadIspolnLast': {
                 res.push({
                   title: 'Дата посл.ст.исп.',
-                  key: 'DateStadIspolnLast',
+                  key: 'dateStadIspolnLast',
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
-                        h('p', {
-                          class: {
-                            'color-gray-medium': true,
-                            'adm-text-big': true,
-                            'adm-font-light': true,
-                          },
-                        }, params.column.title),
-                        h('p', {
-                          class: {
-                            'color-gray-medium': true,
-                            'adm-text-small': true
-                          },
-                        }, 'Дата оформления'),
-                      ])
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
+                  },
+                  render: (h, params) => {
+                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
                   }
-                });                break;
+                });
+                break;
               }
               case 'decisDateFirst': {
                 res.push({
@@ -428,8 +429,12 @@
                         },
                       }, 'Дата оформления'),
                     ])
+                  },
+                  render: (h, params) => {
+                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
                   }
-                });                break;
+                });
+                break;
               }
               case 'decisDateLast': {
                 res.push({
@@ -454,8 +459,12 @@
                         },
                       }, 'Дата оформления'),
                     ])
+                  },
+                  render: (h, params) => {
+                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
                   }
-                });                break;
+                });
+                break;
               }
               case 'decisNameFirst': {
                 res.push({
@@ -481,7 +490,8 @@
                       }, 'Дата оформления'),
                     ])
                   }
-                });                break;
+                });
+                break;
               }
               case 'decisNameLast': {
                 res.push({
@@ -507,7 +517,8 @@
                       }, 'Дата оформления'),
                     ])
                   }
-                });                break;
+                });
+                break;
               }
               case 'deloDate': {
                 res.push({
@@ -532,8 +543,12 @@
                         },
                       }, 'Дата оформления'),
                     ])
+                  },
+                  render: (h, params) => {
+                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
                   }
-                });                break;
+                });
+                break;
               }
               case 'deloN': {
                 res.push({
@@ -957,15 +972,15 @@
                     transfer: true,
                   }
                 }, [
-                    h('div', [
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-big': true,
-                          'adm-font-light': true,
-                        },
-                      }, params.column.title),
-                    ])
+                  h('div', [
+                    h('p', {
+                      class: {
+                        'color-gray-medium': true,
+                        'adm-text-big': true,
+                        'adm-font-light': true,
+                      },
+                    }, params.column.title),
+                  ])
                 ])
               },
               render: (h, params) => {
@@ -995,7 +1010,7 @@
       },
     },
     methods: {
-      changeTableHeight(){
+      changeTableHeight() {
         let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
         this.tableHeight = window.innerHeight - tableBounds.y;
       },
