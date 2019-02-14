@@ -12,7 +12,7 @@
 
       <div>
         <button type="button" @click="filterClick">Фильтровать</button>
-        <button type="button" @click="createWizard">Создать</button>
+        <button type="button" @click="createWizardScenarioPost">Создать постановление</button>
       </div>
     </div>
 
@@ -847,7 +847,7 @@
           alert(e.message);
         }
       },
-      createWizard() {
+      createWizardScenarioPost() {
         try {
           let params = {
             scenarioName: 'CreatePost'
