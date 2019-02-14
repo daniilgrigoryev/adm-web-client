@@ -1,6 +1,5 @@
 <template>
 	<div v-if="dataStore">
-
     <div>
       <div class="prose my24 border">
         <h4 class="my0 px0 inline align-middle">Верстка:</h4>
@@ -8,91 +7,77 @@
         <button  class="txt-kbd" type="button" @click="admDelo">дело</button>
         <button  class="txt-kbd" type="button" @click="admOffense">возбуждение адм. правонарушения</button>
       </div>
-
-
       <div>
         <button type="button" @click="filterClick">Фильтровать</button>
         <button type="button" @click="createWizardScenarioPost">Создать постановление</button>
         <button type="button" @click="createWizardScenario2025">Создать 2025</button>
       </div>
     </div>
-
-    <div class="bg-gray-faint">
-      <div class="wmax1280 mx-auto px36 py18">
+    <div class="bg-gray-faint py24 px12">
+      <div class="wmax1920 mx-auto">
         <Form inline label-position="top">
-          <Row :gutter="8">
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
-              <Row type="flex" :gutter="8" align="bottom">
-                <Col :xs="24" :sm="24" :md="24" :lg="8">
-                  <FormItem class="w-full" label="">
-                    <Input v-model="filter.deloN.value" placeholder="Номер дела"></Input>
-                  </FormItem>
-                </Col>
-                <Col :xs="24" :sm="24" :md="24" :lg="8">
-                  <FormItem class="w-full">
-                    <div slot="label">Дата заведения дела</div>
-                    <DatePicker type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value"
-                                placeholder="Дата заведения дела"></DatePicker>
-                  </FormItem>
-                </Col>
-                <Col :xs="24" :sm="24" :md="24" :lg="8">
-                  <FormItem class="w-full">
-                    <Input v-model="filter.regno.value" placeholder="ГРЗ автомобил"></Input>
-                  </FormItem>
-                </Col>
-              </Row>
-            </Col>
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
+          <Row type="flex" justify="start" :gutter="8">
+            <Col :xs="24" :md="12" :lg="4">
               <FormItem class="w-full">
-                <div slot="label">Документ прикрепленный к делу</div>
-                <Row type="flex" :gutter="8">
-                  <Col :lg="12">
+                <div slot="label" class="adm-text-small color-gray-medium">Номер дела</div>
+                <Input v-model="filter.deloN.value" placeholder="Номер дела"></Input>
+              </FormItem>
+            </Col>
+            <Col :xs="24" :md="12" :lg="4">
+              <FormItem class="w-full">
+                <div slot="label" class="adm-text-small color-gray-medium">Дата заведения дела</div>
+                <DatePicker type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value" placeholder="Дата заведения дела"></DatePicker>
+              </FormItem>
+            </Col>
+            <Col :xs="24" :md="12" :lg="4">
+              <FormItem class="w-full">
+                <div slot="label" class="adm-text-small color-gray-medium">ГРЗ автомобиля</div>
+                <Input v-model="filter.regno.value" placeholder="ГРЗ автомобил"></Input>
+              </FormItem>
+            </Col>
+            <Col :xs="24" :md="12" :lg="4">
+              <FormItem class="w-full">
+                <div slot="label" class="adm-text-small color-gray-medium">Документ прикрепленный к делу</div>
+                <Row type="flex" :gutter="6">
+                  <Col :xs="24" :md="12" :lg="12">
                     <Select placeholder="Выбрать" v-model="filter.docVid.value" filterable clearable>
                       <option value="null"> </option>
                       <Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                   </Col>
-                  <Col :lg="12">
+                  <Col :xs="24" :md="12" :lg="12">
                     <Input v-model="filter.docN.value" placeholder="Номер документа"></Input>
                   </Col>
                 </Row>
               </FormItem>
             </Col>
-          </Row>
-          <Row :gutter="8">
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
+            <Col :xs="24" :lg="8">
               <FormItem class="w-full">
-                <div slot="label">Физическое лицо - ЛВОК</div>
-                <Row type="flex">
-                  <Col :xs="24" :sm="24" :md="24" :lg="8">
+                <div slot="label" class="adm-text-small color-gray-medium">Физическое лицо - ЛВОК</div>
+                <Row type="flex" :gutter="6">
+                  <Col :xs="8" :md="8" :lg="8">
                     <Input v-model="filter.firstName.value" placeholder="Фамилия"></Input>
                   </Col>
-                  <Col :xs="24" :sm="24" :md="24" :lg="1">
-                    <div class="align-center">/</div>
-                  </Col>
-                  <Col :xs="24" :sm="24" :md="24" :lg="6">
+                  <Col :xs="8" :md="8" :lg="8">
                     <Input v-model="filter.secondName.value" placeholder="Имя"></Input>
                   </Col>
-                  <Col :xs="24" :sm="24" :md="24" :lg="1">
-                    <div class="align-center">|</div>
-                  </Col>
-                  <Col :xs="24" :sm="24" :md="24" :lg="8">
+                  <Col :xs="8" :md="8" :lg="8">
                     <Input v-model="filter.thirdName.value" placeholder="Отчество"></Input>
                   </Col>
                 </Row>
               </FormItem>
             </Col>
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
+            <Col :xs="24" :md="12" :lg="4">
               <FormItem class="w-full">
-                <div slot="label">Стадия дела</div>
-                <Row type="flex" :gutter="8">
-                  <Col :lg="12">
+                <div slot="label" class="adm-text-small color-gray-medium">Стадия дела</div>
+                <Row type="flex" :gutter="6">
+                  <Col :xs="24" :md="12" :lg="12">
                     <Select placeholder="Выбрать" v-model="filter.stadDeloKod.value" filterable clearable>
                       <option value="null"> </option>
                       <Option class="wmax360 txt-break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                   </Col>
-                  <Col :lg="12">
+                  <Col :xs="24" :md="12" :lg="12">
                     <Select placeholder="По статье" v-model="filter.stotvId.value" filterable clearable>
                       <option value="null"> </option>
                       <Option class="wmax360 txt-break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
@@ -101,70 +86,49 @@
                 </Row>
               </FormItem>
             </Col>
-          </Row>
-          <Row :gutter="8">
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
+            <Col :xs="24" :md="6" :lg="4">
               <FormItem class="w-full">
-                <div slot="label">Юридическое лицо - ЛВОК</div>
-                <Row type="flex">
-                  <Col :lg="12">
-                    <Input v-model="filter.ulName.value" placeholder="Название организации"></Input>
-                  </Col>
-                </Row>
+                <div slot="label" class="adm-text-small color-gray-medium">Юридическое лицо - ЛВОК</div>
+                <Input v-model="filter.ulName.value" placeholder="Название организации"></Input>
               </FormItem>
             </Col>
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
+            <Col :xs="24" :md="6" :lg="4">
               <FormItem class="w-full">
-                <div slot="label">Номер УПИ</div>
-                <Row type="flex" :gutter="8">
-                  <Col :lg="12">
-                    <Input v-model="filter.upi.value" placeholder="Номер УПИ"></Input>
-                  </Col>
-                </Row>
+                <div slot="label" class="adm-text-small color-gray-medium">Номер УПИ</div>
+                <Input v-model="filter.upi.value" placeholder="Номер УПИ"></Input>
               </FormItem>
             </Col>
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
+            <Col :xs="24" :md="6" :lg="4">
               <FormItem class="w-full">
-                <div slot="label">Номер УПИ</div>
-                <Row type="flex" :gutter="8">
-                  <Col :lg="12">
-                    <Input v-model="filter.checkPriority.value" placeholder="Приоритет ошибки"></Input>
-                  </Col>
-                </Row>
+                <div slot="label" class="adm-text-small color-gray-medium">Приоритет ошибки</div>
+                <Input v-model="filter.checkPriority.value" placeholder="Приоритет ошибки"></Input>
               </FormItem>
             </Col>
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
+            <Col :xs="24" :md="6" :lg="4">
               <FormItem class="w-full">
-                <Row type="flex" :gutter="8">
-                  <Col :lg="12">
-                    <Input v-model="filter.birthday.value" placeholder="Приоритет ошибки"></Input>
-                  </Col>
-                </Row>
+                <div slot="label" class="adm-text-small color-gray-medium">Дата рождения</div>
+                <Input v-model="filter.birthday.value" placeholder="Дата рождения"></Input>
               </FormItem>
             </Col>
-            <Col :xs="24" :sm="24" :md="24" :lg="12">
+            <Col :xs="24" :md="12" :lg="4">
               <FormItem class="w-full">
-                <div slot="label">Искать только в текущем году</div>
-                <Row type="flex" :gutter="8">
-                  <Col :lg="12">
-                    <RadioGroup v-model="filter.flagYear.value">
-                      <Radio label="true">Да</Radio>
-                      <Radio label="false">Нет</Radio>
-                    </RadioGroup>
-                  </Col>
-                </Row>
+                <div slot="label" class="adm-text-small color-gray-medium">Искать только в текущем году</div>
+                <RadioGroup v-model="filter.flagYear.value">
+                  <Radio label="true">Да</Radio>
+                  <Radio label="false">Нет</Radio>
+                </RadioGroup>
               </FormItem>
             </Col>
           </Row>
         </Form>
-        <div class="flex-parent flex-parent--end-main">
+        <div class="flex-parent">
           <a href='#Links' class='link color-blue-base adm-btn-small txt-underline-on-hover'>Больше параметров</a>
         </div>
       </div>
     </div>
 
     <div class="bg-white">
-      <div class="wmax1280 mx-auto">
+      <div class="mx-auto">
         <Table ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :border="false" height="400"></Table>
       </div>
     </div>

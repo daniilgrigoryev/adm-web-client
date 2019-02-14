@@ -7,7 +7,7 @@
         <SiderMenu ref="siderMenu" :isCollapsed="isCollapsed"></SiderMenu>
         <Layout class="layout--inner">
           <MainMenu v-if="isHeaderRender()" @collapsedSider="collapsedSider"></MainMenu>
-          <div class="px12 py12">
+          <div>
             <router-view></router-view>
           </div>
         </Layout>
