@@ -401,7 +401,9 @@
                     ])
                   },
                   render: (h, params) => {
-                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
+                    return h('div', {}, [
+                      h('p', funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY'))
+                    ])
                   }
                 });
                 break;
@@ -431,7 +433,9 @@
                     ])
                   },
                   render: (h, params) => {
-                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
+                    return h('div', {}, [
+                      h('p', funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY'))
+                    ])
                   }
                 });
                 break;
@@ -461,7 +465,9 @@
                     ])
                   },
                   render: (h, params) => {
-                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
+                    return h('div', {}, [
+                      h('p', funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY'))
+                    ])
                   }
                 });
                 break;
@@ -545,7 +551,9 @@
                     ])
                   },
                   render: (h, params) => {
-                    return h('span', funcUtils.parseDateTime(new Date(params.row.dateStadIspolnLast), 'DD/MM/YYYY'));
+                    return h('div', {}, [
+                      h('p', funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY'))
+                    ])
                   }
                 });
                 break;
