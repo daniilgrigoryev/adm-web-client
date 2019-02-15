@@ -1,22 +1,9 @@
 <template>
   <div v-if="data">
-    <div v-if="dolzModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showDolzModal(false)" type="primary" class="ml12">Закрыть</Button>
 
-      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
-        <Table :columns="dolzModal.columnsOptions" @on-row-dblclick="onSispClick" :data="dolzModal.sispList"></Table>
-      </div>
+    <wizard-modal :visible="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
-    </div>
-
-    <div v-if="organModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showOrganModal(false)" type="primary" class="ml12">Закрыть</Button>
-
-      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
-        <Table :columns="organModal.columnsOptions" @on-row-dblclick="onGibddClick" :data="organModal.gibddList"></Table>
-      </div>
-
-    </div>
+    <wizard-modal :visible="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
     <Form :label-width="180" abel-position="right">
       <FormItem class="my12">
@@ -125,10 +112,12 @@
 import * as funcUtils from "../../../assets/js/utils/funcUtils";
 import * as formStack from '../../../assets/js/api/formStack';
 import RequestApi from "../../../assets/js/api/requestApi";
+import WizardModal from "~/components/wizard/items/WizardModal";
 
 export default {
 	name: "WizardItemDocPostFirst",
-	props: {
+  components: {WizardModal},
+  props: {
 		info: Object
 	},
 	async created() {

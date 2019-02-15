@@ -1,13 +1,7 @@
 <template>
   <div v-if="data">
-    <div v-if="ulModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showUlModal(false)" type="primary" class="ml12">Закрыть</Button>
 
-      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
-        <Table :columns="ulModal.columnsOptions" @on-row-dblclick="onUlClick" :data="ulModal.sispList"></Table>
-      </div>
-
-    </div>
+    <wizard-modal :visible="ulModal.visible" :columnsOptions="ulModal.columnsOptions" :data="ulModal.ulList" @showModal="showUlModal" @onRowDbClick="onUlClick"></wizard-modal>
 
     <Form :label-width="180" abel-position="right">
       <FormItem class="my12">
@@ -121,9 +115,13 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
+  import WizardModal from "~/components/wizard/items/WizardModal";
 
   export default {
     name: "WizardItemOrganization",
+    components: {
+      WizardModal
+    },
     props: {
       info: Object
     },

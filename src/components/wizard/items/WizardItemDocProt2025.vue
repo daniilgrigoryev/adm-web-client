@@ -1,22 +1,9 @@
 <template>
   <div v-if="data">
-    <div v-if="dolzModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showDolzModal(false)" type="primary" class="ml12">Закрыть</Button>
 
-      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
-        <Table :columns="dolzModal.columnsOptions" @on-row-dblclick="onSispClick" :data="dolzModal.sispList"></Table>
-      </div>
+    <wizard-modal :visible="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
-    </div>
-
-    <div v-if="sudModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showSudModal(false)" type="primary" class="ml12">Закрыть</Button>
-
-      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
-        <Table :columns="sudModal.columnsOptions" @on-row-dblclick="onSudClick" :data="sudModal.sudList"></Table>
-      </div>
-
-    </div>
+    <wizard-modal :visible="sudModal.visible" :columnsOptions="sudModal.columnsOptions" :data="sudModal.sudList" @showModal="showSudModal" @onRowDbClick="onSudClick"></wizard-modal>
 
     <div v-if="deloModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
       <Button @click="showDeloModal(false)" type="primary" class="ml12">Закрыть</Button>
@@ -164,9 +151,13 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
+  import WizardModal from "~/components/wizard/items/WizardModal";
 
   export default {
     name: "WizardItemDocProt2025",
+    components: {
+      WizardModal
+    },
     props: {
       info: Object
     },
