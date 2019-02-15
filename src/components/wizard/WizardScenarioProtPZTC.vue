@@ -17,19 +17,21 @@
         <div class="bg-white">
           <Layout ref="Main" class="hmin360 px36 py12">
 
-            <wizard-item-doc-prot2025 v-if="isVisible('DocProt')" ref="DocProt" :info="getInfo('DocProt')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot2025>
+            <wizard-item-doc-prot-first v-if="isVisible('DocProtFirst')" ref="DocProtFirst" :info="getInfo('DocProtFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-first>
 
-              <wizard-item-place v-if="isVisible('DocProt.PlaceSost')" ref="DocProt.PlaceSost" :info="getInfo('DocProt.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+            <wizard-item-place v-if="isVisible('DocProtFirst.PlaceSost')" ref="DocProtFirst.PlaceSost" :info="getInfo('DocProtFirst.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
-            <wizard-item-lvok2025 v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok2025>
+            <wizard-item-place v-if="isVisible('DocProtFirst.PlaceNar')" ref="DocProtFirst.PlaceNar" :info="getInfo('DocProtFirst.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
-            <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
+            <wizard-item-vehs v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
 
-            <wizard-item-address v-if="isVisible('LVOK.regAddr')" ref="LVOK.regAddr" :info="getInfo('LVOK.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
 
-            <wizard-item-individual v-if="isVisible('Repres')" ref="Repres" :info="getInfo('Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+            <wizard-item-address v-if="isVisible('Witness1.regAddr')" ref="Witness1.regAddr" :info="getInfo('Witness1.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-            <wizard-item-address v-if="isVisible('Repres.regAddr')" ref="Repres.regAddr" :info="getInfo('Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            <wizard-item-individual v-if="isVisible('Witness2')" ref="Witness2" :info="getInfo('Witness2')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+
+            <wizard-item-address v-if="isVisible('Witness2.regAddr')" ref="Witness2.regAddr" :info="getInfo('Witness2.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
           </Layout>
           <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
@@ -46,25 +48,23 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import WizardItemDocProt2025 from "~/components/wizard/items/WizardItemDocProt2025";
-  import WizardItemLvok2025 from "~/components/wizard/items/WizardItemLvok2025";
+  import WizardItemDocProtFirst from "~/components/wizard/items/WizardItemDocProtFirst";
   import WizardItemPlace from "~/components/wizard/items/WizardItemPlace";
-  import WizardItemPredDoc from "~/components/wizard/items/WizardItemPredDoc";
   import WizardItemAddress from "~/components/wizard/items/WizardItemAddress";
   import WizardItemIndividual from "~/components/wizard/items/WizardItemIndividual";
+  import WizardItemVehs from "~/components/wizard/items/WizardItemVehs";
 
   export default {
-    name: "WizardScenario2025",
+    name: "WizardScenarioProtPZTC",
     props: {
       pathes: Object
     },
     components: {
-      WizardItemDocProt2025,
-      WizardItemLvok2025,
+      WizardItemDocProtFirst,
       WizardItemAddress,
       WizardItemIndividual,
       WizardItemPlace,
-      WizardItemPredDoc
+      WizardItemVehs
     },
     methods: {
       isVisible(path) {
