@@ -1,25 +1,25 @@
 <template>
-  <div class="bg-blue-thin">
-    <Row>
-      <!--<Col :xs="24" :sm="6" :md="6" :lg="6">
-        <div class="bg-blue-thin">
-          <ul class="ml60 mr24 mt24">
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
-          </ul>
-        </div>
-      </Col>-->
+  <div class="wmax1920">
+    <Row type="flex">
+      <!-- <Col :xs="24" :sm="8" :md="6" :lg="6">
+          <div class="bg-blue-thin h-full scroll-hidden">
+            <ul class="ml60 mr24 my24">
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
+            </ul>
+          </div>
+      </Col> -->
       <Col :xs="24" :sm="18" :md="18" :lg="18">
-        <div class="bg-white">
-          <Layout ref="Main" class="hmin360 px36 py12">
+        <div>
+          <Layout ref="Main" class="bg-white hmin360 px36 py12">
 
             <wizard-item-doc-prot2025 v-if="isVisible('DocProt')" ref="DocProt" :info="getInfo('DocProt')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot2025>
 
-              <wizard-item-place v-if="isVisible('DocProt.PlaceSost')" ref="DocProt.PlaceSost" :info="getInfo('DocProt.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+            <wizard-item-place v-if="isVisible('DocProt.PlaceSost')" ref="DocProt.PlaceSost" :info="getInfo('DocProt.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
             <wizard-item-lvok2025 v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok2025>
 

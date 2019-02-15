@@ -148,7 +148,22 @@
     </div>
     <div class="bg-white">
       <div class="wmax1920 mx-auto">
-        <Table class="custom-table" ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :border="false" :height="tableHeight"></Table>
+        <div class="flex-parent">
+          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-end">
+            <a href="javascript:void(0)" class="block py12" @click="toggleColumnsOption">
+              <span class='link color-blue-base adm-btn-small txt-underline-on-hover'>Настроить показ колонок</span>
+              <Icon style="margin-left: 10px;" type="md-settings" size="18"></Icon>
+              <Icon type="ios-arrow-down"></Icon>
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem v-for="column in tableColumnsForOptions">
+                <Checkbox v-model="column.visible">{{ column.title }}</Checkbox>
+              </DropdownItem>
+              <Button type="primary" @click="toggleColumnsOption" style="margin: 8px  16px;">Закрыть</Button>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+        <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight"></Table>
       </div>
     </div>
   </div>
@@ -219,6 +234,7 @@
     data() {
       return {
         tableHeight: 0,
+        columnsOptionsVisible: false,
         hideMore: true,
         stateDeloDict: [],
         documentVidDict: [],
@@ -285,7 +301,6 @@
             value: null
           }
         },
-        columnsOption: []
       }
     },
     computed: {
@@ -311,6 +326,7 @@
                   minWidth: 160,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -338,6 +354,7 @@
                   minWidth: 160,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -359,6 +376,7 @@
                   minWidth: 190,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -383,9 +401,10 @@
                 res.push({
                   title: 'Дата посл.ст.исп.',
                   key: 'dateStadIspolnLast',
-                  minWidth: 180,
+                  minWidth: 200,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -419,6 +438,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -452,6 +472,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -485,6 +506,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -512,6 +534,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -539,6 +562,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -572,6 +596,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -599,6 +624,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -626,6 +652,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -653,6 +680,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -680,6 +708,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -707,6 +736,7 @@
                   minWidth: 220,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -734,6 +764,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -761,6 +792,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -788,6 +820,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -815,6 +848,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -842,6 +876,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -869,6 +904,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -896,6 +932,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -923,6 +960,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -950,6 +988,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -979,6 +1018,7 @@
               align: "center",
               visible: true,
               fixed: "right",
+              visible: true,
               renderHeader: (h, params) => {
                 return h('Tooltip', {
                   props: {
@@ -1023,9 +1063,21 @@
         }
         return res;
       },
+      tableFilteredColumns() {
+        return this.tableColumns.filter(column => {
+          return column.visible === true;
+        })
+      },
+      tableColumnsForOptions() {
+        return this.tableColumns.filter(column => {
+          return column.key;
+        })
+      },
     },
-
     methods: {
+      toggleColumnsOption() {
+        this.columnsOptionsVisible = !this.columnsOptionsVisible;
+      },
       changeTableHeight() {
         let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
         this.tableHeight = window.innerHeight - tableBounds.y;

@@ -3,7 +3,7 @@
         <div class="wmax1920 mx-auto">
             <Row type="flex" align="middle" justify="space-between">
                 <Col :xs="24" :md="24" :lg="4">
-                    <Row type="flex" align="center" justify="center">
+                    <Row type="flex" align="middle" justify="center">
                         <Col>
                             <div class="flex-parent flex-parent--center-cross my12">
                                 <Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer" @click.native="collapsedSider">
