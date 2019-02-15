@@ -1,8 +1,8 @@
 <template>
-  <div class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
-    <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main ">
+  <div id="root" class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
+    <div id="pagingWrap" class="flex-parent flex-parent--space-between-main">
 
-      <Page :total="data.length" :current="currentPage" :page-size="limit" class="mx12" @on-change="changePage"/>
+      <Page v-if="limit" :total="data.length" :current="currentPage" :page-size="limit" class="mr12" @on-change="changePage"/>
       
       <Button type="text" @click="showModal(false)" class="px0 py0">
         <div class="flex-parent flex-parent--center-cross">
@@ -12,7 +12,7 @@
       </Button>
     </div>
     <div>
-      <Table :columns="columnsOptions" @on-row-dblclick="onRowDbClick" :data="dataList" class="custom-table" ref="selection"  :height="tableHeight"  id="modalTable" size="large" ></Table>
+      <Table :columns="columnsOptions" @on-row-dblclick="onRowDbClick" :data="dataList" class="custom-table" ref="selection" size="large" ></Table>
     </div>
   </div>
 </template>
@@ -26,7 +26,12 @@
       columnsOptions: Array,
       data: Array,
     },
-    created() {
+    mounted() {
+      let header = document.querySelector('.ivu-table-header').offsetHeight;
+      let pagingWrap = document.getElementById('pagingWrap').offsetHeight;
+      this.limit = Math.round((document.getElementById('root').offsetHeight - header - pagingWrap) / 60);
+      this.to = this.limit;
+      this.delta = this.limit;
       this.fillDataList();
       try {
         this.$nextTick(() => {
@@ -47,17 +52,17 @@
       return {
         tableHeight: 0,
         from: 0,
-        to: 10,
-        limit: 10,
+        to: null,
+        limit: null,
+        delta: null,
         currentPage: 1,
         dataList: []
       }
     },
     methods: {
       changePage(nextPage) {
-        let delta = 10;
-        this.to = delta * nextPage;
-        this.from = (delta * nextPage) - delta;
+        this.to = this.delta * nextPage;
+        this.from = (this.delta * nextPage) - this.delta;
         this.currentPage = nextPage;
         this.fillDataList();
       },
