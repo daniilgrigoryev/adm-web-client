@@ -330,12 +330,21 @@ export default {
 					eCID: this.info.eCID
 				}
 			});
-			this.data = JSON.parse(JSON.parse(eventResponse.response).data);
-
-			if (funcUtils.isNotEmpty(this.data.dateSost)) {
-				this.data.dateSost = new Date(this.data.dateSost);
-			}
+      let data = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (funcUtils.isEmpty(data)) {
+        let error = JSON.parse(eventResponse.response).error.errorMsg;
+        alert(error);
+      } else {
+        this.parseDate(data);
+        this.data = data;
+      }
 		},
+
+    parseDate(data) {
+      if (funcUtils.isNotEmpty(data.dateSost)) {
+        data.dateSost = new Date(data.dateSost);
+      }
+    },
 
 		async createNewUIN() {
 			let eventResponse = await RequestApi.prepareData({
@@ -346,12 +355,14 @@ export default {
 					data: null
 				}
 			});
-			this.data = JSON.parse(JSON.parse(eventResponse.response).data);
-
-			if (funcUtils.isNotEmpty(this.data.dateSost)) {
-				this.data.dateSost = new Date(this.data.dateSost);
-			}
-			this.storeElementData();
+      let data = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (funcUtils.isEmpty(data)) {
+        let error = JSON.parse(eventResponse.response).error.errorMsg;
+        alert(error);
+      } else {
+        this.parseDate(data);
+        this.data = data;
+      }
 		},
 		async createNewDeloNum() {
 			let eventResponse = await RequestApi.prepareData({
@@ -362,12 +373,14 @@ export default {
 					data: null
 				}
 			});
-			this.data = JSON.parse(JSON.parse(eventResponse.response).data);
-
-			if (funcUtils.isNotEmpty(this.data.dateSost)) {
-				this.data.dateSost = new Date(this.data.dateSost);
-			}
-			this.storeElementData();
+      let data = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (funcUtils.isEmpty(data)) {
+        let error = JSON.parse(eventResponse.response).error.errorMsg;
+        alert(error);
+      } else {
+        this.parseDate(data);
+        this.data = data;
+      }
 		},
 
 		async showDolzModal(visible) {

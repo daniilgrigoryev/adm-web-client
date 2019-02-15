@@ -366,6 +366,7 @@
           }
         }
       },
+
       parseDate(data) {
         if (funcUtils.isNotEmpty(data.dateSost)) {
           data.dateSost = new Date(data.dateSost);
@@ -375,6 +376,7 @@
           data.dateNar = new Date(data.dateNar);
         }
       },
+
       async createProtNum() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',

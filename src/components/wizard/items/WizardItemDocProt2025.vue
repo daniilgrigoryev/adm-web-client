@@ -396,18 +396,22 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
+          this.parseDate(data);
           this.data = data;
-          if (funcUtils.isNotEmpty(this.data.dateSost)) {
-            this.data.dateSost = new Date(this.data.dateSost);
-          }
+        }
+      },
 
-          if (funcUtils.isNotEmpty(this.data.dateRasm)) {
-            this.data.dateRasm = new Date(this.data.dateRasm);
-          }
+      parseDate(data) {
+        if (funcUtils.isNotEmpty(data.dateSost)) {
+          data.dateSost = new Date(data.dateSost);
+        }
 
-          if (funcUtils.isNotEmpty(this.data.mainDeloDate)) {
-            this.data.mainDeloDate = new Date(this.data.mainDeloDate);
-          }
+        if (funcUtils.isNotEmpty(data.dateRasm)) {
+          data.dateRasm = new Date(data.dateRasm);
+        }
+
+        if (funcUtils.isNotEmpty(data.mainDeloDate)) {
+          data.mainDeloDate = new Date(data.mainDeloDate);
         }
       },
 
@@ -425,18 +429,8 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
+          this.parseDate(data);
           this.data = data;
-          if (funcUtils.isNotEmpty(this.data.dateSost)) {
-            this.data.dateSost = new Date(this.data.dateSost);
-          }
-
-          if (funcUtils.isNotEmpty(this.data.dateRasm)) {
-            this.data.dateRasm = new Date(this.data.dateRasm);
-          }
-
-          if (funcUtils.isNotEmpty(this.data.mainDeloDate)) {
-            this.data.mainDeloDate = new Date(this.data.mainDeloDate);
-          }
         }
       },
       async createNewDeloNum() {
@@ -453,18 +447,8 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
+          this.parseDate(data);
           this.data = data;
-          if (funcUtils.isNotEmpty(this.data.dateSost)) {
-            this.data.dateSost = new Date(this.data.dateSost);
-          }
-
-          if (funcUtils.isNotEmpty(this.data.dateRasm)) {
-            this.data.dateRasm = new Date(this.data.dateRasm);
-          }
-
-          if (funcUtils.isNotEmpty(this.data.mainDeloDate)) {
-            this.data.mainDeloDate = new Date(this.data.mainDeloDate);
-          }
         }
       },
 
