@@ -69,7 +69,7 @@
                 </Col>
               </Row>
 
-              <Row type="flex" justify="start" :gutter="8">
+              <Row type="flex" justify="start" :gutter="8" v-show="hideMore">
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Физическое лицо - ЛВОК</div>
@@ -119,7 +119,7 @@
                 </Col>
               </Row>
 
-              <Row type="flex" justify="start" :gutter="8">
+              <Row type="flex" justify="start" :gutter="8" v-show="hideMore">
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Приоритет ошибки</div>
@@ -136,7 +136,10 @@
             </Col>
             <Col :xs="24" :md="4" :lg="2">
               <div class="h-full flex-parent flex-parent--center-cross flex-parent--center-main">
-                <a href='#Links' class='link color-blue-base adm-btn-small txt-underline-on-hover'>Больше параметров</a>
+                <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover'>
+                  <span v-if="hideMore">Меньше параметров</span>
+                  <span v-else>Больше параметров</span>
+                </a>
               </div>
             </Col>
           </Row>
@@ -148,7 +151,6 @@
         <Table class="custom-table" ref="selection" :columns="tableColumns" :data="cases" size="large" :stripe="false" :border="false" :height="tableHeight"></Table>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -217,6 +219,7 @@
     data() {
       return {
         tableHeight: 0,
+        hideMore: true,
         stateDeloDict: [],
         documentVidDict: [],
         articleProcDict: [],
@@ -1021,6 +1024,7 @@
         return res;
       },
     },
+
     methods: {
       changeTableHeight() {
         let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
