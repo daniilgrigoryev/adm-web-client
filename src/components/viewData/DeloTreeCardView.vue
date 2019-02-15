@@ -1,23 +1,56 @@
 <template>
-  <div v-if="dataStore">
-    <button type="button" @click="getPrev">Назад</button>
-    <button type="button" @click="clearInnerStack">Очистить стэк</button>
-    <div>
-      <div>
-        <ul>
-          <li v-for="(item, index) in deloTree" v-if="item.parentCategory" style="list-style-type: none;">
-            <span v-html="item.name"
-                  v-if="item.recType"
-                  :style="item.selected ? 'color: red;': 'color: black;'"
-                  @click="itemClick(item)"></span>
-            <hr v-else-if="!item.recType && item.category === -3" />
-          </li>
-        </ul>
+  <div v-if="dataStore" class="layout">
+    <Layout class="layout--inner">
+      <button type="button" @click="getPrev">Назад</button>
+      <button type="button" @click="clearInnerStack">Очистить стэк</button>
+
+      <div v-if="deloInfo" class="px36 py24">
+        <div class="my12">
+          <span v-html="deloInfo.name" class="adm-h1 color-gray-medium"></span>
+        </div>
+       <!-- <div class="mt24">
+          <b class="adm-text-big color-gray-medium">Статья дела</b>
+          <p class="adm-txt-regular color-gray-medium">{{deloInfo.stotvGr}}</p>
+        </div>-->
       </div>
+      <hr class="txt-hr my0">
       <div>
-        <inner-form v-if="sizeInnerStack > 0"></inner-form>
+        <Row>
+          <Col :xs="24" :sm="8" :md="8" :lg="8">
+            <ul class="tree">
+              <li v-for="(item, index) in deloTree" v-if="item.parentCategory">
+                <a v-if="item.recType" href="#" @click="itemClick(item)" class="flex-parent flex-parent--wrap tree__link tree__link--selected border-t border-b border--gray-faint py12">
+                  <div class="bg-red ml18" style="width: 40px; height: 40px;">
+                    <img src="" alt="">
+                  </div>
+                  <div class="col mx18">
+                    <p v-html="item.name" class="adm-text-big color-dark-base txt-bold txt-break-word"></p>
+                  </div>
+                </a>
+                <hr class="txt-hr my0" v-else-if="!item.recType && item.category === -3" />
+              </li>
+            </ul>
+          </Col>
+          <Col :xs="24" :sm="16" :md="16" :lg="16" style="padding: 0">
+            <div class="">
+              <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px36 py12 bg-white-light border-t border-b border--gray-faint">
+                <b class="adm-text-big">Заголовок открытой формы</b>
+                <Button type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer">
+                  <img src='../../assets/images/wiki.svg' class="wmax-none">
+                </Button>
+              </div>
+              <div class="hmin360 px36 py12" style="background-color: rgba(255,2,2,0.11)">
+                <inner-form v-if="sizeInnerStack > 0"></inner-form>
+              </div>
+              <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+                <Button type="text">Отменить изменения</Button>
+                <Button type="primary" class="ml12">Сохранить</Button>
+              </div>
+            </div>
+          </Col>
+        </Row>
       </div>
-    </div>
+    </Layout>
   </div>
 </template>
 
@@ -69,7 +102,11 @@
     },
     data() {
       return {
-        sizeInnerStack: 0
+        sizeInnerStack: 0,
+        deloTip: {
+          'APN': 'Дело об административном правонарушение',
+          'DTP': 'Дело о дорожно-транспортном происшествии',
+        }
       }
     },
     computed: {
@@ -77,12 +114,20 @@
         dataStore: 'deloTreeCardViewGetData'
       }),
       deloTree() {
-        let res = {};
+        let res = [];
         if (this.dataStore) {
-          res = this.dataStore.tree;
-          res.forEach((item) => {
+          for (let i = 1; i < this.dataStore.tree.length; i++) {
+            let item = this.dataStore.tree[i];
             this.$set(item, 'selected', false);
-          });
+            res.push(item);
+          }
+        }
+        return res;
+      },
+      deloInfo() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.tree[0];
         }
         return res;
       },
