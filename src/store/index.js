@@ -8,14 +8,17 @@ import offense from './modules/offense';
 import delo from './modules/delo';
 import deloReestr from './modules/deloReestr';
 import deloTreeCardView from './modules/deloTreeCardView';
+import wizardExecuter from './modules/wizardExecuter';
 import wizardScenarioPost from './modules/wizardScenarioPost';
 import wizardScenario2025 from './modules/wizardScenario2025';
+import wizardScenarioProtPZTC from './modules/wizardScenarioProtPZTC';
 import wizardItemAddress from './modules/wizardItemAddress';
 import wizardItemDecis from './modules/wizardItemDecis';
 import wizardItemDocPostFinal from './modules/wizardItemDocPostFinal';
 import wizardItemDocPostFirst from './modules/wizardItemDocPostFirst';
 import wizardItemDocPostSecond from './modules/wizardItemDocPostSecond';
 import wizardItemDocProt2025 from './modules/wizardItemDocProt2025';
+import wizardItemDocProtFirst from './modules/wizardItemDocProtFirst';
 import wizardItemIndividual from './modules/wizardItemIndividual';
 import wizardItemLvok from './modules/wizardItemLvok';
 import wizardItemLvok2025 from './modules/wizardItemLvok2025';
@@ -86,14 +89,17 @@ const store = new Vuex.Store({
   modules: {
     deloReestr,
     deloTreeCardView,
+    wizardExecuter,
     wizardScenarioPost,
     wizardScenario2025,
+    wizardScenarioProtPZTC,
     wizardItemAddress,
     wizardItemDecis,
     wizardItemDocPostFinal,
     wizardItemDocPostFirst,
     wizardItemDocPostSecond,
     wizardItemDocProt2025,
+    wizardItemDocProtFirst,
     wizardItemIndividual,
     wizardItemLvok,
     wizardItemLvok2025,
