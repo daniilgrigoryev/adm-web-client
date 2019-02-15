@@ -1241,7 +1241,7 @@
           };
 
           formStack.toNext({
-            module: this.$store.state.wizardScenario2025,
+            module: this.$store.state.wizardExecuter,
             vm: this,
             notRemoved: true,
             params: params,

@@ -56,55 +56,15 @@
 
   export default {
     name: "WizardScenarioProtPZTC",
+    props: {
+      pathes: Object
+    },
     components: {
       WizardItemDocProtFirst,
       WizardItemAddress,
       WizardItemIndividual,
       WizardItemPlace,
       WizardItemVehs
-    },
-    async created() {
-      try {
-        let prepareParams = {
-          method: 'restore'
-        };
-        if (funcUtils.isNotEmpty(this.$route.params.scenarioName)) {
-          prepareParams.method = 'loadScenario';
-          prepareParams.params = {
-            'name': this.$route.params.scenarioName
-          };
-        }
-
-        let eventResponse = await RequestApi.prepareData(prepareParams);
-        let cids = Object.keys(JSON.parse(eventResponse.response).data);
-        let info = {};
-        for (let i = 0; i < cids.length; i++) {
-          let cid = cids[i];
-          eventResponse = await RequestApi.prepareData({
-            method: 'getElementInfo',
-            params: {
-              eCID: cid
-            }
-          });
-          info[cid] = JSON.parse(eventResponse.response).data;
-        }
-        let pathes = {};
-        for (let prop in info) {
-          if (info.hasOwnProperty(prop)) {
-            let data = info[prop];
-            data.eCID = prop;
-            pathes[data.path] = data;
-          }
-        }
-        this.pathes = pathes;
-      } catch (e) {
-        alert(e.message);
-      }
-    },
-    data() {
-      return {
-        pathes: null
-      }
     },
     methods: {
       isVisible(path) {
@@ -121,66 +81,11 @@
           return this.pathes[path];
         }
       },
-      async storeElementData(params) {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'storeElementData',
-          params: {
-            eCID: params.eCID,
-            data: JSON.stringify(params.data, funcUtils.replacer)
-          },
-          withSpinner: false
-        });
-        let cids = JSON.parse(eventResponse.response).data;
-        if (funcUtils.isEmpty(cids)) {
-          let error = JSON.parse(eventResponse.response).error.errorMsg;
-          alert(error);
-          eventResponse = await RequestApi.prepareData({
-            method: 'getChain',
-            withSpinner: false
-          });
-          cids = JSON.parse(eventResponse.response).data;
-        }
-        await this.updateComponents(cids);
+      storeElementData(params) {
+        this.$emit('storeElementData', params);
       },
-      async updateComponents(cids) {
-        let cidsKeySet = Object.keys(cids);
-        for (let i = 0; i < cidsKeySet.length; i++) {
-          let cid = cidsKeySet[i];
-          let prop = cids[cid];
-          let child = this.getChild(cid);
-          if (child && funcUtils.isEmpty(prop)) {
-            delete this.pathes[child.info.path];
-            this.$forceUpdate();
-          } else if (child && funcUtils.isNotEmpty(prop)) {
-            child.initData();
-          } else if (!child && funcUtils.isNotEmpty(prop)) {
-            let eventResponse = await RequestApi.prepareData({
-              method: 'getElementInfo',
-              params: {
-                eCID: cid
-              }
-            });
-            let info = JSON.parse(eventResponse.response).data;
-            if (funcUtils.isEmpty(this.pathes[info.path])) {
-              info.eCID = cid;
-              this.pathes[info.path] = info;
-              this.$forceUpdate();
-            }
-          }
-        }
-      },
-      getChild(cid) {
-        let res = null;
-        let children = this.pathes;
-        for (let prop in children) {
-          if (children.hasOwnProperty(prop)) {
-            let child = children[prop];
-            if (child.eCID === cid) {
-              return this.$refs[child.path];
-            }
-          }
-        }
-        return res;
+      updateComponents(cids) {
+        this.$emit('updateComponents', cids);
       },
       async save() {
         let eventResponse = await RequestApi.prepareData({
