@@ -44,24 +44,6 @@ const router = new Router({
       component: WizardExecuter,
       props: true
     },
-    /*{
-      path: ConstantUtils.contextPath + '/wizardScenarioPost',
-      name: 'WizardScenarioPost',
-      component: WizardScenarioPost,
-      props: true
-    },*/
-    {
-      path: ConstantUtils.contextPath + '/wizardScenario2025',
-      name: 'WizardScenario2025',
-      component: WizardScenario2025,
-      props: true
-    },
-    {
-      path: ConstantUtils.contextPath + '/wizardScenarioProtPZTC',
-      name: 'WizardScenarioProtPZTC',
-      component: WizardScenarioProtPZTC,
-      props: true
-    },
     {
       path: ConstantUtils.contextPath + '/accounting',
       name: 'Accounting',

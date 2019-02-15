@@ -12,12 +12,14 @@ import wizardExecuter from './modules/wizardExecuter';
 import wizardScenarioPost from './modules/wizardScenarioPost';
 import wizardScenario2025 from './modules/wizardScenario2025';
 import wizardScenarioProtPZTC from './modules/wizardScenarioProtPZTC';
+import wizardScenarioProtAPN from './modules/wizardScenarioProtAPN';
 import wizardItemAddress from './modules/wizardItemAddress';
 import wizardItemDecis from './modules/wizardItemDecis';
 import wizardItemDocPostFinal from './modules/wizardItemDocPostFinal';
 import wizardItemDocPostFirst from './modules/wizardItemDocPostFirst';
 import wizardItemDocPostSecond from './modules/wizardItemDocPostSecond';
 import wizardItemDocProt2025 from './modules/wizardItemDocProt2025';
+import wizardItemDocProtRasm from './modules/wizardItemDocProtRasm';
 import wizardItemDocProtFirst from './modules/wizardItemDocProtFirst';
 import wizardItemIndividual from './modules/wizardItemIndividual';
 import wizardItemLvok from './modules/wizardItemLvok';
@@ -93,12 +95,14 @@ const store = new Vuex.Store({
     wizardScenarioPost,
     wizardScenario2025,
     wizardScenarioProtPZTC,
+    wizardScenarioProtAPN,
     wizardItemAddress,
     wizardItemDecis,
     wizardItemDocPostFinal,
     wizardItemDocPostFirst,
     wizardItemDocPostSecond,
     wizardItemDocProt2025,
+    wizardItemDocProtRasm,
     wizardItemDocProtFirst,
     wizardItemIndividual,
     wizardItemLvok,

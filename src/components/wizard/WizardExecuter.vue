@@ -3,6 +3,10 @@
       <wizard-scenario-post v-if="isVisible('CreatePost')" ref="CreatePost" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-post>
 
       <wizard-scenario2025 v-if="isVisible('CreateProt2025')" ref="CreateProt2025" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario2025>
+
+      <wizard-scenario-prot-p-z-t-c v-if="isVisible('CreateProtPZTC')" ref="CreateProtPZTC" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-p-z-t-c>
+
+      <wizard-scenario-prot-a-p-n v-if="isVisible('CreateProtAPN')" ref="CreateProtAPN" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-a-p-n>
     </div>
 </template>
 
@@ -12,6 +16,7 @@
   import WizardScenario2025 from "~/components/wizard/WizardScenario2025";
   import WizardScenarioPost from "~/components/wizard/WizardScenarioPost";
   import WizardScenarioProtPZTC from "~/components/wizard/WizardScenarioProtPZTC";
+  import WizardScenarioProtAPN from "~/components/wizard/WizardScenarioProtAPN";
 
   export default {
     name: "WizardExecuter",
@@ -19,6 +24,7 @@
       WizardScenario2025,
       WizardScenarioPost,
       WizardScenarioProtPZTC,
+      WizardScenarioProtAPN
     },
     async created() {
       try {

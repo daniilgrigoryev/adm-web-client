@@ -77,19 +77,36 @@
             eCID: this.info.eCID
           }
         });
-        this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+        let data = JSON.parse(JSON.parse(eventResponse.response).data);
+        if (funcUtils.isEmpty(data)) {
+          let error = JSON.parse(eventResponse.response).error.errorMsg;
+          alert(error);
+        } else {
+          await this.fillPnpaList();
 
-        if (funcUtils.isNotEmpty(this.data.dateNar)) {
-          this.data.dateNar = new Date(this.data.dateNar);
-          this.fillStotvSearchInfo();
+          this.parseDate(data);
+          this.data = data;
+
+          if (funcUtils.isNotEmpty(data.dateNar)) {
+            this.fillStotvSearchInfo();
+          }
         }
 
-        await this.fillPnpaList();
-
-        if (this.data.stotvId) {
+        if (funcUtils.isNotEmpty(this.data.stotvId)) {
           this.fillKBKSearchInfo();
         }
       },
+
+      parseDate(data) {
+        if (funcUtils.isNotEmpty(data.dateSost)) {
+          data.dateSost = new Date(data.dateSost);
+        }
+
+        if (funcUtils.isNotEmpty(data.dateNar)) {
+          data.dateNar = new Date(data.dateNar);
+        }
+      },
+
       async fillPnpaList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',

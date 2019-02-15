@@ -8,9 +8,11 @@
         <button class="txt-kbd" type="button" @click="admOffense">возбуждение адм. правонарушения</button>
       </div>
       <div>
-        <button type="button" @click="filterClick">Фильтровать</button>
-        <button type="button" @click="createWizardScenarioPost">Создать постановление</button>
-        <button type="button" @click="createWizardScenario2025">Создать 2025</button>
+        <Button @click="filterClick" type="primary" class="ml12">Фильтровать</Button>
+        <Button @click="createWizardScenarioPost" type="primary" class="ml12">Создать постановление</Button>
+        <Button @click="createWizardScenario2025" type="primary" class="ml12">Создать 2025</Button>
+        <Button @click="createWizardScenarioPZTC" type="primary" class="ml12">Создать ПЗТС</Button>
+        <Button @click="createWizardScenarioAPN" type="primary" class="ml12">Создать АПН</Button>
       </div>
     </div>
     <div class="bg-gray-faint py24 px12">
@@ -1294,6 +1296,40 @@
         try {
           let params = {
             scenarioName: 'CreateProt2025'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioPZTC() {
+        try {
+          let params = {
+            scenarioName: 'CreateProtPZTC'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioAPN() {
+        try {
+          let params = {
+            scenarioName: 'CreateProtAPN'
           };
 
           formStack.toNext({

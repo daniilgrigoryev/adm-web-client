@@ -1,9 +1,9 @@
 <template>
   <div v-if="data">
 
-    <wizard-modal :visible="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
+    <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
-    <wizard-modal :visible="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
+    <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
     <Form :label-width="180" abel-position="right">
       <FormItem class="my12">
@@ -330,12 +330,21 @@ export default {
 					eCID: this.info.eCID
 				}
 			});
-			this.data = JSON.parse(JSON.parse(eventResponse.response).data);
-
-			if (funcUtils.isNotEmpty(this.data.dateSost)) {
-				this.data.dateSost = new Date(this.data.dateSost);
-			}
+      let data = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (funcUtils.isEmpty(data)) {
+        let error = JSON.parse(eventResponse.response).error.errorMsg;
+        alert(error);
+      } else {
+        this.parseDate(data);
+        this.data = data;
+      }
 		},
+
+    parseDate(data) {
+      if (funcUtils.isNotEmpty(data.dateSost)) {
+        data.dateSost = new Date(data.dateSost);
+      }
+    },
 
 		async createNewUIN() {
 			let eventResponse = await RequestApi.prepareData({
@@ -346,12 +355,14 @@ export default {
 					data: null
 				}
 			});
-			this.data = JSON.parse(JSON.parse(eventResponse.response).data);
-
-			if (funcUtils.isNotEmpty(this.data.dateSost)) {
-				this.data.dateSost = new Date(this.data.dateSost);
-			}
-			this.storeElementData();
+      let data = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (funcUtils.isEmpty(data)) {
+        let error = JSON.parse(eventResponse.response).error.errorMsg;
+        alert(error);
+      } else {
+        this.parseDate(data);
+        this.data = data;
+      }
 		},
 		async createNewDeloNum() {
 			let eventResponse = await RequestApi.prepareData({
@@ -362,12 +373,14 @@ export default {
 					data: null
 				}
 			});
-			this.data = JSON.parse(JSON.parse(eventResponse.response).data);
-
-			if (funcUtils.isNotEmpty(this.data.dateSost)) {
-				this.data.dateSost = new Date(this.data.dateSost);
-			}
-			this.storeElementData();
+      let data = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (funcUtils.isEmpty(data)) {
+        let error = JSON.parse(eventResponse.response).error.errorMsg;
+        alert(error);
+      } else {
+        this.parseDate(data);
+        this.data = data;
+      }
 		},
 
 		async showDolzModal(visible) {

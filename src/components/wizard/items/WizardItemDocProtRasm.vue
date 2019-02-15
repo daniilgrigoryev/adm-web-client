@@ -1,27 +1,10 @@
 <template>
   <div v-if="data">
-
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
-    <wizard-modal v-if="sudModal.visible" :columnsOptions="sudModal.columnsOptions" :data="sudModal.sudList" @showModal="showSudModal" @onRowDbClick="onSudClick"></wizard-modal>
+    <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
-    <div v-if="deloModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showDeloModal(false)" type="primary" class="ml12">Закрыть</Button>
-
-      <RadioGroup v-model="deloModal.paramKey">
-        <Radio label="deloNum">По номеру дела</Radio>
-        <Radio label="postNum">По номеру постановления</Radio>
-      </RadioGroup>
-
-      <Input v-model="deloModal.paramValue" @on-input-change="changeDeloValue" placeholder="Enter something..."></Input>
-
-      <Button @click="findDeloList" :disabled="!deloModal.paramKey || !deloModal.paramValue" type="primary" class="ml12">Поиск</Button>
-
-      <Select v-if="deloModal.deloList" class="wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect">
-        <Option class="wmax360 txt-break-word" v-for="item in deloModal.deloList" :value="item.value.delo" :key="item.value.id">{{ item.label }}</Option>
-      </Select>
-
-    </div>
+    <wizard-modal v-if="rasmModal.visible" :columnsOptions="rasmModal.columnsOptions" :data="rasmModal.rasmList" @showModal="showRasmModal" @onRowDbClick="onRasmClick"></wizard-modal>
 
     <Form :label-width="180" abel-position="right">
       <FormItem class="my12">
@@ -54,6 +37,40 @@
           </Col>
         </Row>
       </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Дата и Время нарушения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePicker type="datetime" v-model="data.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">п.НПА нарушения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Select class="wmax240 wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
+              <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Статья ответственности</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Select class="wmax240 wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-change="storeElementData">
+              <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </FormItem>
+    </Form>
+
+    <hr class="txt-hr my24">
+
+    <Form :label-width="200" abel-position="right">
+      <h2 class="adm-text-big color-dark-light my12">Составил</h2>
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -93,7 +110,10 @@
         <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.organSostKod" disabled placeholder="Enter something..."></Input>
+            <Input v-model="data.organSostKod" @on-input-change="changeOrganSostKod" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
           </Col>
         </Row>
       </FormItem>
@@ -106,10 +126,13 @@
         </Row>
       </FormItem>
       <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Статья ответственности</small>
+        <small class="adm-text-small color-gray-medium" slot="label">Код органа рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="stotv" disabled placeholder="Enter something..."></Input>
+            <Input v-model="data.organRasmKod" @on-input-change="changeRasmKod" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="showRasmModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Органы рассмотрения</a>
           </Col>
         </Row>
       </FormItem>
@@ -118,28 +141,6 @@
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.organRasmName" disabled placeholder="Enter something..."></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showSudModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник судов</a>
-          </Col>
-        </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата и Время рассмотрения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker type="datetime" v-model="data.dateRasm" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
-          </Col>
-        </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дело - основание</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="mainDelo" disabled placeholder="Enter something..."></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showDeloModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник</a>
           </Col>
         </Row>
       </FormItem>
@@ -154,10 +155,8 @@
   import WizardModal from "~/components/wizard/items/WizardModal";
 
   export default {
-    name: "WizardItemDocProt2025",
-    components: {
-      WizardModal
-    },
+    name: "WizardItemDocProtRasm",
+    components: {WizardModal},
     props: {
       info: Object
     },
@@ -167,6 +166,8 @@
     data() {
       return {
         data: null,
+        pnpaList: null,
+        stotvSearchInfoList: null,
         dolzModal: {
           visible: false,
           sispList: null,
@@ -274,9 +275,9 @@
               }
             ]
         },
-        sudModal: {
+        organModal: {
           visible: false,
-          sudList: null,
+          gibddList: null,
           columnsOptions:
             [
               {
@@ -361,27 +362,94 @@
               }
             ]
         },
-        deloModal: {
+        rasmModal: {
           visible: false,
-          paramKey: 'deloNum',
-          paramValue: null,
-          deloList: null
-        },
+          rasmList: null,
+          columnsOptions:
+            [
+              {
+                title: 'Код органа',
+                key: 'ORGAN_KOD',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Код региона',
+                key: 'RESP_KOD',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Регион',
+                key: 'REGION_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Район',
+                key: 'RAYON_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Тип',
+                key: 'TIP',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Название',
+                key: 'ORGAN_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Контакты',
+                key: 'CONTACTS',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Адрес',
+                key: 'KA_ADR_FULL',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              }
+            ]
+        }
       }
-    },
-    computed: {
-      stotv() {
-        if (funcUtils.isNotEmpty(this.data.stotvKod) && funcUtils.isNotEmpty(this.data.stotvName)) {
-          return this.data.stotvKod + ', ' + this.data.stotvName;
-        }
-        return '';
-      },
-      mainDelo() {
-        if (funcUtils.isNotEmpty(this.data.mainDeloN) && funcUtils.isNotEmpty(this.data.mainDeloDate)) {
-          return this.data.mainDeloN + ' от ' + funcUtils.parseDateTime(this.data.mainDeloDate, 'DD.MM.YYYY');
-        }
-        return '';
-      },
     },
     methods: {
       async initData() {
@@ -396,8 +464,14 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
+          await this.fillPnpaList();
+
           this.parseDate(data);
           this.data = data;
+
+          if (funcUtils.isNotEmpty(data.dateNar)) {
+            this.fillStotvSearchInfo();
+          }
         }
       },
 
@@ -406,12 +480,8 @@
           data.dateSost = new Date(data.dateSost);
         }
 
-        if (funcUtils.isNotEmpty(data.dateRasm)) {
-          data.dateRasm = new Date(data.dateRasm);
-        }
-
-        if (funcUtils.isNotEmpty(data.mainDeloDate)) {
-          data.mainDeloDate = new Date(data.mainDeloDate);
+        if (funcUtils.isNotEmpty(data.dateNar)) {
+          data.dateNar = new Date(data.dateNar);
         }
       },
 
@@ -431,6 +501,10 @@
         } else {
           this.parseDate(data);
           this.data = data;
+
+          if (funcUtils.isNotEmpty(data.dateNar)) {
+            this.fillStotvSearchInfo();
+          }
         }
       },
       async createNewDeloNum() {
@@ -449,6 +523,10 @@
         } else {
           this.parseDate(data);
           this.data = data;
+
+          if (funcUtils.isNotEmpty(data.dateNar)) {
+            this.fillStotvSearchInfo();
+          }
         }
       },
 
@@ -470,35 +548,89 @@
         }
         this.dolzModal.visible = visible;
       },
-      async showSudModal(visible) {
+      async showOrganModal(visible) {
         if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
               eCID: this.info.eCID,
-              methodName: 'getSudDict',
-              data: null
+              methodName: 'getGibddDict',
+              data: JSON.stringify({
+                organKod: null
+              })
             }
           });
-          this.sudModal.sudList = JSON.parse(JSON.parse(eventResponse.response).data);
+          this.organModal.gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
         } else {
-          this.sudModal.sudList = null;
+          this.organModal.gibddList = null;
         }
-        this.sudModal.visible = visible;
-      },
-      async showDeloModal(visible) {
-        this.deloModal.visible = visible;
-        this.deloModal.deloList = null;
-        this.deloModal.paramValue = null;
+        this.organModal.visible = visible;
       },
 
-      changeDeloValue() {
-        let express = /^\d+$/;
-        if (funcUtils.isEmpty(this.deloModal.paramValue) || !express.test(this.deloModal.paramValue)) {
-          this.deloModal.paramValue = null;
-          this.deloModal.deloList = null;
+      async showRasmModal(visible) {
+        if (visible) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getGibddDict',
+              data: JSON.stringify({
+                organKod: null
+              })
+            }
+          });
+          this.rasmModal.rasmList = JSON.parse(JSON.parse(eventResponse.response).data);
+        } else {
+          this.rasmModal.rasmList = null;
         }
+        this.rasmModal.visible = visible;
       },
+
+      async fillPnpaList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getPnpaDict',
+            data: null
+          }
+        });
+        let pnpaList = [];
+        let pnpaDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < pnpaDict.length; i++) {
+          let pnpa = pnpaDict[i];
+          pnpaList.push({
+            label: pnpa.PNPA_NAME,
+            value: pnpa.PNPA_KOD,
+            id: pnpa.PNPA_ID
+          });
+        }
+        this.pnpaList = pnpaList;
+      },
+      async fillStotvSearchInfo() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getStotvSearchInfo',
+            data: JSON.stringify({
+              date: this.data.dateNar
+            })
+          }
+        });
+        let stotvSearchInfoList = [];
+        let stotvSearchInfoDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < stotvSearchInfoDict.length; i++) {
+          let stotvSearchInfo = stotvSearchInfoDict[i];
+          stotvSearchInfoList.push({
+            label: stotvSearchInfo.stotvName,
+            value: stotvSearchInfo.stotvKod,
+            id: stotvSearchInfo.stotvId
+          });
+        }
+        this.stotvSearchInfoList = stotvSearchInfoList;
+      },
+
       async changeInspSostKod() {
         let express = /^\d+$/;
         if (funcUtils.isNotEmpty(this.data.inspSostKod) && express.test(this.data.inspSostKod)) {
@@ -531,7 +663,62 @@
         }
         this.storeElementData();
       },
+      async changeOrganSostKod() {
+        let express = /^\d+$/;
+        if (funcUtils.isNotEmpty(this.data.organSostKod) && express.test(this.data.organSostKod)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getGibddDict',
+              data: JSON.stringify({
+                organKod: this.data.organSostKod
+              })
+            }
+          });
+          let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
+          if (gibddList.length > 0) {
+            this.organModal.visible = true;
+            this.organModal.gibddList = gibddList;
+          } else {
+            this.clearOrganSost();
+          }
+        } else {
+          this.clearOrganSost();
+        }
+      },
+      async changeRasmKod() {
+        let express = /^\d+$/;
+        if (funcUtils.isNotEmpty(this.data.organRasmKod) && express.test(this.data.organRasmKod)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getGibddDict',
+              data: JSON.stringify({
+                organKod: this.data.organRasmKod
+              })
+            }
+          });
+          let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
+          if (gibddList.length > 0) {
+            this.rasmModal.visible = true;
+            this.rasmModal.rasmList = gibddList;
+          } else {
+            this.clearRasmSost();
+          }
+        } else {
+          this.clearRasmSost();
+        }
+      },
+      changeDateNar() {
+        this.stotvSearchInfoList = null;
+        if (funcUtils.isNotEmpty(this.data.dateNar)) {
+          this.fillStotvSearchInfo();
+        }
 
+        this.storeElementData();
+      },
       changeFIO() {
         let fioLength = 0;
         let fioArr = this.data.inspSostName.split(' ');
@@ -563,67 +750,6 @@
         this.clearInspSostKod();
       },
 
-      async findDeloList() {
-        if (funcUtils.isNotEmpty(this.deloModal.paramValue) && this.deloModal.paramValue.length > 0) {
-          let methodName;
-          let params = {};
-          params[this.deloModal.paramKey] = this.deloModal.paramValue;
-          if (this.deloModal.paramKey === 'deloNum') {
-            methodName = 'findDeloListByNum';
-          } else if (this.deloModal.paramKey === 'postNum') {
-            methodName = 'findDeloListByPostNum';
-          }
-          let eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
-            params: {
-              eCID: this.info.eCID,
-              methodName: methodName,
-              data: JSON.stringify(params)
-            }
-          });
-          let deloList = [];
-          let deloDict = JSON.parse(JSON.parse(eventResponse.response).data);
-          for (let i = 0; i < deloDict.length; i++) {
-            let delo = deloDict[i];
-            let label;
-            if (funcUtils.isNotEmpty(delo.date) && delo.date > 0) {
-              label = delo.num + ' от ' + funcUtils.parseDateTime(delo.date, 'DD/MM/YYYY');
-            } else {
-              label = delo.num;
-            }
-            deloList.push({
-              label: label,
-              value: {
-                id: delo.id,
-                delo: JSON.stringify(delo)
-              },
-            });
-          }
-          this.deloModal.deloList = deloList;
-        }
-      },
-
-      onDeloSelect(e) {
-        if (funcUtils.isNotEmpty(e)) {
-          let delo = JSON.parse(e);
-          this.data.mainDeloId = delo.id;
-          this.data.mainDeloN = delo.num;
-          this.data.mainDeloDate = new Date(delo.date);
-          this.deloModal.visible = false;
-          this.deloModal.deloList = null;
-        }
-        this.storeElementData();
-      },
-
-      onSudClick(data) {
-        this.data.organRasmId = data.ID;
-        this.data.organRasmKod = data.ORGAN_KOD;
-        this.data.organRasmName = data.ORGAN_NAME;
-        this.sudModal.visible = false;
-        this.sudModal.sudList = null;
-        this.storeElementData();
-      },
-
       onSispClick(data) {
         this.data.inspSostId = data.inspId;
         this.data.inspSostKod = data.inspKod;
@@ -635,6 +761,23 @@
         this.data.organSostName = data.ogaiName;
         this.dolzModal.visible = false;
         this.dolzModal.sispList = null;
+        this.storeElementData();
+      },
+      onGibddClick(data) {
+        this.data.organSostId = data.ID;
+        this.data.organSostKod = data.ORGAN_KOD;
+        this.data.organSostName = data.ORGAN_NAME;
+        this.organModal.gibddList = null;
+        this.organModal.visible = false;
+        this.storeElementData();
+      },
+
+      onRasmClick(data) {
+        this.data.organRasmId = data.ID;
+        this.data.organRasmKod = data.ORGAN_KOD;
+        this.data.organRasmName = data.ORGAN_NAME;
+        this.rasmModal.visible = false;
+        this.rasmModal.rasmList = null;
         this.storeElementData();
       },
 
@@ -649,6 +792,18 @@
         this.data.inspSostName = null;
         this.data.inspSostDolz = null;
         this.data.inspSostRang = null;
+        this.storeElementData();
+      },
+      clearOrganSost() {
+        this.data.organSostId = null;
+        this.data.organSostKod = null;
+        this.data.organSostName = null;
+        this.storeElementData();
+      },
+      clearRasmSost() {
+        this.data.organRasmId = null;
+        this.data.organRasmKod = null;
+        this.data.organRasmName = null;
         this.storeElementData();
       },
 

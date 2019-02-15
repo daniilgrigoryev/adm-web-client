@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
 
-    <wizard-modal :visible="ulModal.visible" :columnsOptions="ulModal.columnsOptions" :data="ulModal.ulList" @showModal="showUlModal" @onRowDbClick="onUlClick"></wizard-modal>
+    <wizard-modal v-if="ulModal.visible" :columnsOptions="ulModal.columnsOptions" :data="ulModal.ulList" @showModal="showUlModal" @onRowDbClick="onUlClick"></wizard-modal>
 
     <Form :label-width="180" abel-position="right">
       <FormItem class="my12">
@@ -348,7 +348,6 @@
       },
 
       onUlClick(data) {
-        debugger;
         this.data.id = data.ulId;
         this.data.name = data.name;
         this.data.inn = data.inn;
