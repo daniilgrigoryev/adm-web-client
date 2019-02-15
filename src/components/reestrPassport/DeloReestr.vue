@@ -401,8 +401,9 @@
                     ])
                   },
                   render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.dateStadIspolnLast) ? funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY') : '';
                     return h('div', {}, [
-                      h('p', funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY'))
+                      h('p', parsedDate)
                     ])
                   }
                 });
@@ -433,8 +434,9 @@
                     ])
                   },
                   render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.decisDateFirst) ? funcUtils.parseDateTime(params.row.decisDateFirst, 'DD/MM/YYYY') : '';
                     return h('div', {}, [
-                      h('p', funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY'))
+                      h('p', parsedDate)
                     ])
                   }
                 });
@@ -465,8 +467,9 @@
                     ])
                   },
                   render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.decisDateLast) ? funcUtils.parseDateTime(params.row.decisDateLast, 'DD/MM/YYYY') : '';
                     return h('div', {}, [
-                      h('p', funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY'))
+                      h('p', parsedDate)
                     ])
                   }
                 });
@@ -551,8 +554,9 @@
                     ])
                   },
                   render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(params.row.deloDate, 'DD/MM/YYYY') : '';
                     return h('div', {}, [
-                      h('p', funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY'))
+                      h('p', parsedDate)
                     ])
                   }
                 });

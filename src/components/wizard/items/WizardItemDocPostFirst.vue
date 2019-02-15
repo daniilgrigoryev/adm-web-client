@@ -441,7 +441,6 @@ export default {
 			} else {
 				this.clearOrganSost();
 			}
-			this.storeElementData();
 		},
 		async changeInspSostKod() {
 			let express = /^\d+$/;
@@ -473,7 +472,6 @@ export default {
 			} else {
 				this.clearInspSost();
 			}
-			this.storeElementData();
 		},
 		changeFIO() {
 			let fioLength = 0;

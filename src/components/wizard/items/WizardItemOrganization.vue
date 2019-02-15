@@ -1,11 +1,23 @@
 <template>
   <div v-if="data">
+    <div v-if="ulModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
+      <Button @click="showUlModal(false)" type="primary" class="ml12">Закрыть</Button>
+
+      <div style="height: 40vh; width: 50vw; overflow-y: auto;">
+        <Table :columns="ulModal.columnsOptions" @on-row-dblclick="onUlClick" :data="ulModal.sispList"></Table>
+      </div>
+
+    </div>
+
     <Form :label-width="180" abel-position="right">
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.name" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="searchUlByName" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
           </Col>
         </Row>
       </FormItem>
@@ -14,6 +26,9 @@
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input v-model="data.inn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="searchUlByInn" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
           </Col>
         </Row>
       </FormItem>
@@ -121,7 +136,74 @@
         formSobstvList: null,
         orgFormList: null,
         tipULList: null,
-        vedomstList: null
+        vedomstList: null,
+        ulModal: {
+          visible: false,
+          ulList: null,
+          columnsOptions:
+            [
+              {
+                title: 'Название организации',
+                key: 'name',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'ИНН',
+                key: 'inn',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'ОГРН',
+                key: 'ogrn',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'ОКПО',
+                key: 'okpo',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'КПП',
+                key: 'kpp',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Адрес',
+                key: 'streetName',
+                minWidth: 120,
+                ellipsis: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              }
+            ]
+        }
       }
     },
     methods: {
@@ -219,6 +301,67 @@
         }
         this.vedomstList = vedomstList;
       },
+
+      async searchUlByName() {
+        if (funcUtils.isNotEmpty(this.data.name) && this.data.name.length > 2) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getUlList',
+              data: JSON.stringify({
+                name: this.data.name,
+                inn: null,
+              })
+            }
+          });
+          let ulList = JSON.parse(JSON.parse(eventResponse.response).data);
+          if (ulList.length > 0) {
+            this.ulModal.ulList = ulList;
+            this.ulModal.visible = true;
+          }
+        }
+      },
+      async searchUlByInn() {
+        let express = /^\d{10}$/;
+        if (funcUtils.isNotEmpty(this.data.inn) && express.test(this.data.inn)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getUlList',
+              data: JSON.stringify({
+                name: null,
+                inn: this.data.inn,
+              })
+            }
+          });
+          let ulList = JSON.parse(JSON.parse(eventResponse.response).data);
+          if (ulList.length > 0) {
+            this.ulModal.ulList = ulList;
+            this.ulModal.visible = true;
+          }
+        }
+      },
+
+      showUlModal(visible) {
+        this.ulModal.visible = visible;
+        this.ulModal.ulList = null;
+      },
+
+      onUlClick(data) {
+        debugger;
+        this.data.id = data.ulId;
+        this.data.name = data.name;
+        this.data.inn = data.inn;
+        this.data.ogrn = data.ogrn;
+        this.data.kpp = data.kpp;
+        this.data.okpo = data.okpo;
+        this.ulModal.visible = false;
+        this.ulModal.ulList = null;
+        this.storeElementData();
+      },
+
       storeElementData() {
         this.$emit('storeElementData', {
           eCID: this.info.eCID,
