@@ -1,10 +1,11 @@
 <template>
-    
+    <div v-if="data"></div>
 </template>
 
 <script>
   export default {
-    name: "WizardItemDocProtFirst"
+    name: "WizardItemDocProtFirst",
+
   }
 </script>
 

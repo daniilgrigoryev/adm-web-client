@@ -11,6 +11,7 @@
         <button type="button" @click="filterClick">Фильтровать</button>
         <button type="button" @click="createWizardScenarioPost">Создать постановление</button>
         <button type="button" @click="createWizardScenario2025">Создать 2025</button>
+        <button type="button" @click="createWizardScenarioPZTC">Создать ПЗТС</button>
       </div>
     </div>
     <div class="bg-gray-faint py24 px12">
@@ -1242,6 +1243,23 @@
         try {
           let params = {
             scenarioName: 'CreateProt2025'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioPZTC() {
+        try {
+          let params = {
+            scenarioName: 'CreateProtPZTC'
           };
 
           formStack.toNext({

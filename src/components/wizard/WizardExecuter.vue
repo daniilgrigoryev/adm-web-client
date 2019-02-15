@@ -3,6 +3,8 @@
       <wizard-scenario-post v-if="isVisible('CreatePost')" ref="CreatePost" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-post>
 
       <wizard-scenario2025 v-if="isVisible('CreateProt2025')" ref="CreateProt2025" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario2025>
+
+      <wizard-scenario-prot-p-z-t-c v-if="isVisible('CreateProtPZTC')" ref="CreateProtPZTC" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-p-z-t-c>
     </div>
 </template>
 
