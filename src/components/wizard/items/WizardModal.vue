@@ -1,9 +1,15 @@
 <template>
-  <div class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-    <Button @click="showModal(false)" type="primary" class="ml12">Закрыть</Button>
-
-    <div style="height: 40vh; width: 50vw; overflow-y: auto;">
-      <Table id="modalTable" :columns="columnsOptions" @on-row-dblclick="onRowDbClick" :data="dataList"></Table>
+  <div class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
+    <div class="flex-parent flex-parent--end-main">
+      <Button type="text" @click="showModal(false)" class="px0 py0">
+        <div class="flex-parent flex-parent--center-cross">
+          <div class="adm-text-big color-blue-base">Закрыть</div>
+          <Icon type="md-close" size="50" class="color-blue-base cursor-pointer"/>
+        </div>
+      </Button>
+    </div>
+    <div>
+      <Table class="custom-table" ref="selection" :columns="columnsOptions" :data="dataList" :height="tableHeight"  id="modalTable" size="large" @on-row-dblclick="onRowDbClick"></Table>
     </div>
 
   </div>
@@ -24,6 +30,20 @@
         let modalTableParent = modalTable.parentElement;
         modalTableParent.addEventListener('scroll', this.handleScroll);
       }
+      try {
+        this.$nextTick(() => {
+          this.changeTableHeight();
+        });
+        window.addEventListener('resize', () => {
+          this.changeTableHeight();
+        });
+      } catch (e) {
+        this.$Notice.warning({
+          title: 'Ошибка получения данных',
+          desc: e.message,
+          duration: 10
+        });
+      }
     },
     computed: {
       dataList() {
@@ -39,10 +59,15 @@
     },
     data() {
       return {
-        scrollCount: 40
+        scrollCount: 40,
+        tableHeight: 0
       }
     },
     methods: {
+      changeTableHeight() {
+        let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
+        this.tableHeight = window.innerHeight - tableBounds.y;
+      },
       handleScroll() {
         if (this.checkScroll() && this.scrollCount < this.data.length) {
           let count = 40;
@@ -68,7 +93,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-</style>

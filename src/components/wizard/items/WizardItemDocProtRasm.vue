@@ -69,7 +69,7 @@
 
     <hr class="txt-hr my24">
 
-    <Form :label-width="200" abel-position="right">
+    <Form :label-width="180" abel-position="right">
       <h2 class="adm-text-big color-dark-light my12">Составил</h2>
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>

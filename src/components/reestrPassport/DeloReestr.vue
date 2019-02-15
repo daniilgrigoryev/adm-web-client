@@ -1,20 +1,13 @@
 <template>
   <div v-if="dataStore">
-    <div>
+    <!-- <div>
       <div class="prose my24">
         <h4 class="my0 px0 inline align-middle">Верстка:</h4>
         <button class="txt-kbd" type="button" @click="admAccounting">админ учет</button>
         <button class="txt-kbd" type="button" @click="admDelo">дело</button>
         <button class="txt-kbd" type="button" @click="admOffense">возбуждение адм. правонарушения</button>
       </div>
-      <div>
-        <Button @click="filterClick" type="primary" class="ml12">Фильтровать</Button>
-        <Button @click="createWizardScenarioPost" type="primary" class="ml12">Создать постановление</Button>
-        <Button @click="createWizardScenario2025" type="primary" class="ml12">Создать 2025</Button>
-        <Button @click="createWizardScenarioPZTC" type="primary" class="ml12">Создать ПЗТС</Button>
-        <Button @click="createWizardScenarioAPN" type="primary" class="ml12">Создать АПН</Button>
-      </div>
-    </div>
+    </div> -->
     <div class="bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
         <Form inline label-position="top">
@@ -145,6 +138,15 @@
               </div>
             </Col>
           </Row>
+          <Row>
+            <Col :xs="24" :md="24" :lg="24">
+              <Button @click="filterClick" type="primary" class="mx6">Фильтровать</Button>
+              <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
+              <Button @click="createWizardScenario2025" type="primary" class="mx6">Создать 2025</Button>
+              <Button @click="createWizardScenarioPZTC" type="primary" class="mx6">Создать ПЗТС</Button>
+              <Button @click="createWizardScenarioAPN" type="primary" class="mx6">Создать АПН</Button>
+            </Col>
+          </Row>
         </Form>
       </div>
     </div>
@@ -237,7 +239,7 @@
       return {
         tableHeight: 0,
         columnsOptionsVisible: false,
-        hideMore: true,
+        hideMore: false,
         stateDeloDict: [],
         documentVidDict: [],
         articleProcDict: [],

@@ -13,10 +13,15 @@
         </Row>
       </FormItem>
     </Form>
-
-    <div v-if="data && addressModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showAddressModal(false)" type="primary" class="ml12">Закрыть</Button>
-
+    <div v-if="data && addressModal.visible" class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
+      <div class="flex-parent flex-parent--end-main">
+        <Button type="text"  @click="showAddressModal(false)" class="px0 py0">
+          <div class="flex-parent flex-parent--center-cross">
+            <div class="adm-text-big color-blue-base">Закрыть</div>
+            <Icon type="md-close" size="50" class="color-blue-base cursor-pointer"/>
+          </div>
+        </Button>
+      </div>
       <div>
         <span>Страна</span>
 

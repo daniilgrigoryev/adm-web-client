@@ -14,128 +14,193 @@
 			</FormItem>
 		</Form>
 	
-		<div v-if="data && placeModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showPlaceModal(false)" type="primary" class="ml12">Закрыть</Button>
-	
-			<div>
-				<div>
-					<span>Страна</span>
-	
-					<span>Код</span>
-          <Input v-model="data.adr.countryCode" disabled placeholder="Enter something..."></Input>
-	
-					<span>Название</span>
-          <Input v-model="data.adr.countryName" disabled placeholder="Enter something..."></Input>
+		<div v-if="data && placeModal.visible" class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
+			<div class="flex-parent flex-parent--end-main">
+				<Button type="text"  @click="showPlaceModal(false)" class="px0 py0">
+				<div class="flex-parent flex-parent--center-cross">
+					<div class="adm-text-big color-blue-base">Закрыть</div>
+					<Icon type="md-close" size="50" class="color-blue-base cursor-pointer"/>
 				</div>
-	
-				<div>
-					<span>Регион</span>
-	
-					<Select v-model="data.adr.regionId" filterable clearable @on-change="changeRegion">
-	                <Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
-	              </Select>
-				</div>
-	
-				<div>
-					<span>Район</span>
-	
-					<Select v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
-	                <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
-				</div>
-	
-				<div>
-					<span>Населенный пункт</span>
-	
-					<Select v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
-	                <Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
-				</div>
-	
-				<div>
-					<span>Дорога</span>
-	
-					<Select v-model="data.roadId" filterable clearable @on-query-change="changeRoad" @on-clear="changeRoad">
-	                <Option class="wmax360 txt-break-word" v-for="item in roadsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
-				</div>
-	
-				<div>
-					<span>МГО</span>
-
-          <Input v-model="data.machta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>МГТ</span>
-
-          <Input v-model="data.mgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>км, метр</span>
-
-          <Input v-model="data.km" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>Место</span>
-	
-					<Select v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
-	                <Option class="wmax360 txt-break-word" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
-				</div>
-	
-				<div>
-					<span>Улица</span>
-	
-					<Select v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
-	                <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
-				</div>
-	
-				<div>
-					<span>Дом</span>
-
-          <Input v-model="data.adr.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>Корпус</span>
-
-          <Input v-model="data.adr.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>Строение</span>
-
-          <Input v-model="data.adr.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>Почтовый индекс</span>
-
-          <Input v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>Дополнительные сведения</span>
-
-          <Input v-model="data.dopSved" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>Широта</span>
-
-          <Input v-model="data.y" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
-	
-				<div>
-					<span>Долгота</span>
-
-          <Input v-model="data.x" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-				</div>
+				</Button>
 			</div>
+
+			<Form :label-width="180" abel-position="right">
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Код страны</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.adr.countryCode" disabled placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Название</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.adr.countryName" disabled placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Регион</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Select class="wmax240 wmin180" v-model="data.adr.regionId" filterable clearable @on-change="changeRegion">
+								<Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
+							</Select>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Район</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Select class="wmax240 wmin180" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+								<Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Населенный пункт</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Select class="wmax240 wmin180" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
+								<Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+						</Col>
+					</Row>
+				</FormItem>
+
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Дорога</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Select class="wmax240 wmin180" v-model="data.roadId" filterable clearable @on-query-change="changeRoad" @on-clear="changeRoad">
+								<Option class="wmax360 txt-break-word" v-for="item in roadsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">МГО</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.machta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">МГТ</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.mgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">км, метр</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.km" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Место</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Select class="wmax240 wmin180" v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
+								<Option class="wmax360 txt-break-word" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Улица</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Select class="wmax240 wmin180" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+								<Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+							</Select>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Дом</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.adr.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.adr.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Строение</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.adr.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.dopSved" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Широта</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.y" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Долгота</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+							<Input v-model="data.x" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem>
+			</Form>
+
 	
 			<div style="margin: 20px 0 20px 0;">
 				<Checkbox v-model="data.placeTip1" @on-change="changePlaceTip('placeTip1')"></Checkbox>
@@ -160,76 +225,76 @@
 					<span>Дорога</span>
 	
 					<Select v-model="data.dopRoadId" filterable clearable @on-query-change="changeDopRoad" @on-clear="changeDopRoad">
-	                <Option class="wmax360 txt-break-word" v-for="item in dopRoadsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
+		                <Option class="wmax360 txt-break-word" v-for="item in dopRoadsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+		              </Select>
 				</div>
 	
 				<div>
 					<span>МГО</span>
-
-          <Input v-model="data.dopMachta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+	
+					<Input v-model="data.dopMachta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>МГТ</span>
-
-          <Input v-model="data.dopMgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+	
+					<Input v-model="data.dopMgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>км, метр</span>
-
-          <Input v-model="data.dopKm" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+	
+					<Input v-model="data.dopKm" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Место</span>
-
+	
 					<Select v-model="data.dopPlaceId" filterable clearable @on-query-change="changeDopPlace" @on-clear="changeDopPlace">
-	                <Option class="wmax360 txt-break-word" v-for="item in dopPlacesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
+		                <Option class="wmax360 txt-break-word" v-for="item in dopPlacesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+		              </Select>
 				</div>
 	
 				<div>
 					<span>Улица</span>
 	
 					<Select v-model="data.adrDop.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeDopStreet" remote :remote-method="changeDopStreet">
-	                <Option class="wmax360 txt-break-word" v-for="item in dopStreetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-	              </Select>
+		                <Option class="wmax360 txt-break-word" v-for="item in dopStreetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+		              </Select>
 				</div>
 	
 				<div>
 					<span>Дом</span>
-
-          <Input v-model="data.adrDop.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+	
+					<Input v-model="data.adrDop.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Корпус</span>
-
-          <Input v-model="data.adrDop.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+	
+					<Input v-model="data.adrDop.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Строение</span>
-
-          <Input v-model="data.adrDop.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+	
+					<Input v-model="data.adrDop.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Почтовый индекс</span>
-
-          <Input v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
+	
+					<Input v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
 				</div>
 	
 				<div>
 					<span>Дополнительные сведения</span>
-
-          <Input v-model="data.adrDop.dopDopSved" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+	
+					<Input v-model="data.adrDop.dopDopSved" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 				</div>
 			</div>
 	
-      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
+			<Button @click="save" type="primary" class="ml12">Сохранить</Button>
 		</div>
 	
 	</div>
