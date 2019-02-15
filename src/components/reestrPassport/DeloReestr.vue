@@ -152,7 +152,7 @@
     </div>
     <div class="bg-white">
       <div class="wmax1920 mx-auto">
-        <div class="flex-parent">
+        <div class="flex-parent flex-parent--end-main">
           <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-end">
             <a href="javascript:void(0)" class="block py12" @click="toggleColumnsOption">
               <span class='link color-blue-base adm-btn-small txt-underline-on-hover'>Настроить показ колонок</span>
@@ -305,6 +305,7 @@
             value: null
           }
         },
+        reactiveTable: []
       }
     },
     computed: {
@@ -320,6 +321,8 @@
       },
       tableColumns() {
         let res = [];
+        this.reactiveTable = [];
+
         if (this.dataStore) {
           this.dataStore.data.fields.forEach((item) => {
             switch (item) {
@@ -1065,7 +1068,9 @@
             });
           }
         }
-        return res;
+        // return res;
+        this.reactiveTable = res;
+        return this.reactiveTable;
       },
       tableFilteredColumns() {
         return this.tableColumns.filter(column => {
