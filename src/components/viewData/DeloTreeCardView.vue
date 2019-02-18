@@ -4,17 +4,22 @@
       <button type="button" @click="getPrev">Назад</button>
       <button type="button" @click="clearInnerStack">Очистить стэк</button>
 
-      <div v-if="deloInfo" class="px36 py24">
+      <div v-if="deloContext" class="px36 py24">
         <div class="my12">
-          <span v-html="deloInfo.name" class="adm-h1 color-gray-medium"></span>
+          <span class="adm-h2 color-gray-medium">Дело № </span>
+          <span class="adm-h1 color-gray-medium">{{deloContext.deloN}}</span>
         </div>
-       <!-- <div class="mt24">
+        <div class="my6">
+          <span class="adm-txt-regular color-gray-medium">{{deloContext.deloDate}}</span>
+          <span class="adm-txt-regular color-gray-medium">{{deloContext.stadName}}</span>
+        </div>
+        <div class="mt24">
           <b class="adm-text-big color-gray-medium">Статья дела</b>
-          <p class="adm-txt-regular color-gray-medium">{{deloInfo.stotvGr}}</p>
-        </div>-->
+          <p class="adm-txt-regular color-gray-medium">{{deloContext.stotvName}}</p>
+        </div>
       </div>
       <hr class="txt-hr my0">
-      <div>
+      <div v-if="deloTree">
         <Row>
           <Col :xs="24" :sm="8" :md="8" :lg="8">
             <ul class="tree">
@@ -128,6 +133,13 @@
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.tree[0];
+        }
+        return res;
+      },
+      deloContext() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.context;
         }
         return res;
       },

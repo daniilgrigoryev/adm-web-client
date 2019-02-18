@@ -1,6 +1,6 @@
 <template>
-  <div id="root" class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
-    <div id="pagingWrap" class="flex-parent flex-parent--space-between-main">
+  <div class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
+    <div class="flex-parent flex-parent--space-between-main">
 
       <Page v-if="limit" :total="data.length" :current="currentPage" :page-size="limit" class="mr12" @on-change="changePage"/>
       
@@ -12,7 +12,7 @@
       </Button>
     </div>
     <div>
-      <Table :columns="columnsOptions" @on-row-dblclick="onRowDbClick" :data="dataList" class="custom-table" ref="selection" size="large" ></Table>
+      <Table :columns="columnsOptions" @on-row-dblclick="onRowDbClick" :data="dataList" class="custom-table" :height="tableHeight" ref="selection" size="large" ></Table>
     </div>
   </div>
 </template>
@@ -27,16 +27,12 @@
       data: Array,
     },
     mounted() {
-      let header = document.querySelector('.ivu-table-header').offsetHeight;
-      let pagingWrap = document.getElementById('pagingWrap').offsetHeight;
-      this.limit = Math.round((document.getElementById('root').offsetHeight - header - pagingWrap) / 60);
-      this.to = this.limit;
-      this.delta = this.limit;
-      this.fillDataList();
       try {
         this.$nextTick(() => {
           this.changeTableHeight();
         });
+        this.fillDataList();
+
         window.addEventListener('resize', () => {
           this.changeTableHeight();
         });
@@ -52,9 +48,9 @@
       return {
         tableHeight: 0,
         from: 0,
-        to: null,
-        limit: null,
-        delta: null,
+        to: 40,
+        limit: 40,
+        delta: 40,
         currentPage: 1,
         dataList: []
       }

@@ -305,7 +305,7 @@
             value: null
           }
         },
-        reactiveTable: []
+        columnsOptions: []
       }
     },
     computed: {
@@ -319,21 +319,36 @@
         }
         return res;
       },
-      tableColumns() {
-        let res = [];
-        this.reactiveTable = [];
-
+      tableFilteredColumns() {
+        return this.columnsOptions.filter(column => {
+          return column.visible === true;
+        })
+      },
+      tableColumnsForOptions() {
+        return this.columnsOptions.filter(column => {
+          return column.key;
+        })
+      },
+    },
+    watch: {
+      dataStore() {
+        this.fillColumnsOptions();
+      }
+    },
+    methods: {
+      fillColumnsOptions() {
         if (this.dataStore) {
+          this.columnsOptions = [];
           this.dataStore.data.fields.forEach((item) => {
             switch (item) {
               case 'deloId': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Номер дела',
                   key: 'deloId',
                   minWidth: 160,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -355,13 +370,13 @@
                 break;
               }
               case 'birthday': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Дата рождения',
                   key: 'birthday',
                   minWidth: 160,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -377,13 +392,13 @@
                 break;
               }
               case 'checkPriority': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Приоритет ошибки',
                   key: 'checkPriority',
                   minWidth: 190,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -405,13 +420,13 @@
                 break;
               }
               case 'DateStadIspolnLast': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Дата посл.ст.исп.',
                   key: 'dateStadIspolnLast',
                   minWidth: 200,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -439,13 +454,13 @@
                 break;
               }
               case 'decisDateFirst': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Дата решения',
                   key: 'decisDateFirst',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -473,13 +488,13 @@
                 break;
               }
               case 'decisDateLast': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Дата посл.реш.',
                   key: 'decisDateLast',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -507,13 +522,13 @@
                 break;
               }
               case 'decisNameFirst': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Перв.реш.',
                   key: 'decisNameFirst',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -535,13 +550,13 @@
                 break;
               }
               case 'decisNameLast': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Посл.реш.',
                   key: 'decisNameLast',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -563,13 +578,13 @@
                 break;
               }
               case 'deloDate': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Дата оформления',
                   key: 'deloDate',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -597,13 +612,13 @@
                 break;
               }
               case 'deloN': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Номер дела',
                   key: 'deloN',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -625,13 +640,13 @@
                 break;
               }
               case 'deloVidName': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Вид дела',
                   key: 'deloVidName',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -653,13 +668,13 @@
                 break;
               }
               case 'docN': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Протокол',
                   key: 'docN',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -681,13 +696,13 @@
                 break;
               }
               case 'lockName': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Блок.дела',
                   key: 'lockName',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -709,13 +724,13 @@
                 break;
               }
               case 'lvokName': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'ЛВОК',
                   key: 'lvokName',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -737,13 +752,13 @@
                 break;
               }
               case 'opredN': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Определение/Доп.прот.',
                   key: 'opredN',
                   minWidth: 220,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -765,13 +780,13 @@
                 break;
               }
               case 'postN': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Постан./ПК',
                   key: 'postN',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -793,13 +808,13 @@
                 break;
               }
               case 'protN': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Протокол АПН',
                   key: 'protN',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -821,13 +836,13 @@
                 break;
               }
               case 'regno': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'РегЗнак',
                   key: 'regno',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -849,13 +864,13 @@
                 break;
               }
               case 'stadDeloName': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Стадия',
                   key: 'stadDeloName',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -877,13 +892,13 @@
                 break;
               }
               case 'stadIspolnNameLast': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Посл.ст.исп.',
                   key: 'stadIspolnNameLast',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -905,13 +920,13 @@
                 break;
               }
               case 'stotv': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Статья',
                   key: 'stotv',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -933,13 +948,13 @@
                 break;
               }
               case 'stotvKod': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Ст.-основание',
                   key: 'stotvKod',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -961,13 +976,13 @@
                 break;
               }
               case 'uchastName': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Участник',
                   key: 'uchastName',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -989,13 +1004,13 @@
                 break;
               }
               case 'ulName': {
-                res.push({
+                this.columnsOptions.push({
                   title: 'Участник',
                   key: 'ulName',
                   minWidth: 180,
                   ellipsis: true,
-                  tooltip: true,
                   visible: true,
+                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -1018,14 +1033,12 @@
               }
             }
           });
-          if (res.length > 0) {
-            res.push({
+          if (this.columnsOptions.length > 0) {
+            this.columnsOptions.push({
               title: "Действия",
               width: 130,
               align: "center",
-              visible: true,
               fixed: "right",
-              visible: true,
               renderHeader: (h, params) => {
                 return h('Tooltip', {
                   props: {
@@ -1068,22 +1081,7 @@
             });
           }
         }
-        // return res;
-        this.reactiveTable = res;
-        return this.reactiveTable;
       },
-      tableFilteredColumns() {
-        return this.tableColumns.filter(column => {
-          return column.visible === true;
-        })
-      },
-      tableColumnsForOptions() {
-        return this.tableColumns.filter(column => {
-          return column.key;
-        })
-      },
-    },
-    methods: {
       toggleColumnsOption() {
         this.columnsOptionsVisible = !this.columnsOptionsVisible;
       },
