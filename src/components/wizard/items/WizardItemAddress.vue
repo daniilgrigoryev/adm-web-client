@@ -22,95 +22,116 @@
           </div>
         </Button>
       </div>
-      <div>
-        <span>Страна</span>
 
-        <span>Код</span>
-        <Input v-model="data.countryCode" disabled placeholder="Enter something..."></Input>
 
-        <span>Название</span>
-        <Input v-model="data.countryName" disabled placeholder="Enter something..."></Input>
-      </div>
+       <Form :label-width="180" label-position="right">
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Код страны</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input v-model="data.countryCode" disabled placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
 
-      <div>
-        <span>Регион</span>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Название</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input v-model="data.countryName" disabled placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
 
-        <Select v-model="data.regionId" filterable clearable @on-change="changeRegion">
-          <Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
-        </Select>
-      </div>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Регион</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="wmax240 wmin180" v-model="data.regionId" filterable clearable @on-change="changeRegion">
+                <Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </FormItem>
 
-      <div>
-        <span>Район</span>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Населенный пункт</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="wmax240 wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
+                <Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </FormItem>
 
-        <Select v-model="data.rayonId"
-                filterable
-                clearable
-                :disabled="!isNotEmptyRegionId()"
-                @on-change="changeRayon">
-          <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </Select>
-      </div>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Улица</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="wmax240 wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+                <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </FormItem>
 
-      <div>
-        <span>Населенный пункт</span>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Дом</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input v-model="data.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
 
-        <Select v-model="data.cityId"
-                filterable
-                clearable
-                :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId"
-                @on-clear="changeCity"
-                remote
-                :remote-method="changeCity">
-          <Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </Select>
-      </div>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input v-model="data.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
 
-      <div>
-        <span>Улица</span>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Строение</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+             <Input v-model="data.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
 
-        <Select v-model="data.streetId"
-                filterable
-                clearable
-                :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()"
-                @on-clear="changeStreet"
-                remote
-                :remote-method="changeStreet">
-          <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </Select>
-      </div>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input v-model="data.nstroenie" @on-input-change="storeElementData" disabled placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
 
-      <div>
-        <span>Дом</span>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input v-model="data.dopSved" @on-input-change="storeElementData" disabled placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            </Col>
+          </Row>
+        </FormItem>
 
-        <Input v-model="data.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-      </div>
+        <Row :gutter="16" type="flex" align="middle" justify="start">
+          <Col :xs="24" :md="14" :lg="17">
+            <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+              <Button @click="save" type="primary">Сохранить</Button>
+            </div>
+          </Col>
+        </Row>
+        
+       </Form>
 
-      <div>
-        <span>Корпус</span>
-
-        <Input v-model="data.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-      </div>
-
-      <div>
-        <span>Строение</span>
-
-        <Input v-model="data.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
-      </div>
-
-      <div>
-        <span>Почтовый индекс</span>
-
-        <Input v-model="data.nstroenie" @on-input-change="storeElementData" disabled placeholder="Enter something..."></Input>
-      </div>
-
-      <div>
-        <span>Дополнительные сведения</span>
-
-        <Input v-model="data.dopSved" @on-input-change="storeElementData" disabled placeholder="Enter something..."></Input>
-      </div>
-
-      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
+    
     </div>
   </div>
 </template>

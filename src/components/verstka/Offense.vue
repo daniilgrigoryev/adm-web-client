@@ -440,6 +440,7 @@
                             <Button type="text">Отменить возбуждение дела</Button>
                             <Button type="primary" class="ml12">Возбудить</Button>
                         </div>
+                        
                     </div>
                 </Col>
             </Row>

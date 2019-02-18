@@ -34,10 +34,16 @@
             <wizard-item-address v-if="isVisible('Witness2.regAddr')" ref="Witness2.regAddr" :info="getInfo('Witness2.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
           </Layout>
-          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
-            <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-            <Button @click="save" type="primary" class="ml12">Возбудить</Button>
-          </div>
+ 
+					<Row :gutter="16" type="flex" align="middle" justify="start">
+						<Col :xs="24" :md="14" :lg="17">
+							<div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+                <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
+                <Button @click="save" type="primary">Возбудить</Button>
+							</div>
+						</Col>
+					</Row>
+
         </div>
       </Col>
     </Row>
