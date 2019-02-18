@@ -8,6 +8,8 @@ import offense from './modules/offense';
 import delo from './modules/delo';
 import deloReestr from './modules/deloReestr';
 import deloTreeCardView from './modules/deloTreeCardView';
+import frmEdDelo from './modules/frmEdDelo';
+
 import wizardExecuter from './modules/wizardExecuter';
 import wizardScenarioPost from './modules/wizardScenarioPost';
 import wizardScenario2025 from './modules/wizardScenario2025';
@@ -91,6 +93,8 @@ const store = new Vuex.Store({
   modules: {
     deloReestr,
     deloTreeCardView,
+    frmEdDelo,
+
     wizardExecuter,
     wizardScenarioPost,
     wizardScenario2025,
