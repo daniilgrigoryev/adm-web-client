@@ -1,5 +1,5 @@
 <template>
-  <div v-if="sizeInnerStack > 0">
+  <div v-if="sizeInnerStack > 0 && current">
     <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px36 py12 bg-white-light border-t border-b border--gray-faint">
       <b class="adm-text-big" v-html="current.params.name"></b>
       <Button type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer">
