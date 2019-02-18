@@ -3,6 +3,7 @@
     <Layout class="layout--inner">
       <button type="button" @click="getPrev">Назад</button>
       <button type="button" @click="clearInnerStack">Очистить стэк</button>
+      <button type="button" @click="addUchastWizard">Добавить участника</button>
 
       <div v-if="deloContext" class="px36 py24">
         <div class="my12">
@@ -37,7 +38,7 @@
           </Col>
           <Col :xs="24" :sm="16" :md="16" :lg="16" style="padding: 0">
             <div class="">
-              <delo-inner-form ref="innerForm" :sizeInnerStack="sizeInnerStack" @updateSizeStack="updateSizeStack"></delo-inner-form>
+              <delo-inner-form ref="innerForm" :sizeInnerStack="sizeInnerStack" @updateSizeStack="updateSizeStack" @updateSelected="updateSelected"></delo-inner-form>
             </div>
           </Col>
         </Row>
@@ -87,6 +88,8 @@
 
         if (this.sizeInnerStack === 0) {
           await this.$refs.innerForm.addForm(this.deloInfo);
+        } else {
+          this.updateSelected();
         }
       } catch (e) {
         alert(e.message);
@@ -110,7 +113,6 @@
         if (this.dataStore) {
           for (let i = 1; i < this.dataStore.tree.length; i++) {
             let item = this.dataStore.tree[i];
-            this.$set(item, 'selected', false);
             res.push(item);
           }
         }
@@ -135,13 +137,18 @@
       async getDelo() {
         await this.nodeClick(this.deloInfo);
       },
+      updateSelected() {
+        let current = formStack.getCurrent();
+        let currentForm = innerFormStack.getCurrent({
+          uid: current.moduleName
+        });
+        this.deloTree.forEach((item) => {
+          delete item['selected'];
+          this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === JSON.stringify(item));
+        });
+      },
       async nodeClick(node) {
         await this.clearInnerStack();
-
-        this.deloTree.forEach((item) => {
-          item.selected = false;
-        });
-        node.selected = true;
 
         let copyNode = JSON.parse(JSON.stringify(node));
         delete copyNode['selected'];
@@ -179,6 +186,7 @@
         };
         await innerFormStack.clearStack(params);
         this.sizeInnerStack = 0;
+        this.updateSelected();
       },
       updateSizeStack(params) {
         this.sizeInnerStack = innerFormStack.stackSize(params);
@@ -190,6 +198,24 @@
         try {
           formStack.toPrev({
             vm: this
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      addUchastWizard() {
+        try {
+          let params = {
+            scenarioName: 'AddUchast',
+            node: this.deloInfo
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
           });
         } catch (e) {
           alert(e.message);

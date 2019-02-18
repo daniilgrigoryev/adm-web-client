@@ -17,7 +17,7 @@
         <div>
           <Layout ref="Main" class="bg-white hmin360 px36 py12">
 
-            <wizard-item-add-uchast v-if="isVisible('Uchast')" ref="DocProtFirst" :info="getInfo('DocProtFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
+            <wizard-item-add-uchast v-if="isVisible('Uchast')" ref="DocProtFirst" :info="getInfo('Uchast')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
 
             <wizard-item-individual v-if="isVisible('Uchast.Individual')" ref="Uchast.Individual" :info="getInfo('Uchast.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
 

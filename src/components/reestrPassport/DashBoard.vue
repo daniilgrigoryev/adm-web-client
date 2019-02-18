@@ -11,10 +11,10 @@
 							<p class="adm-txt-regular color-dark-light my18">Эвакуация автомобиля</p>
 							<ul>
 								<li class="my18">
-									<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол о задержании автомобиля</a>
+									<a href="#" @click="createWizardScenarioPZTC" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол о задержании автомобиля</a>
 								</li>
 								<li class="my18">
-									<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об административном правонарушении</a>
+									<a href="#" @click="createWizardScenarioAPN" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об административном правонарушении</a>
 								</li>
 								<li class="my18">
 									<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Определение об эвакуации автомобиля</a>
@@ -78,21 +78,50 @@
 </template>
 
 <script>
+  import * as funcUtils from "../../assets/js/utils/funcUtils";
+  import * as formStack from '../../assets/js/api/formStack';
+  import RequestApi from "../../assets/js/api/requestApi";
+
   export default {
     name: "DashBoard",
     data() {
-		return {}
+		  return {}
     },
     methods: {
-        getPrev() {
-			try {
-				formStack.toPrev({
-					vm: this
-				});
-			} catch (e) {
-				alert(e.message);
-			}
+      createWizardScenarioPZTC() {
+        try {
+          let params = {
+            scenarioName: 'CreateProtPZTC'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
         }
+      },
+      createWizardScenarioAPN() {
+        try {
+          let params = {
+            scenarioName: 'CreateProtAPN'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
     }
   }
 </script>
