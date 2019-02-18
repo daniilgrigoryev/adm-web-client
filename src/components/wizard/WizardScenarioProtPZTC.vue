@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-blue-thin">
-    <Row>
-      <!--<Col :xs="24" :sm="6" :md="6" :lg="6">
-        <div class="bg-blue-thin">
-          <ul class="ml60 mr24 mt24">
+  <div class="wmax1920">
+    <Row type="flex">
+      <!-- <Col :xs="24" :sm="6" :md="6" :lg="6">
+        <div class="bg-blue-thin h-full scroll-hidden">
+          <ul class="ml60 mr24 my24">
             <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
             <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
             <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
@@ -12,10 +12,10 @@
             <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
           </ul>
         </div>
-      </Col>-->
+      </Col> -->
       <Col :xs="24" :sm="18" :md="18" :lg="18">
-        <div class="bg-white">
-          <Layout ref="Main" class="hmin360 px36 py12">
+        <div>
+          <Layout ref="Main" class="bg-white hmin360 px36 py12">
 
             <wizard-item-doc-prot-first v-if="isVisible('DocProtFirst')" ref="DocProtFirst" :info="getInfo('DocProtFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-first>
 
