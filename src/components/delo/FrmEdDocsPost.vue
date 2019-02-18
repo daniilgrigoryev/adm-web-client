@@ -1,5 +1,6 @@
 <template>
   <div v-if="data">
+    постановление
     {{data}}
   </div>
 </template>

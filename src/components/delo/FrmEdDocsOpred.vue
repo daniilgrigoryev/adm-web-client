@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    {{data}}
+    определение {{data}}
   </div>
 </template>
 

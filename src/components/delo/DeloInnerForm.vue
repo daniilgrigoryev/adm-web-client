@@ -6,7 +6,7 @@
         <img src='../../assets/images/wiki.svg' class="wmax-none">
       </Button>
     </div>
-    <div class="hmin360 px36 py12" style="background-color: rgba(255,2,2,0.11)">
+    <div class="hmin360 px36 py12">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')"></frm-ed-docs-opred>
