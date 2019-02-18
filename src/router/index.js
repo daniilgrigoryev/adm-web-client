@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Authorization from '../components/Authorization';
 import DeloReestr from '../components/reestrPassport/DeloReestr';
+import Dashboard from '../components/reestrPassport/Dashboard';
+
 import DeloTreeCardView from '../components/viewData/DeloTreeCardView';
 import WizardExecuter from '../components/wizard/WizardExecuter';
 import WizardScenarioPost from '../components/wizard/WizardScenarioPost';
@@ -31,6 +33,11 @@ const router = new Router({
       path: ConstantUtils.contextPath + '/deloReestr',
       name: 'DeloReestr',
       component: DeloReestr,
+    },
+    {
+      path: ConstantUtils.contextPath + '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
     },
     {
       path: ConstantUtils.contextPath + '/deloTreeCardView',

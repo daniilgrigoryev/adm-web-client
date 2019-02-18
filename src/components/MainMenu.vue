@@ -20,7 +20,7 @@
                     <Menu mode="horizontal" active-name="1" class="header-menu">
                         <div class="flex-parent flex-parent--wrap flex-parent--center-main">
                             <MenuItem name="1" class="header-menu__item">Административный учет</MenuItem>
-                            <MenuItem name="2" class="header-menu__item">Возбудить дело</MenuItem>
+                            <MenuItem name="2" class="header-menu__item" @click="getDashboard">Возбудить дело</MenuItem>
                             <MenuItem name="3" class="header-menu__item">Учет спецпродукции</MenuItem>
                             <MenuItem name="4" class="header-menu__item">Состояние выгрузки</MenuItem>
                             <MenuItem name="5" class="header-menu__item">Обработка документов</MenuItem>
@@ -41,7 +41,19 @@ export default {
     methods: {
 		collapsedSider () {
 			this.$emit('collapsedSider');
-		}
+        },
+        getDashboard() {
+            try {
+            formStack.toNext({
+                module: this.$store.state.dashboard,
+                vm: this,
+                notRemoved: true,
+                withCreate: false
+            });
+            } catch (e) {
+                alert(e.message);
+            }
+        },
     }
 }
 </script>
