@@ -200,14 +200,14 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Дополнительный адрес</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Checkbox v-model="data.placeTip1" @on-change="changePlaceTip('placeTip1')"></Checkbox>
-							<Checkbox v-model="data.placeTip2" @on-change="changePlaceTip('placeTip2')"></Checkbox>
-							<Checkbox v-model="data.placeTip3" @on-change="changePlaceTip('placeTip3')"></Checkbox>
-							<Checkbox v-model="data.placeTip4" @on-change="changePlaceTip('placeTip4')"></Checkbox>
-							<Checkbox v-model="data.placeTip5" @on-change="changePlaceTip('placeTip5')"></Checkbox>
-							<Checkbox v-model="data.placeTip6" @on-change="changePlaceTip('placeTip6')"></Checkbox>
-							<Checkbox v-model="data.placeTip7" @on-change="changePlaceTip('placeTip7')"></Checkbox>
-							<Checkbox v-model="data.placeTip8" @on-change="changePlaceTip('placeTip8')"></Checkbox>
+							<Checkbox v-model="data.placeTip1" @on-change="changePlaceTip('placeTip1')">Признак проезжей части</Checkbox>
+							<Checkbox v-model="data.placeTip2" @on-change="changePlaceTip('placeTip2')">Признак тротуара</Checkbox>
+							<Checkbox v-model="data.placeTip3" @on-change="changePlaceTip('placeTip3')">Признак двора</Checkbox>
+							<Checkbox v-model="data.placeTip4" @on-change="changePlaceTip('placeTip4')">Признак прилегающей территории</Checkbox>
+							<Checkbox v-model="data.placeTip5" @on-change="changePlaceTip('placeTip5')">Признак перекрестка</Checkbox>
+							<Checkbox v-model="data.placeTip6" @on-change="changePlaceTip('placeTip6')">Признак развязки</Checkbox>
+							<Checkbox v-model="data.placeTip7" @on-change="changePlaceTip('placeTip7')">Признак места под мостом</Checkbox>
+							<Checkbox v-model="data.placeTip8" @on-change="changePlaceTip('placeTip8')">Признак протяженности</Checkbox>
 						</Col>
 					</Row>
 				</FormItem>
@@ -393,14 +393,14 @@ export default {
 		async initData() {
 			let data = await this.getData();
 			if (this.placeModal.visible) {
-				data['placeTip1'] = data['placeTip1'] == 1 ? true : false;
-				data['placeTip2'] = data['placeTip2'] == 1 ? true : false;
-				data['placeTip3'] = data['placeTip3'] == 1 ? true : false;
-				data['placeTip4'] = data['placeTip4'] == 1 ? true : false;
-				data['placeTip5'] = data['placeTip5'] == 1 ? true : false;
-				data['placeTip6'] = data['placeTip6'] == 1 ? true : false;
-				data['placeTip7'] = data['placeTip7'] == 1 ? true : false;
-				data['placeTip8'] = data['placeTip8'] == 1 ? true : false;
+				data['placeTip1'] = data['placeTip1'] === 1;
+				data['placeTip2'] = data['placeTip2'] === 1;
+				data['placeTip3'] = data['placeTip3'] === 1;
+				data['placeTip4'] = data['placeTip4'] === 1;
+				data['placeTip5'] = data['placeTip5'] === 1;
+				data['placeTip6'] = data['placeTip6'] === 1;
+				data['placeTip7'] = data['placeTip7'] === 1;
+				data['placeTip8'] = data['placeTip8'] === 1;
 
 				this.data = data;
 
