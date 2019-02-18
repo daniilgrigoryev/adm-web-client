@@ -1,13 +1,12 @@
 <template>
-  <div v-if="data">
+  <div v-if="body && viol">
     <!-- данные по делу  -->
-    <!-- {{data}} -->
     <Form :label-width="180" label-position="right">
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Номер Дела</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.deloN" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -15,7 +14,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дата возбуждения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <DatePicker type="date" format="dd-MM-yyyy"  placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+              <Input readonly :value="body.deloDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -23,30 +22,26 @@
           <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.stotvName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
-          <small class="adm-text-small color-gray-medium" slot="label">Вид</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180" placeholder="" filterable clearable>
-                <Option value="l" class="wmax360 txt-break-word">1</Option>
-              </Select>
-            </Col>
-          </Row>
-        </FormItem>
-        <FormItem class="my12">
-          <small class="adm-text-small color-gray-medium" slot="label">Стадия дела</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180" placeholder="" filterable clearable>
-                <Option value="l" class="wmax360 txt-break-word">1</Option>
-              </Select>
-            </Col>
-          </Row>
-        </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Вид</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input readonly :value="body.deloVidName" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Стадия дела</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input readonly :value="body.dtadDeloName" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
         <hr class="txt-hr my24">
 
         <h2 class="adm-text-big color-dark-light my12">Решение по делу</h2>
@@ -55,7 +50,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Документ возбудивший дело</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.docVozbName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -64,7 +59,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.inspVozbKod" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -73,7 +68,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника, Звание, Должность</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="(body.inspVozbName + ', ' + body.inspVozbRang + ', ' + body.inspVozbDolz)" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -82,7 +77,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.organVozbKod" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -91,7 +86,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.organVozbName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -100,7 +95,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Стадия приемки</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.dtadDeloName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -109,7 +104,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Местонахождение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.ogaiNahName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -118,7 +113,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дело основание</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.deloMainDescr" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -127,28 +122,28 @@
           <small class="adm-text-small color-gray-medium" slot="label">Примечания</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.dopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
 
         <hr class="txt-hr my24">
-        <h2 class="adm-text-big color-dark-light my12">Сведенья</h2>
+        <h2 class="adm-text-big color-dark-light my12">Сведения</h2>
 
-        <FormItem class="my12">
-          <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер административного правонарушения</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
-            </Col>
-          </Row>
-        </FormItem>
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер административного правонарушения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input readonly :value="body.mvidFis" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
 
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Дата и Время нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <DatePicker type="datetime" format="dd-MM-yyyy HH:mm" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+              <Input readonly :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -157,7 +152,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Место нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="viol.violPlaceNarFull" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -166,7 +161,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Лицо в отношении которого ведется дело</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="viol.lvokName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -175,7 +170,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Транспортное средство, ГРЗ</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.vehsName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -184,7 +179,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">По пункту Нормативно-Правового Акта</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.violPnpaName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -193,7 +188,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.violStotvName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -202,7 +197,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Код бютжетной классификации</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.kbk" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -211,7 +206,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Фактические сведения по нарушению</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="viol.violFactSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -221,7 +216,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="viol.violDopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -230,7 +225,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Содержание алкголя в крови %, мг/л</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.alcoholInExpAir" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -243,7 +238,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Название комплекса видеофиксации</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.vfixName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -252,7 +247,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер комплекса</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.vfixNumb" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -261,7 +256,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Серитфикат поверки комплекса</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.vfixAkt" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -270,7 +265,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Серитфикат действителен до</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-               <DatePicker type="date" format="dd-MM-yyyy"  placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+              <Input readonly :value="viol.vfixDatend | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -292,6 +287,8 @@
           </th>
           <th class="w180">
             <p class="adm-txt-regular color-dark-light">Проверил</p>
+          </th>
+          <th class="w180">
             <i class="adm-btn-small color-dark-light">Время проверки</i>
           </th>
           <th>
@@ -300,19 +297,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="(error, index) in errors">
           <td class="align-center">
             <div class="round-full bg-yellow w12 h12"></div>
           </td>
           <td>
-            <p class="adm-txt-regular">9-14</p>
+            <p class="adm-txt-regular">{{error.kod}}</p>
           </td>
           <td>
-            <p class="adm-txt-regular">Иванов В. М.</p>
-            <p class="adm-text-small">12.09.2019</p>
+            <p class="adm-txt-regular">{{error.checkIspName}}</p>
           </td>
           <td>
-            <p class="adm-txt-regular">Дата вступления в законную силу решения с кодом 65  больше предпологаемой</p>
+            <p class="adm-text-small">{{error.checkDate | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+          </td>
+          <td>
+            <p class="adm-txt-regular">{{error.mesg}}</p>
           </td>
         </tr>
       </tbody>
@@ -363,10 +362,24 @@
       ...mapGetters({
         dataStore: 'frmEdDeloGetData'
       }),
-      data() {
+      body() {
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
+        }
+        return res;
+      },
+      viol() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.viol;
+        }
+        return res;
+      },
+      errors() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.errors;
         }
         return res;
       },

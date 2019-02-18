@@ -11,10 +11,6 @@
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')"></frm-ed-docs-opred>
     </div>
-    <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
-      <Button type="text">Отменить изменения</Button>
-      <Button type="primary" class="ml12">Сохранить</Button>
-    </div>
   </div>
 </template>
 

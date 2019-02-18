@@ -1,14 +1,13 @@
 <template>
-  <div v-if="data">
+  <div v-if="body">
     <!-- постановление по делу -->
-    <!-- {{data}} -->
 
     <Form :label-width="180" label-position="right">
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.docN" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -16,7 +15,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дата постановления</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <DatePicker type="date" format="dd-MM-yyyy"  placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+              <Input readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -24,7 +23,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">по Постановлению</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.postMainN" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -32,7 +31,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">или по Протоколу</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.protN" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -40,7 +39,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Место составления протокола Постановления</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.placeSost.placeFull" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -53,7 +52,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.inspSostKod" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -62,7 +61,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.inspSostName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -71,7 +70,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.inspSostDolz" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -80,7 +79,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.inspSostRang" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -89,7 +88,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.organSostKod" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -98,7 +97,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.organSostName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -113,7 +112,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дата и Время нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <DatePicker type="datetime" format="dd-MM-yyyy HH:mm" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+              <Input readonly :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -122,7 +121,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Место нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.placeNar.placeFull" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -131,7 +130,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Участник</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.uchastName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -142,9 +141,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Документ участника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180" placeholder="" filterable clearable>
-                <Option value="l" class="wmax360 txt-break-word">1</Option>
-              </Select>
+              <!--<Input readonly :value="body.docTipName" placeholder="Enter something..."></Input>-->
             </Col>
           </Row>
         </FormItem>
@@ -154,7 +151,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Адрес прописки</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.placeAdr.placeFull" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -164,7 +161,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Местро работы</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.workPlace" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -174,7 +171,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Транспортное средство</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.vehsName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -183,7 +180,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">По пункту Нормативно-Правового Акта</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.pnpaName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -192,16 +189,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
-            </Col>
-          </Row>
-        </FormItem>
-
-        <FormItem class="my12">
-          <small class="adm-text-small color-gray-medium" slot="label">Сведенья по нарушению</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.stotvName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -210,7 +198,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Коментарии</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input readonly :value="body.dopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -225,18 +213,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Решение по правонарушению</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180" placeholder="" filterable clearable>
-                <Option value="l" class="wmax360 txt-break-word">1</Option>
-              </Select>
-            </Col>
-          </Row>
-        </FormItem>
-
-       <FormItem class="my12">
-          <small class="adm-text-small color-gray-medium" slot="label">Сумма штрафа</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input placeholder="Enter something..."></Input>
+              <Input readonly :value="body.decisName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -245,14 +222,10 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дата вручения постановления</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-               <DatePicker type="date" format="dd-MM-yyyy"  placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+              <Input readonly :value="body.datUved | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
-
-
-        <a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover block my24">Дополнительное решение</a>
-
     </Form>
   </div>
 </template>
@@ -299,7 +272,7 @@
       ...mapGetters({
         dataStore: 'frmEdDocsPostGetData'
       }),
-      data() {
+      body() {
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
