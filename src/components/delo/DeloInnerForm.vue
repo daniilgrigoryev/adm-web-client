@@ -73,15 +73,15 @@
         await this.updateSizeStack();
         this.current = current;
       },
-      removeForm() {
+      async removeForm() {
         let current = formStack.getCurrent();
-        innerFormStack.toPrev({
+        await innerFormStack.toPrev({
           uid: current.moduleName
         });
+        await this.updateSizeStack();
         this.current = innerFormStack.getCurrent({
           uid: current.moduleName
         });
-        this.sizeInnerStack--;
       },
       async updateSizeStack() {
         await this.$emit('updateSizeStack', {
