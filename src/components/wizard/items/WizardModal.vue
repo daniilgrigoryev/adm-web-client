@@ -1,9 +1,7 @@
 <template>
   <div id="root" class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
     <div id="pagingWrap" class="flex-parent flex-parent--space-between-main">
-
       <Page v-if="limit" :total="data.length" :current="currentPage" :page-size="limit" class="mr12" @on-change="changePage"/>
-      
       <Button type="text" @click="showModal(false)" class="px0 py0">
         <div class="flex-parent flex-parent--center-cross">
           <div class="adm-text-big color-blue-base">Закрыть</div>

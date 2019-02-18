@@ -5,25 +5,77 @@
 
     <wizard-modal v-if="sudModal.visible" :columnsOptions="sudModal.columnsOptions" :data="sudModal.sudList" @showModal="showSudModal" @onRowDbClick="onSudClick"></wizard-modal>
 
-    <div v-if="deloModal.visible" class="modal dolz" style="position: absolute; background: black; color: white; z-index: 99; top: 0; left: 0; right: 0; bottom: 0;">
-      <Button @click="showDeloModal(false)" type="primary" class="ml12">Закрыть</Button>
+    <div v-if="deloModal.visible" class="absolute bg-white z5 scroll-hidden border" style="top: 0; bottom: 0; right: 0; left: 0;">
+      
+      <div class="flex-parent flex-parent--end-main">
+        <Button type="text" @click="showDeloModal(false)" class="px0 py0">
+          <div class="flex-parent flex-parent--center-cross">
+            <div class="adm-text-big color-blue-base">Закрыть</div>
+            <Icon type="md-close" size="50" class="color-blue-base cursor-pointer"/>
+          </div>
+        </Button>
+      </div>
 
-      <RadioGroup v-model="deloModal.paramKey">
-        <Radio label="deloNum">По номеру дела</Radio>
-        <Radio label="postNum">По номеру постановления</Radio>
-      </RadioGroup>
+    
+      <Form :label-width="180" label-position="right">
+				<!-- <FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Поиск</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+              <RadioGroup v-model="deloModal.paramKey">
+                <Radio label="deloNum">По номеру дела</Radio>
+                <Radio label="postNum">По номеру постановления</Radio>
+              </RadioGroup>
+						</Col>
+					</Row>
+				</FormItem> -->
 
-      <Input v-model="deloModal.paramValue" @on-input-change="changeDeloValue" placeholder="Enter something..."></Input>
+				<!-- <FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Поиск</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+              <Input v-model="deloModal.paramValue" @on-input-change="changeDeloValue" placeholder="Enter something..."></Input>
+						</Col>
+					</Row>
+				</FormItem> -->
 
-      <Button @click="findDeloList" :disabled="!deloModal.paramKey || !deloModal.paramValue" type="primary" class="ml12">Поиск</Button>
+				<FormItem class="my12">
+					<small class="adm-text-small color-gray-medium" slot="label">Поиск</small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+              <Input v-model="deloModal.paramValue" @on-input-change="changeDeloValue">
+                  <Select v-model="deloModal.paramKey" slot="prepend" class="w180 align-l">
+                      <Option value="deloNum">По номеру дела</Option>
+                      <Option value="postNum">По номеру постановления</Option>
+                  </Select> 
+                  <Button slot="append" class="append-custom" icon="ios-search" @click="findDeloList" :disabled="!deloModal.paramKey || !deloModal.paramValue" type="primary">Поиск</Button>
+              </Input>
+						</Col>
+					</Row>
+				</FormItem>
 
-      <Select v-if="deloModal.deloList" class="wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect">
-        <Option class="wmax360 txt-break-word" v-for="item in deloModal.deloList" :value="item.value.delo" :key="item.value.id">{{ item.label }}</Option>
-      </Select>
+				<FormItem class="my12" v-if="deloModal.deloList">
+					<small class="adm-text-small color-gray-medium" slot="label">
+            <span v-if="deloModal.paramKey == 'deloNum'">Дело</span>
+            <span v-if="deloModal.paramKey == 'postNum'">Постановление</span>
+          </small>
+					<Row :gutter="16" type="flex" align="middle">
+						<Col :xs="24" :md="14" :lg="16">
+              <Select class="wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect">
+                <Option class="wmax360 txt-break-word" v-for="item in deloModal.deloList" :value="item.value.delo" :key="item.value.id">{{ item.label }}</Option>
+              </Select>
+						</Col>
+					</Row>
+				</FormItem>
+      </Form>
+
+
+
+
 
     </div>
 
-    <Form :label-width="180" abel-position="right">
+    <Form :label-width="180" label-position="right">
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -662,6 +714,17 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .append-custom{
+    border-radius: 0 4px 4px 0px;
+    color: #fff;
+    background-color: #2d8cf0;
+    border-color: #2d8cf0;
+  }
+  .append-custom:disabled,
+  .append-custom[disabled]{
+    color: #c5c8ce;
+    background-color: #f7f7f7;
+    border-color: #dcdee2;
+  }
 </style>
