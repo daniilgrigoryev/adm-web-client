@@ -7,7 +7,7 @@ import accounting from './modules/accounting';
 import offense from './modules/offense';
 import delo from './modules/delo';
 import deloReestr from './modules/deloReestr';
-import dashboard from './modules/dashboard';
+import dashBoard from './modules/dashBoard';
 
 import deloTreeCardView from './modules/deloTreeCardView';
 import frmEdDelo from './modules/frmEdDelo';
@@ -94,7 +94,7 @@ const store = new Vuex.Store({
   getters: {},
   modules: {
     deloReestr,
-    dashboard,
+    dashBoard,
     deloTreeCardView,
     frmEdDelo,
 

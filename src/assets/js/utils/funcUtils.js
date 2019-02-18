@@ -99,6 +99,7 @@ export function lookupValue(dictName, key) {
 
 export function clearAll() {
   localStorage.clear();
+  sessionStorage.removeItem('mainMenuActiveName');
 }
 
 export function parseDateTime(dateTime, format) {

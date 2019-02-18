@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Authorization from '../components/Authorization';
 import DeloReestr from '../components/reestrPassport/DeloReestr';
-import Dashboard from '../components/reestrPassport/Dashboard';
+import DashBoard from '../components/reestrPassport/DashBoard';
 
 import DeloTreeCardView from '../components/viewData/DeloTreeCardView';
 import WizardExecuter from '../components/wizard/WizardExecuter';
@@ -35,9 +35,9 @@ const router = new Router({
       component: DeloReestr,
     },
     {
-      path: ConstantUtils.contextPath + '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
+      path: ConstantUtils.contextPath + '/dashBoard',
+      name: 'DashBoard',
+      component: DashBoard,
     },
     {
       path: ConstantUtils.contextPath + '/deloTreeCardView',

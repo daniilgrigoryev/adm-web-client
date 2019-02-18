@@ -85,6 +85,18 @@ let vue = new Vue({
         withCreate: funcUtils.isEmpty(cid)
       });
     },
+    getDashBoardReestr() {
+      try {
+        formStack.toNext({
+          module: this.$store.state.dashBoard,
+          vm: this,
+          notRemoved: true,
+          withCreate: false
+        });
+      } catch (e) {
+        alert(e.message);
+      }
+    },
     activateTimer() {
       $("body").bind("mousemove keypress mousedown", (function (e) {
         localStorage.setItem('lastActive', JSON.stringify(new Date().getTime()));
