@@ -8,6 +8,8 @@
     </div>
     <div class="hmin360 px36 py12" style="background-color: rgba(255,2,2,0.11)">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')"></frm-ed-delo>
+      <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
+      <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')"></frm-ed-docs-opred>
     </div>
     <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
       <Button type="text">Отменить изменения</Button>
@@ -22,13 +24,19 @@
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import FrmEdDelo from "~/components/delo/FrmEdDelo";
+  import FrmEdDocsPost from "~/components/delo/FrmEdDocsPost";
+  import FrmEdDocsOpred from "~/components/delo/FrmEdDocsOpred";
 
   export default {
     name: "DeloInnerForm",
     props: {
       sizeInnerStack: Number
     },
-    components: {FrmEdDelo},
+    components: {
+      FrmEdDocsOpred,
+      FrmEdDocsPost,
+      FrmEdDelo
+    },
     async created() {
       try {
         if (this.sizeInnerStack > 0) {

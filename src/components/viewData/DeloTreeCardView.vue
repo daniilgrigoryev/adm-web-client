@@ -6,8 +6,7 @@
 
       <div v-if="deloContext" class="px36 py24">
         <div class="my12">
-          <span class="adm-h2 color-gray-medium">Дело № </span>
-          <span class="adm-h1 color-gray-medium">{{deloContext.deloN}}</span>
+          <span @click="nodeClick(deloInfo)" class="adm-h1 color-gray-medium">Дело № {{deloContext.deloN}}</span>
         </div>
         <div class="my6">
           <span class="adm-txt-regular color-gray-medium">{{deloContext.deloDate}}</span>
@@ -87,7 +86,7 @@
         await this.$store.dispatch('fillModule', {'event': eventResponse});
 
         if (this.sizeInnerStack === 0) {
-          await this.$refs.innerForm.addForm(this.dataStore.tree[0]);
+          await this.$refs.innerForm.addForm(this.deloInfo);
         }
       } catch (e) {
         alert(e.message);
@@ -114,6 +113,13 @@
             this.$set(item, 'selected', false);
             res.push(item);
           }
+        }
+        return res;
+      },
+      deloInfo() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.tree[0];
         }
         return res;
       },
