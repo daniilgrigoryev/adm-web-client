@@ -277,8 +277,8 @@
 
     </Form>
 
-      <hr class="txt-hr my24">
-      <h2 class="adm-text-big color-dark-light my12">Ошибки</h2>
+    <hr class="txt-hr my24">
+    <h2 class="adm-text-big color-dark-light my12">Ошибки</h2>
 
 
     <table class='table table--fixed border--0'>

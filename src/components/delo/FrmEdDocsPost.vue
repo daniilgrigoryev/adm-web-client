@@ -1,7 +1,259 @@
 <template>
   <div v-if="data">
-    постановление
-    {{data}}
+    <!-- постановление по делу -->
+    <!-- {{data}} -->
+
+    <Form :label-width="180" label-position="right">
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Дата постановления</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <DatePicker type="date" format="dd-MM-yyyy"  placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+            </Col>
+          </Row>
+        </FormItem>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">по Постановлению</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">или по Протоколу</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Место составления протокола Постановления</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <hr class="txt-hr my24">
+
+        <h2 class="adm-text-big color-dark-light my12">Дело составил</h2>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <hr class="txt-hr my24">
+
+        <h2 class="adm-text-big color-dark-light my12">Нарушение</h2>
+
+
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Дата и Время нарушения</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <DatePicker type="datetime" format="dd-MM-yyyy HH:mm" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Место нарушения</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Участник</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Документ участника</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="wmax240 wmin180" placeholder="" filterable clearable>
+                <Option value="l" class="wmax360 txt-break-word">1</Option>
+              </Select>
+            </Col>
+          </Row>
+        </FormItem>
+
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Адрес прописки</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Местро работы</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Транспортное средство</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">По пункту Нормативно-Правового Акта</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Сведенья по нарушению</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Коментарии</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+
+        <hr class="txt-hr my24">
+
+        <h2 class="adm-text-big color-dark-light my12">Решение по делу</h2>
+
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Решение по правонарушению</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="wmax240 wmin180" placeholder="" filterable clearable>
+                <Option value="l" class="wmax360 txt-break-word">1</Option>
+              </Select>
+            </Col>
+          </Row>
+        </FormItem>
+
+       <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Сумма штрафа</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input placeholder="Enter something..."></Input>
+            </Col>
+          </Row>
+        </FormItem>
+
+        <FormItem class="my12">
+          <small class="adm-text-small color-gray-medium" slot="label">Дата вручения постановления</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+               <DatePicker type="date" format="dd-MM-yyyy"  placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+            </Col>
+          </Row>
+        </FormItem>
+
+
+        <a href="" class="link color-blue-base adm-txt-regular txt-underline-on-hover block my24">Дополнительное решение</a>
+
+    </Form>
   </div>
 </template>
 
