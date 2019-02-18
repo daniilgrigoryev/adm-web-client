@@ -12,14 +12,14 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: "FrmEdDelo",
+    name: "FrmEdDocsOpred",
     async created() {
       try {
         let current = formStack.getCurrent();
         let currentForm = innerFormStack.getCurrent({
           uid: current.moduleName
         });
-        await this.$store.dispatch('frmEdDeloSetCid', currentForm.cid);
+        await this.$store.dispatch('frmEdDocsOpredSetCid', currentForm.cid);
 
         let prepareParams = {
           method: 'restore',
@@ -39,12 +39,12 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdDeloSetCid', null);
-      this.$store.dispatch('frmEdDeloSetData', null);
+      this.$store.dispatch('frmEdDocsOpredSetCid', null);
+      this.$store.dispatch('frmEdDocsOpredSetData', null);
     },
     computed: {
       ...mapGetters({
-        dataStore: 'frmEdDeloGetData'
+        dataStore: 'frmEdDocsOpredGetData'
       }),
       data() {
         let res = null;

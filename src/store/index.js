@@ -11,12 +11,15 @@ import dashBoard from './modules/dashBoard';
 
 import deloTreeCardView from './modules/deloTreeCardView';
 import frmEdDelo from './modules/frmEdDelo';
+import frmEdDocsOpred from './modules/frmEdDocsOpred';
+import frmEdDocsPost from './modules/frmEdDocsPost';
 
 import wizardExecuter from './modules/wizardExecuter';
 import wizardScenarioPost from './modules/wizardScenarioPost';
 import wizardScenario2025 from './modules/wizardScenario2025';
 import wizardScenarioProtPZTC from './modules/wizardScenarioProtPZTC';
 import wizardScenarioProtAPN from './modules/wizardScenarioProtAPN';
+import wizardScenarioAddUchast from './modules/wizardScenarioAddUchast';
 import wizardItemAddress from './modules/wizardItemAddress';
 import wizardItemDecis from './modules/wizardItemDecis';
 import wizardItemDocPostFinal from './modules/wizardItemDocPostFinal';
@@ -32,6 +35,7 @@ import wizardItemOrganization from './modules/wizardItemOrganization';
 import wizardItemOwner from './modules/wizardItemOwner';
 import wizardItemPlace from './modules/wizardItemPlace';
 import wizardItemPredDoc from './modules/wizardItemPredDoc';
+import wizardItemAddUchast from './modules/wizardItemAddUchast';
 import wizardItemVehs from './modules/wizardItemVehs';
 import * as funcUtils from "./../assets/js/utils/funcUtils";
 
@@ -97,12 +101,15 @@ const store = new Vuex.Store({
     dashBoard,
     deloTreeCardView,
     frmEdDelo,
+    frmEdDocsOpred,
+    frmEdDocsPost,
 
     wizardExecuter,
     wizardScenarioPost,
     wizardScenario2025,
     wizardScenarioProtPZTC,
     wizardScenarioProtAPN,
+    wizardScenarioAddUchast,
     wizardItemAddress,
     wizardItemDecis,
     wizardItemDocPostFinal,
@@ -119,6 +126,7 @@ const store = new Vuex.Store({
     wizardItemPlace,
     wizardItemPredDoc,
     wizardItemVehs,
+    wizardItemAddUchast,
     accounting,
     delo,
     offense,

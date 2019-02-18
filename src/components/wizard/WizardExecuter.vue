@@ -7,6 +7,8 @@
       <wizard-scenario-prot-p-z-t-c v-if="isVisible('CreateProtPZTC')" ref="CreateProtPZTC" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-p-z-t-c>
 
       <wizard-scenario-prot-a-p-n v-if="isVisible('CreateProtAPN')" ref="CreateProtAPN" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-a-p-n>
+
+      <wizard-scenario-add-uchast v-if="isVisible('AddUchast')" ref="AddUchast" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-uchast>
     </div>
 </template>
 
@@ -17,6 +19,7 @@
   import WizardScenarioPost from "~/components/wizard/WizardScenarioPost";
   import WizardScenarioProtPZTC from "~/components/wizard/WizardScenarioProtPZTC";
   import WizardScenarioProtAPN from "~/components/wizard/WizardScenarioProtAPN";
+  import WizardScenarioAddUchast from "~/components/wizard/WizardScenarioAddUchast";
 
   export default {
     name: "WizardExecuter",
@@ -24,7 +27,8 @@
       WizardScenario2025,
       WizardScenarioPost,
       WizardScenarioProtPZTC,
-      WizardScenarioProtAPN
+      WizardScenarioProtAPN,
+      WizardScenarioAddUchast
     },
     async created() {
       try {

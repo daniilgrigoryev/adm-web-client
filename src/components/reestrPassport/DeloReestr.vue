@@ -145,6 +145,7 @@
               <Button @click="createWizardScenario2025" type="primary" class="mx6">Создать 2025</Button>
               <Button @click="createWizardScenarioPZTC" type="primary" class="mx6">Создать ПЗТС</Button>
               <Button @click="createWizardScenarioAPN" type="primary" class="mx6">Создать АПН</Button>
+              <!--<Button @click="createWizardScenarioAddUchast" type="primary" class="mx6">Участ</Button>-->
             </Col>
           </Row>
         </Form>
@@ -1336,6 +1337,23 @@
         try {
           let params = {
             scenarioName: 'CreateProtAPN'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioAddUchast() {
+        try {
+          let params = {
+            scenarioName: 'AddUchast'
           };
 
           formStack.toNext({
