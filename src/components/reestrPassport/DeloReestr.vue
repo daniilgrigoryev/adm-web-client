@@ -359,12 +359,12 @@
                           'adm-font-light': true,
                         },
                       }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      // h('p', {
+                      //   class: {
+                      //     'color-gray-medium': true,
+                      //     'adm-text-small': true
+                      //   },
+                      // }, 'Дата оформления'),
                     ])
                   }
                 });
@@ -409,12 +409,12 @@
                           'adm-font-light': true,
                         },
                       }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      // h('p', {
+                      //   class: {
+                      //     'color-gray-medium': true,
+                      //     'adm-text-small': true
+                      //   },
+                      // }, 'Дата оформления'),
                     ])
                   }
                 });
@@ -437,12 +437,12 @@
                           'adm-font-light': true,
                         },
                       }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      // h('p', {
+                      //   class: {
+                      //     'color-gray-medium': true,
+                      //     'adm-text-small': true
+                      //   },
+                      // }, 'Дата оформления'),
                     ])
                   },
                   render: (h, params) => {
@@ -471,12 +471,12 @@
                           'adm-font-light': true,
                         },
                       }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      // h('p', {
+                      //   class: {
+                      //     'color-gray-medium': true,
+                      //     'adm-text-small': true
+                      //   },
+                      // }, 'Дата оформления'),
                     ])
                   },
                   render: (h, params) => {
@@ -504,13 +504,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   },
                   render: (h, params) => {
@@ -538,13 +532,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -566,13 +554,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -594,13 +576,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   },
                   render: (h, params) => {
@@ -628,13 +604,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -656,13 +626,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -684,13 +648,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -712,13 +670,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -740,13 +692,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -768,13 +714,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -796,13 +736,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -824,13 +758,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -852,13 +780,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -880,13 +802,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -908,13 +824,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -936,13 +846,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -964,13 +868,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -992,13 +890,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -1020,13 +912,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
