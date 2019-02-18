@@ -143,8 +143,8 @@
               <Button @click="filterClick" type="primary" class="mx6">Фильтровать</Button>
               <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
               <Button @click="createWizardScenario2025" type="primary" class="mx6">Создать 2025</Button>
-              <Button @click="createWizardScenarioPZTC" type="primary" class="mx6">Создать ПЗТС</Button>
-              <Button @click="createWizardScenarioAPN" type="primary" class="mx6">Создать АПН</Button>
+              <!--<Button @click="createWizardScenarioPZTC" type="primary" class="mx6">Создать ПЗТС</Button>-->
+              <!--<Button @click="createWizardScenarioAPN" type="primary" class="mx6">Создать АПН</Button>-->
               <!--<Button @click="createWizardScenarioAddUchast" type="primary" class="mx6">Участ</Button>-->
             </Col>
           </Row>

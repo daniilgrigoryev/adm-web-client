@@ -72,6 +72,8 @@
         });
         await this.updateSizeStack();
         this.current = current;
+
+        this.$emit('updateSelected');
       },
       async removeForm() {
         let current = formStack.getCurrent();
