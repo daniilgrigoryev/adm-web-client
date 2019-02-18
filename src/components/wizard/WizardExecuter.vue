@@ -32,9 +32,10 @@
           method: 'restore'
         };
         if (funcUtils.isNotEmpty(this.$route.params.scenarioName)) {
-          prepareParams.method = 'loadScenario';
+          prepareParams.method = 'loadScenarioWithNode';
           prepareParams.params = {
-            'name': this.$route.params.scenarioName
+            'name': this.$route.params.scenarioName,
+            'node': this.$route.params.node || null
           };
         }
 
