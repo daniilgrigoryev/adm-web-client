@@ -10,6 +10,8 @@ import deloReestr from './modules/deloReestr';
 import dashboard from './modules/dashboard';
 
 import deloTreeCardView from './modules/deloTreeCardView';
+import frmEdDelo from './modules/frmEdDelo';
+
 import wizardExecuter from './modules/wizardExecuter';
 import wizardScenarioPost from './modules/wizardScenarioPost';
 import wizardScenario2025 from './modules/wizardScenario2025';
@@ -94,6 +96,8 @@ const store = new Vuex.Store({
     deloReestr,
     dashboard,
     deloTreeCardView,
+    frmEdDelo,
+
     wizardExecuter,
     wizardScenarioPost,
     wizardScenario2025,
