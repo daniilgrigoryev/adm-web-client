@@ -134,7 +134,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер административного правонарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input readonly :value="body.mvidFis" placeholder="Enter something..."></Input>
+            <Input readonly :value="viol.mvidFisFull" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -143,7 +143,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дата и Время нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input readonly :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
+              <Input readonly :value="viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
