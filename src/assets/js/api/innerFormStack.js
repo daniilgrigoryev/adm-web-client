@@ -45,14 +45,14 @@ export async function toNext(payload) {
   return next;
 }
 
-export function toPrev(payload) {
+export async function toPrev(payload) {
   let uid = payload.uid + '-' + sessionStorage.getItem('wid');
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
   let current = stack.pop();
   let prev = stack.peek();
   prev.current = true;
 
-  RequestApi.prepareData({
+  await RequestApi.prepareData({
     beanName: null,
     method: 'removeCID',
     cid: current.cid,
@@ -82,13 +82,13 @@ export function getPrev(payload) {
   return this.stackIndexOf(stack.size() - 2);
 }
 
-export function clearStack(payload) {
+export async function clearStack(payload) {
   let uid = payload.uid + '-' + sessionStorage.getItem('wid');
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
 
   while (stack.size() !== 0) {
     let current = stack.pop();
-    RequestApi.prepareData({
+    await RequestApi.prepareData({
       beanName: null,
       method: 'removeCID',
       cid: current.cid

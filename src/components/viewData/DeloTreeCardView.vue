@@ -6,7 +6,7 @@
 
       <div v-if="deloContext" class="px36 py24">
         <div class="my12">
-          <span @click="nodeClick(deloInfo)" class="adm-h1 color-gray-medium">Дело № {{deloContext.deloN}}</span>
+          <span @click="getDelo" class="adm-h1 color-gray-medium">Дело № {{deloContext.deloN}}</span>
         </div>
         <div class="my6">
           <span class="adm-txt-regular color-gray-medium">{{deloContext.deloDate}}</span>
@@ -23,7 +23,7 @@
           <Col :xs="24" :sm="8" :md="8" :lg="8">
             <ul class="tree">
               <li v-for="(item, index) in deloTree" v-if="item.parentCategory && item.recType">
-                <a href="#" @click="nodeClick(item)" class="flex-parent flex-parent--wrap tree__link tree__link--selected border-t border-b border--gray-faint py12">
+                <a href="#" @click="nodeClick(item)" class="flex-parent flex-parent--wrap tree__link border-t border-b border--gray-faint py12" :class='{"tree__link--selected" : item.selected }'>
                   <div class="bg-red ml18" style="width: 40px; height: 40px;">
                     <img src="" alt="">
                   </div>
@@ -73,7 +73,7 @@
           let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('wid');
           let innerStack = funcUtils.getFromSessionStorage(uid);
           if (funcUtils.isNotEmpty(innerStack)) {
-            this.clearInnerStack();
+            await this.clearInnerStack();
           } else {
             funcUtils.addToSessionStorage(uid, new Stack());
           }
@@ -132,8 +132,16 @@
       },
     },
     methods: {
+      async getDelo() {
+        await this.nodeClick(this.deloInfo);
+      },
       async nodeClick(node) {
-        this.clearInnerStack();
+        await this.clearInnerStack();
+
+        this.deloTree.forEach((item) => {
+          item.selected = false;
+        });
+        node.selected = true;
 
         let copyNode = JSON.parse(JSON.stringify(node));
         delete copyNode['selected'];
@@ -165,18 +173,18 @@
         }
         return tree;
       },
-      clearInnerStack() {
+      async clearInnerStack() {
         let params = {
           uid: this.$store.state.deloTreeCardView.moduleName
         };
-        innerFormStack.clearStack(params);
+        await innerFormStack.clearStack(params);
         this.sizeInnerStack = 0;
       },
       updateSizeStack(params) {
         this.sizeInnerStack = innerFormStack.stackSize(params);
       },
-      getPrev() {
-        this.clearInnerStack();
+      async getPrev() {
+        await this.clearInnerStack();
         let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('wid');
         sessionStorage.removeItem(uid);
         try {
