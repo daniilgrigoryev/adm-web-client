@@ -1038,6 +1038,7 @@
               title: "Действия",
               width: 130,
               align: "center",
+              visible: true,
               fixed: "right",
               renderHeader: (h, params) => {
                 return h('Tooltip', {
