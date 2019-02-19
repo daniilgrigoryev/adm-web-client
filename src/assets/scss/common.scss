@@ -97,13 +97,21 @@ html, body, #app{
 .sider__menu-link:hover{
 	border-right: 5px solid $blue-light;
 }
-
 .sider__menu-link.active-link{
 	border-right: 5px solid $blue-light;
 }
 .tree {
 	a.tree__link{
-		background-color: #F5FAFD;
+		// background-color: #F5FAFD; 
+		&::before{
+			content: "";
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 81%;
+			height: 1px;
+			background-color: #E4EEF5;
+		}
 		position: relative;
 		&.tree__link--selected{
 			z-index: 9;

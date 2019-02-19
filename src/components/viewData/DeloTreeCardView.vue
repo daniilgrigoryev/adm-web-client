@@ -20,11 +20,11 @@
       </div>
       <hr class="txt-hr my0">
       <div v-if="deloTree">
-        <Row>
-          <Col :xs="24" :sm="8" :md="8" :lg="8">
-            <ul class="tree">
+        <Row type="flex">
+          <Col>
+            <ul class="tree h-full bg-blue-thin" style="max-width: 400px;">
               <li v-for="(item, index) in deloTree" v-if="item.parentCategory && item.recType">
-                <a href="#" @click="nodeClick(item)" class="flex-parent flex-parent--wrap tree__link border-t border-b border--gray-faint py12" :class='{"tree__link--selected" : item.selected }'>
+                <a href="#" @click="nodeClick(item)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : item.selected }'>
                   <div class="bg-red ml18" style="width: 40px; height: 40px;">
                     <img src="" alt="">
                   </div>
@@ -36,8 +36,8 @@
               <hr class="txt-hr my0" v-else-if="!item.recType && item.category === -3" />
             </ul>
           </Col>
-          <Col :xs="24" :sm="16" :md="16" :lg="16" style="padding: 0">
-            <div class="">
+          <Col :xs="24" :sm="16" :md="16" :lg="16">
+            <div class="mx-auto">
               <delo-inner-form ref="innerForm" :sizeInnerStack="sizeInnerStack" @updateSizeStack="updateSizeStack" @updateSelected="updateSelected"></delo-inner-form>
             </div>
           </Col>
