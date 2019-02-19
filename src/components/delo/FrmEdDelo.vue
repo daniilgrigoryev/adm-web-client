@@ -299,7 +299,8 @@
       <tbody>
         <tr v-for="(error, index) in errors">
           <td class="align-center">
-            <div class="round-full bg-yellow w12 h12"></div>
+            <div class="round-full w12 h12" :class="changeClass(error.priority)">
+            </div>
           </td>
           <td>
             <p class="adm-txt-regular">{{error.kod}}</p>
@@ -357,6 +358,41 @@
     destroyed() {
       this.$store.dispatch('frmEdDeloSetCid', null);
       this.$store.dispatch('frmEdDeloSetData', null);
+    },
+    methods: {
+      changeClass(errorPriority){
+        switch(errorPriority) {
+          case 1:
+              return "bg-red";
+            break;
+          case 2:
+              return "bg-orange";
+            break;
+          case 3:
+              return "bg-yellow";
+            break;
+          case 4:
+              return "bg-green";
+            break;
+          case 5:
+              return "bg-blue";
+            break;
+          case 6:
+              return "bg-purple";
+            break;
+          case 7:
+              return "bg-gray";
+            break;
+          case 8:
+              return "bg-black";
+            break;
+          case 9:
+              return "bg-blue-faint";
+            break;
+          default:
+            return "";
+        }
+      }
     },
     computed: {
       ...mapGetters({
