@@ -6,7 +6,7 @@
           <h2 class="adm-text-big color-dark-light my12">Лицо в отношении которого заводится дело (ЛВОК)</h2>
         </Col>
         <Col>
-          <Select class="wmax240 wmin180" disabled placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+          <Select class="adm-input adm-input--regular wmax240 wmin180" disabled placeholder="" v-model="data.status" clearable @on-change="changeStatus">
             <Option class="wmax360 txt-break-word" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -15,7 +15,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Гражданство:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select v-model="data.gragdKod" filterable clearable @on-change="storeElementData" class="wmin180" placeholder="">
+            <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData"  placeholder="">
               <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -25,7 +25,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ФИО:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.lvokName" disabled @on-input-change="changeFIO" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.lvokName" disabled @on-input-change="changeFIO" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -33,7 +33,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Место рождения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -43,7 +43,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Присутствие ЛВОКа:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" class="wmin180" placeholder="">
+            <Select class="adm-input adm-input--regular wmin180" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">
               <Option class="wmax360 txt-break-word" v-for="item in presenceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>

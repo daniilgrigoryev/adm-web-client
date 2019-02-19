@@ -228,18 +228,19 @@ html, body, #app{
 		font-size: 13px;
 		font-family: 'open_sansregular';
 	}
+	textarea.ivu-input{
+		border: 1px solid $gray-light;
+		border-radius: 3px;
+	}
 	.ivu-icon.ivu-input-icon-clear,
 	.ivu-icon.ivu-icon-ios-close-circle
 	{
 		background-image: url(../images/remove.svg);
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
-		// width: 100%;
 		width: 14px;
 		height: 14px;
-		// border: 1px solid;
 		bottom: calc(50% - 8px);
-		// top: 0;
 		transition: none;
 		right: 8px;
 		cursor: pointer;
@@ -274,14 +275,21 @@ html, body, #app{
 	{
 		border-bottom: 2px solid $blue-light;
 	}
+
+	textarea.ivu-input:hover{
+		border: 1px solid $gray-medium;
+	}
+	textarea.ivu-input:focus{
+		border: 2px solid $blue-light;
+	}
 }
 .adm-input--regular{
-	input {
+	.ivu-input {
 		font-size: 13px;
 	}
 }
 .adm-input--big{
-	input {
+	.ivu-input {
 		font-size: 15px;
 	}
 }

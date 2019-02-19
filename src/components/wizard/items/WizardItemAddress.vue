@@ -5,7 +5,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">{{title}}</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showAddressModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
@@ -116,7 +116,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input v-model="data.dopSved" @on-input-change="storeElementData" disabled placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-input-change="storeElementData" disabled placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>

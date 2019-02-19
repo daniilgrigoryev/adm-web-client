@@ -22,8 +22,8 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Поиск</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-              <Input v-model="deloModal.paramValue" @on-input-change="changeDeloValue">
-                  <Select v-model="deloModal.paramKey" slot="prepend" class="w180 align-l">
+              <Input class="adm-input adm-input--regular" v-model="deloModal.paramValue" @on-input-change="changeDeloValue">
+                  <Select class="adm-input adm-input--regular w180 align-l" v-model="deloModal.paramKey" slot="prepend">
                       <Option value="deloNum">По номеру дела</Option>
                       <Option value="postNum">По номеру постановления</Option>
                   </Select> 
@@ -40,7 +40,7 @@
           </small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect">
                 <Option class="wmax360 txt-break-word" v-for="item in deloModal.deloList" :value="item.value.delo" :key="item.value.id">{{ item.label }}</Option>
               </Select>
 						</Col>
@@ -54,7 +54,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.docN" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="createProtNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
@@ -65,7 +65,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер дела</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
@@ -76,7 +76,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker type="datetime" v-model="data.dateSost" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateSost" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date"></DatePicker>
           </Col>
         </Row>
       </FormItem>
@@ -84,7 +84,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.inspSostKod" @on-input-change="changeInspSostKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
@@ -95,7 +95,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.inspSostName" @on-input-change="changeFIO" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -103,7 +103,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -111,7 +111,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.inspSostRang" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.inspSostRang" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -119,7 +119,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.organSostKod" disabled placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.organSostKod" disabled placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -127,7 +127,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </FormItem>
@@ -135,7 +135,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Статья ответственности</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="stotv" disabled placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="stotv" disabled placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -143,7 +143,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Орган рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.organRasmName" disabled placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.organRasmName" disabled placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showSudModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник судов</a>
@@ -154,7 +154,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Дата и Время рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker type="datetime" v-model="data.dateRasm" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date" class="wmin120 wmax180"></DatePicker>
+            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateRasm" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date"></DatePicker>
           </Col>
         </Row>
       </FormItem>
@@ -162,7 +162,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Дело - основание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="mainDelo" disabled placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="mainDelo" disabled placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showDeloModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник</a>
