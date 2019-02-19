@@ -124,7 +124,7 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Дата рождения</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.birthday.value" placeholder="Дата рождения"></Input>
+                    <input-mask v-model="filter.birthday.value" :maskProps="maskProps" :value="filter.birthday.value" :inputProps="inputProps"></input-mask>
                   </FormItem>
                 </Col>
               </Row>
@@ -143,9 +143,6 @@
               <Button @click="filterClick" type="primary" class="mx6">Фильтровать</Button>
               <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
               <Button @click="createWizardScenario2025" type="primary" class="mx6">Создать 2025</Button>
-              <!--<Button @click="createWizardScenarioPZTC" type="primary" class="mx6">Создать ПЗТС</Button>-->
-              <!--<Button @click="createWizardScenarioAPN" type="primary" class="mx6">Создать АПН</Button>-->
-              <!--<Button @click="createWizardScenarioAddUchast" type="primary" class="mx6">Участ</Button>-->
             </Col>
           </Row>
         </Form>
@@ -178,10 +175,14 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
+  import InputMask from "../InputMask";
   import {mapGetters} from 'vuex';
 
   export default {
     name: "DeloReestr",
+    components: {
+      InputMask
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -306,6 +307,13 @@
             value: null
           }
         },
+        inputProps: {
+          class: 'adm-input adm-input--big'
+        },
+        maskProps: {
+          alias: "datetime",
+          inputFormat: 'dd/mm/yyyy'
+        },
         columnsOptions: []
       }
     },
@@ -358,13 +366,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      // h('p', {
-                      //   class: {
-                      //     'color-gray-medium': true,
-                      //     'adm-text-small': true
-                      //   },
-                      // }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -408,13 +410,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      // h('p', {
-                      //   class: {
-                      //     'color-gray-medium': true,
-                      //     'adm-text-small': true
-                      //   },
-                      // }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   }
                 });
@@ -436,13 +432,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      // h('p', {
-                      //   class: {
-                      //     'color-gray-medium': true,
-                      //     'adm-text-small': true
-                      //   },
-                      // }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   },
                   render: (h, params) => {
@@ -470,13 +460,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title),
-                      // h('p', {
-                      //   class: {
-                      //     'color-gray-medium': true,
-                      //     'adm-text-small': true
-                      //   },
-                      // }, 'Дата оформления'),
+                      }, params.column.title)
                     ])
                   },
                   render: (h, params) => {
@@ -616,7 +600,6 @@
                   key: 'deloVidName',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -638,7 +621,6 @@
                   key: 'docN',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -660,7 +642,6 @@
                   key: 'lockName',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -682,7 +663,6 @@
                   key: 'lvokName',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -704,7 +684,6 @@
                   key: 'opredN',
                   minWidth: 220,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -726,7 +705,6 @@
                   key: 'postN',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -748,7 +726,6 @@
                   key: 'protN',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -770,7 +747,6 @@
                   key: 'regno',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -792,7 +768,6 @@
                   key: 'stadDeloName',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -814,7 +789,6 @@
                   key: 'stadIspolnNameLast',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -836,7 +810,6 @@
                   key: 'stotv',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -858,7 +831,6 @@
                   key: 'stotvKod',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -880,7 +852,6 @@
                   key: 'uchastName',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -902,7 +873,6 @@
                   key: 'ulName',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -991,6 +961,66 @@
         }
 
         return filterObj;
+      },
+      changeBirthday() {
+        let v = this.filter.birthday.value;
+
+        if (funcUtils.isNotEmpty(v)) {
+          let express1 = /^\d{1,2}$/;
+          let express2 = /^(\d{2})\/(\d{1,2})$/;
+          let express3 = /^(\d{2})\/(\d{2})\/(\d{1,4})$/;
+          let regs1 = v.match(express1);
+          let regs2 = v.match(express2);
+          let regs3 = v.match(express3);
+
+          if (v.length === 2 && regs1 && regs1[0] >= 1 && regs1[0] <= 31) {
+            this.filter.birthday.value = v + '/';
+          } else if (v.length === 2 && !regs1) {
+            if (express1.test(v[0]) && v[0] > 0 && v[0] < 12) {
+              this.filter.birthday.value = '0' + v[0] + '/';
+            } else {
+              this.$refs.filterBirthday.currentValue = v[0].trim();
+              this.filter.birthday.value = v[0].trim();
+            }
+          } else if (v.length === 2 && !regs1 || (regs1 && (regs1[0] < 0 || regs1[0] > 31))) {
+            this.$refs.filterBirthday.currentValue = null;
+            this.filter.birthday.value = null;
+          } else if (v.length === 3 && v[2] !== '/') {
+            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 2) + '/';
+            this.filter.birthday.value = this.filter.birthday.value.substr(0, 2) + '/';
+          } else if (v.length <= 2 && !regs1) {
+            this.$refs.filterBirthday.currentValue = null;
+            this.filter.birthday.value = null;
+          }
+
+          else if (v.length === 5 && regs2 && regs2[2] >= 1 && regs2[2] <= 12) {
+            this.filter.birthday.value = v + '/';
+          } else if (v.length === 5 && !regs2) {
+            if (express1.test(v[3]) && v[3] > 0 && v[3] < 12) {
+              this.filter.birthday.value = this.filter.birthday.value.substr(0, 3) + '0' + v[3] + '/';
+            } else {
+              this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 3) + v[3].trim();
+              this.filter.birthday.value = this.filter.birthday.value.substr(0, 3) + v[3].trim();
+            }
+          } else if (v.length === 5 && !regs2 || (regs2 && (regs2[2] < 0 || regs2[2] > 12))) {
+            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 2) + '/';
+            this.filter.birthday.value = this.filter.birthday.value.substr(0, 2) + '/';
+          } else if (v.length === 6 && v[5] !== '/') {
+            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 5) + '/';
+            this.filter.birthday.value = this.filter.birthday.value.substr(0, 5) + '/';
+          } else if (v.length === 4 && !regs2) {
+            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 2) + '/';
+            this.filter.birthday.value = this.filter.birthday.value.substr(0, 2) + '/';
+          }
+
+          else if (!regs3) {
+            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 6);
+            this.filter.birthday.value = this.filter.birthday.value.substr(0, 6);
+          } else if (v.length === 10 && regs3 && (regs3[3] < 1902 || regs3[3] > new Date().getFullYear())) {
+            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 6);
+            this.filter.birthday.value = this.filter.birthday.value.substr(0, 6);
+          }
+        }
       },
       parseFilter(filter) {
         if (funcUtils.isNotEmpty(filter)) {
@@ -1115,42 +1145,6 @@
         });
         await this.$store.dispatch('fillModule', {'event': eventResponse});
       },
-      admAccounting() {
-        try {
-          formStack.toNext({
-            module: this.$store.state.accounting,
-            vm: this,
-            notRemoved: true,
-            withCreate: false
-          });
-        } catch (e) {
-          alert(e.message);
-        }
-      },
-      admOffense() {
-        try {
-          formStack.toNext({
-            module: this.$store.state.offense,
-            vm: this,
-            notRemoved: true,
-            withCreate: false
-          });
-        } catch (e) {
-          alert(e.message);
-        }
-      },
-      admDelo() {
-        try {
-          formStack.toNext({
-            module: this.$store.state.delo,
-            vm: this,
-            notRemoved: true,
-            withCreate: false
-          });
-        } catch (e) {
-          alert(e.message);
-        }
-      },
       getDelo(deloId) {
         try {
           let params = {
@@ -1189,57 +1183,6 @@
         try {
           let params = {
             scenarioName: 'CreateProt2025'
-          };
-
-          formStack.toNext({
-            module: this.$store.state.wizardExecuter,
-            vm: this,
-            notRemoved: true,
-            params: params,
-            withCreate: true
-          });
-        } catch (e) {
-          alert(e.message);
-        }
-      },
-      createWizardScenarioPZTC() {
-        try {
-          let params = {
-            scenarioName: 'CreateProtPZTC'
-          };
-
-          formStack.toNext({
-            module: this.$store.state.wizardExecuter,
-            vm: this,
-            notRemoved: true,
-            params: params,
-            withCreate: true
-          });
-        } catch (e) {
-          alert(e.message);
-        }
-      },
-      createWizardScenarioAPN() {
-        try {
-          let params = {
-            scenarioName: 'CreateProtAPN'
-          };
-
-          formStack.toNext({
-            module: this.$store.state.wizardExecuter,
-            vm: this,
-            notRemoved: true,
-            params: params,
-            withCreate: true
-          });
-        } catch (e) {
-          alert(e.message);
-        }
-      },
-      createWizardScenarioAddUchast() {
-        try {
-          let params = {
-            scenarioName: 'AddUchast'
           };
 
           formStack.toNext({
