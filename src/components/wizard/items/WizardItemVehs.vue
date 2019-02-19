@@ -10,7 +10,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Регистрационный знак ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.regno" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.regno" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -18,7 +18,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Тип кузова ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" clearable @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" clearable @on-change="storeElementData">
               <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
@@ -28,7 +28,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Марка ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto">
               <Option v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
@@ -38,7 +38,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Модель ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()">
               <Option v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
@@ -48,7 +48,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Принадлежность ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.ownerTip" clearable @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.ownerTip" clearable @on-change="storeElementData">
               <Option v-for="item in ownerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>

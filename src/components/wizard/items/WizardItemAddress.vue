@@ -29,7 +29,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Код страны</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input v-model="data.countryCode" disabled placeholder="Enter something..."></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.countryCode" disabled placeholder="Код страны"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -38,7 +38,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Название</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input v-model="data.countryName" disabled placeholder="Enter something..."></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.countryName" disabled placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -47,7 +47,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Регион</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180" v-model="data.regionId" filterable clearable @on-change="changeRegion">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.regionId" filterable clearable @on-change="changeRegion">
                 <Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
               </Select>
             </Col>
@@ -58,7 +58,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Населенный пункт</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
                 <Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
               </Select>
             </Col>
@@ -69,7 +69,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Улица</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
                 <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
               </Select>
             </Col>
@@ -80,7 +80,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Дом</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input v-model="data.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -89,7 +89,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input v-model="data.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -98,7 +98,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Строение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-             <Input v-model="data.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+             <Input class="adm-input adm-input--regular" v-model="data.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -107,7 +107,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input v-model="data.nstroenie" @on-input-change="storeElementData" disabled placeholder="Enter something..."></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.nstroenie" @on-input-change="storeElementData" disabled placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>

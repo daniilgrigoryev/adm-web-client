@@ -5,7 +5,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Гражданство:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
-            <Select v-model="data.gragdKod" filterable clearable @on-change="storeElementData" class="wmin180" placeholder="">
+            <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
               <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -15,7 +15,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ФИО:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="fio" @on-input-change="changeFIO" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="fio" @on-input-change="changeFIO" placeholder="ФИО"></Input>
           </Col>
         </Row>
       </FormItem>
@@ -23,7 +23,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Пол:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
-            <Select v-model="data.sex" @on-change="storeElementData" class="wmin180" placeholder="">
+            <Select class="adm-input adm-input--regular wmin180" v-model="data.sex" @on-change="storeElementData" placeholder="">
               <Option value="0">Мужской</Option>
               <Option value="1">Женский</Option>
             </Select>
@@ -42,7 +42,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Место рождения</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
+            <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -52,7 +52,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Место работы:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Место работы:"></Input>
           </Col>
         </Row>
       </FormItem>
@@ -60,7 +60,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Телефон:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.phone" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон:"></Input>
           </Col>
         </Row>
       </FormItem>

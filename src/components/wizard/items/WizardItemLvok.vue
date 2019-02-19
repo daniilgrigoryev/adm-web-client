@@ -6,7 +6,7 @@
           <h2 class="adm-text-big color-dark-light my12">Лицо в отношении которого заводится дело (ЛВОК)</h2>
         </Col>
         <Col>
-          <Select class="wmax240 wmin180" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+          <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
             <Option class="wmax360 txt-break-word" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -15,7 +15,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Тип ЛВОКа:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.tip" clearable @on-change="changeTip" :disabled="!data.status">
+            <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.tip" clearable @on-change="changeTip" :disabled="!data.status">
               <Option class="wmax360 txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>

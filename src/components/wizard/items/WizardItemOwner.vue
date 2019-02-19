@@ -10,7 +10,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Статус</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in ownerStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>

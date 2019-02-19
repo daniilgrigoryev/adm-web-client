@@ -8,7 +8,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.name" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.name" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="searchUlByName" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
@@ -19,7 +19,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ИНН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.inn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.inn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="searchUlByInn" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
@@ -30,16 +30,15 @@
         <small class="adm-text-small color-gray-medium" slot="label">ИНН кем выдан</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.innKemVydan" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.innKemVydan" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">ОГРН</small>
         <Row :gutter="16" type="flex" align="middle">
-
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.ogrn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.ogrn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -47,7 +46,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">КПП</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.kpp" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.kpp" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -55,7 +54,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ОКПО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.okpo" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.okpo" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -63,7 +62,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Дата регистрации Юр. лица</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input v-model="data.dateReg" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.dateReg" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -71,7 +70,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Тип ЮЛ</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.tip" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tip" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in tipULList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
@@ -81,7 +80,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Форма собственности</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.fsobstKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.fsobstKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in formSobstvList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
@@ -91,7 +90,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">ОПФ</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" placeholder="" v-model="data.orgformKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.orgformKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in orgFormList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
@@ -101,7 +100,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Ведомство</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180" v-model="data.vedomstvoId" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.vedomstvoId" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in vedomstList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>

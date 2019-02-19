@@ -29,7 +29,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Код страны</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.adr.countryCode" disabled placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.adr.countryCode" disabled placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -37,7 +37,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Название</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.adr.countryName" disabled placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.adr.countryName" disabled placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -45,7 +45,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Регион</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Select class="wmax240 wmin180" v-model="data.adr.regionId" filterable clearable @on-change="changeRegion">
+							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.regionId" filterable clearable @on-change="changeRegion">
 								<Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
 							</Select>
 						</Col>
@@ -56,7 +56,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Район</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Select class="wmax240 wmin180" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
 								<Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 							</Select>
 						</Col>
@@ -67,7 +67,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Населенный пункт</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Select class="wmax240 wmin180" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
+							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
 								<Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 							</Select>
 						</Col>
@@ -78,7 +78,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Дорога</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Select class="wmax240 wmin180" v-model="data.roadId" filterable clearable @on-query-change="changeRoad" @on-clear="changeRoad">
+							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.roadId" filterable clearable @on-query-change="changeRoad" @on-clear="changeRoad">
 								<Option class="wmax360 txt-break-word" v-for="item in roadsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 							</Select>
 						</Col>
@@ -89,7 +89,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">МГО</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.machta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.machta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -98,7 +98,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">МГТ</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.mgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.mgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -106,7 +106,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">км, метр</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.km" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.km" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -115,7 +115,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Место</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Select class="wmax240 wmin180" v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
+							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
 								<Option class="wmax360 txt-break-word" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 							</Select>
 						</Col>
@@ -126,7 +126,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Улица</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Select class="wmax240 wmin180" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
 								<Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 							</Select>
 						</Col>
@@ -137,7 +137,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Дом</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.adr.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.adr.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -146,7 +146,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.adr.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.adr.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -155,7 +155,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Строение</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.adr.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.adr.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -164,7 +164,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -182,7 +182,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Широта</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.y" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.y" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -191,7 +191,7 @@
 					<small class="adm-text-small color-gray-medium" slot="label">Долгота</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Input v-model="data.x" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+							<Input class="adm-input adm-input--regular" v-model="data.x" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
 				</FormItem>
@@ -228,7 +228,7 @@
 						<small class="adm-text-small color-gray-medium" slot="label">МГО</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Input v-model="data.dopMachta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+								<Input class="adm-input adm-input--regular" v-model="data.dopMachta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
 					</FormItem>
@@ -237,7 +237,7 @@
 						<small class="adm-text-small color-gray-medium" slot="label">МГТ</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Input v-model="data.dopMgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+								<Input class="adm-input adm-input--regular" v-model="data.dopMgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
 					</FormItem>
@@ -246,7 +246,7 @@
 						<small class="adm-text-small color-gray-medium" slot="label">км, метр</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Input v-model="data.dopKm" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+								<Input class="adm-input adm-input--regular" v-model="data.dopKm" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
 					</FormItem>
@@ -277,7 +277,7 @@
 						<small class="adm-text-small color-gray-medium" slot="label">Дом</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Input v-model="data.adrDop.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+								<Input class="adm-input adm-input--regular" v-model="data.adrDop.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
 					</FormItem>
@@ -286,7 +286,7 @@
 						<small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Input v-model="data.adrDop.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+								<Input class="adm-input adm-input--regular" v-model="data.adrDop.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
 					</FormItem>
@@ -295,7 +295,7 @@
 						<small class="adm-text-small color-gray-medium" slot="label">Строение</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Input v-model="data.adrDop.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+								<Input class="adm-input adm-input--regular" v-model="data.adrDop.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
 					</FormItem>
@@ -304,7 +304,7 @@
 						<small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Input v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
+								<Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
 					</FormItem>
