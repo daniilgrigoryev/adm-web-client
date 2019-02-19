@@ -122,9 +122,9 @@
 				</div>
 				<hr class="txt-hr my0">
 				<div>
-					<Row>
-						<Col :xs="24" :sm="8" :md="8" :lg="8">
-							<ul class="tree">
+					<Row type="flex">
+						<Col>
+							<ul class="tree h-full bg-blue-thin" style="max-width: 400px;">
 								<li>
 									<a href="#" class="flex-parent flex-parent--wrap tree__link tree__link--selected border-t border-b border--gray-faint py12">
 										<div class="bg-red ml18" style="width: 40px; height: 40px;">
