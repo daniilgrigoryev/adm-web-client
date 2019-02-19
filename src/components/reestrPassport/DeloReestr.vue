@@ -18,7 +18,7 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Номер дела</div>
-                    <Input v-model="filter.deloN.value" placeholder="Номер дела"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.deloN.value" placeholder="Номер дела" clearable></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
@@ -26,7 +26,7 @@
                     <Col :xs="12" :md="18" :lg="12">
                       <FormItem class="w-full">
                         <div slot="label" class="adm-text-small color-gray-medium">Дата заведения дела</div>
-                        <DatePicker class="w-full" type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value" placeholder="Дата заведения дела"></DatePicker>
+                        <DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value" placeholder="Дата заведения дела"></DatePicker>
                       </FormItem>
                     </Col>
                     <Col :xs="12" :md="6" :lg="12">
@@ -43,7 +43,7 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">ГРЗ автомобиля</div>
-                    <Input v-model="filter.regno.value" placeholder="ГРЗ автомобил"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.regno.value" placeholder="ГРЗ автомобиля" clearable></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
@@ -51,13 +51,13 @@
                     <div slot="label" class="adm-text-small color-gray-medium">Документ прикрепленный к делу</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="12" :md="12" :lg="12">
-                        <Select placeholder="Выбрать" v-model="filter.docVid.value" filterable clearable>
+                        <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.docVid.value" filterable clearable>
                           <option value="null"> </option>
                           <Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
                       <Col :xs="12" :md="12" :lg="12">
-                        <Input v-model="filter.docN.value" placeholder="Номер документа"></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.docN.value" placeholder="Номер документа"></Input>
                       </Col>
                     </Row>
                   </FormItem>
@@ -70,13 +70,13 @@
                     <div slot="label" class="adm-text-small color-gray-medium">Физическое лицо - ЛВОК</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input v-model="filter.firstName.value" placeholder="Фамилия"></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.firstName.value" placeholder="Фамилия"></Input>
                       </Col>
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input v-model="filter.secondName.value" placeholder="Имя"></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.secondName.value" placeholder="Имя"></Input>
                       </Col>
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input v-model="filter.thirdName.value" placeholder="Отчество"></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.thirdName.value" placeholder="Отчество"></Input>
                       </Col>
                     </Row>
                   </FormItem>
@@ -86,13 +86,13 @@
                     <div slot="label" class="adm-text-small color-gray-medium">Стадия дела</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="24" :md="12" :lg="12">
-                        <Select placeholder="Выбрать" v-model="filter.stadDeloKod.value" filterable clearable>
+                        <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.stadDeloKod.value" filterable clearable>
                           <option value="null"> </option>
                           <Option class="wmax360 txt-break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
                       <Col :xs="24" :md="12" :lg="12">
-                        <Select placeholder="По статье" v-model="filter.stotvId.value" filterable clearable>
+                        <Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId.value" filterable clearable>
                           <option value="null"> </option>
                           <Option class="wmax360 txt-break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                         </Select>
@@ -103,13 +103,13 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Юридическое лицо - ЛВОК</div>
-                    <Input v-model="filter.ulName.value" placeholder="Название организации"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.ulName.value" placeholder="Название организации"></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Номер УПИ</div>
-                    <Input v-model="filter.upi.value" placeholder="Номер УПИ"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.upi.value" placeholder="Номер УПИ"></Input>
                   </FormItem>
                 </Col>
               </Row>
@@ -118,13 +118,13 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Приоритет ошибки</div>
-                    <Input v-model="filter.checkPriority.value" placeholder="Приоритет ошибки"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.checkPriority.value" placeholder="Приоритет ошибки"></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Дата рождения</div>
-                    <Input v-model="filter.birthday.value" placeholder="Дата рождения"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.birthday.value" placeholder="Дата рождения"></Input>
                   </FormItem>
                 </Col>
               </Row>
