@@ -1,8 +1,27 @@
 <template>
   <div>
-    <input type="text" v-model="userName" @keyup.enter.native="authorize" />
-    <input type="text" v-model="password" @keyup.enter.native="authorize" />
-    <button type="button" @click="authorize">Войти</button>
+    <Form :label-width="180" label-position="right">
+
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Логин</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="userName" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+
+      <FormItem class="my12">
+        <small class="adm-text-small color-gray-medium" slot="label">Пароль</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="password" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </FormItem>
+
+      <Button @click="authorize" type="primary" class="ml12">Войти</Button>
+    </Form>
   </div>
 
 </template>
