@@ -96,8 +96,8 @@ module.exports = (options = {}) => ({
     historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname
     },
-    // contentBase: resolve('./src/assets'),
-    // watchContentBase: true,
+    contentBase: resolve('./src/assets'),
+    watchContentBase: true,
     watchOptions: {
       ignored: /node_modules/
     }
