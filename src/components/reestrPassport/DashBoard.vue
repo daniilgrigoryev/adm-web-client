@@ -3,7 +3,7 @@
       <div class="wmax1920 mx-auto">
         <!-- <a href="#" @click="getPrev()">Назад</a> -->
 		
-		<div class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: calc(100vh - 66px);">
+		<div class="flex-parent flex-parent--center-main flex-parent--center-cross" style="margin-top: 6%"><!-- style="height: calc(100vh - 66px);" -->
 			<div>
 				<Row type="flex" justify="center">
 					<Col>
