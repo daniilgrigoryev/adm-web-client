@@ -1,13 +1,5 @@
 <template>
   <div v-if="dataStore">
-    <!-- <div>
-      <div class="prose my24">
-        <h4 class="my0 px0 inline align-middle">Верстка:</h4>
-        <button class="txt-kbd" type="button" @click="admAccounting">админ учет</button>
-        <button class="txt-kbd" type="button" @click="admDelo">дело</button>
-        <button class="txt-kbd" type="button" @click="admOffense">возбуждение адм. правонарушения</button>
-      </div>
-    </div> -->
     <div class="bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
         <Form inline label-position="top">
@@ -142,7 +134,6 @@
             <Col :xs="24" :md="24" :lg="24">
               <Button @click="filterClick" type="primary" class="mx6">Фильтровать</Button>
               <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
-              <Button @click="createWizardScenario2025" type="primary" class="mx6">Создать 2025</Button>
             </Col>
           </Row>
         </Form>
@@ -1166,23 +1157,6 @@
         try {
           let params = {
             scenarioName: 'CreatePost'
-          };
-
-          formStack.toNext({
-            module: this.$store.state.wizardExecuter,
-            vm: this,
-            notRemoved: true,
-            params: params,
-            withCreate: true
-          });
-        } catch (e) {
-          alert(e.message);
-        }
-      },
-      createWizardScenario2025() {
-        try {
-          let params = {
-            scenarioName: 'CreateProt2025'
           };
 
           formStack.toNext({
