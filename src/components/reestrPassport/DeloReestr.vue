@@ -122,18 +122,18 @@
               </Row>
             </Col>
             <Col :xs="24" :md="4" :lg="2">
-              <div class="h-full flex-parent flex-parent--center-cross flex-parent--center-main">
-                <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover'>
-                  <span v-if="hideMore">Меньше параметров</span>
-                  <span v-else>Больше параметров</span>
-                </a>
+              <div class="h-full flex-parent flex-parent--column flex-parent--center-cross flex-parent--center-main">
+                <Button @click="filterClick" type="primary" class="my-auto">Фильтровать</Button>
               </div>
             </Col>
           </Row>
           <Row>
             <Col :xs="24" :md="24" :lg="24">
-              <Button @click="filterClick" type="primary" class="mx6">Фильтровать</Button>
               <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
+              <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
+                <span v-if="hideMore">Меньше параметров</span>
+                <span v-else>Больше параметров</span>
+              </a>
             </Col>
           </Row>
         </Form>
