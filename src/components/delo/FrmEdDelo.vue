@@ -68,7 +68,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника, Звание, Должность</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="(body.inspVozbName + ', ' + body.inspVozbRang + ', ' + body.inspVozbDolz)" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input class="adm-input adm-input--regular" readonly :value="body.inspVozbName + ', ' + body.inspVozbRang + ', ' + body.inspVozbDolz" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </FormItem>
@@ -188,7 +188,7 @@
           <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="viol.violStotvName" placeholder="Enter something..."></Input>
+              <Input class="adm-input adm-input--regular" readonly :value="viol.violStotvKod + ', ' +viol.violStotvName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </FormItem>
@@ -360,37 +360,40 @@
       this.$store.dispatch('frmEdDeloSetData', null);
     },
     methods: {
-      changeClass(errorPriority){
-        switch(errorPriority) {
-          case 1:
+      changeClass(errorPriority) {
+        if (funcUtils.isNotEmpty(errorPriority)) {
+          switch (errorPriority) {
+            case 1: {
               return "bg-red";
-            break;
-          case 2:
+            }
+            case 2: {
               return "bg-orange";
-            break;
-          case 3:
+            }
+            case 3: {
               return "bg-yellow";
-            break;
-          case 4:
+            }
+            case 4: {
               return "bg-green";
-            break;
-          case 5:
+            }
+            case 5: {
               return "bg-blue";
-            break;
-          case 6:
+            }
+            case 6: {
               return "bg-purple";
-            break;
-          case 7:
+            }
+            case 7: {
               return "bg-gray";
-            break;
-          case 8:
+            }
+            case 8: {
               return "bg-black";
-            break;
-          case 9:
+            }
+            case 9: {
               return "bg-blue-faint";
-            break;
-          default:
-            return "";
+            }
+            default: {
+              return "";
+            }
+          }
         }
       }
     },
