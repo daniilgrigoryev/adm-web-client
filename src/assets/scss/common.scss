@@ -14,7 +14,7 @@
 	letter-spacing: 0.1px;
 	line-height: 32px;
 }
-.adm-h2{
+.adm-h3{
 	font-size: 20px;
 	letter-spacing: 0.2px;
 	line-height: 32px;
@@ -291,5 +291,17 @@ html, body, #app{
 .adm-input--big{
 	.ivu-input {
 		font-size: 15px;
+	}
+}
+
+
+
+.adm-btn-primary{
+	background-color: #1888CC;
+	height: 45px;
+	padding: 15px 30px;
+	line-height: 100%;
+	&:hover{
+		background-color: #1172AC;
 	}
 }
