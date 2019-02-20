@@ -86,6 +86,8 @@
         this.current = innerFormStack.getCurrent({
           uid: current.moduleName
         });
+
+        this.$emit('updateSelected');
       },
       async updateSizeStack() {
         await this.$emit('updateSizeStack', {

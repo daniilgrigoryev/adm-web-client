@@ -128,10 +128,7 @@
             </div>
           </Col>
         </Row>
-        
        </Form>
-
-    
     </div>
   </div>
 </template>

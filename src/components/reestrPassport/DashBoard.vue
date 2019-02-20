@@ -55,7 +55,7 @@
 								<div class="mb12">
 									<img src="../../assets/images/tax.png" alt="">
 								</div>
-								<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Неуплата штрафа</a>
+								<a href="#" @click="createWizardScenario2025" class="adm-text-big link color-blue-base txt-underline-on-hover">Неуплата штрафа</a>
 							</div>
 						</Card>
 					</Col>
@@ -109,6 +109,23 @@
         try {
           let params = {
             scenarioName: 'CreateProtAPN'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenario2025() {
+        try {
+          let params = {
+            scenarioName: 'CreateProt2025'
           };
 
           formStack.toNext({

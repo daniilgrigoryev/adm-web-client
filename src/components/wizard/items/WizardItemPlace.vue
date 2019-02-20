@@ -313,27 +313,21 @@
 						<small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Input class="adm-input adm-input--regular" v-model="data.adrDop.dopDopSved" @on-input-change="storeElementData" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+							`	<Input class="adm-input adm-input--regular" v-model="data.adrDop.dopDopSved" @on-input-change="storeElementData" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>`
 							</Col>
 						</Row>
 					</FormItem>
-
-					<Row :gutter="16" type="flex" align="middle" justify="start">
-						<Col :xs="24" :md="14" :lg="17">
-							<div class="flex-parent flex-parent--end-main">
-								<Button @click="save" type="primary" class="mb12">Сохранить</Button>
-							</div>
-						</Col>
-					</Row>
-					
 				</div>
 
+        <Row :gutter="16" type="flex" align="middle" justify="start">
+          <Col :xs="24" :md="14" :lg="17">
+            <div class="flex-parent flex-parent--end-main">
+              <Button @click="save" type="primary" class="mb12">Сохранить</Button>
+            </div>
+          </Col>
+        </Row>
 			</Form>
-
-	
-			
 		</div>
-	
 	</div>
 </template>
 
