@@ -305,3 +305,11 @@ html, body, #app{
 		background-color: #1172AC;
 	}
 }
+
+
+.card{
+	background-color: #fff;
+	&:hover .card__title{
+		color: $blue-base;
+	}
+}

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="px36 py24">
+        <!-- <div class="px36 py24">
             <div class="">
                 <span class="adm-h2 color-gray-medium">Возбуждение административного правонарушения Постановлением</span>
             </div>
@@ -444,13 +444,36 @@
                     </div>
                 </Col>
             </Row>
+        </div> -->
+
+     <div class="wmax1920 mx-auto">
+        <!-- <a href="#" @click="getPrev()">Назад</a> -->
+        <div class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: calc(100vh - 66px);">
+            <div>
+                <div>
+                    <h1 class="adm-h1 color-gray-medium">Переход</h1>
+                    <h3 class="adm-h3 color-gray-medium">в подсистемы МАДИ</h3>
+                </div>
+                <Row type="flex" justify="center">
+                    <Col>
+                        <Card class="card px24 my12 mx12 wmin360 cursor-pointer">
+                            <h3 class="card__title adm-h3 color-gray-medium" style="	line-height: 24px;">
+                                Административная<br> 
+                                практика
+                            </h3>
+                            <p class="card__description adm-text-small color-gray-medium">
+                                Административная ответственность за соблюдение правил ПДД
+                            </p>
+                            <div class="card__version"></div>
+                        </Card>
+                    </Col>
+                </Row>
+            </div>
         </div>
+      </div>
     </div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
 
 <script>
 import * as funcUtils from "../../assets/js/utils/funcUtils";

@@ -2,6 +2,7 @@
   <div v-if="dataStore">
     <div class="bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
+        <a href="#" @click="getOffense">sdfdsf</a>
         <Form inline label-position="top">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="22">
@@ -1147,6 +1148,19 @@
             vm: this,
             notRemoved: false,
             params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      getOffense() {
+        try {
+          formStack.toNext({
+            module: this.$store.state.offense,
+            vm: this,
+            notRemoved: false,
+            params: false,
             withCreate: true
           });
         } catch (e) {
