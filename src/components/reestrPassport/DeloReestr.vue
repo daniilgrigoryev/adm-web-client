@@ -327,7 +327,7 @@
       },
       tableColumnsForOptions() {
         return this.columnsOptions.filter(column => {
-          return column.key;
+          return column.key !== 'deloDate' && column.key !== 'stadDeloName';
         })
       },
     },
@@ -358,7 +358,66 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
+                  },
+                  render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(params.row.deloDate, 'DD/MM/YYYY') : '';
+                    return h('div', {}, [
+                      h('p', params.row.deloId),
+                      h('p', {
+                       class: {
+                          'color-dark-base': true,
+                          'adm-text-small': true
+                        },
+                      },
+                      parsedDate),
+                    ])
+                  }
+                });
+                break;
+              }
+              case 'stotvKod': {
+                this.columnsOptions.push({
+                  title: 'Дело по статье', // Ст.-основание
+                  key: 'stotvKod',
+                  minWidth: 180,
+                  ellipsis: true,
+                  tooltip: true,
+                  visible: true,
+                  renderHeader: (h, params) => {
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Стадия дела'),
+                    ])
+                  },
+                  render: (h, params) => {
+                    return h('div', {}, [
+                      h('p', params.row.stotvKod),
+                      h('p', {
+                       class: {
+                          'color-dark-base': true,
+                          'adm-text-small': true
+                        },
+                      },
+                      params.row.stadDeloName),
                     ])
                   }
                 });
@@ -542,7 +601,7 @@
                   key: 'deloDate',
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -558,7 +617,7 @@
                   render: (h, params) => {
                     let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(params.row.deloDate, 'DD/MM/YYYY') : '';
                     return h('div', {}, [
-                      h('p', parsedDate)
+                      h('p', parsedDate )
                     ])
                   }
                 });
@@ -756,11 +815,12 @@
               }
               case 'stadDeloName': {
                 this.columnsOptions.push({
-                  title: 'Стадия',
+                  title: 'Стадия дела',
                   key: 'stadDeloName',
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
+                  visible: false,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -800,27 +860,6 @@
                 this.columnsOptions.push({
                   title: 'Статья',
                   key: 'stotv',
-                  minWidth: 180,
-                  ellipsis: true,
-                  tooltip: true,
-                  renderHeader: (h, params) => {
-                    return h('div', [
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-big': true,
-                          'adm-font-light': true,
-                        },
-                      }, params.column.title)
-                    ])
-                  }
-                });
-                break;
-              }
-              case 'stotvKod': {
-                this.columnsOptions.push({
-                  title: 'Ст.-основание',
-                  key: 'stotvKod',
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
