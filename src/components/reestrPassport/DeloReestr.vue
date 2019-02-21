@@ -1,6 +1,6 @@
 <template>
   <div v-if="dataStore">
-    <div class="bg-gray-faint py24 px12">
+    <div class="adm-search-filter-panel bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
         <a href="#" @click="getOffense">sdfdsf</a>
         <Form inline label-position="top">
@@ -124,14 +124,17 @@
             </Col>
             <Col :xs="24" :md="4" :lg="2">
               <div class="h-full flex-parent flex-parent--column flex-parent--center-cross flex-parent--center-main">
-                <Button @click="filterClick" type="primary" class="my-auto">Фильтровать</Button>
+                <!--<Button @click="filterClick" type="primary" class="my-auto">Фильтровать</Button>-->
               </div>
             </Col>
           </Row>
           <Row>
-            <Col :xs="24" :md="24" :lg="24">
-              <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
-              <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
+            <Col :xs="24" :md="24" :lg="24" class="flex-parent flex-parent--space-between-main">
+              <!--TODO Ваня говорит, что кнопка лишняя-->
+              <!--<Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>-->
+              <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button>
+
+            <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
                 <span v-if="hideMore">Меньше параметров</span>
                 <span v-else>Больше параметров</span>
               </a>
@@ -142,10 +145,11 @@
     </div>
     <div class="bg-white">
       <div class="wmax1920 mx-auto">
-        <div class="flex-parent flex-parent--end-main">
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px18">
+          <h1>Найденные дела</h1>
           <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-end">
             <a href="javascript:void(0)" class="block py12" @click="toggleColumnsOption">
-              <span class='link color-blue-base adm-btn-small txt-underline-on-hover'>Настроить показ колонок</span>
+              <span class='link color-blue-base adm-btn-small txt-underline-on-hover'></span>
               <Icon style="margin-left: 10px;" type="md-settings" size="18"></Icon>
               <Icon type="ios-arrow-down"></Icon>
             </a>

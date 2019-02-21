@@ -30,7 +30,7 @@
 	line-height: 26px;
 }
 .adm-txt-regular{
-	font-size: 13px;	
+	font-size: 13px;
 	line-height: 22px;
 }
 .adm-text-italic{
@@ -76,9 +76,9 @@ html, body, #app{
 .wmax1920{
 	max-width: 1920px;
 }
-.layout--inner{
-	background: #ffff;
-}
+//.layout--inner{
+//	background: #ffff;
+//}
 .sider{
 	background: $white-light;
 	position: absolute;
@@ -87,7 +87,7 @@ html, body, #app{
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26), 0 2px 10px 0 rgba(0,0,0,0.16);
 }
 .product_header{
-	letter-spacing: 0.2px;	
+	letter-spacing: 0.2px;
 	line-height: 30px;
 }
 .sider__menu-link{
@@ -102,7 +102,7 @@ html, body, #app{
 }
 .tree {
 	a.tree__link{
-		// background-color: #F5FAFD; 
+		// background-color: #F5FAFD;
 		&::before{
 			content: "";
 			position: absolute;
@@ -333,4 +333,12 @@ html, body, #app{
 		bottom: 18px;
 		left: 28px;
 	}
+}
+
+.adm-search-filter-panel {
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.ivu-card-bordered {
+  border-color: #ccc !important;
 }

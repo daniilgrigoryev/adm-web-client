@@ -5,9 +5,9 @@
     <div class="layout">
       <Layout class="layout--inner h-full mx-auto"><!-- wmax1280 -->
         <SiderMenu ref="siderMenu" :isCollapsed="isCollapsed"></SiderMenu>
-        <Layout class="layout--inner">
+        <Layout class="layout--inner flex-parent viewport-full">
           <MainMenu v-if="isHeaderRender()" @collapsedSider="collapsedSider"></MainMenu>
-          <div>
+          <div class="bg-gray-faint flex-child--grow">
             <router-view></router-view>
           </div>
         </Layout>

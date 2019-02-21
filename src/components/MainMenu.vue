@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header bg-white">
     <div class="wmax1920 mx-auto">
       <Row type="flex" align="middle" justify="space-between">
         <Col :xs="24" :md="24" :lg="4">
