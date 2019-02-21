@@ -359,25 +359,11 @@
                           'adm-font-light': true,
                         },
                       }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
-                        },
-                      }, 'Дата оформления'),
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(params.row.deloDate, 'DD/MM/YYYY') : '';
                     return h('div', {}, [
-                      h('p', params.row.deloId),
-                      h('p', {
-                       class: {
-                          'color-dark-base': true,
-                          'adm-text-small': true
-                        },
-                      },
-                      parsedDate),
+                      h('p', params.row.deloId)
                     ])
                   }
                 });
@@ -447,9 +433,10 @@
               }
               case 'checkPriority': {
                 this.columnsOptions.push({
-                  title: 'Приоритет ошибки',
+                  title: 'Ошибки',
                   key: 'checkPriority',
-                  minWidth: 190,
+                  align: 'center',
+                  minWidth: 100,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -462,6 +449,14 @@
                           'adm-font-light': true,
                         },
                       }, params.column.title)
+                    ])
+                  },
+                  render: (h, params) => {
+                    let color = this.changeClass(params.row.checkPriority);
+                    return h('div', {}, [
+                      h('p', {
+                       class: ['round-full', 'w12', 'h12', 'inline-block', color]
+                      }),
                     ])
                   }
                 });
@@ -639,7 +634,26 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата оформления'),
+                    ])
+                  },
+                  render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(params.row.deloDate, 'DD/MM/YYYY') : '';
+                    return h('div', {}, [
+                      h('p', params.row.deloN),
+                      h('p', {
+                       class: {
+                          'color-dark-base': true,
+                          'adm-text-small': true
+                        },
+                      },
+                      parsedDate),
                     ])
                   }
                 });
@@ -968,6 +982,42 @@
                 });
               },
             });
+          }
+        }
+      },
+      changeClass(errorPriority) {
+        if (funcUtils.isNotEmpty(errorPriority)) {
+          switch (errorPriority) {
+            case 1: {
+              return "bg-red";
+            }
+            case 2: {
+              return "bg-orange";
+            }
+            case 3: {
+              return "bg-yellow";
+            }
+            case 4: {
+              return "bg-green";
+            }
+            case 5: {
+              return "bg-blue";
+            }
+            case 6: {
+              return "bg-purple";
+            }
+            case 7: {
+              return "bg-gray";
+            }
+            case 8: {
+              return "bg-black";
+            }
+            case 9: {
+              return "bg-blue-faint";
+            }
+            default: {
+              return "";
+            }
           }
         }
       },
