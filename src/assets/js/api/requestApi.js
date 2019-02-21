@@ -56,7 +56,7 @@ export default class RequestApi {
 
       // A connection was closed
       socket.onclose = (code, reason) => {
-        if (funcUtils.getfromLocalStorage('auth')) {
+        if (funcUtils.getfromLocalStorage('admAuth')) {
           this._setSocket(new WebSocket(ConstantUtils.WS_URL));
         } else {
           console.log(code, reason);
@@ -98,7 +98,7 @@ export default class RequestApi {
     if (funcUtils.isUndefined(beanName)) {
       beanName = '';
     }
-    let requestHead = new RequestEntity.RequestHead(localStorage.getItem('sid'), sessionStorage.getItem('wid'), cid, beanName, methodName);
+    let requestHead = new RequestEntity.RequestHead(localStorage.getItem('admSid'), sessionStorage.getItem('admWid'), cid, beanName, methodName);
     let requestParam = new RequestEntity.RequestParam(requestHead, paramsData);
 
     return this.sendHttpRequest({body: requestParam, withSpinner: withSpinner, handleError: handleError});

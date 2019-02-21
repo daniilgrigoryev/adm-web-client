@@ -42,6 +42,18 @@ export class LoginParams {
   }
 }
 
+export class LoginParamsSID {
+  constructor(jsFingerPrint, webGlId, platform, userAgent, cookieValue, databaseLabel, sid) {
+    this.jsFingerPrint = jsFingerPrint;
+    this.webGlId = webGlId;
+    this.platform = platform;
+    this.userAgent = userAgent;
+    this.cookieValue = cookieValue;
+    this.databaseLabel = databaseLabel;
+    this.sid = sid;
+  }
+}
+
 /**
  * Форма запроса
  */

@@ -53,13 +53,13 @@ const store = new Vuex.Store({
       let data = event.data || event.response;
       if (data.length > 0) {
         let dataJson = JSON.parse(data);
-        if (dataJson.method === 'logout' && funcUtils.isNotEmpty(localStorage.getItem('sid'))) {
+        if (dataJson.method === 'logout' && funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
           let vm = payload.vm.$root;
           vm.logout();
           return;
-        } else if (dataJson.method === 'ping' && funcUtils.isNotEmpty(localStorage.getItem('sid'))) {
+        } else if (dataJson.method === 'ping' && funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
           let vm = payload.vm.$root;
-          let secondsInactive = (new Date().getTime() - funcUtils.getfromLocalStorage('lastActive')) / 1000 / 60;
+          let secondsInactive = (new Date().getTime() - funcUtils.getfromLocalStorage('admLastActive')) / 1000 / 60;
           if (secondsInactive > 15) {
             vm.logout();
           }
@@ -134,7 +134,7 @@ const store = new Vuex.Store({
     accounting,
     delo,
     offense,
-    authorization
+    authorization,
   }
 });
 

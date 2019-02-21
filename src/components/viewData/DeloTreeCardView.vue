@@ -71,7 +71,7 @@
           prepareParams.params = {
             'deloId': this.$route.params.deloId
           };
-          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('wid');
+          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
           let innerStack = funcUtils.getFromSessionStorage(uid);
           if (funcUtils.isNotEmpty(innerStack)) {
             await this.clearInnerStack();
@@ -193,7 +193,7 @@
       },
       async getPrev() {
         await this.clearInnerStack();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('wid');
+        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
         sessionStorage.removeItem(uid);
         try {
           formStack.toPrev({

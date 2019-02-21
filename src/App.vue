@@ -37,7 +37,7 @@
     },
     methods: {
       isHeaderRender() {
-        return funcUtils.getfromLocalStorage('auth') && formStack.getCurrent().routeName !== 'Authorization';
+        return funcUtils.getfromLocalStorage('admAuth') && formStack.getCurrent();
       },
       collapsedSider() {
         this.$refs.siderMenu.$refs.sider.toggleCollapse();

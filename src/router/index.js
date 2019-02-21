@@ -6,9 +6,6 @@ import DashBoard from '../components/reestrPassport/DashBoard';
 
 import DeloTreeCardView from '../components/viewData/DeloTreeCardView';
 import WizardExecuter from '../components/wizard/WizardExecuter';
-import WizardScenarioPost from '../components/wizard/WizardScenarioPost';
-import WizardScenario2025 from '../components/wizard/WizardScenario2025';
-import WizardScenarioProtPZTC from '../components/wizard/WizardScenarioProtPZTC';
 
 // верстка
 import Accounting from '../components/verstka/Accounting.vue';
@@ -27,7 +24,7 @@ const router = new Router({
     {
       path: ConstantUtils.contextPath,
       name: 'Authorization',
-      component: Authorization,
+      component: Authorization
     },
     {
       path: ConstantUtils.contextPath + '/deloReestr',
@@ -69,19 +66,26 @@ const router = new Router({
   ]
 });
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach( async (to, from, next) => {
   try {
-    let current = formStack.getCurrent();
-    if (funcUtils.isNull(current)) {
-      next(false);
-    } else if (funcUtils.isNull(to) || funcUtils.isNull(to.name)) {
-      next({name: current.routeName});
-    } else if (!funcUtils.getfromLocalStorage('auth') && to.name !== 'Authorization') {
-      next({name: 'Authorization'});
-    } else if (current.routeName !== to.name && current.routeName !== 'Authorization') {
-      next({name: current.routeName});
-    } else {
+    let sid = to.query.sid;
+    if (funcUtils.isNotEmpty(sid) && to.name === 'Authorization') {
+      next({name: 'Authorization', params: {sid: sid}});
+    } else if (funcUtils.isNotEmpty(to.params.sid) && to.name === 'Authorization') {
       next();
+    } else {
+      let current = formStack.getCurrent();
+      let checkSession = await router.app.$options.methods.checkSession();
+      checkSession = JSON.parse(checkSession);
+      if (funcUtils.isNull(current) || !funcUtils.getfromLocalStorage('admAuth') || !checkSession) {
+        window.open('http://0.0.0.0:8010/authWeb', '_self');
+      } else if (funcUtils.isNull(to) || funcUtils.isNull(to.name)) {
+        next({name: current.routeName});
+      } else if (current.routeName !== to.name) {
+        next({name: current.routeName});
+      } else {
+        next();
+      }
     }
   } catch (e) {
     alert(e.message);
