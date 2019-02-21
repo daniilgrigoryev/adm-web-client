@@ -308,8 +308,29 @@ html, body, #app{
 
 
 .card{
+	box-sizing: border-box;
 	background-color: #fff;
+	min-height: 241px;
+	box-shadow: none;
+	&.card-practique{
+		background-image: url(../images/hammer.svg);
+		background-repeat: no-repeat;
+		background-position: 94% 94%;
+	}
+	&.card-man{
+		background-image: url(../images/man.svg);
+		background-repeat: no-repeat;
+		background-position: 94% 94%;
+	}
+	&:hover{
+		border-color: rgba(24,136,204,0.25);
+	}
 	&:hover .card__title{
 		color: $blue-base;
+	}
+	.card__version{
+		position: absolute;
+		bottom: 18px;
+		left: 28px;
 	}
 }
