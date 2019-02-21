@@ -446,11 +446,11 @@
             </Row>
         </div> -->
 
-     <div class="wmax1920 mx-auto scroll-auto">
+     <div class="wmax1920 mx-auto">
         <!-- <a href="#" @click="getPrev()">Назад</a> -->
-        <div class="flex-parent flex-parent--center-main flex-parent--center-cross" style="height: calc(100vh - 66px);">
+        <div class="flex-parent flex-parent--center-main flex-parent--center-cross hmin600 scroll-auto" style="height: calc(100vh - 66px);">
             <div>
-                <div class="mb30">
+                <div class="mb30 ml6 my30">
                     <h1 class="adm-h1 color-gray-medium">Переход</h1>
                     <h3 class="adm-h3 color-gray-medium">в подсистемы МАДИ</h3>
                 </div>
