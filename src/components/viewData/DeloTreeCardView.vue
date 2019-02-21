@@ -7,7 +7,7 @@
 
       <div v-if="deloContext" class="px36 py24">
         <div class="my12">
-          <span @click="getDelo" class="adm-h1 color-gray-medium">Дело № {{deloContext.deloN}}</span>
+          <a href="#" @click="getDelo" class="adm-h1 link color-blue-base txt-underline-on-hover">Дело № {{deloContext.deloN}}</a>
         </div>
         <div class="my6">
           <span class="adm-txt-regular color-gray-medium">{{deloContext.deloDate}}</span>

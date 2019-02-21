@@ -1,11 +1,28 @@
 <template>
   <div v-if="sizeInnerStack > 0 && current">
-    <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px36 py12 bg-white-light border-t border-b border--gray-faint">
-      <b class="adm-text-big" v-html="current.params.name"></b>
-      <Button type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer">
-        <img src='../../assets/images/wiki.svg' class="wmax-none">
-      </Button>
+
+
+
+
+    <div class="px36 py18 border-b border--gray-light">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <b class="adm-text-big" v-html="current.params.name"></b>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer">
+          <img src='../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+
+      <div class="my12">
+        <a href='#Links' class='link color-blue-base adm-txt-regular border--dash border-b mr24 color-blue-dark-on-hover'>Решение по делу</a>
+        <a href='#Links' class='link color-blue-base adm-txt-regular border--dash border-b mr24 color-blue-dark-on-hover'>Сведения</a>
+        <a href='#Links' class='link color-blue-base adm-txt-regular border--dash border-b mr24 color-blue-dark-on-hover'>Данные видеофиксации</a>
+        <a href='#Links' class='link color-blue-base adm-txt-regular border--dash border-b mr24 color-blue-dark-on-hover'>Ошибки</a>
+      </div>
+
     </div>
+
+
+
     <div class="hmin360 px36 py12">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
