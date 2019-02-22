@@ -1,9 +1,5 @@
 <template>
   <div v-if="sizeInnerStack > 0 && current">
-
-
-
-
     <div class="px36 py18 border-b border--gray-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <b class="adm-text-big" v-html="current.params.name"></b>

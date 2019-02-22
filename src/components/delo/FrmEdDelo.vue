@@ -1,23 +1,191 @@
 <template>
   <div v-if="body && viol">
     <!-- данные по делу  -->
+
+
+    <div>
+      <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Основные сведения</h2>
+      
+      <div class="my24">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">№ дела</small>
+                <p class="color-dark-base adm-h3">{{body.deloN}}</p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Стадия дела</small>
+                <p class="color-dark-base adm-h3">{{body.dtadDeloName}}</p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Нарушение</h2>
+      
+      <div class="my24">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Статья АПН</small>
+                <p class="color-dark-base adm-h3">{{viol.violStotvKod}}</p>
+                <p class="color-dark-base adm-btn-small txt-em wmax240">{{viol.violStotvName}}</p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Документ</small>
+                <p class="color-dark-base adm-h3">{{body.docVozbName}}</p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <div class="my24">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Место нарушения</small>
+                <p class="color-dark-base adm-h3">{{viol.violPlaceNarFull}}</p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Дата и Время нарушения</small>
+                <p class="color-dark-base adm-h3">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <div class="my24">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">ЛВОК</small>
+                <p class="color-dark-base adm-h3">{{viol.lvokName}}</p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Транспортное средство, ГРЗ</small>
+                <p class="color-dark-base adm-h3">{{viol.vehsName}}</p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Решение по делу</h2>
+
+      <div class="my24">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Дата возбуждения</small>
+                <p class="color-dark-base adm-h3">{{body.deloDate | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Орган</small>
+                <p class="color-dark-base adm-h3">{{body.organVozbName}}</p>
+                <p class="color-dark-base adm-btn-small txt-em wmax240">Код подразделения: {{body.organVozbKod}}</p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <div class="my24">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Дело основание</small>
+                <p  class="color-dark-base adm-h3">
+                  <span v-if="body.deloMainDescr">{{body.deloMainDescr}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">ФИО сотрудника, Звание, Должность</small>
+                <p class="color-dark-base adm-h3">{{body.inspVozbName}}</p>
+                <p class="color-dark-base adm-btn-small txt-em wmax240">{{body.inspVozbRang + ', ' + body.inspVozbDolz }}</p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Данные видеофиксации</h2>
+
+      <div class="my24">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Название комплекса видеофиксации</small>
+                <p class="color-dark-base adm-h3">
+                  <span v-if="viol.vfixName">{{viol.vfixName}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Уникальный номер комплекса</small>
+                <p class="color-dark-base adm-h3">
+                  <span v-if="viol.vfixNum">{{viol.vfixNum}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <div class="my24">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Серитфикат поверки комплекса</small>
+                <p class="color-dark-base adm-h3">
+                  <span v-if="viol.vfixAkt">{{viol.vfixAkt}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-text-small color-dark-base">Серитфикат действителен до</small>
+                <p class="color-dark-base adm-h3">
+                  <span v-if="viol.vfixDatend">{{viol.vfixDatend | formatDateTime('DD.MM.YYYY HH:mm')}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </div>
+
+
+
+
     <Form :label-width="180" label-position="right">
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Номер Дела</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="body.deloN" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
-        <FormItem class="my12">
+        </FormItem> -->
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Дата возбуждения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="body.deloDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
           <Row :gutter="16" type="flex" align="middle">
@@ -34,26 +202,26 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <!-- <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Стадия дела</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dtadDeloName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </FormItem> -->
         <hr class="txt-hr my24">
 
         <h2 class="adm-text-big color-dark-light my12">Решение по делу</h2>
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Документ возбудивший дело</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="body.docVozbName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
         
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
@@ -64,32 +232,32 @@
           </Row>
         </FormItem>
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника, Звание, Должность</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="body.inspVozbName + ', ' + body.inspVozbRang + ', ' + body.inspVozbDolz" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="body.organVozbKod" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="body.organVozbName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Стадия приемки</small>
@@ -109,14 +277,14 @@
           </Row>
         </FormItem>
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Дело основание</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="body.deloMainDescr" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Примечания</small>
@@ -139,41 +307,41 @@
         </Row>
       </FormItem>
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Дата и Время нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Место нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="viol.violPlaceNarFull" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Лицо в отношении которого ведется дело</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="viol.lvokName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Транспортное средство, ГРЗ</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="viol.vehsName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">По пункту Нормативно-Правового Акта</small>
@@ -184,14 +352,14 @@
           </Row>
         </FormItem>
 
-        <FormItem class="my12">
+        <!-- <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" readonly :value="viol.violStotvKod + ', ' +viol.violStotvName" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Код бютжетной классификации</small>
@@ -230,9 +398,8 @@
           </Row>
         </FormItem>
 
-        <hr class="txt-hr my24">
+        <!-- <hr class="txt-hr my24">
         <h2 class="adm-text-big color-dark-light my12">Данные видеофиксации</h2>
-
 
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Название комплекса видеофиксации</small>
@@ -268,7 +435,7 @@
               <Input class="adm-input adm-input--regular" readonly :value="viol.vfixDatend | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
             </Col>
           </Row>
-        </FormItem>
+        </FormItem> -->
 
     </Form>
 

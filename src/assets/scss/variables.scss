@@ -18,6 +18,7 @@ $red-light: #FBE4E8;
 $dark-base: #373737;
 $dark-medium: #0C1A27;
 $dark-light: #5D5D5D;
+$dark-lighter: #797979;
 
 $white-base: #ffffff;
 $white-medium: #EBF4FC;
@@ -39,6 +40,7 @@ $white-light: #FAFAFA;
 .color-dark-base        {color: $dark-base;}
 .color-dark-medium      {color: $dark-medium;}
 .color-dark-light       {color: $dark-light;}
+.color-dark-lighter     {color: $dark-lighter;}
 .color-white-base       {color: $white-base;}
 .color-white-medium     {color: $white-medium;}
 .color-white-light      {color: $white-light;}
@@ -59,6 +61,7 @@ $white-light: #FAFAFA;
 .bg-dark-base        {background-color: $dark-base;}
 .bg-dark-medium      {background-color: $dark-medium;}
 .bg-dark-light       {background-color: $dark-light;}
+.bg-dark-lighter      {background-color: $dark-lighter;}
 .bg-white-base       {background-color: $white-base;}
 .bg-white-medium     {background-color: $white-medium;}
 .bg-white-light      {background-color: $white-light;}
