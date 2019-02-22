@@ -98,7 +98,10 @@ export function lookupValue(dictName, key) {
 }
 
 export function clearAll() {
-  localStorage.clear();
+  localStorage.removeItem('admSid');
+  localStorage.removeItem('admLastActive');
+  localStorage.removeItem('admDeloReestr');
+  localStorage.removeItem('admUserInfo');
   sessionStorage.removeItem('mainMenuActiveName');
 }
 

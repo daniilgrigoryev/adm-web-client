@@ -183,7 +183,7 @@
     async created() {
       try {
         let current = formStack.getCurrent();
-        let cid = funcUtils.getfromLocalStorage(this.$store.state.deloReestr.moduleName);
+        let cid = funcUtils.getfromLocalStorage('admDeloReestr');
         let eventResponse;
 
         this.fillStateDeloDict();
