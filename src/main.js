@@ -110,7 +110,7 @@ let vue = new Vue({
           params: loginParams,
           cid: null
         });
-        res = eventResponse.response;
+        res = JSON.parse(eventResponse.response);
       }
       return res;
     },

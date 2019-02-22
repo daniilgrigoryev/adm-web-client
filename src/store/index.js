@@ -15,6 +15,7 @@ import frmEdDocsOpred from './modules/frmEdDocsOpred';
 import frmEdDocsPost from './modules/frmEdDocsPost';
 import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
 import frmEdIspolnShtraf from './modules/frmEdIspolnShtraf';
+import frmEdVehsAMTC from './modules/frmEdVehsAMTC';
 
 import wizardExecuter from './modules/wizardExecuter';
 import wizardScenarioPost from './modules/wizardScenarioPost';
@@ -107,6 +108,7 @@ const store = new Vuex.Store({
     frmEdDocsPost,
     frmEdDecisShtraf,
     frmEdIspolnShtraf,
+    frmEdVehsAMTC,
 
     wizardExecuter,
     wizardScenarioPost,

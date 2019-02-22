@@ -76,9 +76,8 @@ router.beforeEach( async (to, from, next) => {
     } else {
       let current = formStack.getCurrent();
       let checkSession = await router.app.$options.methods.checkSession();
-      checkSession = JSON.parse(checkSession);
-      if (funcUtils.isNull(current) || !funcUtils.getfromLocalStorage('admAuth') || !checkSession) {
-        window.open('http://0.0.0.0:8010/authWeb', '_self');
+      if (funcUtils.isNull(current) || funcUtils.isEmpty(localStorage.getItem('admSid')) || !checkSession) {
+        window.open(ConstantUtils.HTTP_URL_AUTH, '_self');
       } else if (funcUtils.isNull(to) || funcUtils.isNull(to.name)) {
         next({name: current.routeName});
       } else if (current.routeName !== to.name) {

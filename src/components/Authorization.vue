@@ -14,21 +14,14 @@
       try {
         let eventResponse;
         let sid = localStorage.getItem('admSid');
-        let loginParams = new RequestEntity.LoginParamsSID(new Fingerprint().get(), funcUtils.webGlId(), navigator.platform, navigator.userAgent, null, null, sid);
-        let checkSessionResponse = false;
+        let checkSession = false;
         if (funcUtils.isNotEmpty(sid)) {
-          eventResponse = await RequestApi.prepareData({
-            beanName: null,
-            method: 'checkSession',
-            params: loginParams,
-            cid: null
-          });
-          checkSessionResponse = eventResponse.response;
+          checkSession = await this.$root.checkSession();
         }
 
-        if (!checkSessionResponse) {
+        if (!checkSession) {
           funcUtils.clearAll();
-          loginParams.sid = this.$route.params.sid;
+          let loginParams = new RequestEntity.LoginParamsSID(new Fingerprint().get(), funcUtils.webGlId(), navigator.platform, navigator.userAgent, null, null, this.$route.params.sid);
           eventResponse = await RequestApi.prepareData({
             beanName: null,
             method: 'login',
@@ -43,7 +36,6 @@
               let respError = dataJson.error;
               if (!funcUtils.isNull(respData)) {
                 if (dataJson.method === 'login') {
-                  localStorage.setItem('admAuth', 'true');
                   localStorage.setItem('admSid', respData.sid);
                   this.$root.activateTimer();
                 }

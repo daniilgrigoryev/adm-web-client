@@ -25,6 +25,7 @@
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')"></frm-ed-docs-opred>
       <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')"></frm-ed-decis-shtraf>
       <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')"></frm-ed-ispoln-shtraf>
+      <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')"></frm-ed-vehs-a-m-t-c>
     </div>
   </div>
 </template>
@@ -39,6 +40,7 @@
   import FrmEdDocsOpred from "~/components/delo/FrmEdDocsOpred";
   import FrmEdDecisShtraf from "~/components/delo/FrmEdDecisShtraf";
   import FrmEdIspolnShtraf from "~/components/delo/FrmEdIspolnShtraf";
+  import FrmEdVehsAMTC from "~/components/delo/FrmEdVehsAMTC";
 
   export default {
     name: "DeloInnerForm",
@@ -50,6 +52,7 @@
       FrmEdDocsPost,
       FrmEdDecisShtraf,
       FrmEdIspolnShtraf,
+      FrmEdVehsAMTC,
       FrmEdDelo
     },
     async created() {

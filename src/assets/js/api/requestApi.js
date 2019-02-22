@@ -56,7 +56,7 @@ export default class RequestApi {
 
       // A connection was closed
       socket.onclose = (code, reason) => {
-        if (funcUtils.getfromLocalStorage('admAuth')) {
+        if (funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
           this._setSocket(new WebSocket(ConstantUtils.WS_URL));
         } else {
           console.log(code, reason);

@@ -37,7 +37,7 @@
     },
     methods: {
       isHeaderRender() {
-        return funcUtils.getfromLocalStorage('admAuth') && formStack.getCurrent();
+        return funcUtils.isNotEmpty(localStorage.getItem('admSid')) && formStack.getCurrent();
       },
       collapsedSider() {
         this.$refs.siderMenu.$refs.sider.toggleCollapse();
