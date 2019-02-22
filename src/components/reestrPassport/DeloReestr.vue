@@ -131,7 +131,8 @@
           <Row>
             <Col :xs="24" :md="24" :lg="24" class="flex-parent flex-parent--space-between-main">
               <!--TODO Ваня говорит, что кнопка лишняя-->
-              <!--<Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>-->
+              <!--TODO А где она должна быть?-->
+              <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
               <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button>
 
             <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
