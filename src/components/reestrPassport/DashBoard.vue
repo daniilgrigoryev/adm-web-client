@@ -11,7 +11,7 @@
 									<p class="adm-txt-regular color-dark-light my18">Эвакуация автомобиля</p>
 									<ul>
 										<li class="my18">
-											<a href="#" @click="createWizardScenarioPZTC" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол о задержании автомобиля</a>
+											<a href="#" @click="createWizardScenarioPZTC" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол о задержании транспортного средства</a>
 										</li>
 										<li class="my18">
 											<a href="#" @click="createWizardScenarioAPN" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об административном правонарушении</a>

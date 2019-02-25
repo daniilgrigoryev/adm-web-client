@@ -1,7 +1,7 @@
 <template>
   <div class="wmax1920">
     <Row type="flex">
-      <!-- <Col :xs="24" :sm="8" :md="6" :lg="6">
+      <Col :xs="24" :sm="8" :md="6" :lg="6">
           <div class="bg-blue-thin h-full scroll-hidden">
             <ul class="ml60 mr24 my24">
               <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
@@ -12,10 +12,10 @@
               <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
             </ul>
           </div>
-      </Col> -->
+      </Col>
       <Col :xs="24" :sm="18" :md="18" :lg="18">
         <div>
-          <Layout ref="Main" class="bg-white hmin360 px36 py12">
+          <Layout ref="Main" class="bg-white hmin360 px36 py12" style="height: calc(100vh - 125px)">
 
             <wizard-item-doc-prot2025 v-if="isVisible('DocProt')" ref="DocProt" :info="getInfo('DocProt')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot2025>
 
@@ -33,14 +33,10 @@
 
           </Layout>
 
-					<Row :gutter="16" type="flex" align="middle" justify="start">
-						<Col :xs="24" :md="14" :lg="17">
-							<div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
-                <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-                <Button @click="save" type="primary">Сохранить</Button>
-							</div>
-						</Col>
-					</Row>
+          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+            <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
+            <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+          </div>
         </div>
       </Col>
     </Row>

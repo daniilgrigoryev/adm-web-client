@@ -17,7 +17,7 @@
       </div>
 
     
-      <Form :label-width="180" label-position="right">
+      <div>
 				<FormItem class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Поиск</small>
 					<Row :gutter="16" type="flex" align="middle">
@@ -46,10 +46,10 @@
 						</Col>
 					</Row>
 				</FormItem>
-      </Form>
+      </div>
     </div>
 
-    <Form :label-width="180" label-position="right">
+    <div>
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -169,7 +169,7 @@
           </Col>
         </Row>
       </FormItem>
-    </Form>
+    </div>
   </div>
 </template>
 

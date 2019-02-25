@@ -1,7 +1,6 @@
 <template>
   <div v-if="body">
     <Form :label-width="180" label-position="right">
-
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Код - решение</small>
         <Row :gutter="16" type="flex" align="middle">

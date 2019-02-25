@@ -1,5 +1,5 @@
 <template>
-  <div class="wmax1920">
+  <div class="wmax1920 mx-auto">
     <Row type="flex">
       <!-- <Col :xs="24" :sm="8" :md="6" :lg="6">
           <div class="bg-blue-thin h-full scroll-hidden">
@@ -13,8 +13,8 @@
             </ul>
           </div>
       </Col> -->
-      <Col :xs="24" :sm="18" :md="18" :lg="18">
-        <div>
+      <Col :xs="24" :sm="18" :md="18" :lg="24">
+        <div style="max-width: 1280px" class="mx-auto">
           <Layout ref="Main" class="bg-white hmin360 px36 py12">
 
             <wizard-item-doc-prot-rasm v-if="isVisible('DocProtRasm')" ref="DocProtRasm" :info="getInfo('DocProtRasm')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-rasm>
@@ -71,14 +71,10 @@
 
           </Layout>
 
-					<Row :gutter="16" type="flex" align="middle" justify="start">
-						<Col :xs="24" :md="14" :lg="17">
-							<div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
-                <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-                <Button @click="save" type="primary">Возбудить</Button>
-							</div>
-						</Col>
-					</Row>
+          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+            <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
+            <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+          </div>
         </div>
       </Col>
     </Row>

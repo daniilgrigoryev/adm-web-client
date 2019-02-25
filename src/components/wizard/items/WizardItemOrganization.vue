@@ -3,8 +3,8 @@
 
     <wizard-modal v-if="ulModal.visible" :columnsOptions="ulModal.columnsOptions" :data="ulModal.ulList" @showModal="showUlModal" @onRowDbClick="onUlClick"></wizard-modal>
 
-    <Form :label-width="180" abel-position="right">
-      <FormItem class="my12">
+    <div class="adm-form">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -15,7 +15,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">ИНН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -26,7 +26,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">ИНН кем выдан</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -34,7 +34,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">ОГРН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -42,7 +42,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">КПП</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -50,7 +50,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">ОКПО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -58,7 +58,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата регистрации Юр. лица</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -66,7 +66,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Тип ЮЛ</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
@@ -76,7 +76,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Форма собственности</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
@@ -86,7 +86,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">ОПФ</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
@@ -96,7 +96,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Ведомство</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
@@ -106,7 +106,7 @@
           </Col>
         </Row>
       </FormItem>
-    </Form>
+    </div>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
-    <Form :label-width="180" label-position="right">
-      <FormItem class="my12">
+    <div class="adm-form">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Гражданство:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
@@ -11,7 +11,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">ФИО:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -19,7 +19,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Пол:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
@@ -30,7 +30,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата рождения:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
@@ -38,7 +38,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Место рождения</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
@@ -48,7 +48,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Место работы:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -56,7 +56,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Телефон:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -64,7 +64,7 @@
           </Col>
         </Row>
       </FormItem>
-    </Form>
+    </div>
   </div>
 </template>
 

@@ -342,3 +342,18 @@ html, body, #app{
 .ivu-card-bordered {
   border-color: #ccc !important;
 }
+
+.adm-form{
+	.ivu-form-item-label{
+		text-align: right;
+		vertical-align: middle;
+		float: left;
+		font-size: 12px;
+		color: #515a6e;
+		line-height: 1;
+		padding: 10px 12px 10px 0;
+		box-sizing: border-box;
+	}
+	// .ivu-form-item-content{
+	// }
+}

@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
-    <Form :label-width="180" label-position="right">
-      <FormItem class="my12">
+    <div class="adm-form">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Номер документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -9,7 +9,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Документ удостоверяющий личность:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -19,7 +19,7 @@
           </Col>
         </Row>
       </FormItem>
-    </Form>
+    </div>
   </div>
 </template>
 

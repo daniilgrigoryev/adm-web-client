@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Form :label-width="180" label-position="right">
-      <FormItem class="my12">
+    <div class="adm-form">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">{{title}}</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -12,7 +12,7 @@
           </Col>
         </Row>
       </FormItem>
-    </Form>
+    </div>
     <div v-if="data && addressModal.visible" class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
       <div class="flex-parent flex-parent--end-main">
         <Button type="text"  @click="showAddressModal(false)" class="px0 py0">
@@ -24,7 +24,7 @@
       </div>
 
 
-       <Form :label-width="180" label-position="right">
+       <div>
         <FormItem class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Код страны</small>
           <Row :gutter="16" type="flex" align="middle">
@@ -128,7 +128,7 @@
             </div>
           </Col>
         </Row>
-       </Form>
+       </div>
     </div>
   </div>
 </template>

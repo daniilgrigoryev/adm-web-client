@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    <Form :label-width="180" label-position="right">
+    <div class="adm-form">
       <Row :gutter="16" type="flex" align="middle">
         <Col>
           <h2 class="adm-text-big color-dark-light my12">Статус участника</h2>
@@ -11,7 +11,7 @@
           </Select>
         </Col>
       </Row>
-      <FormItem class="my12">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Тип участника:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -21,7 +21,7 @@
           </Col>
         </Row>
       </FormItem>
-    </Form>
+    </div>
   </div>
 </template>
 

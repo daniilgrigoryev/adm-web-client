@@ -4,8 +4,8 @@
 
       <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
-      <Form :label-width="180" abel-position="right">
-        <FormItem class="my12">
+      <div class="adm-form">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -16,7 +16,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер дела</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -27,7 +27,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -35,7 +35,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Дата и Время нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -43,7 +43,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">п.НПА нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -53,7 +53,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Статья ответственности</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -63,13 +63,13 @@
             </Col>
           </Row>
         </FormItem>
-      </Form>
+      </div>
 
       <hr class="txt-hr my24">
 
-      <Form :label-width="200" abel-position="right">
+      <div class="adm-form">
         <h2 class="adm-text-big color-dark-light my12">Составил</h2>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -80,7 +80,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -88,7 +88,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -96,7 +96,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -104,7 +104,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -115,7 +115,7 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem class="my12">
+        <FormItem :label-width="180" class="my12">
           <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -123,7 +123,7 @@
             </Col>
           </Row>
         </FormItem>
-      </Form>
+      </div>
     </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
-    <Form :label-width="180" дabel-position="right">
-      <FormItem class="my12">
+    <div class="adm-form">
+      <FormItem :label-width="180" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Решение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -11,7 +11,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.shtraf)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.shtraf)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Сумма штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -19,7 +19,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Срок лишения (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -27,7 +27,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата изъятия ВУ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -35,7 +35,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.discval)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.discval)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Срок дисквалификации (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -43,7 +43,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Срок ареста (дни)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -51,7 +51,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Время начала ареста</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -59,7 +59,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.hoursToWork)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.hoursToWork)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Кол-во часов обяз-х работ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -67,7 +67,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Количество суток</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -75,7 +75,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Дата начала</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -83,7 +83,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1, decisKods.decis.decis2)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1, decisKods.decis.decis2)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -91,7 +91,7 @@
           </Col>
         </Row>
       </FormItem>
-      <FormItem v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1, decisKods.decis.decis2)" class="my12">
+      <FormItem :label-width="180" v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1, decisKods.decis.decis2)" class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -99,7 +99,7 @@
           </Col>
         </Row>
       </FormItem>
-    </Form>
+    </div>
   </div>
 </template>
 

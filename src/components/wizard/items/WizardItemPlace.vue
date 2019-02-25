@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<Form :label-width="180" label-position="right">
-			<FormItem class="my12">
+		<div class="adm-form">
+			<FormItem :label-width="180" class="my12">
 				<small class="adm-text-small color-gray-medium" slot="label">{{title}}</small>
 				<Row :gutter="16" type="flex" align="middle">
 					<Col :xs="24" :md="14" :lg="16">
@@ -12,7 +12,7 @@
 					</Col>
 				</Row>
 			</FormItem>
-		</Form>
+		</div>
 	
 		<div v-if="data && placeModal.visible" class="absolute bg-white z5" style="top: 0; bottom: 0; right: 0; left: 0;">
 			<div class="flex-parent flex-parent--end-main">
@@ -24,8 +24,8 @@
 				</Button>
 			</div>
 
-			<Form :label-width="180" abel-position="right">
-				<FormItem class="my12">
+			<div class="adm-form">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Код страны</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -33,7 +33,7 @@
 						</Col>
 					</Row>
 				</FormItem>
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Название</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -41,7 +41,7 @@
 						</Col>
 					</Row>
 				</FormItem>
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Регион</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -52,7 +52,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Район</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -63,7 +63,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Населенный пункт</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -74,7 +74,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Дорога</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -85,7 +85,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">МГО</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -94,7 +94,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">МГТ</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -102,7 +102,7 @@
 						</Col>
 					</Row>
 				</FormItem>
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">км, метр</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -111,7 +111,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Место</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -122,7 +122,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Улица</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -133,7 +133,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Дом</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -142,7 +142,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -151,7 +151,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Строение</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -160,7 +160,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -169,7 +169,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -178,7 +178,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Широта</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -187,7 +187,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Долгота</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -196,7 +196,7 @@
 					</Row>
 				</FormItem>
 
-				<FormItem class="my12">
+				<FormItem :label-width="180" class="my12">
 					<small class="adm-text-small color-gray-medium" slot="label">Дополнительный адрес</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -213,7 +213,7 @@
 				</FormItem>
 
 				<div v-if="showDopAddress">
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">Дорога</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -224,7 +224,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">МГО</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -233,7 +233,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">МГТ</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -242,7 +242,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">км, метр</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -251,7 +251,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">Место</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -262,7 +262,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">Улица</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -273,7 +273,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">Дом</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -282,7 +282,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -291,7 +291,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">Строение</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -300,7 +300,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -309,7 +309,7 @@
 						</Row>
 					</FormItem>
 
-					<FormItem class="my12">
+					<FormItem :label-width="180" class="my12">
 						<small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
@@ -319,14 +319,14 @@
 					</FormItem>
 				</div>
 
-        <Row :gutter="16" type="flex" align="middle" justify="start">
-          <Col :xs="24" :md="14" :lg="17">
-            <div class="flex-parent flex-parent--end-main">
-              <Button @click="save" type="primary" class="mb12">Сохранить</Button>
-            </div>
-          </Col>
-        </Row>
-			</Form>
+				<Row :gutter="16" type="flex" align="middle" justify="start">
+				<Col :xs="24" :md="14" :lg="17">
+					<div class="flex-parent flex-parent--end-main">
+					<Button @click="save" type="primary" class="mb12">Сохранить</Button>
+					</div>
+				</Col>
+				</Row>
+			</div>
 		</div>
 	</div>
 </template>
