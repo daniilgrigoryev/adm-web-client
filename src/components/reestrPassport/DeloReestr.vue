@@ -24,10 +24,10 @@
                     <Col :xs="12" :md="6" :lg="12">
                        <FormItem class="w-full align-center">
                           <div slot="label" class="adm-text-small color-gray-medium">Искать только в текущем году</div>
-                          <RadioGroup v-model="filter.flagYear.value">
-                            <Radio label="true">Да</Radio>
-                            <Radio label="false">Нет</Radio>
-                          </RadioGroup>
+                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.flagYear.value" filterable clearable>
+                           <Option value="true">Да</Option>
+                           <Option value="false">Нет</Option>
+                         </Select>
                         </FormItem>
                     </Col>
                   </Row>
@@ -44,7 +44,6 @@
                     <Row type="flex" :gutter="6">
                       <Col :xs="12" :md="12" :lg="12">
                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.docVid.value" filterable clearable>
-                          <option value="null"> </option>
                           <Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -78,13 +77,11 @@
                     <Row type="flex" :gutter="6">
                       <Col :xs="24" :md="12" :lg="12">
                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.stadDeloKod.value" filterable clearable>
-                          <option value="null"> </option>
                           <Option class="wmax360 txt-break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
                       <Col :xs="24" :md="12" :lg="12">
                         <Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId.value" filterable clearable>
-                          <option value="null"> </option>
                           <Option class="wmax360 txt-break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                         </Select>
                       </Col>
@@ -133,7 +130,7 @@
               <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
               <!-- <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button> -->
 
-              <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
+              <a href='#' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
                 <span v-if="hideMore">Меньше параметров</span>
                 <span v-else>Больше параметров</span>
               </a>
@@ -184,9 +181,9 @@
         let cid = funcUtils.getfromLocalStorage('admDeloReestr');
         let eventResponse;
 
-        this.fillStateDeloDict();
-        this.fillDocumentVidDict();
-        this.fillArticleProcDict();
+        await this.fillStateDeloDict();
+        await this.fillDocumentVidDict();
+        await this.fillArticleProcDict();
 
         if (funcUtils.isNull(cid)) {
           funcUtils.addToLocalStorage('admDeloReestr', current.cid);

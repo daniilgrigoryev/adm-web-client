@@ -3,64 +3,46 @@
     <div class="adm-form">
 
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Исполнение решения. Код - Статус</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ispolnStatus, body.ispolnStatusName | concatByDelimiter('-')" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
 
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения по решению</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Номер реестра</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.reestrN" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
 
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статья основание</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Уникальный почтовый идентификатор</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.upi" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
 
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаты штрафа</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата отправки постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.sumOpl" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dateOtpravFssp" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
 
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Универсальный идентификатор платежа</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Участник г.р. (статус лица)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.uip" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Банк</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.bankName" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Примечание</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.uchastName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -153,14 +135,14 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: "FrmEdIspolnShtraf",
+    name: "FrmEdIspolnPostUvedom",
     async created() {
       try {
         let current = formStack.getCurrent();
         let currentForm = innerFormStack.getCurrent({
           uid: current.moduleName
         });
-        await this.$store.dispatch('frmEdIspolnShtrafSetCid', currentForm.cid);
+        await this.$store.dispatch('frmEdIspolnPostUvedomSetCid', currentForm.cid);
 
         let prepareParams = {
           method: 'restore',
@@ -180,12 +162,12 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdIspolnShtrafSetCid', null);
-      this.$store.dispatch('frmEdIspolnShtrafSetData', null);
+      this.$store.dispatch('frmEdIspolnPostUvedomSetCid', null);
+      this.$store.dispatch('frmEdIspolnPostUvedomSetData', null);
     },
     computed: {
       ...mapGetters({
-        dataStore: 'frmEdIspolnShtrafGetData'
+        dataStore: 'frmEdIspolnPostUvedomGetData'
       }),
       body() {
         let res = null;
