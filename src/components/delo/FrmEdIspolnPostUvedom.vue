@@ -6,7 +6,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -33,7 +33,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата отправки постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dateOtpravFssp" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dateOtpravFssp | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>

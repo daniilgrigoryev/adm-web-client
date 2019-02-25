@@ -4,25 +4,26 @@
       <Col :xs="24" :sm="8" :md="6" :lg="6">
           <div class="bg-blue-thin h-full scroll-hidden">
             <ul class="ml60 mr24 my24">
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
+              <li v-if="isVisible('DocPostFirst')" class=""><a href="#DocPostFirst" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
+              <li v-if="isVisible('LVOK')" class=""><a href="#LVOK" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
+              <li v-if="isVisible('Vehs')" class=""><a href="#Vehs" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
+              <li v-if="isVisible('Owner')" class=""><a href="#Owner" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
+              <li v-if="isVisible('DocPostSecond')" class=""><a href="#DocPostSecond" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
+              <li v-if="isVisible('DecisMain')" class=""><a href="#DecisMain" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
+              <li v-if="isVisible('DecisAdd')" class=""><a href="#DecisAdd" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Дополнительное решение по делу</a></li>
             </ul>
           </div>
       </Col>
       <Col :xs="24" :sm="18" :md="18" :lg="18">
         <div>
           <Layout ref="Main" class="bg-white hmin360 px36 py12">
-            <wizard-item-doc-post-first v-if="isVisible('DocPostFirst')" ref="DocPostFirst" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-first>
+            <wizard-item-doc-post-first id="DocPostFirst" v-if="isVisible('DocPostFirst')" ref="DocPostFirst" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-first>
 
             <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
             <hr class="txt-hr my24">
 
-            <wizard-item-lvok v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
+            <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
 
             <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
 
@@ -38,13 +39,13 @@
 
             <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-            <hr class="txt-hr my24">
+            <hr v-if="isVisible('LVOK')" class="txt-hr my24">
 
-            <wizard-item-vehs v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
+            <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
 
-            <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
+            <hr v-if="isVisible('Vehs')" class="txt-hr my24">
 
-            <hr class="txt-hr my24">
+            <wizard-item-owner id="Owner" v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
 
             <wizard-item-individual v-if="isVisible('Owner.Individual')" ref="Owner.Individual" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
 
@@ -58,13 +59,17 @@
 
             <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" ref="Owner.Organization.factAddr" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-            <wizard-item-doc-post-second v-if="isVisible('DocPostSecond')" ref="DocPostSecond" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-second>
+            <hr v-if="isVisible('Owner')" class="txt-hr my24">
+
+            <wizard-item-doc-post-second id="DocPostSecond" v-if="isVisible('DocPostSecond')" ref="DocPostSecond" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-second>
 
             <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" ref="DocPostSecond.PlaceNar" :info="getInfo('DocPostSecond.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
-            <wizard-item-decis v-if="isVisible('DecisMain')" ref="DecisMain" :info="getInfo('DecisMain')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-decis>
+            <hr v-if="isVisible('DocPostSecond')" class="txt-hr my24">
 
-            <wizard-item-decis v-if="isVisible('DecisAdd')" ref="DecisAdd" :info="getInfo('DecisAdd')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-decis>
+            <wizard-item-decis id="DecisMain" v-if="isVisible('DecisMain')" ref="DecisMain" :info="getInfo('DecisMain')" @storeElementData="storeElementData" title="Решение по делу" @updateComponents="updateComponents"></wizard-item-decis>
+
+            <wizard-item-decis id="DecisAdd" v-if="isVisible('DecisAdd')" ref="DecisAdd" :info="getInfo('DecisAdd')" @storeElementData="storeElementData" title="Дополнительное решение по делу" @updateComponents="updateComponents"></wizard-item-decis>
 
             <wizard-item-doc-post-final v-if="isVisible('DocPostFinal')" ref="DocPostFirst" :info="getInfo('DocPostFinal')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-final>
           </Layout>
@@ -140,6 +145,10 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'make'
         });
+        let resp =  JSON.parse(eventResponse.response);
+        if (resp.error && resp.error.errorMsg) {
+          alert(resp.error.errorMsg);
+        }
       },
       getPrev() {
         try {

@@ -91,16 +91,14 @@
           params: {
             eCID: params.eCID,
             data: JSON.stringify(params.data, funcUtils.replacer)
-          },
-          withSpinner: false
+          }
         });
         let cids = JSON.parse(eventResponse.response).data;
         if (funcUtils.isEmpty(cids)) {
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
           eventResponse = await RequestApi.prepareData({
-            method: 'getChain',
-            withSpinner: false
+            method: 'getChain'
           });
           cids = JSON.parse(eventResponse.response).data;
         }

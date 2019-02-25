@@ -1,8 +1,9 @@
 <template>
   <div v-if="data">
     <div class="adm-form">
+      <h2 class="adm-text-big color-dark-light my12">Решение по делу</h2>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Решение</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">{{ title }}</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.decisKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
@@ -111,7 +112,8 @@
   export default {
     name: "WizardItemDecis",
     props: {
-      info: Object
+      info: Object,
+      title: String
     },
     async created() {
       await this.initData();
