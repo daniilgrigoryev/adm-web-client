@@ -1,116 +1,116 @@
 <template>
   <div v-if="body">
-    <Form :label-width="180" label-position="right">
+    <div class="adm-form">
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Вид предъявленного документа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.docTipName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Номер документа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.vuN" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата выдачи</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Срок действия</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Кем выдан документ. Код - Название организации</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан документ. Код - Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.remarks" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Предъявленный документ</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.vuPred" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Статус документа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.statusName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата задержания</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата задержания</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateZader | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата возврата</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата возврата</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateVozv | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата утилизации документа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата утраты документа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата утраты документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateUtrat | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-    </Form>
+    </div>
   </div>
 </template>
 

@@ -11,8 +11,8 @@
           </Select>
         </Col>
       </Row>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Гражданство:</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData"  placeholder="">
@@ -20,17 +20,17 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ФИО:</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.lvokName" disabled @on-input-change="changeFIO" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Место рождения</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
@@ -38,9 +38,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Присутствие ЛВОКа:</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Присутствие ЛВОКа:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmin180" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">
@@ -48,7 +48,7 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
+      </div>
     </div>
   </div>
 </template>

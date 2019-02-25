@@ -4,8 +4,8 @@
     <wizard-modal v-if="ulModal.visible" :columnsOptions="ulModal.columnsOptions" :data="ulModal.ulList" @showModal="showUlModal" @onRowDbClick="onUlClick"></wizard-modal>
 
     <div class="adm-form">
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Название организации</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.name" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
@@ -14,9 +14,9 @@
             <a href="#" @click="searchUlByName" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ИНН</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ИНН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
@@ -25,49 +25,49 @@
             <a href="#" @click="searchUlByInn" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ИНН кем выдан</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ИНН кем выдан</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.innKemVydan" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ОГРН</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ОГРН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.ogrn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">КПП</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">КПП</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.kpp" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ОКПО</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ОКПО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.okpo" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата регистрации Юр. лица</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата регистрации Юр. лица</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.dateReg" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Тип ЮЛ</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Тип ЮЛ</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tip" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
@@ -75,9 +75,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Форма собственности</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Форма собственности</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.fsobstKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
@@ -85,9 +85,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ОПФ</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ОПФ</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.orgformKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
@@ -95,9 +95,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Ведомство</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Ведомство</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.vedomstvoId" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
@@ -105,7 +105,7 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
+      </div>
     </div>
   </div>
 </template>

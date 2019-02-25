@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<div class="adm-form">
-			<FormItem :label-width="180" class="my12">
-				<small class="adm-text-small color-gray-medium" slot="label">{{title}}</small>
+			<div class="my12 adm-form__item">
+				<small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
 				<Row :gutter="16" type="flex" align="middle">
 					<Col :xs="24" :md="14" :lg="16">
 						<Input class="adm-input adm-input--regular" v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
@@ -11,7 +11,7 @@
 						<a href="#" @click="showPlaceModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
 					</Col>
 				</Row>
-			</FormItem>
+			</div>
 		</div>
 
 		<div v-if="data && placeModal.visible" class="absolute bg-white z5" style="top: 0; bottom: 0; right: 0; left: 0;">
@@ -25,24 +25,24 @@
 			</div>
 
 			<div class="adm-form">
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Код страны</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Код страны</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.adr.countryCode" disabled placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Название</small>
+				</div>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Название</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.adr.countryName" disabled placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Регион</small>
+				</div>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.regionId" filterable clearable @on-change="changeRegion">
@@ -50,10 +50,10 @@
 							</Select>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Район</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Район</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
@@ -61,10 +61,10 @@
 							</Select>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Населенный пункт</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
@@ -72,10 +72,10 @@
 							</Select>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Дорога</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Дорога</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.roadId" filterable clearable @on-query-change="changeRoad" @on-clear="changeRoad">
@@ -83,36 +83,36 @@
 							</Select>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">МГО</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">МГО</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.machta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">МГТ</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">МГТ</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.mgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">км, метр</small>
+				</div>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">км, метр</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.km" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Место</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Место</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
@@ -120,10 +120,10 @@
 							</Select>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Улица</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
@@ -131,73 +131,73 @@
 							</Select>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Дом</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.adr.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Корпус</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.adr.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Строение</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Строение</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.adr.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Почтовый индекс</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-input-change="storeElementData" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Широта</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Широта</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.y" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Долгота</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Долгота</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Input class="adm-input adm-input--regular" v-model="data.x" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem :label-width="180" class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Дополнительный адрес</small>
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Дополнительный адрес</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
 							<Checkbox v-model="data.placeTip1" @on-change="changePlaceTip('placeTip1')">Признак проезжей части</Checkbox>
@@ -210,11 +210,11 @@
 							<Checkbox v-model="data.placeTip8" @on-change="changePlaceTip('placeTip8')">Признак протяженности</Checkbox>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
 				<div v-if="showDopAddress">
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">Дорога</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">Дорога</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Select class="wmax240 wmin180" v-model="data.dopRoadId" filterable clearable @on-query-change="changeDopRoad" @on-clear="changeDopRoad">
@@ -222,37 +222,37 @@
 								</Select>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">МГО</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">МГО</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Input class="adm-input adm-input--regular" v-model="data.dopMachta" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">МГТ</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">МГТ</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Input class="adm-input adm-input--regular" v-model="data.dopMgt" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">км, метр</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">км, метр</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Input class="adm-input adm-input--regular" v-model="data.dopKm" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">Место</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">Место</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Select class="wmax240 wmin180" v-model="data.dopPlaceId" filterable clearable @on-query-change="changeDopPlace" @on-clear="changeDopPlace">
@@ -260,10 +260,10 @@
 								</Select>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">Улица</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Select class="wmax240 wmin180" v-model="data.adrDop.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeDopStreet" remote :remote-method="changeDopStreet">
@@ -271,52 +271,52 @@
 								</Select>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">Дом</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Input class="adm-input adm-input--regular" v-model="data.adrDop.ndom" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">Корпус</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">Корпус</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Input class="adm-input adm-input--regular" v-model="data.adrDop.nkorpus" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">Строение</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">Строение</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Input class="adm-input adm-input--regular" v-model="data.adrDop.nstroenie" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">Почтовый индекс</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">Почтовый индекс</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled placeholder="Enter something..."></Input>
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 
-					<FormItem :label-width="180" class="my12">
-						<small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
+					<div class="my12 adm-form__item">
+						<small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 							`	<Input class="adm-input adm-input--regular" v-model="data.adrDop.dopDopSved" @on-input-change="storeElementData" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>`
 							</Col>
 						</Row>
-					</FormItem>
+					</div>
 				</div>
 
 				<Row :gutter="16" type="flex" align="middle" justify="start">

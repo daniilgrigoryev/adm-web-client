@@ -1,16 +1,16 @@
 <template>
   <div v-if="data">
     <div class="adm-form">
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Номер документа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.docNum" @on-input-change="storeElementData" placeholder="Номер документа"></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Документ удостоверяющий личность:</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Документ удостоверяющий личность:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docTip" clearable @on-change="changeTipDoc">
@@ -18,7 +18,7 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
+      </div>
     </div>
   </div>
 </template>

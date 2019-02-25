@@ -6,16 +6,16 @@
           <h2 class="adm-text-big color-dark-light my12">Нарушение</h2>
         </Col>
       </Row>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Время нарушения</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Время нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">п.НПА нарушения</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
@@ -23,9 +23,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Статья ответственности</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-clear="changeStotvSearchInfo" @on-change="changeStotvSearchInfo">
@@ -33,9 +33,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">КБК</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">КБК</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.kbk" clearable filterable :disabled="!data.stotvId" @on-clear="storeElementData" @on-change="storeElementData">
@@ -43,7 +43,7 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
+      </div>
     </div>
   </div>
 </template>

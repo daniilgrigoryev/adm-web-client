@@ -1,257 +1,257 @@
 <template>
   <div v-if="body">
-    <Form :label-width="180" label-position="right">
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Правовой статус</small>
+    <div class="adm-form">
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Правовой статус</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.uchastStatusName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Вид физического лица</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Вид физического лица</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.uchastVidName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Тип физического лица, Код - Тип</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Тип физического лица, Код - Тип</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.uchastTip, body.uchastTipName | concatByDelimiter('-')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Транспортное средство</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Транспортное средство</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.vehs_name" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
       <hr class="txt-hr my24">
 
       <h2 class="adm-text-big color-dark-light my12">Физическое лицо</h2>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Фамилия</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Фамилия</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.firstName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Имя</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Имя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.secondName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Отчество</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Отчество</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.thirdName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Пол</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Пол</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.sex" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата рождения</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.birthdayYear" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Гражданство</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Гражданство</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.gragdName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Страховое свидетельство - СНИЛС</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Страховое свидетельство - СНИЛС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.sex" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Адрес регистрации</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Адрес регистрации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.address.adrFull" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Место фактического проживания</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Место фактического проживания</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.factAddr.adrFull" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Контакты</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Контакты</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.contacts" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.remarks" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Место работы</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.workName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Должность</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Должность</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dolz" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ИНН</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ИНН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.inn" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Кем выдан ИНН</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан ИНН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.individ.innKemVydan" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
       <hr class="txt-hr my24">
 
       <h2 class="adm-text-big color-dark-light my12">Проверка данных</h2>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата проверки</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата проверки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="checkUchastinc.DAT_ISPOLN" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Инициатор проверки</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Инициатор проверки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="checkUchastinc.INIT_NAME" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Штрафы</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Штрафы</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.VOD_SHTRAF).value" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Права на управление ТС</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Права на управление ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.VOD_LISH).value" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Ответственность по статье 20.25</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Ответственность по статье 20.25</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.VOD_2025).value" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Лицо в розыске</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Лицо в розыске</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.RLIC).value" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Водительское удостоверение в розыске</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Водительское удостоверение в розыске</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.UDOC_VU).value" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Удостоверение личности в розыске</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Удостоверение личности в розыске</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.UDOC_UD).value" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-    </Form>
+      </div>
+    </div>
   </div>
 </template>
 

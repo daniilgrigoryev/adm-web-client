@@ -17,9 +17,9 @@
       </div>
 
     
-      <div>
-				<FormItem class="my12">
-					<small class="adm-text-small color-gray-medium" slot="label">Поиск</small>
+      <div class="adm-form">
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">Поиск</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" v-model="deloModal.paramValue" @on-input-change="changeDeloValue">
@@ -31,10 +31,10 @@
               </Input>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
 
-				<FormItem class="my12" v-if="deloModal.deloList">
-					<small class="adm-text-small color-gray-medium" slot="label">
+				<div class="my12 adm-form__item" v-if="deloModal.deloList">
+					<small class="adm-text-small color-gray-medium adm-form__label">
             <span v-if="deloModal.paramKey == 'deloNum'">Дело</span>
             <span v-if="deloModal.paramKey == 'postNum'">Постановление</span>
           </small>
@@ -45,13 +45,13 @@
               </Select>
 						</Col>
 					</Row>
-				</FormItem>
+				</div>
       </div>
     </div>
 
-    <div>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Номер постановления</small>
+    <div class="adm-form">
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Номер постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
@@ -60,9 +60,9 @@
             <a href="#" @click="createProtNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Уникальный номер дела</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Уникальный номер дела</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" placeholder="Enter something..."></Input>
@@ -71,17 +71,17 @@
             <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата и Время вынесения</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время вынесения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateSost" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date"></DatePicker>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" placeholder="Enter something..."></Input>
@@ -90,57 +90,57 @@
             <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostRang" @on-input-change="clearInspSostKod" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.organSostKod" disabled placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Статья ответственности</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="stotv" disabled placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Орган рассмотрения</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Орган рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.organRasmName" disabled placeholder="Enter something..."></Input>
@@ -149,17 +149,17 @@
             <a href="#" @click="showSudModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник судов</a>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата и Время рассмотрения</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateRasm" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder="Select date"></DatePicker>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дело - основание</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дело - основание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="mainDelo" disabled placeholder="Enter something..."></Input>
@@ -168,7 +168,7 @@
             <a href="#" @click="showDeloModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник</a>
           </Col>
         </Row>
-      </FormItem>
+      </div>
     </div>
   </div>
 </template>

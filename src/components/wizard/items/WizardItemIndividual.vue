@@ -1,8 +1,8 @@
 <template>
   <div v-if="data">
     <div class="adm-form">
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Гражданство:</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
@@ -10,17 +10,17 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ФИО:</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="fio" @on-input-change="changeFIO" placeholder="ФИО"></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Пол:</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Пол:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmin180" v-model="data.sex" @on-change="storeElementData" placeholder="">
@@ -29,17 +29,17 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата рождения:</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
             <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.birthdayDay" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date"></DatePicker>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Место рождения</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
             <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
@@ -47,23 +47,23 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Место работы:</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Место работы:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Место работы:"></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Телефон:</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Телефон:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон:"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
     </div>
   </div>
 </template>

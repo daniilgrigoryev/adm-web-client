@@ -6,16 +6,16 @@
           <h2 class="adm-text-big color-dark-light my12">Транспортное средство</h2>
         </Col>
       </Row>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Регистрационный знак ТС</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Регистрационный знак ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.regno" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Тип кузова ТС</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Тип кузова ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" clearable @on-change="storeElementData">
@@ -23,9 +23,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Марка ТС</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Марка ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto">
@@ -33,9 +33,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Модель ТС</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Модель ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()">
@@ -43,9 +43,9 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
-      <FormItem :label-width="180" class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Принадлежность ТС</small>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Принадлежность ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.ownerTip" clearable @on-change="storeElementData">
@@ -53,7 +53,7 @@
             </Select>
           </Col>
         </Row>
-      </FormItem>
+      </div>
     </div>
   </div>
 </template>

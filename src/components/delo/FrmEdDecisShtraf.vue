@@ -1,195 +1,195 @@
 <template>
   <div v-if="body">
-    <Form :label-width="180" label-position="right">
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Код - решение</small>
+    <div class="adm-form">
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Код - решение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.decisKod, body.decisName | concatByDelimiter('-')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата вынесения решения по делу</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата вынесения решения по делу</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.decisDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата вручения постановления</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата вручения постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата вступления в законную силу</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления в законную силу</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateVstup | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Сумма наложенного штрафа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Сумма наложенного штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.sumShtraf" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Сумма оплаченного штрафа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаченного штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.sumOpl" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Сумма неоплаченного штрафа</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Сумма неоплаченного штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.sumNopl" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата исполнения решения</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения решения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dateIspoln | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
       <hr class="txt-hr my24" />
 
       <h2 class="adm-text-big color-dark-light my12">Решение принял</h2>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Личный номер сотрудника</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.inspSostKod" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">ФИО сотрудника</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Должность сотрудника</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.inspSostDolz" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Звание</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.inspSostRang" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Код подразделения</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.organSostKod" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Подразделение</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Место вынесения решения</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Место вынесения решения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.placeDecis.placeFull" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
       <hr class="txt-hr my24" />
 
       <h2 class="adm-text-big color-dark-light my12">Решение в отношении</h2>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Участник</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Участник</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.uchastName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">По пункту Нормативно-Правового Акта</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">По пункту Нормативно-Правового Акта</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.pnpaName" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">По статье Административного Кодекса</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дополнительные сведения</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.dopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-      <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Основное</small>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Основное</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" readonly :value="body.decisFormtxt" placeholder="Enter something..."></Input>
           </Col>
         </Row>
-      </FormItem>
+      </div>
 
-    </Form>
+    </div>
   </div>
 </template>
 

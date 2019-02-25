@@ -363,7 +363,10 @@ html, body, #app {
 }
 
 .adm-form{
-	.ivu-form-item-label{
+    // .adm-form__item{
+
+    // }
+	.adm-form__label{
 		text-align: right;
 		vertical-align: middle;
 		float: left;
@@ -371,7 +374,8 @@ html, body, #app {
 		color: #515a6e;
 		line-height: 1;
 		padding: 10px 12px 10px 0;
-		box-sizing: border-box;
+    box-sizing: border-box;
+    width: 180px;
 	}
 	// .ivu-form-item-content{
 	// }
