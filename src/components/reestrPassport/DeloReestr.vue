@@ -2,7 +2,6 @@
   <div v-if="dataStore">
     <div class="adm-search-filter-panel bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
-        <a href="#" @click="getOffense">sdfdsf</a>
         <Form inline label-position="top">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="22">
@@ -56,7 +55,6 @@
                   </FormItem>
                 </Col>
               </Row>
-
               <Row type="flex" justify="start" :gutter="8" v-show="hideMore">
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
@@ -124,7 +122,7 @@
             </Col>
             <Col :xs="24" :md="4" :lg="2">
               <div class="h-full flex-parent flex-parent--column flex-parent--center-cross flex-parent--center-main">
-                <!--<Button @click="filterClick" type="primary" class="my-auto">Фильтровать</Button>-->
+                <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button>
               </div>
             </Col>
           </Row>
@@ -133,9 +131,9 @@
               <!--TODO Ваня говорит, что кнопка лишняя-->
               <!--TODO А где она должна быть?-->
               <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
-              <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button>
+              <!-- <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button> -->
 
-            <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
+              <a href='#Links' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
                 <span v-if="hideMore">Меньше параметров</span>
                 <span v-else>Больше параметров</span>
               </a>
@@ -351,6 +349,7 @@
                 this.columnsOptions.push({
                   title: 'Номер дела',
                   key: 'deloId',
+                  position: 99,
                   minWidth: 160,
                   ellipsis: true,
                   visible: true,
@@ -379,6 +378,7 @@
                   title: 'Дело по статье', // Ст.-основание
                   key: 'stotvKod',
                   minWidth: 180,
+                  position: 3,
                   ellipsis: true,
                   tooltip: true,
                   visible: true,
@@ -418,6 +418,7 @@
                 this.columnsOptions.push({
                   title: 'Дата рождения',
                   key: 'birthday',
+                  position: 99,
                   minWidth: 160,
                   ellipsis: true,
                   visible: true,
@@ -438,10 +439,11 @@
               }
               case 'checkPriority': {
                 this.columnsOptions.push({
-                  title: 'Ошибки',
+                  title: '',
+                  position: 1,
                   key: 'checkPriority',
                   align: 'center',
-                  minWidth: 100,
+                  minWidth: 15,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -471,6 +473,7 @@
                 this.columnsOptions.push({
                   title: 'Дата посл.ст.исп.',
                   key: 'dateStadIspolnLast',
+                  position: 99,
                   minWidth: 200,
                   ellipsis: true,
                   visible: true,
@@ -499,6 +502,7 @@
                 this.columnsOptions.push({
                   title: 'Дата решения',
                   key: 'decisDateFirst',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   visible: true,
@@ -527,6 +531,7 @@
                 this.columnsOptions.push({
                   title: 'Дата посл.реш.',
                   key: 'decisDateLast',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   visible: true,
@@ -555,6 +560,7 @@
                 this.columnsOptions.push({
                   title: 'Перв.реш.',
                   key: 'decisNameFirst',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   visible: true,
@@ -577,6 +583,7 @@
                 this.columnsOptions.push({
                   title: 'Посл.реш.',
                   key: 'decisNameLast',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   visible: true,
@@ -599,6 +606,7 @@
                 this.columnsOptions.push({
                   title: 'Дата оформления',
                   key: 'deloDate',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   visible: false,
@@ -628,6 +636,7 @@
                   title: 'Номер дела',
                   key: 'deloN',
                   minWidth: 180,
+                  position: 2,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -668,6 +677,7 @@
                 this.columnsOptions.push({
                   title: 'Вид дела',
                   key: 'deloVidName',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -689,6 +699,7 @@
                 this.columnsOptions.push({
                   title: 'Протокол',
                   key: 'docN',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -710,6 +721,7 @@
                 this.columnsOptions.push({
                   title: 'Блок.дела',
                   key: 'lockName',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -731,6 +743,7 @@
                 this.columnsOptions.push({
                   title: 'ЛВОК',
                   key: 'lvokName',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -752,6 +765,7 @@
                 this.columnsOptions.push({
                   title: 'Определение/Доп.прот.',
                   key: 'opredN',
+                  position: 99,
                   minWidth: 220,
                   ellipsis: true,
                   tooltip: true,
@@ -773,6 +787,7 @@
                 this.columnsOptions.push({
                   title: 'Постан./ПК',
                   key: 'postN',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -794,6 +809,7 @@
                 this.columnsOptions.push({
                   title: 'Протокол АПН',
                   key: 'protN',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -815,6 +831,7 @@
                 this.columnsOptions.push({
                   title: 'РегЗнак',
                   key: 'regno',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -836,6 +853,7 @@
                 this.columnsOptions.push({
                   title: 'Стадия дела',
                   key: 'stadDeloName',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -858,6 +876,7 @@
                 this.columnsOptions.push({
                   title: 'Посл.ст.исп.',
                   key: 'stadIspolnNameLast',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -879,6 +898,7 @@
                 this.columnsOptions.push({
                   title: 'Статья',
                   key: 'stotv',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -900,6 +920,7 @@
                 this.columnsOptions.push({
                   title: 'Участник',
                   key: 'uchastName',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -921,6 +942,7 @@
                 this.columnsOptions.push({
                   title: 'Участник',
                   key: 'ulName',
+                  position: 99,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -941,6 +963,9 @@
             }
           });
           if (this.columnsOptions.length > 0) {
+            this.columnsOptions = this.columnsOptions.sort((a, b) => {
+              return a.position - b.position;
+            });
             this.columnsOptions.push({
               title: "Действия",
               width: 130,
