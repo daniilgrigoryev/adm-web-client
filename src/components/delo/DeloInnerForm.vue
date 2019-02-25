@@ -8,13 +8,6 @@
         </Button>
       </div>
 
-      <div class="my12">
-        <a href='#Links' class='link color-blue-base adm-txt-regular border--dash border-b mr24 color-blue-dark-on-hover'>Решение по делу</a>
-        <a href='#Links' class='link color-blue-base adm-txt-regular border--dash border-b mr24 color-blue-dark-on-hover'>Сведения</a>
-        <a href='#Links' class='link color-blue-base adm-txt-regular border--dash border-b mr24 color-blue-dark-on-hover'>Данные видеофиксации</a>
-        <a href='#Links' class='link color-blue-base adm-txt-regular border--dash border-b mr24 color-blue-dark-on-hover'>Ошибки</a>
-      </div>
-
     </div>
 
     <div class="hmin360 px36 py12">
@@ -27,6 +20,7 @@
       <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastFL')"></frm-ed-uchast-f-l>
       <frm-ed-vu-pred v-if="isVisible('FrmEdVuPred')"></frm-ed-vu-pred>
       <frm-ed-vu-vyd v-if="isVisible('FrmEdVuVyd')"></frm-ed-vu-vyd>
+      <frm-ed-ispoln-post-uvedom v-if="isVisible('FrmEdIspolnPostUvedom')"></frm-ed-ispoln-post-uvedom>
     </div>
   </div>
 </template>
@@ -45,6 +39,7 @@
   import FrmEdUchastFL from "~/components/delo/FrmEdUchastFL";
   import FrmEdVuPred from "~/components/delo/FrmEdVuPred";
   import FrmEdVuVyd from "~/components/delo/FrmEdVuVyd";
+  import FrmEdIspolnPostUvedom from "~/components/delo/FrmEdIspolnPostUvedom";
 
   export default {
     name: "DeloInnerForm",
@@ -52,6 +47,7 @@
       sizeInnerStack: Number
     },
     components: {
+      FrmEdIspolnPostUvedom,
       FrmEdVuPred,
       FrmEdVuVyd,
       FrmEdDocsOpred,

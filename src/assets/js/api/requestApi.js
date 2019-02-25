@@ -143,7 +143,7 @@ export default class RequestApi {
     xhr.timeout = 180000;
     xhr.open('POST', ConstantUtils.HTTP_URL, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(JSON.stringify(body));
+    xhr.send(JSON.stringify(body, funcUtils.replacer));
 
     let hideSpinner = () => {
       let target = document.getElementById('indicator');

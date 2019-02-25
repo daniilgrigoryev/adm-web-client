@@ -87,7 +87,9 @@
         await this.$store.dispatch('fillModule', {'event': eventResponse});
 
         if (this.sizeInnerStack === 0) {
-          await this.$refs.innerForm.addForm(this.deloInfo);
+          if (this.$refs.innerForm) {
+            await this.$refs.innerForm.addForm(this.deloInfo);
+          }
         } else {
           this.updateSelected();
         }
@@ -153,7 +155,9 @@
         let copyNode = JSON.parse(JSON.stringify(node));
         delete copyNode['selected'];
 
-        await this.$refs.innerForm.addForm(copyNode);
+        if (this.$refs.innerForm) {
+          await this.$refs.innerForm.addForm(copyNode);
+        }
       },
       arrayToTree(arr) {
         let tree = [];
@@ -185,7 +189,9 @@
           uid: this.$store.state.deloTreeCardView.moduleName
         };
         await innerFormStack.clearStack(params);
-        this.$refs.innerForm.clearCurrent();
+        if (this.$refs.innerForm) {
+          this.$refs.innerForm.clearCurrent();
+        }
         this.sizeInnerStack = 0;
         this.updateSelected();
       },
