@@ -5,7 +5,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Код - решение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.decisKod + ' - ' + body.decisName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.decisKod, body.decisName | concatByDelimiter('-')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -166,7 +166,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">По статье Административного Кодекса</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod + ', ' + body.stotvName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>

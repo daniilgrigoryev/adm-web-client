@@ -17,8 +17,6 @@
 
     </div>
 
-
-
     <div class="hmin360 px36 py12">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
@@ -26,6 +24,9 @@
       <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')"></frm-ed-decis-shtraf>
       <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')"></frm-ed-ispoln-shtraf>
       <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')"></frm-ed-vehs-a-m-t-c>
+      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastFL')"></frm-ed-uchast-f-l>
+      <frm-ed-vu-pred v-if="isVisible('FrmEdVuPred')"></frm-ed-vu-pred>
+      <frm-ed-vu-vyd v-if="isVisible('FrmEdVuVyd')"></frm-ed-vu-vyd>
     </div>
   </div>
 </template>
@@ -41,6 +42,9 @@
   import FrmEdDecisShtraf from "~/components/delo/FrmEdDecisShtraf";
   import FrmEdIspolnShtraf from "~/components/delo/FrmEdIspolnShtraf";
   import FrmEdVehsAMTC from "~/components/delo/FrmEdVehsAMTC";
+  import FrmEdUchastFL from "~/components/delo/FrmEdUchastFL";
+  import FrmEdVuPred from "~/components/delo/FrmEdVuPred";
+  import FrmEdVuVyd from "~/components/delo/FrmEdVuVyd";
 
   export default {
     name: "DeloInnerForm",
@@ -48,11 +52,14 @@
       sizeInnerStack: Number
     },
     components: {
+      FrmEdVuPred,
+      FrmEdVuVyd,
       FrmEdDocsOpred,
       FrmEdDocsPost,
       FrmEdDecisShtraf,
       FrmEdIspolnShtraf,
       FrmEdVehsAMTC,
+      FrmEdUchastFL,
       FrmEdDelo
     },
     async created() {
@@ -109,6 +116,9 @@
         await this.$emit('updateSizeStack', {
           uid: formStack.getCurrent().moduleName
         });
+      },
+      clearCurrent() {
+        this.current = null;
       },
       isVisible(beanName) {
         return funcUtils.isNotEmpty(this.current) && this.current.beanName === beanName;

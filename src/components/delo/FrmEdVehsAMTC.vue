@@ -86,15 +86,6 @@
         </Row>
       </FormItem>
 
-      <!--<FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Модификация</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="body.sobstvName" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </FormItem>-->
-
       <FormItem class="my12">
         <small class="adm-text-small color-gray-medium" slot="label">Модель двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -294,7 +285,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Дата выдачи</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ptcDate" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ptcDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -345,10 +336,10 @@
       </FormItem>
 
       <FormItem class="my12">
-        <small class="adm-text-small color-gray-medium" slot="label">Дата osagoDate</small>
+        <small class="adm-text-small color-gray-medium" slot="label">Дата ОСАГО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.deloVidName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -483,42 +474,6 @@
       }
     },
     methods: {
-      changeClass(errorPriority) {
-        if (funcUtils.isNotEmpty(errorPriority)) {
-          switch (errorPriority) {
-            case 1: {
-              return "bg-red";
-            }
-            case 2: {
-              return "bg-orange";
-            }
-            case 3: {
-              return "bg-yellow";
-            }
-            case 4: {
-              return "bg-green";
-            }
-            case 5: {
-              return "bg-blue";
-            }
-            case 6: {
-              return "bg-purple";
-            }
-            case 7: {
-              return "bg-gray";
-            }
-            case 8: {
-              return "bg-black";
-            }
-            case 9: {
-              return "bg-blue-faint";
-            }
-            default: {
-              return "";
-            }
-          }
-        }
-      },
       getCheckName(checkKey) {
         switch (checkKey) {
           case '+': {

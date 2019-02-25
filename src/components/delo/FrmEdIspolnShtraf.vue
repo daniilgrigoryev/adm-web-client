@@ -6,7 +6,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Исполнение решения. Код - Статус</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ispolnStatus + ' - ' + body.ispolnStatusName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ispolnStatus, body.ispolnStatusName | concatByDelimiter('-')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>
@@ -24,7 +24,7 @@
         <small class="adm-text-small color-gray-medium" slot="label">Статья основание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod + ', ' + body.stotvName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </FormItem>

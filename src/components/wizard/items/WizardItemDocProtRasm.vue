@@ -655,13 +655,13 @@
             this.data.organSostId = data.ogaiId;
             this.data.organSostKod = data.organKod;
             this.data.organSostName = data.ogaiName;
+            this.storeElementData();
           } else {
             this.clearInspSost();
           }
         } else {
           this.clearInspSost();
         }
-        this.storeElementData();
       },
       async changeOrganSostKod() {
         let express = /^\d+$/;

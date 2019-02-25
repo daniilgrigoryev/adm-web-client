@@ -32,13 +32,14 @@ let vue = new Vue({
   router,
   data: {},
   render: h => h(App),
-  created() {
+  async created() {
     if (funcUtils.isNull(sessionStorage.getItem('admWid'))) {
       sessionStorage.setItem('admWid', funcUtils.guid());
       funcUtils.addToSessionStorage(sessionStorage.getItem('admWid'), new Stack());
     }
     funcUtils.addToLocalStorage('admLastActive', new Date().getTime());
-    if (funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
+    let checkSession = await this.checkSession();
+    if (funcUtils.isNotEmpty(localStorage.getItem('admSid')) && checkSession) {
       let requestHead = new RequestEntity.RequestHead(localStorage.getItem('admSid'), sessionStorage.getItem('admWid'), null, null, 'addWID');
       RequestApi.sendSocketRequest({
         body: new RequestEntity.RequestParam(requestHead, null),
@@ -73,7 +74,7 @@ let vue = new Vue({
     },
     async getDeloReestr() {
       try {
-        let cid = funcUtils.getfromLocalStorage(this.$store.state.deloReestr.moduleName);
+        let cid = funcUtils.getfromLocalStorage('admDeloReestr');
         formStack.clearStack(false);
         await formStack.toNext({
           module: this.$store.state.deloReestr,

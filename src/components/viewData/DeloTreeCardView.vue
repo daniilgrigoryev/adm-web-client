@@ -33,7 +33,7 @@
                   </div>
                 </a>
               </li>
-              <hr class="txt-hr my0" v-else-if="!item.recType && item.category === -3" />
+              <hr class="txt-hr my0" v-else-if="!item.recType" />
             </ul>
           </Col>
           <Col :xs="24" :sm="16" :md="16" :lg="16">
@@ -185,6 +185,7 @@
           uid: this.$store.state.deloTreeCardView.moduleName
         };
         await innerFormStack.clearStack(params);
+        this.$refs.innerForm.clearCurrent();
         this.sizeInnerStack = 0;
         this.updateSelected();
       },

@@ -111,7 +111,7 @@
             <div>
                 <small class="adm-text-small color-dark-base">ФИО сотрудника, Звание, Должность</small>
                 <p class="color-dark-base adm-h3">{{body.inspVozbName}}</p>
-                <p class="color-dark-base adm-btn-small txt-em wmax240">{{body.inspVozbRang + ', ' + body.inspVozbDolz }}</p>
+                <p class="color-dark-base adm-btn-small txt-em wmax240">{{ body.inspVozbRang, body.inspVozbDolz | concatByDelimiter(',') }}</p>
             </div>
           </Col>
         </Row>

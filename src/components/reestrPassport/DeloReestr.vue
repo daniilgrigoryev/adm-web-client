@@ -191,7 +191,7 @@
         this.fillArticleProcDict();
 
         if (funcUtils.isNull(cid)) {
-          funcUtils.addToLocalStorage(this.$store.state.deloReestr.moduleName, current.cid);
+          funcUtils.addToLocalStorage('admDeloReestr', current.cid);
           eventResponse = await RequestApi.prepareData({
             method: 'getData',
             params: {
@@ -1047,66 +1047,6 @@
         }
 
         return filterObj;
-      },
-      changeBirthday() {
-        let v = this.filter.birthday.value;
-
-        if (funcUtils.isNotEmpty(v)) {
-          let express1 = /^\d{1,2}$/;
-          let express2 = /^(\d{2})\/(\d{1,2})$/;
-          let express3 = /^(\d{2})\/(\d{2})\/(\d{1,4})$/;
-          let regs1 = v.match(express1);
-          let regs2 = v.match(express2);
-          let regs3 = v.match(express3);
-
-          if (v.length === 2 && regs1 && regs1[0] >= 1 && regs1[0] <= 31) {
-            this.filter.birthday.value = v + '/';
-          } else if (v.length === 2 && !regs1) {
-            if (express1.test(v[0]) && v[0] > 0 && v[0] < 12) {
-              this.filter.birthday.value = '0' + v[0] + '/';
-            } else {
-              this.$refs.filterBirthday.currentValue = v[0].trim();
-              this.filter.birthday.value = v[0].trim();
-            }
-          } else if (v.length === 2 && !regs1 || (regs1 && (regs1[0] < 0 || regs1[0] > 31))) {
-            this.$refs.filterBirthday.currentValue = null;
-            this.filter.birthday.value = null;
-          } else if (v.length === 3 && v[2] !== '/') {
-            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 2) + '/';
-            this.filter.birthday.value = this.filter.birthday.value.substr(0, 2) + '/';
-          } else if (v.length <= 2 && !regs1) {
-            this.$refs.filterBirthday.currentValue = null;
-            this.filter.birthday.value = null;
-          }
-
-          else if (v.length === 5 && regs2 && regs2[2] >= 1 && regs2[2] <= 12) {
-            this.filter.birthday.value = v + '/';
-          } else if (v.length === 5 && !regs2) {
-            if (express1.test(v[3]) && v[3] > 0 && v[3] < 12) {
-              this.filter.birthday.value = this.filter.birthday.value.substr(0, 3) + '0' + v[3] + '/';
-            } else {
-              this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 3) + v[3].trim();
-              this.filter.birthday.value = this.filter.birthday.value.substr(0, 3) + v[3].trim();
-            }
-          } else if (v.length === 5 && !regs2 || (regs2 && (regs2[2] < 0 || regs2[2] > 12))) {
-            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 2) + '/';
-            this.filter.birthday.value = this.filter.birthday.value.substr(0, 2) + '/';
-          } else if (v.length === 6 && v[5] !== '/') {
-            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 5) + '/';
-            this.filter.birthday.value = this.filter.birthday.value.substr(0, 5) + '/';
-          } else if (v.length === 4 && !regs2) {
-            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 2) + '/';
-            this.filter.birthday.value = this.filter.birthday.value.substr(0, 2) + '/';
-          }
-
-          else if (!regs3) {
-            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 6);
-            this.filter.birthday.value = this.filter.birthday.value.substr(0, 6);
-          } else if (v.length === 10 && regs3 && (regs3[3] < 1902 || regs3[3] > new Date().getFullYear())) {
-            this.$refs.filterBirthday.currentValue = this.filter.birthday.value.substr(0, 6);
-            this.filter.birthday.value = this.filter.birthday.value.substr(0, 6);
-          }
-        }
       },
       parseFilter(filter) {
         if (funcUtils.isNotEmpty(filter)) {

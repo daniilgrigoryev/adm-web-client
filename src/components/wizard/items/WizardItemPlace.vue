@@ -13,7 +13,7 @@
 				</Row>
 			</FormItem>
 		</div>
-	
+
 		<div v-if="data && placeModal.visible" class="absolute bg-white z5" style="top: 0; bottom: 0; right: 0; left: 0;">
 			<div class="flex-parent flex-parent--end-main">
 				<Button type="text"  @click="showPlaceModal(false)" class="px0 py0">
