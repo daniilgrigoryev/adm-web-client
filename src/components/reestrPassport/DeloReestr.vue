@@ -144,9 +144,10 @@
     </div>
     <div class="bg-white">
       <div class="wmax1920 mx-auto">
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px18">
-          <h1>Найденные дела</h1>
-          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-end">
+
+        <div class="flex-parent flex-parent--center-cross">
+          <h2 class="adm-h2 mx12">Найденные дела</h2>
+          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="right-start">
             <a href="javascript:void(0)" class="block py12" @click="toggleColumnsOption">
               <span class='link color-blue-base adm-btn-small txt-underline-on-hover'></span>
               <Icon style="margin-left: 10px;" type="md-settings" size="18"></Icon>
@@ -160,6 +161,7 @@
             </DropdownMenu>
           </Dropdown>
         </div>
+
         <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight"></Table>
       </div>
     </div>
@@ -330,7 +332,7 @@
       },
       tableColumnsForOptions() {
         return this.columnsOptions.filter(column => {
-          return column.key !== 'deloDate' && column.key !== 'stadDeloName';
+          return column.key !== 'deloDate' && column.key !== 'stadDeloName' && column.key !== 'checkPriority';
         })
       },
     },
@@ -377,7 +379,7 @@
                 this.columnsOptions.push({
                   title: 'Дело по статье', // Ст.-основание
                   key: 'stotvKod',
-                  minWidth: 180,
+                  minWidth: 150,
                   position: 3,
                   ellipsis: true,
                   tooltip: true,
@@ -443,7 +445,7 @@
                   position: 1,
                   key: 'checkPriority',
                   align: 'center',
-                  minWidth: 15,
+                  width: 25,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -635,7 +637,7 @@
                 this.columnsOptions.push({
                   title: 'Номер дела',
                   key: 'deloN',
-                  minWidth: 180,
+                  minWidth: 140,
                   position: 2,
                   ellipsis: true,
                   visible: true,
@@ -829,9 +831,10 @@
               }
               case 'regno': {
                 this.columnsOptions.push({
-                  title: 'РегЗнак',
+                  title: 'ГРЗ автомобиля', // РегЗнак 
                   key: 'regno',
-                  position: 99,
+                  position: 5,
+                  visible: true,
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -918,10 +921,11 @@
               }
               case 'uchastName': {
                 this.columnsOptions.push({
-                  title: 'Участник',
+                  title: 'ЛВОК', // бывшее - участник 
                   key: 'uchastName',
-                  position: 99,
-                  minWidth: 180,
+                  position: 4,
+                  minWidth: 230,
+                  visible: true,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
@@ -932,7 +936,34 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'Дата рождения'),
+                    ])
+                  },
+                  render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.birthday) ? funcUtils.parseDateTime(params.row.birthday, 'DD/MM/YYYY') : '';
+                    return h('div', {}, [
+                      h('Tooltip', {
+                        props: {
+                          placement: 'top',
+                          content:params.row.uchastName,
+                          transfer: true,
+                        }
+                      }, [
+                        h('p', params.row.uchastName),
+                      ]),
+                      h('p', {
+                       class: {
+                          'color-dark-base': true,
+                          'adm-text-small': true
+                        },
+                      },
+                      parsedDate),
                     ])
                   }
                 });
