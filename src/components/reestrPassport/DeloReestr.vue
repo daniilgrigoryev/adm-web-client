@@ -2,7 +2,7 @@
   <div v-if="dataStore">
     <div class="adm-search-filter-panel bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
-        <Form inline label-position="top">
+        <Form ref="deloReestrForm" inline label-position="top">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="22">
               <!-- в каждом Row не должно быть больше 4 Col -->
@@ -18,7 +18,7 @@
                     <Col :xs="12" :md="18" :lg="12">
                       <FormItem class="w-full">
                         <div slot="label" class="adm-text-small color-gray-medium">Дата заведения дела</div>
-                        <DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value" placeholder="Дата заведения дела"></DatePicker>
+                        <DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value" placeholder="Дата заведения дела" clearable></DatePicker>
                       </FormItem>
                     </Col>
                     <Col :xs="12" :md="6" :lg="12">
@@ -48,7 +48,7 @@
                         </Select>
                       </Col>
                       <Col :xs="12" :md="12" :lg="12">
-                        <Input class="adm-input adm-input--big" v-model="filter.docN.value" placeholder="Номер документа"></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.docN.value" placeholder="Номер документа" clearable></Input>
                       </Col>
                     </Row>
                   </FormItem>
@@ -60,13 +60,13 @@
                     <div slot="label" class="adm-text-small color-gray-medium">Физическое лицо - ЛВОК</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.firstName.value" placeholder="Фамилия"></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.firstName.value" placeholder="Фамилия" clearable></Input>
                       </Col>
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.secondName.value" placeholder="Имя"></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.secondName.value" placeholder="Имя" clearable></Input>
                       </Col>
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.thirdName.value" placeholder="Отчество"></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.thirdName.value" placeholder="Отчество" clearable></Input>
                       </Col>
                     </Row>
                   </FormItem>
@@ -91,13 +91,13 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Юридическое лицо - ЛВОК</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.ulName.value" placeholder="Название организации"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.ulName.value" placeholder="Название организации" clearable></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Номер УПИ</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.upi.value" placeholder="Номер УПИ"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.upi.value" placeholder="Номер УПИ" clearable></Input>
                   </FormItem>
                 </Col>
               </Row>
@@ -106,14 +106,19 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Приоритет ошибки</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.checkPriority.value" placeholder="Приоритет ошибки"></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.checkPriority.value" placeholder="Приоритет ошибки" clearable></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Дата рождения</div>
-                    <input-mask v-model="filter.birthday.value" :maskProps="maskProps" :value="filter.birthday.value" :inputProps="inputProps"></input-mask>
+                    <input-mask v-model="filter.birthday.value" :maskProps="maskProps" :value="filter.birthday.value" :inputProps="inputProps" clearable></input-mask>
                   </FormItem>
+                </Col>
+                <Col :xs="24" :md="12" :lg="6">
+                  <div class="h-full flex-parent flex-parent--center-cross">
+                     <Button type="default" @click="handleReset('deloReestrForm')">Отчистить форму</Button>
+                  </div>
                 </Col>
               </Row>
             </Col>
@@ -130,10 +135,10 @@
               <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
               <!-- <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button> -->
 
-              <a href='#' @click="hideMore = !hideMore" class='link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0'>
+              <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0' style="box-shadow: none">
                 <span v-if="hideMore">Меньше параметров</span>
                 <span v-else>Больше параметров</span>
-              </a>
+              </Button>
             </Col>
           </Row>
         </Form>
@@ -141,11 +146,8 @@
     </div>
     <div class="bg-white">
       <div class="wmax1920 mx-auto">
-
         <div class="flex-parent flex-parent--center-cross">
           <h3 class="adm-h3 mx12">Найденные дела</h3>
-          
-
           <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-start" class="ml24">
             <Button type="text" href="javascript:void(0)" class="block py12 px12 border--0" style="box-shadow: none" @click="toggleColumnsOption">
               <span class='link color-dark-medium adm-text-small txt-underline-on-hover'>показ колонок</span>
@@ -159,10 +161,7 @@
               <Button type="primary" @click="toggleColumnsOption" style="margin: 8px  16px;">Закрыть</Button>
             </DropdownMenu>
           </Dropdown>
-   
-
         </div>
-
         <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight"></Table>
       </div>
     </div>
@@ -350,6 +349,9 @@
       }
     },
     methods: {
+      handleReset (name) {
+        this.$refs[name].resetFields();
+      },
       fillColumnsOptions() {
         if (this.dataStore) {
           this.columnsOptions = [];
