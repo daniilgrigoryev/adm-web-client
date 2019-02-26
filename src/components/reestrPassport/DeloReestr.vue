@@ -244,7 +244,7 @@
         documentVidDict: [],
         articleProcDict: [],
         filter: {
-          flagYear: true,
+          flagYear: 'true',
           deloN: null,
           deloDat: null,
           docVid: null,
