@@ -2,7 +2,7 @@
   <div v-if="dataStore">
     <div class="adm-search-filter-panel bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
-        <div class="adm-form">
+        <div @keydown.enter="filterClick" class="adm-form">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="22">
               <!-- в каждом Row не должно быть больше 4 Col -->
@@ -24,7 +24,7 @@
                     <Col :xs="12" :md="6" :lg="12">
                        <div class="w-full align-center adm-form__item my12">
                           <div class="adm-text-small color-gray-medium my6">Искать только в текущем году</div>
-                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.flagYear" clearable>
+                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.flagYear">
                            <Option value="true">Да</Option>
                            <Option value="false">Нет</Option>
                          </Select>
