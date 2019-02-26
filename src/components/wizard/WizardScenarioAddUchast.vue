@@ -1,21 +1,21 @@
 <template>
   <div class="wmax1920 mx-auto">
     <Row type="flex">
-      <!-- <Col :xs="24" :sm="6" :md="6" :lg="6">
-        <div class="bg-blue-thin h-full scroll-hidden">
-          <ul class="ml60 mr24 my24">
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
-            <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
-          </ul>
-        </div>
-      </Col> -->
-      <Col :xs="24" :sm="18" :md="18" :lg="24">
-        <div style="max-width: 1280px" class="mx-auto">
-          <Layout ref="Main" class="bg-white hmin360 px36 py12">
+      <Col :xs="24" :sm="8" :md="6" :lg="6">
+          <div class="bg-blue-thin h-full scroll-hidden">
+            <ul class="ml60 mr24 my24">
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
+              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
+            </ul>
+          </div>
+      </Col>
+      <Col :xs="24" :sm="18" :md="18" :lg="18">
+        <div>
+          <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
 
             <wizard-item-add-uchast v-if="isVisible('Uchast')" ref="DocProtFirst" :info="getInfo('Uchast')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
 

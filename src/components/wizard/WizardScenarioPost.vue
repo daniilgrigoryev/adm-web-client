@@ -16,7 +16,7 @@
       </Col>
       <Col :xs="24" :sm="18" :md="18" :lg="18">
         <div>
-          <Layout ref="Main" class="bg-white hmin360 px36 py12">
+          <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
             <wizard-item-doc-post-first id="DocPostFirst" v-if="isVisible('DocPostFirst')" ref="DocPostFirst" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-first>
 
             <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>

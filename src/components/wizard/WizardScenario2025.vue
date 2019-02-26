@@ -15,7 +15,7 @@
       </Col>
       <Col :xs="24" :sm="18" :md="18" :lg="18">
         <div>
-          <Layout ref="Main" class="bg-white hmin360 px36 py12" style="height: calc(100vh - 125px)">
+          <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
 
             <wizard-item-doc-prot2025 v-if="isVisible('DocProt')" ref="DocProt" :info="getInfo('DocProt')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot2025>
 
