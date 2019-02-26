@@ -193,6 +193,9 @@ html, body, #app {
 }
 
 .custom-table {
+  .ivu-tooltip{
+    width: 100%;
+  }
   .ivu-table-header {
     thead {
       tr {

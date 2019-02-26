@@ -143,13 +143,15 @@
       <div class="wmax1920 mx-auto">
 
         <div class="flex-parent flex-parent--center-cross">
-          <h2 class="adm-h2 mx12">Найденные дела</h2>
-          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="right-start">
-            <a href="javascript:void(0)" class="block py12" @click="toggleColumnsOption">
-              <span class='link color-blue-base adm-btn-small txt-underline-on-hover'></span>
+          <h3 class="adm-h3 mx12">Найденные дела</h3>
+          
+
+          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-start" class="ml24">
+            <Button type="text" href="javascript:void(0)" class="block py12 px12 border--0" style="box-shadow: none" @click="toggleColumnsOption">
+              <span class='link color-dark-medium adm-text-small txt-underline-on-hover'>показ колонок</span>
               <Icon style="margin-left: 10px;" type="md-settings" size="18"></Icon>
               <Icon type="ios-arrow-down"></Icon>
-            </a>
+            </Button>
             <DropdownMenu slot="list">
               <DropdownItem v-for="column in tableColumnsForOptions">
                 <Checkbox v-model="column.visible">{{ column.title }}</Checkbox>
@@ -157,6 +159,8 @@
               <Button type="primary" @click="toggleColumnsOption" style="margin: 8px  16px;">Закрыть</Button>
             </DropdownMenu>
           </Dropdown>
+   
+
         </div>
 
         <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight"></Table>
@@ -329,7 +333,14 @@
       },
       tableColumnsForOptions() {
         return this.columnsOptions.filter(column => {
-          return column.key !== 'deloDate' && column.key !== 'stadDeloName' && column.key !== 'checkPriority';
+
+          return  column.key !== 'action' &&
+                  column.key !== 'deloDate' && 
+                  column.key !== 'stadDeloName' && 
+                  column.key !== 'checkPriority' &&
+                  column.key !== 'birthday' && 
+                  column.key !== 'lvokName' && 
+                  column.key !== 'lockName';
         })
       },
     },
@@ -420,7 +431,7 @@
                   position: 99,
                   minWidth: 160,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -470,10 +481,10 @@
               }
               case 'DateStadIspolnLast': {
                 this.columnsOptions.push({
-                  title: 'Дата посл.ст.исп.',
+                  title: 'Дата после исполнения', // Дата посл.ст.исп.
                   key: 'dateStadIspolnLast',
                   position: 99,
-                  minWidth: 200,
+                  minWidth: 220,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -485,7 +496,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
                     ])
                   },
                   render: (h, params) => {
@@ -528,10 +539,10 @@
               }
               case 'decisDateLast': {
                 this.columnsOptions.push({
-                  title: 'Дата посл.реш.',
+                  title: 'Дата после решения', // Дата посл.реш. 
                   key: 'decisDateLast',
                   position: 99,
-                  minWidth: 180,
+                  minWidth: 210,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -557,7 +568,7 @@
               }
               case 'decisNameFirst': {
                 this.columnsOptions.push({
-                  title: 'Перв.реш.',
+                  title: 'Первое решение', // Перв.реш. 
                   key: 'decisNameFirst',
                   position: 99,
                   minWidth: 180,
@@ -572,15 +583,15 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
                     ])
-                  }
+                  },
                 });
                 break;
               }
               case 'decisNameLast': {
                 this.columnsOptions.push({
-                  title: 'Посл.реш.',
+                  title: 'После решения', // Посл.реш.
                   key: 'decisNameLast',
                   position: 99,
                   minWidth: 180,
@@ -722,6 +733,7 @@
                   key: 'lockName',
                   position: 99,
                   minWidth: 180,
+                  visible: false,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
@@ -762,7 +774,7 @@
               }
               case 'opredN': {
                 this.columnsOptions.push({
-                  title: 'Определение/Доп.прот.',
+                  title: 'Определение', // Определение/Доп.прот.
                   key: 'opredN',
                   position: 99,
                   minWidth: 220,
@@ -776,19 +788,26 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'дополнительный протокол'),
                     ])
-                  }
+                  },
                 });
                 break;
               }
               case 'postN': {
                 this.columnsOptions.push({
-                  title: 'Постан./ПК',
+                  title: 'ПК', // Постан./ПК
                   key: 'postN',
                   position: 99,
-                  minWidth: 180,
+                  minWidth: 200,
                   ellipsis: true,
+                  visible: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -798,9 +817,15 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-gray-medium': true,
+                          'adm-text-small': true
+                        },
+                      }, 'постановление-квитанция'),
                     ])
-                  }
+                  },
                 });
                 break;
               }
@@ -874,10 +899,11 @@
               }
               case 'stadIspolnNameLast': {
                 this.columnsOptions.push({
-                  title: 'Посл.ст.исп.',
+                  title: 'Решение после исполнения', // Посл.ст.исп. 
                   key: 'stadIspolnNameLast',
                   position: 99,
-                  minWidth: 180,
+                  minWidth: 250,
+                  visible: true,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
@@ -888,7 +914,7 @@
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
                     ])
                   }
                 });
@@ -927,13 +953,22 @@
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
-                      h('p', {
-                        class: {
-                          'color-gray-medium': true,
-                          'adm-text-big': true,
-                          'adm-font-light': true,
+                      h('Tooltip', {
+                        props: {
+                          placement: 'right-start',
+                          content: 'Лицо в отношении которого ведется дело',
+                          transfer: true,
+                          maxWidth: 100,
                         },
-                      }, params.column.title),
+                      }, [
+                        h('p', {
+                          class: {
+                            'color-gray-medium': true,
+                            'adm-text-big': true,
+                            'adm-font-light': true,
+                          },
+                        }, params.column.title),
+                      ]),
                       h('p', {
                         class: {
                           'color-gray-medium': true,
@@ -947,12 +982,13 @@
                     return h('div', {}, [
                       h('Tooltip', {
                         props: {
-                          placement: 'top',
-                          content:params.row.uchastName,
+                          placement: 'right-start',
+                          content: params.row.uchastName,
                           transfer: true,
-                        }
+                          maxWidth: 250,
+                        },
                       }, [
-                        h('p', params.row.uchastName),
+                        h('span', params.row.uchastName),
                       ]),
                       h('p', {
                        class: {
@@ -998,6 +1034,7 @@
               title: "Действия",
               width: 130,
               align: "center",
+              key: 'action',
               visible: true,
               fixed: "right",
               renderHeader: (h, params) => {
