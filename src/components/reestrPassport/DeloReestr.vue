@@ -2,7 +2,7 @@
   <div v-if="dataStore">
     <div class="adm-search-filter-panel bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
-        <Form ref="deloReestrForm" inline label-position="top">
+        <Form inline label-position="top">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="22">
               <!-- в каждом Row не должно быть больше 4 Col -->
@@ -10,7 +10,7 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Номер дела</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.deloN.value" placeholder="Номер дела" clearable></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.deloN" placeholder="Номер дела" clearable></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
@@ -18,13 +18,13 @@
                     <Col :xs="12" :md="18" :lg="12">
                       <FormItem class="w-full">
                         <div slot="label" class="adm-text-small color-gray-medium">Дата заведения дела</div>
-                        <DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat.value" placeholder="Дата заведения дела" clearable></DatePicker>
+                        <DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat" placeholder="Дата заведения дела" clearable></DatePicker>
                       </FormItem>
                     </Col>
                     <Col :xs="12" :md="6" :lg="12">
                        <FormItem class="w-full align-center">
                           <div slot="label" class="adm-text-small color-gray-medium">Искать только в текущем году</div>
-                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.flagYear.value" filterable clearable>
+                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.flagYear" clearable>
                            <Option value="true">Да</Option>
                            <Option value="false">Нет</Option>
                          </Select>
@@ -35,7 +35,7 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">ГРЗ автомобиля</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.regno.value" placeholder="ГРЗ автомобиля" clearable></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ автомобиля" clearable></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
@@ -43,12 +43,12 @@
                     <div slot="label" class="adm-text-small color-gray-medium">Документ прикрепленный к делу</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="12" :md="12" :lg="12">
-                        <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.docVid.value" filterable clearable>
+                        <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.docVid" filterable clearable>
                           <Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
                       <Col :xs="12" :md="12" :lg="12">
-                        <Input class="adm-input adm-input--big" v-model="filter.docN.value" placeholder="Номер документа" clearable></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.docN" placeholder="Номер документа" clearable></Input>
                       </Col>
                     </Row>
                   </FormItem>
@@ -60,13 +60,13 @@
                     <div slot="label" class="adm-text-small color-gray-medium">Физическое лицо - ЛВОК</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.firstName.value" placeholder="Фамилия" clearable></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.firstName" placeholder="Фамилия" clearable></Input>
                       </Col>
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.secondName.value" placeholder="Имя" clearable></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.secondName" placeholder="Имя" clearable></Input>
                       </Col>
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.thirdName.value" placeholder="Отчество" clearable></Input>
+                        <Input class="adm-input adm-input--big" v-model="filter.thirdName" placeholder="Отчество" clearable></Input>
                       </Col>
                     </Row>
                   </FormItem>
@@ -76,12 +76,12 @@
                     <div slot="label" class="adm-text-small color-gray-medium">Стадия дела</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="24" :md="12" :lg="12">
-                        <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.stadDeloKod.value" filterable clearable>
+                        <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.stadDeloKod" filterable clearable>
                           <Option class="wmax360 txt-break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
                       <Col :xs="24" :md="12" :lg="12">
-                        <Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId.value" filterable clearable>
+                        <Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId" filterable clearable>
                           <Option class="wmax360 txt-break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                         </Select>
                       </Col>
@@ -91,13 +91,13 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Юридическое лицо - ЛВОК</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.ulName.value" placeholder="Название организации" clearable></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Номер УПИ</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.upi.value" placeholder="Номер УПИ" clearable></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.upi" placeholder="Номер УПИ" clearable></Input>
                   </FormItem>
                 </Col>
               </Row>
@@ -106,18 +106,18 @@
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Приоритет ошибки</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.checkPriority.value" placeholder="Приоритет ошибки" clearable></Input>
+                    <Input class="adm-input adm-input--big" v-model="filter.checkPriority" placeholder="Приоритет ошибки" clearable></Input>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <FormItem class="w-full">
                     <div slot="label" class="adm-text-small color-gray-medium">Дата рождения</div>
-                    <input-mask v-model="filter.birthday.value" :maskProps="maskProps" :value="filter.birthday.value" :inputProps="inputProps" clearable></input-mask>
+                    <input-mask v-model="filter.birthday" :maskProps="maskInputBirthday.maskProps" :value="filter.birthday" :inputProps="maskInputBirthday.inputProps" clearable></input-mask>
                   </FormItem>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <div class="h-full flex-parent flex-parent--center-cross">
-                     <Button type="default" @click="handleReset('deloReestrForm')">Отчистить форму</Button>
+                     <Button type="default" @click="clearFilter">Отчистить форму</Button>
                   </div>
                 </Col>
               </Row>
@@ -205,7 +205,8 @@
           });
 
           let filter = JSON.parse(eventResponse.response).data.find;
-          this.parseFilter(filter);
+          filter.flagYear = filter.flagYear + '';
+          this.filter = filter;
         }
 
         await this.$store.dispatch('deloReestrSetCid', current.cid);
@@ -243,73 +244,30 @@
         documentVidDict: [],
         articleProcDict: [],
         filter: {
-          flagYear: {
-            name: 'Искать только в текущем году',
-            value: null
+          flagYear: true,
+          deloN: null,
+          deloDat: null,
+          docVid: null,
+          stadDeloKod: null,
+          stotvId: null,
+          checkPriority: null,
+          docN: null,
+          ulName: null,
+          firstName: null,
+          secondName: null,
+          thirdName: null,
+          birthday: null,
+          regno: null,
+          upi: null
+        },
+        maskInputBirthday: {
+          inputProps: {
+            class: 'adm-input adm-input--big'
           },
-          deloN: {
-            name: 'Номер дела',
-            value: null
-          },
-          deloDat: {
-            name: 'Дата дела',
-            value: null
-          },
-          docVid: {
-            name: 'Тип документа',
-            value: null
-          },
-          stadDeloKod: {
-            name: 'Стадия дела',
-            value: null
-          },
-          stotvId: {
-            name: 'Ст.ответственности',
-            value: null
-          },
-          checkPriority: {
-            name: 'Приоритет ошибки',
-            value: null
-          },
-          docN: {
-            name: '№ документа',
-            value: null
-          },
-          ulName: {
-            name: 'Наименование ЮЛ',
-            value: null
-          },
-          firstName: {
-            name: 'Фамилия',
-            value: null
-          },
-          secondName: {
-            name: 'Имя',
-            value: null
-          },
-          thirdName: {
-            name: 'Отчество',
-            value: null
-          },
-          birthday: {
-            name: 'Дата рождения',
-            value: null
-          },
-          regno: {
-            name: 'Рег.знак',
-            value: null
-          },
-          upi: {
-            name: 'УПИ (ШПИ)',
-            value: null
+          maskProps: {
+            alias: "datetime",
+            inputFormat: 'dd/mm/yyyy'
           }
-        },
-        inputProps: {
-          class: 'adm-input adm-input--big'
-        },
-        maskProps: {
-          alias: "datetime",
-          inputFormat: 'dd/mm/yyyy'
         },
         columnsOptions: []
       }
@@ -349,9 +307,6 @@
       }
     },
     methods: {
-      handleReset (name) {
-        this.$refs[name].resetFields();
-      },
       fillColumnsOptions() {
         if (this.dataStore) {
           this.columnsOptions = [];
@@ -670,7 +625,7 @@
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(params.row.deloDate, 'DD/MM/YYYY') : '';
+                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(new Date(params.row.deloDate), 'DD/MM/YYYY') : '';
                     return h('div', {}, [
                       h('p', params.row.deloN),
                       h('p', {
@@ -1131,83 +1086,30 @@
         for (let prop in filter) {
           if (filter.hasOwnProperty(prop)) {
             let propObj = filter[prop];
-            if (funcUtils.isNotEmpty(propObj.value) && (propObj.value === "null" || propObj.value.length === 0)) {
-              propObj.value = null;
+            if (funcUtils.isNotEmpty(propObj) && (propObj === "null" || propObj.length === 0)) {
+              propObj = null;
             }
-            filterObj[prop] = propObj.value;
+            filterObj[prop] = propObj;
           }
         }
 
         return filterObj;
       },
-      parseFilter(filter) {
-        if (funcUtils.isNotEmpty(filter)) {
-          for (let prop in filter) {
-            if (filter.hasOwnProperty(prop)) {
-              let item = filter[prop];
-              if (this.filter[prop] && funcUtils.isNotEmpty(item)) {
-                switch (prop) {
-                  case 'flagYear': {
-                    this.filter[prop].value = item + '';
-                    break;
-                  }
-                  case 'deloN': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                  case 'deloDat': {
-                    this.filter[prop].value = new Date(item);
-                    break;
-                  }
-                  case 'docVid': {
-                    this.filter[prop].value = item + '';
-                    break;
-                  }
-                  case 'stadDeloKod': {
-                    this.filter[prop].value = item + '';
-                    break;
-                  }
-                  case 'stotvId': {
-                    this.filter[prop].value = item + '';
-                    break;
-                  }
-                  case 'checkPriority': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                  case 'docN': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                  case 'ulName': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                  case 'firstName': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                  case 'secondName': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                  case 'birthday': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                  case 'regno': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                  case 'upi': {
-                    this.filter[prop].value = item;
-                    break;
-                  }
-                }
-              }
-            }
+      async clearFilter() {
+        let filter = this.filter;
+        for (let prop in filter) {
+          if (filter.hasOwnProperty(prop)) {
+            filter[prop] = null;
           }
         }
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getData',
+          params: {
+            find: filter,
+            kind: null
+          }
+        });
+        await this.$store.dispatch('fillModule', {'event': eventResponse});
       },
       async fillStateDeloDict() {
         let stateDeloDict = [];

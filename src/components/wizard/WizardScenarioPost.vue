@@ -21,7 +21,7 @@
 
             <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
-            <hr class="txt-hr my24">
+            <hr v-if="isVisible('LVOK')" class="txt-hr my24">
 
             <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
 
@@ -39,11 +39,11 @@
 
             <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-            <hr v-if="isVisible('LVOK')" class="txt-hr my24">
+            <hr v-if="isVisible('Vehs')" class="txt-hr my24">
 
             <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
 
-            <hr v-if="isVisible('Vehs')" class="txt-hr my24">
+            <hr v-if="isVisible('Owner')" class="txt-hr my24">
 
             <wizard-item-owner id="Owner" v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
 
@@ -59,13 +59,13 @@
 
             <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" ref="Owner.Organization.factAddr" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
-            <hr v-if="isVisible('Owner')" class="txt-hr my24">
+            <hr v-if="isVisible('DocPostSecond')" class="txt-hr my24">
 
             <wizard-item-doc-post-second id="DocPostSecond" v-if="isVisible('DocPostSecond')" ref="DocPostSecond" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-second>
 
             <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" ref="DocPostSecond.PlaceNar" :info="getInfo('DocPostSecond.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
-            <hr v-if="isVisible('DocPostSecond')" class="txt-hr my24">
+            <hr v-if="isVisible('DecisMain')" class="txt-hr my24">
 
             <wizard-item-decis id="DecisMain" v-if="isVisible('DecisMain')" ref="DecisMain" :info="getInfo('DecisMain')" @storeElementData="storeElementData" title="Решение по делу" @updateComponents="updateComponents"></wizard-item-decis>
 

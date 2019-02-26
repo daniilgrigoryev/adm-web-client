@@ -67,7 +67,7 @@
 					<small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
+							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
 								<Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 							</Select>
 						</Col>
@@ -126,7 +126,7 @@
 					<small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+							<Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
 								<Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 							</Select>
 						</Col>
@@ -399,21 +399,15 @@ export default {
 
 				await this.fillRegionList();
 				await this.fillRayonList();
-				if (funcUtils.isNotEmpty(this.data.adr.cityId)) {
-					await this.fillCityList();
-				}
+        await this.fillCityList();
 				await this.fillRoadList();
 				await this.fillPlaceList();
-				if (funcUtils.isNotEmpty(this.data.adr.streetId)) {
-					await this.fillStreetList();
-				}
+        await this.fillStreetList();
 
 				if (this.showDopAddress) {
 					await this.fillDopRoadList();
 					await this.fillDopPlaceList();
-					if (funcUtils.isNotEmpty(this.data.adrDop.streetId)) {
-						await this.fillDopStreetList();
-					}
+          await this.fillDopStreetList();
 				}
 			}
 

@@ -54,11 +54,22 @@
           </Row>
         </div>
 
+         <div class="my12 adm-form__item">
+           <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+           <Row :gutter="16" type="flex" align="middle">
+             <Col :xs="24" :md="14" :lg="16">
+               <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                 <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+               </Select>
+             </Col>
+           </Row>
+         </div>
+
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId" @on-clear="changeCity" remote :remote-method="changeCity">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
                 <Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
               </Select>
             </Col>
@@ -69,7 +80,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
                 <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
               </Select>
             </Col>
@@ -178,12 +189,8 @@
 
           await this.fillRegionList();
           await this.fillRayonList();
-          if (funcUtils.isNotEmpty(this.data.cityId)) {
-            await this.fillCityList();
-          }
-          if (funcUtils.isNotEmpty(this.data.streetId)) {
-            await this.fillStreetList();
-          }
+          await this.fillCityList();
+          await this.fillStreetList();
         }
 
         this.fullAddress = data.adrFull;
@@ -311,7 +318,7 @@
             method: 'invokeElementMethod',
             params: {
               eCID: this.info.eCID,
-              methodName: 'getStreetsDictByRegion',
+              methodName: 'getCitiesDictByRegion',
               data: JSON.stringify({
                 regionId: this.data.regionId,
                 substr: query
