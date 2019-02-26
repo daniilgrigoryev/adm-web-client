@@ -2,45 +2,45 @@
   <div v-if="dataStore">
     <div class="adm-search-filter-panel bg-gray-faint py24 px12">
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
-        <Form inline label-position="top">
+        <div class="adm-form">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="22">
               <!-- в каждом Row не должно быть больше 4 Col -->
               <Row type="flex" justify="start" :gutter="8">
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">Номер дела</div>
+                  <div class="adm-form__item my12 w-full">
+                    <div class="adm-text-small color-gray-medium my6">Номер дела</div>
                     <Input class="adm-input adm-input--big" v-model="filter.deloN" placeholder="Номер дела" clearable></Input>
-                  </FormItem>
+                  </div>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <Row type="flex" :gutter="6">
                     <Col :xs="12" :md="18" :lg="12">
-                      <FormItem class="w-full">
-                        <div slot="label" class="adm-text-small color-gray-medium">Дата заведения дела</div>
+                      <div class="w-full adm-form__item my12">
+                        <div class="adm-text-small color-gray-medium my6">Дата заведения дела</div>
                         <DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat" placeholder="Дата заведения дела" clearable></DatePicker>
-                      </FormItem>
+                      </div>
                     </Col>
                     <Col :xs="12" :md="6" :lg="12">
-                       <FormItem class="w-full align-center">
-                          <div slot="label" class="adm-text-small color-gray-medium">Искать только в текущем году</div>
+                       <div class="w-full align-center adm-form__item my12">
+                          <div class="adm-text-small color-gray-medium my6">Искать только в текущем году</div>
                          <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.flagYear" clearable>
                            <Option value="true">Да</Option>
                            <Option value="false">Нет</Option>
                          </Select>
-                        </FormItem>
+                        </div>
                     </Col>
                   </Row>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">ГРЗ автомобиля</div>
+                  <div class="w-full adm-form__item my12">
+                    <div class="adm-text-small color-gray-medium my6">ГРЗ автомобиля</div>
                     <Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ автомобиля" clearable></Input>
-                  </FormItem>
+                  </div>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">Документ прикрепленный к делу</div>
+                  <div class="w-full adm-form__item my12">
+                    <div class="adm-text-small color-gray-medium my6">Документ прикрепленный к делу</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="12" :md="12" :lg="12">
                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.docVid" filterable clearable>
@@ -51,13 +51,13 @@
                         <Input class="adm-input adm-input--big" v-model="filter.docN" placeholder="Номер документа" clearable></Input>
                       </Col>
                     </Row>
-                  </FormItem>
+                  </div>
                 </Col>
               </Row>
               <Row type="flex" justify="start" :gutter="8" v-show="hideMore">
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">Физическое лицо - ЛВОК</div>
+                  <div class="w-full adm-form__item my12">
+                    <div class="adm-text-small color-gray-medium my6">Физическое лицо - ЛВОК</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="8" :md="8" :lg="8">
                         <Input class="adm-input adm-input--big" v-model="filter.firstName" placeholder="Фамилия" clearable></Input>
@@ -69,11 +69,11 @@
                         <Input class="adm-input adm-input--big" v-model="filter.thirdName" placeholder="Отчество" clearable></Input>
                       </Col>
                     </Row>
-                  </FormItem>
+                  </div>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">Стадия дела</div>
+                  <div class="w-full adm-form__item my12">
+                    <div class="adm-text-small color-gray-medium my6">Стадия дела</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="24" :md="12" :lg="12">
                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.stadDeloKod" filterable clearable>
@@ -86,38 +86,38 @@
                         </Select>
                       </Col>
                     </Row>
-                  </FormItem>
+                  </div>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">Юридическое лицо - ЛВОК</div>
+                  <div class="w-full adm-form__item my12">
+                    <div class="adm-text-small color-gray-medium my6">Юридическое лицо - ЛВОК</div>
                     <Input class="adm-input adm-input--big" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
-                  </FormItem>
+                  </div>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">Номер УПИ</div>
+                  <div class="w-full adm-form__item my12">
+                    <div class="adm-text-small color-gray-medium my6">Номер УПИ</div>
                     <Input class="adm-input adm-input--big" v-model="filter.upi" placeholder="Номер УПИ" clearable></Input>
-                  </FormItem>
+                  </div>
                 </Col>
               </Row>
 
               <Row type="flex" justify="start" :gutter="8" v-show="hideMore">
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">Приоритет ошибки</div>
+                  <div class="w-full adm-form__item my12">
+                    <div class="adm-text-small color-gray-medium my6">Приоритет ошибки</div>
                     <Input class="adm-input adm-input--big" v-model="filter.checkPriority" placeholder="Приоритет ошибки" clearable></Input>
-                  </FormItem>
+                  </div>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
-                  <FormItem class="w-full">
-                    <div slot="label" class="adm-text-small color-gray-medium">Дата рождения</div>
+                  <div class="w-full adm-form__item my12">
+                    <div class="adm-text-small color-gray-medium my6">Дата рождения</div>
                     <input-mask v-model="filter.birthday" :maskProps="maskInputBirthday.maskProps" :value="filter.birthday" :inputProps="maskInputBirthday.inputProps" clearable></input-mask>
-                  </FormItem>
+                  </div>
                 </Col>
                 <Col :xs="24" :md="12" :lg="6">
                   <div class="h-full flex-parent flex-parent--center-cross">
-                     <Button type="default" @click="clearFilter">Отчистить форму</Button>
+                     <Button type="default" class="mt12" @click="clearFilter">Отчистить форму</Button>
                   </div>
                 </Col>
               </Row>
@@ -132,7 +132,7 @@
             <Col :xs="24" :md="24" :lg="24" class="flex-parent flex-parent--space-between-main">
               <!--TODO Ваня говорит, что кнопка лишняя-->
               <!--TODO А где она должна быть?-->
-              <Button @click="createWizardScenarioPost" type="primary" class="mx6">Создать постановление</Button>
+              <Button @click="createWizardScenarioPost" type="primary" class="mx6 mt6">Создать постановление</Button>
               <!-- <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button> -->
 
               <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0' style="box-shadow: none">
@@ -141,7 +141,7 @@
               </Button>
             </Col>
           </Row>
-        </Form>
+        </div>
       </div>
     </div>
     <div class="bg-white">
