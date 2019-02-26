@@ -266,7 +266,7 @@
 						<small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
-								<Select class="wmax240 wmin180" v-model="data.adrDop.streetId" filterable clearable :disabled="!isNotEmptyRegionId() || !isNotEmptyRayonId()" @on-clear="changeDopStreet" remote :remote-method="changeDopStreet">
+								<Select class="wmax240 wmin180" v-model="data.adrDop.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeDopStreet" remote :remote-method="changeDopStreet">
 									<Option class="wmax360 txt-break-word" v-for="item in dopStreetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
 							</Col>
@@ -620,7 +620,7 @@ export default {
 					method: 'invokeElementMethod',
 					params: {
 						eCID: this.info.eCID,
-						methodName: 'getStreetsDictByRegion',
+						methodName: 'getCitiesDictByRegion',
 						data: JSON.stringify({
 							regionId: this.data.adr.regionId,
 							substr: query
