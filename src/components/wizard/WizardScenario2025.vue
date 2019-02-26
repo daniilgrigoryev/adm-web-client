@@ -92,6 +92,10 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'make'
         });
+        let resp =  JSON.parse(eventResponse.response);
+        if (resp.error && resp.error.errorMsg) {
+          alert(resp.error.errorMsg);
+        }
       },
       getPrev() {
         try {

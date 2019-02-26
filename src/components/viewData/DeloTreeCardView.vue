@@ -10,7 +10,7 @@
           <a href="#" @click="getDelo" class="adm-h1 link color-blue-base txt-underline-on-hover">Дело № {{deloContext.deloN}}</a>
         </div>
         <div class="my6">
-          <span class="adm-txt-regular color-gray-medium">{{deloContext.deloDate}}</span>
+          <span class="adm-txt-regular color-gray-medium">{{deloContext.deloDate | formatDateTime('DD.MM.YYYY')}}</span>
           <span class="adm-txt-regular color-gray-medium">{{deloContext.stadName}}</span>
         </div>
         <div class="mt24">
@@ -93,6 +93,19 @@
         } else {
           this.updateSelected();
         }
+
+        let vm = this;
+        this.$store.watch(this.$store.getters.deloTreeCardViewGetCommand, async () => {
+          try {
+            let eventResponse = await RequestApi.prepareData({
+              method: 'restore',
+              withSpinner: false
+            });
+            await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          } catch (e) {
+            alert(e.message);
+          }
+        });
       } catch (e) {
         alert(e.message);
       }

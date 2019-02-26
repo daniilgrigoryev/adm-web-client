@@ -460,6 +460,23 @@
         });
 
         this.checkAMTS = JSON.parse(eventResponse.response).data;
+
+        let vm = this;
+        this.$store.watch(this.$store.getters.frmEdVehsAMTCGetCommand, async () => {
+          try {
+            let current = formStack.getCurrent();
+            let currentForm = innerFormStack.getCurrent({
+              uid: current.moduleName
+            });
+            let eventResponse = await RequestApi.prepareData({
+              cid: currentForm.cid,
+              withSpinner: false
+            });
+            await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          } catch (e) {
+            alert(e.message);
+          }
+        });
       } catch (e) {
         alert(e.message);
       }

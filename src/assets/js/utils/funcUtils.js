@@ -113,6 +113,13 @@ export function formatDateTime(dateTime, format) {
   return moment(dateTime, format).toString();
 }
 
+export function convertNumberToDate(num) {
+  if (isEmpty(num) || !Number.isInteger(num)) {
+    return num;
+  }
+  return new Date(num);
+}
+
 export function replacer(key, value) {
   if (typeof value === 'undefined') {
     return null;

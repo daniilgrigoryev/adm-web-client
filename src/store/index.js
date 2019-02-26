@@ -21,6 +21,9 @@ import frmEdVuVyd from './modules/frmEdVuVyd';
 import frmEdVuPred from './modules/frmEdVuPred';
 import frmEdIspolnPostUvedom from './modules/frmEdIspolnPostUvedom';
 
+import frmEdDeloEdit from './modules/frmEdDeloEdit';
+import frmEdVuPredEdit from './modules/frmEdVuPredEdit';
+
 import wizardExecuter from './modules/wizardExecuter';
 import wizardScenarioPost from './modules/wizardScenarioPost';
 import wizardScenario2025 from './modules/wizardScenario2025';
@@ -117,6 +120,9 @@ const store = new Vuex.Store({
     frmEdVuVyd,
     frmEdVuPred,
     frmEdIspolnPostUvedom,
+
+    frmEdDeloEdit,
+    frmEdVuPredEdit,
 
     wizardExecuter,
     wizardScenarioPost,

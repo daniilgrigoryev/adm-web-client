@@ -2,6 +2,7 @@
   <div v-if="body && viol">
     <!-- данные по делу  -->
 
+    <Button @click="getDeloEdit" type="primary" class="ml12">Редактировать</Button>
 
     <div>
       <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Основные сведения</h2>
@@ -165,9 +166,6 @@
         </Row>
       </div>
     </div>
-
-
-
 
     <div class="adm-form">
       <div class="my12 adm-form__item">
@@ -364,6 +362,23 @@
         delete currentForm['restore'];
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
+
+        let vm = this;
+        this.$store.watch(this.$store.getters.frmEdDeloGetCommand, async () => {
+          try {
+            let current = formStack.getCurrent();
+            let currentForm = innerFormStack.getCurrent({
+              uid: current.moduleName
+            });
+            let eventResponse = await RequestApi.prepareData({
+              cid: currentForm.cid,
+              withSpinner: false
+            });
+            await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          } catch (e) {
+            alert(e.message);
+          }
+        });
       } catch (e) {
         alert(e.message);
       }
@@ -408,7 +423,28 @@
             }
           }
         }
-      }
+      },
+      getDeloEdit() {
+        try {
+          let current = formStack.getCurrent();
+          let currentForm = innerFormStack.getCurrent({
+            uid: current.moduleName
+          });
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmEdDeloEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
     },
     computed: {
       ...mapGetters({

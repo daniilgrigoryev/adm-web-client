@@ -162,6 +162,7 @@
             </DropdownMenu>
           </Dropdown>
         </div>
+        <Page v-if="limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
         <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight"></Table>
       </div>
     </div>
@@ -205,8 +206,7 @@
           });
 
           let filter = JSON.parse(eventResponse.response).data.find;
-          filter.flagYear = filter.flagYear + '';
-          this.filter = filter;
+          this.parseFilter(filter);
         }
 
         await this.$store.dispatch('deloReestrSetCid', current.cid);
@@ -238,6 +238,11 @@
     data() {
       return {
         tableHeight: 0,
+        from: 0,
+        to: 40,
+        limit: 40,
+        delta: 40,
+        currentPage: 1,
         columnsOptionsVisible: false,
         hideMore: false,
         stateDeloDict: [],
@@ -279,7 +284,12 @@
       cases() {
         let res = [];
         if (this.dataStore) {
-          res = this.dataStore.data.data;
+          for (let i = this.from; i < this.to; i++) {
+            let item = this.dataStore.data.data[i];
+            if (item) {
+              res.push(item);
+            }
+          }
         }
         return res;
       },
@@ -307,6 +317,40 @@
       }
     },
     methods: {
+      changePage(nextPage) {
+        this.to = this.delta * nextPage;
+        this.from = (this.delta * nextPage) - this.delta;
+        this.currentPage = nextPage;
+      },
+      parseFilter(filter) {
+        if (funcUtils.isNotEmpty(filter)) {
+          for (let prop in filter) {
+            if (filter.hasOwnProperty(prop)) {
+              let item = filter[prop];
+              if (this.filter[prop] && funcUtils.isNotEmpty(item)) {
+                switch (prop) {
+                  case 'deloDat': {
+                    this.filter[prop] = new Date(item);
+                    break;
+                  }
+                  case 'docVid':
+                  case 'flagYear':
+                  case 'stadDeloKod':
+                  case 'stotvId':
+                  case 'checkPriority': {
+                    this.filter[prop] = item + '';
+                    break;
+                  }
+                  default: {
+                    this.filter[prop] = item;
+                    break;
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       fillColumnsOptions() {
         if (this.dataStore) {
           this.columnsOptions = [];

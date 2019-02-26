@@ -1,5 +1,8 @@
 <template>
   <div v-if="body">
+
+    <Button @click="getVuPredEdit" type="primary" class="ml12">Редактировать</Button>
+
     <div class="adm-form">
       <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
@@ -143,6 +146,23 @@
         delete currentForm['restore'];
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
+
+        let vm = this;
+        this.$store.watch(this.$store.getters.frmEdVuPredGetCommand, async () => {
+          try {
+            let current = formStack.getCurrent();
+            let currentForm = innerFormStack.getCurrent({
+              uid: current.moduleName
+            });
+            let eventResponse = await RequestApi.prepareData({
+              cid: currentForm.cid,
+              withSpinner: false
+            });
+            await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          } catch (e) {
+            alert(e.message);
+          }
+        });
       } catch (e) {
         alert(e.message);
       }
@@ -163,6 +183,29 @@
         return res;
       },
     },
+    methods: {
+      getVuPredEdit() {
+        try {
+          let current = formStack.getCurrent();
+          let currentForm = innerFormStack.getCurrent({
+            uid: current.moduleName
+          });
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmEdVuPredEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+    }
   }
 </script>
 

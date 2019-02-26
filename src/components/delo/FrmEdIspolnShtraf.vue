@@ -175,6 +175,23 @@
         delete currentForm['restore'];
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
+
+        let vm = this;
+        this.$store.watch(this.$store.getters.frmEdIspolnShtrafGetCommand, async () => {
+          try {
+            let current = formStack.getCurrent();
+            let currentForm = innerFormStack.getCurrent({
+              uid: current.moduleName
+            });
+            let eventResponse = await RequestApi.prepareData({
+              cid: currentForm.cid,
+              withSpinner: false
+            });
+            await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          } catch (e) {
+            alert(e.message);
+          }
+        });
       } catch (e) {
         alert(e.message);
       }
