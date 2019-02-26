@@ -13,7 +13,7 @@
         </Row>
       </div>
     </div>
-    <div v-if="data && addressModal.visible" class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
+    <div v-if="data && addressModal.visible" class="absolute bg-white z5 scroll-hidden px36 py12" style="top: 0; bottom: 0; right: 0; left: 0;">
       <div class="flex-parent flex-parent--end-main">
         <Button type="text"  @click="showAddressModal(false)" class="px0 py0">
           <div class="flex-parent flex-parent--center-cross">
@@ -134,7 +134,7 @@
 
         <Row :gutter="16" type="flex" align="middle" justify="start">
           <Col :xs="24" :md="14" :lg="17">
-            <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+            <div class=" py12 flex-parent flex-parent--end-main">
               <Button @click="save" type="primary">Сохранить</Button>
             </div>
           </Col>

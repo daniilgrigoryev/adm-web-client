@@ -5,7 +5,7 @@
 
     <wizard-modal v-if="sudModal.visible" :columnsOptions="sudModal.columnsOptions" :data="sudModal.sudList" @showModal="showSudModal" @onRowDbClick="onSudClick"></wizard-modal>
 
-    <div v-if="deloModal.visible" class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0;">
+    <div v-if="deloModal.visible" class="absolute bg-white z5 scroll-hidden px36 py12" style="top: 0; bottom: 0; right: 0; left: 0;">
       
       <div class="flex-parent flex-parent--end-main">
         <Button type="text" @click="showDeloModal(false)" class="px0 py0">

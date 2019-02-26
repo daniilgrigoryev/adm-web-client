@@ -1,6 +1,6 @@
 <template>
   <div v-if="dataStore" class="layout">
-    <Layout class="layout--inner">
+    <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
       <button type="button" @click="getPrev">Назад</button>
       <button type="button" @click="clearInnerStack">Очистить стэк</button>
       <button type="button" @click="addUchastWizard">Добавить участника</button>
@@ -29,7 +29,7 @@
                     <img src="" alt="">
                   </div>
                   <div class="col mx18">
-                    <p v-html="item.name" class="adm-text-big color-dark-base txt-bold txt-break-word"></p>
+                    <p v-html="item.name" class="adm-text-big color-dark-base txt-break-word"></p>
                   </div>
                 </a>
               </li>
