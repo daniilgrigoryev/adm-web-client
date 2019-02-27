@@ -68,6 +68,9 @@ body {
 .adm-12{
   font-size: 12px;
 }
+.adm-15{
+  font-size: 15px;
+}
 .adm-btn-small {
   font-size: 12px;
   letter-spacing: 0.2px;
@@ -388,4 +391,29 @@ html, body, #app {
 	}
 	// .ivu-form-item-content{
 	// }
+}
+
+
+
+.adm-table-simple{
+  thead{
+    tr{
+      th{
+        border-right: none;
+        border-left: none;
+        border-bottom: none;
+        padding: 18px 12px;
+      }
+    }
+
+  }
+  tbody{
+    tr{
+      td{
+        border-right: none;
+        border-left: none;
+        border-color: #DEDEDE;
+      }
+    }
+  }
 }

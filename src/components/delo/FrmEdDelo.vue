@@ -2,107 +2,114 @@
   <div v-if="body && viol">
     <!-- данные по делу  -->
 
-    <Button @click="getDeloEdit" type="primary" class="ml12">Редактировать</Button>
+    <!-- <Button @click="getDeloEdit" type="primary" class="ml12">Редактировать</Button> -->
+
 
     <div>
-      <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Основные сведения</h2>
-      
-      <div class="my24">
+
+      <div class="flex-parent flex-parent--center-cross">
+        <h2 class="adm-15 adm-font-light color-dark-lighter">Основные сведения</h2>
+        <Button  @click="getDeloEdit" type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer border" title="Редактировать">
+          <img src='../../assets/images/pen.svg' class="wmax-none">
+        </Button>
+      </div>
+
+      <div class="my18">
         <Row type="flex">
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">№ дела</small>
-                <p class="color-dark-base adm-h3">{{body.deloN}}</p>
+                <small class="adm-12 color-dark-lighter">№ дела</small>
+                <p class="color-dark-base adm-txt-regular">{{body.deloN}}</p>
             </div>
           </Col>
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Стадия дела</small>
-                <p class="color-dark-base adm-h3">{{body.dtadDeloName}}</p>
+                <small class="adm-12 color-dark-lighter">Стадия дела</small>
+                <p class="color-dark-base adm-txt-regular">{{body.dtadDeloName}}</p>
             </div>
           </Col>
         </Row>
       </div>
 
-      <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Нарушение</h2>
+      <h2 class="adm-15 adm-font-light color-dark-lighter border-t border--gray-light my1 py6">Нарушение</h2>
       
-      <div class="my24">
+      <div class="my18">
         <Row type="flex">
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Статья АПН</small>
-                <p class="color-dark-base adm-h3">{{viol.violStotvKod}}</p>
+                <small class="adm-12 color-dark-lighter">Статья АПН</small>
+                <p class="color-dark-base adm-txt-regular">{{viol.violStotvKod}}</p>
                 <p class="color-dark-base adm-btn-small txt-em wmax240">{{viol.violStotvName}}</p>
             </div>
           </Col>
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Документ</small>
-                <p class="color-dark-base adm-h3">{{body.docVozbName}}</p>
+                <small class="adm-12 color-dark-lighter">Документ</small>
+                <p class="color-dark-base adm-txt-regular">{{body.docVozbName}}</p>
             </div>
           </Col>
         </Row>
       </div>
 
-      <div class="my24">
+      <div class="my18">
         <Row type="flex">
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Место нарушения</small>
-                <p class="color-dark-base adm-h3">{{viol.violPlaceNarFull}}</p>
+                <small class="adm-12 color-dark-lighter">Место нарушения</small>
+                <p class="color-dark-base adm-txt-regular">{{viol.violPlaceNarFull}}</p>
             </div>
           </Col>
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Дата и Время нарушения</small>
-                <p class="color-dark-base adm-h3">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+                <small class="adm-12 color-dark-lighter">Дата и Время нарушения</small>
+                <p class="color-dark-base adm-txt-regular">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
             </div>
           </Col>
         </Row>
       </div>
 
-      <div class="my24">
+      <div class="my18">
         <Row type="flex">
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">ЛВОК</small>
-                <p class="color-dark-base adm-h3">{{viol.lvokName}}</p>
+                <small class="adm-12 color-dark-lighter">ЛВОК</small>
+                <p class="color-dark-base adm-txt-regular">{{viol.lvokName}}</p>
             </div>
           </Col>
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Транспортное средство, ГРЗ</small>
-                <p class="color-dark-base adm-h3">{{viol.vehsName}}</p>
+                <small class="adm-12 color-dark-lighter">Транспортное средство, ГРЗ</small>
+                <p class="color-dark-base adm-txt-regular">{{viol.vehsName}}</p>
             </div>
           </Col>
         </Row>
       </div>
 
-      <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Решение по делу</h2>
+      <h2 class="adm-15 adm-font-light color-dark-lighter border-t border--gray-light my1 py6">Решение по делу</h2>
 
-      <div class="my24">
+      <div class="my18">
         <Row type="flex">
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Дата возбуждения</small>
-                <p class="color-dark-base adm-h3">{{body.deloDate | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+                <small class="adm-12 color-dark-lighter">Дата возбуждения</small>
+                <p class="color-dark-base adm-txt-regular">{{body.deloDate | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
             </div>
           </Col>
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Орган</small>
-                <p class="color-dark-base adm-h3">{{body.organVozbName}}</p>
+                <small class="adm-12 color-dark-lighter">Орган</small>
+                <p class="color-dark-base adm-txt-regular">{{body.organVozbName}}</p>
                 <p class="color-dark-base adm-btn-small txt-em wmax240">Код подразделения: {{body.organVozbKod}}</p>
             </div>
           </Col>
         </Row>
       </div>
-      <div class="my24">
+      <div class="my18">
         <Row type="flex">
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Дело основание</small>
-                <p  class="color-dark-base adm-h3">
+                <small class="adm-12 color-dark-lighter">Дело основание</small>
+                <p  class="color-dark-base adm-txt-regular">
                   <span v-if="body.deloMainDescr">{{body.deloMainDescr}}</span>
                   <span v-else>отсутствует</span>
                 </p>
@@ -110,22 +117,22 @@
           </Col>
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">ФИО сотрудника, Звание, Должность</small>
-                <p class="color-dark-base adm-h3">{{body.inspVozbName}}</p>
+                <small class="adm-12 color-dark-lighter">ФИО сотрудника, Звание, Должность</small>
+                <p class="color-dark-base adm-txt-regular">{{body.inspVozbName}}</p>
                 <p class="color-dark-base adm-btn-small txt-em wmax240">{{ body.inspVozbRang, body.inspVozbDolz | concatByDelimiter(',') }}</p>
             </div>
           </Col>
         </Row>
       </div>
 
-      <h2 class="adm-h1 adm-font-light color-dark-lighter border-b border--gray-light my18 py6">Данные видеофиксации</h2>
+      <h2 class="adm-15 adm-font-light color-dark-lighter border-t border--gray-light my1 py6">Данные видеофиксации</h2>
 
-      <div class="my24">
+      <div class="my18">
         <Row type="flex">
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Название комплекса видеофиксации</small>
-                <p class="color-dark-base adm-h3">
+                <small class="adm-12 color-dark-lighter">Название комплекса видеофиксации</small>
+                <p class="color-dark-base adm-txt-regular">
                   <span v-if="viol.vfixName">{{viol.vfixName}}</span>
                   <span v-else>отсутствует</span>
                 </p>
@@ -133,8 +140,8 @@
           </Col>
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Уникальный номер комплекса</small>
-                <p class="color-dark-base adm-h3">
+                <small class="adm-12 color-dark-lighter">Уникальный номер комплекса</small>
+                <p class="color-dark-base adm-txt-regular">
                   <span v-if="viol.vfixNum">{{viol.vfixNum}}</span>
                   <span v-else>отсутствует</span>
                 </p>
@@ -143,22 +150,158 @@
         </Row>
       </div>
 
-      <div class="my24">
+      <div class="my18">
         <Row type="flex">
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Серитфикат поверки комплекса</small>
-                <p class="color-dark-base adm-h3">
-                  <span v-if="viol.vfixAkt">{{viol.vfixAkt}}</span>
+                <small class="adm-12 color-dark-lighter">Название комплекса видеофиксации</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="viol.vfixName">{{viol.vfixName}}</span>
                   <span v-else>отсутствует</span>
                 </p>
             </div>
           </Col>
           <Col :xs="24" :md="12" :lg="12">
             <div>
-                <small class="adm-text-small color-dark-base">Серитфикат действителен до</small>
-                <p class="color-dark-base adm-h3">
-                  <span v-if="viol.vfixDatend">{{viol.vfixDatend | formatDateTime('DD.MM.YYYY HH:mm')}}</span>
+                <small class="adm-12 color-dark-lighter">Уникальный номер комплекса</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="viol.vfixNum">{{viol.vfixNum}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <div class="my18">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">По статье Административного Кодекса</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="body.stotvName">{{body.stotvName}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Вид</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="body.deloVidName">{{body.deloVidName}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <h2 class="adm-15 adm-font-light color-dark-lighter border-t border--gray-light my1 py6">Решение по делу</h2>
+      <div class="my18">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Личный номер сотрудника</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="body.inspVozbKod">{{body.inspVozbKod}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Стадия приемки</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="body.dtadDeloName">{{body.dtadDeloName}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <div class="my18">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Местонахождение</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="body.ogaiNahName">{{body.ogaiNahName}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Примечания</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="body.dopSved">{{body.dopSved}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <h2 class="adm-15 adm-font-light color-dark-lighter border-t border--gray-light my1 py6">Сведения</h2>
+      <div class="my18">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Уникальный номер административного правонарушения</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="viol.mvidFisFull">{{viol.mvidFisFull}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">По пункту Нормативно-Правового Акта</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="viol.violPnpaName">{{viol.violPnpaName}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <div class="my18">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Код бютжетной классификации</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="viol.kbk">{{viol.kbk}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Фактические сведения по нарушению</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="viol.violFactSved">{{viol.violFactSved}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <div class="my18">
+        <Row type="flex">
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Дополнительные сведения</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="viol.violDopSved">{{viol.violDopSved}}</span>
+                  <span v-else>отсутствует</span>
+                </p>
+            </div>
+          </Col>
+          <Col :xs="24" :md="12" :lg="12">
+            <div>
+                <small class="adm-12 color-dark-lighter">Содержание алкголя в крови %, мг/л</small>
+                <p class="color-dark-base adm-txt-regular">
+                  <span v-if="viol.alcoholInExpAir">{{viol.alcoholInExpAir}}</span>
                   <span v-else>отсутствует</span>
                 </p>
             </div>
@@ -167,150 +310,32 @@
       </div>
     </div>
 
-    <div class="adm-form">
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">По статье Административного Кодекса</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.stotvName" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Вид</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.deloVidName" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-        <hr class="txt-hr my24">
-        <h2 class="adm-text-big color-dark-light my12">Решение по делу</h2>
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="body.inspVozbKod" placeholder="Enter something..."></Input>
-            </Col>
-          </Row>
-        </div>
 
 
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Стадия приемки</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="body.dtadDeloName" placeholder="Enter something..."></Input>
-            </Col>
-          </Row>
-        </div>
+    <h1 class="adm-h1 color-dark-lighter">Ошибки</h1>
+    <hr class="txt-hr my12">
 
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Местонахождение</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="body.ogaiNahName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-            </Col>
-          </Row>
-        </div>
-
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Примечания</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="body.dopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-            </Col>
-          </Row>
-        </div>
-
-        <hr class="txt-hr my24">
-        <h2 class="adm-text-big color-dark-light my12">Сведения</h2>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Уникальный номер административного правонарушения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="viol.mvidFisFull" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-
-
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">По пункту Нормативно-Правового Акта</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="viol.violPnpaName" placeholder="Enter something..."></Input>
-            </Col>
-          </Row>
-        </div>
-
-
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Код бютжетной классификации</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="viol.kbk" placeholder="Enter something..."></Input>
-            </Col>
-          </Row>
-        </div>
-
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения по нарушению</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="viol.violFactSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-            </Col>
-          </Row>
-        </div>
-
-
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="viol.violDopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-            </Col>
-          </Row>
-        </div>
-
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Содержание алкголя в крови %, мг/л</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" readonly :value="viol.alcoholInExpAir" placeholder="Enter something..."></Input>
-            </Col>
-          </Row>
-        </div>
-    </div>
-
-    <hr class="txt-hr my24">
-    <h2 class="adm-text-big color-dark-light my12">Ошибки</h2>
-
-
-    <table class='table table--fixed border--0'>
+    <table class='adm-table-simple table table--fixed border--0'>
       <thead>
         <tr class="bg-white-light">
-          <th class="w36">
-            
-          </th>
+          <th class="w36"></th>
           <th class="w120">
-            <p class="adm-txt-regular color-dark-light">Код ошибки</p>
+            <p class="adm-15 txt-normal color-dark-light">Код ошибки</p>
           </th>
           <th class="w180">
-            <p class="adm-txt-regular color-dark-light">Проверил</p>
+            <p class="adm-15 txt-normal color-dark-light">Проверил</p>
           </th>
           <th class="w180">
-            <i class="adm-btn-small color-dark-light">Время проверки</i>
+            <i class="adm-15 txt-normal color-dark-light">Время проверки</i>
           </th>
           <th>
-            <p class="adm-txt-regular color-dark-light">Ошибка</p>
+            <p class="adm-15 txt-normal color-dark-light">Ошибка</p>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(error, index) in errors">
-          <td class="align-center">
+          <td class="align-center align-middle">
             <div class="round-full w12 h12" :class="changeClass(error.priority)">
             </div>
           </td>
@@ -321,7 +346,7 @@
             <p class="adm-txt-regular">{{error.checkIspName}}</p>
           </td>
           <td>
-            <p class="adm-text-small">{{error.checkDate | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+            <p class="adm-txt-regular">{{error.checkDate | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
           </td>
           <td>
             <p class="adm-txt-regular">{{error.mesg}}</p>
