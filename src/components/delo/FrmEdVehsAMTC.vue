@@ -454,12 +454,11 @@
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
 
-        eventResponse = await RequestApi.prepareData({
-          method: 'checkUchastinc',
-          cid: currentForm.cid
+        await this.fillComponent({
+          vm: this,
+          cid: currentForm.cid,
+          photos: this.dataStore.fotoList
         });
-
-        this.checkAMTS = JSON.parse(eventResponse.response).data;
 
         let vm = this;
         this.$store.watch(this.$store.getters.frmEdVehsAMTCGetCommand, async () => {
@@ -473,6 +472,12 @@
               withSpinner: false
             });
             await vm.$store.dispatch('fillModule', {'event': eventResponse});
+
+            await this.fillComponent({
+              vm: vm,
+              cid: currentForm.cid,
+              photos: vm.dataStore.fotoList
+            });
           } catch (e) {
             alert(e.message);
           }
@@ -487,10 +492,41 @@
     },
     data() {
       return {
-        checkAMTS: {}
+        checkAMTS: {},
+        photos: []
       }
     },
     methods: {
+      async fillComponent(params) {
+        let cid = params.cid;
+        let photos = params.photos;
+        let vm = params.vm;
+
+        let eventResponse = await RequestApi.prepareData({
+          method: 'checkUchastinc',
+          cid: cid
+        });
+        vm.checkAMTS = JSON.parse(eventResponse.response).data;
+
+        vm.photos = [];
+        if (photos.length > 0) {
+          let item;
+          let eventResponse;
+          let photo;
+          for (let i = 0; i < photos.length; i++) {
+            item = photos[i];
+            eventResponse = await RequestApi.prepareData({
+              method: 'getPhotoBody',
+              params: {
+                'node': item.fotoId
+              },
+              cid: cid
+            });
+            photo = JSON.parse(eventResponse.response).data;
+            vm.photos.push(photo);
+          }
+        }
+      },
       getCheckName(checkKey) {
         switch (checkKey) {
           case '+': {

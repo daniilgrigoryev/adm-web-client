@@ -7,6 +7,7 @@ import DashBoard from '../components/reestrPassport/DashBoard';
 import DeloTreeCardView from '../components/viewData/DeloTreeCardView';
 import FrmEdDeloEdit from '../components/delo/edit/FrmEdDeloEdit';
 import FrmEdVuPredEdit from '../components/delo/edit/FrmEdVuPredEdit';
+import FrmEdVuVydEdit from '../components/delo/edit/FrmEdVuVydEdit';
 import WizardExecuter from '../components/wizard/WizardExecuter';
 
 // верстка
@@ -54,6 +55,12 @@ const router = new Router({
       path: ConstantUtils.contextPath + '/frmEdVuPredEdit',
       name: 'FrmEdVuPredEdit',
       component: FrmEdVuPredEdit,
+      props: true
+    },
+    {
+      path: ConstantUtils.contextPath + '/frmEdVuVydEdit',
+      name: 'FrmEdVuVydEdit',
+      component: FrmEdVuVydEdit,
       props: true
     },
     {
