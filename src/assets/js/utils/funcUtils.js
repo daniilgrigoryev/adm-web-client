@@ -115,7 +115,7 @@ export function formatDateTime(dateTime, format) {
 
 export function convertNumberToDate(num) {
   if (isEmpty(num) || !Number.isInteger(num)) {
-    return num;
+    return null;
   }
   return new Date(num);
 }

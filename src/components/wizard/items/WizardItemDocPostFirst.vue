@@ -341,9 +341,7 @@ export default {
 		},
 
     parseDate(data) {
-      if (funcUtils.isNotEmpty(data.dateSost)) {
-        data.dateSost = new Date(data.dateSost);
-      }
+      data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
     },
 
 		async createNewUIN() {

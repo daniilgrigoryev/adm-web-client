@@ -476,13 +476,8 @@
       },
 
       parseDate(data) {
-        if (funcUtils.isNotEmpty(data.dateSost)) {
-          data.dateSost = new Date(data.dateSost);
-        }
-
-        if (funcUtils.isNotEmpty(data.dateNar)) {
-          data.dateNar = new Date(data.dateNar);
-        }
+        data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
+        data.dateNar = funcUtils.convertNumberToDate(data.dateNar);
       },
 
       async createProtNum() {

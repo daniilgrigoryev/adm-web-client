@@ -2,6 +2,8 @@
   <div v-if="body">
     <!-- постановление по делу -->
 
+    <Button @click="getDocsPostEdit" type="primary" class="ml12">Редактировать</Button>
+
     <div>
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Номер постановления</small>
@@ -106,8 +108,6 @@
 
         <h2 class="adm-text-big color-dark-light my12">Нарушение</h2>
 
-
-
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
@@ -135,17 +135,14 @@
           </Row>
         </div>
 
-
-
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Документ участника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <!--<Input class="adm-input adm-input--regular" readonly :value="body.docTipName" placeholder="Enter something..."></Input>-->
+              <Input class="adm-input adm-input--regular" readonly :value="body.vuPredN" placeholder="Enter something..."></Input>
             </Col>
           </Row>
         </div>
-
 
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Адрес прописки</small>
@@ -156,7 +153,6 @@
           </Row>
         </div>
 
-
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Местро работы</small>
           <Row :gutter="16" type="flex" align="middle">
@@ -165,7 +161,6 @@
             </Col>
           </Row>
         </div>
-
 
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Транспортное средство</small>
@@ -203,11 +198,9 @@
           </Row>
         </div>
 
-
         <hr class="txt-hr my24">
 
         <h2 class="adm-text-big color-dark-light my12">Решение по делу</h2>
-
 
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Решение по правонарушению</small>
@@ -297,6 +290,29 @@
         return res;
       },
     },
+    methods: {
+      getDocsPostEdit() {
+        try {
+          let current = formStack.getCurrent();
+          let currentForm = innerFormStack.getCurrent({
+            uid: current.moduleName
+          });
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmEdDocsPostEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+    }
   }
 </script>
 

@@ -25,6 +25,8 @@ import dlgEdFotoMaterial from './modules/dlgEdFotoMaterial';
 import frmEdDeloEdit from './modules/frmEdDeloEdit';
 import frmEdVuPredEdit from './modules/frmEdVuPredEdit';
 import frmEdVuVydEdit from './modules/frmEdVuVydEdit';
+import frmEdDocsPostEdit from './modules/frmEdDocsPostEdit';
+import placeViewEdit from './modules/placeViewEdit';
 
 import wizardExecuter from './modules/wizardExecuter';
 import wizardScenarioPost from './modules/wizardScenarioPost';
@@ -123,10 +125,12 @@ const store = new Vuex.Store({
     frmEdVuPred,
     frmEdIspolnPostUvedom,
     dlgEdFotoMaterial,
+    placeViewEdit,
 
     frmEdDeloEdit,
     frmEdVuPredEdit,
     frmEdVuVydEdit,
+    frmEdDocsPostEdit,
 
     wizardExecuter,
     wizardScenarioPost,

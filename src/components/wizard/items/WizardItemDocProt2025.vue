@@ -428,17 +428,9 @@
       },
 
       parseDate(data) {
-        if (funcUtils.isNotEmpty(data.dateSost)) {
-          data.dateSost = new Date(data.dateSost);
-        }
-
-        if (funcUtils.isNotEmpty(data.dateRasm)) {
-          data.dateRasm = new Date(data.dateRasm);
-        }
-
-        if (funcUtils.isNotEmpty(data.mainDeloDate)) {
-          data.mainDeloDate = new Date(data.mainDeloDate);
-        }
+        data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
+        data.dateRasm = funcUtils.convertNumberToDate(data.dateRasm);
+        data.mainDeloDate = funcUtils.convertNumberToDate(data.mainDeloDate);
       },
 
       async createProtNum() {

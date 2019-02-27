@@ -8,6 +8,9 @@ import DeloTreeCardView from '../components/viewData/DeloTreeCardView';
 import FrmEdDeloEdit from '../components/delo/edit/FrmEdDeloEdit';
 import FrmEdVuPredEdit from '../components/delo/edit/FrmEdVuPredEdit';
 import FrmEdVuVydEdit from '../components/delo/edit/FrmEdVuVydEdit';
+import FrmEdDocsPostEdit from '../components/delo/edit/FrmEdDocsPostEdit';
+import PlaceViewEdit from '../components/delo/edit/PlaceViewEdit';
+
 import WizardExecuter from '../components/wizard/WizardExecuter';
 
 // верстка
@@ -61,6 +64,18 @@ const router = new Router({
       path: ConstantUtils.contextPath + '/frmEdVuVydEdit',
       name: 'FrmEdVuVydEdit',
       component: FrmEdVuVydEdit,
+      props: true
+    },
+    {
+      path: ConstantUtils.contextPath + '/frmEdDocsPostEdit',
+      name: 'FrmEdDocsPostEdit',
+      component: FrmEdDocsPostEdit,
+      props: true
+    },
+    {
+      path: ConstantUtils.contextPath + '/placeViewEdit',
+      name: 'PlaceViewEdit',
+      component: PlaceViewEdit,
       props: true
     },
     {
