@@ -457,7 +457,7 @@
         await this.fillComponent({
           vm: this,
           cid: currentForm.cid,
-          photos: this.dataStore.fotoList
+          photos: this.dataStore ? this.dataStore.fotoList : null
         });
 
         let vm = this;
@@ -476,7 +476,7 @@
             await this.fillComponent({
               vm: vm,
               cid: currentForm.cid,
-              photos: vm.dataStore.fotoList
+              photos: vm.dataStore ? vm.dataStore.fotoList : null
             });
           } catch (e) {
             alert(e.message);
@@ -509,7 +509,7 @@
         vm.checkAMTS = JSON.parse(eventResponse.response).data;
 
         vm.photos = [];
-        if (photos.length > 0) {
+        if (photos && photos.length > 0) {
           let item;
           let eventResponse;
           let photo;
@@ -518,12 +518,12 @@
             eventResponse = await RequestApi.prepareData({
               method: 'getPhotoBody',
               params: {
-                'node': item.fotoId
+                'node': item.id
               },
               cid: cid
             });
             photo = JSON.parse(eventResponse.response).data;
-            vm.photos.push(photo);
+            vm.photos.push('data:image/jpeg;base64, ' + photo);
           }
         }
       },
