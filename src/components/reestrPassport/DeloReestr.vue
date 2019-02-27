@@ -339,7 +339,7 @@
           for (let prop in filter) {
             if (filter.hasOwnProperty(prop)) {
               let item = filter[prop];
-              if (this.filter[prop] && funcUtils.isNotEmpty(item)) {
+              if (funcUtils.isNotEmpty(item)) {
                 switch (prop) {
                   case 'deloDat': {
                     this.filter[prop] = new Date(item);
