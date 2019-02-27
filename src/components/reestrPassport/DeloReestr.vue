@@ -146,12 +146,20 @@
     </div>
     <div class="bg-white">
       <div class="wmax1920 mx-auto">
-        <div class="flex-parent flex-parent--center-cross">
-          <h3 class="adm-h3 mx12">Найденные дела</h3>
-          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-start" class="ml24">
+
+
+
+        <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
+          
+          <div class="flex-parent flex-parent--center-cross">
+            <h3 class="adm-h3 mx12">Найденные дела</h3>
+            <Page v-if="limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
+          </div>
+
+          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-start">
             <Button type="text" href="javascript:void(0)" class="block py12 px12 border--0" style="box-shadow: none" @click="toggleColumnsOption">
               <span class='link color-dark-medium adm-text-small txt-underline-on-hover'>показ колонок</span>
-              <Icon style="margin-left: 10px;" type="md-settings" size="18"></Icon>
+              <Icon type="md-settings" size="18" class="ml18"></Icon>
               <Icon type="ios-arrow-down"></Icon>
             </Button>
             <DropdownMenu slot="list">
@@ -162,7 +170,9 @@
             </DropdownMenu>
           </Dropdown>
         </div>
-        <Page v-if="limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
+
+
+
         <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight"></Table>
       </div>
     </div>
