@@ -149,8 +149,7 @@
 
 
 
-        <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
-          
+        <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py12">
           <div class="flex-parent flex-parent--center-cross">
             <h3 class="adm-h3 mx12">Найденные дела</h3>
             <Page v-if="limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
@@ -317,6 +316,9 @@
                   column.key !== 'checkPriority' &&
                   column.key !== 'birthday' && 
                   column.key !== 'lvokName' && 
+                  column.key !== 'decisNameFirst' &&
+                  column.key !== 'decisNameLast' &&
+                  column.key !== 'stadIspolnNameLast' &&
                   column.key !== 'lockName';
         })
       },
@@ -370,8 +372,8 @@
                 this.columnsOptions.push({
                   title: 'Номер дела',
                   key: 'deloId',
-                  position: 99,
-                  minWidth: 160,
+                  position: 6,
+                  minWidth: 130,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -379,7 +381,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -407,15 +409,15 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
+                          'color-dark-lighter': true,
+                          'adm-12': true
                         },
                       }, 'Стадия дела'),
                     ])
@@ -426,7 +428,7 @@
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-text-small': true
+                          'adm-12': true
                         },
                       },
                       params.row.stadDeloName),
@@ -448,7 +450,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -472,7 +474,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -494,7 +496,57 @@
                 this.columnsOptions.push({
                   title: 'Дата после исполнения', // Дата посл.ст.исп.
                   key: 'dateStadIspolnLast',
-                  position: 99,
+                  position: 9,
+                  minWidth: 280,
+                  ellipsis: true,
+                  visible: true,
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-dark-lighter': true,
+                          'adm-text-big': true,
+                          'adm-font-light': true,
+                        },
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-dark-lighter': true,
+                          'adm-12': true
+                        },
+                      }, 'решение после истечения исполнения'),
+                    ])
+                  },
+                  render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.dateStadIspolnLast) ? funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY') : '';
+                    return h('div', {}, [
+                        h('p', parsedDate),
+                        h('Tooltip', {
+                          props: {
+                            placement: 'right-start',
+                            content: params.row.stadIspolnNameLast,
+                            transfer: true,
+                            maxWidth: 120,
+                          },
+                        }, [
+                        h('p', {
+                          class: {
+                            'color-dark-base': true,
+                            'adm-12': true,
+                          },
+                        }, params.row.stadIspolnNameLast),
+                      ]),
+                    ])
+                  }
+                });
+                break;
+              }
+              case 'decisDateFirst': {
+                this.columnsOptions.push({
+                  title: 'Дата решения', // дата реш.
+                  key: 'decisDateFirst',
+                  position: 7,
                   minWidth: 220,
                   ellipsis: true,
                   visible: true,
@@ -503,46 +555,38 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
                       }, params.column.title),
-                    ])
-                  },
-                  render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.dateStadIspolnLast) ? funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY') : '';
-                    return h('div', {}, [
-                      h('p', parsedDate)
-                    ])
-                  }
-                });
-                break;
-              }
-              case 'decisDateFirst': {
-                this.columnsOptions.push({
-                  title: 'Дата решения',
-                  key: 'decisDateFirst',
-                  position: 99,
-                  minWidth: 180,
-                  ellipsis: true,
-                  visible: true,
-                  tooltip: true,
-                  renderHeader: (h, params) => {
-                    return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
-                          'adm-text-big': true,
-                          'adm-font-light': true,
+                          'color-dark-lighter': true,
+                          'adm-12': true
                         },
-                      }, params.column.title)
+                      }, 'первое решение по делу'),
                     ])
                   },
                   render: (h, params) => {
                     let parsedDate = funcUtils.isNotEmpty(params.row.decisDateFirst) ? funcUtils.parseDateTime(params.row.decisDateFirst, 'DD/MM/YYYY') : '';
                     return h('div', {}, [
-                      h('p', parsedDate)
+                      h('p', parsedDate),
+                      h('Tooltip', {
+                        props: {
+                          placement: 'right-start',
+                          content: params.row.decisNameFirst,
+                          transfer: true,
+                          maxWidth: 120,
+                        },
+                      }, [
+                        h('p', {
+                          class: {
+                            'color-dark-base': true,
+                            'adm-12': true,
+                          },
+                        }, params.row.decisNameFirst),
+                      ]),
                     ])
                   }
                 });
@@ -552,8 +596,8 @@
                 this.columnsOptions.push({
                   title: 'Дата после решения', // Дата посл.реш. 
                   key: 'decisDateLast',
-                  position: 99,
-                  minWidth: 210,
+                  position: 8,
+                  minWidth: 230,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -561,17 +605,38 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
-                      }, params.column.title)
+                      }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-dark-lighter': true,
+                          'adm-12': true
+                        },
+                      }, 'после первого решения по делу'),
                     ])
                   },
                   render: (h, params) => {
                     let parsedDate = funcUtils.isNotEmpty(params.row.decisDateLast) ? funcUtils.parseDateTime(params.row.decisDateLast, 'DD/MM/YYYY') : '';
                     return h('div', {}, [
-                      h('p', parsedDate)
+                        h('p', parsedDate),
+                        h('Tooltip', {
+                          props: {
+                              placement: 'right-start',
+                              content: params.row.decisNameLast,
+                              transfer: true,
+                              maxWidth: 120,
+                          },
+                        }, [
+                        h('p', {
+                            class: {
+                            'color-dark-base': true,
+                            'adm-12': true,
+                            },
+                        }, params.row.decisNameLast),
+                      ]),
                     ])
                   }
                 });
@@ -584,13 +649,13 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -607,13 +672,13 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -636,7 +701,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -656,7 +721,7 @@
                 this.columnsOptions.push({
                   title: 'Номер дела',
                   key: 'deloN',
-                  minWidth: 140,
+                  minWidth: 145,
                   position: 2,
                   ellipsis: true,
                   visible: true,
@@ -665,15 +730,15 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
+                          'color-dark-lighter': true,
+                          'adm-12': true
                         },
                       }, 'Дата оформления'),
                     ])
@@ -685,7 +750,7 @@
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-text-small': true
+                          'adm-12': true
                         },
                       },
                       parsedDate),
@@ -706,7 +771,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -728,7 +793,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -751,7 +816,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -773,7 +838,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -795,15 +860,15 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
+                          'color-dark-lighter': true,
+                          'adm-12': true
                         },
                       }, 'дополнительный протокол'),
                     ])
@@ -824,15 +889,15 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
+                          'color-dark-lighter': true,
+                          'adm-12': true
                         },
                       }, 'постановление-квитанция'),
                     ])
@@ -852,7 +917,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -875,7 +940,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -898,7 +963,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -914,14 +979,14 @@
                   key: 'stadIspolnNameLast',
                   position: 99,
                   minWidth: 250,
-                  visible: true,
+                  visible: false,
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -943,7 +1008,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -974,7 +1039,7 @@
                       }, [
                         h('p', {
                           class: {
-                            'color-gray-medium': true,
+                            'color-dark-lighter': true,
                             'adm-text-big': true,
                             'adm-font-light': true,
                           },
@@ -982,8 +1047,8 @@
                       ]),
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
-                          'adm-text-small': true
+                          'color-dark-lighter': true,
+                          'adm-12': true
                         },
                       }, 'Дата рождения'),
                     ])
@@ -1004,7 +1069,7 @@
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-text-small': true
+                          'adm-12': true
                         },
                       },
                       parsedDate),
@@ -1025,7 +1090,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-gray-medium': true,
+                          'color-dark-lighter': true,
                           'adm-text-big': true,
                           'adm-font-light': true,
                         },
@@ -1043,7 +1108,7 @@
             });
             this.columnsOptions.push({
               title: "Действия",
-              width: 130,
+              width: 120,
               align: "center",
               key: 'action',
               visible: true,
@@ -1059,7 +1124,7 @@
                   h('div', [
                     h('p', {
                       class: {
-                        'color-gray-medium': true,
+                        'color-dark-lighter': true,
                         'adm-text-big': true,
                         'adm-font-light': true,
                       },
@@ -1071,7 +1136,7 @@
                 return h("Icon", {
                   props: {
                     type: "ios-open-outline",
-                    size: 18,
+                    size: 22,
                   },
                   style: {
                     cursor: "pointer",

@@ -65,7 +65,9 @@ body {
   letter-spacing: 0.2px;
   line-height: 16px;
 }
-
+.adm-12{
+  font-size: 12px;
+}
 .adm-btn-small {
   font-size: 12px;
   letter-spacing: 0.2px;
@@ -193,6 +195,9 @@ html, body, #app {
 }
 
 .custom-table {
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
   .ivu-tooltip{
     width: 100%;
   }
@@ -202,6 +207,7 @@ html, body, #app {
         th {
           height: 70px;
           background-color: #fff;
+          // border: none;
           .ivu-table-cell {
 
           }
