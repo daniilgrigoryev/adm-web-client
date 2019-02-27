@@ -280,7 +280,7 @@
           },
           maskProps: {
             alias: "datetime",
-            inputFormat: 'dd/mm/yyyy'
+            inputFormat: 'dd.mm.yyyy'
           }
         },
         columnsOptions: []
@@ -417,7 +417,8 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       }, 'Стадия дела'),
                     ])
@@ -428,7 +429,8 @@
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       },
                       params.row.stadDeloName),
@@ -513,18 +515,18 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       }, 'решение после истечения исполнения'),
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.dateStadIspolnLast) ? funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD/MM/YYYY') : '';
+                    let parsedDate = funcUtils.isNotEmpty(params.row.dateStadIspolnLast) ? funcUtils.parseDateTime(params.row.dateStadIspolnLast, 'DD.MM.YYYY') : '';
                     return h('div', {}, [
                         h('p', parsedDate),
                         h('Tooltip', {
                           props: {
-                            placement: 'right-start',
                             content: params.row.stadIspolnNameLast,
                             transfer: true,
                             maxWidth: 120,
@@ -534,6 +536,7 @@
                           class: {
                             'color-dark-base': true,
                             'adm-12': true,
+                            'txt-truncate': true
                           },
                         }, params.row.stadIspolnNameLast),
                       ]),
@@ -563,18 +566,18 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       }, 'первое решение по делу'),
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.decisDateFirst) ? funcUtils.parseDateTime(params.row.decisDateFirst, 'DD/MM/YYYY') : '';
+                    let parsedDate = funcUtils.isNotEmpty(params.row.decisDateFirst) ? funcUtils.parseDateTime(params.row.decisDateFirst, 'DD.MM.YYYY') : '';
                     return h('div', {}, [
                       h('p', parsedDate),
                       h('Tooltip', {
                         props: {
-                          placement: 'right-start',
                           content: params.row.decisNameFirst,
                           transfer: true,
                           maxWidth: 120,
@@ -584,6 +587,7 @@
                           class: {
                             'color-dark-base': true,
                             'adm-12': true,
+                            'txt-truncate': true,
                           },
                         }, params.row.decisNameFirst),
                       ]),
@@ -594,10 +598,10 @@
               }
               case 'decisDateLast': {
                 this.columnsOptions.push({
-                  title: 'Дата после решения', // Дата посл.реш. 
+                  title: 'Дата последнего решения', // Дата посл.реш. 
                   key: 'decisDateLast',
                   position: 8,
-                  minWidth: 230,
+                  minWidth: 240,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -613,18 +617,18 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
-                      }, 'после первого решения по делу'),
+                      }, 'последнее решение по делу'),
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.decisDateLast) ? funcUtils.parseDateTime(params.row.decisDateLast, 'DD/MM/YYYY') : '';
+                    let parsedDate = funcUtils.isNotEmpty(params.row.decisDateLast) ? funcUtils.parseDateTime(params.row.decisDateLast, 'DD.MM.YYYY') : '';
                     return h('div', {}, [
                         h('p', parsedDate),
                         h('Tooltip', {
                           props: {
-                              placement: 'right-start',
                               content: params.row.decisNameLast,
                               transfer: true,
                               maxWidth: 120,
@@ -634,6 +638,7 @@
                             class: {
                             'color-dark-base': true,
                             'adm-12': true,
+                            'txt-truncate': true,
                             },
                         }, params.row.decisNameLast),
                       ]),
@@ -709,7 +714,7 @@
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(params.row.deloDate, 'DD/MM/YYYY') : '';
+                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(params.row.deloDate, 'DD.MM.YYYY') : '';
                     return h('div', {}, [
                       h('p', parsedDate )
                     ])
@@ -738,19 +743,21 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       }, 'Дата оформления'),
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(new Date(params.row.deloDate), 'DD/MM/YYYY') : '';
+                    let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(new Date(params.row.deloDate), 'DD.MM.YYYY') : '';
                     return h('div', {}, [
                       h('p', params.row.deloN),
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       },
                       parsedDate),
@@ -868,7 +875,8 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       }, 'дополнительный протокол'),
                     ])
@@ -878,7 +886,7 @@
               }
               case 'postN': {
                 this.columnsOptions.push({
-                  title: 'ПК', // Постан./ПК
+                  title: 'Постановление АПН', // Постан./ПК
                   key: 'postN',
                   position: 99,
                   minWidth: 200,
@@ -894,12 +902,13 @@
                           'adm-font-light': true,
                         },
                       }, params.column.title),
-                      h('p', {
-                        class: {
-                          'color-dark-lighter': true,
-                          'adm-12': true
-                        },
-                      }, 'постановление-квитанция'),
+                      // h('p', {
+                      //   class: {
+                      //     'color-dark-lighter': true,
+                      //     'adm-12': true,
+                      //     'txt-truncate': true
+                      //   },
+                      // }, 'постановление-квитанция'),
                     ])
                   },
                 });
@@ -998,7 +1007,7 @@
               }
               case 'stotv': {
                 this.columnsOptions.push({
-                  title: 'Статья',
+                  title: 'Статья', // статья нарушения 
                   key: 'stotv',
                   position: 99,
                   minWidth: 180,
@@ -1031,7 +1040,6 @@
                     return h('div', [
                       h('Tooltip', {
                         props: {
-                          placement: 'right-start',
                           content: 'Лицо в отношении которого ведется дело',
                           transfer: true,
                           maxWidth: 100,
@@ -1048,17 +1056,17 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       }, 'Дата рождения'),
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.birthday) ? funcUtils.parseDateTime(params.row.birthday, 'DD/MM/YYYY') : '';
+                    let parsedDate = funcUtils.isNotEmpty(params.row.birthday) ? funcUtils.parseDateTime(params.row.birthday, 'DD.MM.YYYY г.р.') : '';
                     return h('div', {}, [
                       h('Tooltip', {
                         props: {
-                          placement: 'right-start',
                           content: params.row.uchastName,
                           transfer: true,
                           maxWidth: 250,
@@ -1069,7 +1077,8 @@
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-12': true
+                          'adm-12': true,
+                          'txt-truncate': true
                         },
                       },
                       parsedDate),
