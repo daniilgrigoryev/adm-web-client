@@ -94,10 +94,16 @@
 
         <h2 class="adm-text-big color-dark-light my12">Фотоматериалы</h2>
 
-        <div class="my12 adm-form__item">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+          <div class="my12 adm-form__item" style="width: 15%;">
+            <div v-for="(item, index) in photos" :key="index" style="margin: 10px 0; background: rgb(234, 232, 232); height: 250px; width: 250px; display: flex; align-items: center; justify-content: center;">
+              <img alt="img" @load="checkPic($event.target)" @click="selectImage(item)" :src="item" />
+            </div>
+          </div>
 
-          <img v-for="(item, index) in photos" :key="index" :src="item" />
-
+          <div v-if="selectedImage">
+            <img alt="img" :src="selectedImage" @click="clearSelectedImage" />
+          </div>
         </div>
 
       </div>
@@ -112,6 +118,7 @@
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
+  import $ from "jquery";
   import { mapGetters } from 'vuex';
 
   export default {
@@ -141,7 +148,7 @@
         await this.fillComponent({
           vm: this,
           cid: currentForm.cid,
-          photos: this.dataStore.fotoList
+          photos: this.dataStore ? this.dataStore.fotoList : null
         });
 
         let vm = this;
@@ -160,7 +167,7 @@
             await this.fillComponent({
               vm: vm,
               cid: currentForm.cid,
-              photos: vm.dataStore.fotoList
+              photos: vm.dataStore ? vm.dataStore.fotoList : null
             });
           } catch (e) {
             alert(e.message);
@@ -175,13 +182,47 @@
       this.$store.dispatch('dlgEdFotoMaterialSetData', null);
     },
     methods: {
+      checkPic(imageDomEl) {
+        let setAttr;
+        let naturalWidth = imageDomEl.naturalWidth;
+        let naturalHeight = imageDomEl.naturalHeight;
+        let pic = $(imageDomEl).css({'height': 'auto', 'width': 'auto'});
+        let wrap = pic.parent();
+
+        if (naturalHeight < wrap.height()) {
+          wrap.css('height', naturalHeight + 20);
+          return;
+        }
+        let picAspect = naturalHeight / naturalWidth;
+        let wrapAspect = wrap.height() / wrap.width();
+
+        pic.css({'max-width': '100%', 'max-height': '100%'});
+        if (picAspect < 1) {
+          setAttr = (wrapAspect <= picAspect) ? 'height' : 'width';
+        } else { // portrait + square
+          setAttr = (wrapAspect >= picAspect) ? 'height' : 'width';
+        }
+        pic.css(setAttr, '100%');
+        if (pic.width() > naturalWidth) {
+          pic.css('width', naturalWidth);
+        }
+        if (pic.height() > naturalHeight) {
+          pic.css('height', naturalHeight);
+        }
+      },
+      selectImage(image) {
+        this.selectedImage = image;
+      },
+      clearSelectedImage() {
+        this.selectedImage = null;
+      },
       async fillComponent(params) {
         let cid = params.cid;
         let photos = params.photos;
         let vm = params.vm;
 
         vm.photos = [];
-        if (photos.length > 0) {
+        if (photos && photos.length > 0) {
           let item;
           let eventResponse;
           let photo;
@@ -190,19 +231,20 @@
             eventResponse = await RequestApi.prepareData({
               method: 'getPhotoBody',
               params: {
-                'node': item.fotoId
+                'node': item.id
               },
               cid: cid
             });
             photo = JSON.parse(eventResponse.response).data;
-            vm.photos.push(photo);
+            vm.photos.push('data:image/jpeg;base64, ' + photo);
           }
         }
       },
     },
     data() {
       return {
-        photos: []
+        photos: [],
+        selectedImage: null
       }
     },
     computed: {
