@@ -60,13 +60,13 @@
                     <div class="adm-text-small color-gray-medium my6">Физическое лицо - ЛВОК</div>
                     <Row type="flex" :gutter="6">
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.firstName" placeholder="Фамилия" clearable></Input>
+                        <input-mask v-model="filter.firstName" :maskProps="maskInputFIO.maskProps" :value="filter.firstName" :inputProps="maskInputFIO.inputPropsFirstName"></input-mask>
                       </Col>
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.secondName" placeholder="Имя" clearable></Input>
+                        <input-mask v-model="filter.secondName" :maskProps="maskInputFIO.maskProps" :value="filter.secondName" :inputProps="maskInputFIO.inputPropsSecondName"></input-mask>
                       </Col>
                       <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.thirdName" placeholder="Отчество" clearable></Input>
+                        <input-mask v-model="filter.thirdName" :maskProps="maskInputFIO.maskProps" :value="filter.thirdName" :inputProps="maskInputFIO.inputPropsThirdName"></input-mask>
                       </Col>
                     </Row>
                   </div>
@@ -274,11 +274,35 @@
         },
         maskInputBirthday: {
           inputProps: {
-            class: 'adm-input adm-input--big'
+            class: 'adm-input adm-input--big',
+            clearable: true,
+            placeholder: ''
           },
           maskProps: {
             alias: "datetime",
-            inputFormat: 'dd.mm.yyyy'
+            inputFormat: 'dd/mm/yyyy'
+          }
+        },
+        maskInputFIO: {
+          inputPropsFirstName: {
+            class: 'adm-input adm-input--big',
+            clearable: true,
+            placeholder: 'Фамилия'
+          },
+          inputPropsSecondName: {
+            class: 'adm-input adm-input--big',
+            clearable: true,
+            placeholder: 'Имя'
+          },
+          inputPropsThirdName: {
+            class: 'adm-input adm-input--big',
+            clearable: true,
+            placeholder: 'Отчество'
+          },
+          maskProps: {
+            regex: '[а-яА-ЯёЁ]+',
+            casing: 'upper',
+            placeholder: ''
           }
         },
         columnsOptions: []
@@ -1061,7 +1085,7 @@
                     ])
                   },
                   render: (h, params) => {
-                    let parsedDate = funcUtils.isNotEmpty(params.row.birthday) ? funcUtils.parseDateTime(params.row.birthday, 'DD.MM.YYYY г.р.') : '';
+                    let parsedDate = funcUtils.isNotEmpty(params.row.birthday) ? params.row.birthday.split('/').join('.') + ' г.р.' : '';
                     return h('div', {}, [
                       h('Tooltip', {
                         props: {
