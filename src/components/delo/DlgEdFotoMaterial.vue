@@ -89,22 +89,59 @@
       </div>
 
       <div v-if="photos && photos.length > 0">
-
-        <hr class="txt-hr my24" />
-
+        <hr class="txt-hr my24">
         <h2 class="adm-text-big color-dark-light my12">Фотоматериалы</h2>
 
-        <div style="display: flex; align-items: flex-start; justify-content: space-between;">
-          <div class="my12 adm-form__item" style="width: 15%;">
-            <div v-for="(item, index) in photos" :key="index" style="margin: 10px 0; background: rgb(234, 232, 232); height: 250px; width: 250px; display: flex; align-items: center; justify-content: center;">
-              <img alt="img" @load="checkPic($event.target)" @click="selectImage(item)" :src="item" />
+
+        <div class="view-photos flex-parent flex-parent--wrap flex-parent--space-between-main mb24">
+          <div class="view-photos__min-section scroll-styled scroll-auto align-center">
+
+            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover px0 py6 align-center' style="box-shadow: none">
+              <span>Добавить фотографию</span>
+            </Button>
+
+            <div v-for="(item, index) in photos" :key="index" @click="selectImage(item)" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
+              <img alt="img" @load="checkPic($event.target)" :src="item" />
             </div>
           </div>
 
-          <div v-if="selectedImage">
-            <img alt="img" :src="selectedImage" @click="clearSelectedImage" />
+
+          <div>
+            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover px0 py6 mx12 align-center' style="box-shadow: none">
+              <span>Изменить</span>
+            </Button>
+            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover px0 py6 mx12 align-center' style="box-shadow: none">
+              <span>Удалить</span>
+            </Button>
+
+            <div v-if="selectedImage" class="view-photos__full-section flex-parent flex-parent--center-cross flex-parent--center-main border border--gray-light">
+              <img alt="img" :src="selectedImage" @click="clearSelectedImage" />
+            </div>
+            <div v-else class="view-photos__full-section border border--gray-light flex-parent flex-parent--center-cross flex-parent--center-main">
+              <p>фото не выбрано</p>
+            </div>
           </div>
+
         </div>
+
+
+
+
+
+        <div>
+          <!-- <div class="my12 adm-form__item" style="width: 15%;">
+            <div v-for="(item, index) in photos" :key="index" style="margin: 10px 0; background: rgb(234, 232, 232); height: 250px; width: 250px; display: flex; align-items: center; justify-content: center;">
+              <img alt="img" @load="checkPic($event.target)" @click="selectImage(item)" :src="item" />
+            </div>
+          </div> -->
+
+          <!-- <div v-if="selectedImage">
+            <img alt="img" :src="selectedImage" @click="clearSelectedImage" />
+          </div> -->
+        </div>
+
+
+
 
       </div>
 
