@@ -152,7 +152,7 @@
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py12">
           <div class="flex-parent flex-parent--center-cross">
             <h3 class="adm-h3 mx12">Найденные дела</h3>
-            <Page v-if="limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
+            <Page v-if="limit && dataStore && dataStore.data.data.length > 0" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 
           <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-start">
@@ -169,8 +169,6 @@
             </DropdownMenu>
           </Dropdown>
         </div>
-
-
 
         <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight"></Table>
       </div>

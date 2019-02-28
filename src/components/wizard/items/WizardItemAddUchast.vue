@@ -12,10 +12,30 @@
         </Col>
       </Row>
       <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Вид:</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.vid" clearable @on-change="storeElementData">
+              <Option class="wmax360 txt-break-word" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item" v-if="vehsList && vehsList.length > 0">
+        <small class="adm-text-small color-gray-medium adm-form__label">Список ТС:</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.vehsId" clearable @on-change="storeElementData">
+              <Option class="wmax360 txt-break-word" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item" v-if="tipList && tipList.length > 0">
         <small class="adm-text-small color-gray-medium adm-form__label">Тип участника:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tip" clearable @on-change="changeTip" :disabled="!data.status">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tip" clearable @on-change="storeElementData" :disabled="!data.status">
               <Option class="wmax360 txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
@@ -58,10 +78,9 @@
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
 
         await this.fillStatusList();
-
-        if (this.data.status) {
-          await this.fillTipList();
-        }
+        await this.fillVidList();
+        await this.fillVehsList();
+        await this.fillTipList();
       },
       async fillStatusList() {
         let eventResponse = await RequestApi.prepareData({
@@ -84,31 +103,74 @@
         this.statusList = statusList;
       },
       async fillTipList() {
+        let tipList = [];
+        if (this.data.status) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getTipDict',
+              data: {
+                status: this.data.status
+              }
+            }
+          });
+          let tipDict = JSON.parse(JSON.parse(eventResponse.response).data);
+          for (let i = 0; i < tipDict.length; i++) {
+            let tip = tipDict[i];
+            tipList.push({
+              label: tip.UCHAST_TIP_NAME,
+              value: tip.UCHAST_TIP
+            });
+          }
+        }
+        this.tipList = tipList;
+      },
+      async fillVidList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
             eCID: this.info.eCID,
-            methodName: 'getTipDict',
+            methodName: 'getVidDict',
             data: null
           }
         });
-        let tipList = [];
-        let tipDict = JSON.parse(JSON.parse(eventResponse.response).data);
-        for (let i = 0; i < tipDict.length; i++) {
-          let tip = tipDict[i];
-          tipList.push({
-            label: tip.UCHAST_TIP_NAME,
-            value: tip.UCHAST_TIP
+        let vidList = [];
+        let vidDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < vidDict.length; i++) {
+          let vid = vidDict[i];
+          vidList.push({
+            label: vid.UCHAST_VID_NAME,
+            value: vid.UCHAST_VID
           });
         }
-        this.tipList = tipList;
+        this.vidList = vidList;
+      },
+      async fillVehsList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getVehsList',
+            data: null
+          }
+        });
+        let vehsList = [];
+        if (eventResponse.response) {
+          let vehsDict = JSON.parse(JSON.parse(eventResponse.response).data);
+          for (let i = 0; i < vehsDict.length; i++) {
+            let vehs = vehsDict[i];
+            vehsList.push({
+              label: vehs.regno,
+              value: vehs.id
+            });
+          }
+        }
+        this.vehsList = vehsList;
       },
       async changeStatus() {
-        this.fillTipList();
         this.storeElementData();
-      },
-      changeTip() {
-        this.storeElementData();
+        await this.fillTipList();
       },
       storeElementData() {
         this.$emit('storeElementData', {
