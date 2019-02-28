@@ -1,5 +1,5 @@
 <template>
-  <Input ref="maskedField" @input="onInput" :value="value" :class="inputProps.class"></Input>
+  <Input ref="maskedField" @input="onInput" :value="value" :class="inputProps.class" :placeholder="inputProps.placeholder" :clearable="inputProps.clearable"></Input>
 </template>
 
 <script>

@@ -11,6 +11,15 @@
       </div>
 
       <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Текст решения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" readonly :value="body.decisFormtxt" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </div>
+
+      <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дата вынесения решения по делу</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -179,16 +188,6 @@
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Основное</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.decisFormtxt" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-
     </div>
   </div>
 </template>
