@@ -1,145 +1,179 @@
 <template>
   <div v-if="dataStore">
-    <div class="adm-search-filter-panel bg-gray-faint py24 px12">
+    <div class="adm-search-filter-panel">
+			<!-- py24 px12 -->
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
-        <div @keydown.enter="filterClick" class="adm-form">
+        <div @keydown.enter="filterClick" class="adm-form adm-form__delo-reestr"><!-- adm-form__delo-reestr -->
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="22">
               <!-- в каждом Row не должно быть больше 4 Col -->
-              <Row type="flex" justify="start" :gutter="8">
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="adm-form__item my12 w-full">
-                    <div class="adm-text-small color-gray-medium my6">Номер дела</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.deloN" placeholder="Номер дела" clearable></Input>
-                  </div>
-                </Col>
-                <Col :xs="24" :md="12" :lg="6">
-                  <Row type="flex" :gutter="6">
-                    <Col :xs="12" :md="18" :lg="12">
-                      <div class="w-full adm-form__item my12">
-                        <div class="adm-text-small color-gray-medium my6">Дата заведения дела</div>
-                        <DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat" placeholder="Дата заведения дела" clearable></DatePicker>
-                      </div>
-                    </Col>
-                    <Col :xs="12" :md="6" :lg="12">
-                       <div class="w-full align-center adm-form__item my12">
-                          <div class="adm-text-small color-gray-medium my6">Искать только в текущем году</div>
-                         <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.flagYear">
-                           <Option value="true">Да</Option>
-                           <Option value="false">Нет</Option>
-                         </Select>
-                        </div>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="w-full adm-form__item my12">
-                    <div class="adm-text-small color-gray-medium my6">ГРЗ автомобиля</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ автомобиля" clearable></Input>
-                  </div>
-                </Col>
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="w-full adm-form__item my12">
-                    <div class="adm-text-small color-gray-medium my6">Документ прикрепленный к делу</div>
-                    <Row type="flex" :gutter="6">
-                      <Col :xs="12" :md="12" :lg="12">
-                        <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.docVid" filterable clearable>
-                          <Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                        </Select>
-                      </Col>
-                      <Col :xs="12" :md="12" :lg="12">
-                        <Input class="adm-input adm-input--big" v-model="filter.docN" placeholder="Номер документа" clearable></Input>
-                      </Col>
-                    </Row>
-                  </div>
+              <Row type="flex" justify="start" :gutter="20">
+								<Col :xs="24" :md="24" :lg="12">
+									<Row type="flex" justify="start" :gutter="20">
+										<Col :xs="24" :md="24" :lg="6">
+											<div class="flex-parent flex-parent--end-cross h-full">
+												<div class="adm-form__item my12 w-full">
+													<!-- <div class="adm-text-small color-gray-medium my6"></div> -->
+													<Input class="adm-input adm-input--big" v-model="filter.deloN" placeholder="Номер дела" clearable></Input>
+												</div>
+											</div>
+										</Col>
+										<Col :xs="24" :md="24" :lg="12">
+											<Row type="flex" justify="start" :gutter="20">
+												<Col :xs="12" :md="12" :lg="14">
+													<div class="flex-parent flex-parent--end-cross h-full">
+														<div class="w-full adm-form__item my12">
+															<div class="adm-12 color-dark-lighter my6">Дата заведения дела</div>
+															<DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat" clearable></DatePicker>
+														</div>
+													</div>
+												</Col>
+												<Col :xs="12" :md="12" :lg="10">
+													<div class="flex-parent flex-parent--column flex-parent--end-cross h-full">
+														<div class="w-full adm-form__item my12">
+															<div class="adm-12 color-dark-lighter my6 w-full">В текущем году</div>
+															<Select class="adm-input adm-input--big" v-model="filter.flagYear" clearable>
+																<Option value="true">Да</Option>
+																<Option value="false">Нет</Option>
+															</Select>
+														</div>
+													</div>
+												</Col>
+											</Row>
+										</Col>
+										<Col :xs="24" :md="24" :lg="6">
+											<div class="flex-parent flex-parent--end-cross h-full">
+												<div class="w-full adm-form__item my12">
+													<Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ автомобиля" clearable></Input>
+												</div>
+											</div>
+										</Col>
+									</Row>
+								</Col>
+
+                <Col :xs="24" :md="12" :lg="12">
+									<div class="flex-parent flex-parent--end-cross h-full">
+										<div class="w-full adm-form__item my12">
+											<div class="adm-12 color-dark-lighter my6">Документ прикрепленный к делу</div>
+											<Row type="flex" :gutter="6">
+												<Col :xs="12" :md="12" :lg="12">
+													<Select class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable>
+														<Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+													</Select>
+												</Col>
+												<Col :xs="12" :md="12" :lg="12">
+													<Input class="adm-input adm-input--big" v-model="filter.docN" placeholder="Номер документа" clearable></Input>
+												</Col>
+											</Row>
+										</div>
+									</div>
                 </Col>
               </Row>
-              <Row type="flex" justify="start" :gutter="8" v-show="hideMore">
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="w-full adm-form__item my12">
-                    <div class="adm-text-small color-gray-medium my6">Физическое лицо - ЛВОК</div>
-                    <Row type="flex" :gutter="6">
-                      <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.firstName" placeholder="Фамилия" clearable></Input>
-                      </Col>
-                      <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.secondName" placeholder="Имя" clearable></Input>
-                      </Col>
-                      <Col :xs="8" :md="8" :lg="8">
-                        <Input class="adm-input adm-input--big" v-model="filter.thirdName" placeholder="Отчество" clearable></Input>
-                      </Col>
-                    </Row>
-                  </div>
+							
+              <Row type="flex" justify="start" :gutter="20" v-show="hideMore">
+                <Col :xs="24" :md="12" :lg="12">
+									<div class="flex-parent flex-parent--end-cross h-full">
+										<div class="w-full adm-form__item my12">
+											<div class="adm-12 color-dark-lighter my6">Физическое лицо - ЛВОК</div>
+											<Row type="flex" :gutter="20">
+												<Col :xs="8" :md="8" :lg="8">
+													<Input class="adm-input adm-input--big" v-model="filter.firstName" placeholder="Фамилия" clearable></Input>
+												</Col>
+												<Col :xs="8" :md="8" :lg="8">
+													<Input class="adm-input adm-input--big" v-model="filter.secondName" placeholder="Имя" clearable></Input>
+												</Col>
+												<Col :xs="8" :md="8" :lg="8">
+													<Input class="adm-input adm-input--big" v-model="filter.thirdName" placeholder="Отчество" clearable></Input>
+												</Col>
+											</Row>
+										</div>
+									</div>
                 </Col>
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="w-full adm-form__item my12">
-                    <div class="adm-text-small color-gray-medium my6">Стадия дела</div>
-                    <Row type="flex" :gutter="6">
-                      <Col :xs="24" :md="12" :lg="12">
-                        <Select class="adm-input adm-input--big" placeholder="Выбрать" v-model="filter.stadDeloKod" filterable clearable>
-                          <Option class="wmax360 txt-break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                        </Select>
-                      </Col>
-                      <Col :xs="24" :md="12" :lg="12">
-                        <Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId" filterable clearable>
-                          <Option class="wmax360 txt-break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-                        </Select>
-                      </Col>
-                    </Row>
-                  </div>
-                </Col>
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="w-full adm-form__item my12">
-                    <div class="adm-text-small color-gray-medium my6">Юридическое лицо - ЛВОК</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
-                  </div>
-                </Col>
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="w-full adm-form__item my12">
-                    <div class="adm-text-small color-gray-medium my6">Номер УПИ</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.upi" placeholder="Номер УПИ" clearable></Input>
-                  </div>
+
+                <Col :xs="24" :md="12" :lg="12">
+									<div class="flex-parent flex-parent--end-cross h-full">
+										<div class="w-full adm-form__item my12">
+											<div class="adm-12 color-dark-lighter my6">Стадия дела</div>
+											<Row type="flex" :gutter="6">
+												<Col :xs="24" :md="12" :lg="12">
+													<Select class="adm-input adm-input--big" v-model="filter.stadDeloKod" filterable clearable>
+														<Option class="wmax360" style="white-space: pre-wrap; word-wrap: break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+													</Select>
+												</Col>
+												<Col :xs="24" :md="12" :lg="12">
+													<Select class="adm-input adm-input--big wmax360" placeholder="По статье" v-model="filter.stotvId" filterable clearable>
+														<Option class="wmax360" style="white-space: pre-wrap; word-wrap: break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+													</Select>
+												</Col>
+											</Row>
+										</div>
+									</div>
                 </Col>
               </Row>
 
-              <Row type="flex" justify="start" :gutter="8" v-show="hideMore">
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="w-full adm-form__item my12">
-                    <div class="adm-text-small color-gray-medium my6">Приоритет ошибки</div>
-                    <Input class="adm-input adm-input--big" v-model="filter.checkPriority" placeholder="Приоритет ошибки" clearable></Input>
-                  </div>
+              <Row type="flex" justify="start" :gutter="20" v-show="hideMore">
+                <Col :xs="24" :md="12" :lg="12">
+									<div class="flex-parent flex-parent--end-cross h-full">
+										<div class="w-full adm-form__item my12 wmax360">
+											<div class="adm-12 color-dark-lighter my6">Юридическое лицо - ЛВОК</div>
+											<Input class="adm-input adm-input--big" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
+										</div>
+									</div>
                 </Col>
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="w-full adm-form__item my12">
-                    <div class="adm-text-small color-gray-medium my6">Дата рождения</div>
-                    <input-mask v-model="filter.birthday" :maskProps="maskInputBirthday.maskProps" :value="filter.birthday" :inputProps="maskInputBirthday.inputProps" clearable></input-mask>
-                  </div>
+                <Col :xs="24" :md="12" :lg="12">
+									<div class="flex-parent flex-parent--end-cross h-full">
+										<div class="w-full adm-form__item my12 wmax360">
+											<!-- <div class="adm-12 color-dark-lighter my6">Номер УПИ</div> -->
+											<Input class="adm-input adm-input--big" v-model="filter.upi" placeholder="Номер УПИ" clearable></Input>
+										</div>
+									</div>
                 </Col>
-                <Col :xs="24" :md="12" :lg="6">
-                  <div class="h-full flex-parent flex-parent--center-cross">
-                     <Button type="default" class="mt12" @click="clearFilter">Отчистить форму</Button>
-                  </div>
-                </Col>
+                <!-- <Col :xs="24" :md="12" :lg="6">
+									<div class="flex-parent flex-parent--end-cross h-full ">
+										<div class="w-full adm-form__item my12">
+											<div class="adm-12 color-dark-lighter my6">Приоритет ошибки</div>
+											<Input class="adm-input adm-input--big" v-model="filter.checkPriority" placeholder="Приоритет ошибки" clearable></Input>
+										</div>
+									</div>
+                </Col> -->
+                <!-- <Col :xs="24" :md="12" :lg="6">
+									<div class="flex-parent flex-parent--end-cross h-full">
+										<div class="w-full adm-form__item my12">
+											<div class="adm-12 color-dark-lighter my6">Дата рождения</div>
+											<input-mask v-model="filter.birthday" :maskProps="maskInputBirthday.maskProps" :value="filter.birthday" :inputProps="maskInputBirthday.inputProps" clearable></input-mask>
+										</div>
+									</div>
+                </Col> -->
+                <!-- <Col :xs="24" :md="12" :lg="2">
+									<div class="flex-parent flex-parent--end-cross h-full">
+										<Button type="default" @click="clearFilter" class="my12">Очистить форму</Button>
+									</div>
+                </Col> -->
               </Row>
             </Col>
             <Col :xs="24" :md="4" :lg="2">
               <div class="h-full flex-parent flex-parent--column flex-parent--center-cross flex-parent--center-main">
-                <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button>
+								<Button @click="clearFilter" type="default" class="adm-btn">Очистить</Button>
               </div>
             </Col>
           </Row>
           <Row>
-            <Col :xs="24" :md="24" :lg="24" class="flex-parent flex-parent--space-between-main">
+            <div class="flex-parent flex-parent--space-between-main">
               <!--TODO Ваня говорит, что кнопка лишняя-->
               <!--TODO А где она должна быть?-->
-              <Button @click="createWizardScenarioPost" type="primary" class="mx6 mt6">Создать постановление</Button>
+							<div>
+								<!-- <Button @click="createWizardScenarioPost" type="primary" class="mx6 mt6">Создать постановление</Button> -->
+								<Button @click="filterClick" type="primary" class="adm-btn adm-btn--blue adm-btn-regular mx6 mt6">найти</Button>
+							</div>
+
+							
               <!-- <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button> -->
 
               <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0' style="box-shadow: none">
                 <span v-if="hideMore">Меньше параметров</span>
                 <span v-else>Больше параметров</span>
               </Button>
-            </Col>
+            </div>
           </Row>
         </div>
       </div>
@@ -387,7 +421,7 @@
                     ])
                   },
                   render: (h, params) => {
-                    return h('div', {}, [
+                    return h('div', [
                       h('p', params.row.deloId)
                     ])
                   }
@@ -415,8 +449,10 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       }, 'Стадия дела'),
                     ])
@@ -427,8 +463,10 @@
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       },
                       params.row.stadDeloName),
@@ -513,8 +551,10 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       }, 'решение после истечения исполнения'),
                     ])
@@ -528,14 +568,16 @@
                             content: params.row.stadIspolnNameLast,
                             transfer: true,
                             maxWidth: 120,
-                          },
+													},
                         }, [
                         h('p', {
                           class: {
                             'color-dark-base': true,
-                            'adm-12': true,
-                            'txt-truncate': true
-                          },
+														'adm-12': true,
+														'line-height100': true,
+														'txt-truncate': true,
+														'txt-normal': true
+													}
                         }, params.row.stadIspolnNameLast),
                       ]),
                     ])
@@ -564,8 +606,10 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       }, 'первое решение по делу'),
                     ])
@@ -584,8 +628,10 @@
                         h('p', {
                           class: {
                             'color-dark-base': true,
-                            'adm-12': true,
-                            'txt-truncate': true,
+														'adm-12': true,
+														'line-height100': true,
+														'txt-truncate': true,
+														'txt-normal': true,
                           },
                         }, params.row.decisNameFirst),
                       ]),
@@ -615,8 +661,10 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       }, 'последнее решение по делу'),
                     ])
@@ -635,8 +683,10 @@
                         h('p', {
                             class: {
                             'color-dark-base': true,
-                            'adm-12': true,
-                            'txt-truncate': true,
+														'adm-12': true,
+														'line-height100': true,
+														'txt-truncate': true,
+														'txt-normal': true,
                             },
                         }, params.row.decisNameLast),
                       ]),
@@ -735,27 +785,37 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+													'adm-font-light': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       }, 'Дата оформления'),
                     ])
                   },
                   render: (h, params) => {
                     let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(new Date(params.row.deloDate), 'DD.MM.YYYY') : '';
-                    return h('div', {}, [
+                    return h('div', {
+											on: {
+												click: () => {
+													this.getDelo(params.row.deloId);
+												}
+											}
+										}, [
                       h('p', params.row.deloN),
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       },
                       parsedDate),
@@ -873,8 +933,10 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       }, 'дополнительный протокол'),
                     ])
@@ -900,13 +962,6 @@
                           'adm-font-light': true,
                         },
                       }, params.column.title),
-                      // h('p', {
-                      //   class: {
-                      //     'color-dark-lighter': true,
-                      //     'adm-12': true,
-                      //     'txt-truncate': true
-                      //   },
-                      // }, 'постановление-квитанция'),
                     ])
                   },
                 });
@@ -1054,8 +1109,10 @@
                       h('p', {
                         class: {
                           'color-dark-lighter': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       }, 'Дата рождения'),
                     ])
@@ -1070,13 +1127,19 @@
                           maxWidth: 250,
                         },
                       }, [
-                        h('span', params.row.uchastName),
+                        h('span', {
+													class: {
+														'txt-truncate': true,
+													}
+												}, params.row.uchastName),
                       ]),
                       h('p', {
                        class: {
                           'color-dark-base': true,
-                          'adm-12': true,
-                          'txt-truncate': true
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
                         },
                       },
                       parsedDate),
@@ -1118,7 +1181,7 @@
               width: 120,
               align: "center",
               key: 'action',
-              visible: true,
+              visible: false,
               fixed: "right",
               renderHeader: (h, params) => {
                 return h('Tooltip', {

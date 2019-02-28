@@ -17,7 +17,15 @@ body {
   letter-spacing: 0.1px;
   line-height: 32px;
 }
-
+.line-height100{
+  line-height: 100%;
+}
+.adm-12{
+  font-size: 12px;
+}
+.adm-15{
+  font-size: 15px;
+}
 .adm-h3 {
   font-size: 20px;
   letter-spacing: 0.2px;
@@ -60,26 +68,10 @@ body {
   line-height: 14px;
 }
 
-.adm-btn-regular {
-  font-size: 14px;
-  letter-spacing: 0.2px;
-  line-height: 16px;
-}
-.adm-12{
-  font-size: 12px;
-}
-.adm-15{
-  font-size: 15px;
-}
-.adm-btn-small {
-  font-size: 12px;
-  letter-spacing: 0.2px;
-  line-height: 16px;
-}
-
 .adm-font-light {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
+  letter-spacing: 0.11px;
 }
 .min-nav{
   position: -webkit-sticky;
@@ -242,11 +234,13 @@ html, body, #app {
 }
 
 .custom-table {
-  border-bottom: none;
-  border-right: none;
-  border-left: none;
+  // border-bottom: none;
+  // border-right: none;
+  // border-left: none;
+  border: none;
   .ivu-tooltip{
     width: 100%;
+    line-height: 100%!important;
   }
   .ivu-table-header {
     thead {
@@ -254,7 +248,6 @@ html, body, #app {
         th {
           height: 70px;
           background-color: #fff;
-          // border: none;
           .ivu-table-cell {
 
           }
@@ -267,7 +260,6 @@ html, body, #app {
       .ivu-table-tbody {
         tr {
           td {
-
             color: $dark-base;
           }
         }
@@ -368,15 +360,6 @@ html, body, #app {
   }
 }
 
-.adm-btn-primary {
-  background-color: #1888CC;
-  height: 45px;
-  padding: 15px 30px;
-  line-height: 100%;
-  &:hover {
-    background-color: #1172AC;
-  }
-}
 
 .card {
   box-sizing: border-box;
@@ -408,6 +391,7 @@ html, body, #app {
 
 .adm-search-filter-panel {
   border-bottom: 1px solid #CCCCCC;
+  background-color: #FAFAFA;
 }
 
 .ivu-card-bordered {
@@ -416,6 +400,13 @@ html, body, #app {
 
 .ivu-layout {
   background: #fafafa;
+}
+
+.adm-form.adm-form__delo-reestr{
+  padding-right: 70px; 
+  padding-left: 70px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .adm-form{
@@ -460,4 +451,34 @@ html, body, #app {
       }
     }
   }
+}
+
+.adm-btn-primary {
+  background-color: #1888CC;
+  height: 45px;
+  padding: 15px 30px;
+  line-height: 100%;
+  &:hover {
+    background-color: #1172AC;
+  }
+}
+
+.adm-btn{
+  border-radius: 4px;
+  padding: 10px 30px;
+}
+.adm-btn--blue{
+  background: #1888CC;
+  text-transform: uppercase;
+}
+.adm-btn-regular {
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  line-height: 16px;
+}
+
+.adm-btn-small {
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  line-height: 16px;
 }
