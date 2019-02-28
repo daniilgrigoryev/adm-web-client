@@ -110,9 +110,9 @@
             params: {
               eCID: this.info.eCID,
               methodName: 'getTipDict',
-              data: {
+              data: JSON.stringify({
                 status: this.data.status
-              }
+              })
             }
           });
           let tipDict = JSON.parse(JSON.parse(eventResponse.response).data);
