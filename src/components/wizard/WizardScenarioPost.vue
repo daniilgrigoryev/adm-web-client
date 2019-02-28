@@ -2,8 +2,8 @@
   <div class="wmax1920">
     <Row type="flex">
       <Col :xs="24" :sm="8" :md="6" :lg="6">
-          <div class="bg-blue-thin h-full scroll-hidden">
-            <ul class="ml60 mr24 my24">
+          <div class="bg-blue-thin h-full">
+            <ul class="ml60 mr24 my24 min-nav">
               <li v-if="isVisible('DocPostFirst')" class=""><a href="#DocPostFirst" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
               <li v-if="isVisible('LVOK')" class=""><a href="#LVOK" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
               <li v-if="isVisible('Vehs')" class=""><a href="#Vehs" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>

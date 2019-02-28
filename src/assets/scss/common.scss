@@ -81,7 +81,13 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
 }
-
+.min-nav{
+  position: -webkit-sticky;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 20px;
+  z-index: 9;
+}
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
@@ -130,6 +136,12 @@ html, body, #app {
 }
 
 .tree {
+  max-width: 400px;
+  position: -webkit-sticky;
+  position: sticky;
+  position: -webkit-sticky;
+  top: -1px;
+  z-index: 9;
   a.tree__link {
     // background-color: #F5FAFD;
     &::before {
