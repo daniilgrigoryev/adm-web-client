@@ -23,7 +23,7 @@
         <Row type="flex">
           <Col>
           <div class="h-full bg-blue-thin">
-            <ul class="tree" style="max-width: 400px;">
+            <ul class="tree">
               <li v-for="(item, index) in deloTree" v-if="item.parentCategory && item.recType">
                 <a href="#" @click="nodeClick(item)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : item.selected }'>
                   <div class="bg-red ml18" style="width: 40px; height: 40px;">
@@ -40,7 +40,7 @@
 
 
           </Col>
-          <Col :xs="24" :sm="16" :md="16" :lg="16">
+          <Col class="col"> <!-- :xs="24" :sm="16" :md="16" :lg="16" -->
             <div class="mx-auto">
               <delo-inner-form ref="innerForm" :sizeInnerStack="sizeInnerStack" @updateSizeStack="updateSizeStack" @updateSelected="updateSelected"></delo-inner-form>
             </div>
