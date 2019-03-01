@@ -5,7 +5,7 @@
       <div class="wmax1920 mx-auto"><!-- wmax1920 -->
         <div @keydown.enter="filterClick" class="adm-form adm-form__delo-reestr"><!-- adm-form__delo-reestr -->
           <Row type="flex" justify="start" :gutter="8">
-            <Col :xs="24" :md="20" :lg="22">
+            <Col :xs="24" :md="20" :lg="21">
               <!-- в каждом Row не должно быть больше 4 Col -->
               <Row type="flex" justify="start" :gutter="20">
 								<Col :xs="24" :md="24" :lg="12">
@@ -24,7 +24,7 @@
 													<div class="flex-parent flex-parent--end-cross h-full">
 														<div class="w-full adm-form__item my12">
 															<div class="adm-12 color-dark-lighter my6">Дата заведения дела</div>
-															<DatePicker class="w-full adm-input adm-input--big" type="date" format="dd-MM-yyyy" v-model="filter.deloDat" clearable></DatePicker>
+															<DatePicker class="adm-input adm-input--big adm-input-data" type="date" format="dd-MM-yyyy" v-model="filter.deloDat" clearable></DatePicker>
 														</div>
 													</div>
 												</Col>
@@ -55,7 +55,7 @@
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12">
 											<div class="adm-12 color-dark-lighter my6">Документ прикрепленный к делу</div>
-											<Row type="flex" :gutter="6">
+											<Row type="flex" :gutter="20">
 												<Col :xs="12" :md="12" :lg="12">
 													<Select class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable>
 														<Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
@@ -94,15 +94,15 @@
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12">
 											<div class="adm-12 color-dark-lighter my6">Стадия дела</div>
-											<Row type="flex" :gutter="6">
+											<Row type="flex" :gutter="20">
 												<Col :xs="24" :md="12" :lg="12">
-													<Select class="adm-input adm-input--big wmax360" v-model="filter.stadDeloKod" filterable clearable>
+													<Select class="adm-input adm-input--big" v-model="filter.stadDeloKod" filterable clearable>
 														<Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 													</Select>
 												</Col>
 												<Col :xs="24" :md="12" :lg="12">
-													<Select class="adm-input adm-input--big wmax360" placeholder="По статье" v-model="filter.stotvId" filterable clearable>
-														<Option  v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+													<Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId" filterable clearable>
+														<Option style="max-width: 100%;" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
 													</Select>
 												</Col>
 											</Row>
@@ -151,7 +151,7 @@
                 </Col> -->
               </Row>
             </Col>
-            <Col :xs="24" :md="4" :lg="2">
+            <Col :xs="24" :md="4" :lg="3">
               <div class="h-full flex-parent flex-parent--column flex-parent--center-cross flex-parent--center-main">
 								<Button @click="clearFilter" type="default" class="adm-btn mt18">Очистить</Button>
               </div>

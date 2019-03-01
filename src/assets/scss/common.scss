@@ -288,6 +288,56 @@ html, body, #app {
   box-shadow: none;
 }
 
+
+
+.adm-input.ivu-date-picker {
+  .ivu-select-dropdown{
+    max-height: 310px!important;
+    // min-width: 320px;
+    // width: auto;
+    // width: 290px;
+  }
+  .ivu-picker-panel-body-wrapper{
+    .ivu-picker-panel-body{
+    }
+    .ivu-date-picker-header{
+      color: #797979;
+      font-family: "Open Sans";
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      line-height: 30px;
+      padding-top: 10px;
+      padding-bottom: 5px; 
+      vertical-align: middle;
+      height: auto;
+    }
+    span{
+      height: 30px;
+      width: 30px;
+      color: #797979;
+      font-family: "Open Sans";
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      line-height: 30px;
+      margin: 0;
+      // outline: 1px solid #000;
+      // margin: 2px;
+    }
+    .ivu-picker-panel-content{
+      .ivu-date-picker-cells{
+        width: 211px;
+        margin-left: 10px;
+        margin-right: 10px;
+        // margin: 0;
+        padding: 0;
+        .ivu-date-picker-cells-header{
+          background-color: #FAFAFA;
+        }
+      }
+    }
+  }
+}
 .adm-input {
   .ivu-select-selection,
   .ivu-select-input,
