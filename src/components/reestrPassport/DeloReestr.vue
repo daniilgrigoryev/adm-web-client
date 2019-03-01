@@ -58,7 +58,7 @@
 											<Row type="flex" :gutter="6">
 												<Col :xs="12" :md="12" :lg="12">
 													<Select class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable>
-														<Option class="wmax360 txt-break-word" v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+														<Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 													</Select>
 												</Col>
 												<Col :xs="12" :md="12" :lg="12">
@@ -96,13 +96,13 @@
 											<div class="adm-12 color-dark-lighter my6">Стадия дела</div>
 											<Row type="flex" :gutter="6">
 												<Col :xs="24" :md="12" :lg="12">
-													<Select class="adm-input adm-input--big" v-model="filter.stadDeloKod" filterable clearable>
-														<Option class="wmax360" style="white-space: pre-wrap; word-wrap: break-word" v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+													<Select class="adm-input adm-input--big wmax360" v-model="filter.stadDeloKod" filterable clearable>
+														<Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
 													</Select>
 												</Col>
 												<Col :xs="24" :md="12" :lg="12">
 													<Select class="adm-input adm-input--big wmax360" placeholder="По статье" v-model="filter.stotvId" filterable clearable>
-														<Option class="wmax360" style="white-space: pre-wrap; word-wrap: break-word" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+														<Option  v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
 													</Select>
 												</Col>
 											</Row>

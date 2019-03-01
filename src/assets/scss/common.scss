@@ -366,6 +366,29 @@ html, body, #app {
   .ivu-input{
     font-size: 15px;
   }
+
+  .ivu-select-dropdown{
+    padding: 0;
+    max-height: 250px;
+  }
+  .ivu-select-dropdown  .ivu-select-dropdown-list .ivu-select-item{
+    font-family: "Open Sans";	
+    color: #373737;
+    font-size: 14px!important;	
+    letter-spacing: 0.2px;	
+    line-height: 22px;
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    padding-left: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &.ivu-select-item-selected{
+      background-image: url(../images/select.svg);
+      background-repeat: no-repeat;
+      background-position: 15px center;
+      transition: none;
+    }
+  }
 }
 
 
