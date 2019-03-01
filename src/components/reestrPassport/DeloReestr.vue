@@ -24,7 +24,7 @@
 													<div class="flex-parent flex-parent--end-cross h-full">
 														<div class="w-full adm-form__item my12">
 															<div class="adm-12 color-dark-lighter my6">Дата заведения дела</div>
-															<DatePicker class="adm-input adm-input--big adm-input-data" type="date" format="dd-MM-yyyy" v-model="filter.deloDat" clearable></DatePicker>
+															<DatePicker class="adm-input adm-input--big adm-input-data" type="date" format="dd.MM.yyyy" v-model="filter.deloDat" clearable></DatePicker>
 														</div>
 													</div>
 												</Col>
@@ -179,14 +179,11 @@
         </div>
       </div>
     </div>
-    <div class="bg-white">
+    <div v-if="dataStore && dataStore.data.data.length > 0" class="bg-white">
       <div class="wmax1920 mx-auto">
-
-
-
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py12">
           <div class="flex-parent flex-parent--center-cross">
-            <Page v-if="limit && dataStore && dataStore.data.data.length > 0" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
+            <Page v-if="limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 
           <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-start">
@@ -204,7 +201,7 @@
           </Dropdown>
         </div>
 
-        <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight"></Table>
+        <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large" :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo"></Table>
       </div>
     </div>
   </div>
@@ -828,7 +825,7 @@
                     return h('div', {
 											on: {
 												click: () => {
-													this.getDelo(params.row.deloId);
+													this.getDelo(params.row);
 												}
 											}
 										}, [
@@ -1241,7 +1238,7 @@
                   },
                   on: {
                     click: () => {
-                      this.getDelo(params.row.deloId);
+                      this.getDelo(params.row);
                     }
                   }
                 });
@@ -1378,10 +1375,10 @@
         });
         await this.$store.dispatch('fillModule', {'event': eventResponse});
       },
-      getDelo(deloId) {
+      getDelo(delo) {
         try {
           let params = {
-            deloId: deloId
+            deloId: delo.deloId
           };
 
           formStack.toNext({
