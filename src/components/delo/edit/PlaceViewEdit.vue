@@ -6,7 +6,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Код страны</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.adr.countryCode" disabled placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.adr.countryCode" disabled ></Input>
             </Col>
           </Row>
         </div>
@@ -14,7 +14,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Название</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.adr.countryName" disabled placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.adr.countryName" disabled ></Input>
             </Col>
           </Row>
         </div>
@@ -66,7 +66,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">МГО</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.machta" @on-input-change="store" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.machta" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -75,7 +75,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">МГТ</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.mgt" @on-input-change="store" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.mgt" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -83,7 +83,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">км, метр</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.km" @on-input-change="store" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.km" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -114,7 +114,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.adr.ndom" @on-input-change="store" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.adr.ndom" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -123,7 +123,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Корпус</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.adr.nkorpus" @on-input-change="store" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.adr.nkorpus" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -132,7 +132,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Строение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.adr.nstroenie" @on-input-change="store" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.adr.nstroenie" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -141,7 +141,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Почтовый индекс</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled ></Input>
             </Col>
           </Row>
         </div>
@@ -150,7 +150,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-input-change="store" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-input-change="store"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </div>
@@ -159,7 +159,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Широта</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.y" @on-input-change="store" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.y" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -168,7 +168,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Долгота</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.x" @on-input-change="store" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.x" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -205,7 +205,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">МГО</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="data.dopMachta" @on-input-change="store" placeholder=""""></Input>
+                <Input class="adm-input adm-input--regular" v-model="data.dopMachta" @on-input-change="store" ></Input>
               </Col>
             </Row>
           </div>
@@ -214,7 +214,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">МГТ</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="data.dopMgt" @on-input-change="store" placeholder=""""></Input>
+                <Input class="adm-input adm-input--regular" v-model="data.dopMgt" @on-input-change="store" ></Input>
               </Col>
             </Row>
           </div>
@@ -223,7 +223,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">км, метр</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="data.dopKm" @on-input-change="store" placeholder=""""></Input>
+                <Input class="adm-input adm-input--regular" v-model="data.dopKm" @on-input-change="store" ></Input>
               </Col>
             </Row>
           </div>
@@ -254,7 +254,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="data.adrDop.ndom" @on-input-change="store" placeholder=""""></Input>
+                <Input class="adm-input adm-input--regular" v-model="data.adrDop.ndom" @on-input-change="store" ></Input>
               </Col>
             </Row>
           </div>
@@ -263,7 +263,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Корпус</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="data.adrDop.nkorpus" @on-input-change="store" placeholder=""""></Input>
+                <Input class="adm-input adm-input--regular" v-model="data.adrDop.nkorpus" @on-input-change="store" ></Input>
               </Col>
             </Row>
           </div>
@@ -272,7 +272,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Строение</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="data.adrDop.nstroenie" @on-input-change="store" placeholder=""""></Input>
+                <Input class="adm-input adm-input--regular" v-model="data.adrDop.nstroenie" @on-input-change="store" ></Input>
               </Col>
             </Row>
           </div>
@@ -281,7 +281,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Почтовый индекс</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled placeholder=""""></Input>
+                <Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled ></Input>
               </Col>
             </Row>
           </div>
@@ -290,7 +290,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                `	<Input class="adm-input adm-input--regular" v-model="data.adrDop.dopDopSved" @on-input-change="store" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>`
+                `	<Input class="adm-input adm-input--regular" v-model="data.adrDop.dopDopSved" @on-input-change="store"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>`
               </Col>
             </Row>
           </div>

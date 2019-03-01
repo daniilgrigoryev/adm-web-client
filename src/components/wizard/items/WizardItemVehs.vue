@@ -10,7 +10,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Регистрационный знак ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.regno" @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.regno" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>

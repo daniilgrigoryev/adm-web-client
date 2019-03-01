@@ -453,7 +453,7 @@
                 this.columnsOptions.push({
                   title: 'Дело по статье', // Ст.-основание
                   key: 'stotvKod',
-                  minWidth: 150,
+                  minWidth: 160,
                   position: 3,
                   ellipsis: true,
                   tooltip: true,

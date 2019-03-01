@@ -16,7 +16,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.sumShtraf" @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.sumShtraf" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -24,7 +24,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок лишения (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.lishMes" @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.lishMes" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -40,7 +40,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок дисквалификации (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.diskvMes" @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.diskvMes" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -48,7 +48,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок ареста (дни)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.arestDay" @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.arestDay" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -64,7 +64,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Кол-во часов обяз-х работ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.hoursToWork" @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.hoursToWork" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -72,7 +72,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Количество суток</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.stopWorkDay"  @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.stopWorkDay"  @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -88,7 +88,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.decisMes" @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.decisMes" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -96,7 +96,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.decisDay" @on-input-change="storeElementData" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.decisDay" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>

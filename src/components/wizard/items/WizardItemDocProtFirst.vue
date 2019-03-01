@@ -9,7 +9,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Номер протокола</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" ></Input>
             </Col>
             <Col :xs="24" :md="14" :lg="8">
               <a href="#" @click="createProtNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
@@ -20,7 +20,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Уникальный номер дела</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" ></Input>
             </Col>
             <Col :xs="24" :md="14" :lg="8">
               <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
@@ -73,7 +73,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
             </Col>
             <Col :xs="24" :md="14" :lg="8">
               <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
@@ -84,7 +84,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" ></Input>
             </Col>
           </Row>
         </div>
@@ -92,7 +92,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" ></Input>
             </Col>
           </Row>
         </div>
@@ -100,7 +100,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.inspSostRang" @on-input-change="clearInspSostKod" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.inspSostRang" @on-input-change="clearInspSostKod" ></Input>
             </Col>
           </Row>
         </div>
@@ -108,7 +108,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.organSostKod" @on-input-change="changeOrganSostKod" placeholder=""""></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.organSostKod" @on-input-change="changeOrganSostKod" ></Input>
             </Col>
             <Col :xs="24" :md="14" :lg="8">
               <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>

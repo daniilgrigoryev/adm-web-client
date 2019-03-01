@@ -1,421 +1,370 @@
 <template>
-  <div v-if="body">
+  <div v-if="body" class="wmax940 mx-auto">
     <div class="adm-form">
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Номер ГРЗ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.regno" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.regno" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Группа ГРЗ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.regnoGroupName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.regnoGroupName" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Водитель</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.uchastName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.uchastName" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Владелец</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.sobstvName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.sobstvName" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Примечание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.vehsRem" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.vehsRem"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
 
-      <hr class="txt-hr my24">
+      <h2 class="adm-text-big color-dark-light headding">Сведения об автомобиле</h2>
 
-      <h2 class="adm-text-big color-dark-light my12">Сведения об автомобиле</h2>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">VIN номер</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.vin" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.vin" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Марка</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Модель</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.modavtoName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.modavtoName" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Год выпуска</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.yearVyp" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.yearVyp" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Модель двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorModel" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorModel" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Номер двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorN" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorN" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Тип двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Объем двигателя (куб.см)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorVcm3" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorVcm3" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Мощность двигателя (кВт)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorPowerLc" placeholder=""""></Input>
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorPowerKwt" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorPowerLc"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorPowerKwt"></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Экологический класс двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorEcologClass" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorEcologClass" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Номер кузова</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.nkuzov" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.nkuzov" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Номер шасси</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.nshasi" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.nshasi" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Тип автомобиля</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.tiptcName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.tiptcName" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Вид кузова автомобиля</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.tipkuzName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.tipkuzName" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Категория автомобиля</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.katcKod" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.katcKod" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Снаряженная масса автомобиля (кг.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.massa" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.massa" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Разрешенная максимальная масса автомобиля (кг.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.massaMax" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.massaMax" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Расположение водителя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.prizRightRul" placeholder=""""></Input>
-            <Input class="adm-input adm-input--regular" readonly :value="body.prizRightRulName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.prizRightRul" ></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.prizRightRulName" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Цвет автомобиля</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.color" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.color" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Основной цвет 1</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.color1" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.color1" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Основной цвет 2</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.color2" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.color2" ></Input>
           </Col>
         </Row>
       </div>
-
-      <hr class="txt-hr my24">
-
-      <h2 class="adm-text-big color-dark-light my12">Документы автомобиля</h2>
-
-      <div class="my12 adm-form__item">
+      <h2 class="adm-text-big color-dark-light headding">Документы автомобиля</h2>
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Свидетельство о регистрации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ctc" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ctc"></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Регион учета</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.tcRegionKod" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.tcRegionKod" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Район учета</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.tcRayon" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.tcRayon" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Номер ПТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ptcN" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ptcN" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ptcDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ptcDate | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Орган выдавший ПТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ptcKemVydan" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ptcKemVydan" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Завод изготовитель</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.manufactCountryName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.manufactCountryName" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Тип двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Объем двигателя (куб.см)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorVcm3" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorVcm3" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Номер пиолиса ОСАГО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.osagoN" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoN" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дата ОСАГО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.osagoDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoDate | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Название страховой</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.osagoKemVydan" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoKemVydan" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Срок действия полиса</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.osagoSrok" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoSrok" ></Input>
           </Col>
         </Row>
       </div>
-
-      <hr class="txt-hr my24">
-
-      <h2 class="adm-text-big color-dark-light my12">Проверки данных</h2>
-
-      <div class="my12 adm-form__item">
+      <h2 class="adm-text-big color-dark-light headding">Проверки данных</h2>
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дата проверки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="checkAMTS.DAT_ISPOLN" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="checkAMTS.DAT_ISPOLN" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Инициатор проверки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="checkAMTS.INIT_NAME" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="checkAMTS.INIT_NAME" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Автомобиль в розыске</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UGON_AMTC).value" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UGON_AMTC).value" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">СТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">ПТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_PTS).value" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_PTS).value" ></Input>
           </Col>
         </Row>
       </div>
-
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_REGNO).value" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_REGNO).value" ></Input>
           </Col>
         </Row>
       </div>
@@ -571,6 +520,29 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .adm-form{
+    .headding{
+      background-color: #1888CC;
+      padding-left: 60px;
+      height: 30px;
+      color: #fff;
+      line-height: 30px;
+      margin-top: 20px;
+      border-radius: 4px 4px 0 0;
+    }
+    .adm-form__item{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      overflow: hidden;
+    }
+    .adm-form__item:nth-child(even){
+      background-color: #EEF2F6;
+    }
+    .adm-form__label{
+      text-align: left;
+      padding-left: 60px;
+      color: #797979;
+    }
+  }
 </style>

@@ -92,7 +92,9 @@ html, body, #app {
 .wmax1280 {
   max-width: 1280px;
 }
-
+.wmax940{
+  max-width: 940px;
+}
 .wmax1920 {
   max-width: 1920px;
 }
@@ -258,7 +260,6 @@ html, body, #app {
   .ivu-table-body {
     table {
       .ivu-table-tbody {
-
         tr {
           &.ivu-table-row-hover td{
             background-color: #FAFAFA;
@@ -293,13 +294,8 @@ html, body, #app {
 .adm-input.ivu-date-picker {
   .ivu-select-dropdown{
     max-height: 310px!important;
-    // min-width: 320px;
-    // width: auto;
-    // width: 290px;
   }
   .ivu-picker-panel-body-wrapper{
-    .ivu-picker-panel-body{
-    }
     .ivu-date-picker-header{
       color: #797979;
       font-family: "Open Sans";
@@ -321,15 +317,12 @@ html, body, #app {
       letter-spacing: 0.2px;
       line-height: 30px;
       margin: 0;
-      // outline: 1px solid #000;
-      // margin: 2px;
     }
     .ivu-picker-panel-content{
       .ivu-date-picker-cells{
         width: 211px;
         margin-left: 10px;
         margin-right: 10px;
-        // margin: 0;
         padding: 0;
         .ivu-date-picker-cells-header{
           background-color: #FAFAFA;
@@ -375,29 +368,30 @@ html, body, #app {
   .ivu-select-selection::placeholder {
     color: $gray-medium;
   }
+  .ivu-input:hover:not([readonly]),
+  .ivu-select-input:hover:not([readonly]),
+  .ivu-select-selection:hover:not([readonly]),
+  .ivu-select-selection:hover:not([readonly]) {
+    border-bottom: 1px solid $gray-medium;
+  }
+
   .ivu-select-input:focus,
   .ivu-select-input:hover,
   .ivu-input:focus,
   .ivu-input:hover {
     box-shadow: none;
   }
-  .ivu-input:hover,
-  .ivu-select-input:hover,
-  .ivu-select-selection:hover,
-  .ivu-select-selection:hover {
-    border-bottom: 1px solid $gray-medium;
-  }
-  .ivu-input:focus,
-  .ivu-select-input:focus,
-  .ivu-select-selection:focus,
-  .ivu-select-selection:focus {
+  .ivu-input:focus:not([readonly]),
+  .ivu-select-input:focus:not([readonly]),
+  .ivu-select-selection:focus:not([readonly]),
+  .ivu-select-selection:focus:not([readonly]) {
     border-bottom: 2px solid $blue-light;
   }
 
-  textarea.ivu-input:hover {
+  textarea.ivu-input:hover:not([readonly]) {
     border: 1px solid $gray-medium;
   }
-  textarea.ivu-input:focus {
+  textarea.ivu-input:focus:not([readonly]) {
     border: 2px solid $blue-light;
   }
 }
@@ -491,9 +485,6 @@ html, body, #app {
 }
 
 .adm-form{
-    // .adm-form__item{
-
-    // }
 	.adm-form__label{
 		text-align: right;
 		vertical-align: middle;
@@ -505,8 +496,6 @@ html, body, #app {
     box-sizing: border-box;
     width: 180px;
 	}
-	// .ivu-form-item-content{
-	// }
 }
 
 

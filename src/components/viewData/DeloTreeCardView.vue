@@ -37,8 +37,6 @@
               <hr class="txt-hr my0" v-else-if="!item.recType" />
             </ul>
           </div>
-
-
           </Col>
           <Col class="col"> <!-- :xs="24" :sm="16" :md="16" :lg="16" -->
             <div class="mx-auto">

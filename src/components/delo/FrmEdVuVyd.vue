@@ -9,7 +9,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.docTipName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.docTipName" ></Input>
           </Col>
         </Row>
       </div>
@@ -18,7 +18,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.vuN" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.vuN" ></Input>
           </Col>
         </Row>
       </div>
@@ -27,7 +27,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm')" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
           </Col>
         </Row>
       </div>
@@ -36,7 +36,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm')" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
           </Col>
         </Row>
       </div>
@@ -45,7 +45,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspVydKod" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspVydKod" ></Input>
           </Col>
         </Row>
       </div>
@@ -53,7 +53,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspVydName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspVydName" ></Input>
           </Col>
         </Row>
       </div>
@@ -61,7 +61,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspVydDolz" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspVydDolz" ></Input>
           </Col>
         </Row>
       </div>
@@ -69,7 +69,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspVydRang" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspVydRang" ></Input>
           </Col>
         </Row>
       </div>
@@ -78,7 +78,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан документ. Код - Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-')" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-')" ></Input>
           </Col>
         </Row>
       </div>
@@ -87,7 +87,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.remarks" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.remarks"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -96,7 +96,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.vuPred" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.vuPred"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -105,7 +105,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.statusName" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.statusName" ></Input>
           </Col>
         </Row>
       </div>
@@ -114,7 +114,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm')" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
           </Col>
         </Row>
       </div>

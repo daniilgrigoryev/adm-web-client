@@ -1,6 +1,6 @@
 <template>
   <div v-if="sizeInnerStack > 0 && current" class="bg-white">
-    <div class="px36 py18 border-b border--gray-light">
+    <div class="px36 py18 border-b border--gray-light"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <b class="adm-text-big" v-html="current.params.name"></b>
         <Button type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer">
@@ -10,7 +10,7 @@
 
     </div>
 
-    <div class="hmin360 px36 py12">
+    <div class="hmin360 px36">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')"></frm-ed-docs-opred>
