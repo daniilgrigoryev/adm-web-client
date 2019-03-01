@@ -5,7 +5,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер ГРЗ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.regno" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.regno" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -14,7 +14,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Группа ГРЗ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.regnoGroupName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.regnoGroupName" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -23,7 +23,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Водитель</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.uchastName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.uchastName" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -32,7 +32,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Владелец</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.sobstvName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.sobstvName" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -41,7 +41,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Примечание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.vehsRem" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.vehsRem" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -54,7 +54,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">VIN номер</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.vin" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.vin" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -63,7 +63,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Марка</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -72,7 +72,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Модель</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.modavtoName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.modavtoName" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -81,7 +81,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Год выпуска</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.yearVyp" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.yearVyp" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -90,7 +90,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Модель двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorModel" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorModel" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -99,7 +99,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorN" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorN" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -108,7 +108,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Тип двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -117,7 +117,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Объем двигателя (куб.см)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorVcm3" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorVcm3" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -126,8 +126,8 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Мощность двигателя (кВт)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorPowerLc" placeholder="Enter something..."></Input>
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorPowerKwt" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorPowerLc" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorPowerKwt" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -136,7 +136,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Экологический класс двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorEcologClass" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorEcologClass" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -145,7 +145,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер кузова</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.nkuzov" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.nkuzov" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -154,7 +154,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер шасси</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.nshasi" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.nshasi" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -163,7 +163,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Тип автомобиля</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.tiptcName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.tiptcName" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -172,7 +172,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Вид кузова автомобиля</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.tipkuzName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.tipkuzName" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -181,7 +181,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Категория автомобиля</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.katcKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.katcKod" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -190,7 +190,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Снаряженная масса автомобиля (кг.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.massa" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.massa" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -199,7 +199,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Разрешенная максимальная масса автомобиля (кг.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.massaMax" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.massaMax" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -208,8 +208,8 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Расположение водителя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.prizRightRul" placeholder="Enter something..."></Input>
-            <Input class="adm-input adm-input--regular" readonly :value="body.prizRightRulName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.prizRightRul" placeholder=""""></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.prizRightRulName" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -218,7 +218,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Цвет автомобиля</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.color" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.color" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -227,7 +227,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Основной цвет 1</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.color1" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.color1" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -236,7 +236,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Основной цвет 2</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.color2" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.color2" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -249,7 +249,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Свидетельство о регистрации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ctc" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ctc" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -258,7 +258,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Регион учета</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.tcRegionKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.tcRegionKod" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -267,7 +267,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Район учета</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.tcRayon" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.tcRayon" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -276,7 +276,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер ПТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ptcN" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ptcN" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -285,7 +285,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ptcDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ptcDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -294,7 +294,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Орган выдавший ПТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.ptcKemVydan" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.ptcKemVydan" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -303,7 +303,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Завод изготовитель</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.manufactCountryName" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.manufactCountryName" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -312,7 +312,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Тип двигателя</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -321,7 +321,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Объем двигателя (куб.см)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.motorVcm3" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.motorVcm3" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -330,7 +330,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер пиолиса ОСАГО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.osagoN" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoN" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -339,7 +339,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата ОСАГО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.osagoDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoDate | formatDateTime('DD.MM.YYYY HH:mm')" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -348,7 +348,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Название страховой</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.osagoKemVydan" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoKemVydan" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -357,7 +357,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок действия полиса</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.osagoSrok" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.osagoSrok" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -370,7 +370,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата проверки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="checkAMTS.DAT_ISPOLN" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="checkAMTS.DAT_ISPOLN" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -379,7 +379,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Инициатор проверки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="checkAMTS.INIT_NAME" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="checkAMTS.INIT_NAME" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -388,7 +388,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Автомобиль в розыске</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UGON_AMTC).value" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UGON_AMTC).value" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -397,7 +397,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">СТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -406,7 +406,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ПТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_PTS).value" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_PTS).value" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -415,7 +415,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_REGNO).value" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_REGNO).value" placeholder=""""></Input>
           </Col>
         </Row>
       </div>

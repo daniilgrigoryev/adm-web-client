@@ -23,7 +23,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuPred.vuN" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="vuPred.vuN" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -50,7 +50,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuPred.ogaiVydKod" @on-input-change="changeOgaiVydKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="vuPred.ogaiVydKod" @on-input-change="changeOgaiVydKod" placeholder=""""></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
@@ -70,7 +70,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuPred.remarks" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="vuPred.remarks" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -79,7 +79,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuPred.vuPred" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="vuPred.vuPred" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>

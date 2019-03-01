@@ -26,7 +26,7 @@
             <ul class="tree">
               <li v-for="(item, index) in deloTree" v-if="item.parentCategory && item.recType">
                 <a href="#" @click="nodeClick(item)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : item.selected }'>
-                  <div class="bg-red ml18" style="width: 40px; height: 40px;">
+                  <div class="bg-red-faint ml18" style="width: 40px; height: 40px;">
                     <img src="" alt="">
                   </div>
                   <div class="col mx18">

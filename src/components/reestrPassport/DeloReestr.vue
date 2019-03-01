@@ -44,7 +44,7 @@
 										<Col :xs="24" :md="24" :lg="6">
 											<div class="flex-parent flex-parent--end-cross h-full">
 												<div class="w-full adm-form__item my12">
-													<Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ автомобиля" clearable></Input>
+													<Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ" clearable></Input>
 												</div>
 											</div>
 										</Col>
@@ -153,7 +153,7 @@
             </Col>
             <Col :xs="24" :md="4" :lg="2">
               <div class="h-full flex-parent flex-parent--column flex-parent--center-cross flex-parent--center-main">
-								<Button @click="clearFilter" type="default" class="adm-btn">Очистить</Button>
+								<Button @click="clearFilter" type="default" class="adm-btn mt18">Очистить</Button>
               </div>
             </Col>
           </Row>
@@ -162,16 +162,17 @@
               <!--TODO Ваня говорит, что кнопка лишняя-->
               <!--TODO А где она должна быть?-->
 							<div>
-								<!-- <Button @click="createWizardScenarioPost" type="primary" class="mx6 mt6">Создать постановление</Button> -->
-								<Button @click="filterClick" type="primary" class="adm-btn adm-btn--blue adm-btn-regular mx6 mt6">найти</Button>
+								<Button @click="createWizardScenarioPost" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular mx6 mt6">Создать постановление</Button>
+								<Button @click="filterClick" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular mx6 mt6">найти</Button>
 							</div>
 
 							
               <!-- <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button> -->
 
-              <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-small txt-underline-on-hover my-auto px0 py0 mb0' style="box-shadow: none">
-                <span v-if="hideMore">Меньше параметров</span>
-                <span v-else>Больше параметров</span>
+              <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-regular txt-underline my-auto px0 py0 mb0' style="box-shadow: none">
+                <span v-if="hideMore">Меньше параметров <Icon type="md-arrow-dropup" :size="16"/></span>
+                <span v-else>Больше параметров  <Icon type="md-arrow-dropdown" :size="16"/></span>
+               
               </Button>
             </div>
           </Row>
@@ -185,7 +186,6 @@
 
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py12">
           <div class="flex-parent flex-parent--center-cross">
-            <h3 class="adm-h3 mx12">Найденные дела</h3>
             <Page v-if="limit && dataStore && dataStore.data.data.length > 0" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 
@@ -439,7 +439,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                     ])
@@ -467,7 +467,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
@@ -514,7 +514,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -538,7 +538,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -569,7 +569,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
@@ -624,7 +624,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
@@ -679,7 +679,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
@@ -699,19 +699,19 @@
                         h('p', parsedDate),
                         h('Tooltip', {
                           props: {
-                              content: params.row.decisNameLast,
-                              transfer: true,
-                              maxWidth: 120,
+                            content: params.row.decisNameLast,
+                            transfer: true,
+                            maxWidth: 120,
                           },
                         }, [
                         h('p', {
-                            class: {
+                          class: {
                             'color-dark-base': true,
-														'adm-12': true,
-														'line-height100': true,
-														'txt-truncate': true,
-														'txt-normal': true,
-                            },
+                            'adm-12': true,
+                            'line-height100': true,
+                            'txt-truncate': true,
+                            'txt-normal': true,
+                          },
                         }, params.row.decisNameLast),
                       ]),
                     ])
@@ -734,7 +734,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                     ])
@@ -757,7 +757,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -780,7 +780,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -809,7 +809,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-													'adm-font-light': true,
+													'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
@@ -862,7 +862,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -884,7 +884,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -907,7 +907,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -929,7 +929,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -951,7 +951,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
@@ -983,7 +983,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                     ])
@@ -1005,7 +1005,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -1015,7 +1015,7 @@
               }
               case 'regno': {
                 this.columnsOptions.push({
-                  title: 'ГРЗ автомобиля', // РегЗнак 
+                  title: 'ГРЗ', // РегЗнак 
                   key: 'regno',
                   position: 5,
                   visible: true,
@@ -1028,7 +1028,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -1051,7 +1051,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -1074,7 +1074,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title),
                     ])
@@ -1096,7 +1096,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -1126,7 +1126,7 @@
                           class: {
                             'color-dark-lighter': true,
                             'adm-text-big': true,
-                            'adm-font-light': true,
+                            'txt-normal': true,
                           },
                         }, params.column.title),
                       ]),
@@ -1186,7 +1186,7 @@
                         class: {
                           'color-dark-lighter': true,
                           'adm-text-big': true,
-                          'adm-font-light': true,
+                          'txt-normal': true,
                         },
                       }, params.column.title)
                     ])
@@ -1220,7 +1220,7 @@
                       class: {
                         'color-dark-lighter': true,
                         'adm-text-big': true,
-                        'adm-font-light': true,
+                        'txt-normal': true,
                       },
                     }, params.column.title),
                   ])

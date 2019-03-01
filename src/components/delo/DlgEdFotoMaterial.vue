@@ -7,7 +7,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.docN" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.docN" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -16,7 +16,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата и время съемки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -25,7 +25,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dopSved" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -38,7 +38,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostKod" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -47,7 +47,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -56,7 +56,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostDolz" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostDolz" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -65,7 +65,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostRang" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostRang" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -74,7 +74,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.organSostKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.organSostKod" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -83,7 +83,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>

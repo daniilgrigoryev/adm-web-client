@@ -50,7 +50,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -58,7 +58,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="docsPost.factSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="docsPost.factSved" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>

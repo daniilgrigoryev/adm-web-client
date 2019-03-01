@@ -8,7 +8,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.name" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.name" @on-input-change="storeElementData" placeholder=""""></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="searchUlByName" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
@@ -19,7 +19,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ИНН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.inn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.inn" @on-input-change="storeElementData" placeholder=""""></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="searchUlByInn" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
@@ -30,7 +30,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ИНН кем выдан</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.innKemVydan" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.innKemVydan" @on-input-change="storeElementData" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -38,7 +38,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ОГРН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.ogrn" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.ogrn" @on-input-change="storeElementData" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -46,7 +46,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">КПП</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.kpp" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.kpp" @on-input-change="storeElementData" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -54,7 +54,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ОКПО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.okpo" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.okpo" @on-input-change="storeElementData" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -62,7 +62,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата регистрации Юр. лица</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.dateReg" @on-input-change="storeElementData" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.dateReg" @on-input-change="storeElementData" placeholder=""""></Input>
           </Col>
         </Row>
       </div>

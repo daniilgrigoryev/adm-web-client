@@ -258,7 +258,11 @@ html, body, #app {
   .ivu-table-body {
     table {
       .ivu-table-tbody {
+
         tr {
+          &.ivu-table-row-hover td{
+            background-color: #FAFAFA;
+          }
           td {
             color: $dark-base;
           }
@@ -349,13 +353,17 @@ html, body, #app {
 }
 
 .adm-input--regular {
+  .ivu-select-selection,
+  .ivu-select-input,
   .ivu-input {
     font-size: 13px;
   }
 }
 
 .adm-input--big {
-  .ivu-input {
+  .ivu-select-selection,
+  .ivu-select-input,
+  .ivu-input{
     font-size: 15px;
   }
 }
@@ -469,7 +477,6 @@ html, body, #app {
 }
 .adm-btn--blue{
   background: #1888CC;
-  text-transform: uppercase;
 }
 .adm-btn-regular {
   font-size: 14px;

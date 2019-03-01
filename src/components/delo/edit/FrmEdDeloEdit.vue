@@ -62,7 +62,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Примечания</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.dopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="delo.dopSved" placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -76,7 +76,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbKod" @on-input-change="changeInspVozbKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbKod" @on-input-change="changeInspVozbKod" placeholder=""""></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
@@ -87,7 +87,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbName" @on-input-change="changeFIO" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbName" @on-input-change="changeFIO" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -95,7 +95,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbDolz" @on-input-change="clearInspVozbKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbDolz" @on-input-change="clearInspVozbKod" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -103,7 +103,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbRang" @on-input-change="clearInspVozbKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbRang" @on-input-change="clearInspVozbKod" placeholder=""""></Input>
           </Col>
         </Row>
       </div>
@@ -111,7 +111,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.organVozbKod" @on-input-change="changeOrganVozbKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="delo.organVozbKod" @on-input-change="changeOrganVozbKod" placeholder=""""></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
@@ -130,7 +130,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Код местонахождения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.ogaiNahKod" @on-input-change="changeOgaiNahKod" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="delo.ogaiNahKod" @on-input-change="changeOgaiNahKod" placeholder=""""></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Подразделения</a>
@@ -141,7 +141,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Местонахождение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" :value="delo.ogaiNahName" disabled placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" :value="delo.ogaiNahName" disabled placeholder="""" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
