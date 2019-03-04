@@ -1,6 +1,6 @@
 <template>
     <Sider class="sider transition" ref="sider" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsed">
-        <div class="py18 relative h-full">
+        <div class="py18 relative h-full scroll-auto">
             <div class="flex-parent flex-parent--column h-full">
                 <Icon @click="isCollapsed = true" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
                 <div class="flex-parent flex-parent--column flex-parent--center-cross">

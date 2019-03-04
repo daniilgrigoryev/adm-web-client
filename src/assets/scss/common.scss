@@ -106,6 +106,7 @@ html, body, #app {
 .sider {
   background: $white-light;
   position: fixed;
+  min-height: 935px;
   height: 100%;
   z-index: 999;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.16);
@@ -352,7 +353,8 @@ html, body, #app {
 		line-height: 1;
 		padding: 10px 12px 10px 0;
     box-sizing: border-box;
-    width: 180px;
+    width: 120px;
+    // width: 180px;
 	}
 }
 

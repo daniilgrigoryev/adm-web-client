@@ -525,8 +525,11 @@
                   render: (h, params) => {
                     let color = this.changeClass(params.row.checkPriority);
                     return h('div', {}, [
-                      h('p', {
-                       class: ['round-full', 'w12', 'h12', 'inline-block', color]
+                      h('div', {
+                       class: ['round-full', 'w12', 'h12', 'inline-block', 'cursor-pointer', color],
+                       attrs: {
+                          title: params.row.checkPriority
+                       }
                       }),
                     ])
                   }
@@ -812,7 +815,9 @@
                       },
                       class: ['cursor-pointer']
 										}, [
-                      h('p', params.row.deloN),
+                      h('p', {
+                        class: ['txt-underline-on-hover', 'color-blue-on-hover']
+                      }, params.row.deloN),
                       h('p', {
                        class: {
                           'color-dark-base': true,

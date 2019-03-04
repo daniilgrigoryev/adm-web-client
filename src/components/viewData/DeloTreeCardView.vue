@@ -39,7 +39,7 @@
           </div>
           </Col>
           <Col class="col"> <!-- :xs="24" :sm="16" :md="16" :lg="16" -->
-            <div class="mx-auto">
+            <div class="wmax940"><!-- mx-auto -->
               <delo-inner-form ref="innerForm" :sizeInnerStack="sizeInnerStack" @updateSizeStack="updateSizeStack" @updateSelected="updateSelected"></delo-inner-form>
             </div>
           </Col>
