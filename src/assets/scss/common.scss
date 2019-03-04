@@ -315,6 +315,29 @@ html, body, #app {
 
 
 .adm-form{
+  .adm-form__headding{
+    background-color: #1888CC;
+    padding-left: 60px;
+    height: 30px;
+    color: #fff;
+    line-height: 30px;
+    // margin-top: 20px;
+    border-radius: 4px 4px 0 0;
+  }
+  .adm-form__container{
+    border-radius: 4px;	
+    background-color: #FDFDFD;	
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.26), 0 0 4px 0 rgba(0,0,0,0.16);
+    margin: 20px 0;
+  }
+  .adm-form__content{
+    padding: 20px;
+  }
+  .adm-form__item{
+    // overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 	.adm-form__label{
 		text-align: right;
 		vertical-align: middle;

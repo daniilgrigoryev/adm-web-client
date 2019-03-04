@@ -1,90 +1,98 @@
 <template>
-  <div v-if="docsPost">
+  <div v-if="docsPost" class="wmax1280 mx-auto">
     <!-- данные по делу  -->
+    <div class="mt24">
+      <Button @click="getPrev" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular my-auto w120 mr12">Назад</Button>
+      <Button @click="save" type="default" class="adm-btn adm-btn-regular my-auto w120 ">Сохранить</Button>
+    </div>
 
-    <Button @click="getPrev" type="text">Назад</Button>
-    <Button @click="save" type="text">Сохранить</Button>
 
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
+
+
     <div class="adm-form">
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
+      <div class="adm-form__container">
+        <div class="adm-form__content">
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
+              </Col>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
+              </Col>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="docsPost.pnpaId" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="docsPost.stotvId" clearable filterable :disabled="!docsPost.dateNar" @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="docsPost.factSved"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" disabled v-model="docsPost.placeSost.placeFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="getPlaceSost" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              </Col>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" disabled v-model="docsPost.placeNar.placeFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="getPlaceNar" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        </div>
       </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="docsPost.pnpaId" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="docsPost.stotvId" clearable filterable :disabled="!docsPost.dateNar" @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="docsPost.factSved"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" disabled v-model="docsPost.placeSost.placeFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="getPlaceSost" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" disabled v-model="docsPost.placeNar.placeFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="getPlaceNar" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
-          </Col>
-        </Row>
-      </div>
-    </div>
 
   </div>
 </template>
