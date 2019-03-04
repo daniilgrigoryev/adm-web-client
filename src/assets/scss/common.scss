@@ -338,6 +338,11 @@ html, body, #app {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+  .adm-form__item::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
 	.adm-form__label{
 		text-align: right;
 		vertical-align: middle;
