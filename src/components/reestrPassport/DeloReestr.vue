@@ -76,13 +76,13 @@
 											<div class="adm-12 color-dark-lighter my6">Физическое лицо - ЛВОК</div>
 											<Row type="flex" :gutter="20">
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.firstName" :maskProps="maskInputFIO.maskProps" :value="filter.firstName" :inputProps="maskInputFIO.inputPropsFirstName"></input-mask>
+													<input-mask v-model="filter.firstName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Фамилия"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.secondName" :maskProps="maskInputFIO.maskProps" :value="filter.secondName" :inputProps="maskInputFIO.inputPropsSecondName"></input-mask>
+													<input-mask v-model="filter.secondName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Имя"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.thirdName" :maskProps="maskInputFIO.maskProps" :value="filter.thirdName" :inputProps="maskInputFIO.inputPropsThirdName"></input-mask>
+													<input-mask v-model="filter.thirdName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Отчество"></input-mask>
 												</Col>
 											</Row>
 										</div>
@@ -139,7 +139,7 @@
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12">
 											<div class="adm-12 color-dark-lighter my6">Дата рождения</div>
-											<input-mask v-model="filter.birthday" :maskProps="maskInputBirthday.maskProps" :value="filter.birthday" :inputProps="maskInputBirthday.inputProps" clearable></input-mask>
+											<input-mask v-model="filter.birthday" :maskProps="maskInputBirthday" :value="filter.birthday" inputClass="adm-input adm-input--big" :clearable="true"></input-mask>
 										</div>
 									</div>
                 </Col> -->
@@ -165,23 +165,21 @@
 								<Button @click="createWizardScenarioPost" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular mx6 mt6">Создать постановление</Button>
 							</div>
 
-							
-              <!-- <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button> -->
-
-              <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-regular txt-underline my-auto px0 py0 mb0 mt12' style="box-shadow: none">
+              <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-regular txt-underline my-auto px0 py0 mb0' style="box-shadow: none">
                 <span v-if="hideMore">Меньше параметров <Icon type="md-arrow-dropup" :size="16"/></span>
                 <span v-else>Больше параметров  <Icon type="md-arrow-dropdown" :size="16"/></span>
+               
               </Button>
             </div>
           </Row>
         </div>
       </div>
     </div>
-    <div v-if="dataStore && dataStore.data.data.length > 0" class="bg-white">
+    <div v-if="dataStore.data.data.length > 0" class="bg-white">
       <div class="wmax1920 mx-auto">
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py12">
           <div class="flex-parent flex-parent--center-cross">
-            <Page v-if="limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
+            <Page v-if="dataStore.data.data.length > limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 
           <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-start">
@@ -223,10 +221,6 @@
         let cid = funcUtils.getfromLocalStorage('admDeloReestr');
         let eventResponse;
 
-        await this.fillStateDeloDict();
-        await this.fillDocumentVidDict();
-        await this.fillArticleProcDict();
-
         if (funcUtils.isNull(cid)) {
           funcUtils.addToLocalStorage('admDeloReestr', current.cid);
           eventResponse = await RequestApi.prepareData({
@@ -247,6 +241,10 @@
 
         await this.$store.dispatch('deloReestrSetCid', current.cid);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
+
+        this.fillStateDeloDict();
+        this.fillDocumentVidDict();
+        this.fillArticleProcDict();
       } catch (e) {
         alert(e.message);
       }
@@ -302,37 +300,13 @@
           upi: null
         },
         maskInputBirthday: {
-          inputProps: {
-            class: 'adm-input adm-input--big',
-            clearable: true,
-            placeholder: ''
-          },
-          maskProps: {
-            alias: "datetime",
-            inputFormat: 'dd/mm/yyyy'
-          }
+          alias: "datetime",
+          inputFormat: 'dd/mm/yyyy'
         },
         maskInputFIO: {
-          inputPropsFirstName: {
-            class: 'adm-input adm-input--big',
-            clearable: true,
-            placeholder: 'Фамилия'
-          },
-          inputPropsSecondName: {
-            class: 'adm-input adm-input--big',
-            clearable: true,
-            placeholder: 'Имя'
-          },
-          inputPropsThirdName: {
-            class: 'adm-input adm-input--big',
-            clearable: true,
-            placeholder: 'Отчество'
-          },
-          maskProps: {
-            regex: '[а-яА-ЯёЁ]+',
-            casing: 'upper',
-            placeholder: ''
-          }
+          regex: '[а-яА-ЯёЁ]+',
+          casing: 'upper',
+          placeholder: ''
         },
         columnsOptions: []
       }
@@ -363,7 +337,7 @@
 
           return  column.key !== 'action' &&
                   column.key !== 'deloN' &&
-                  column.key !== 'deloDate' && 
+                  column.key !== 'deloDate' &&
                   column.key !== 'stadDeloName' && 
                   column.key !== 'checkPriority' &&
                   column.key !== 'birthday' && 
@@ -1296,8 +1270,10 @@
         this.columnsOptionsVisible = !this.columnsOptionsVisible;
       },
       changeTableHeight() {
-        let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
-        this.tableHeight = window.innerHeight - tableBounds.y;
+        if (this.$refs.selection) {
+          let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
+          this.tableHeight = window.innerHeight - tableBounds.y;
+        }
       },
       getFilterFields() {
         let filterObj = {};
@@ -1367,13 +1343,14 @@
         articleProcList.forEach((item) => {
           articleProcDict.push({
             label: item.values['STOTV_NAME'],
-            value: item.values['STOTV_KOD'],
+            value: item.values['STOTV_KOD'].split(' ').join(''),
             id: item.values['STOTV_ID'] + ''
           })
         });
         this.articleProcDict = articleProcDict;
       },
       async filterClick() {
+        this.hideMore = false;
         let filter = this.getFilterFields();
         let eventResponse = await RequestApi.prepareData({
           method: 'getData',

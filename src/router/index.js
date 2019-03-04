@@ -25,77 +25,78 @@ Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
+  base: '/admWeb/',
   hashbang: false,
   routes: [
     {
-      path: ConstantUtils.contextPath,
+      path: '/',
       name: 'Authorization',
       component: Authorization
     },
     {
-      path: ConstantUtils.contextPath + '/deloReestr',
+      path: '/deloReestr',
       name: 'DeloReestr',
       component: DeloReestr,
     },
     {
-      path: ConstantUtils.contextPath + '/dashBoard',
+      path: '/dashBoard',
       name: 'DashBoard',
       component: DashBoard,
     },
     {
-      path: ConstantUtils.contextPath + '/deloTreeCardView',
+      path: '/deloTreeCardView',
       name: 'DeloTreeCardView',
       component: DeloTreeCardView,
       props: true
     },
     {
-      path: ConstantUtils.contextPath + '/frmEdDeloEdit',
+      path: '/frmEdDeloEdit',
       name: 'FrmEdDeloEdit',
       component: FrmEdDeloEdit,
       props: true
     },
     {
-      path: ConstantUtils.contextPath + '/frmEdVuPredEdit',
+      path: '/frmEdVuPredEdit',
       name: 'FrmEdVuPredEdit',
       component: FrmEdVuPredEdit,
       props: true
     },
     {
-      path: ConstantUtils.contextPath + '/frmEdVuVydEdit',
+      path: '/frmEdVuVydEdit',
       name: 'FrmEdVuVydEdit',
       component: FrmEdVuVydEdit,
       props: true
     },
     {
-      path: ConstantUtils.contextPath + '/frmEdDocsPostEdit',
+      path: '/frmEdDocsPostEdit',
       name: 'FrmEdDocsPostEdit',
       component: FrmEdDocsPostEdit,
       props: true
     },
     {
-      path: ConstantUtils.contextPath + '/placeViewEdit',
+      path: '/placeViewEdit',
       name: 'PlaceViewEdit',
       component: PlaceViewEdit,
       props: true
     },
     {
-      path: ConstantUtils.contextPath + '/wizardExecuter',
+      path: '/wizardExecuter',
       name: 'WizardExecuter',
       component: WizardExecuter,
       props: true
     },
     {
-      path: ConstantUtils.contextPath + '/accounting',
+      path: '/accounting',
       name: 'Accounting',
       component: Accounting,
     },
     {
-      path: ConstantUtils.contextPath + '/offense',
+      path: '/offense',
       name: 'Offense',
       component: Offense,
     },
     {
-      path: ConstantUtils.contextPath + '/delo',
+      path: '/delo',
       name: 'Delo',
       component: Delo,
     },
