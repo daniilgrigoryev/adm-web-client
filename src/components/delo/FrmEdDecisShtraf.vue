@@ -1,5 +1,8 @@
 <template>
   <div v-if="body">
+
+    <Button @click="getDecisEdit" type="primary" class="ml12">Редактировать</Button>
+
     <div class="adm-form">
       <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Код - решение</small>
@@ -259,6 +262,29 @@
         return res;
       },
     },
+    methods: {
+      getDecisEdit() {
+        try {
+          let current = formStack.getCurrent();
+          let currentForm = innerFormStack.getCurrent({
+            uid: current.moduleName
+          });
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmEdDecisEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+    }
   }
 </script>
 

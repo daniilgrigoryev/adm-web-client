@@ -7,7 +7,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Номер нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.docN" ></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.docN"></Input>
           </Col>
         </Row>
       </div>
@@ -16,7 +16,8 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата и время съемки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+            <Input class="adm-input adm-input--regular" readonly
+                   :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')"></Input>
           </Col>
         </Row>
       </div>
@@ -25,12 +26,13 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dopSved"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.dopSved" type="textarea"
+                   :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
 
-      <hr class="txt-hr my24" />
+      <hr class="txt-hr my24"/>
 
       <h2 class="adm-text-big color-dark-light my12">Должностное лицо</h2>
 
@@ -38,7 +40,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostKod" ></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostKod"></Input>
           </Col>
         </Row>
       </div>
@@ -47,7 +49,8 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName" type="textarea"
+                   :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -56,7 +59,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostDolz" ></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostDolz"></Input>
           </Col>
         </Row>
       </div>
@@ -65,7 +68,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostRang" ></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostRang"></Input>
           </Col>
         </Row>
       </div>
@@ -74,7 +77,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.organSostKod" ></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.organSostKod"></Input>
           </Col>
         </Row>
       </div>
@@ -83,7 +86,8 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.organSostName"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" type="textarea"
+                   :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -95,56 +99,16 @@
 
         <div class="view-photos flex-parent flex-parent--wrap flex-parent--space-between-main mb24">
           <div class="view-photos__min-section scroll-styled scroll-auto align-center">
+            <gallery :images="photos" :index="index" @close="index = null"></gallery>
 
-            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover px0 py6 align-center' style="box-shadow: none">
-              <span>Добавить фотографию</span>
-            </Button>
-
-            <div v-for="(item, index) in photos" :key="index" @click="selectImage(item)" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
-              <img alt="img" @load="checkPic($event.target)" :src="item" />
+            <div v-for="(image, imageIndex) in photos" :key="imageIndex" @click="index = imageIndex" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
+              <img alt="img" @load="checkPic($event.target)" :src="image" />
             </div>
           </div>
-
-
-          <div>
-            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover px0 py6 mx12 align-center' style="box-shadow: none">
-              <span>Изменить</span>
-            </Button>
-            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover px0 py6 mx12 align-center' style="box-shadow: none">
-              <span>Удалить</span>
-            </Button>
-
-            <div v-if="selectedImage" class="view-photos__full-section flex-parent flex-parent--center-cross flex-parent--center-main border border--gray-light">
-              <img alt="img" :src="selectedImage" @click="clearSelectedImage" />
-            </div>
-            <div v-else class="view-photos__full-section border border--gray-light flex-parent flex-parent--center-cross flex-parent--center-main">
-              <p>фото не выбрано</p>
-            </div>
-          </div>
-
         </div>
-
-
-
-
-
         <div>
-          <!-- <div class="my12 adm-form__item" style="width: 15%;">
-            <div v-for="(item, index) in photos" :key="index" style="margin: 10px 0; background: rgb(234, 232, 232); height: 250px; width: 250px; display: flex; align-items: center; justify-content: center;">
-              <img alt="img" @load="checkPic($event.target)" @click="selectImage(item)" :src="item" />
-            </div>
-          </div> -->
-
-          <!-- <div v-if="selectedImage">
-            <img alt="img" :src="selectedImage" @click="clearSelectedImage" />
-          </div> -->
         </div>
-
-
-
-
       </div>
-
     </div>
   </div>
 
@@ -155,11 +119,14 @@
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import $ from "jquery";
-  import { mapGetters } from 'vuex';
+  import {mapGetters} from 'vuex';
+  import VueGallery from 'vue-gallery';
 
   export default {
     name: "DlgEdFotoMaterial",
+    components: {
+      'gallery': VueGallery
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -247,12 +214,6 @@
           pic.css('height', naturalHeight);
         }
       },
-      selectImage(image) {
-        this.selectedImage = image;
-      },
-      clearSelectedImage() {
-        this.selectedImage = null;
-      },
       async fillComponent(params) {
         let cid = params.cid;
         let photos = params.photos;
@@ -273,7 +234,7 @@
               cid: cid
             });
             photo = JSON.parse(eventResponse.response).data;
-            vm.photos.push('data:image/jpeg;base64, ' + photo);
+            vm.photos.push('data:image/jpeg;base64,' + photo);
           }
         }
       },
@@ -281,7 +242,7 @@
     data() {
       return {
         photos: [],
-        selectedImage: null
+        index: null
       }
     },
     computed: {
@@ -299,6 +260,4 @@
   }
 </script>
 
-<style scoped>
-
-</style>
+<style lang="scss" scoped></style>

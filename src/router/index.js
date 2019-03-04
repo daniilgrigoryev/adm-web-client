@@ -9,6 +9,7 @@ import FrmEdDeloEdit from '../components/delo/edit/FrmEdDeloEdit';
 import FrmEdVuPredEdit from '../components/delo/edit/FrmEdVuPredEdit';
 import FrmEdVuVydEdit from '../components/delo/edit/FrmEdVuVydEdit';
 import FrmEdDocsPostEdit from '../components/delo/edit/FrmEdDocsPostEdit';
+import FrmEdDecisEdit from '../components/delo/edit/FrmEdDecisEdit';
 import PlaceViewEdit from '../components/delo/edit/PlaceViewEdit';
 
 import WizardExecuter from '../components/wizard/WizardExecuter';
@@ -53,6 +54,12 @@ const router = new Router({
       path: '/frmEdDeloEdit',
       name: 'FrmEdDeloEdit',
       component: FrmEdDeloEdit,
+      props: true
+    },
+    {
+      path: '/frmEdDecisEdit',
+      name: 'FrmEdDecisEdit',
+      component: FrmEdDecisEdit,
       props: true
     },
     {
