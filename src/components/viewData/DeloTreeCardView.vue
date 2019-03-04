@@ -15,7 +15,7 @@
         </div>
         <div class="mt24">
           <b class="adm-text-big color-gray-medium">Статья дела</b>
-          <p class="adm-txt-regular color-gray-medium">{{deloContext.stotvName}}</p>
+          <p class="adm-txt-regular color-gray-medium">{{deloContext.stotvKod + ', ' +deloContext.stotvName}}</p>
         </div>
       </div>
       <hr class="txt-hr my0">
@@ -26,8 +26,8 @@
             <ul class="tree">
               <li v-for="(item, index) in deloTree" v-if="item.parentCategory && item.recType">
                 <a href="#" @click="nodeClick(item)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : item.selected }'>
-                  <div class="bg-red-faint ml18" style="width: 40px; height: 40px;">
-                    <img src="" alt="">
+                  <div class="ml18" style="width: 40px; height: 40px;">
+                    <img :src="getIconByNode(item)" alt="">
                   </div>
                   <div class="col mx18">
                     <p v-html="item.name" class="adm-text-big color-dark-base txt-break-word"></p>
@@ -57,6 +57,8 @@
   import RequestApi from "../../assets/js/api/requestApi";
   import { mapGetters } from 'vuex';
   import DeloInnerForm from "~/components/delo/DeloInnerForm";
+  import * as truck from '../../assets/images/truck.png';
+  import * as taxi from '../../assets/images/taxi.png';
 
   export default {
     name: "DeloTreeCardView",
@@ -174,6 +176,40 @@
           await this.$refs.innerForm.addForm(copyNode);
         }
       },
+      getIconByNode(node) {
+        switch (node.recType) {
+          case 'DECIS': {
+            return truck;
+          }
+          case 'DECIS_ISPOLN': {
+           return taxi;
+          }
+          case "DTP": {
+            return truck;
+          }
+          case "DELO": {
+           return taxi;
+          }
+          case "VU_PRED": {
+            return truck;
+          }
+          case "VU_VYD": {
+           return taxi;
+          }
+          case "DOCS_POST" : {
+            return truck;
+          }
+          case "DOCS_POST_UL" : {
+           return taxi;
+          }
+          case "DOCS_PROT" : {
+            return truck;
+          }
+          case "UCHASTFL" : {
+            return truck;
+          }
+        }
+      },
       arrayToTree(arr) {
         let tree = [];
         let mappedArr = {};
@@ -247,6 +283,15 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .truck-card{
+    background-image: url('../../assets/images/truck.png');
+    background-repeat: no-repeat;
+    background-position:  97% 97%;
+  }
+  .taxi-card{
+    background-image: url('../../assets/images/taxi.png');
+    background-repeat: no-repeat;
+    background-position:  97% 97%;
+  }
 </style>

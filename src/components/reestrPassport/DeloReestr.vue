@@ -76,13 +76,13 @@
 											<div class="adm-12 color-dark-lighter my6">Физическое лицо - ЛВОК</div>
 											<Row type="flex" :gutter="20">
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.firstName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Фамилия"></input-mask>
+													<input-mask v-model="filter.firstName" :maskProps="maskInputFIO.maskProps" :value="filter.firstName" :inputProps="maskInputFIO.inputPropsFirstName"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.secondName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Имя"></input-mask>
+													<input-mask v-model="filter.secondName" :maskProps="maskInputFIO.maskProps" :value="filter.secondName" :inputProps="maskInputFIO.inputPropsSecondName"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.thirdName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Отчество"></input-mask>
+													<input-mask v-model="filter.thirdName" :maskProps="maskInputFIO.maskProps" :value="filter.thirdName" :inputProps="maskInputFIO.inputPropsThirdName"></input-mask>
 												</Col>
 											</Row>
 										</div>
@@ -338,10 +338,10 @@
           return  column.key !== 'action' &&
                   column.key !== 'deloN' &&
                   column.key !== 'deloDate' &&
-                  column.key !== 'stadDeloName' && 
+                  column.key !== 'stadDeloName' &&
                   column.key !== 'checkPriority' &&
-                  column.key !== 'birthday' && 
-                  column.key !== 'lvokName' && 
+                  column.key !== 'birthday' &&
+                  column.key !== 'lvokName' &&
                   column.key !== 'decisNameFirst' &&
                   column.key !== 'decisNameLast' &&
                   column.key !== 'stadIspolnNameLast' &&

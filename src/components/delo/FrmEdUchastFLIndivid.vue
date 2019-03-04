@@ -176,7 +176,7 @@
         </Row>
       </div>
 
-      <hr class="txt-hr my24">
+      <!--<hr class="txt-hr my24">
 
       <h2 class="adm-text-big color-dark-light my12">Проверка данных</h2>
 
@@ -184,7 +184,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата проверки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="checkUchastinc.DAT_ISPOLN" ></Input>
+            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="checkUchastinc.DAT_ISPOLN" ></Input>
           </Col>
         </Row>
       </div>
@@ -193,7 +193,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Инициатор проверки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="checkUchastinc.INIT_NAME" ></Input>
+            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="checkUchastinc.INIT_NAME" ></Input>
           </Col>
         </Row>
       </div>
@@ -202,7 +202,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Штрафы</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.VOD_SHTRAF).value" ></Input>
+            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="getCheckName(checkUchastinc.VOD_SHTRAF).value" ></Input>
           </Col>
         </Row>
       </div>
@@ -211,7 +211,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Права на управление ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.VOD_LISH).value" ></Input>
+            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="getCheckName(checkUchastinc.VOD_LISH).value" ></Input>
           </Col>
         </Row>
       </div>
@@ -220,7 +220,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Ответственность по статье 20.25</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.VOD_2025).value" ></Input>
+            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="getCheckName(checkUchastinc.VOD_2025).value" ></Input>
           </Col>
         </Row>
       </div>
@@ -229,7 +229,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Лицо в розыске</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.RLIC).value" ></Input>
+            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="getCheckName(checkUchastinc.RLIC).value" ></Input>
           </Col>
         </Row>
       </div>
@@ -238,7 +238,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Водительское удостоверение в розыске</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.UDOC_VU).value" ></Input>
+            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="getCheckName(checkUchastinc.UDOC_VU).value" ></Input>
           </Col>
         </Row>
       </div>
@@ -247,10 +247,10 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Удостоверение личности в розыске</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkUchastinc.UDOC_UD).value" ></Input>
+            <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="getCheckName(checkUchastinc.UDOC_UD).value" ></Input>
           </Col>
         </Row>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -271,12 +271,12 @@
           uid: current.moduleName
         });
 
-        let eventResponse = await RequestApi.prepareData({
+        /*let eventResponse = await RequestApi.prepareData({
           method: 'checkUchastinc',
           cid: currentForm.cid
         });
 
-        this.checkUchastinc = JSON.parse(eventResponse.response).data;
+        this.checkUchastinc = JSON.parse(eventResponse.response).data;*/
       } catch (e) {
         alert(e.message);
       }
