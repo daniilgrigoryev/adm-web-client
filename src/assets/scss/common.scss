@@ -217,28 +217,32 @@ html, body, #app {
 
 .header {
   border-bottom: 1px solid #CCCCCC;
-}
-
-.header-menu {
-  height: inherit;
-  &:after {
-    content: none !important;
+  .header-menu {
+    height: inherit;
+    &:after {
+      content: none !important;
+    }
+    .header-menu__item {
+      float: none !important;
+      border-bottom: 5px solid transparent;
+      &:hover,
+      &.ivu-menu-item-active {
+        border-bottom: 5px solid $blue-base !important;
+      }
+    }
   }
 }
 
-.header-menu__item {
-  float: none !important;
-  border-bottom: 5px solid transparent;
-  &:hover,
-  &.ivu-menu-item-active {
-    border-bottom: 5px solid $blue-base !important;
-  }
+
+
+
+.adm-search-filter-panel {
+  border-bottom: 1px solid #CCCCCC;
+  background-color: #FAFAFA;
+  padding: 20px;
 }
 
 .custom-table {
-  // border-bottom: none;
-  // border-right: none;
-  // border-left: none;
   border: none;
   .ivu-tooltip{
     width: 100%;
@@ -248,8 +252,9 @@ html, body, #app {
     thead {
       tr {
         th {
-          height: 70px;
+          height: 50px;
           background-color: #fff;
+          vertical-align: top;
           .ivu-table-cell {
 
           }
@@ -284,18 +289,51 @@ html, body, #app {
     }
   }
 }
+.adm-table-simple{
+  thead{
+    tr{
+      th{
+        border-right: none;
+        border-left: none;
+        border-bottom: none;
+        padding: 18px 12px;
+      }
+    }
 
-.adm-input.ivu-select-visible .ivu-select-selection {
-  box-shadow: none;
+  }
+  tbody{
+    tr{
+      td{
+        border-right: none;
+        border-left: none;
+        border-color: #DEDEDE;
+      }
+    }
+  }
 }
 
 
 
-.adm-input.ivu-date-picker {
+.adm-form{
+	.adm-form__label{
+		text-align: right;
+		vertical-align: middle;
+		float: left;
+		font-size: 12px;
+		color: #515a6e;
+		line-height: 1;
+		padding: 10px 12px 10px 0;
+    box-sizing: border-box;
+    width: 180px;
+	}
+}
+
+
+.adm-input.ivu-date-picker{
   .ivu-select-dropdown{
-    max-height: 310px!important;
+    max-height: 330px !important;
   }
-  .ivu-picker-panel-body-wrapper{
+  .ivu-picker-panel-body{
     .ivu-date-picker-header{
       color: #797979;
       font-family: "Open Sans";
@@ -308,29 +346,41 @@ html, body, #app {
       vertical-align: middle;
       height: auto;
     }
-    span{
-      height: 30px;
-      width: 30px;
-      color: #797979;
-      font-family: "Open Sans";
-      font-size: 14px;
-      letter-spacing: 0.2px;
-      line-height: 30px;
-      margin: 0;
+  }
+  .ivu-picker-panel-content{
+    .ivu-date-picker-cells{
+      width: 211px;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 0;
+      .ivu-date-picker-cells-header{
+        background-color: #FAFAFA;
+      }
+      span.ivu-date-picker-cells-cell{
+        height: 30px;
+        width: 30px;
+        color: #797979;
+        font-family: "Open Sans";
+        font-size: 14px;
+        letter-spacing: 0.2px;
+        line-height: 30px;
+        margin: 0;
+      }
     }
-    .ivu-picker-panel-content{
-      .ivu-date-picker-cells{
-        width: 211px;
-        margin-left: 10px;
-        margin-right: 10px;
-        padding: 0;
-        .ivu-date-picker-cells-header{
-          background-color: #FAFAFA;
-        }
+    .ivu-time-picker-cells{
+      .ivu-time-picker-cells-cell{
+        color: #797979;
+        font-family: "Open Sans";
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        line-height: 30px;
+        height: 30px; 
       }
     }
   }
 }
+
 .adm-input {
   .ivu-select-selection,
   .ivu-select-input,
@@ -343,10 +393,6 @@ html, body, #app {
     color: $dark-base;
     font-size: 13px;
     font-family: 'Open Sans', sans-serif;
-  }
-  textarea.ivu-input {
-    border: 1px solid $gray-light;
-    border-radius: 3px;
   }
   .ivu-icon.ivu-input-icon-clear,
   .ivu-icon.ivu-icon-ios-close-circle {
@@ -370,29 +416,52 @@ html, body, #app {
   }
   .ivu-input:hover:not([readonly]),
   .ivu-select-input:hover:not([readonly]),
-  .ivu-select-selection:hover:not([readonly]),
-  .ivu-select-selection:hover:not([readonly]) {
+  .ivu-select-selection:hover:not([readonly]){
     border-bottom: 1px solid $gray-medium;
   }
-
+  .ivu-input:focus:not([readonly]),
+  .ivu-select-input:focus:not([readonly]),
+  .ivu-select-selection:focus:not([readonly]){
+    border-bottom: 2px solid $blue-light;
+  }
   .ivu-select-input:focus,
   .ivu-select-input:hover,
   .ivu-input:focus,
   .ivu-input:hover {
     box-shadow: none;
   }
-  .ivu-input:focus:not([readonly]),
-  .ivu-select-input:focus:not([readonly]),
-  .ivu-select-selection:focus:not([readonly]),
-  .ivu-select-selection:focus:not([readonly]) {
-    border-bottom: 2px solid $blue-light;
+  textarea.ivu-input {
+    border: 1px solid $gray-light;
+    border-radius: 3px;
+    resize: none;
   }
-
   textarea.ivu-input:hover:not([readonly]) {
     border: 1px solid $gray-medium;
   }
   textarea.ivu-input:focus:not([readonly]) {
     border: 2px solid $blue-light;
+  }
+  .ivu-select-dropdown{
+    padding: 0;
+    max-height: 300px; // ограничение высоты для селектов 
+    .ivu-select-dropdown-list .ivu-select-item{
+      font-family: "Open Sans";	
+      color: #373737;
+      font-size: 14px!important;	
+      letter-spacing: 0.2px;	
+      line-height: 22px;
+      white-space: pre-wrap; 
+      word-wrap: break-word;
+      padding-left: 50px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      &.ivu-select-item-selected{
+        background-image: url(../images/select.svg);
+        background-repeat: no-repeat;
+        background-position: 15px center;
+        transition: none;
+      }
+    }
   }
 }
 
@@ -409,29 +478,6 @@ html, body, #app {
   .ivu-select-input,
   .ivu-input{
     font-size: 15px;
-  }
-
-  .ivu-select-dropdown{
-    padding: 0;
-    max-height: 250px;
-  }
-  .ivu-select-dropdown  .ivu-select-dropdown-list .ivu-select-item{
-    font-family: "Open Sans";	
-    color: #373737;
-    font-size: 14px!important;	
-    letter-spacing: 0.2px;	
-    line-height: 22px;
-    white-space: pre-wrap; 
-    word-wrap: break-word;
-    padding-left: 50px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    &.ivu-select-item-selected{
-      background-image: url(../images/select.svg);
-      background-repeat: no-repeat;
-      background-position: 15px center;
-      transition: none;
-    }
   }
 }
 
@@ -464,11 +510,6 @@ html, body, #app {
   }
 }
 
-.adm-search-filter-panel {
-  border-bottom: 1px solid #CCCCCC;
-  background-color: #FAFAFA;
-}
-
 .ivu-card-bordered {
   border-color: #e8e8e8 !important;
 }
@@ -477,51 +518,8 @@ html, body, #app {
   background: #fafafa;
 }
 
-.adm-form.adm-form__delo-reestr{
-  padding-right: 70px; 
-  padding-left: 70px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.adm-form{
-	.adm-form__label{
-		text-align: right;
-		vertical-align: middle;
-		float: left;
-		font-size: 12px;
-		color: #515a6e;
-		line-height: 1;
-		padding: 10px 12px 10px 0;
-    box-sizing: border-box;
-    width: 180px;
-	}
-}
 
 
-
-.adm-table-simple{
-  thead{
-    tr{
-      th{
-        border-right: none;
-        border-left: none;
-        border-bottom: none;
-        padding: 18px 12px;
-      }
-    }
-
-  }
-  tbody{
-    tr{
-      td{
-        border-right: none;
-        border-left: none;
-        border-color: #DEDEDE;
-      }
-    }
-  }
-}
 
 .adm-btn-primary {
   background-color: #1888CC;

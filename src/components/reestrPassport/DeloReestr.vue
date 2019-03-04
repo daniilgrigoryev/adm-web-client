@@ -1,9 +1,8 @@
 <template>
   <div v-if="dataStore">
     <div class="adm-search-filter-panel">
-			<!-- py24 px12 -->
-      <div class="wmax1920 mx-auto"><!-- wmax1920 -->
-        <div @keydown.enter="filterClick" class="adm-form adm-form__delo-reestr"><!-- adm-form__delo-reestr -->
+      <div class="wmax1920 mx-auto">
+        <div @keydown.enter="filterClick" class="adm-form">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="21">
               <!-- в каждом Row не должно быть больше 4 Col -->
@@ -152,8 +151,9 @@
               </Row>
             </Col>
             <Col :xs="24" :md="4" :lg="3">
-              <div class="h-full flex-parent flex-parent--column flex-parent--center-cross flex-parent--center-main">
-								<Button @click="clearFilter" type="default" class="adm-btn mt18">Очистить</Button>
+              <div class="h-full flex-parent flex-parent--end-main flex-parent--wrap">
+                <Button @click="filterClick" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular my-auto w120 mr12">найти</Button>
+								<Button @click="clearFilter" type="default" class="adm-btn adm-btn-regular my-auto w120 mr12 mt6">очистить</Button>
               </div>
             </Col>
           </Row>
@@ -163,16 +163,14 @@
               <!--TODO А где она должна быть?-->
 							<div>
 								<Button @click="createWizardScenarioPost" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular mx6 mt6">Создать постановление</Button>
-								<Button @click="filterClick" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular mx6 mt6">найти</Button>
 							</div>
 
 							
               <!-- <Button @click="filterClick" type="primary" class="my-auto">Искать дела</Button> -->
 
-              <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-regular txt-underline my-auto px0 py0 mb0' style="box-shadow: none">
+              <Button type="text" @click="hideMore = !hideMore" class='bg-transparent border--0 link color-blue-base adm-btn-regular txt-underline my-auto px0 py0 mb0 mt12' style="box-shadow: none">
                 <span v-if="hideMore">Меньше параметров <Icon type="md-arrow-dropup" :size="16"/></span>
                 <span v-else>Больше параметров  <Icon type="md-arrow-dropdown" :size="16"/></span>
-               
               </Button>
             </div>
           </Row>
@@ -364,6 +362,7 @@
         return this.columnsOptions.filter(column => {
 
           return  column.key !== 'action' &&
+                  column.key !== 'deloN' &&
                   column.key !== 'deloDate' && 
                   column.key !== 'stadDeloName' && 
                   column.key !== 'checkPriority' &&
@@ -423,10 +422,10 @@
             switch (item) {
               case 'deloId': {
                 this.columnsOptions.push({
-                  title: 'Номер дела',
+                  title: 'Номер дела', // Индефикационный номер
                   key: 'deloId',
                   position: 6,
-                  minWidth: 130,
+                  minWidth: 180,
                   ellipsis: true,
                   visible: true,
                   tooltip: true,
@@ -439,11 +438,20 @@
                           'txt-normal': true,
                         },
                       }, params.column.title),
+                      h('p', {
+                        class: {
+                          'color-dark-lighter': true,
+													'adm-12': true,
+													'line-height100': true,
+													'txt-truncate': true,
+													'txt-normal': true
+                        },
+                      }, 'идентификационный номер'),
                     ])
                   },
                   render: (h, params) => {
                     return h('div', [
-                      h('p', params.row.deloId)
+                      h('p', params.row.deloId),
                     ])
                   }
                 });
@@ -827,7 +835,8 @@
 												click: () => {
 													this.getDelo(params.row);
 												}
-											}
+                      },
+                      class: ['cursor-pointer']
 										}, [
                       h('p', params.row.deloN),
                       h('p', {
