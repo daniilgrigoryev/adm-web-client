@@ -20,6 +20,11 @@
             <Button type="primary" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button>
             <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
             <Button type="default" @click="addUchastWizard">Добавить участника</Button>
+
+            <Button type="text" class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
+              <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
+              <span style="	color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
+            </Button>
           </div>
         </div>
 
