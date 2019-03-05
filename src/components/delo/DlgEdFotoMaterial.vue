@@ -1,6 +1,6 @@
 <template>
 
-  <div v-if="body">
+  <div v-if="body" class="px36 pb6">
     <div class="adm-form">
 
       <div class="my12 adm-form__item">

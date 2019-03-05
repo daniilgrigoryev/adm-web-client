@@ -1,5 +1,5 @@
 <template>
-  <div v-if="body">
+  <div v-if="body" class="px36 pb6">
 
     <Button @click="getDecisEdit" type="primary" class="ml12">Редактировать</Button>
 

@@ -10,7 +10,7 @@
 
     </div>
 
-    <div class="hmin360 px36 pb6">
+    <div class="hmin360">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')"></frm-ed-docs-opred>

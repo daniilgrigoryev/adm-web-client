@@ -1,5 +1,5 @@
 <template>
-  <div v-if="body"><!-- wmax1280 mx-auto -->
+  <div v-if="body" class="px36 pb6"><!-- wmax1280 mx-auto -->
     <!-- постановление по делу -->
 
     <div class="mt24">
