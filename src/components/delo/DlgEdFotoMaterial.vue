@@ -117,6 +117,7 @@
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
+  import $ from "jquery";
   import VueGallery from 'vue-gallery';
 
   export default {
