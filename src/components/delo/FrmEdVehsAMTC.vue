@@ -9,7 +9,8 @@
                 <small class="adm-text-small adm-form__label">ГРЗ</small>
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.regno" ></Input>
+                    <Input class="adm-input adm-input--regular wmax180 err" readonly :value="body.regno" >
+                    </Input>
                   </Col>
                 </Row>
               </div>
@@ -308,5 +309,15 @@
 </script>
 
 <style scoped lang="scss">
-
+  .err:after{
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 10px;
+    right: 10px;
+    border-radius: 100%;
+    display: inline-block;
+    background-color: #6FB81E;
+  }
 </style>
