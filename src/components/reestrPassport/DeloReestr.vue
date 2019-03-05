@@ -177,14 +177,14 @@
     </div>
     <div v-if="dataStore.data.data.length > 0" class="bg-white">
       <div class="wmax1920 mx-auto">
-        <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py12">
+        <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6">
           <div class="flex-parent flex-parent--center-cross">
             <Page v-if="dataStore.data.data.length > limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 
-          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-start">
-            <Button type="text" href="javascript:void(0)" class="block py12 px12 border--0" style="box-shadow: none" @click="toggleColumnsOption">
-              <span class='link color-dark-medium adm-text-small txt-underline-on-hover'>показ колонок</span>
+          <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-end">
+            <Button type="text" href="javascript:void(0)" class="block border--0" style="box-shadow: none" @click="toggleColumnsOption">
+              <!-- <span class='link color-dark-medium adm-text-small txt-underline-on-hover'>показ колонок</span> -->
               <Icon type="md-settings" size="18" class="ml18"></Icon>
               <Icon type="ios-arrow-down"></Icon>
             </Button>

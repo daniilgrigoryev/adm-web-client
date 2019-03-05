@@ -1,6 +1,8 @@
 <template>
-  <div v-if="body"> <!-- wmax940 mx-auto -->
-    <div class="px36 py18 border-b border--gray-light"><!-- wmax940 mx-auto -->
+  <div v-if="body" class="ml18"> <!-- wmax940 mx-auto -->
+
+
+    <div class="px36 py18"><!-- wmax940 mx-auto -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
           <div class="flex-parent flex-parent--center-cross">
             <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
@@ -15,16 +17,16 @@
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container py12"  style="padding-left: 90px;">
+      <div class="adm-form__container my0 mx0 py12 px36">
         <div class="adm-form__content">
-          <Row type="flex" :gutter="0">
+          <Row type="flex" :gutter="30">
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">ГРЗ</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular err wmax180" readonly :value="body.regno" >
+                      <Input class="adm-input adm-input--regular err" readonly :value="body.regno" >
                       </Input>
                     </Col>
                   </Row>
@@ -37,37 +39,35 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
             </Col>
           </Row>
-
-          <Row type="flex" :gutter="0">
+          <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Марка, Модель</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax600" readonly :value="body.markaAvto, body.modavtoName | concatByDelimiter(',')"></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto, body.modavtoName | concatByDelimiter(',')"></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
             </Col>
           </Row>
-
-          <Row type="flex" :gutter="0">
+          <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Цвет</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.color" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.color" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -77,7 +77,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.motorTip" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.tiptcName" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.tiptcName" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -97,7 +97,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.massa" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.massa" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -107,7 +107,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.vin" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.vin" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -119,7 +119,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.yearVyp" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.yearVyp" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -129,7 +129,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.motorEcologClass" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.motorEcologClass" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -139,7 +139,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.katcKod" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.katcKod" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -149,7 +149,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.massaMax" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.massaMax" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -159,29 +159,27 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax180" readonly :value="body.ptcN" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.ptcN" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
             </Col>
           </Row>
-
-          <Row type="flex" :gutter="0">
+          <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Владелец</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax600" readonly :value="body.sobstvName" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.sobstvName" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
             </Col>
           </Row>
-
         </div>
       </div>
     </div>
@@ -353,15 +351,15 @@
   .adm-form__item_content{
     width: 100%;
   }
-  .err:after{
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    top: 10px;
-    right: 10px;
-    border-radius: 100%;
-    display: inline-block;
-    background-color: #6FB81E;
-  }
+  // .err:after{
+  //   content: "";
+  //   position: absolute;
+  //   width: 12px;
+  //   height: 12px;
+  //   top: 10px;
+  //   right: 10px;
+  //   border-radius: 100%;
+  //   display: inline-block;
+  //   background-color: #6FB81E;
+  // }
 </style>
