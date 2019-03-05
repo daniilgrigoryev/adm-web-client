@@ -6,16 +6,17 @@
       <button type="button" @click="addUchastWizard">Добавить участника</button>
 
       <div v-if="deloContext" class="px36 py24">
-        <div class="my12">
-          <a href="#" @click="getDelo" class="adm-h1 link color-blue-base txt-underline-on-hover">Дело № {{deloContext.deloN}}</a>
-        </div>
-        <div class="my6">
-          <span class="adm-txt-regular color-gray-medium">{{deloContext.deloDate | formatDateTime('DD.MM.YYYY')}}</span>
-          <span class="adm-txt-regular color-gray-medium">{{deloContext.stadName}}</span>
+        <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover pb3">
+          <span class="adm-h3">Дело №</span>
+          <span class="adm-s28">{{deloContext.deloN}}</span>
+        </a>
+        <div>
+          <span class="adm-txt-regular line30_letter02 color-dark-lighter">{{deloContext.deloDate | formatDateTime('DD.MM.YYYY')}}</span>
+          <span class="adm-txt-regular line30_letter02 color-dark-lighter ml24">{{deloContext.stadName}}</span>
         </div>
         <div class="mt24">
-          <b class="adm-text-big color-gray-medium">Статья дела</b>
-          <p class="adm-txt-regular color-gray-medium">{{deloContext.stotvKod + ', ' +deloContext.stotvName}}</p>
+          <b class="adm-text-big line30_letter02 color-dark-lighter">Статья дела</b>
+          <p class="adm-txt-regular color-dark-lighter">{{deloContext.stotvKod + ', ' +deloContext.stotvName}}</p>
         </div>
       </div>
       <hr class="txt-hr my0">
@@ -293,5 +294,8 @@
     background-image: url('../../assets/images/taxi.png');
     background-repeat: no-repeat;
     background-position:  97% 97%;
+  }
+  .delo__headding:hover{
+    border-bottom: 2px solid #00b1ff;
   }
 </style>

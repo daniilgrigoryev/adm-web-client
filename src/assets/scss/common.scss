@@ -4,13 +4,21 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
-
+b{
+  font-weight: 600;
+}
 .adm-h1 {
   font-size: 36px;
   font-weight: 300;
   letter-spacing: 0.4px;
   line-height: 42px;
 }
+.adm-s28{
+  font-size: 28px;	
+  font-weight: 300;	
+  line-height: 42px;
+}
+
 
 .adm-h2 {
   font-size: 24px;
@@ -106,12 +114,18 @@ html, body, #app {
 .sider {
   background: $white-light;
   position: fixed;
-  min-height: 935px;
   height: 100%;
   z-index: 999;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+  .ivu-layout-sider-children{
+    min-height: 950px;
+  }
 }
 
+.line30_letter02{
+  letter-spacing: 0.2px;
+  line-height: 30px;
+}
 .product_header {
   letter-spacing: 0.2px;
   line-height: 30px;
@@ -354,6 +368,7 @@ html, body, #app {
 		padding: 10px 12px 10px 0;
     box-sizing: border-box;
     width: 120px;
+    line-height: 16px;
     // width: 180px;
 	}
 }
