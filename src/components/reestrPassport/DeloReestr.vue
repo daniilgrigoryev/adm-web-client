@@ -73,7 +73,7 @@
                 <Col :xs="24" :md="12" :lg="12">
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12">
-											<div class="adm-12 color-dark-lighter my6">Физическое лицо - ЛВОК</div>
+											<div class="adm-12 color-dark-lighter my6">Физическое лицо</div>
 											<Row type="flex" :gutter="20">
 												<Col :xs="8" :md="8" :lg="8">
 													<input-mask v-model="filter.firstName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Фамилия"></input-mask>
@@ -114,7 +114,7 @@
                 <Col :xs="24" :md="12" :lg="12">
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12 wmax360">
-											<div class="adm-12 color-dark-lighter my6">Юридическое лицо - ЛВОК</div>
+											<div class="adm-12 color-dark-lighter my6">Юридическое лицо</div>
 											<Input class="adm-input adm-input--big" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
 										</div>
 									</div>
