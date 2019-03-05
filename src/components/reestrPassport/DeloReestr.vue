@@ -1134,6 +1134,7 @@
                           content: params.row.uchastName,
                           transfer: true,
                           maxWidth: 250,
+                          placement: 'left-start'
                         },
                       }, [
                         h('span', {

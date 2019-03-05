@@ -7,6 +7,14 @@
 					<div>
 						<Row type="flex" justify="center">
 							<Col>
+								<Card class="px24 my12 mx12 py12" style="min-width: 550px">
+									<div class="flex-parent flex-parent--center-cross">
+										<div class="mr36">
+											<img src="../../assets/images/case.svg" alt="">
+										</div>
+										<a href="#" class="adm-text-big link color-blue-base txt-underline-on-hover">Возбуждение административного дела <br> Постановлением</a>
+									</div>
+								</Card>
 								<Card class="truck-card px24 my12 mx12" style="min-width: 550px">
 									<p class="adm-txt-regular color-dark-light my18">Эвакуация автомобиля</p>
 									<ul>
@@ -22,6 +30,28 @@
 										</li>
 									</ul>
 								</Card>
+								<Row type="flex" justify="center">
+									<Col>
+										<Card class="px24 my12 mx12" style="min-width: 255px">
+											<div class="flex-parent flex-parent--column flex-parent--center-cross">
+												<div class="mb12">
+													<img src="../../assets/images/camera.png" alt="">
+												</div>
+												<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Фотофиксация нарушения</a>
+											</div>
+										</Card>
+									</Col>
+									<Col>
+										<Card class="px24 my12 mx12" style="min-width: 255px">
+											<div class="flex-parent flex-parent--column flex-parent--center-cross">
+												<div class="mb12">
+													<img src="../../assets/images/tax.png" alt="">
+												</div>
+												<a href="#" @click="createWizardScenario2025" class="adm-text-big link color-blue-base txt-underline-on-hover">Неуплата штрафа</a>
+											</div>
+										</Card>
+									</Col>
+								</Row>
 							</Col>
 							<Col>
 								<Card class="taxi-card px24 my12 mx12" style="min-width: 320px">
@@ -35,31 +65,6 @@
 										</li>
 									</ul>
 								</Card>
-							</Col>
-						</Row>
-
-						<Row type="flex" justify="center">
-							<Col>
-								<Card class="px24 my12 mx12" style="min-width: 255px">
-									<div class="flex-parent flex-parent--column flex-parent--center-cross">
-										<div class="mb12">
-											<img src="../../assets/images/camera.png" alt="">
-										</div>
-										<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Фотофиксация нарушения</a>
-									</div>
-								</Card>
-							</Col>
-							<Col>
-								<Card class="px24 my12 mx12" style="min-width: 255px">
-									<div class="flex-parent flex-parent--column flex-parent--center-cross">
-										<div class="mb12">
-											<img src="../../assets/images/tax.png" alt="">
-										</div>
-										<a href="#" @click="createWizardScenario2025" class="adm-text-big link color-blue-base txt-underline-on-hover">Неуплата штрафа</a>
-									</div>
-								</Card>
-							</Col>
-							<Col>
 								<Card class="px24 my12 mx12" style="min-width: 320px">
 									<div class="flex-parent flex-parent--column flex-parent--center-cross">
 										<div class="mb12">
