@@ -1,12 +1,12 @@
 <template>
   <div v-if="dataStore" class="layout">
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
-      <div v-if="deloContext" class="px36 py24 bg-white">
+      <div v-if="deloContext" class="bg-white" style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;">
 
         <div class="flex-parent flex-parent--space-between-main">
           
           <div>
-            <a href="#" @click="getDelo" class="block delo__headding link color-dark-lighter color-blue-light-on-hover pb3">
+            <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
               <span class="adm-h3">Дело №</span>
               <span class="adm-s28">{{deloContext.deloN}}</span>
             </a>
@@ -306,6 +306,9 @@
     background-image: url('../../assets/images/taxi.png');
     background-repeat: no-repeat;
     background-position:  97% 97%;
+  }
+  .delo__headding{
+    border-bottom: 2px solid transparent;
   }
   .delo__headding:hover{
     border-bottom: 2px solid #00b1ff;
