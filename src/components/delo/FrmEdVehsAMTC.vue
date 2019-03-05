@@ -1,19 +1,13 @@
 <template>
   <div v-if="body"> <!-- wmax940 mx-auto -->
     <div class="px36 py18 border-b border--gray-light"><!-- wmax940 mx-auto -->
-
-
-
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-
           <div class="flex-parent flex-parent--center-cross">
             <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
               <img src='../../assets/images/pen.svg' class="wmax-none">
             </Button>
-
             <b class="adm-text-big color-dark-lighter">Транспортное средство</b>
           </div>
-
           <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
             <img src='../../assets/images/wiki.svg' class="wmax-none">
           </Button>
@@ -21,28 +15,32 @@
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container" style="padding-left: 90px;">
+      <div class="adm-form__container px24 py12"><!-- style="padding-left: 90px;" -->
         <div class="adm-form__content">
           <Row type="flex" :gutter="0">
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">ГРЗ</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180 err" readonly :value="body.regno" >
-                    </Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Input class="adm-input adm-input--regular err" readonly :value="body.regno" >
+                      </Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </Col>
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">СТС</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" ></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </Col>
           </Row>
@@ -51,11 +49,13 @@
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Марка, Модель</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax360" readonly :value="body.markaAvto, body.modavtoName | concatByDelimiter(',')"></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto, body.modavtoName | concatByDelimiter(',')"></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </Col>
           </Row>
@@ -63,86 +63,106 @@
           <Row type="flex" :gutter="0">
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Цвет ТС</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.color" ></Input>
-                  </Col>
-                </Row>
+                <small class="adm-text-small adm-form__label">Цвет</small>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.color" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Тип двигателя</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.motorTip" ></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label ">Тип ТС</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.tiptcName" ></Input>
-                  </Col>
-                </Row>
+                <small class="adm-text-small adm-form__label ">Тип</small>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.tiptcName" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Масса без нагрузки</small><!-- Снаряженная масса автомобиля (кг.) -->
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.massa" ></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.massa" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">VIN номер</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular" readonly :value="body.vin" ></Input>
-                  </Col>
-                </Row>
+                <small class="adm-text-small adm-form__label">VIN</small>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.vin" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </Col>
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Год выпуска</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.yearVyp" ></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.yearVyp" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Экологический класс</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.motorEcologClass" ></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.motorEcologClass" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Категория ТС</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.katcKod" ></Input>
-                  </Col>
-                </Row>
+                <small class="adm-text-small adm-form__label">Категория</small>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.katcKod" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Максимальная масса</small><!-- Разрешенная максимальная масса автомобиля (кг.) -->
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.massaMax" ></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.massaMax" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">ПТС</small><!-- Номер ПТС -->
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax180" readonly :value="body.ptcN" ></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.ptcN" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </Col>
           </Row>
@@ -151,27 +171,17 @@
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Владелец</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax360" readonly :value="body.sobstvName" ></Input>
-                  </Col>
-                </Row>
+                <div class="adm-form__content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.sobstvName" ></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </Col>
           </Row>
 
-          <Row type="flex" :gutter="0">
-            <Col :xs="24" :md="24" :lg="24">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Водитель</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax360" readonly :value="body.uchastName" ></Input>
-                  </Col>
-                </Row>
-              </div>
-            </Col>
-          </Row>
         </div>
       </div>
     </div>
@@ -329,6 +339,19 @@
 </script>
 
 <style scoped lang="scss">
+
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .adm-form__label{
+    padding: 0;
+    padding-right: 12px;
+  }
+  .adm-form__content{
+    width: 100%;
+  }
   .err:after{
     content: "";
     position: absolute;
