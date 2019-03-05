@@ -1,5 +1,25 @@
 <template>
   <div v-if="body"> <!-- wmax940 mx-auto -->
+    <div class="px36 py18 border-b border--gray-light"><!-- wmax940 mx-auto -->
+
+
+
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+
+          <div class="flex-parent flex-parent--center-cross">
+            <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+              <img src='../../assets/images/pen.svg' class="wmax-none">
+            </Button>
+
+            <b class="adm-text-big color-dark-lighter">Транспортное средство</b>
+          </div>
+
+          <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+            <img src='../../assets/images/wiki.svg' class="wmax-none">
+          </Button>
+        </div>
+    </div>
+
     <div class="adm-form">
       <div class="adm-form__container" style="padding-left: 90px;">
         <div class="adm-form__content">

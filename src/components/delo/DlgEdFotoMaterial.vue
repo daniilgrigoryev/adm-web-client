@@ -3,6 +3,24 @@
   <div v-if="body" class="px36 pb6">
     <div class="adm-form">
 
+      <div v-if="photos && photos.length > 0">
+        <hr class="txt-hr my24">
+        <h2 class="adm-text-big color-dark-light my12">Фотоматериалы</h2>
+
+
+        <div class="view-photos ">
+          <div class="view-photos__min-section ">
+            <gallery :images="photos" :index="index" @close="index = null"></gallery>
+            <div class="view-photos_container scroll-styled scroll-auto">
+              <div v-for="(image, imageIndex) in photos" :key="imageIndex" @click="index = imageIndex" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
+                <img alt="img" @load="checkPic($event.target)" :src="image" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
       <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Номер нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -90,24 +108,6 @@
                    :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
-      </div>
-
-      <div v-if="photos && photos.length > 0">
-        <hr class="txt-hr my24">
-        <h2 class="adm-text-big color-dark-light my12">Фотоматериалы</h2>
-
-
-        <div class="view-photos flex-parent flex-parent--wrap flex-parent--space-between-main mb24">
-          <div class="view-photos__min-section scroll-styled scroll-auto align-center">
-            <gallery :images="photos" :index="index" @close="index = null"></gallery>
-
-            <div v-for="(image, imageIndex) in photos" :key="imageIndex" @click="index = imageIndex" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
-              <img alt="img" @load="checkPic($event.target)" :src="image" />
-            </div>
-          </div>
-        </div>
-        <div>
-        </div>
       </div>
     </div>
   </div>
