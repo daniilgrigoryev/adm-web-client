@@ -638,8 +638,10 @@
               },
               cid: cid
             });
-            photo = JSON.parse(eventResponse.response).data;
-            vm.photos.push('data:image/jpeg;base64, ' + photo);
+            if (eventResponse.response) {
+              photo = JSON.parse(eventResponse.response).data;
+              vm.photos.push('data:image/jpeg;base64,' + photo);
+            }
           }
         }
       },
