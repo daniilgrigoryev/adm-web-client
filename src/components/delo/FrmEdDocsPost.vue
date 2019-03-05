@@ -2,7 +2,7 @@
   <div v-if="body"><!-- wmax1280 mx-auto -->
     <!-- постановление по делу -->
 
-    <div class="mt24 flex-">
+    <div class="mt24">
       <Button @click="getDocsPostEdit" type="primary" class="adm-btn adm-btn-regular my-auto">Редактировать</Button>
     </div>
     <div class="adm-form">

@@ -401,7 +401,7 @@
                   position: 6,
                   minWidth: 180,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -433,7 +433,7 @@
               }
               case 'stotvKod': {
                 this.columnsOptions.push({
-                  title: 'Дело по статье', // Ст.-основание
+                  title: 'Статья', // Ст.-основание
                   key: 'stotvKod',
                   minWidth: 160,
                   position: 3,
@@ -543,7 +543,7 @@
                   position: 9,
                   minWidth: 280,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -598,7 +598,7 @@
                   position: 7,
                   minWidth: 220,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -653,7 +653,7 @@
                   position: 8,
                   minWidth: 240,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -778,7 +778,7 @@
               }
               case 'deloN': {
                 this.columnsOptions.push({
-                  title: 'Номер дела',
+                  title: '№ дела',
                   key: 'deloN',
                   minWidth: 145,
                   position: 2,
@@ -960,7 +960,7 @@
                   position: 99,
                   minWidth: 200,
                   ellipsis: true,
-                  visible: true,
+                  visible: false,
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [

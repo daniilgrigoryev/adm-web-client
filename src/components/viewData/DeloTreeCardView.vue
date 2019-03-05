@@ -1,23 +1,35 @@
 <template>
   <div v-if="dataStore" class="layout">
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
-      <button type="button" @click="getPrev">Назад</button>
-      <button type="button" @click="clearInnerStack">Очистить стэк</button>
-      <button type="button" @click="addUchastWizard">Добавить участника</button>
+      <div v-if="deloContext" class="px36 py24 bg-white">
 
-      <div v-if="deloContext" class="px36 py24">
-        <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover pb3">
-          <span class="adm-h3">Дело №</span>
-          <span class="adm-s28">{{deloContext.deloN}}</span>
-        </a>
-        <div>
-          <span class="adm-txt-regular line30_letter02 color-dark-lighter">{{deloContext.deloDate | formatDateTime('DD.MM.YYYY')}}</span>
-          <span class="adm-txt-regular line30_letter02 color-dark-lighter ml24">{{deloContext.stadName}}</span>
+        <div class="flex-parent flex-parent--space-between-main">
+          
+          <div>
+            <a href="#" @click="getDelo" class="block delo__headding link color-dark-lighter color-blue-light-on-hover pb3">
+              <span class="adm-h3">Дело №</span>
+              <span class="adm-s28">{{deloContext.deloN}}</span>
+            </a>
+            <div>
+              <span class="adm-txt-regular line30_letter02 color-dark-lighter">{{deloContext.deloDate | formatDateTime('DD.MM.YYYY')}}</span>
+              <span class="adm-txt-regular line30_letter02 color-dark-lighter ml24">{{deloContext.stadName}}</span>
+            </div>
+          </div>
+
+          <div>
+            <Button type="primary" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button>
+            <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
+            <Button type="default" @click="addUchastWizard">Добавить участника</Button>
+          </div>
         </div>
+
         <div class="mt24">
           <b class="adm-text-big line30_letter02 color-dark-lighter">Статья дела</b>
           <p class="adm-txt-regular color-dark-lighter">{{deloContext.stotvKod + ', ' +deloContext.stotvName}}</p>
         </div>
+
+
+
       </div>
       <hr class="txt-hr my0">
       <div v-if="deloTree">
