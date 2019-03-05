@@ -69,14 +69,25 @@
 
 <script>
   import * as funcUtils from "../../assets/js/utils/funcUtils";
+  import docTipEnum from "../../assets/js/utils/docTipEnum";
+  import decisIspolnEnum from "../../assets/js/utils/decisIspolnEnum";
   import * as formStack from '../../assets/js/api/formStack';
   import Stack from '../../assets/js/api/stack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import { mapGetters } from 'vuex';
   import DeloInnerForm from "~/components/delo/DeloInnerForm";
-  import * as truck from '../../assets/images/truck.png';
-  import * as taxi from '../../assets/images/taxi.png';
+  import * as ispolnShtraf from '../../assets/images/ispolnShtraf.png';
+  import * as ispolnUved from '../../assets/images/ispolnUved.png';
+  import * as decis from '../../assets/images/decis.png';
+  import * as predDoc from '../../assets/images/predDoc.png';
+  import * as delo from '../../assets/images/delo.png';
+  import * as amtc from '../../assets/images/amtc.png';
+  import * as uchast from '../../assets/images/uchast.png';
+  import * as ispolnDecisAppeal from '../../assets/images/ispolnDecisAppeal.png';
+  import * as ispolnAppeal from '../../assets/images/ispolnAppeal.png';
+  import * as deloProizv from '../../assets/images/deloProizv.png';
+  import * as photo from '../../assets/images/photo.png';
 
   export default {
     name: "DeloTreeCardView",
@@ -196,37 +207,109 @@
       },
       getIconByNode(node) {
         switch (node.recType) {
+          case "UCHASTFL":
+          case "UCHASTUL":
+          case "UCHASTOTHER": {
+            return uchast;
+          }
+          case "VEHS":
+          case "VEHSOTHER": {
+            return amtc;
+          }
+          case "VU_PRED":
+          case "VU_VYD": {
+            return predDoc;
+          }
+          case 'DOCS_GALOB': {
+            return ispolnAppeal;
+          }
+          case "DOCS_OTHER": {
+            switch (node.docTip) {
+              case docTipEnum.DTP_FOTO:
+              case docTipEnum.VEHS_FOTO:
+              case docTipEnum.UCHAST_FOTO:
+              case docTipEnum.DOCS_FOTO:
+              case docTipEnum.VIDEOFIX_FOTO: {
+                return photo;
+              }
+              case docTipEnum.ZALOB: {
+                return ispolnDecisAppeal;
+              }
+              case docTipEnum.APPEAL_CONCLUSION:
+              case docTipEnum.APPEAL_DECISION: {
+                return ispolnDecisAppeal;
+              }
+              case docTipEnum.OPL_SHTRAF:
+              case docTipEnum.OPL_SHTRAF_UFK:
+              case docTipEnum.OPL_SHTRAF_SUD:
+              case docTipEnum.OPL_SHTRAF_SSP:
+              case docTipEnum.OPL_SHTRAF_MPGU: {
+                return ispolnShtraf;
+              }
+              case docTipEnum.ACT_OCAO:
+              case docTipEnum.PROT_MED:
+              case docTipEnum.PROT_OTSTR_UPR_TC:
+              case docTipEnum.PROT_ZAPR_EKSPLUAT_TC:
+              case docTipEnum.PROT_ZADER_TC:
+              case docTipEnum.PROT_DOSMOTR_TC:
+              case docTipEnum.PROT_IZYAT_VESH_DOC:
+              case docTipEnum.PROT_OSMOTR_MESTA_APN:
+              case docTipEnum.PROT_AREST_TC_VESH:
+              case docTipEnum.PROT_DOSTAVL_FL:
+              case docTipEnum.PROT_ZADER_FL:
+              case docTipEnum.PROT_DOSMOTR_FL:
+              case docTipEnum.PROT_OSMOTR_POMESH:
+              case docTipEnum.RAZR_VYID_TC: {
+                return deloProizv;
+              }
+            }
+            break;
+          }
           case 'DECIS': {
-            return truck;
+            return decis;
+          }
+          case 'DOCS_POST':
+          case 'DOCS_POST_UL': {
+            return deloProizv;
           }
           case 'DECIS_ISPOLN': {
-           return taxi;
+            if (funcUtils.isNotEmpty(node.kod)) {
+              switch (node.kod) {
+                case decisIspolnEnum.POST_UVEDOM:
+                case decisIspolnEnum.POST_PRIEM:
+                case decisIspolnEnum.POST_VRUCH:
+                case decisIspolnEnum.POST_VOZVRAT:
+                case decisIspolnEnum.POST_DOSYL:
+                case decisIspolnEnum.POST_NEVRUCH:
+                case decisIspolnEnum.POST_CHRAN:
+                case decisIspolnEnum.POST_TEMP_CHRAN:
+                case decisIspolnEnum.POST_PROCESSING:
+                case decisIspolnEnum.POST_IMPORT:
+                case decisIspolnEnum.POST_EXPORT:
+                case decisIspolnEnum.POST_TAMOZHN:
+                case decisIspolnEnum.POST_NEUD_VRUCH:
+                case decisIspolnEnum.POST_REG_OTPR:
+                case decisIspolnEnum.POST_TAMOZHN_FIN:
+                case decisIspolnEnum.POST_PERED_TEMP_CHRAN:
+                case decisIspolnEnum.POST_REMOVING:
+                case decisIspolnEnum.POST_OPERATION:
+                case decisIspolnEnum.POST_UNDEF: {
+                  return ispolnUved;
+                }
+                case decisIspolnEnum.IZMEN_POST_ON_GALOB:
+                case decisIspolnEnum.OTMENA_DECIS_ON_GALOB: {
+                  return ispolnDecisAppeal;
+                }
+              }
+            }
+            return deloProizv;
           }
-          case "DTP": {
-            return truck;
-          }
-          case "DELO": {
-           return taxi;
-          }
-          case "VU_PRED": {
-            return truck;
-          }
-          case "VU_VYD": {
-           return taxi;
-          }
-          case "DOCS_POST" : {
-            return truck;
-          }
-          case "DOCS_POST_UL" : {
-           return taxi;
-          }
-          case "DOCS_PROT" : {
-            return truck;
-          }
-          case "UCHASTFL" : {
-            return truck;
+          case 'DOCS_OPRED':
+          case 'DOCS_PROT': {
+            return deloProizv;
           }
         }
+        return '';
       },
       arrayToTree(arr) {
         let tree = [];

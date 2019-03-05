@@ -1,14 +1,5 @@
 <template>
   <div v-if="sizeInnerStack > 0 && current" class="bg-white">
-    <div class="px36 py18 border-b border--gray-light"><!-- wmax940 mx-auto -->
-      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-        <b class="adm-text-big" v-html="current.params.name"></b>
-        <Button type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer">
-          <img src='../../assets/images/wiki.svg' class="wmax-none">
-        </Button>
-      </div>
-
-    </div>
 
     <div class="hmin360">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')"></frm-ed-delo>
