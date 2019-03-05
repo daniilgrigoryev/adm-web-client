@@ -1,6 +1,5 @@
 <template>
   <div v-if="decis">
-    <!-- данные по делу  -->
 
     <Button @click="getPrev" type="text">Назад</Button>
     <Button @click="save" type="text">Сохранить</Button>
@@ -11,24 +10,15 @@
 
     <wizard-modal v-if="organNapravModal.visible" :columnsOptions="organNapravModal.columnsOptions" :data="organNapravModal.gibddList" @showModal="showOrganNapravModal" @onRowDbClick="onOrganNapravlick"></wizard-modal>
 
-    <!--
-
-    "organNapravlId",
-    "organNapravlKod",
-    "organNapravlName",
-
-    "uchastGalobId",
-
-
-    "hoursToWork",
-    "period",
-    "periodDim",
-    "period2",
-    "period2Dim",
-    "periodStart"-->
-
     <div class="adm-form">
-
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Часы обязательных работ</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="decis.hoursToWork" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </div>
       <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Лишение месяцы</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -132,7 +122,7 @@
             <Input class="adm-input adm-input--regular" v-model="decis.organNapravlKod" @on-input-change="changeOrganNapravSostKod" ></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+            <a href="#" @click="showOrganNapravModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
           </Col>
         </Row>
       </div>
@@ -355,7 +345,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Время начала ареста</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.arestTimeBeg" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
+            <TimePicker class="adm-input adm-input--regular wmin120 wmax180" type="time" v-model="decis.arestTimeBeg" format="HH:mm" @on-change="store" placeholder="Select date"></TimePicker>
           </Col>
         </Row>
       </div>
@@ -363,7 +353,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Время конца ареста</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.arestTimeEnd" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
+            <TimePicker class="adm-input adm-input--regular wmin120 wmax180" type="time" v-model="decis.arestTimeEnd" format="HH:mm" @on-change="store" placeholder="Select date"></TimePicker>
           </Col>
         </Row>
       </div>
@@ -375,6 +365,46 @@
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="getPlaceDecis" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Срок</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="decis.period" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Размерность для срока</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="decis.periodDim" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Срок 2</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="decis.period2" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Размерность для срока 2</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="decis.period2Dim" placeholder="Enter something..."></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата начала периода</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.periodStart" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
           </Col>
         </Row>
       </div>
@@ -735,6 +765,17 @@
         data.datePerenos = funcUtils.convertNumberToDate(data.datePerenos);
         data.arestTimeBeg = funcUtils.convertNumberToDate(data.arestTimeBeg);
         data.arestTimeEnd = funcUtils.convertNumberToDate(data.arestTimeEnd);
+        data.periodStart = funcUtils.convertNumberToDate(data.periodStart);
+      },
+      stringToDate(date) {
+        if (funcUtils.isNotEmpty(this.decis[date]) && typeof this.decis[date] === 'string' && this.decis[date].length > 0) {
+          let time = this.decis[date].split(':');
+          if (time.length > 0) {
+            let timeDate = new Date();
+            timeDate.setHours(time[0], time[1], 0, 0);
+            this.decis[date] = timeDate;
+          }
+        }
       },
 
       async fillPnpaList() {
@@ -763,7 +804,7 @@
           let decis = decisDict[i];
           decisList.push({
             label: decis.DECIS_NAME,
-            value: decis.DECIS
+            value: decis.DECIS_KOD
           });
         }
         this.decisList = decisList;
@@ -848,7 +889,7 @@
               organKod: this.decis.organSostKod
             }
           });
-          let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
+          let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organModal.visible = true;
             this.organModal.gibddList = gibddList;
@@ -868,7 +909,7 @@
               organKod: this.decis.organNapravlKod
             }
           });
-          let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
+          let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organNapravModal.visible = true;
             this.organNapravModal.gibddList = gibddList;
@@ -888,7 +929,7 @@
               inspKod: this.decis.inspSostKod
             }
           });
-          let data = JSON.parse(JSON.parse(eventResponse.response).data);
+          let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
             this.decis.inspSostId = data.inspId;
@@ -899,7 +940,6 @@
             this.decis.organSostId = data.ogaiId;
             this.decis.organSostKod = data.ogaiKod;
             this.decis.organSostName = data.ogaiName;
-            debugger;
             this.decis.ogaiSostKod = data.ogaiKod;
             this.store();
           } else {
@@ -949,7 +989,6 @@
         this.decis.organSostId = data.ogaiId;
         this.decis.organSostKod = data.organKod;
         this.decis.organSostName = data.ogaiName;
-        debugger;
         this.decis.ogaiSostKod = data.ogaiKod;
         this.dolzModal.visible = false;
         this.dolzModal.sispList = null;
@@ -959,7 +998,6 @@
         this.decis.organSostId = data.ID;
         this.decis.organSostKod = data.ORGAN_KOD;
         this.decis.organSostName = data.ORGAN_NAME;
-        debugger;
         this.decis.ogaiSostKod = data.OGAI_KOD;
         this.organModal.gibddList = null;
         this.organModal.visible = false;
@@ -1003,6 +1041,8 @@
       },
 
       store() {
+        this.stringToDate('arestTimeBeg');
+        this.stringToDate('arestTimeEnd');
         RequestApi.prepareData({
           method: 'store',
           params: {

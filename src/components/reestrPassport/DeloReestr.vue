@@ -76,13 +76,13 @@
 											<div class="adm-12 color-dark-lighter my6">Физическое лицо - ЛВОК</div>
 											<Row type="flex" :gutter="20">
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask class="adm-input adm-input--big" v-model="filter.firstName" :maskProps="maskInputFIO.maskProps" :value="filter.firstName" :inputProps="maskInputFIO.inputPropsFirstName" clearable></input-mask>
+													<input-mask v-model="filter.firstName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Фамилия"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask class="adm-input adm-input--big" v-model="filter.secondName" :maskProps="maskInputFIO.maskProps" :value="filter.secondName" :inputProps="maskInputFIO.inputPropsSecondName" clearable></input-mask>
+													<input-mask v-model="filter.secondName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Имя"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask class="adm-input adm-input--big" v-model="filter.thirdName" :maskProps="maskInputFIO.maskProps" :value="filter.thirdName" :inputProps="maskInputFIO.inputPropsThirdName" clearable></input-mask>
+													<input-mask v-model="filter.thirdName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Отчество"></input-mask>
 												</Col>
 											</Row>
 										</div>
