@@ -76,13 +76,13 @@
 											<div class="adm-12 color-dark-lighter my6">Физическое лицо</div>
 											<Row type="flex" :gutter="20">
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.firstName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Фамилия"></input-mask>
+													<input-mask v-model="filter.firstName" @input="changeFIO" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Фамилия"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.secondName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Имя"></input-mask>
+													<input-mask v-model="filter.secondName" @input="changeFIO" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Имя"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.thirdName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Отчество"></input-mask>
+													<input-mask v-model="filter.thirdName" @input="changeFIO" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Отчество"></input-mask>
 												</Col>
 											</Row>
 										</div>
@@ -100,6 +100,7 @@
 													</Select>
 												</Col>
 												<Col :xs="24" :md="12" :lg="12">
+                          <!--<custom-select v-if="articleProcDict && articleProcDict.length > 0" selectClass="adm-input adm-input&#45;&#45;big" filterable clearable placeholder="По статье" v-model="filter.stotvId" :optionsList="articleProcDict" labelValue></custom-select>-->
 													<Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId" filterable clearable>
 														<Option style="max-width: 100%;" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
 													</Select>
@@ -115,7 +116,7 @@
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12 wmax360">
 											<div class="adm-12 color-dark-lighter my6">Юридическое лицо</div>
-											<Input class="adm-input adm-input--big" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
+											<Input class="adm-input adm-input--big" @input="changeUlName" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
 										</div>
 									</div>
                 </Col>
@@ -201,12 +202,14 @@
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import InputMask from "../InputMask";
+  import CustomSelect from "../CustomSelect";
   import {mapGetters} from 'vuex';
 
   export default {
     name: "DeloReestr",
     components: {
-      InputMask
+      InputMask,
+      CustomSelect,
     },
     async created() {
       try {
@@ -381,6 +384,14 @@
             }
           }
         }
+      },
+      changeFIO() {
+        this.filter.ulName = null;
+      },
+      changeUlName() {
+        this.filter.firstName = null;
+        this.filter.secondName = null;
+        this.filter.thirdName = null;
       },
       fillColumnsOptions() {
         if (this.dataStore) {
@@ -1342,7 +1353,7 @@
         articleProcList.forEach((item) => {
           articleProcDict.push({
             label: item.values['STOTV_NAME'],
-            value: item.values['STOTV_KOD'].split(' ').join(''),
+            value: item.values['STOTV_KOD'],
             id: item.values['STOTV_ID'] + ''
           })
         });
