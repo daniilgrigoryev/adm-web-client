@@ -817,7 +817,7 @@
                       class: ['cursor-pointer']
 										}, [
                       h('p', {
-                        class: ['txt-underline-on-hover', 'color-blue-on-hover']
+                        class: ['txt-underline', 'color-blue']
                       }, params.row.deloN),
                       h('p', {
                        class: {
