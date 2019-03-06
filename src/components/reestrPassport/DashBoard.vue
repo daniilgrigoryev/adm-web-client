@@ -12,7 +12,7 @@
 										<div class="mr36">
 											<img src="../../assets/images/case.svg" alt="">
 										</div>
-										<a href="#" class="adm-text-big link color-blue-base txt-underline-on-hover">Возбуждение административного дела <br> Постановлением</a>
+										<a href="#" @click="createWizardScenarioPost" class="adm-text-big link color-blue-base txt-underline-on-hover">Возбуждение административного дела <br> Постановлением</a>
 									</div>
 								</Card>
 								<Card class="truck-card px24 my12 mx12" style="min-width: 550px">
@@ -114,6 +114,23 @@
         try {
           let params = {
             scenarioName: 'CreateProtAPN'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioPost() {
+        try {
+          let params = {
+            scenarioName: 'CreatePost'
           };
 
           formStack.toNext({
