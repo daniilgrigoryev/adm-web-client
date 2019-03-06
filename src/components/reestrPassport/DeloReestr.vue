@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataStore">
+  <div>
     <div class="adm-search-filter-panel">
       <div class="wmax1920 mx-auto">
         <div @keydown.enter="filterClick" class="adm-form">
@@ -153,7 +153,7 @@
             <Col :xs="24" :md="4" :lg="3">
               <div class="h-full flex-parent flex-parent--end-main flex-parent--wrap">
                 <Button @click="filterClick" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular my-auto w120 mr12">найти</Button>
-								<Button @click="clearFilter" type="default" class="adm-btn adm-btn-regular my-auto w120 mr12 mt6">очистить</Button>
+								<Button @click="clearFilter" type="default" class="adm-btn adm-btn-regular my-auto w120 mr12 mt6">Очистить</Button>
               </div>
             </Col>
           </Row>
@@ -168,7 +168,7 @@
         </div>
       </div>
     </div>
-    <div v-if="dataStore.data.data.length > 0" class="bg-white">
+    <div v-if="!isEmptyData() && dataStore.data.data.length > 0" class="bg-white">
       <div class="wmax1920 mx-auto">
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6">
           <div class="flex-parent flex-parent--center-cross">
@@ -310,7 +310,7 @@
       }),
       cases() {
         let res = [];
-        if (this.dataStore) {
+        if (!this.isEmptyData()) {
           for (let i = this.from; i < this.to; i++) {
             let item = this.dataStore.data.data[i];
             if (item) {
@@ -348,6 +348,9 @@
       }
     },
     methods: {
+      isEmptyData() {
+        return funcUtils.isEmpty(this.dataStore) || funcUtils.isEmpty(this.dataStore.data);
+      },
       changePage(nextPage) {
         this.to = this.delta * nextPage;
         this.from = (this.delta * nextPage) - this.delta;
@@ -391,7 +394,7 @@
         this.filter.thirdName = null;
       },
       fillColumnsOptions() {
-        if (this.dataStore) {
+        if (!this.isEmptyData()) {
           this.columnsOptions = [];
           this.dataStore.data.fields.forEach((item) => {
             switch (item) {
@@ -1307,7 +1310,7 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'getData',
           params: {
-            find: filter,
+            find: null,
             kind: null
           }
         });
