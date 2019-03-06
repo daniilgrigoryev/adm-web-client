@@ -53,7 +53,7 @@
                 <Col :xs="24" :md="12" :lg="12">
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12">
-											<div class="adm-12 color-dark-lighter my6">Документ прикрепленный к делу</div>
+											<div class="adm-12 color-dark-lighter my6">Документ дела</div>
 											<Row type="flex" :gutter="20">
 												<Col :xs="12" :md="12" :lg="12">
 													<Select class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable>

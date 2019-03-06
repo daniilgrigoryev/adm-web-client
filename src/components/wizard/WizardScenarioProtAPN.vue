@@ -20,7 +20,7 @@
 
             <wizard-item-doc-prot-rasm v-if="isVisible('DocProtRasm')" ref="DocProtRasm" :info="getInfo('DocProtRasm')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-rasm>
 
-            <wizard-item-place v-if="isVisible('DocProtRasm.PlaceSost')" ref="DocProtRasm.PlaceSost" :info="getInfo('DocProtRasm.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+            <wizard-item-place v-if="isVisible('DocProtRasm.PlaceSost')" ref="DocProtRasm.PlaceSost" :info="getInfo('DocProtRasm.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
             <wizard-item-place v-if="isVisible('DocProtRasm.PlaceNar')" ref="DocProtRasm.PlaceNar" :info="getInfo('DocProtRasm.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 

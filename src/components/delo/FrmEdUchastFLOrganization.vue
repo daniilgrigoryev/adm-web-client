@@ -1,5 +1,5 @@
 <template>
-  <div v-if="body" class="ml18 mb18">
+  <div v-if="body" class="mx18 mb18">
     <div class="px36 py18"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
@@ -17,11 +17,11 @@
     <div class="adm-form">
       <div class="adm-form__container my0 mx0 py12 px36">
         <div class="adm-form__item">
-          <small class="adm-text-small adm-form__label">Название организации</small>
+          <small class="adm-text-small adm-form__label">Наименование организации</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.organization.name"></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.name"></Input>
               </Col>
             </Row>
           </div>
@@ -30,8 +30,8 @@
           <small class="adm-text-small adm-form__label">ИНН</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.organization.inn"></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.inn"></Input>
               </Col>
             </Row>
           </div>
@@ -40,8 +40,8 @@
           <small class="adm-text-small adm-form__label">ОГРН</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.organization.ogrn"></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.ogrn"></Input>
               </Col>
             </Row>
           </div>
@@ -50,8 +50,8 @@
           <small class="adm-text-small adm-form__label">КПП</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.organization.kpp"></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.kpp"></Input>
               </Col>
             </Row>
           </div>
@@ -60,8 +60,8 @@
           <small class="adm-text-small adm-form__label">Дата регистрации</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.organization.dateReg | formatDateTime('DD.MM.YYYY HH:mm')"></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.dateReg | formatDateTime('DD.MM.YYYY HH:mm')"></Input>
               </Col>
             </Row>
           </div>
@@ -70,8 +70,8 @@
           <small class="adm-text-small adm-form__label">Адрес регистрации</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.organization.address.adrFull" ></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular wmax360" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.organization.address.adrFull" ></Input>
               </Col>
             </Row>
           </div>
@@ -80,8 +80,8 @@
           <small class="adm-text-small adm-form__label">Фактический адрес</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.factAddr.adrFull" ></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular wmax360" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.factAddr.adrFull" ></Input>
               </Col>
             </Row>
           </div>
@@ -90,8 +90,8 @@
           <small class="adm-text-small adm-form__label">Телефон</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.organization.address.phone" ></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.address.phone" ></Input>
               </Col>
             </Row>
           </div>
