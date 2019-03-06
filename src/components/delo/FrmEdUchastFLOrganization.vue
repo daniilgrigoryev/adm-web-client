@@ -1,6 +1,105 @@
 <template>
-  <div v-if="body">
-    {{ body }}
+  <div v-if="body" class="ml18">
+    <div class="px36 py18"><!-- wmax940 mx-auto -->
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <img src='../../assets/images/pen.svg' class="wmax-none">
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Участник дела</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
+
+    <div class="adm-form">
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__item">
+          <small class="adm-text-small adm-form__label">Название организации</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.name"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small adm-form__label">ИНН</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.inn"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small adm-form__label">ОГРН</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.ogrn"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small adm-form__label">КПП</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.kpp"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small adm-form__label">Дата регистрации</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.dateReg | formatDateTime('DD.MM.YYYY HH:mm')"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small adm-form__label">Адрес регистрации</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.organization.address.adrFull" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small adm-form__label">Фактический адрес</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.factAddr.adrFull" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small adm-form__label">Телефон</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.address.phone" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div> 
+      </div>
+    </div>
+
+
   </div>
 </template>
 
@@ -13,22 +112,6 @@
 
   export default {
     name: "FrmEdUchastFLOrganization",
-    async created() {
-      try {
-        // body.uchastStatusName
-        // body.uchastVidName
-        // body.uchastTip, body.uchastTipName | concatByDelimiter('-')
-        // body.organization.inn
-        // body.organization.ogrn
-        // body.organization.kpp
-        // body.organization.dateReg | formatDateTime('DD.MM.YYYY HH:mm')
-        // body.organization.address.adrFull
-        // body.factAddr.adrFull
-        // body.organization.address.phone
-      } catch (e) {
-        alert(e.message);
-      }
-    },
     data() {
       return {}
     },
@@ -48,6 +131,25 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .adm-form-content{
 
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    // outline: 1px solid red;
+    padding-bottom: 20px;
+    // min-height: 90px;
+  }
+  .adm-form__label{
+    padding: 0;
+    padding-right: 12px;
+    min-width: 210px;
+  }
+  .adm-form__item_content{
+    width: 100%;
+  }
 </style>

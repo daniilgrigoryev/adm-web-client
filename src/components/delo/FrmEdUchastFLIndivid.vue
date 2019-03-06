@@ -17,8 +17,6 @@
 
     <div class="adm-form">
       <div class="adm-form__container my0 mx0 py12 px36">
-
-
         <div class="adm-form__item">
           <small class="adm-text-small adm-form__label">Фамилия Имя Отчество лица - год рождения (возраст)</small>
           <div class="adm-form__item_content">
