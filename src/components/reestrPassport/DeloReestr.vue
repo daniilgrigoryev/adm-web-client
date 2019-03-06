@@ -1350,7 +1350,7 @@
         articleProcList.forEach((item) => {
           articleProcDict.push({
             label: item.values['STOTV_NAME'],
-            value: item.values['STOTV_KOD'],
+            value: item.values['STOTV_KOD'].split(' ').join(''),
             id: item.values['STOTV_ID'] + ''
           })
         });
