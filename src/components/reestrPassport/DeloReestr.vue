@@ -76,13 +76,13 @@
 											<div class="adm-12 color-dark-lighter my6">Физическое лицо</div>
 											<Row type="flex" :gutter="20">
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.firstName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Фамилия"></input-mask>
+													<input-mask v-model="filter.firstName" @input="changeFIO" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Фамилия"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.secondName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Имя"></input-mask>
+													<input-mask v-model="filter.secondName" @input="changeFIO" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Имя"></input-mask>
 												</Col>
 												<Col :xs="8" :md="8" :lg="8">
-													<input-mask v-model="filter.thirdName" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Отчество"></input-mask>
+													<input-mask v-model="filter.thirdName" @input="changeFIO" :maskProps="maskInputFIO" inputClass="adm-input adm-input--big" clearable placeholder="Отчество"></input-mask>
 												</Col>
 											</Row>
 										</div>
@@ -115,7 +115,7 @@
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12 wmax360">
 											<div class="adm-12 color-dark-lighter my6">Юридическое лицо</div>
-											<Input class="adm-input adm-input--big" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
+											<Input class="adm-input adm-input--big" @input="changeUlName" v-model="filter.ulName" placeholder="Название организации" clearable></Input>
 										</div>
 									</div>
                 </Col>
@@ -206,7 +206,7 @@
   export default {
     name: "DeloReestr",
     components: {
-      InputMask
+      InputMask,
     },
     async created() {
       try {
@@ -381,6 +381,14 @@
             }
           }
         }
+      },
+      changeFIO() {
+        this.filter.ulName = null;
+      },
+      changeUlName() {
+        this.filter.firstName = null;
+        this.filter.secondName = null;
+        this.filter.thirdName = null;
       },
       fillColumnsOptions() {
         if (this.dataStore) {
