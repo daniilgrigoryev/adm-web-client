@@ -19,7 +19,7 @@
           <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
             <wizard-item-doc-post-first id="DocPostFirst" v-if="isVisible('DocPostFirst')" ref="DocPostFirst" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-first>
 
-            <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+            <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
             <hr v-if="isVisible('LVOK')" class="txt-hr my24">
 

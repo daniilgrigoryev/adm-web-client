@@ -36,6 +36,14 @@
           </Row>
         </div>
         <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder></DatePicker>
+            </Col>
+          </Row>
+        </div>
+        <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -549,6 +557,7 @@
       },
       changeDateNar() {
         this.stotvSearchInfoList = null;
+        this.data.stotvId = null;
         if (funcUtils.isNotEmpty(this.data.dateNar)) {
           this.fillStotvSearchInfo();
         }

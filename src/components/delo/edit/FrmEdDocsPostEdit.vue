@@ -463,6 +463,7 @@
       },
       changeDateNar() {
         this.stotvSearchInfoList = null;
+        this.docsPost.stotvId = null;
         if (funcUtils.isNotEmpty(this.docsPost.dateNar)) {
           this.fillStotvSearchInfo();
         }

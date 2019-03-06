@@ -660,6 +660,7 @@
       },
       changeDateNar() {
         this.stotvSearchInfoList = null;
+        this.delo.stotvId = null;
         if (funcUtils.isNotEmpty(this.delo.dateNar)) {
           this.fillStotvSearchInfo();
         }
