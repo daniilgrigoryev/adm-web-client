@@ -24,8 +24,8 @@
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmin180" v-model="data.sex" @on-change="storeElementData" placeholder="">
-              <Option value="0">Мужской</Option>
-              <Option value="1">Женский</Option>
+              <Option value="М">Мужской</Option>
+              <Option value="Ж">Женский</Option>
             </Select>
           </Col>
         </Row>
