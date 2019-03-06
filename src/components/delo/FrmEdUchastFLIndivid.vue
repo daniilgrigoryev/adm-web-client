@@ -17,7 +17,7 @@
 
     <div class="adm-form">
       <div class="adm-form__container my0 mx0 py12 px36">
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.individ.firstName) && isNotEmptyField(body.individ.secondName) && isNotEmptyField(body.individ.thirdName)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Фамилия Имя Отчество лица - год рождения (возраст)</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -27,7 +27,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.individ.sex)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Пол</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -39,7 +39,7 @@
         </div>
 
 
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.individ.birthMesto)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Место рождения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -50,7 +50,7 @@
           </div>
         </div>
         
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.individ.gragdName)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Гражданство</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -62,7 +62,7 @@
         </div>
 
 
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.individ.address.adrFull)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Адрес регистрации</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -73,7 +73,7 @@
           </div>
         </div>
 
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.factAddr.adrFull)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Место фактического проживания</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -84,7 +84,7 @@
           </div>
         </div>
 
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.individ.address.phone)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Телефон</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -113,7 +113,14 @@
       return {
       }
     },
-    methods: {},
+    methods: {
+      isNotEmptyField(field) {
+        if (typeof field === 'string') {
+          return funcUtils.isNotEmpty(field) && field.length > 0;
+        }
+        return funcUtils.isNotEmpty(field);
+      },
+    },
     computed: {
       ...mapGetters({
         dataStore: 'frmEdUchastFLGetData'
