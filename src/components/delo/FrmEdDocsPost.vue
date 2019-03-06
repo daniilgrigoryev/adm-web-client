@@ -396,7 +396,7 @@
 
 <style scoped lang="scss">
   .adm-form-content{
-    border: 1px solid #000;
+    // border: 1px solid #000;
   }
   .adm-form__item{
     display: flex;

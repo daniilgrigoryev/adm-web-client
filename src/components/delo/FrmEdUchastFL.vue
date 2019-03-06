@@ -1,5 +1,5 @@
 <template>
-  <div v-if="body" class="px36 pb6">
+  <div v-if="body"><!-- class="px36 pb6" -->
     <frm-ed-uchast-f-l-individ v-if="body.individ.id"></frm-ed-uchast-f-l-individ>
     <frm-ed-uchast-f-l-organization v-if="body.organization.id"></frm-ed-uchast-f-l-organization>
   </div>
