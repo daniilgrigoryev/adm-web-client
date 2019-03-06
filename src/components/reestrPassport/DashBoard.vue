@@ -7,7 +7,7 @@
 					<div>
 						<Row type="flex" justify="center">
 							<Col>
-								<Card class="px24 my12 mx12 py12" style="min-width: 550px">
+								<Card class="px24 mb60 py12 mt60" style="min-width: 550px">
 									<div class="flex-parent flex-parent--center-cross">
 										<div class="mr36">
 											<img src="../../assets/images/case.svg" alt="">
@@ -15,7 +15,7 @@
 										<a href="#" @click="createWizardScenarioPost" class="adm-text-big link color-blue-base txt-underline-on-hover">Возбуждение административного дела <br> Постановлением</a>
 									</div>
 								</Card>
-								<Card class="truck-card px24 my12 mx12" style="min-width: 550px">
+								<Card class="truck-card px24 mb60" style="min-width: 550px">
 									<p class="adm-txt-regular color-dark-light my18">Эвакуация автомобиля</p>
 									<ul>
 										<li class="my18">
@@ -32,7 +32,7 @@
 								</Card>
 								<Row type="flex" justify="center">
 									<Col>
-										<Card class="px24 my12 mx12" style="min-width: 255px">
+										<Card class="px24 mr24" style="min-width: 255px">
 											<div class="flex-parent flex-parent--column flex-parent--center-cross">
 												<div class="mb12">
 													<img src="../../assets/images/camera.png" alt="">
@@ -42,7 +42,7 @@
 										</Card>
 									</Col>
 									<Col>
-										<Card class="px24 my12 mx12" style="min-width: 255px">
+										<Card class="px24 ml24" style="min-width: 255px">
 											<div class="flex-parent flex-parent--column flex-parent--center-cross">
 												<div class="mb12">
 													<img src="../../assets/images/tax.png" alt="">
@@ -54,7 +54,7 @@
 								</Row>
 							</Col>
 							<Col>
-								<Card class="taxi-card px24 my12 mx12" style="min-width: 320px">
+								<Card class="taxi-card px24 mb60 ml60 mt60" style="min-width: 320px">
 									<p class="adm-txt-regular color-dark-light my18">Дело в отношеннии Такси</p>
 									<ul>
 										<li class="my18">
@@ -65,7 +65,7 @@
 										</li>
 									</ul>
 								</Card>
-								<Card class="px24 my12 mx12" style="min-width: 320px">
+								<Card class="px24 ml60" style="min-width: 320px">
 									<div class="flex-parent flex-parent--column flex-parent--center-cross">
 										<div class="mb12">
 											<img src="../../assets/images/police.png" alt="">
