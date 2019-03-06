@@ -100,7 +100,6 @@
 													</Select>
 												</Col>
 												<Col :xs="24" :md="12" :lg="12">
-                          <!--<custom-select v-if="articleProcDict && articleProcDict.length > 0" selectClass="adm-input adm-input&#45;&#45;big" filterable clearable placeholder="По статье" v-model="filter.stotvId" :optionsList="articleProcDict" labelValue></custom-select>-->
 													<Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId" filterable clearable>
 														<Option style="max-width: 100%;" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
 													</Select>
@@ -202,14 +201,12 @@
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import InputMask from "../InputMask";
-  import CustomSelect from "../CustomSelect";
   import {mapGetters} from 'vuex';
 
   export default {
     name: "DeloReestr",
     components: {
       InputMask,
-      CustomSelect,
     },
     async created() {
       try {
