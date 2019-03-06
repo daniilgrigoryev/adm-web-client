@@ -109,52 +109,11 @@
 
   export default {
     name: "FrmEdUchastFLIndivid",
-    async created() {
-      try {
-        let current = formStack.getCurrent();
-        let currentForm = innerFormStack.getCurrent({
-          uid: current.moduleName
-        });
-
-        /*let eventResponse = await RequestApi.prepareData({
-          method: 'checkUchastinc',
-          cid: currentForm.cid
-        });
-
-        this.checkUchastinc = JSON.parse(eventResponse.response).data;*/
-      } catch (e) {
-        alert(e.message);
-      }
-    },
     data() {
       return {
-        checkUchastinc: {}
       }
     },
-    methods: {
-      getCheckName(checkKey) {
-        switch (checkKey) {
-          case '+': {
-            return {
-              value: 'Да',
-              color: ''
-            };
-          }
-          case '-': {
-            return {
-              value: 'Нет',
-              color: ''
-            };
-          }
-          default: {
-            return {
-              value: 'Нет данных',
-              color: ''
-            };
-          }
-        }
-      },
-    },
+    methods: {},
     computed: {
       ...mapGetters({
         dataStore: 'frmEdUchastFLGetData'
