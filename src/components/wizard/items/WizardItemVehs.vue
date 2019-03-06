@@ -14,6 +14,16 @@
           </Col>
         </Row>
       </div>
+      
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Цвет</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="data.color" @on-input-change="storeElementData" ></Input>
+          </Col>
+        </Row>
+      </div>
+
       <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Тип кузова ТС</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -24,6 +34,7 @@
           </Col>
         </Row>
       </div>
+
       <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Марка ТС</small>
         <Row :gutter="16" type="flex" align="middle">

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="body" class="ml18"> <!-- wmax940 mx-auto -->
+  <div v-if="body" class="ml18 mb18"> <!-- wmax940 mx-auto -->
 
 
     <div class="px36 py18"><!-- wmax940 mx-auto -->
