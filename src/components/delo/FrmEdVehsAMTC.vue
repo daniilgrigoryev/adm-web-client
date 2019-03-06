@@ -39,7 +39,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="getCheckName(checkAMTS.UDOC_CTC).value" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.sts"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -49,11 +49,11 @@
           <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Марка, Модель</small>
+                <small class="adm-text-small adm-form__label">Марка, модель</small>
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto, body.modavtoName | concatByDelimiter(',')"></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto, body.modavtoName | concatByDelimiter(' ')"></Input>
                     </Col>
                   </Row>
                 </div>

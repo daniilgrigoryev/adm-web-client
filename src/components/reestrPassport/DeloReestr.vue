@@ -233,7 +233,7 @@
         }
 
         await this.$store.dispatch('deloReestrSetCid', current.cid);
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
+        await this.fillModule(eventResponse);
 
         this.fillStateDeloDict();
         this.fillDocumentVidDict();
@@ -342,14 +342,13 @@
         })
       },
     },
-    watch: {
-      dataStore() {
-        this.fillColumnsOptions();
-      }
-    },
     methods: {
       isEmptyData() {
         return funcUtils.isEmpty(this.dataStore) || funcUtils.isEmpty(this.dataStore.data);
+      },
+      async fillModule(eventResponse) {
+        await this.$store.dispatch('fillModule', {'event': eventResponse});
+        this.fillColumnsOptions();
       },
       changePage(nextPage) {
         this.to = this.delta * nextPage;
@@ -1304,7 +1303,16 @@
         let filter = this.filter;
         for (let prop in filter) {
           if (filter.hasOwnProperty(prop)) {
-            filter[prop] = null;
+            switch (prop) {
+              case 'flagYear': {
+                filter[prop] = 'true';
+                break;
+              }
+              default: {
+                filter[prop] = null;
+                break;
+              }
+            }
           }
         }
         let eventResponse = await RequestApi.prepareData({
@@ -1314,7 +1322,7 @@
             kind: null
           }
         });
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
+        await this.fillModule(eventResponse);
       },
       async fillStateDeloDict() {
         let stateDeloDict = [];
@@ -1369,7 +1377,7 @@
             kind: null
           }
         });
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
+        await this.fillModule(eventResponse);
       },
       getDelo(delo) {
         try {
@@ -1388,19 +1396,6 @@
           alert(e.message);
         }
       },
-      getOffense() {
-        try {
-          formStack.toNext({
-            module: this.$store.state.offense,
-            vm: this,
-            notRemoved: false,
-            params: false,
-            withCreate: true
-          });
-        } catch (e) {
-          alert(e.message);
-        }
-      }
     }
   }
 </script>
