@@ -1,39 +1,15 @@
 <template>
-  <div>
-    <div class="adm-form">
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showAddressModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
-          </Col>
-        </Row>
-      </div>
-    </div>
-    <div v-if="data && addressModal.visible" class="absolute bg-white z5 scroll-hidden px36 py12" style="top: 0; bottom: 0; right: 0; left: 0;">
-      <div class="flex-parent flex-parent--end-main">
-        <Button type="text"  @click="showAddressModal(false)" class="px0 py0">
-          <div class="flex-parent flex-parent--center-cross">
-            <div class="adm-text-big color-blue-base">Закрыть</div>
-            <Icon type="md-close" size="50" class="color-blue-base cursor-pointer"/>
-          </div>
-        </Button>
-      </div>
-
-
-       <div class="adm-form">
+  <div v-if="data">
+    <div class="absolute bg-white z5 px36 py12" style="top: 0; bottom: 0; right: 0; left: 0;">
+      <div class="adm-form">
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Код страны</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.countryCode" disabled placeholder="Код страны"></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.countryCode" disabled ></Input>
             </Col>
           </Row>
         </div>
-
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Название</small>
           <Row :gutter="16" type="flex" align="middle">
@@ -42,7 +18,6 @@
             </Col>
           </Row>
         </div>
-
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
           <Row :gutter="16" type="flex" align="middle">
@@ -54,16 +29,16 @@
           </Row>
         </div>
 
-         <div class="my12 adm-form__item">
-           <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
-           <Row :gutter="16" type="flex" align="middle">
-             <Col :xs="24" :md="14" :lg="16">
-               <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
-                 <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-               </Select>
-             </Col>
-           </Row>
-         </div>
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </div>
 
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
@@ -91,7 +66,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.ndom" @on-input-change="storeElementData" ></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.ndom" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -100,7 +75,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Корпус</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.nkorpus" @on-input-change="storeElementData" ></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.nkorpus" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -109,7 +84,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Строение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-             <Input class="adm-input adm-input--regular" v-model="data.nstroenie" @on-input-change="storeElementData" ></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.nstroenie" @on-input-change="store" ></Input>
             </Col>
           </Row>
         </div>
@@ -118,7 +93,7 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Почтовый индекс</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.pindex" @on-input-change="storeElementData" disabled ></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.pindex" disabled ></Input>
             </Col>
           </Row>
         </div>
@@ -127,19 +102,20 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-input-change="storeElementData" disabled  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-input-change="store"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
             </Col>
           </Row>
         </div>
 
         <Row :gutter="16" type="flex" align="middle" justify="start">
           <Col :xs="24" :md="14" :lg="17">
-            <div class=" py12 flex-parent flex-parent--end-main">
-              <Button @click="save" type="primary">Сохранить</Button>
+            <div class="flex-parent flex-parent--end-main">
+              <Button @click="getPrev" type="text">Назад</Button>
+              <Button @click="save" type="primary" class="mb12">Сохранить</Button>
             </div>
           </Col>
         </Row>
-       </div>
+      </div>
     </div>
   </div>
 </template>
@@ -150,21 +126,29 @@
   import RequestApi from "../../../assets/js/api/requestApi";
 
   export default {
-    name: "WizardItemAddress",
-    props: {
-      info: Object,
-      title: String
-    },
+    name: "AddressViewEdit",
     async created() {
-      await this.initData();
+      try {
+        let current = formStack.getCurrent();
+        await this.$store.dispatch('addressViewEditSetCid', current.cid);
+
+        let eventResponse = await RequestApi.prepareData({
+          method: 'restore'
+        });
+        let data = JSON.parse(eventResponse.response).data;
+
+        await this.initData(data);
+      } catch (e) {
+        alert(e.message);
+      }
+    },
+    destroyed() {
+      this.$store.dispatch('addressViewEditSetCid', null);
+      this.$store.dispatch('addressViewEditSetData', null);
     },
     data() {
       return {
         data: null,
-        fullAddress: null,
-        addressModal: {
-          visible: false
-        },
         regionsList: null,
         rayonsList: null,
         citiesList: null,
@@ -172,30 +156,14 @@
       }
     },
     methods: {
-      async getData() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getElementData',
-          params: {
-            eCID: this.info.eCID
-          }
-        });
-        let data = JSON.parse(JSON.parse(eventResponse.response).data);
-        return data;
+      async initData(data) {
+        this.data = data;
+
+        await this.fillRegionList();
+        await this.fillRayonList();
+        await this.fillCityList();
+        await this.fillStreetList();
       },
-      async initData() {
-        let data = await this.getData();
-        if (this.addressModal.visible) {
-          this.data = data;
-
-          await this.fillRegionList();
-          await this.fillRayonList();
-          await this.fillCityList();
-          await this.fillStreetList();
-        }
-
-        this.fullAddress = data.adrFull;
-      },
-
       async changeRegion() {
         this.rayonsList = null;
         this.citiesList = null;
@@ -206,7 +174,7 @@
 
         await this.fillRayonList();
 
-        this.storeElementData();
+        this.store();
       },
       changeRayon() {
         this.citiesList = null;
@@ -214,7 +182,7 @@
         this.data.cityId = null;
         this.data.streetId = null;
 
-        this.storeElementData();
+        this.store();
       },
       async changeCity(query) {
         let limit;
@@ -232,7 +200,7 @@
           await this.fillCityList(query);
         }
 
-        this.storeElementData();
+        this.store();
       },
       async changeStreet(query) {
         let limit;
@@ -250,20 +218,15 @@
           await this.fillStreetList(query);
         }
 
-        this.storeElementData();
+        this.store();
       },
 
       async fillRegionList() {
         let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'getRegionDict',
-            data: null
-          }
+          method: 'getRegionDict'
         });
         let regionsList = [];
-        let regionsDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        let regionsDict = JSON.parse(eventResponse.response).data;
         for (let i = 0; i < regionsDict.length; i++) {
           let region = regionsDict[i];
           regionsList.push({
@@ -277,17 +240,13 @@
       async fillRayonList() {
         if (this.isNotEmptyRegionId()) {
           let eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
+            method: 'getRayonDict',
             params: {
-              eCID: this.info.eCID,
-              methodName: 'getRayonDict',
-              data: JSON.stringify({
-                regionId: this.data.regionId
-              })
+              regionId: this.data.regionId
             }
           });
           let rayonsList = [];
-          let rayonsDict = JSON.parse(JSON.parse(eventResponse.response).data);
+          let rayonsDict = JSON.parse(eventResponse.response).data;
           for (let i = 0; i < rayonsDict.length; i++) {
             let rayon = rayonsDict[i];
             rayonsList.push({
@@ -302,27 +261,19 @@
         let eventResponse;
         if (this.isNotEmptyRayonId()) {
           eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
+            method: 'getCitiesDictByRayon',
             params: {
-              eCID: this.info.eCID,
-              methodName: 'getCitiesDictByRayon',
-              data: JSON.stringify({
-                rayonId: this.data.rayonId,
-                substr: query
-              })
+              rayonId: this.data.rayonId,
+              substr: query
             },
             withSpinner: false
           });
         } else if (this.isNotEmptyRegionId()) {
           eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
+            method: 'getCitiesDictByRegion',
             params: {
-              eCID: this.info.eCID,
-              methodName: 'getCitiesDictByRegion',
-              data: JSON.stringify({
-                regionId: this.data.regionId,
-                substr: query
-              })
+              regionId: this.data.regionId,
+              substr: query
             },
             withSpinner: false
           });
@@ -330,7 +281,7 @@
 
         if (eventResponse) {
           let citiesList = [];
-          let citiesDict = JSON.parse(JSON.parse(eventResponse.response).data);
+          let citiesDict = JSON.parse(eventResponse.response).data;
           for (let i = 0; i < citiesDict.length; i++) {
             let citi = citiesDict[i];
             if (funcUtils.isNotEmpty(this.data.cityId) && citi.id != this.data.cityId) {
@@ -348,40 +299,28 @@
         let eventResponse;
         if (this.isNotEmptyCityId()) {
           eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
+            method: 'getStreetsDictByCity',
             params: {
-              eCID: this.info.eCID,
-              methodName: 'getStreetsDictByCity',
-              data: JSON.stringify({
-                cityId: this.data.cityId,
-                substr: query
-              })
+              cityId: this.data.cityId,
+              substr: query
             },
             withSpinner: false
           });
         } else if (this.isNotEmptyRayonId()) {
           eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
+            method: 'getStreetsDictByRayon',
             params: {
-              eCID: this.info.eCID,
-              methodName: 'getStreetsDictByRayon',
-              data: JSON.stringify({
-                rayonId: this.data.rayonId,
-                substr: query
-              })
+              rayonId: this.data.rayonId,
+              substr: query
             },
             withSpinner: false
           });
         } else if (this.isNotEmptyRegionId()) {
           eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
+            method: 'getStreetsDictByRegion',
             params: {
-              eCID: this.info.eCID,
-              methodName: 'getStreetsDictByRegion',
-              data: JSON.stringify({
-                regionId: this.data.regionId,
-                substr: query
-              })
+              regionId: this.data.regionId,
+              substr: query
             },
             withSpinner: false
           });
@@ -389,7 +328,7 @@
 
         if (eventResponse) {
           let streetsList = [];
-          let streetsDict = JSON.parse(JSON.parse(eventResponse.response).data);
+          let streetsDict = JSON.parse(eventResponse.response).data;
           for (let i = 0; i < streetsDict.length; i++) {
             let street = streetsDict[i];
             if (funcUtils.isNotEmpty(this.data.streetId) && street.id != this.data.streetId) {
@@ -404,6 +343,17 @@
         }
       },
 
+      async save() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'save'
+        });
+        if (eventResponse.response) {
+          let error = JSON.parse(eventResponse.response).error;
+          alert(error.errorMsg);
+        } else {
+          this.getPrev();
+        }
+      },
       isNotEmptyRegionId() {
         return funcUtils.isNotEmpty(this.data.regionId);
       },
@@ -413,55 +363,26 @@
       isNotEmptyRayonId() {
         return funcUtils.isNotEmpty(this.data.rayonId);
       },
-      async showAddressModal(visible) {
-        this.addressModal.visible = visible;
-
-        let methodName;
-        if (visible) {
-          methodName = 'start';
-          this.initData();
-        } else {
-          methodName = 'cancel';
-          this.clearComponent();
-        }
+      async store() {
         let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
+          method: 'store',
           params: {
-            eCID: this.info.eCID,
-            methodName: methodName,
-            data: null
+            data: this.data
           }
         });
-      },
-      async save() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'save',
-            data: null
-          }
-        });
-        let response = JSON.parse(JSON.parse(eventResponse.response).data);
-        if (response) {
-          this.addressModal.visible = false;
-          this.clearComponent();
-          this.$emit('updateComponents', response);
+        if (eventResponse.response) {
+          let data = JSON.parse(eventResponse.response).data;
+          await this.initData(data);
         }
       },
-      clearComponent() {
-        this.data = null;
-        this.regionsList = null;
-        this.rayonsList = null;
-        this.citiesList = null;
-        this.streetsList = null;
-      },
-
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
-        });
+      getPrev() {
+        try {
+          formStack.toPrev({
+            vm: this
+          });
+        } catch (e) {
+          alert(e.message);
+        }
       },
     }
   }
