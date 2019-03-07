@@ -6,12 +6,12 @@
     <div class="adm-form">
       <div class="adm-form__container py12">
         <div class="adm-form__content px36">
-          <Row type="flex" :gutter="3000">
+          <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">ГРЗ</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Input class="adm-input adm-input--regular" v-model="vehsAMTC.regno"></Input>
                     </Col>
@@ -22,7 +22,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Марка ТС</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.markaAvto"
                               clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
@@ -37,7 +37,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Модель ТС</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.modavtoName"
                               clearable @on-change="store" :disabled="!isNotEmptyMarkId()" filterable>
@@ -51,7 +51,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Модификация</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Input class="adm-input adm-input--regular" v-model="vehsAMTC.modifavtoName"></Input>
                     </Col>
@@ -62,7 +62,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">VIN</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Input class="adm-input adm-input--regular" v-model="vehsAMTC.vin"></Input>
                     </Col>
@@ -73,7 +73,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">№ кузова</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Input class="adm-input adm-input--regular" v-model="vehsAMTC.nkuzov"></Input>
                     </Col>
@@ -84,7 +84,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">№ шасси</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Input class="adm-input adm-input--regular" v-model="vehsAMTC.nshasi"></Input>
                     </Col>
@@ -95,7 +95,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Экологический класс</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorEcologClass"
                               clearable @on-clear="store" @on-change="store" filterable>
@@ -110,7 +110,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Масса без нагрузки</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Input class="adm-input adm-input--regular" v-model="vehsAMTC.massa"></Input>
                     </Col>
@@ -121,7 +121,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Максимальная масса</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Input class="adm-input adm-input--regular" v-model="vehsAMTC.massaMax"></Input>
                     </Col>
@@ -132,7 +132,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Год выпуска</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <!--<Input class="adm-input adm-input&#45;&#45;regular" v-model="vehsAMTC.yearVyp"></Input>-->
                       <input-mask v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" inputClass="adm-input adm-input--regular" clearable></input-mask>
@@ -144,7 +144,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Цвет</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Input class="adm-input adm-input--regular" v-model="vehsAMTC.color"></Input>
                     </Col>
@@ -155,7 +155,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Тип</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tiptcKod"
                               clearable @on-change="store" filterable>
@@ -169,7 +169,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Тип кузова ТС</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tipkuzKod"
                               clearable @on-change="store" filterable>
@@ -183,7 +183,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Категория ТС</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.katcKod"
                               clearable @on-clear="store" @on-change="store" filterable>
@@ -197,7 +197,7 @@
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Тип мотора ТС</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
+                  <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorTip"
                               clearable @on-clear="store" @on-change="store" filterable>
@@ -216,7 +216,7 @@
           <div class="adm-form__item">
             <small class="adm-text-small adm-form__label">СТС</small>
             <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
+              <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
                   <Input class="adm-input adm-input--regular" v-model="vehsAMTC.ctc"></Input>
                 </Col>
@@ -227,7 +227,7 @@
           <div class="adm-form__item">
             <small class="adm-text-small adm-form__label">ПТС</small>
             <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
+              <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
                   <Input class="adm-input adm-input--regular" v-model="vehsAMTC.ptcN"></Input>
                 </Col>
@@ -238,9 +238,9 @@
           <div class="adm-form__item">
             <small class="adm-text-small adm-form__label">Дата выдачи ПТС</small>
             <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
+              <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
-                  <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.ptcDate" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
+                  <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.ptcDate" format="dd-MM-yyyy" @on-change="store" placeholder></DatePicker>
                 </Col>
               </Row>
             </div>
@@ -249,7 +249,7 @@
           <div class="adm-form__item">
             <small class="adm-text-small adm-form__label">Кем выдан ПТС</small>
             <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
+              <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
                   <Input class="adm-input adm-input--regular" v-model="vehsAMTC.ptcKemVydan"></Input>
                 </Col>
@@ -260,7 +260,7 @@
           <div class="adm-form__item">
             <small class="adm-text-small adm-form__label">№ ОСАГО</small>
             <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
+              <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
                   <Input class="adm-input adm-input--regular" v-model="vehsAMTC.osagoN"></Input>
                 </Col>
@@ -271,9 +271,9 @@
           <div class="adm-form__item">
             <small class="adm-text-small adm-form__label">Дата выдачи ОСАГО</small>
             <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
+              <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
-                  <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.osagoDate" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
+                  <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.osagoDate" format="dd-MM-yyyy" @on-change="store" placeholder></DatePicker>
                 </Col>
               </Row>
             </div>
@@ -282,9 +282,9 @@
           <div class="adm-form__item">
             <small class="adm-text-small adm-form__label">Дата окончания ОСАГО</small>
             <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
+              <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
-                  <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.osagoSrok" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
+                  <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.osagoSrok" format="dd-MM-yyyy" @on-change="store" placeholder></DatePicker>
                 </Col>
               </Row>
             </div>
@@ -293,7 +293,7 @@
           <div class="adm-form__item">
             <small class="adm-text-small adm-form__label">Кем выдан ОСАГО</small>
             <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
+              <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
                   <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.osagoKemVydanId"
                           clearable @on-clear="store" @on-change="store" filterable>
