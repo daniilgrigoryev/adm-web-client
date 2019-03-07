@@ -2,7 +2,7 @@
   <div v-if="body" class="ml18"><!-- wmax1280 mx-auto -->
     <!-- постановление по делу -->
 
-    <div class="px36 py18"><!-- wmax940 mx-auto -->
+    <div class="adm-title px36 py24"><!-- wmax940 mx-auto -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
           <div class="flex-parent flex-parent--center-cross">
             <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
@@ -19,7 +19,7 @@
     <div class="adm-form">
       <div class="adm-form__container mt0">
         <div class="adm-form__content px36">
-          <Row type="flex" :gutter="60" align="top">
+          <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Номер постановления</small>
@@ -41,16 +41,7 @@
                   </Row>
                 </div>
               </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Место составления протокола Постановления</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
+
             </Col>
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
@@ -76,13 +67,28 @@
               </div>
             </Col>
           </Row>
+          <Row type="flex" :gutter="60">
+            <Col :xs="24" :md="24" :lg="24">
+              <div class="adm-form__item">
+                <small class="adm-text-small color-gray-medium adm-form__label">Место составления протокола Постановления</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+          </Row>
+
         </div>
       </div>
 
       <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Постановление составил</h2>
         <div class="adm-form__content px36">
-          <Row type="flex" :gutter="60" align="top">
+          <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
@@ -155,7 +161,7 @@
       <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Нарушение</h2>
         <div class="adm-form__content px36">
-          <Row type="flex" :gutter="60" align="top">
+          <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
@@ -403,12 +409,13 @@
     flex-direction: row;
     align-items: center;
     padding-top: 20px;
-    // outline: 1px solid red;
     padding-bottom: 20px;
     min-height: 90px;
+    // outline: 1px solid;
   }
   .adm-form__label{
     padding: 0;
+    min-width: 130px;
     padding-right: 12px;
   }
   .adm-form__item_content{

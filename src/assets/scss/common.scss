@@ -343,7 +343,9 @@ html, body, #app {
 }
 
 
-
+.amd-title{
+  max-height: 76px;
+}
 .adm-form{
   .adm-form__headding{
     background-color: #1888CC;
@@ -361,7 +363,7 @@ html, body, #app {
     margin: 20px 0;
   }
   .adm-form__content{
-    padding: 20px;
+    // padding: 20px;
   }
   .adm-form__item{
     padding-top: 10px;

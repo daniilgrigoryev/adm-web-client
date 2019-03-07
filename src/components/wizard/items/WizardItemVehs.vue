@@ -14,7 +14,7 @@
           </Col>
         </Row>
       </div>
-      
+       
       <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Цвет</small>
         <Row :gutter="16" type="flex" align="middle">

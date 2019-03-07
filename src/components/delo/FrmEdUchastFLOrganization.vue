@@ -1,6 +1,7 @@
 <template>
   <div v-if="body" class="mx18 mb18">
-    <div class="px36 py18"><!-- wmax940 mx-auto -->
+
+    <div class="amd-title px36 py24"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
