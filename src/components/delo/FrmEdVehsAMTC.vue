@@ -1,12 +1,9 @@
 <template>
   <div v-if="body" class="ml18 mb18"> <!-- wmax940 mx-auto -->
-
-    <Button @click="getVehsAMTCEdit" type="primary" class="ml12">Редактировать</Button>
-
     <div class="adm-title px36 py24"><!-- wmax940 mx-auto -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
           <div class="flex-parent flex-parent--center-cross">
-            <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <Button @click="getVehsAMTCEdit"  type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
               <img src='../../assets/images/pen.svg' class="wmax-none">
             </Button>
             <b class="adm-text-big color-dark-lighter">Транспортное средство</b>
