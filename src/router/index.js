@@ -10,6 +10,7 @@ import FrmEdVuPredEdit from '../components/delo/edit/FrmEdVuPredEdit';
 import FrmEdVuVydEdit from '../components/delo/edit/FrmEdVuVydEdit';
 import FrmEdDocsPostEdit from '../components/delo/edit/FrmEdDocsPostEdit';
 import FrmEdDecisEdit from '../components/delo/edit/FrmEdDecisEdit';
+import FrnEdVehsAMTCEdit from '../components/delo/edit/FrnEdVehsAMTCEdit';
 import PlaceViewEdit from '../components/delo/edit/PlaceViewEdit';
 
 import WizardExecuter from '../components/wizard/WizardExecuter';
@@ -78,6 +79,12 @@ const router = new Router({
       path: '/frmEdDocsPostEdit',
       name: 'FrmEdDocsPostEdit',
       component: FrmEdDocsPostEdit,
+      props: true
+    },
+    {
+      path: '/frnEdVehsAMTCEdit',
+      name: 'FrnEdVehsAMTCEdit',
+      component: FrnEdVehsAMTCEdit,
       props: true
     },
     {

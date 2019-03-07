@@ -179,6 +179,7 @@ export default {
         },
         async changeMarkaAvto() {
             this.modelList = null;
+            this.data.modavtoName = null;
             if (this.isNotEmptyMarkId()) {
                 await this.fillModelList();
             }

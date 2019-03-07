@@ -1,6 +1,7 @@
 <template>
   <div v-if="body" class="ml18 mb18"> <!-- wmax940 mx-auto -->
 
+    <Button @click="getVehsAMTCEdit" type="primary" class="ml12">Редактировать</Button>
 
     <div class="adm-title px36 py24"><!-- wmax940 mx-auto -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
@@ -39,7 +40,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.sts"></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.ctc"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -290,6 +291,27 @@
               vm.photos.push('data:image/jpeg;base64,' + photo);
             }
           }
+        }
+      },
+      getVehsAMTCEdit() {
+        try {
+          let current = formStack.getCurrent();
+          let currentForm = innerFormStack.getCurrent({
+            uid: current.moduleName
+          });
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frnEdVehsAMTCEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
         }
       },
       getCheckName(checkKey) {
