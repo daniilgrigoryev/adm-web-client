@@ -21,7 +21,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.name"></Input>
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.name"></Input>
               </Col>
             </Row>
           </div>
@@ -31,7 +31,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.inn"></Input>
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.inn"></Input>
               </Col>
             </Row>
           </div>
@@ -41,7 +41,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.ogrn"></Input>
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.ogrn"></Input>
               </Col>
             </Row>
           </div>
@@ -51,7 +51,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.kpp"></Input>
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.kpp"></Input>
               </Col>
             </Row>
           </div>
@@ -61,7 +61,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.dateReg | formatDateTime('DD.MM.YYYY HH:mm')"></Input>
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.dateReg | formatDateTime('DD.MM.YYYY')"></Input>
               </Col>
             </Row>
           </div>
@@ -71,7 +71,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.organization.address.adrFull" ></Input>
+                <Input class="adm-input adm-input--regular" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.organization.address.adrFull" ></Input>
               </Col>
             </Row>
           </div>
@@ -81,7 +81,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.factAddr.adrFull" ></Input>
+                <Input class="adm-input adm-input--regular" type="textarea" :autosize="{minRows: 2,maxRows: 5}" readonly :value="body.factAddr.adrFull" ></Input>
               </Col>
             </Row>
           </div>
@@ -91,7 +91,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" readonly :value="body.organization.address.phone" ></Input>
+                <Input class="adm-input adm-input--regular" readonly :value="body.organization.address.phone" ></Input>
               </Col>
             </Row>
           </div>

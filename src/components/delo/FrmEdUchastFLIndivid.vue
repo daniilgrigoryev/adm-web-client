@@ -18,32 +18,21 @@
     <div class="adm-form">
       <div class="adm-form__container my0 mx0 py12 px36">
         <div v-if="isNotEmptyField(body.individ.firstName) && isNotEmptyField(body.individ.secondName) && isNotEmptyField(body.individ.thirdName)" class="adm-form__item">
-          <small class="adm-text-small adm-form__label">Фамилия Имя Отчество лица - год рождения (возраст)</small>
+          <small class="adm-text-small adm-form__label">ФИО лица - год рождения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular" readonly :value="body.individ.firstName + ' ' + body.individ.secondName + ' ' + body.individ.thirdName, body.individ.birthdayYear | concatByDelimiter('-') + ' г.р'" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
             </Row>
           </div>
         </div>
-        <div v-if="isNotEmptyField(body.individ.sex)" class="adm-form__item">
-          <small class="adm-text-small adm-form__label">Пол</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.individ.sex" ></Input>
-              </Col>
-            </Row>
-          </div>
-        </div>
-
 
         <div v-if="isNotEmptyField(body.individ.birthMesto)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Место рождения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular" readonly :value="body.individ.birthMesto"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
             </Row>
@@ -54,7 +43,7 @@
           <small class="adm-text-small adm-form__label">Гражданство</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular" readonly :value="body.individ.gragdName" ></Input>
               </Col>
             </Row>
@@ -66,7 +55,7 @@
           <small class="adm-text-small adm-form__label">Адрес регистрации</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular" readonly :value="body.individ.address.adrFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
             </Row>
@@ -77,7 +66,7 @@
           <small class="adm-text-small adm-form__label">Место фактического проживания</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular" readonly :value="body.factAddr.adrFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
             </Row>
@@ -88,7 +77,7 @@
           <small class="adm-text-small adm-form__label">Телефон</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular" readonly :value="body.individ.address.phone"></Input>
               </Col>
             </Row>
