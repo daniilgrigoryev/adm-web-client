@@ -6,10 +6,7 @@
       <div v-if="photos && photos.length > 0">
         <hr class="txt-hr my24">
         <h2 class="adm-text-big color-dark-light my12">Фотоматериалы</h2>
-
-
-
-        <div class="view-photos ">
+        <div class="view-photos">
           <div class="view-photos__min-section ">
             <gallery :images="photos" :index="index" @close="index = null"></gallery>
             <div class="view-photos_container flex-parent scroll-styled scroll-auto">
