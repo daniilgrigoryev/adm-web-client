@@ -410,14 +410,14 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-base': true,
 													'adm-12': true,
 													'line-height100': true,
 													'txt-truncate': true,
@@ -447,14 +447,14 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-base': true,
 													'adm-12': true,
 													'line-height100': true,
 													'txt-truncate': true,
@@ -494,7 +494,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -552,14 +552,14 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-base': true,
 													'adm-12': true,
 													'line-height100': true,
 													'txt-truncate': true,
@@ -607,14 +607,14 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-base': true,
 													'adm-12': true,
 													'line-height100': true,
 													'txt-truncate': true,
@@ -662,14 +662,14 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-base': true,
 													'adm-12': true,
 													'line-height100': true,
 													'txt-truncate': true,
@@ -717,7 +717,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -740,7 +740,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -763,7 +763,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -792,14 +792,14 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
 													'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-base': true,
 													'adm-12': true,
 													'line-height100': true,
 													'txt-truncate': true,
@@ -848,7 +848,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -870,7 +870,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -893,7 +893,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -915,7 +915,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -937,14 +937,14 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'ccolor-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
                       }, params.column.title),
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-base': true,
 													'adm-12': true,
 													'line-height100': true,
 													'txt-truncate': true,
@@ -969,7 +969,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -991,7 +991,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -1014,7 +1014,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -1037,7 +1037,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -1060,7 +1060,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -1082,7 +1082,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -1112,7 +1112,7 @@
                       }, [
                         h('p', {
                           class: {
-                            'color-dark-lighter': true,
+                            'color-dark-medium': true,
                             'adm-text-big': true,
                             'txt-normal': true,
                           },
@@ -1120,7 +1120,7 @@
                       ]),
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-base': true,
 													'adm-12': true,
 													'line-height100': true,
 													'txt-truncate': true,
@@ -1173,7 +1173,7 @@
                     return h('div', [
                       h('p', {
                         class: {
-                          'color-dark-lighter': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -1207,7 +1207,7 @@
                   h('div', [
                     h('p', {
                       class: {
-                        'color-dark-lighter': true,
+                        'color-dark-medium': true,
                         'adm-text-big': true,
                         'txt-normal': true,
                       },
