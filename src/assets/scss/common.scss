@@ -153,6 +153,7 @@ html, body, #app {
   }
   .view-photos_container{
     overflow: auto;
+    max-width: 100%;
   }
   .view-photos__item{
     border: 2px solid transparent;
@@ -160,8 +161,7 @@ html, body, #app {
     border-radius: 2px;
     margin: 10px;
     height: 114px!important;
-    width: 154px;
-    display: inline-block!important;
+    min-width: 154px;
     &:hover{
       cursor: pointer;
       border: 2px solid #53A4D6;	
