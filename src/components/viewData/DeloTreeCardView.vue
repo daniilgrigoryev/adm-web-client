@@ -37,7 +37,7 @@
 
       </div>
       <hr class="txt-hr my0">
-      <div v-if="tree">
+      <div v-if="deloTree">
         <Row type="flex">
           <Col>
           <div class="h-full bg-blue-thin">
@@ -153,7 +153,7 @@
       tree() {
         let res = [];
         if (this.dataStore) {
-          res = this.arrayToTree(this.dataStore.tree);
+          res = this.arrayToTree(this.deloTree);
         }
         return res;
       },
@@ -184,6 +184,7 @@
         this.deloTree.forEach((item) => {
           delete item['selected'];
           let copyNode = this.getCopyObj(item, 'selected', 'children', 'height');
+          copyNode = JSON.stringify(copyNode);
 
           this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === copyNode);
         });
