@@ -1,110 +1,147 @@
 <template>
 
-  <div v-if="body" class="px36 pb6">
-    <div class="adm-form">
+  <div v-if="body" class="ml18 mb18">
 
-      <div v-if="photos && photos.length > 0">
-        <hr class="txt-hr my24">
-        <h2 class="adm-text-big color-dark-light my12">Фотоматериалы</h2>
-        <div class="view-photos">
-          <div class="view-photos__min-section ">
-            <gallery :images="photos" :index="index" @close="index = null"></gallery>
-            <div class="view-photos_container flex-parent scroll-styled scroll-auto">
-              <div v-for="(image, imageIndex) in photos" :key="imageIndex" @click="index = imageIndex" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
-                <img alt="img" @load="checkPic($event.target)" :src="image"/>
+    <div class="amd-title px36 py24"><!-- wmax940 mx-auto -->
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <img src='../../assets/images/pen.svg' class="wmax-none">
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Фотофиксация нарушения</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
+
+
+    <div class="adm-form">
+      <div class="adm-form__container">
+        <h2 class="adm-text-big color-dark-light adm-form__headding">Фотоматериалы</h2>
+        <div class="adm-form__content px36">
+          <div v-if="photos && photos.length > 0">
+            <div class="view-photos">
+              <div class="view-photos__min-section ">
+                <gallery :images="photos" :index="index" @close="index = null"></gallery>
+                <div class="view-photos_container flex-parent scroll-styled scroll-auto">
+                  <div v-for="(image, imageIndex) in photos" :key="imageIndex" @click="index = imageIndex" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
+                    <img alt="img" @load="checkPic($event.target)" :src="image"/>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Номер нарушения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.docN"></Input>
-          </Col>
-        </Row>
+      <div class="adm-form__container">
+        <div class="adm-form__content px36">
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Номер нарушения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.docN"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время съемки</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.dopSved" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и время съемки</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly
-                   :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')"></Input>
-          </Col>
-        </Row>
-      </div>
+      <div class="adm-form__container">
+        <h2 class="adm-text-big color-dark-light adm-form__headding">Должностное лицо</h2>
+        <div class="adm-form__content px36">
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.inspSostKod"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.dopSved" type="textarea"
-                   :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <hr class="txt-hr my24"/>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.inspSostDolz"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <h2 class="adm-text-big color-dark-light my12">Должностное лицо</h2>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.inspSostRang"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostKod"></Input>
-          </Col>
-        </Row>
-      </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.organSostKod"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName" type="textarea"
-                   :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostDolz"></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.inspSostRang"></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.organSostKod"></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" type="textarea"
-                   :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -260,4 +297,26 @@
   }
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped lang="scss">
+  .adm-form-content{
+    // border: 1px solid #000;
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: 90px;
+    // outline: 1px solid;
+  }
+  .adm-form__label{
+    padding: 0;
+    min-width: 210px;
+    padding-right: 12px;
+  }
+  .adm-form__item_content{
+    width: 100%;
+  }
+</style>
+
