@@ -276,6 +276,8 @@ html, body, #app {
     line-height: 100%!important;
   }
   .ivu-table-header {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26), 0 2px 10px 0 rgba(0,0,0,0.16);
+    position: relative;
     // &:after{
     //   content: "";
     //   position: absolute;
@@ -289,7 +291,8 @@ html, body, #app {
 
         th {
           height: 50px;
-          background-color: #fff;
+          background-color: #FAFAFA;
+          padding: 13px 0px;
           vertical-align: top;
 
           .ivu-table-cell {
@@ -300,7 +303,8 @@ html, body, #app {
     }
   }
   .ivu-table-body {
-    box-shadow: 1px -1px 7px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    // box-shadow: 1px -1px 7px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+    // box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26), 0 2px 10px 0 rgba(0,0,0,0.16);
     table {
       .ivu-table-tbody {
         tr {

@@ -10,7 +10,7 @@ import FrmEdVuPredEdit from '../components/delo/edit/FrmEdVuPredEdit';
 import FrmEdVuVydEdit from '../components/delo/edit/FrmEdVuVydEdit';
 import FrmEdDocsPostEdit from '../components/delo/edit/FrmEdDocsPostEdit';
 import FrmEdDecisEdit from '../components/delo/edit/FrmEdDecisEdit';
-import FrnEdVehsAMTCEdit from '../components/delo/edit/FrnEdVehsAMTCEdit';
+import FrmEdVehsAMTCEdit from '../components/delo/edit/FrmEdVehsAMTCEdit';
 import FrmEdUchastFLIndividEdit from '../components/delo/edit/FrmEdUchastFLIndividEdit';
 import FrmEdUchastFLOrganizationEdit from '../components/delo/edit/FrmEdUchastFLOrganizationEdit';
 import PlaceViewEdit from '../components/delo/edit/PlaceViewEdit';
@@ -85,9 +85,9 @@ const router = new Router({
       props: true
     },
     {
-      path: '/frnEdVehsAMTCEdit',
-      name: 'FrnEdVehsAMTCEdit',
-      component: FrnEdVehsAMTCEdit,
+      path: '/frmEdVehsAMTCEdit',
+      name: 'FrmEdVehsAMTCEdit',
+      component: FrmEdVehsAMTCEdit,
       props: true
     },
     {
