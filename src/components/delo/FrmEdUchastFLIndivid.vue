@@ -3,7 +3,7 @@
     <div class="amd-title px36 py24"><!-- wmax940 mx-auto -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
           <div class="flex-parent flex-parent--center-cross">
-            <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <Button @click="getUchastFLIndividEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
               <img src='../../assets/images/pen.svg' class="wmax-none">
             </Button>
             <b class="adm-text-big color-dark-lighter">Участник дела</b>
@@ -108,6 +108,27 @@
           return funcUtils.isNotEmpty(field) && field.length > 0;
         }
         return funcUtils.isNotEmpty(field);
+      },
+      getUchastFLIndividEdit() {
+        try {
+          let current = formStack.getCurrent();
+          let currentForm = innerFormStack.getCurrent({
+            uid: current.moduleName
+          });
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmEdUchastFLIndividEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
       },
     },
     computed: {
