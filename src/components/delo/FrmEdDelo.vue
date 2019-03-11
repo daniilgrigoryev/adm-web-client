@@ -7,6 +7,20 @@
 
     <div>
 
+
+
+      <p class="adm-text-big color-dark-lighter">Статья КЗФоАП</p>
+      <h1 class="adm-h1 color-dark-lighter">{{viol.violStotvKod}}</h1>
+      <p class="adm-txt-regular color-dark-lighter txt-em">{{viol.violStotvName}}</p>
+
+
+      <p class="adm-text-big color-dark-lighter">Пункт НПА</p>
+      <h1 class="adm-h1 color-dark-lighter">{{viol.violPnpaKod}}</h1>
+      <p class="adm-txt-regular color-dark-lighter txt-em">{{viol.violPnpaName}} </p>
+  
+
+
+
       <div class="flex-parent flex-parent--center-cross">
         <h2 class="adm-15 adm-font-light color-dark-lighter">Основные сведения</h2>
         <Button  @click="getDeloEdit" type="text" style="outline: 0!important;" class="px0 py0 mx12 my6 cursor-pointer border" title="Редактировать">
@@ -486,6 +500,7 @@
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.viol;
+          debugger
         }
         return res;
       },
