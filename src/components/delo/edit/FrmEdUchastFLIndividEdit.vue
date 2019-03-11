@@ -90,17 +90,6 @@
         </div>
 
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Отчество</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.thirdName" ></Input>
-              </Col>
-            </Row>
-          </div>
-        </div>
-
-        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">

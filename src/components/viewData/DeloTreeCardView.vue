@@ -135,7 +135,15 @@
         alert(e.message);
       }
     },
-    destroyed() {
+    async destroyed() {
+      /*await this.clearInnerStack();
+      let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
+      sessionStorage.removeItem(uid);
+      let current = formStack.getCurrent();
+      let item = formStack.searchByCid({
+        cid: current.cid
+      });*/
+
       this.$store.dispatch('deloTreeCardViewSetCid', null);
       this.$store.dispatch('deloTreeCardViewSetData', null);
     },

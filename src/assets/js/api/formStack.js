@@ -135,12 +135,14 @@ export function searchByCid(payload) {
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
   let cid = payload.cid;
-  for (let i = stack.size() - 1; i >= 0; i--) {
+  let i = stack.size() - 1;
+  while (i !== 0) {
     let item = stack.indexOf(i);
     if (item.cid === cid) {
       res = item;
       break;
     }
+    i--;
   }
   return res;
 }
