@@ -64,6 +64,9 @@
       iconNode() {
         let node = this.node;
         switch (node.recType) {
+          case "DELO": {
+            return delo;
+          }
           case "UCHASTFL":
           case "UCHASTUL":
           case "UCHASTOTHER": {

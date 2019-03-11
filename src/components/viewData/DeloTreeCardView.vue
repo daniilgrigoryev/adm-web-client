@@ -204,6 +204,10 @@
         let arrElem;
         let mappedElem;
 
+        let copyDelo = JSON.parse(JSON.stringify(arr[0]));
+        delete copyDelo['children'];
+        tree.push(copyDelo);
+
         for (let i = 0, len = arr.length; i < len; i++) {
           arrElem = arr[i];
           arrElem.height = 0;
@@ -226,6 +230,7 @@
             }
           }
         }
+
         return tree;
       },
       fillTree(tree, node, parent) {
