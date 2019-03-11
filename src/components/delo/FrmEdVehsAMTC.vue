@@ -301,7 +301,7 @@
           };
 
           formStack.toNext({
-            module: this.$store.state.frnEdVehsAMTCEdit,
+            module: this.$store.state.frmEdVehsAMTCEdit,
             vm: this,
             notRemoved: false,
             params: params,

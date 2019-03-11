@@ -13,7 +13,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="vehsAMTC.regno"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.regno"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="vehsAMTC.modifavtoName"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.modifavtoName"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="vehsAMTC.vin"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.vin"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -75,7 +75,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="vehsAMTC.nkuzov"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.nkuzov"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -86,7 +86,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="vehsAMTC.nshasi"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.nshasi"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -112,7 +112,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="vehsAMTC.massa"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massa"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -123,7 +123,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="vehsAMTC.massaMax"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massaMax"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -135,7 +135,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <!--<Input class="adm-input adm-input&#45;&#45;regular" v-model="vehsAMTC.yearVyp"></Input>-->
-                      <input-mask v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" inputClass="adm-input adm-input--regular" clearable></input-mask>
+                      <input-mask v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable></input-mask>
                     </Col>
                   </Row>
                 </div>
@@ -218,7 +218,7 @@
             <div class="adm-form__item_content">
               <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="vehsAMTC.ctc"></Input>
+                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ctc"></Input>
                 </Col>
               </Row>
             </div>
@@ -229,7 +229,7 @@
             <div class="adm-form__item_content">
               <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="vehsAMTC.ptcN"></Input>
+                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ptcN"></Input>
                 </Col>
               </Row>
             </div>
@@ -251,7 +251,7 @@
             <div class="adm-form__item_content">
               <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="vehsAMTC.ptcKemVydan"></Input>
+                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ptcKemVydan"></Input>
                 </Col>
               </Row>
             </div>
@@ -262,7 +262,7 @@
             <div class="adm-form__item_content">
               <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="vehsAMTC.osagoN"></Input>
+                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.osagoN"></Input>
                 </Col>
               </Row>
             </div>
@@ -316,14 +316,14 @@
   import InputMask from "../../InputMask";
 
   export default {
-    name: "FrnEdVehsAMTCEdit",
+    name: "FrmEdVehsAMTCEdit",
     components: {
       InputMask
     },
     async created() {
       try {
         let current = formStack.getCurrent();
-        await this.$store.dispatch('frnEdVehsAMTCEditSetCid', current.cid);
+        await this.$store.dispatch('frmEdVehsAMTCEditSetCid', current.cid);
         let prepareParams = {
           method: 'restore'
         };
@@ -359,8 +359,8 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frnEdVehsAMTCEditSetCid', null);
-      this.$store.dispatch('frnEdVehsAMTCEditSetData', null);
+      this.$store.dispatch('frmEdVehsAMTCEditSetCid', null);
+      this.$store.dispatch('frmEdVehsAMTCEditSetData', null);
     },
     data() {
       return {

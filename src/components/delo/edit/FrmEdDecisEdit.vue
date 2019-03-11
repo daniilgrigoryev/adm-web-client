@@ -15,7 +15,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Часы обязательных работ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.hoursToWork" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.hoursToWork" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -23,7 +23,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Лишение месяцы</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.lishMes" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.lishMes" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -31,7 +31,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Лишение дни</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.lishDay" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.lishDay" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -39,7 +39,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дисквалификация месяцы</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.diskvMes" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.diskvMes" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -47,7 +47,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дисквалификация дни</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.diskvDay" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.diskvDay" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -55,7 +55,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Арест дни</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.arestDay" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.arestDay" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -143,7 +143,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Код решения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="decis.decisKod" clearable filterable @on-change="store">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="decis.decisKod" clearable filterable @on-input-change="store">
               <Option class="wmax360 txt-break-word" v-for="item in decisList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -153,7 +153,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Текст решения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.decisFormtxt" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.decisFormtxt" @on-input-change="store" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -161,7 +161,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.dopSved" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.dopSved" @on-input-change="store" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
         </Row>
       </div>
@@ -169,7 +169,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.sumShtraf" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.sumShtraf" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -177,7 +177,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Недостатки</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.nedostat" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.nedostat" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -185,7 +185,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Предмет доследования</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.predmetDosled" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.predmetDosled" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -193,7 +193,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Основание переноса</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.perenosOsnovanie" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.perenosOsnovanie" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -201,7 +201,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Основание отмены</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.otmenaOsnovanie" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.otmenaOsnovanie" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -209,7 +209,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Входящий номер</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.vxodNumb" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.vxodNumb" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -217,7 +217,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">УИН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.uin" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.uin" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -225,7 +225,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Результат экспертизы</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.rezExpert" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.rezExpert" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -233,7 +233,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаченная</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.sumOpl" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.sumOpl" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -241,7 +241,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Сумма не оплаченная</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.sumNopl" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.sumNopl" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -372,7 +372,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.period" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.period" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -380,7 +380,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Размерность для срока</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.periodDim" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.periodDim" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -388,7 +388,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок 2</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.period2" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.period2" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
@@ -396,7 +396,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Размерность для срока 2</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.period2Dim" placeholder="Enter something..."></Input>
+            <Input class="adm-input adm-input--regular" v-model="decis.period2Dim" @on-input-change="store" placeholder="Enter something..."></Input>
           </Col>
         </Row>
       </div>
