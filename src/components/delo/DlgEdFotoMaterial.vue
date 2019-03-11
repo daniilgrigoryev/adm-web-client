@@ -18,25 +18,9 @@
 
 
     <div class="adm-form">
-      <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Фотоматериалы</h2>
-        <div class="adm-form__content px36">
-          <div v-if="photos && photos.length > 0">
-            <div class="view-photos">
-              <div class="view-photos__min-section ">
-                <gallery :images="photos" :index="index" @close="index = null"></gallery>
-                <div class="view-photos_container flex-parent scroll-styled scroll-auto">
-                  <div v-for="(image, imageIndex) in photos" :key="imageIndex" @click="index = imageIndex" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
-                    <img alt="img" @load="checkPic($event.target)" :src="image"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="adm-form__container">
+
+      <div class="adm-form__container mt0">
         <div class="adm-form__content px36">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Номер нарушения</small>
@@ -73,6 +57,24 @@
         </div>
       </div>
 
+      <div class="adm-form__container">
+        <h2 class="adm-text-big color-dark-light adm-form__headding">Фотоматериалы</h2>
+        <div class="adm-form__content px36">
+          <div v-if="photos && photos.length > 0">
+            <div class="view-photos">
+              <div class="view-photos__min-section ">
+                <gallery :images="photos" :index="index" @close="index = null"></gallery>
+                <div class="view-photos_container flex-parent scroll-styled scroll-auto">
+                  <div v-for="(image, imageIndex) in photos" :key="imageIndex" @click="index = imageIndex" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
+                    <img alt="img" @load="checkPic($event.target)" :src="image"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Должностное лицо</h2>
         <div class="adm-form__content px36">

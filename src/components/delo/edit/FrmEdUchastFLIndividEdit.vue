@@ -1,157 +1,205 @@
 <template>
-  <div v-if="uchastIndivid">
+  <div v-if="uchastIndivid" class="wmax940 mx-auto">
     <Button @click="getPrev" type="text">Назад</Button>
     <Button @click="save" type="text">Сохранить</Button>
 
-    <div class="adm-form">
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">АМТС</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.vehsId" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
+    <div class="amd-title px36 py24">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <b class="adm-text-big color-dark-lighter">Участник дела</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
       </div>
+    </div>
+  
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Вид участника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.uchastVid" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
+    <div class="adm-form bg-white">
+      <div class="adm-form__container mt0 px36">
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">АМТС</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.vehsId" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Вид участника</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.uchastVid" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Тип участника</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.uchastTip" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">СНИЛС</small>
+          <div class="adm-form__item_content">
+          <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.snils" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Ранг</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.rang" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Фамилия</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.firstName" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Имя</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.secondName" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Отчество</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.thirdName" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <input-mask v-model="uchastIndivid.individ.birthdayDay" :maskProps="maskInputBirthday" :value="uchastIndivid.individ.birthdayDay" inputClass="adm-input adm-input--regular" @onInputChange="store" :clearable="true"></input-mask>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Пол</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.individ.sex" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.individ.birthMestoKod" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in birthMestoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Гражданство</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.individ.gragdKod" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">ИНН</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.inn" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан ИНН</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.innKemVydan" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Телефон</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.phone" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
       </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Тип участника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.uchastTip" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">СНИЛС</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="uchastIndivid.snils" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Ранг</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="uchastIndivid.rang" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Фамилия</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.firstName" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Имя</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.secondName" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Отчество</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.thirdName" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <input-mask v-model="uchastIndivid.individ.birthdayDay" :maskProps="maskInputBirthday" :value="uchastIndivid.individ.birthdayDay" inputClass="adm-input adm-input--regular" @onInputChange="store" :clearable="true"></input-mask>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Пол</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.individ.sex" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.individ.birthMestoKod" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in birthMestoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Гражданство</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastIndivid.individ.gragdKod" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ИНН</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.inn" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан ИНН</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.innKemVydan" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Телефон</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="uchastIndivid.individ.phone" ></Input>
-          </Col>
-        </Row>
-      </div>
-
     </div>
   </div>
 </template>
@@ -335,6 +383,25 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .adm-form-content{
 
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    // outline: 1px solid red;
+    padding-bottom: 20px;
+    // min-height: 90px;
+  }
+  .adm-form__label{
+    padding: 0;
+    padding-right: 12px;
+    min-width: 210px;
+  }
+  .adm-form__item_content{
+    width: 100%;
+  }
 </style>

@@ -28,7 +28,7 @@
           <div class="grid">
             <div class="col">
               <div class="px12">
-                <p class="adm-text-big color-dark-lighter">Статья КЗФоАП</p>
+                <p class="adm-text-big color-dark-lighter">Статья КРФоАП</p>
                 <h1 class="adm-h1 color-dark-lighter">{{viol.violStotvKod}}</h1>
                 <p class="adm-txt-regular color-dark-lighter txt-em wmax300">{{viol.violStotvName}}</p>
               </div>
