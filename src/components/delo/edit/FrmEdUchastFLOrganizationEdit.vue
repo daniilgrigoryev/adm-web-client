@@ -57,6 +57,41 @@
       </div>
 
       <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Адрес регистрации</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.organization.address.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="getregAddr" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+          </Col>
+        </Row>
+      </div>
+
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Тип ЮР лица</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastOrganization.organization.tip" clearable filterable @on-change="store">
+              <Option class="wmax360 txt-break-word" v-for="item in tipULList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </div>
+
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Фактический адрес</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.factAddr.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="getFactAddr" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+          </Col>
+        </Row>
+      </div>
+
+      <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Название</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -208,6 +243,7 @@
           await this.fillFormSobstvList();
           await this.fillOrgFormList();
           await this.fillVedomsList();
+          await this.fillTipULListList();
 
           uchastOrganization.organization.priznOffice = uchastOrganization.organization.priznOffice === '+';
 
@@ -234,6 +270,7 @@
         formSobstvList: null,
         orgFormList: null,
         vedomsList: null,
+        tipULList: null,
       }
     },
     methods: {
@@ -326,6 +363,49 @@
           });
         }
         this.vedomsList = vedomsList;
+      },
+      async fillTipULListList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getUlTipDictionary'
+        });
+        let tipULList = [];
+        let tipULDict = JSON.parse(eventResponse.response).data;
+        for (let i = 0; i < tipULDict.length; i++) {
+          let tipUL = tipULDict[i];
+          tipULList.push({
+            label: tipUL.TIP_UL_NAME,
+            value: tipUL.TIP_UL_NAME
+          });
+        }
+        this.tipULList = tipULList;
+      },
+      async getFactAddr() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getFactAddrCID'
+        });
+        let cid = JSON.parse(eventResponse.response).data;
+
+        formStack.toNext({
+          module: this.$store.state.addressViewEdit,
+          vm: this,
+          notRemoved: false,
+          withCreate: false,
+          cid: cid
+        });
+      },
+      async getregAddr() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getRegAddrCID'
+        });
+        let cid = JSON.parse(eventResponse.response).data;
+
+        formStack.toNext({
+          module: this.$store.state.addressViewEdit,
+          vm: this,
+          notRemoved: false,
+          withCreate: false,
+          cid: cid
+        });
       },
       store() {
         let copy = JSON.parse(JSON.stringify(this.uchastOrganization));
