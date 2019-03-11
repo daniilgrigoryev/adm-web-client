@@ -1,41 +1,49 @@
 <template>
   <div v-if="dataStore" class="layout">
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
-      <div v-if="deloContext" class="bg-white" style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;">
 
-        <div class="flex-parent flex-parent--space-between-main">
-          
-          <div>
+
+      <div v-if="deloContext" class="bg-white"><!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
+        
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross h120 px60">
+          <div class="flex-parent flex-parent--center-cross">
             <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
               <span class="adm-h3">Дело №</span>
-              <span class="adm-s28">{{deloContext.deloN}}</span>
+              <span class="adm-h1">{{deloContext.deloN}}</span>
             </a>
-            <div>
-              <span class="adm-txt-regular line30_letter02 color-dark-lighter">{{deloContext.deloDate | formatDateTime('DD.MM.YYYY')}}</span>
-              <span class="adm-txt-regular line30_letter02 color-dark-lighter ml24">{{deloContext.stadName}}</span>
-            </div>
+            <p class="color-green-base ml24 flex-parent flex-parent--center-cross">
+              <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23" /> 
+              <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
+            </p>
           </div>
 
           <div>
-            <Button type="primary" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button>
-            <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
-            <Button type="default" @click="addUchastWizard">Добавить участника</Button>
+            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+              <span>Возбуждение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
+            </Button>
+            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+              <span>Рассмотрение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
+            </Button>
+            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+              <span>Исполнение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
+            </Button>
 
             <Button type="text" class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
               <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
-              <span style="	color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
+              <span style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
             </Button>
+
+            <Button type="default" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button>
+            <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
+            <Button type="default" @click="addUchastWizard">Добавить участника</Button>
           </div>
         </div>
 
-        <div class="mt24">
-          <b class="adm-text-big line30_letter02 color-dark-lighter">Статья дела</b>
-          <p class="adm-txt-regular color-dark-lighter">{{deloContext.stotvKod + ', ' +deloContext.stotvName}}</p>
-        </div>
-
-
 
       </div>
+
+
+
       <hr class="txt-hr my0">
       <div v-if="deloTree">
         <Row type="flex">
