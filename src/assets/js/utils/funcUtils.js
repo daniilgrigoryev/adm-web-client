@@ -120,7 +120,7 @@ export function convertNumberToDate(num) {
   return new Date(num);
 }
 
-export function replacer(key, value) {
+export function undefinedJSONreplacer(key, value) {
   if (typeof value === 'undefined') {
     return null;
   }

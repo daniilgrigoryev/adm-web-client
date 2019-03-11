@@ -90,7 +90,7 @@
           method: 'storeElementData',
           params: {
             eCID: params.eCID,
-            data: JSON.stringify(params.data, funcUtils.replacer)
+            data: JSON.stringify(params.data, funcUtils.undefinedJSONreplacer)
           }
         });
         let cids = JSON.parse(eventResponse.response).data;

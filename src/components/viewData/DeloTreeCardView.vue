@@ -37,7 +37,7 @@
 
       </div>
       <hr class="txt-hr my0">
-      <div v-if="deloTree">
+      <div v-if="tree">
         <Row type="flex">
           <Col>
           <div class="h-full bg-blue-thin">
@@ -103,7 +103,7 @@
 
         if (this.sizeInnerStack === 0) {
           if (this.$refs.innerForm) {
-            await this.$refs.innerForm.addForm(this.deloInfo);
+            this.nodeClick(this.deloInfo);
           }
         } else {
           this.updateSelected();
@@ -143,7 +143,7 @@
       deloTree() {
         let res = [];
         if (this.dataStore) {
-          for (let i = 1; i < this.dataStore.tree.length; i++) {
+          for (let i = 0; i < this.dataStore.tree.length; i++) {
             let item = this.dataStore.tree[i];
             res.push(item);
           }
@@ -153,7 +153,7 @@
       tree() {
         let res = [];
         if (this.dataStore) {
-          res = this.arrayToTree(JSON.parse(JSON.stringify(this.dataStore.tree)));
+          res = this.arrayToTree(this.dataStore.tree);
         }
         return res;
       },
@@ -183,16 +183,38 @@
         });
         this.deloTree.forEach((item) => {
           delete item['selected'];
-          this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === JSON.stringify(item));
+          let copyNode = this.getCopyObj(item, 'selected', 'children', 'height');
+
+          this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === copyNode);
         });
+      },
+      getCopyObj(node) {
+        let cache = [];
+        let objectJSONreplacer = function(key, value) {
+          if (typeof value === 'object' && funcUtils.isNotEmpty(value)) {
+            if (cache.indexOf(value) !== -1) {
+              try {
+                return JSON.parse(JSON.stringify(value));
+              } catch (error) {
+                return;
+              }
+            }
+            cache.push(value);
+          }
+          return value;
+        };
+        let copyObj = JSON.parse(JSON.stringify(node, objectJSONreplacer));
+        cache = null;
+        if (arguments.length > 1) {
+          for (let i = 1; i < arguments.length; i++) {
+            delete copyObj[arguments[i]];
+          }
+        }
+        return copyObj;
       },
       async nodeClick(node) {
         await this.clearInnerStack();
-
-        let copyNode = JSON.parse(JSON.stringify(node));
-        delete copyNode['selected'];
-        delete copyNode['children'];
-        delete copyNode['height'];
+        let copyNode = this.getCopyObj(node, 'selected', 'children', 'height');
 
         if (this.$refs.innerForm) {
           await this.$refs.innerForm.addForm(copyNode);
@@ -204,8 +226,7 @@
         let arrElem;
         let mappedElem;
 
-        let copyDelo = JSON.parse(JSON.stringify(arr[0]));
-        delete copyDelo['children'];
+        let copyDelo = this.getCopyObj(arr[0], 'children');
         tree.push(copyDelo);
 
         for (let i = 0, len = arr.length; i < len; i++) {
