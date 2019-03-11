@@ -1,6 +1,7 @@
 <template>
   <Input ref="maskedField"
          @input="onInput"
+         @on-input-change="onInputChange"
 
          :value="value"
          :class="inputClass"
@@ -110,6 +111,9 @@
     methods: {
       onInput(e) {
         this.$emit('input', e);
+      },
+      onInputChange(e) {
+        this.$emit('onInputChange', e);
       },
     }
   }
