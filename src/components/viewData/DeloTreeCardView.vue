@@ -238,6 +238,7 @@
 
         if (this.$refs.innerForm) {
           await this.$refs.innerForm.addForm(copyNode);
+          this.updateSelected();
         }
       },
       arrayToTree(arr) {
