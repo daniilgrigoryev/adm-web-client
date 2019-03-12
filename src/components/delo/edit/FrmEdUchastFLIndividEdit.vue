@@ -119,6 +119,9 @@
               <Col :xs="24" :md="14" :lg="16">
                 <Input class="adm-input adm-input--regular wmax360" disabled v-model="uchastIndivid.individ.address.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="getFactAddr" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              </Col>
             </Row>
           </div>
         </div>
@@ -128,6 +131,9 @@
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
                 <Input class="adm-input adm-input--regular wmax360" disabled v-model="uchastIndivid.factAddr.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="getFactAddr" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
               </Col>
             </Row>
           </div>
