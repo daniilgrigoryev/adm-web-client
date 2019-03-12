@@ -13,7 +13,7 @@
                     </b>
                 </div>
                 <ul>
-                    <li>
+                    <!-- <li>
                         <a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link active-link">
                             <div class="bg-red-faint mx18" style="width: 40px; height: 40px;">
                                 <img src="" alt="">
@@ -42,14 +42,6 @@
                             <div class="bg-red-faint mx18" style="width: 40px; height: 40px;">
                                 <img src="" alt="">
                             </div>
-                            <span class="adm-txt-regular color-gray-medium">Эвакуация</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
-                            <div class="bg-red-faint mx18" style="width: 40px; height: 40px;">
-                                <img src="" alt="">
-                            </div>
                             <span class="adm-txt-regular color-gray-medium">Пункт 4</span>
                         </a>
                     </li>
@@ -61,7 +53,7 @@
                             </div>
                             <span class="adm-txt-regular color-gray-medium">Справочник</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
                 
                 <small class="adm-btn-small color-dark-lighter mb12 align-center my12 txt-em">Версия 12.2 обновление 12.09.2018г</small>
