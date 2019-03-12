@@ -331,7 +331,7 @@
           cid: cid
         });
       },
-      async getregAddr() {
+      async getRegAddr() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getRegAddrCID'
         });
