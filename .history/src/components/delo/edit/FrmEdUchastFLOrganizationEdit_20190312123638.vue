@@ -19,7 +19,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="uchastOrganization.uchastVid" clearable filterable @on-change="store">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="uchastOrganization.uchastVid" clearable filterable @on-change="store">
                   <Option class="wmax360 txt-break-word" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
               </Col>

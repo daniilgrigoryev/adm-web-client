@@ -18,8 +18,6 @@
 
 
     <div class="adm-form">
-
-
       <div class="adm-form__container mt0">
         <div class="adm-form__content px36">
           <div class="adm-form__item">
@@ -32,7 +30,6 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Дата и время съемки</small>
             <div class="adm-form__item_content">
@@ -43,7 +40,6 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
             <div class="adm-form__item_content">
@@ -74,6 +70,7 @@
           </div>
         </div>
       </div>
+
       
       <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Должностное лицо</h2>
@@ -88,7 +85,6 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
             <div class="adm-form__item_content">
@@ -99,7 +95,6 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
             <div class="adm-form__item_content">
@@ -110,7 +105,6 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
             <div class="adm-form__item_content">
@@ -121,7 +115,6 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
             <div class="adm-form__item_content">
@@ -132,7 +125,6 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
             <div class="adm-form__item_content">
