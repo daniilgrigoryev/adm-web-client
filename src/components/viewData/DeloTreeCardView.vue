@@ -50,7 +50,7 @@
           <Col>
           <div class="h-full bg-blue-thin">
             <ul class="tree">
-              <tree-node v-for="(item, index) in tree" :key="index" :node="item" @nodeClick="nodeClick"></tree-node>
+              <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
             </ul>
           </div>
           </Col>
