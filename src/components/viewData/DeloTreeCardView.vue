@@ -18,9 +18,38 @@
           </div>
 
           <div>
-            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
-              <span>Возбуждение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
-            </Button>
+
+
+            <Poptip word-wrap width="350">
+              <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+                <span>Возбуждение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
+              </Button>
+              <div slot="content" class="px0">
+                <ul>
+                  <li>
+                    <Button type="text" class="adm-btn-regular w-full align-l border">Протокол АПН на бланке</Button>
+                  </li>
+                  <li>
+                    <Button type="text" class="adm-btn-regular w-full align-l">Протокол АПН на A4 , статья 20.25 ч.1</Button>
+                  </li>
+                  <li>
+                    <Button type="text" class="adm-btn-regular w-full align-l">Определение о возбуждении дела</Button>
+                  </li>
+                  <li>
+                    <Button type="text" class="adm-btn-regular w-full align-l">Протокол задержания ТС</Button>
+                  </li>
+                  <li>
+                    <Button type="text" class="adm-btn-regular w-full align-l">Протокол изъятия вещей и документов</Button>
+                  </li>
+                  <li>
+                    <Button type="text" class="adm-btn-regular w-full align-l">Протокол осмотра места</Button>
+                  </li>
+                </ul>
+              </div>
+            </Poptip>
+
+
+
             <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
               <span>Рассмотрение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
             </Button>

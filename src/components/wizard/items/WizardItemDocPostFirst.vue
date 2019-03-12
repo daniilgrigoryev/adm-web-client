@@ -1,5 +1,5 @@
 <template>
-  <div v-if="data">
+ <div v-if="data">
 
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
