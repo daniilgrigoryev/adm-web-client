@@ -130,11 +130,10 @@ export function stackIndexOf(index) {
   return res;
 }
 
-export function searchByCid(payload) {
+export function searchByCid(cid) {
   let res = null;
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
-  let cid = payload.cid;
   let i = stack.size() - 1;
   while (i !== 0) {
     let item = stack.indexOf(i);
