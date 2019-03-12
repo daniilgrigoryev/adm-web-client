@@ -83,7 +83,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="uchastOrganization.organization.dateReg" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="uchastOrganization.organization.dateReg" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
               </Col>
             </Row>
           </div>

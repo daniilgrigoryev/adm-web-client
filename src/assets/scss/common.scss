@@ -623,3 +623,15 @@ html, body, #app {
   }
 }
 
+
+.adm-wizard-modal{
+  position: absolute;
+  background-color: #fafafa;
+  z-index: 5;
+  // top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  min-height: calc(100vh - 66px);
+  padding-top: 40px;
+}
