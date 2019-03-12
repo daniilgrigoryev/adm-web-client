@@ -1,6 +1,6 @@
 <template>
   <div>
-    <li @click="rowClick">
+    <li @click="parentNodeClick">
       <a href="#" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : node.selected }'>
         <div class="ml18" style="width: 40px; height: 40px;">
           <img :src="iconNode" alt="">
@@ -19,6 +19,7 @@
       :style="isParent ? 'padding-left: 30px' : ''"
       v-for="(nodeChild, index) in node.children"
       :key="index"
+      @nodeClick="nodeClick(nodeChild)"
       :node="nodeChild">
     </tree-node>
   </div>
@@ -26,7 +27,6 @@
 
 <script>
   import * as funcUtils from "../assets/js/utils/funcUtils";
-  import {bus} from "../assets/js/utils/bus";
   import docTipEnum from "../assets/js/utils/docTipEnum";
   import decisIspolnEnum from "../assets/js/utils/decisIspolnEnum";
   import * as ispolnShtraf from '../assets/images/ispolnShtraf.png';
@@ -173,17 +173,17 @@
       },
     },
     methods: {
-      rowClick() {
-        this.nodeClick();
+      parentNodeClick() {
+        this.nodeClick(this.node);
         this.toggle();
+      },
+      nodeClick(node) {
+        this.$emit('nodeClick', node);
       },
       toggle() {
         if (this.isFolder && this.isParent) {
           this.open = !this.open;
         }
-      },
-      nodeClick() {
-        bus.$emit('treeNodeClick', this.node);
       }
     }
   }

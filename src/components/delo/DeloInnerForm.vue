@@ -75,8 +75,6 @@
     computed: {},
     methods: {
       async addForm(node) {
-
-
         let eventResponse = await RequestApi.prepareData({
           method: 'getBeanNameByNode',
           params: {

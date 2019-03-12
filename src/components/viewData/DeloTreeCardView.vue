@@ -50,7 +50,7 @@
           <Col>
           <div class="h-full bg-blue-thin">
             <ul class="tree">
-              <tree-node v-for="(item, index) in tree" :key="index" :node="item"></tree-node>
+              <tree-node v-for="(item, index) in tree" :key="index" :node="item" @nodeClick="nodeClick"></tree-node>
             </ul>
           </div>
           </Col>
@@ -67,7 +67,6 @@
 
 <script>
   import * as funcUtils from "../../assets/js/utils/funcUtils";
-  import {bus} from "../../assets/js/utils/bus";
   import * as formStack from '../../assets/js/api/formStack';
   import Stack from '../../assets/js/api/stack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
@@ -108,7 +107,6 @@
 
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
-
         if (this.sizeInnerStack === 0) {
           if (this.$refs.innerForm) {
             this.nodeClick(this.deloInfo);
@@ -116,8 +114,6 @@
         } else {
           this.updateSelected();
         }
-
-        bus.$on('treeNodeClick', this.nodeClick);
 
         let vm = this;
         this.$store.watch(this.$store.getters.deloTreeCardViewGetCommand, async () => {
@@ -136,14 +132,7 @@
       }
     },
     async destroyed() {
-      /*await this.clearInnerStack();
-      let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
-      sessionStorage.removeItem(uid);
-      let current = formStack.getCurrent();
-      let item = formStack.searchByCid({
-        cid: current.cid
-      });*/
-
+      await this.clearIfExist();
       this.$store.dispatch('deloTreeCardViewSetCid', null);
       this.$store.dispatch('deloTreeCardViewSetData', null);
     },
@@ -189,6 +178,21 @@
       },
     },
     methods: {
+      async clearIfExist() {
+        let currentModuleName = this.$store.state.deloTreeCardView.moduleName;
+        let stackSize = formStack.stackSize();
+        let moduleNames = [];
+        for (let i = 0; i < stackSize; i++) {
+          let current = formStack.stackIndexOf(i);
+          moduleNames.push(current.moduleName);
+        }
+        let modulePos = moduleNames.indexOf(currentModuleName);
+        if (modulePos === -1) {
+          await innerFormStack.clearStack({ uid: currentModuleName });
+          let uid = currentModuleName + '-' + sessionStorage.getItem('admWid');
+          sessionStorage.removeItem(uid);
+        }
+      },
       async getDelo() {
         await this.nodeClick(this.deloInfo);
       },
@@ -301,9 +305,6 @@
         this.sizeInnerStack = innerFormStack.stackSize(params);
       },
       async getPrev() {
-        await this.clearInnerStack();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
-        sessionStorage.removeItem(uid);
         try {
           formStack.toPrev({
             vm: this
