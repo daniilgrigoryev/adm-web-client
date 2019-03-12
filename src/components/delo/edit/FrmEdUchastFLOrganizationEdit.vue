@@ -96,7 +96,7 @@
                 <Input class="adm-input adm-input--regular wmax360" disabled v-model="uchastOrganization.organization.address.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
               <Col :xs="24" :md="14" :lg="8">
-                <a href="#" @click="getregAddr" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+                <a href="#" @click="getRegAddr" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
               </Col>
             </Row>
           </div>
@@ -331,7 +331,7 @@
           cid: cid
         });
       },
-      async getregAddr() {
+      async getRegAddr() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getRegAddrCID'
         });
