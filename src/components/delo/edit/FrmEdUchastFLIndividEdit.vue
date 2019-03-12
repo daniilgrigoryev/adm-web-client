@@ -412,9 +412,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 20px;
+    padding-top: 12px;
     // outline: 1px solid red;
-    padding-bottom: 20px;
+    padding-bottom: 12px;
     // min-height: 90px;
   }
   .adm-form__label{

@@ -1,6 +1,7 @@
 <template>
-  <div v-if="delo">
+  <div v-if="delo" class="wmax940 mx-auto">
     <!-- данные по делу  -->
+    
 
     <Button @click="getPrev" type="text">Назад</Button>
     <Button @click="save" type="text">Сохранить</Button>

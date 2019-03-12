@@ -5,7 +5,7 @@
 
       <div v-if="deloContext" class="bg-white"><!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
         
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross h120 px60">
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross hmin120 px60">
           <div class="flex-parent flex-parent--center-cross">
             <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
               <span class="adm-h3">Дело №</span>
@@ -33,9 +33,12 @@
               <span style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
             </Button>
 
-            <Button type="default" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button>
-            <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
-            <Button type="default" @click="addUchastWizard">Добавить участника</Button>
+            <ButtonGroup>
+              <Button type="default" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button>
+              <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
+              <Button type="default" @click="addUchastWizard">Добавить участника</Button>
+            </ButtonGroup>
+
           </div>
         </div>
 
