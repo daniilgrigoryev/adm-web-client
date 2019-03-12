@@ -30,7 +30,9 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" @on-input-change="store" v-model="uchastIndivid.uchastTipName" ></Input>
+                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="uchastIndivid.uchastTip" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
               </Col>
             </Row>
           </div>
