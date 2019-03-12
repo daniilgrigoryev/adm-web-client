@@ -111,6 +111,27 @@
             </Row>
           </div>
         </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Адрес регистрации</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular wmax360" disabled v-model="uchastIndivid.individ.address.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Фактический адрес</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular wmax360" disabled v-model="uchastIndivid.factAddr.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
         <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Телефон</small>
           <div class="adm-form__item_content">
@@ -156,7 +177,7 @@
       </div> 
     </div>
 
-    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36">
+    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 my24">
       <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
       <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
     </div>
