@@ -68,7 +68,7 @@
 
                 <div class="flex-parent flex-parent--column flex-parent--center-main align-center mx-auto my-auto mb18">
                     <div style="width: 50px; height: 50px;" class="bg-blue-light mx-auto round-full txt-truncate">
-                        <img src="../assets/images/police.svg" style="fill: #fff;" alt="">
+                        <img src="../assets/images/police_white.svg" alt="">
                     </div>
                     <p class="adm-txt-regular color-dark-lighter mt12">Имя пользователя</p>
                     <small class="adm-btn-small color-dark-lighter mb12">Звание, Должность</small>
