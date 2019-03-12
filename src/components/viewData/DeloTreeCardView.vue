@@ -49,9 +49,7 @@
         <Row type="flex">
           <Col>
           <div class="h-full bg-blue-thin">
-            <ul class="tree">
-              <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
-            </ul>
+            <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
           </div>
           </Col>
           <Col class="col"> <!-- :xs="24" :sm="16" :md="16" :lg="16" -->
@@ -202,10 +200,8 @@
           uid: current.moduleName
         });
         this.deloTree.forEach((item) => {
-          delete item['selected'];
           let copyNode = this.getCopyObj(item, 'selected', 'children', 'height');
           copyNode = JSON.stringify(copyNode);
-
           this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === copyNode);
         });
       },

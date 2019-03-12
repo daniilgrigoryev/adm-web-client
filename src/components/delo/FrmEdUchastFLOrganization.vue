@@ -16,7 +16,7 @@
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container my0 mx0 py12 px36">
+      <div v-if="isNotEmptyField(body.organization.name)" class="adm-form__container my0 mx0 py12 px36">
         <div class="adm-form__item">
           <small class="adm-text-small adm-form__label">Наименование организации</small>
           <div class="adm-form__item_content">
@@ -27,7 +27,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.organization.inn)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">ИНН</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -37,7 +37,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.organization.ogrn)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">ОГРН</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -47,7 +47,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.organization.kpp)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">КПП</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -57,7 +57,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.organization.dateReg)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Дата регистрации</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -67,7 +67,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.organization.address.adrFull)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Адрес регистрации</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -77,7 +77,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.factAddr.adrFull)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Фактический адрес</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -87,7 +87,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <div v-if="isNotEmptyField(body.organization.address.phone)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">Телефон</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -117,6 +117,12 @@
       return {}
     },
     methods: {
+      isNotEmptyField(field) {
+        if (typeof field === 'string') {
+          return funcUtils.isNotEmpty(field) && field.length > 0;
+        }
+        return funcUtils.isNotEmpty(field);
+      },
       getUchastFLOrganizationEdit() {
         try {
           let current = formStack.getCurrent();

@@ -1,19 +1,21 @@
 <template>
   <div>
-    <li @click="parentNodeClick">
-      <a href="#" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : node.selected }'>
-        <div class="ml18" style="width: 40px; height: 40px;">
-          <img :src="iconNode" alt="">
-        </div>
-        <div class="col mx18">
-          <p v-html="node.name" class="adm-text-big color-dark-base txt-break-word"></p>
-        </div>
-        <span v-if="isParent && isFolder">
+    <ul class="tree">
+      <li @click="parentNodeClick">
+        <a href="javascript:void(0)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : node.selected }'>
+          <div class="ml18" style="width: 40px; height: 40px;">
+            <img :src="iconNode" alt="">
+          </div>
+          <div class="col mx18">
+            <p v-html="node.name" class="adm-text-big color-dark-base txt-break-word"></p>
+          </div>
+          <span v-if="isParent && isFolder">
           <img v-if='open' src='../assets/images/controls-switch-chevron-up.svg'>
           <img v-else src='../assets/images/controls-switch-chevron-down.svg'>
         </span>
-      </a>
-    </li>
+        </a>
+      </li>
+    </ul>
     <tree-node
       v-show="open"
       :style="isParent ? 'padding-left: 30px' : ''"
