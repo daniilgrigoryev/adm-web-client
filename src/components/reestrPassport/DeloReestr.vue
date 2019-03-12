@@ -152,7 +152,7 @@
             </Col>
             <Col :xs="24" :md="4" :lg="3">
               <div class="h-full flex-parent flex-parent--end-main flex-parent--wrap">
-                <Button @click="filterClick" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular my-auto w120 mr12">найти</Button>
+                <Button @click="filterClick" type="primary" class="adm-btn adm-btn-primary txt-uppercase adm-btn-regular my-auto w120 mr12">найти</Button>
 								<Button @click="clearFilter" type="default" class="adm-btn adm-btn-regular my-auto w120 mr12 mt6">Очистить</Button>
               </div>
             </Col>

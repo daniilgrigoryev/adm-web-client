@@ -2,7 +2,7 @@
   <div v-if="docsPost" class="wmax1280 mx-auto">
     <!-- данные по делу  -->
     <div class="mt24">
-      <Button @click="getPrev" type="primary" class="adm-btn adm-btn--blue txt-uppercase adm-btn-regular my-auto w120 mr12">Назад</Button>
+      <Button @click="getPrev" type="primary" class="adm-btn adm-btn-primary txt-uppercase adm-btn-regular my-auto w120 mr12">Назад</Button>
       <Button @click="save" type="default" class="adm-btn adm-btn-regular my-auto w120 ">Сохранить</Button>
     </div>
 
