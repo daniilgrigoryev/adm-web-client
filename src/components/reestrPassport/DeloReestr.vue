@@ -168,10 +168,11 @@
         </div>
       </div>
     </div>
-    <div v-if="!isEmptyData() && dataStore.data.data.length > 0" class="bg-white">
+    <div v-if="!isEmptyData()" class="bg-white">
       <div class="wmax1920 mx-auto">
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6">
           <div class="flex-parent flex-parent--center-cross">
+            <span v-if="dataStore.data.data.length > 0"> {{ declOfNum(dataStore.data.data.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ dataStore.data.data.length}} {{ declOfNum(dataStore.data.data.length, ['запись', 'записи', 'записей']) }}</span>
             <Page v-if="dataStore.data.data.length > limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 
@@ -345,6 +346,11 @@
     methods: {
       isEmptyData() {
         return funcUtils.isEmpty(this.dataStore) || funcUtils.isEmpty(this.dataStore.data);
+      },
+      declOfNum(number, titles) {
+        let cases = [2, 0, 1, 1, 1, 2];
+        number = Math.abs(number);
+        return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
       },
       async fillModule(eventResponse) {
         await this.$store.dispatch('fillModule', {'event': eventResponse});
