@@ -19,7 +19,7 @@
       :style="isParent ? 'padding-left: 30px' : ''"
       v-for="(nodeChild, index) in node.children"
       :key="index"
-      @nodeClick="nodeClick(nodeChild)"
+      :nodeClick="nodeClick"
       :node="nodeChild">
     </tree-node>
   </div>
@@ -44,7 +44,8 @@
   export default {
     name: "TreeNode",
     props: {
-      node: Object
+      node: Object,
+      nodeClick: Function
     },
     created() {
       this.open = this.node.height !== 3;
@@ -176,9 +177,6 @@
       parentNodeClick() {
         this.nodeClick(this.node);
         this.toggle();
-      },
-      nodeClick(node) {
-        this.$emit('nodeClick', node);
       },
       toggle() {
         if (this.isFolder && this.isParent) {
