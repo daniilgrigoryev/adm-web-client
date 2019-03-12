@@ -1,23 +1,21 @@
 <template>
   <div>
-    <div class="flex-parent flex-parent--center-cross">
-      <ul class="tree" style="width: 100%;">
-        <li @click="parentNodeClick">
-          <a href="javascript:void(0)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : node.selected }'>
-            <div class="ml18" style="width: 40px; height: 40px;">
-              <img :src="iconNode" alt="">
-            </div>
-            <div class="col mx18">
-              <p v-html="node.name" class="adm-text-big color-dark-base txt-break-word"></p>
-            </div>
-          </a>
-        </li>
-      </ul>
-      <span @click="toggle" v-if="isParent && isFolder" style="padding-left: 20px; cursor: pointer;">
-        <img v-if='open' class="py18" src='../assets/images/controls-switch-chevron-up.svg'>
-        <img v-else class="py18" src='../assets/images/controls-switch-chevron-down.svg'>
-      </span>
-    </div>
+    <ul class="tree">
+      <li @click="parentNodeClick">
+        <a href="javascript:void(0)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : node.selected }'>
+          <div class="ml18" style="width: 40px; height: 40px;">
+            <img :src="iconNode" alt="">
+          </div>
+          <div class="col mx18">
+            <p v-html="node.name" class="adm-text-big color-dark-base txt-break-word"></p>
+          </div>
+          <span v-if="isParent && isFolder">
+              <img v-if='open' src='../assets/images/controls-switch-chevron-up.svg'>
+              <img v-else src='../assets/images/controls-switch-chevron-down.svg'>
+            </span>
+        </a>
+      </li>
+    </ul>
     <tree-node
       v-show="open"
       :style="isParent ? 'padding-left: 30px' : ''"
@@ -180,6 +178,7 @@
     methods: {
       parentNodeClick() {
         this.nodeClick(this.node);
+        this.toggle();
       },
       toggle() {
         if (this.isFolder && this.isParent) {
