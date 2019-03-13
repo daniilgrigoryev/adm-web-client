@@ -1,11 +1,22 @@
 <template>
-  <div v-if="vehsAMTC" class="wmax1280 mx-auto">
-    <Button @click="getPrev" type="text">Назад</Button>
-    <Button @click="save" type="text">Сохранить</Button>
+  <div v-if="vehsAMTC" class="wmax940 mx-auto">
+    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Транспортное средство</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
 
-    <div class="adm-form">
-      <div class="adm-form__container py12">
-        <div class="adm-form__content px36">
+    <div class="adm-form bg-white">
+      <div class="adm-form__container my6 py24 px36">
+        <div class="adm-form__content">
           <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
@@ -18,7 +29,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Марка ТС</small>
                 <div class="adm-form__item_content">
@@ -31,9 +41,7 @@
                     </Col>
                   </Row>
                 </div>
-
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Модель ТС</small>
                 <div class="adm-form__item_content">
@@ -47,7 +55,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Модификация</small>
                 <div class="adm-form__item_content">
@@ -58,7 +65,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">VIN</small>
                 <div class="adm-form__item_content">
@@ -69,7 +75,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">№ кузова</small>
                 <div class="adm-form__item_content">
@@ -80,7 +85,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">№ шасси</small>
                 <div class="adm-form__item_content">
@@ -91,7 +95,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Экологический класс</small>
                 <div class="adm-form__item_content">
@@ -104,9 +107,7 @@
                     </Col>
                   </Row>
                 </div>
-
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Масса без нагрузки</small>
                 <div class="adm-form__item_content">
@@ -117,7 +118,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Максимальная масса</small>
                 <div class="adm-form__item_content">
@@ -128,7 +128,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Год выпуска</small>
                 <div class="adm-form__item_content">
@@ -140,7 +139,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Цвет</small>
                 <div class="adm-form__item_content">
@@ -151,7 +149,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Тип</small>
                 <div class="adm-form__item_content">
@@ -165,7 +162,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Тип кузова ТС</small>
                 <div class="adm-form__item_content">
@@ -179,7 +175,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Категория ТС</small>
                 <div class="adm-form__item_content">
@@ -193,7 +188,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Тип мотора ТС</small>
                 <div class="adm-form__item_content">
@@ -206,7 +200,6 @@
                     </Col>
                   </Row>  
                 </div>
-
               </div>
             </Col>
           </Row>
@@ -305,6 +298,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
+      <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
+      <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
     </div>
   </div>
 </template>
@@ -550,14 +547,16 @@
     },
   }
 </script>
+
 <style scoped lang="scss">
   .adm-form__item{
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    // outline: 1px solid;
+    padding-top: 12px;
+    // outline: 1px solid red;
+    padding-bottom: 12px;
+    // min-height: 90px;
   }
   .adm-form__label{
     padding: 0;
