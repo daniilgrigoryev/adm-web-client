@@ -19,18 +19,6 @@
     <div class="adm-form bg-white">
       <div class="adm-form__container my6 py24 px36">
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Вид участника</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="uchastIndivid.uchastVid" clearable filterable @on-change="store">
-                  <Option class="wmax360 txt-break-word" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Тип участника</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -123,11 +111,13 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Адрес регистрации</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular wmax360" disabled v-model="uchastIndivid.individ.address.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Col :xs="22" :md="22" :lg="22">
+                <Input class="adm-input adm-input--regular" disabled v-model="uchastIndivid.individ.address.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
-              <Col :xs="24" :md="14" :lg="8">
-                <a href="#" @click="getRegAddr" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              <Col :xs="2" :md="2" :lg="2">
+                <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+                  <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+                </Button>
               </Col>
             </Row>
           </div>
@@ -136,11 +126,13 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Фактический адрес</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular wmax360" disabled v-model="uchastIndivid.factAddr.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <Col :xs="22" :md="22" :lg="22">
+                <Input class="adm-input adm-input--regular" disabled v-model="uchastIndivid.factAddr.adrFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
-              <Col :xs="24" :md="14" :lg="8">
-                <a href="#" @click="getFactAddr" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              <Col :xs="2" :md="2" :lg="2">
+                <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+                  <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+                </Button>
               </Col>
             </Row>
           </div>
@@ -231,7 +223,6 @@
         } else {
           await this.fillVehsList();
           await this.fillTipList();
-          await this.fillVidList();
           await this.fillBirthMestoList();
           await this.fillGragdanstvoList();
 
@@ -254,7 +245,6 @@
         uchastIndivid: null,
         vehsList: null,
         tipList: null,
-        vidList: null,
         birthMestoList: null,
         gragdanstvoList: null,
         sexList: [
@@ -305,21 +295,6 @@
           });
         }
         this.tipList = tipList;
-      },
-      async fillVidList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getVidDictionary'
-        });
-        let vidList = [];
-        let vidDict = JSON.parse(eventResponse.response).data;
-        for (let i = 0; i < vidDict.length; i++) {
-          let vid = vidDict[i];
-          vidList.push({
-            label: vid.UCHAST_VID_NAME,
-            value: vid.UCHAST_VID
-          });
-        }
-        this.vidList = vidList;
       },
       async fillBirthMestoList() {
         let eventResponse = await RequestApi.prepareData({
