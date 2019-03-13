@@ -17,8 +17,6 @@
         <div>
           <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
 
-
-
             <wizard-item-doc-prot-evac v-if="isVisible('DocProtEvac')" ref="DocProtEvac" :info="getInfo('DocProtEvac')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-evac>
 
             <wizard-item-place v-if="isVisible('DocProtEvac.PlaceSost')" ref="DocProtEvac.PlaceSost" :info="getInfo('DocProtEvac.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
@@ -36,15 +34,7 @@
             <wizard-item-address v-if="isVisible('Witness2.regAddr')" ref="Witness2.regAddr" :info="getInfo('Witness2.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
           </Layout>
- 
-					<!-- <Row :gutter="16" type="flex" align="middle" justify="start">
-						<Col :xs="24" :md="14" :lg="17">
-							<div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
-                <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-                <Button @click="save" type="primary">Возбудить</Button>
-							</div>
-						</Col>
-					</Row> -->
+
           <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
             <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
             <Button @click="save" type="primary" class="ml12">Возбудить</Button>
