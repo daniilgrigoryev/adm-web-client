@@ -44,6 +44,7 @@ import wizardItemDecis from './modules/wizardItemDecis';
 import wizardItemDocPostFinal from './modules/wizardItemDocPostFinal';
 import wizardItemDocPostFirst from './modules/wizardItemDocPostFirst';
 import wizardItemDocPostSecond from './modules/wizardItemDocPostSecond';
+import wizardItemDocProtEvac from './modules/wizardItemDocProtEvac';
 import wizardItemDocProt2025 from './modules/wizardItemDocProt2025';
 import wizardItemDocProtRasm from './modules/wizardItemDocProtRasm';
 import wizardItemDocProtFirst from './modules/wizardItemDocProtFirst';
@@ -156,6 +157,7 @@ const store = new Vuex.Store({
     wizardItemDocProt2025,
     wizardItemDocProtRasm,
     wizardItemDocProtFirst,
+    wizardItemDocProtEvac,
     wizardItemIndividual,
     wizardItemLvok,
     wizardItemLvok2025,
