@@ -17,11 +17,13 @@
         <div>
           <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
 
-            <wizard-item-doc-prot-first v-if="isVisible('DocProtFirst')" ref="DocProtFirst" :info="getInfo('DocProtFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-first>
 
-            <wizard-item-place v-if="isVisible('DocProtFirst.PlaceSost')" ref="DocProtFirst.PlaceSost" :info="getInfo('DocProtFirst.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
-            <wizard-item-place v-if="isVisible('DocProtFirst.PlaceNar')" ref="DocProtFirst.PlaceNar" :info="getInfo('DocProtFirst.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+            <wizard-item-doc-prot-evac v-if="isVisible('DocProtEvac')" ref="DocProtEvac" :info="getInfo('DocProtEvac')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-evac>
+
+            <wizard-item-place v-if="isVisible('DocProtEvac.PlaceSost')" ref="DocProtEvac.PlaceSost" :info="getInfo('DocProtEvac.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+
+            <wizard-item-place v-if="isVisible('DocProtEvac.PlaceNar')" ref="DocProtEvac.PlaceNar" :info="getInfo('DocProtEvac.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
             <wizard-item-vehs v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
 
@@ -57,7 +59,7 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import WizardItemDocProtFirst from "~/components/wizard/items/WizardItemDocProtFirst";
+  import WizardItemDocProtEvac from "~/components/wizard/items/WizardItemDocProtEvac";
   import WizardItemPlace from "~/components/wizard/items/WizardItemPlace";
   import WizardItemAddress from "~/components/wizard/items/WizardItemAddress";
   import WizardItemIndividual from "~/components/wizard/items/WizardItemIndividual";
@@ -69,7 +71,7 @@
       pathes: Object
     },
     components: {
-      WizardItemDocProtFirst,
+      WizardItemDocProtEvac,
       WizardItemAddress,
       WizardItemIndividual,
       WizardItemPlace,
