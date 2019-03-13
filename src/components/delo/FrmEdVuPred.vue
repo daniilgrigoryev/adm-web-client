@@ -19,7 +19,7 @@
 
     <div class="adm-form">
       <div class="adm-form__container mt0">
-        <div class="adm-form__content px36">
+        <div class="adm-form__content py24 px36">
           <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
@@ -262,14 +262,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    min-height: 90px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    // min-height: 90px;
     // outline: 1px solid;
   }
   .adm-form__label{
     padding: 0;
-    min-width: 130px;
+    min-width: 210px;
     padding-right: 12px;
   }
   .adm-form__item_content{

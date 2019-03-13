@@ -171,8 +171,9 @@
     <div v-if="!isEmptyData()" class="bg-white">
       <div class="wmax1920 mx-auto">
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6 bg-white-light">
+          
           <div class="flex-parent flex-parent--center-cross">
-            <span v-if="dataStore.data.data.length > 0"> {{ declOfNum(dataStore.data.data.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ dataStore.data.data.length}} {{ declOfNum(dataStore.data.data.length, ['запись', 'записи', 'записей']) }}</span>
+            <p class="adm-txt-regular color-dark-medium ml18" v-if="dataStore.data.data.length > 0"> {{ declOfNum(dataStore.data.data.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ dataStore.data.data.length}} {{ declOfNum(dataStore.data.data.length, ['запись', 'записи', 'записей']) }}</p>
             <Page v-if="dataStore.data.data.length > limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 

@@ -2,18 +2,18 @@
   <div v-if="body" class="ml18"><!-- wmax1280 mx-auto -->
     <!-- постановление по делу -->
 
-    <div class="adm-title px36 py24"><!-- wmax940 mx-auto -->
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-          <div class="flex-parent flex-parent--center-cross">
-            <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-              <img src='../../assets/images/pen.svg' class="wmax-none">
-            </Button>
-            <b class="adm-text-big color-dark-lighter">Постановление по делу</b>
-          </div>
-          <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-            <img src='../../assets/images/wiki.svg' class="wmax-none">
+    <div class="amd-title amd-title--sticky bg-white px36 py24"><!-- wmax940 mx-auto -->
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
+          <b class="adm-text-big color-dark-lighter">Постановление по делу</b>
         </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
     </div>
 
     <div class="adm-form">

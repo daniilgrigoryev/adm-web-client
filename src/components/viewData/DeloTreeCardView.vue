@@ -17,29 +17,20 @@
           </div>
           
           <div>
-            <Poptip word-wrap width="350">
+            <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
               <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
                 <span>Возбуждение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
               </Button>
-              <div slot="content" class="px0">
-                <ul>
+              <div slot="content">
+                <ul class="amd-poptip-sub__nav">
                   <li>
-                    <Button type="text" class="adm-btn-regular w-full align-l border">Протокол АПН на бланке</Button>
+                    <Button type="text" class="adm-btn-regular">Определение о возбуждении дела</Button>
                   </li>
                   <li>
-                    <Button type="text" class="adm-btn-regular w-full align-l">Протокол АПН на A4 , статья 20.25 ч.1</Button>
+                    <Button type="text" class="adm-btn-regular">Протокол изъятия вещей и документов</Button>
                   </li>
                   <li>
-                    <Button type="text" class="adm-btn-regular w-full align-l">Определение о возбуждении дела</Button>
-                  </li>
-                  <li>
-                    <Button type="text" class="adm-btn-regular w-full align-l">Протокол задержания ТС</Button>
-                  </li>
-                  <li>
-                    <Button type="text" class="adm-btn-regular w-full align-l">Протокол изъятия вещей и документов</Button>
-                  </li>
-                  <li>
-                    <Button type="text" class="adm-btn-regular w-full align-l">Протокол осмотра места</Button>
+                    <Button type="text" class="adm-btn-regular">Протокол осмотра места</Button>
                   </li>
                 </ul>
               </div>
@@ -48,9 +39,28 @@
             <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
               <span>Рассмотрение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
             </Button>
-            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
-              <span>Исполнение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
-            </Button>
+
+            <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
+              <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+                <span>Исполнение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
+              </Button>
+              <div slot="content">
+                <ul class="amd-poptip-sub__nav">
+                  <li>
+                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол АПН на бланке</Button>
+                  </li>
+                  <li>
+                    <Button type="text" class="adm-btn-regular">Протокол АПН на A4, статья 20.25 ч.1</Button>
+                  </li>
+                  <li>
+                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление об АПН</Button>
+                  </li>
+                  <li>
+                    <Button @click="createWizardScenarioPZTC" type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
+                  </li>
+                </ul>
+              </div>
+            </Poptip>
 
             <Button type="text" class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
               <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
@@ -338,9 +348,67 @@
       },
       addUchastWizard() {
         try {
+          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
           let params = {
             scenarioName: 'AddUchast',
-            node: this.deloInfo
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioPZTC() {
+        try {
+          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let params = {
+            scenarioName: 'CreateProtPZTC',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioAPN() {
+        try {
+          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let params = {
+            scenarioName: 'CreateProtAPN',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioPost() {
+        try {
+          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let params = {
+            scenarioName: 'CreatePost',
+            node: copyNode
           };
 
           formStack.toNext({

@@ -1,8 +1,8 @@
 <template>
-  <div class="absolute bg-white z5 scroll-hidden" style="top: 0; bottom: 0; right: 0; left: 0; height: calc(100vh - 66px);">
+  <div class="adm-wizard-modal">
     <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
-      <Page v-if="limit" :total="data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
-      <Button type="text" @click="showModal(false)" class="px0 py0">
+      <Page v-if="limit" :total="data.length" :current="currentPage" :page-size="limit" class="ml12 adm-txt-regular" @on-change="changePage"/>
+      <Button type="text" @click="showModal(false)" class="px0 py0 bg-transparent" style="box-shadow: none">
         <div class="flex-parent flex-parent--center-cross">
           <div class="adm-text-big color-blue-base">Закрыть</div>
           <Icon type="md-close" size="50" class="color-blue-base cursor-pointer"/>
