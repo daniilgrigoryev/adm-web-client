@@ -24,16 +24,16 @@
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
                   <li>
-                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол АПН на бланке</Button>
+                    <Button type="text" class="adm-btn-regular">Протокол АПН на бланке</Button>
                   </li>
                   <li>
                     <Button type="text" class="adm-btn-regular">Протокол АПН на A4 , статья 20.25 ч.1</Button>
                   </li>
                   <li>
-                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Определение о возбуждении дела</Button>
+                    <Button type="text" class="adm-btn-regular">Определение о возбуждении дела</Button>
                   </li>
                   <li>
-                    <Button @click="createWizardScenarioPZTC" type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
+                    <Button type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
                   </li>
                   <li>
                     <Button type="text" class="adm-btn-regular">Протокол изъятия вещей и документов</Button>
@@ -48,9 +48,28 @@
             <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
               <span>Рассмотрение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
             </Button>
-            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
-              <span>Исполнение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
-            </Button>
+
+            <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
+              <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+                <span>Исполнение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
+              </Button>
+              <div slot="content">
+                <ul class="amd-poptip-sub__nav">
+                  <li>
+                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол АПН на бланке</Button>
+                  </li>
+                  <li>
+                    <Button type="text" class="adm-btn-regular">Протокол АПН на A4, статья 20.25 ч.1</Button>
+                  </li>
+                  <li>
+                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление об АПН</Button>
+                  </li>
+                  <li>
+                    <Button @click="createWizardScenarioPZTC" type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
+                  </li>
+                </ul>
+              </div>
+            </Poptip>
 
             <Button type="text" class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
               <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
