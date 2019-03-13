@@ -1,97 +1,127 @@
 <template>
-  <div v-if="docsPost" class="wmax1280 mx-auto">
+  <div v-if="docsPost" class="wmax940 mx-auto">
     <!-- данные по делу  -->
-    <div class="mt24">
-      <Button @click="getPrev" type="primary" class="adm-btn adm-btn-primary txt-uppercase adm-btn-regular my-auto w120 mr12">Назад</Button>
-      <Button @click="save" type="default" class="adm-btn adm-btn-regular my-auto w120 ">Сохранить</Button>
-    </div>
 
+    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Постановление по делу</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
 
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
-    <div class="adm-form">
-      <div class="adm-form__container py12">
-        <div class="adm-form__content px36">
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+    <div class="adm-form bg-white">
+      <div class="adm-form__container my6 py24 px36">
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+          <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
                 <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
               </Col>
             </Row>
           </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+          <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
                 <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
               </Col>
             </Row>
           </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
+          <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="docsPost.pnpaId" clearable filterable @on-change="store">
+              <Col :xs="24" :md="24" :lg="24">
+                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="docsPost.pnpaId" clearable filterable @on-change="store">
                   <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                 </Select>
               </Col>
             </Row>
           </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+          <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="docsPost.stotvId" clearable filterable :disabled="!docsPost.dateNar" @on-change="store">
+              <Col :xs="24" :md="24" :lg="24">
+                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="docsPost.stotvId" clearable filterable :disabled="!docsPost.dateNar" @on-change="store">
                   <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                 </Select>
               </Col>
             </Row>
           </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
+          <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" @on-input-change="store" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
             </Row>
           </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+          <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular" v-model="docsPost.factSved" @on-input-change="store" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
             </Row>
           </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
+          <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="22" :md="22" :lg="22">
                 <Input class="adm-input adm-input--regular" disabled v-model="docsPost.placeSost.placeFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
-              <Col :xs="24" :md="14" :lg="8">
-                <a href="#" @click="getPlaceSost" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              <Col :xs="2" :md="2" :lg="2">
+                <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+                  <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+                </Button>
               </Col>
             </Row>
           </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
+          <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
+              <Col :xs="22" :md="22" :lg="22">
                 <Input class="adm-input adm-input--regular" disabled v-model="docsPost.placeNar.placeFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
               </Col>
-              <Col :xs="24" :md="14" :lg="8">
-                <a href="#" @click="getPlaceNar" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              <Col :xs="2" :md="2" :lg="2">
+                <Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+                  <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+                </Button>
               </Col>
             </Row>
           </div>
         </div>
-        </div>
       </div>
-
+    </div>
+    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
+      <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
+      <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
+    </div>
   </div>
 </template>
 
@@ -602,6 +632,25 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .adm-form-content{
 
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 12px;
+    // outline: 1px solid red;
+    padding-bottom: 12px;
+    // min-height: 90px;
+  }
+  .adm-form__label{
+    padding: 0;
+    padding-right: 12px;
+    min-width: 210px;
+  }
+  .adm-form__item_content{
+    width: 100%;
+  }
 </style>
