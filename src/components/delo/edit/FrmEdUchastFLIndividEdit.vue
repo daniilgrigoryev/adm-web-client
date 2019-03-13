@@ -77,7 +77,8 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <input-mask v-model="uchastIndivid.individ.birthdayDay" :maskProps="maskInputBirthday" :value="uchastIndivid.individ.birthdayDay" inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" :clearable="true"></input-mask>
+                <DatePicker class="adm-input adm-input--regular wmax360" type="datetime" v-model="birthdayDate" format="dd/MM/yyyy" @on-change="formatBirthday" placeholder></DatePicker>
+                <!--<input-mask v-model="uchastIndivid.individ.birthdayDay" :maskProps="maskInputBirthday" :value="uchastIndivid.individ.birthdayDay" inputClass="adm-input adm-input&#45;&#45;regular wmax360" @onInputChange="store" :clearable="true"></input-mask>-->
               </Col>
             </Row>
           </div>
@@ -236,6 +237,7 @@
           await this.fillGragdanstvoList();
 
           this.uchastIndivid = uchastIndivid;
+          this.parseBirthday(uchastIndivid);
         }
       } catch (e) {
         alert(e.message);
@@ -251,6 +253,7 @@
           alias: "datetime",
           inputFormat: 'dd/mm/yyyy'
         },
+        birthdayDate: null,
         uchastIndivid: null,
         vehsList: null,
         tipList: null,
@@ -275,6 +278,24 @@
           return funcUtils.isNotEmpty(field) && field.length > 0;
         }
         return funcUtils.isNotEmpty(field);
+      },
+      parseBirthday(uchastIndivid) {
+        let birthdayDay = uchastIndivid.individ.birthdayDay;
+        let birthdayYear = uchastIndivid.individ.birthdayYear;
+        if (funcUtils.isNotEmpty(birthdayDay) && funcUtils.isNotEmpty(birthdayYear)) {
+          this.birthdayDate = funcUtils.formatDateTime(birthdayDay + '/' + birthdayYear, 'DD-MM-YYYY').toDate();
+        }
+      },
+      formatBirthday(e) {
+        if (funcUtils.isNotEmpty(e) && e.length > 0) {
+          let dateSplit = e.split('/');
+          this.uchastIndivid.individ.birthdayDay = dateSplit[0] + '/' + dateSplit[1];
+          this.uchastIndivid.individ.birthdayYear = dateSplit[2];
+        } else {
+          this.uchastIndivid.individ.birthdayDay = null;
+          this.uchastIndivid.individ.birthdayYear = null;
+        }
+        this.store();
       },
       async fillVehsList() {
         let eventResponse = await RequestApi.prepareData({

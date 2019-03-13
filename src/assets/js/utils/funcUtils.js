@@ -110,7 +110,7 @@ export function parseDateTime(dateTime, format) {
 }
 
 export function formatDateTime(dateTime, format) {
-  return moment(dateTime, format).toString();
+  return moment(dateTime, format);
 }
 
 export function convertNumberToDate(num) {
