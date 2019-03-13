@@ -170,7 +170,7 @@
     </div>
     <div v-if="!isEmptyData() && dataStore.data.data.length > 0" class="bg-white">
       <div class="wmax1920 mx-auto">
-        <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6">
+        <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6 bg-white-light">
           <div class="flex-parent flex-parent--center-cross">
             <Page v-if="dataStore.data.data.length > limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>

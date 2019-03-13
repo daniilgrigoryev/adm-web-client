@@ -347,6 +347,13 @@ html, body, #app {
 .amd-title{
   max-height: 76px;
 }
+.amd-title--sticky{
+  position: sticky;
+  top: -1px;
+  z-index: 9;
+}
+
+
 .adm-form{
   .adm-form__headding{
     background-color: #1888CC;
@@ -603,7 +610,11 @@ html, body, #app {
   letter-spacing: 0.2px;
   line-height: 16px;
 }
-
+.adm-btn-footer--sticky{
+  position: sticky;
+  z-index: 9;
+  bottom: -1px;
+}
 
 .adm-btn-border{
   border: 1px solid #1888CC;

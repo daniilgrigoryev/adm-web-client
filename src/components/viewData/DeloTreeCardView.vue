@@ -4,8 +4,7 @@
 
 
       <div v-if="deloContext" class="bg-white"><!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
-        
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross hmin120 px60">
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py24">
           <div class="flex-parent flex-parent--center-cross">
             <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
               <span class="adm-h3">Дело №</span>
@@ -16,10 +15,8 @@
               <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
             </p>
           </div>
-
+          
           <div>
-
-
             <Poptip word-wrap width="350">
               <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
                 <span>Возбуждение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
@@ -48,8 +45,6 @@
               </div>
             </Poptip>
 
-
-
             <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
               <span>Рассмотрение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
             </Button>
@@ -67,7 +62,6 @@
               <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
               <Button type="default" @click="addUchastWizard">Добавить участника</Button>
             </ButtonGroup>
-
           </div>
         </div>
 

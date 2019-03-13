@@ -1,8 +1,13 @@
 <template>
   <div v-if="uchastIndivid" class="wmax940 mx-auto">
-    <div class="amd-title px36 py24">
+
+
+    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          </Button>
           <b class="adm-text-big color-dark-lighter">Участник дела</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
@@ -12,7 +17,7 @@
     </div>
 
     <div class="adm-form bg-white">
-      <div class="adm-form__container mt0 py12 px36">
+      <div class="adm-form__container my6 py24 px36">
         <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Вид участника</small>
           <div class="adm-form__item_content">
@@ -185,7 +190,7 @@
       </div> 
     </div>
 
-    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 my24">
+    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
       <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
       <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
     </div>
