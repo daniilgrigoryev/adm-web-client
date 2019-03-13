@@ -57,11 +57,13 @@
         <h2 class="adm-text-big color-dark-light adm-form__headding">Фотоматериалы</h2>
         <div class="adm-form__content px36">
           <div v-if="photos && photos.length > 0">
+            <div class="active-photo">
+              <img :src="acitveGalleryItem" alt="">
+            </div>
             <div class="view-photos">
               <div class="view-photos__min-section ">
-                <gallery :images="photos" :index="index" @close="index = null"></gallery>
                 <div class="view-photos_container flex-parent scroll-styled scroll-auto">
-                  <div v-for="(image, imageIndex) in photos" :key="imageIndex" @click="index = imageIndex" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
+                  <div v-for="image in photos" :key="image" @click="acitveGalleryItem = image" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
                     <img alt="img" @load="checkPic($event.target)" :src="image"/>
                   </div>
                 </div>
@@ -149,13 +151,9 @@
   import RequestApi from "../../assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
   import $ from "jquery";
-  import VueGallery from 'vue-gallery';
 
   export default {
     name: "DlgEdFotoMaterial",
-    components: {
-      'gallery': VueGallery
-    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -253,6 +251,7 @@
           let item;
           let eventResponse;
           let photo;
+
           for (let i = 0; i < photos.length; i++) {
             item = photos[i];
             eventResponse = await RequestApi.prepareData({
@@ -265,6 +264,7 @@
             if (eventResponse.response) {
               photo = JSON.parse(eventResponse.response).data;
               vm.photos.push('data:image/jpeg;base64,' + photo);
+              this.acitveGalleryItem = vm.photos[0];
             }
           }
         }
@@ -273,7 +273,7 @@
     data() {
       return {
         photos: [],
-        index: null
+        acitveGalleryItem: ""
       }
     },
     computed: {
@@ -311,6 +311,19 @@
   }
   .adm-form__item_content{
     width: 100%;
+  }
+  .active-photo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    border-radius: 2px;
+    margin: 20px 0;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 </style>
 
