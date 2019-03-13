@@ -15,7 +15,6 @@
         </Button>
       </div>
     </div>
-
     <div class="adm-form bg-white">
       <div class="adm-form__container my6 py24 px36">
         <div class="adm-form__item">
@@ -144,26 +143,6 @@
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
                 <Input class="adm-input adm-input--regular wmax360" @on-input-change="store" v-model="uchastIndivid.individ.phone" ></Input>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">СНИЛС</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col  :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" @on-input-change="store" v-model="uchastIndivid.snils" ></Input>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">ИНН</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular wmax360" @on-input-change="store" v-model="uchastIndivid.individ.inn" ></Input>
               </Col>
             </Row>
           </div>
