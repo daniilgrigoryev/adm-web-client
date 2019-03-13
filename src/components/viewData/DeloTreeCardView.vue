@@ -24,16 +24,16 @@
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
                   <li>
-                    <Button type="text" class="adm-btn-regular">Протокол АПН на бланке</Button>
+                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол АПН на бланке</Button>
                   </li>
                   <li>
                     <Button type="text" class="adm-btn-regular">Протокол АПН на A4 , статья 20.25 ч.1</Button>
                   </li>
                   <li>
-                    <Button type="text" class="adm-btn-regular">Определение о возбуждении дела</Button>
+                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Определение о возбуждении дела</Button>
                   </li>
                   <li>
-                    <Button type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
+                    <Button @click="createWizardScenarioPZTC" type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
                   </li>
                   <li>
                     <Button type="text" class="adm-btn-regular">Протокол изъятия вещей и документов</Button>
@@ -338,9 +338,67 @@
       },
       addUchastWizard() {
         try {
+          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
           let params = {
             scenarioName: 'AddUchast',
-            node: this.deloInfo
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioPZTC() {
+        try {
+          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let params = {
+            scenarioName: 'CreateProtPZTC',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioAPN() {
+        try {
+          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let params = {
+            scenarioName: 'CreateProtAPN',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioPost() {
+        try {
+          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let params = {
+            scenarioName: 'CreatePost',
+            node: copyNode
           };
 
           formStack.toNext({
