@@ -24,16 +24,7 @@
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
                   <li>
-                    <Button type="text" class="adm-btn-regular">Протокол АПН на бланке</Button>
-                  </li>
-                  <li>
-                    <Button type="text" class="adm-btn-regular">Протокол АПН на A4 , статья 20.25 ч.1</Button>
-                  </li>
-                  <li>
                     <Button type="text" class="adm-btn-regular">Определение о возбуждении дела</Button>
-                  </li>
-                  <li>
-                    <Button type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
                   </li>
                   <li>
                     <Button type="text" class="adm-btn-regular">Протокол изъятия вещей и документов</Button>
