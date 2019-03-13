@@ -3,8 +3,20 @@
     <!-- данные по делу  -->
     
 
-    <Button @click="getPrev" type="text">Назад</Button>
-    <Button @click="save" type="text">Сохранить</Button>
+    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Редактирование дела</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
+
 
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
@@ -12,142 +24,178 @@
 
     <wizard-modal v-if="ogaiModal.visible" :columnsOptions="ogaiModal.columnsOptions" :data="ogaiModal.ogaiList" @showModal="showOgaiModal" @onRowDbClick="onOgaiClick"></wizard-modal>
 
-    <div class="adm-form">
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата возбуждения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="delo.deloDate" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
+    <div class="adm-form bg-white">
+      <div class="adm-form__container my6 py24 px36">
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата возбуждения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="delo.deloDate" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="delo.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.pnpaId" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.stotvId" clearable filterable :disabled="!delo.dateNar" @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Вид</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.deloVid" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in deloVidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Примечания</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="delo.dopSved" @on-input-change="store" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
       </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="delo.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="delo.pnpaId" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="delo.stotvId" clearable filterable :disabled="!delo.dateNar" @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Вид</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="delo.deloVid" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in deloVidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Примечания</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.dopSved" @on-input-change="store" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
+
+      <div class="adm-form__container mb6">
+        <h2 class="adm-text-big color-dark-light adm-form__headding">Составил</h2>
+        <div class="adm-form__content py24 px36">
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbKod" @on-input-change="changeInspVozbKod" ></Input>
+                </Col>
+                <Col :xs="24" :md="14" :lg="8">
+                  <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbName" @on-input-change="changeFIO" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbDolz" @on-input-change="clearInspVozbKod" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbRang" @on-input-change="clearInspVozbKod" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="delo.organVozbKod" @on-input-change="changeOrganVozbKod" ></Input>
+                </Col>
+                <Col :xs="24" :md="14" :lg="8">
+                  <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="delo.organVozbName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Код местонахождения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="delo.ogaiNahKod" @on-input-change="changeOgaiNahKod" ></Input>
+                </Col>
+                <Col :xs="24" :md="14" :lg="8">
+                  <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Подразделения</a>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Местонахождение</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" :value="delo.ogaiNahName" disabled  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                </Col>
+              </Row>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
 
-    <hr class="txt-hr my24">
 
-    <div class="adm-form">
-      <h2 class="adm-text-big color-dark-light my12">Составил</h2>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbKod" @on-input-change="changeInspVozbKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbName" @on-input-change="changeFIO" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbDolz" @on-input-change="clearInspVozbKod" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.inspVozbRang" @on-input-change="clearInspVozbKod" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.organVozbKod" @on-input-change="changeOrganVozbKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.organVozbName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код местонахождения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="delo.ogaiNahKod" @on-input-change="changeOgaiNahKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Подразделения</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Местонахождение</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" :value="delo.ogaiNahName" disabled  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
+    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
+      <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
+      <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
     </div>
-
   </div>
 </template>
 
@@ -784,6 +832,26 @@
   }
 </script>
 
-<style scoped>
 
+<style scoped lang="scss">
+  .adm-form-content{
+
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 12px;
+    // outline: 1px solid red;
+    padding-bottom: 12px;
+    // min-height: 90px;
+  }
+  .adm-form__label{
+    padding: 0;
+    padding-right: 12px;
+    min-width: 210px;
+  }
+  .adm-form__item_content{
+    width: 100%;
+  }
 </style>

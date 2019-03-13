@@ -1,8 +1,20 @@
 <template>
-  <div v-if="decis">
+  <div v-if="decis" class="wmax940 mx-auto">
 
-    <Button @click="getPrev" type="text">Назад</Button>
-    <Button @click="save" type="text">Сохранить</Button>
+
+    <div class="adm-title amd-title--sticky px36 py24 bg-white-light"><!-- wmax940 mx-auto -->
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Оштрафовать</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
 
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
@@ -10,403 +22,541 @@
 
     <wizard-modal v-if="organNapravModal.visible" :columnsOptions="organNapravModal.columnsOptions" :data="organNapravModal.gibddList" @showModal="showOrganNapravModal" @onRowDbClick="onOrganNapravlick"></wizard-modal>
 
-    <div class="adm-form">
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Часы обязательных работ</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.hoursToWork" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Лишение месяцы</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.lishMes" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Лишение дни</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.lishDay" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дисквалификация месяцы</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.diskvMes" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дисквалификация дни</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.diskvDay" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Арест дни</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.arestDay" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.inspSostName" @on-input-change="changeFIO" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.inspSostDolz" @on-input-change="clearInspSostKod" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.inspSostRang" @on-input-change="clearInspSostKod" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.organSostKod" @on-input-change="changeOrganSostKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
+    <div class="adm-form bg-white">
+      <div class="adm-form__container my6 py24 px36">
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Часы обязательных работ</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.hoursToWork" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
 
-      <hr />
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код куда направить</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.organNapravlKod" @on-input-change="changeOrganNapravSostKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showOrganNapravModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.organNapravlName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-      <hr />
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Лишение месяцы</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.lishMes" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Лишение дни</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.lishDay" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дисквалификация месяцы</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.diskvMes" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
 
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дисквалификация дни</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.diskvDay" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
 
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Арест дни</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="decis.arestDay" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
 
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
+              </Col>
+            </Row>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код решения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="decis.decisKod" clearable filterable @on-input-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in decisList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.inspSostName" @on-input-change="changeFIO" ></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.inspSostDolz" @on-input-change="clearInspSostKod" ></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.inspSostRang" @on-input-change="clearInspSostKod" ></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.organSostKod" @on-input-change="changeOrganSostKod" ></Input>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Код куда направить</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.organNapravlKod" @on-input-change="changeOrganNapravSostKod" ></Input>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="showOrganNapravModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.organNapravlName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Код решения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="decis.decisKod" clearable filterable @on-input-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in decisList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Текст решения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.decisFormtxt" @on-input-change="store" placeholder="" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.dopSved" @on-input-change="store" placeholder="" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Недостатки</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.nedostat" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Предмет доследования</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.predmetDosled" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Основание переноса</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.perenosOsnovanie" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Основание отмены</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.otmenaOsnovanie" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Входящий номер</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.vxodNumb" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">УИН</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.uin" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Результат экспертизы</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.rezExpert" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаченная</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.sumOpl" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Сумма не оплаченная</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.sumNopl" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.decisDate" format="dd-MM-yyyy HH:mm" @on-change="changeDecisDate" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateVstup" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата уведомления</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateUved" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата начала лишения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateLishBeg" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата окончания лишения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datLishEnd" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateIspoln" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата начала дисквалификации</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateDiskvBeg" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата окончания дисквалификации</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datDiskvEnd" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата возврата</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateVozv" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата рассмотрения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateRasm" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата отправки</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateOtprav" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата переноса</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datePerenos" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Время начала ареста</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <TimePicker class="adm-input adm-input--regular wmin120 wmax180" type="time" v-model="decis.arestTimeBeg" format="HH:mm" @on-change="store" placeholder=""></TimePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Время конца ареста</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <TimePicker class="adm-input adm-input--regular wmin120 wmax180" type="time" v-model="decis.arestTimeEnd" format="HH:mm" @on-change="store" placeholder=""></TimePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Место решения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" disabled v-model="decis.placeDecis.placeFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="getPlaceDecis" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Срок</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.period" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Размерность для срока</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.periodDim" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Срок 2</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.period2" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Размерность для срока 2</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="decis.period2Dim" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата начала периода</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.periodStart" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+
+        </div>
       </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Текст решения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.decisFormtxt" @on-input-change="store" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.dopSved" @on-input-change="store" placeholder="Enter something..." type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.sumShtraf" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Недостатки</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.nedostat" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Предмет доследования</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.predmetDosled" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Основание переноса</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.perenosOsnovanie" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Основание отмены</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.otmenaOsnovanie" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Входящий номер</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.vxodNumb" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">УИН</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.uin" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Результат экспертизы</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.rezExpert" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаченная</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.sumOpl" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Сумма не оплаченная</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.sumNopl" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.decisDate" format="dd-MM-yyyy HH:mm" @on-change="changeDecisDate" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateVstup" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата уведомления</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateUved" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата начала лишения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateLishBeg" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата окончания лишения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datLishEnd" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateIspoln" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата начала дисквалификации</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateDiskvBeg" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата окончания дисквалификации</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datDiskvEnd" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата возврата</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateVozv" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата рассмотрения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateRasm" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата отправки</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateOtprav" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата переноса</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datePerenos" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Время начала ареста</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <TimePicker class="adm-input adm-input--regular wmin120 wmax180" type="time" v-model="decis.arestTimeBeg" format="HH:mm" @on-change="store" placeholder="Select date"></TimePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Время конца ареста</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <TimePicker class="adm-input adm-input--regular wmin120 wmax180" type="time" v-model="decis.arestTimeEnd" format="HH:mm" @on-change="store" placeholder="Select date"></TimePicker>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Место решения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" disabled v-model="decis.placeDecis.placeFull" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="getPlaceDecis" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Адресный справочник</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Срок</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.period" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Размерность для срока</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.periodDim" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Срок 2</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.period2" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Размерность для срока 2</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="decis.period2Dim" @on-input-change="store" placeholder="Enter something..."></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата начала периода</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.periodStart" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
+      <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
+        <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
+        <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
       </div>
     </div>
 
@@ -1088,6 +1238,25 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .adm-form-content{
 
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 12px;
+    // outline: 1px solid red;
+    padding-bottom: 12px;
+    // min-height: 90px;
+  }
+  .adm-form__label{
+    padding: 0;
+    padding-right: 12px;
+    min-width: 210px;
+  }
+  .adm-form__item_content{
+    width: 100%;
+  }
 </style>

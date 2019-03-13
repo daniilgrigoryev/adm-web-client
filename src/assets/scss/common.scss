@@ -660,13 +660,14 @@ html, body, #app {
 
 
 .adm-wizard-modal{
-  position: absolute;
+  position: fixed;
   background-color: #fafafa;
-  z-index: 5;
+  z-index: 999;
   // top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  min-height: calc(100vh - 66px);
-  padding-top: 40px;
+  // height: calc(100vh - 66px);
+  height: 100vh;
+  // padding-top: 40px;
 }
