@@ -1,138 +1,182 @@
 <template>
-  <div v-if="vuPred">
+  <div v-if="vuPred" class="wmax940 mx-auto">
     <!-- данные по делу  -->
 
-    <Button @click="getPrev" type="text">Назад</Button>
-    <Button @click="save" type="text">Сохранить</Button>
+    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Предъявлен</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
+
 
     <wizard-modal v-if="ogaiModal.visible" :columnsOptions="ogaiModal.columnsOptions" :data="ogaiModal.ogaiList" @showModal="showOgaiModal" @onRowDbClick="onOgaiClick"></wizard-modal>
 
-    <div class="adm-form">
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
+    <div class="adm-form bg-white">
+      <div class="adm-form__container my6 py24 px36">
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.vuN" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateVyd" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateSrok" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="vuPred.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
+              </Col>
+              <Col :xs="24" :md="14" :lg="8">
+                <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" v-model="vuPred.ogaiVydName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.remarks"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.vuPred"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
+                  <Option class="wmax360 txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата задержания</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateZader" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата возврата</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateVozv" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateUtil" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата утраты документа</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateUtrat" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+              </Col>
+            </Row>
+          </div>
+        </div>
       </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.vuN" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateVyd" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateSrok" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuPred.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuPred.ogaiVydName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.remarks"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.vuPred"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата задержания</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateZader" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата возврата</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateVozv" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateUtil" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата утраты документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateUtrat" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
-          </Col>
-        </Row>
-      </div>
 
     </div>
-
+    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
+      <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
+      <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
+    </div>
   </div>
 </template>
 
@@ -399,6 +443,25 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .adm-form-content{
 
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 12px;
+    // outline: 1px solid red;
+    padding-bottom: 12px;
+    // min-height: 90px;
+  }
+  .adm-form__label{
+    padding: 0;
+    padding-right: 12px;
+    min-width: 210px;
+  }
+  .adm-form__item_content{
+    width: 100%;
+  }
 </style>
