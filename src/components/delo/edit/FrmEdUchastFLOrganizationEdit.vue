@@ -204,10 +204,6 @@
     },
     data() {
       return {
-        maskInputBirthday: {
-          alias: "datetime",
-          inputFormat: 'dd/mm/yyyy'
-        },
         uchastOrganization: null,
         vehsList: null,
         tipList: null,
