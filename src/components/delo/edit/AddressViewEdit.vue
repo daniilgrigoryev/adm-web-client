@@ -1,7 +1,7 @@
 <template>
   <div v-if="data" class="wmax940 mx-auto">
     <div class="adm-form mt24">
-      <div class="adm-form__container mt0 py12 px36">
+      <div class="adm-form__container mt6 py12 px36">
         <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Код страны</small>
           <div class="adm-form__item_content">

@@ -185,11 +185,18 @@ html, body, #app {
     // margin-left: 50px;
   }
 }
+.tree-parent{
+  .tree{
+    z-index: 8;
+    padding-left: 30px;
+  }
+}
 .tree {
   max-width: 400px;
   position: -webkit-sticky;
   position: sticky;
   position: -webkit-sticky;
+  background: #f5fafd;
   top: -1px;
   z-index: 9;
   a.tree__link {

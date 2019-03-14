@@ -10,15 +10,15 @@
             <p v-html="node.name" class="adm-text-big color-dark-base txt-break-word"></p>
           </div>
           <span v-if="isParent && isFolder">
-              <img v-if='open' src='../assets/images/controls-switch-chevron-up.svg'>
-              <img v-else src='../assets/images/controls-switch-chevron-down.svg'>
-            </span>
+            <img v-if='open' src='../assets/images/controls-switch-chevron-up.svg'>
+            <img v-else src='../assets/images/controls-switch-chevron-down.svg'>
+          </span>
         </a>
       </li>
     </ul>
     <tree-node
       v-show="open"
-      :style="isParent ? 'padding-left: 30px' : ''"
+      :class="isParent ? 'tree-parent' : ''"
       v-for="(nodeChild, index) in node.children"
       :key="index"
       :nodeClick="nodeClick"
