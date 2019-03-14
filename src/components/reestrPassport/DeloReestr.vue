@@ -23,7 +23,21 @@
 													<div class="flex-parent flex-parent--end-cross h-full">
 														<div class="w-full adm-form__item my12">
 															<div class="adm-12 color-dark-lighter my6">Дата заведения дела</div>
-															<DatePicker class="adm-input adm-input--big adm-input-data" type="date" format="dd.MM.yyyy" v-model="filter.deloDat" clearable></DatePicker>
+
+                              <AdmDatePicker v-model="filter.deloDat"
+                                             type="date"
+                                             className="adm-input adm-input--big adm-input-data"
+                                             mask="00/00/0000"
+                                             format="dd/MM/yyyy"
+                                             placeholder="дд/мм/гггг"
+                                             clearable></AdmDatePicker>
+
+															<!--<DatePicker class="adm-input adm-input&#45;&#45;big adm-input-data"-->
+                                          <!--type="date"-->
+                                          <!--format="dd.MM.yyyy"-->
+                                          <!--v-model="filter.deloDat"-->
+                                          <!--placeholder="дд.мм.гггг"-->
+                                          <!--clearable></DatePicker>-->
 														</div>
 													</div>
 												</Col>
@@ -171,7 +185,7 @@
     <div v-if="!isEmptyData()" class="bg-white">
       <div class="wmax1920 mx-auto">
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6 bg-white-light">
-          
+
           <div class="flex-parent flex-parent--center-cross">
             <p class="adm-txt-regular color-dark-medium ml18" v-if="dataStore.data.data.length > 0"> {{ declOfNum(dataStore.data.data.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ dataStore.data.data.length}} {{ declOfNum(dataStore.data.data.length, ['запись', 'записи', 'записей']) }}</p>
             <Page v-if="dataStore.data.data.length > limit" :total="dataStore.data.data.length" :current="currentPage" :page-size="limit" class="ml12" @on-change="changePage"/>
@@ -203,12 +217,14 @@
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import InputMask from "../InputMask";
+  import AdmDatePicker from "../shared/AdmDatePicker";
   import {mapGetters} from 'vuex';
 
   export default {
     name: "DeloReestr",
     components: {
       InputMask,
+      AdmDatePicker
     },
     async created() {
       try {
@@ -658,7 +674,7 @@
               }
               case 'decisDateLast': {
                 this.columnsOptions.push({
-                  title: 'Дата последнего решения', // Дата посл.реш. 
+                  title: 'Дата последнего решения', // Дата посл.реш.
                   key: 'decisDateLast',
                   position: 8,
                   minWidth: 240,
@@ -713,7 +729,7 @@
               }
               case 'decisNameFirst': {
                 this.columnsOptions.push({
-                  title: 'Первое решение', // Перв.реш. 
+                  title: 'Первое решение', // Перв.реш.
                   key: 'decisNameFirst',
                   position: 99,
                   minWidth: 180,
@@ -1010,7 +1026,7 @@
               }
               case 'regno': {
                 this.columnsOptions.push({
-                  title: 'ГРЗ', // РегЗнак 
+                  title: 'ГРЗ', // РегЗнак
                   key: 'regno',
                   position: 5,
                   visible: true,
@@ -1056,7 +1072,7 @@
               }
               case 'stadIspolnNameLast': {
                 this.columnsOptions.push({
-                  title: 'Решение после исполнения', // Посл.ст.исп. 
+                  title: 'Решение после исполнения', // Посл.ст.исп.
                   key: 'stadIspolnNameLast',
                   position: 99,
                   minWidth: 250,
@@ -1079,7 +1095,7 @@
               }
               case 'stotv': {
                 this.columnsOptions.push({
-                  title: 'Статья', // статья нарушения 
+                  title: 'Статья', // статья нарушения
                   key: 'stotv',
                   position: 99,
                   minWidth: 180,
@@ -1101,7 +1117,7 @@
               }
               case 'uchastName': {
                 this.columnsOptions.push({
-                  title: 'ЛВОК', // бывшее - участник 
+                  title: 'ЛВОК', // бывшее - участник
                   key: 'uchastName',
                   position: 4,
                   minWidth: 230,
