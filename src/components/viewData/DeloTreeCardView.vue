@@ -36,9 +36,98 @@
               </div>
             </Poptip>
 
-            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
-              <span>Рассмотрение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
-            </Button>
+            <Poptip width="700" placement="bottom-start" class="amd-poptip-sub">
+              <Button @click="hideMore = !hideMore"  type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+                <span>Рассмотрение дела 
+                  <Icon v-if="hideMore" type="md-arrow-dropup" :size="16"/>
+                  <Icon v-else type="md-arrow-dropdown" :size="16"/>
+                </span>
+              </Button>
+              <div slot="content">
+                <div class="grid">
+                  <div class="col col--6">
+                    <ul class="amd-poptip-sub__nav">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Постановление об АПН</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Определение об АПН</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Протокол об АПН на бланке</Button>
+                      </li>
+                      <hr class="txt-hr adm-txt-hr my0">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Жалоба</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Решение по жалобе</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Заключение по жалобе</Button>
+                      </li>
+                      <hr class="txt-hr adm-txt-hr my0">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Добавить Участника дела</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Добавить Транспортное средство</Button>
+                      </li>
+                      <hr class="txt-hr adm-txt-hr my0">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Предьявленный документ</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Добавить фото и видео материалы</Button>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col col--6">
+                    <ul class="amd-poptip-sub__nav">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Разрешение на выдачу ТС</Button>
+                      </li>
+                      <hr class="txt-hr adm-txt-hr my0">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Протокол изьятия вещей и документов</Button>
+                      </li>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Протокол Осмотра места</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Обьяснение</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Извещение</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Документ pdf</Button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <hr class="txt-hr my0">
+                  <ul class="amd-poptip-sub__nav">
+                    <li>
+                      <Button type="text" class="adm-btn-regular py6 mb0" style="margin-top: 10px;">
+                        <div class="flex-parent flex-parent--center-cross">
+                          <span>Перенос даты рассмотрения дела</span>
+                          <i class="ml24"><img src="../../assets/images/carry_date.svg" alt=""></i>
+                        </div>
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </Poptip>
+
+
 
             <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
               <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
@@ -172,6 +261,7 @@
     },
     data() {
       return {
+        hideMore: false,
         sizeInnerStack: 0
       }
     },
