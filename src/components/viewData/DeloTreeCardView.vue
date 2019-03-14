@@ -161,12 +161,11 @@
               <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
               <span style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
             </Button>
-
+<!-- 
             <ButtonGroup>
-              <!-- <Button type="default" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button> -->
               <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
               <Button type="default" @click="addUchastWizard">Добавить участника</Button>
-            </ButtonGroup>
+            </ButtonGroup> -->
           </div>
         </div>
 
