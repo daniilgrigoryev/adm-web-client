@@ -6,6 +6,11 @@
       <div v-if="deloContext" class="bg-white"><!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py24">
           <div class="flex-parent flex-parent--center-cross">
+
+            <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+              <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+            </Button>
+
             <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
               <span class="adm-h3">Дело №</span>
               <span class="adm-h1">{{deloContext.deloN}}</span>
@@ -14,6 +19,7 @@
               <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23" /> 
               <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
             </p>
+
           </div>
           
           <div>
@@ -157,7 +163,7 @@
             </Button>
 
             <ButtonGroup>
-              <Button type="default" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button>
+              <!-- <Button type="default" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button> -->
               <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
               <Button type="default" @click="addUchastWizard">Добавить участника</Button>
             </ButtonGroup>
