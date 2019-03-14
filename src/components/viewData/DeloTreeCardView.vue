@@ -42,7 +42,7 @@
               </div>
             </Poptip>
 
-            <Poptip width="700" placement="bottom-start" class="amd-poptip-sub">
+            <Poptip width="700" placement="bottom-end" class="amd-poptip-sub">
               <Button @click="hideMore = !hideMore"  type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
                 <span>Рассмотрение дела 
                   <Icon v-if="hideMore" type="md-arrow-dropup" :size="16"/>
