@@ -18,7 +18,7 @@
 
 
     <div class="adm-form">
-      <div class="adm-form__container mt0">
+      <div class="adm-form__container mt6">
         <div class="adm-form__content py24 px36">
           <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="24">

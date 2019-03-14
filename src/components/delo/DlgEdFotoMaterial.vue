@@ -18,7 +18,7 @@
 
 
     <div class="adm-form">
-      <div class="adm-form__container mt0">
+      <div class="adm-form__container mt6">
         <div class="adm-form__content px36">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Номер нарушения</small>

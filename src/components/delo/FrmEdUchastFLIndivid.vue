@@ -16,7 +16,7 @@
 
 
     <div class="adm-form">
-      <div class="adm-form__container my0 mx0 py12 px36">
+      <div class="adm-form__container my6 mx0 py12 px36">
         <div v-if="isNotEmptyField(body.individ.firstName) && isNotEmptyField(body.individ.secondName) && isNotEmptyField(body.individ.thirdName)" class="adm-form__item">
           <small class="adm-text-small adm-form__label">ФИО лица - год рождения</small>
           <div class="adm-form__item_content">

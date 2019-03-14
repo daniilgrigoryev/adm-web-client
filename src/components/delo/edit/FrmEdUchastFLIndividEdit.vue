@@ -221,7 +221,8 @@
       return {
         maskInputBirthday: {
           alias: "datetime",
-          inputFormat: 'dd/mm/yyyy'
+          inputFormat: 'dd/mm/yyyy',
+          placeholder: '__/__/____'
         },
         birthdayDate: null,
         uchastIndivid: null,
@@ -252,7 +253,10 @@
         let birthdayDay = uchastIndivid.individ.birthdayDay;
         let birthdayYear = uchastIndivid.individ.birthdayYear;
         if (funcUtils.isNotEmpty(birthdayDay) && funcUtils.isNotEmpty(birthdayYear)) {
-          this.birthdayDate = funcUtils.formatDateTime(birthdayDay + '/' + birthdayYear, 'DD-MM-YYYY').toDate();
+          let date = funcUtils.formatDateTime(birthdayDay + '/' + birthdayYear, 'DD-MM-YYYY');
+          if (date.isValid()) {
+            this.birthdayDate = date.toDate();
+          }
         }
       },
       formatBirthday(e) {

@@ -136,32 +136,10 @@
                 <Col :xs="24" :md="12" :lg="12">
 									<div class="flex-parent flex-parent--end-cross h-full">
 										<div class="w-full adm-form__item my12 wmax360">
-											<!-- <div class="adm-12 color-dark-lighter my6">Номер УПИ</div> -->
 											<Input class="adm-input adm-input--big" v-model="filter.upi" placeholder="Номер УПИ" clearable></Input>
 										</div>
 									</div>
                 </Col>
-                <!-- <Col :xs="24" :md="12" :lg="6">
-									<div class="flex-parent flex-parent--end-cross h-full ">
-										<div class="w-full adm-form__item my12">
-											<div class="adm-12 color-dark-lighter my6">Приоритет ошибки</div>
-											<Input class="adm-input adm-input--big" v-model="filter.checkPriority" placeholder="Приоритет ошибки" clearable></Input>
-										</div>
-									</div>
-                </Col> -->
-                <!-- <Col :xs="24" :md="12" :lg="6">
-									<div class="flex-parent flex-parent--end-cross h-full">
-										<div class="w-full adm-form__item my12">
-											<div class="adm-12 color-dark-lighter my6">Дата рождения</div>
-											<input-mask v-model="filter.birthday" :maskProps="maskInputBirthday" :value="filter.birthday" inputClass="adm-input adm-input--big" :clearable="true"></input-mask>
-										</div>
-									</div>
-                </Col> -->
-                <!-- <Col :xs="24" :md="12" :lg="2">
-									<div class="flex-parent flex-parent--end-cross h-full">
-										<Button type="default" @click="clearFilter" class="my12">Очистить форму</Button>
-									</div>
-                </Col> -->
               </Row>
             </Col>
             <Col :xs="24" :md="4" :lg="3">
@@ -309,10 +287,6 @@
           birthday: null,
           regno: null,
           upi: null
-        },
-        maskInputBirthday: {
-          alias: "datetime",
-          inputFormat: 'dd/mm/yyyy'
         },
         maskInputFIO: {
           regex: '[а-яА-ЯёЁ]+',

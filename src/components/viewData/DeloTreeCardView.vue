@@ -6,6 +6,11 @@
       <div v-if="deloContext" class="bg-white"><!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py24">
           <div class="flex-parent flex-parent--center-cross">
+
+            <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+              <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+            </Button>
+
             <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
               <span class="adm-h3">Дело №</span>
               <span class="adm-h1">{{deloContext.deloN}}</span>
@@ -14,6 +19,7 @@
               <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23" /> 
               <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
             </p>
+
           </div>
           
           <div>
@@ -36,9 +42,98 @@
               </div>
             </Poptip>
 
-            <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
-              <span>Рассмотрение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
-            </Button>
+            <Poptip width="700" placement="bottom-start" class="amd-poptip-sub">
+              <Button @click="hideMore = !hideMore"  type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+                <span>Рассмотрение дела 
+                  <Icon v-if="hideMore" type="md-arrow-dropup" :size="16"/>
+                  <Icon v-else type="md-arrow-dropdown" :size="16"/>
+                </span>
+              </Button>
+              <div slot="content">
+                <div class="grid">
+                  <div class="col col--6">
+                    <ul class="amd-poptip-sub__nav">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Постановление об АПН</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Определение об АПН</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Протокол об АПН на бланке</Button>
+                      </li>
+                      <hr class="txt-hr adm-txt-hr my0">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Жалоба</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Решение по жалобе</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Заключение по жалобе</Button>
+                      </li>
+                      <hr class="txt-hr adm-txt-hr my0">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Добавить Участника дела</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Добавить Транспортное средство</Button>
+                      </li>
+                      <hr class="txt-hr adm-txt-hr my0">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Предьявленный документ</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Добавить фото и видео материалы</Button>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col col--6">
+                    <ul class="amd-poptip-sub__nav">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Разрешение на выдачу ТС</Button>
+                      </li>
+                      <hr class="txt-hr adm-txt-hr my0">
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Протокол изьятия вещей и документов</Button>
+                      </li>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Протокол Осмотра места</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Обьяснение</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Извещение</Button>
+                      </li>
+                      <li>
+                        <Button type="text" class="adm-btn-regular">Документ pdf</Button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <hr class="txt-hr my0">
+                  <ul class="amd-poptip-sub__nav">
+                    <li>
+                      <Button type="text" class="adm-btn-regular py6 mb0" style="margin-top: 10px;">
+                        <div class="flex-parent flex-parent--center-cross">
+                          <span>Перенос даты рассмотрения дела</span>
+                          <i class="ml24"><img src="../../assets/images/carry_date.svg" alt=""></i>
+                        </div>
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </Poptip>
+
+
 
             <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
               <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
@@ -68,7 +163,7 @@
             </Button>
 
             <ButtonGroup>
-              <Button type="default" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button>
+              <!-- <Button type="default" @click="getPrev"><Icon type="ios-arrow-back"></Icon>Назад</Button> -->
               <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
               <Button type="default" @click="addUchastWizard">Добавить участника</Button>
             </ButtonGroup>
@@ -172,6 +267,7 @@
     },
     data() {
       return {
+        hideMore: false,
         sizeInnerStack: 0
       }
     },

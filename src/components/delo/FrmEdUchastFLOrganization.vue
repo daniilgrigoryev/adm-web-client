@@ -16,7 +16,7 @@
     </div>
 
     <div class="adm-form">
-      <div v-if="isNotEmptyField(body.organization.name)" class="adm-form__container my0 mx0 py12 px36">
+      <div v-if="isNotEmptyField(body.organization.name)" class="adm-form__container my6 mx0 py12 px36">
         <div class="adm-form__item">
           <small class="adm-text-small adm-form__label">Наименование организации</small>
           <div class="adm-form__item_content">
