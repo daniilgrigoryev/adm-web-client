@@ -4,13 +4,9 @@
       <Col :xs="24" :sm="8" :md="6" :lg="6">
           <div class="bg-blue-thin h-full">
             <ul class="ml60 mr24 my24 min-nav">
-              <li v-if="isVisible('DocPostFirst')" class=""><a href="#DocPostFirst" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
-              <li v-if="isVisible('LVOK')" class=""><a href="#LVOK" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
-              <li v-if="isVisible('Vehs')" class=""><a href="#Vehs" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
-              <li v-if="isVisible('Owner')" class=""><a href="#Owner" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
-              <li v-if="isVisible('DocPostSecond')" class=""><a href="#DocPostSecond" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
-              <li v-if="isVisible('DecisMain')" class=""><a href="#DecisMain" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
-              <li v-if="isVisible('DecisAdd')" class=""><a href="#DecisAdd" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Дополнительное решение по делу</a></li>
+              <li v-for="item in goToSectionNav" :key="item.id"  v-if="isVisible(item.name)">
+                <a :href="'#' + item.name" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">{{item.title}}</a>
+              </li>
             </ul>
           </div>
       </Col>
@@ -119,6 +115,40 @@
       WizardItemPlace,
       WizardItemPredDoc,
       WizardItemVehs
+    },
+    data() {
+      return {
+        goToSectionNav: [
+          {
+            title: "Постановление составил",
+            name: "DocPostFirst",
+          },
+          {
+            title: "Лицо в отношении которого заводится дело",
+            name: "LVOK",
+          },
+          {
+            title: "Транспортное средство",
+            name: "Vehs",
+          },
+          {
+            title: "Владелец транспортного средства",
+            name: "Owner",
+          },
+          {
+            title: "Нарушение",
+            name: "DocPostSecond",
+          },
+          {
+            title: "Решение по делу",
+            name: "DecisMain",
+          },
+          {
+            title: "Дополнительное решение по делу",
+            name: "DecisAdd",
+          },
+        ]
+      }
     },
     methods: {
       isVisible(path) {

@@ -5,12 +5,9 @@
       <Col :xs="24" :sm="8" :md="6" :lg="6">
           <div class="bg-blue-thin h-full">
             <ul class="ml60 mr24 my24 min-nav">
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Владелец транспортного средства</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Нарушение</a></li>
-              <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Решение по делу</a></li>
+              <li v-for="item in goToSectionNav" :key="item.id"  v-if="isVisible(item.name)">
+                <a :href="'#' + item.name" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">{{item.title}}</a>
+              </li>
             </ul>
           </div>
       </Col>
@@ -18,7 +15,7 @@
         <div>
           <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
 
-            <wizard-item-doc-prot-rasm v-if="isVisible('DocProtRasm')" ref="DocProtRasm" :info="getInfo('DocProtRasm')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-rasm>
+            <wizard-item-doc-prot-rasm id="DocProtRasm" v-if="isVisible('DocProtRasm')" ref="DocProtRasm" :info="getInfo('DocProtRasm')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-rasm>
 
             <wizard-item-place v-if="isVisible('DocProtRasm.PlaceSost')" ref="DocProtRasm.PlaceSost" :info="getInfo('DocProtRasm.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 
@@ -26,7 +23,7 @@
 
             <hr class="txt-hr my24">
 
-            <wizard-item-lvok v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
+            <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
 
             <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
 
@@ -44,13 +41,13 @@
 
             <hr class="txt-hr my24">
 
-            <wizard-item-vehs v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
+            <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
 
             <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
 
             <hr class="txt-hr my24">
 
-            <wizard-item-individual v-if="isVisible('Owner.Individual')" ref="Owner.Individual" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+            <wizard-item-individual id="Owner.Individual" v-if="isVisible('Owner.Individual')" ref="Owner.Individual" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
 
             <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')" ref="Owner.Individual.regAddr" :info="getInfo('Owner.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
@@ -111,6 +108,28 @@
       WizardItemPlace,
       WizardItemPredDoc,
       WizardItemVehs
+    },
+    data() {
+      return {
+        goToSectionNav: [
+          {
+            title: "Переход на секцию",
+            name: "DocProtRasm",
+          },
+          {
+            title: "Переход на секцию",
+            name: "LVOK",
+          },
+          {
+            title: "Переход на секцию",
+            name: "Vehs",
+          },
+          {
+            title: "Переход на секцию",
+            name: "Owner.Individual",
+          },
+        ]
+      }
     },
     methods: {
       isVisible(path) {
