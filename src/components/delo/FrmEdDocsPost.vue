@@ -2,7 +2,7 @@
   <div v-if="body" class="ml18"><!-- wmax1280 mx-auto -->
     <!-- постановление по делу -->
 
-    <div class="amd-title amd-title--sticky bg-white px36 py24"><!-- wmax940 mx-auto -->
+    <div class="amd-title amd-title--sticky bg-white px36 pt24 pb18"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
@@ -13,6 +13,11 @@
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
         </Button>
+      </div>
+      <div class="adm-nav-jump">
+        <a href='#regulation' class='link color-blue-base adm-txt-regular mx18 inline-block'>Постановление составил</a>
+        <a href='#violation' class='link color-blue-base adm-txt-regular mx18 inline-block'>Нарушение</a>
+        <a href='#decision' class='link color-blue-base adm-txt-regular mx18 inline-block'>Решение по делу</a>
       </div>
     </div>
 
@@ -86,7 +91,7 @@
       </div>
 
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Постановление составил</h2>
+        <h2 id="regulation" class="adm-text-big color-dark-light adm-form__headding">Постановление составил</h2>
         <div class="adm-form__content px36">
           <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="12">
@@ -159,7 +164,7 @@
       </div>
 
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Нарушение</h2>
+        <h2 id="violation" class="adm-text-big color-dark-light adm-form__headding">Нарушение</h2>
         <div class="adm-form__content px36">
           <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="12">
@@ -273,7 +278,7 @@
       </div>
 
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Решение по делу</h2>
+        <h2 id="decision" class="adm-text-big color-dark-light adm-form__headding">Решение по делу</h2>
         <div class="adm-form__content px36">
           <Row type="flex" :gutter="60" align="middle">
               <Col :xs="24" :md="24" :lg="12">

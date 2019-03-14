@@ -352,12 +352,24 @@ html, body, #app {
 
 
 .amd-title{
-  max-height: 76px;
+  min-height: 76px;
 }
 .amd-title--sticky{
   position: sticky;
   top: -1px;
   z-index: 9;
+}
+.adm-nav-jump{
+  display: flex;
+  align-items: center;
+  margin-left: 28px;
+  margin-top: 10px;
+  .link{
+    border-bottom: 1px dashed $blue-base;
+    &:hover{
+      border-bottom: 1px dashed transparent;
+    }
+  }
 }
 
 

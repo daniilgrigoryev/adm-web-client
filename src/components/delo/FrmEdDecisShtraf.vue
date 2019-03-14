@@ -1,7 +1,7 @@
 <template>
   <div v-if="body" class="ml18">
 
-    <div class="adm-title amd-title--sticky bg-white px36 py24"><!-- wmax940 mx-auto -->
+    <div class="amd-title amd-title--sticky bg-white px36 pt24 pb18"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
@@ -12,6 +12,10 @@
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
         </Button>
+      </div>
+      <div class="adm-nav-jump">
+        <a href='#regulation' class='link color-blue-base adm-txt-regular mx18 inline-block'>Решение принял</a>
+        <a href='#regulation_lvok' class='link color-blue-base adm-txt-regular mx18 inline-block'>Решение в отношении</a>
       </div>
     </div>
 
@@ -112,7 +116,7 @@
         </div>
       </div>
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Решение принял</h2>
+        <h2 id="regulation" class="adm-text-big color-dark-light adm-form__headding">Решение принял</h2>
         <div class="adm-form__content px36">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
@@ -188,7 +192,7 @@
       </div>
 
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Решение в отношении</h2>
+        <h2 id="regulation_lvok" class="adm-text-big color-dark-light adm-form__headding">Решение в отношении</h2>
         <div class="adm-form__content px36">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Участник</small>
