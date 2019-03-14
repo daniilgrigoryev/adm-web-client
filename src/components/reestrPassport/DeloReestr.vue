@@ -170,14 +170,14 @@
           </div>
 
           <Dropdown trigger="custom" :visible="columnsOptionsVisible" placement="bottom-end">
-            <Button type="text" href="javascript:void(0)" class="block border--0" style="box-shadow: none" @click="toggleColumnsOption">
+            <Button type="text" class="block border--0" style="box-shadow: none" @click="toggleColumnsOption">
               <!-- <span class='link color-dark-medium adm-text-small txt-underline-on-hover'>показ колонок</span> -->
               <Icon type="md-settings" size="18" class="ml18"></Icon>
               <Icon type="ios-arrow-down"></Icon>
             </Button>
             <DropdownMenu slot="list">
-              <DropdownItem v-for="column in tableColumnsForOptions">
-                <Checkbox v-model="column.visible">{{ column.title }}</Checkbox>
+              <DropdownItem v-for="column in tableColumnsForOptions" :key="column.id" class="px0 py0">
+                <Checkbox v-model="column.visible" style="padding: 7px 16px; width: 100%; height: 100%; margin: 0;">{{ column.title }}</Checkbox>
               </DropdownItem>
               <Button type="primary" @click="toggleColumnsOption" style="margin: 8px  16px;">Закрыть</Button>
             </DropdownMenu>
@@ -257,6 +257,7 @@
     destroyed() {
       this.$store.dispatch('deloReestrSetCid', null);
       this.$store.dispatch('deloReestrSetData', null);
+      // localStorage.tableColumnsForOptions = JSON.stringify(this.tableColumnsForOptions);
     },
     data() {
       return {
@@ -313,26 +314,26 @@
         return res;
       },
       tableFilteredColumns() {
-        return this.columnsOptions.filter(column => {
-          return column.visible === true;
-        })
+        return this.columnsOptions.filter(column => column.visible === true)
       },
       tableColumnsForOptions() {
-        return this.columnsOptions.filter(column => {
-
-          return  column.key !== 'action' &&
-                  column.key !== 'deloN' &&
-                  column.key !== 'deloDate' &&
-                  column.key !== 'stadDeloName' &&
-                  column.key !== 'checkPriority' &&
-                  column.key !== 'birthday' &&
-                  column.key !== 'lvokName' &&
-                  column.key !== 'decisNameFirst' &&
-                  column.key !== 'decisNameLast' &&
-                  column.key !== 'stadIspolnNameLast' &&
-                  column.key !== 'lockName';
-        })
-      },
+        return this.columnsOptions.filter(
+          column =>
+            ![
+              "action",
+              "deloN",
+              "deloDate",
+              "stadDeloName",
+              "checkPriority",
+              "birthday",
+              "lvokName",
+              "decisNameFirst",
+              "decisNameLast",
+              "stadIspolnNameLast",
+              "lockName"
+            ].includes(column.key)
+        );
+      }
     },
     methods: {
       isEmptyData() {
@@ -391,7 +392,6 @@
       },
       fillColumnsOptions() {
         if (!this.isEmptyData()) {
-          this.columnsOptions = [];
           this.dataStore.data.fields.forEach((item) => {
             switch (item) {
               case 'deloId': {
