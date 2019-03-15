@@ -37,9 +37,7 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.uchastStatusName" clearable filterable @on-change="store">
-                      <Option class="txt-break-word" v-for="item in StatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select>
+                    <Input class="adm-input adm-input--regular" readonly v-model="uchastIndivid.uchastStatusName"></Input>
                   </Col>
                 </Row>
               </div>
@@ -85,7 +83,6 @@
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
                     <DatePicker class="adm-input adm-input--regular" type="datetime" v-model="birthdayDate" format="dd/MM/yyyy" @on-change="formatBirthday" placeholder></DatePicker>
-                    <!--<input-mask v-model="uchastIndivid.individ.birthdayDay" :maskProps="maskInputBirthday" :value="uchastIndivid.individ.birthdayDay" inputClass="adm-input adm-input&#45;&#45;regular wmax360" @onInputChange="store" :clearable="true"></input-mask>-->
                   </Col>
                 </Row>
               </div>
@@ -273,16 +270,6 @@
           {
             label: 'Женский',
             value: 'Ж'
-          },
-        ],
-        StatusList: [
-          {
-            label: 'Физическое лицо',
-            value: 'Физическое лицо'
-          },
-          {
-            label: 'Юридическое лицо',
-            value: 'Юридическое лицо'
           },
         ],
       }

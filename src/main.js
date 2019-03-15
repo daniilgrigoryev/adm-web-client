@@ -13,6 +13,7 @@ import 'iview/dist/styles/iview.css';
 import './assets/scss/common.scss';
 
 import * as funcUtils from "./assets/js/utils/funcUtils";
+import * as constantUtils from "./assets/js/utils/constantUtils";
 import RequestApi from "./assets/js/api/requestApi";
 import * as formStack from './assets/js/api/formStack';
 import * as RequestEntity from "./assets/js/api/requestEntity";
@@ -69,7 +70,8 @@ let vue = new Vue({
         funcUtils.clearAll();
         RequestApi.closeSocket();
         formStack.clearStack(true);
-        window.close();
+        // window.close();
+        window.location.href = constantUtils.HTTP_URL_AUTH;
       }
     },
     async getDeloReestr() {
