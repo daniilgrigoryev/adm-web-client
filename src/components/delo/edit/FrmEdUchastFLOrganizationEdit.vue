@@ -23,9 +23,7 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastOrganization.uchastVid" clearable filterable @on-change="store">
-                      <Option class="txt-break-word" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select>
+                    <Input class="adm-input adm-input--regular" readonly v-model="uchastOrganization.uchastVidName"></Input>
                   </Col>
                 </Row>
               </div>
