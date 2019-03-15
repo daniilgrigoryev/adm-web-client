@@ -7,57 +7,84 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular" v-model="data.countryName" disabled ></Input>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmin180" v-model="data.regionId" filterable clearable @on-change="changeRegion">
-                  <Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
+                <Select class="adm-input adm-input--regular wmin180" v-model="data.countryCode" filterable clearable @on-change="changeCountry">
+                  <Option class="wmax360 txt-break-word" v-for="item in countryList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
                 </Select>
               </Col>
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
-                  <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
-              </Col>
-            </Row>
+        <div v-if="showIfRussia">
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" v-model="data.regionId" filterable clearable @on-change="changeRegion">
+                    <Option class="wmax360 txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{ item.value + ', ' + item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                    <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
+                    <Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+                    <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
           </div>
         </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
-                  <Option class="wmax360 txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
-              </Col>
-            </Row>
+
+        <div v-if="!showIfRussia">
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="store" ></Input>
+                </Col>
+              </Row>
+            </div>
           </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
-                  <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
-              </Col>
-            </Row>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input>
+                </Col>
+              </Row>
+            </div>
           </div>
         </div>
 
@@ -179,20 +206,39 @@
     data() {
       return {
         data: null,
+        countryList: null,
         regionsList: null,
         rayonsList: null,
         citiesList: null,
         streetsList: null,
       }
     },
+    computed: {
+      showIfRussia() {
+        return this.data.countryCode === '1100' || funcUtils.isEmpty(this.data.countryCode);
+      },
+    },
     methods: {
       async initData(data) {
         this.data = data;
 
+        await this.fillCountryList();
         await this.fillRegionList();
         await this.fillRayonList();
         await this.fillCityList();
         await this.fillStreetList();
+      },
+      async changeCountry() {
+        this.regionsList = null;
+        this.rayonsList = null;
+        this.citiesList = null;
+        this.streetsList = null;
+        this.data.regionId = null;
+        this.data.rayonId = null;
+        this.data.cityId = null;
+        this.data.streetId = null;
+
+        this.store();
       },
       async changeRegion() {
         this.rayonsList = null;
@@ -251,6 +297,21 @@
         this.store();
       },
 
+      async fillCountryList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getCountryDict'
+        });
+        let countryList = [];
+        let countryDict = JSON.parse(eventResponse.response).data;
+        for (let i = 0; i < countryDict.length; i++) {
+          let country = countryDict[i];
+          countryList.push({
+            label: country.NAME,
+            value: country.CODE
+          });
+        }
+        this.countryList = countryList;
+      },
       async fillRegionList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getRegionDict'
