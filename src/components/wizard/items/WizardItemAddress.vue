@@ -23,26 +23,18 @@
         </Button>
       </div>
 
-
-       <div class="adm-form">
         <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Код страны</small>
+          <small class="adm-text-small color-gray-medium adm-form__label">Страна</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.countryCode" disabled placeholder="Код страны"></Input>
+              <Select class="adm-input adm-input--regular wmin180" v-model="data.countryCode" filterable clearable @on-change="changeCountry">
+                <Option class="wmax360 txt-break-word" v-for="item in countryList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+              </Select>
             </Col>
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Название</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.countryName" disabled ></Input>
-            </Col>
-          </Row>
-        </div>
-
+      <div v-if="showIfRussia">
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
           <Row :gutter="16" type="flex" align="middle">
@@ -54,16 +46,16 @@
           </Row>
         </div>
 
-         <div class="my12 adm-form__item">
-           <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
-           <Row :gutter="16" type="flex" align="middle">
-             <Col :xs="24" :md="14" :lg="16">
-               <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
-                 <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-               </Select>
-             </Col>
-           </Row>
-         </div>
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                <Option class="wmax360 txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </div>
 
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
@@ -86,6 +78,29 @@
             </Col>
           </Row>
         </div>
+      </div>
+
+      <div v-if="!showIfRussia">
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="storeElementData" ></Input>
+            </Col>
+          </Row>
+        </div>
+
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="storeElementData"></Input>
+            </Col>
+          </Row>
+        </div>
+      </div>
+
+
 
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
@@ -141,7 +156,6 @@
         </Row>
        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -165,11 +179,17 @@
         addressModal: {
           visible: false
         },
+        countryList: null,
         regionsList: null,
         rayonsList: null,
         citiesList: null,
         streetsList: null,
       }
+    },
+    computed: {
+      showIfRussia() {
+        return this.data.countryCode === '1100' || funcUtils.isEmpty(this.data.countryCode);
+      },
     },
     methods: {
       async getData() {
@@ -187,6 +207,7 @@
         if (this.addressModal.visible) {
           this.data = data;
 
+          await this.fillCountryList();
           await this.fillRegionList();
           await this.fillRayonList();
           await this.fillCityList();
@@ -196,6 +217,18 @@
         this.fullAddress = data.adrFull;
       },
 
+      async changeCountry() {
+        this.regionsList = null;
+        this.rayonsList = null;
+        this.citiesList = null;
+        this.streetsList = null;
+        this.data.regionId = null;
+        this.data.rayonId = null;
+        this.data.cityId = null;
+        this.data.streetId = null;
+
+        this.storeElementData();
+      },
       async changeRegion() {
         this.rayonsList = null;
         this.citiesList = null;
@@ -253,6 +286,26 @@
         this.storeElementData();
       },
 
+      async fillCountryList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getCountryDict',
+            data: null
+          }
+        });
+        let countryList = [];
+        let countryDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < countryDict.length; i++) {
+          let country = countryDict[i];
+          countryList.push({
+            label: country.NAME,
+            value: country.CODE
+          });
+        }
+        this.countryList = countryList;
+      },
       async fillRegionList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
