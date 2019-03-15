@@ -1,6 +1,22 @@
 <template>
   <div v-if="data" class="wmax940 mx-auto">
-    <div class="adm-form mt24">
+
+
+    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Редактирование адреса</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
+      
+    <div class="adm-form">
       <div class="adm-form__container mt6 py24 px36">
         <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
