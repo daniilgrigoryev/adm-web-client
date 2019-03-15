@@ -60,6 +60,7 @@
             </Row>
           </div>
         </div>
+
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="8" :md="8" :lg="6">
             <div class="adm-form__item">
@@ -102,6 +103,9 @@
             </Row>
           </Col>
         </Row>
+
+
+        
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="8" :md="8" :lg="6">
             <div class="adm-form__item">
@@ -133,7 +137,11 @@
 
           </Col>
         </Row>
+
+
+
       </div>
+
       <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 my24">
         <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
         <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
