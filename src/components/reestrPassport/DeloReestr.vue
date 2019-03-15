@@ -24,20 +24,12 @@
 														<div class="w-full adm-form__item my12">
 															<div class="adm-12 color-dark-lighter my6">Дата заведения дела</div>
 
-                              <AdmDatePicker v-model="filter.deloDat"
-                                             type="date"
-                                             className="adm-input adm-input--big adm-input-data"
-                                             mask="00/00/0000"
-                                             format="dd/MM/yyyy"
-                                             placeholder="дд/мм/гггг"
-                                             clearable></AdmDatePicker>
-
-															<!--<DatePicker class="adm-input adm-input&#45;&#45;big adm-input-data"-->
-                                          <!--type="date"-->
-                                          <!--format="dd.MM.yyyy"-->
-                                          <!--v-model="filter.deloDat"-->
-                                          <!--placeholder="дд.мм.гггг"-->
-                                          <!--clearable></DatePicker>-->
+															<DatePicker class="adm-input adm-input--big adm-input-data"
+                                          type="date"
+                                          format="dd.MM.yyyy"
+                                          v-model="filter.deloDat"
+                                          placeholder="дд.мм.гггг"
+                                          clearable></DatePicker>
 														</div>
 													</div>
 												</Col>
@@ -195,14 +187,12 @@
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import InputMask from "../InputMask";
-  import AdmDatePicker from "../shared/AdmDatePicker";
   import {mapGetters} from 'vuex';
 
   export default {
     name: "DeloReestr",
     components: {
-      InputMask,
-      AdmDatePicker
+      InputMask
     },
     async created() {
       try {
