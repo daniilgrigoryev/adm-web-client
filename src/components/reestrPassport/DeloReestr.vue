@@ -391,6 +391,7 @@
         this.filter.thirdName = null;
       },
       fillColumnsOptions() {
+        this.columnsOptions = [];
         if (!this.isEmptyData()) {
           this.dataStore.data.fields.forEach((item) => {
             switch (item) {
