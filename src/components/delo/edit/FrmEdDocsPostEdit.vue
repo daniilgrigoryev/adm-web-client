@@ -21,7 +21,7 @@
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
     <div class="adm-form bg-white">
-      <div class="adm-form__container my6 py24 px36">
+      <div class="adm-form__container py6 px36">
         <h2 class="adm-text-big color-dark-light edit-form__header">Постановление по делу № {{ docsPost.docN }} от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY HH:mm') }}</h2>
         <Row>
           <Col span="12">

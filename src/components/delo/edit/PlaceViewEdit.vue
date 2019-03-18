@@ -17,7 +17,7 @@
     </div>
       
     <div class="adm-form">
-      <div class="adm-form__container mt6">
+      <div class="adm-form__container mt0">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование адреса места нарушения / места составления</h2>
         <div class="adm-form__content px36 py24">
           <div class="adm-form__item">
