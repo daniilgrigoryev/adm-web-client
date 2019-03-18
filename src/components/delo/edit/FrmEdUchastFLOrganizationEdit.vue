@@ -215,6 +215,7 @@
 
           uchastOrganization.organization.priznOffice = uchastOrganization.organization.priznOffice === '+';
 
+          this.parseDate(uchastOrganization);
           this.uchastOrganization = uchastOrganization;
         }
       } catch (e) {
@@ -238,6 +239,9 @@
       }
     },
     methods: {
+      parseDate(data) {
+        // data.organization.dateReg = funcUtils.convertNumberToDate(data.organization.dateReg);
+      },
       async fillVehsList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getVehs'

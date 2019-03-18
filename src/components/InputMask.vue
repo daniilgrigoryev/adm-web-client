@@ -2,6 +2,7 @@
   <Input ref="maskedField"
          @input="onInput"
          @on-input-change="onInputChange"
+         @on-enter="onEnter"
 
          :value="value"
          :class="inputClass"
@@ -102,18 +103,34 @@
       },
     },
     mounted () {
+      let input = this.$refs.maskedField.$refs.input;
       let im = new Inputmask(this.maskProps);
-      im.mask(this.$refs.maskedField.$refs.input);
+      im.mask(input);
+      input.addEventListener('click', this.onClick);
+      input.addEventListener('blur', this.onBlur);
     },
     data() {
       return {}
     },
     methods: {
       onInput(e) {
-        this.$emit('input', e);
+        if (e.length === 0) {
+          this.$emit('onClear');
+        } else {
+          this.$emit('input', e);
+        }
       },
       onInputChange(e) {
         this.$emit('onInputChange', e);
+      },
+      onClick(e) {
+        this.$emit('onClick', e);
+      },
+      onBlur(e) {
+        this.$emit('onBlur', e);
+      },
+      onEnter(e) {
+        this.$emit('onEnter', e);
       },
     }
   }
