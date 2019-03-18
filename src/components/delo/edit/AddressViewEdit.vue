@@ -17,165 +17,159 @@
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container mt6 py24 px36">
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Страна</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmin180" v-model="data.countryCode" filterable clearable @on-change="changeCountry">
-                  <Option class="txt-break-word" v-for="item in countryList" :value="item.value" :key="item.value">{{item.label }}</Option>
-                </Select>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div v-if="showIfRussia">
+      <div class="adm-form__container mt6">
+        <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование фактического/регистрации адреса участника</h2>
+        <div class="adm-form__content px36 py24">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Страна</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Select class="adm-input adm-input--regular wmin180" v-model="data.regionId" filterable clearable @on-change="changeRegion">
-                    <Option class="txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
+                  <Select class="adm-input adm-input--regular wmin180" v-model="data.countryCode" filterable clearable @on-change="changeCountry">
+                    <Option class="txt-break-word" v-for="item in countryList" :value="item.value" :key="item.value">{{item.label }}</Option>
                   </Select>
                 </Col>
               </Row>
             </div>
           </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Select class="adm-input adm-input--regular wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
-                    <Option class="txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>
+          <div v-if="showIfRussia">
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Select class="adm-input adm-input--regular wmin180" v-model="data.regionId" filterable clearable @on-change="changeRegion">
+                      <Option class="txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
+                    </Select>
+                  </Col>
+                </Row>
+              </div>
             </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                 <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="store" ></Input>
-                  <!-- <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
-                    <Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select> -->
-                </Col>
-              </Row>
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Select class="adm-input adm-input--regular wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                      <Option class="txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
+                  </Col>
+                </Row>
+              </div>
             </div>
-          </div>
-
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-
-          <!-- <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Select class="adm-input adm-input--regular wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
-                    <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-          </div> -->
-        </div>
-
-        <div v-if="!showIfRussia">
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
                   <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="store" ></Input>
-                </Col>
-              </Row>
+                    <!-- <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
+                      <Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select> -->
+                  </Col>
+                </Row>
+              </div>
+            </div>
+
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+
+            <!-- <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Select class="adm-input adm-input--regular wmin180" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+                      <Option class="wmax360 txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
+                  </Col>
+                </Row>
+              </div>
+            </div> -->
+          </div>
+          <div v-if="!showIfRussia">
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="store" ></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input>
+                  </Col>
+                </Row>
+              </div>
             </div>
           </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input>
-                </Col>
-              </Row>
+          <div class="flex-parent flex-parent--center-cross">
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular wmax60" v-model="data.ndom" @on-input-change="store" ></Input>
+                  </Col>
+                </Row>
+              </div>
             </div>
+            <div class="adm-form__item ml18">
+              <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax60">Корпус</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nkorpus" @on-input-change="store" ></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item ml18">
+              <small class="adm-text-small color-gray-medium adm-form__label wmin60">Строение</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nstroenie" @on-input-change="store" ></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item ml18">
+              <small class="adm-text-small color-gray-medium adm-form__label wmin60">Квартира</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart"></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item ml18">
+              <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax60">Индекс</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular" v-model="data.pindex" disabled></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div> 
           </div>
         </div>
-
-
-
-        <div class="flex-parent flex-parent--center-cross">
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular wmax60" v-model="data.ndom" @on-input-change="store" ></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item ml18">
-            <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax60">Корпус</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular wmax60" v-model="data.nkorpus" @on-input-change="store" ></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item ml18">
-            <small class="adm-text-small color-gray-medium adm-form__label wmin60">Строение</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular wmax60" v-model="data.nstroenie" @on-input-change="store" ></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item ml18">
-            <small class="adm-text-small color-gray-medium adm-form__label wmin60">Квартира</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item ml18">
-            <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax60">Индекс</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="data.pindex" disabled></Input>
-                </Col>
-              </Row>
-            </div>
-          </div> 
-        </div>
-
-
-        <!-- <div class="flex-parent flex-parent--center-cross">
-
-        </div> -->
       </div>
 
       <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 my24">
