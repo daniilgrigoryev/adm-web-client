@@ -8,55 +8,43 @@
         </Button>
       </div>
 
-      <div class="wmax600 mx-auto">
-        <div>
-          <div class="grid">
-            <div class="col">
-              <div class="px12">
-                <p class="adm-text-big color-dark-lighter">Статья {{body.stotvZakon}}</p>
-                <h1 class="adm-h1 color-dark-lighter">{{viol.violStotvKod}}</h1>
-                <p class="adm-txt-regular color-dark-lighter txt-em wmax300">{{viol.violStotvName}}</p>
-              </div>
-            </div>
-            <div class="col">
-              <div class="px12">
-                <p class="adm-text-big color-dark-lighter">Пункт НПА</p>
-                <h1 class="adm-h1 color-dark-lighter">{{viol.violPnpaKod}}</h1>
-                <p class="adm-txt-regular color-dark-lighter txt-em">{{viol.violPnpaName}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="wmax940 ml120">
 
-        <div class="mt36">
-          <div class="flex-parent my6">
+        <div>
+          <div v-if="isNotEmptyField(viol.violDatNar)" class="flex-parent my6">
             <div class="flex-parent flex-parent--center-cross w240 h36">
               <div class="s40 flex-parent flex-parent--center-cross flex-parent--center-main">
                 <img src="../../assets/images/time.svg" alt="">
               </div>
-              <p class="adm-txt-regular color-dark-lighter">Дата - время нарушения</p>
+              <p class="adm-14 color-dark-lighter">Дата - время нарушения</p>
             </div>
             <div>
-              <p class="adm-txt-regular color-dark-lighter py6">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+              <p class="adm-14 color-dark-lighter py6">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
             </div>
           </div>
 
-          <div class="flex-parent my6">
+          <div v-if="isNotEmptyField(viol.violPlaceNarFull)"  class="flex-parent my6">
             <div class="flex-parent flex-parent--center-cross w240 h36">
               <div class="s40 flex-parent flex-parent--center-cross flex-parent--center-main">
                 <img src="../../assets/images/map.svg" alt="">
               </div>
-              <p class="adm-txt-regular color-dark-lighter">Место нарушения</p>
+              <p class="adm-14 color-dark-lighter">Место нарушения</p>
             </div>
             <div>
-              <p class="adm-txt-regular color-dark-lighter wmax300 py6">{{viol.violPlaceNarFull}}</p>
+              <p class="adm-14 color-dark-lighter wmax300 py6">{{viol.violPlaceNarFull}}</p>
             </div>
           </div>
         </div>
 
-        <div class="pt18">
-          <p class="adm-txt-regular color-dark-lighter">Уникальный номер АП</p>
-          <h3 class="adm-h3 color-dark-lighter">{{viol.mvidFisFull}}</h3>
+        <div v-if="isNotEmptyField(viol.violPnpaKod)" class="px12 mt36">
+          <p class="adm-text-big color-dark-lighter">Пункт НПА</p>
+          <h1 class="adm-h1 color-dark-lighter">{{viol.violPnpaKod}}</h1>
+          <p class="adm-14 color-dark-lighter">{{viol.violPnpaName}}</p>
+        </div>
+        <div v-if="isNotEmptyField(body.stotvZakon)" class="px12 mt24">
+          <p class="adm-text-big color-dark-lighter">Статья {{body.stotvZakon}}</p>
+          <h1 class="adm-h1 color-dark-lighter">{{viol.violStotvKod}}</h1>
+          <p class="adm-14 color-dark-lighter wmax300">{{viol.violStotvName}}</p>
         </div>
 
         <div class="my60">
@@ -65,21 +53,35 @@
                 <img src="../../assets/images/police.svg" alt="">
             </div>
             <div>
-              <p class="adm-txt-regular color-dark-lighter">Должностное лицо возбудившее дело</p>
-              <h3 class="adm-h3 color-dark-lighter">{{body.inspVozbName}}</h3>
+              <div v-if="isNotEmptyField(body.inspVozbName)">
+                <p class="adm-14 color-dark-lighter mb6">Должностное лицо возбудившее дело</p>
+                <h3 class="adm-h3 color-dark-lighter">{{body.inspVozbName}}</h3>
+              </div>
               
-              <div class="my12">
-                <p class="adm-txt-regular color-dark-lighter txt-em wmax360">Код сотрудника: {{body.inspVozbKod}} </p>
-                <p class="adm-txt-regular color-dark-lighter txt-em wmax360">{{ body.inspVozbRang, body.inspVozbDolz | concatByDelimiter(',') }}</p>
+              <div class="my8">
+                <!-- <p class="adm-14 color-dark-lighter txt-em my6">Код сотрудника: {{body.inspVozbKod}} </p> -->
+                <p v-if="isNotEmptyField(body.inspVozbRang)" class="adm-14 color-dark-lighter txt-em my6">{{ body.inspVozbRang, body.inspVozbDolz | concatByDelimiter(',') }}</p>
               </div>
 
               <div class="my12">
-                <p class="adm-txt-regular color-dark-lighter wmax360">Орган возбудивший дело</p>
-                <p class="adm-text-big color-dark-lighter wmax360">{{body.organVozbId, body.organVozbName | concatByDelimiter('-') }}</p>
+                <p class="adm-14 color-dark-lighter">Орган возбудивший дело</p>
+                <p class="adm-text-big color-dark-lighter">{{body.organVozbId, body.organVozbName | concatByDelimiter('-') }}</p>
               </div>
             </div>
           </div>
 
+          <div v-if="isNotEmptyField(body.docVozbName)" class="pt18">
+            <p class="adm-14 color-dark-lighter">Документ основание</p>
+            <h3 class="adm-h3 color-dark-lighter">{{body.docVozbName}}</h3>
+          </div>
+
+          <div v-if="isNotEmptyField(viol.mvidFisFull)" class="pt18">
+            <p class="adm-14 color-dark-lighter">Уникальный номер АП</p>
+            <h3 class="adm-h3 color-dark-lighter">{{viol.mvidFisFull}}</h3>
+          </div>
+
+ 
+          
         </div>
       </div>
   </div>
@@ -141,6 +143,12 @@
       this.$store.dispatch('frmEdDeloSetData', null);
     },
     methods: {
+      isNotEmptyField(field) {
+        if (typeof field === 'string') {
+          return funcUtils.isNotEmpty(field) && field.length > 0;
+        }
+        return funcUtils.isNotEmpty(field);
+      },
       changeClass(errorPriority) {
         if (funcUtils.isNotEmpty(errorPriority)) {
           switch (errorPriority) {
