@@ -1,5 +1,5 @@
 <template>
-  <div v-if="docsPost" class="wmax940 mx-auto">
+  <div v-if="docsPost" class="wmax1280 mx-auto">
     <!-- данные по делу  -->
 
     <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
@@ -22,72 +22,64 @@
 
     <div class="adm-form bg-white">
       <div class="adm-form__container my6 py24 px36">
+        <h2 class="adm-text-big color-dark-light edit-form__header">Постановление по делу № {{ docsPost.docN }} от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY HH:mm') }}</h2>
+        <Row>
+          <Col span="12">
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Постановление №</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="14" :lg="16">
+                    <Input class="adm-input adm-input--regular" readonly :value="docsPost.docN"></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </Col>
+          <Col span="12">
+            <div class="adm-form__item">
+              <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время вынесения</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="14" :lg="16">
+                    <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div class="adm-form bg-white">
+      <div class="adm-form__container my6 py24 px36">
+        <h2 class="adm-text-big color-dark-light edit-form__header">Составил</h2>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="docsPost.pnpaId" clearable filterable @on-change="store">
-                  <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-                </Select>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="docsPost.stotvId" clearable filterable :disabled="!docsPost.dateNar" @on-change="store">
-                  <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-                </Select>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
+          <small class="adm-text-small color-gray-medium adm-form__label">Должносное лицо</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" @on-input-change="store" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <!-- TODO -->
+                <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName + ' ' + docsPost.inspSostRang" ></Input>
+              <!-- ENDTODO -->
               </Col>
             </Row>
           </div>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+          <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular" v-model="docsPost.factSved" @on-input-change="store" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+              <!-- TODO -->
+                <Input class="adm-input adm-input--regular" readonly :value="docsPost.organSostName" ></Input>
+              <!-- ENDTODO -->
               </Col>
             </Row>
           </div>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
+          <small class="adm-text-small color-gray-medium adm-form__label">Место вынесения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="22" :md="22" :lg="22">
@@ -97,6 +89,21 @@
                 <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
                   <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
                 </Button>
+              </Col>
+            </Row>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="adm-form bg-white">
+      <div class="adm-form__container my6 py24 px36">
+        <h2 class="adm-text-big color-dark-light edit-form__header">Сведения о нарушении</h2>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
               </Col>
             </Row>
           </div>
@@ -116,8 +123,102 @@
             </Row>
           </div>
         </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА нарушения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+                <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsPost.pnpaId" clearable filterable @on-change="store">
+                  <Option class=" txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+                <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsPost.stotvId" clearable filterable :disabled="!docsPost.dateNar" @on-change="store">
+                  <Option class=" txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+              <!-- TODO -->
+                <Input class="adm-input adm-input--regular" v-model="docsPost.factSved" @on-input-change="store"></Input>
+              <!-- ENDTODO -->
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">ТС</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+              <!-- TODO -->
+                <Input class="adm-input adm-input--regular" v-model="docsPost.vehsName" @on-input-change="store"></Input>
+              <!-- ENDTODO -->
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">ЛВОК</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular" v-model="docsPost.uchastName" @on-input-change="store"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+              <!-- TODO -->
+                <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" @on-input-change="store"></Input>
+              <!-- ENDTODO -->
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" @on-input-change="store"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Доп. сведения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular" v-model="docsPost.dopSved" @on-input-change="store"></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
       </div>
     </div>
+        
+        
+        
+        
     <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
       <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
       <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
@@ -633,6 +734,23 @@
 </script>
 
 <style scoped lang="scss">
+  .chast-title {
+    display: flex;
+    align-items: center;
+    padding: 24px 36px;
+  }
+  .edit-form__header {
+    background-color: #1888CC;
+    padding-left: 36px;
+    height: 30px;
+    color: #fff;
+    line-height: 30px;
+    border-radius: 4px 4px 0 0;
+    margin: -24px -36px 0;
+  } 
+  .adm-form {
+    margin: 20px;
+  }
   .adm-form-content{
 
   }
