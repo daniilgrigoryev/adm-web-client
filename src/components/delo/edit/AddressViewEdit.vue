@@ -150,12 +150,8 @@
               </Row>
             </div>
           </div>
-        </div>
-
-
-        <div class="flex-parent flex-parent--center-cross">
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Квартира</small>
+          <div class="adm-form__item ml18">
+            <small class="adm-text-small color-gray-medium adm-form__label wmin60">Квартира</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -175,6 +171,11 @@
             </div>
           </div> 
         </div>
+
+
+        <!-- <div class="flex-parent flex-parent--center-cross">
+
+        </div> -->
       </div>
 
       <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 my24">
