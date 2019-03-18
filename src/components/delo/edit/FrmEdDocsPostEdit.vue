@@ -61,10 +61,13 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Должносное лицо</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                <!-- TODO -->
+                <Col :xs="22" :md="22" :lg="22">
                   <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName + ' ' + docsPost.inspSostRang" ></Input>
-                <!-- ENDTODO -->
+                </Col>
+                <Col :xs="2" :md="2" :lg="2">
+                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Список должносных лиц" :size="35" />
+                  </Button>
                 </Col>
               </Row>
             </div>
@@ -73,10 +76,13 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                <!-- TODO -->
+                <Col :xs="22" :md="22" :lg="22">
                   <Input class="adm-input adm-input--regular" readonly :value="docsPost.organSostName" ></Input>
-                <!-- ENDTODO -->
+                </Col>
+                <Col :xs="2" :md="2" :lg="2">
+                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Список подразделений" :size="35" />
+                  </Button>
                 </Col>
               </Row>
             </div>

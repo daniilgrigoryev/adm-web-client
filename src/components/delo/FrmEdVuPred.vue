@@ -8,7 +8,7 @@
           <Button @click="getVuPredEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Предъявлен</b>
+          <b class="adm-text-big color-dark-lighter">Предъявленный документ — {{body.docTipName}}</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
@@ -23,7 +23,7 @@
           <Row type="flex" :gutter="60">
             <Col :xs="24" :md="24" :lg="24">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Тип документа</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
