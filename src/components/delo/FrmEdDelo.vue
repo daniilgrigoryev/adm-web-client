@@ -2,14 +2,13 @@
   <div v-if="body && viol" class="px36 pb6">
     <!-- данные по делу  -->
 
-      <div class="flex-parent flex-parent--end-main py24">
+      <!-- <div class="flex-parent flex-parent--end-main py24">
         <Button @click="getDeloEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
           <img src='../../assets/images/pen.svg' class="wmax-none">
         </Button>
-      </div>
+      </div> -->
 
-      <div class="wmax940 ml120">
-
+      <div class="wmax940 ml120 pt36">
         <div>
           <div v-if="isNotEmptyField(viol.violDatNar)" class="flex-parent my6">
             <div class="flex-parent flex-parent--center-cross w240 h36">
