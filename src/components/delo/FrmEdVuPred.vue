@@ -8,15 +8,13 @@
           <Button @click="getVuPredEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Предъявленный документ — {{body.docTipName}}</b>
+          <b class="adm-text-big color-dark-lighter">Документ участника</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
         </Button>
       </div>
     </div>
-
-
     <div class="adm-form">
       <div class="adm-form__container mt6">
         <div class="adm-form__content py24 px36">
@@ -32,7 +30,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
                 <div class="adm-form__item_content">
@@ -43,7 +40,6 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
                 <div class="adm-form__item_content">
@@ -54,101 +50,12 @@
                   </Row>
                 </div>
               </div>
-
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан документ</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан документ. Код - Название организации</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-')" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.remarks"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.vuPred"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.statusName" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата задержания</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateZader | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата возврата</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateVozv | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата утраты документа</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateUtrat | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.ogaiVydKod" ></Input>
                     </Col>
                   </Row>
                 </div>

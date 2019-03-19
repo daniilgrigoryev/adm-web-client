@@ -8,7 +8,7 @@
           <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
             <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
           </Button>
-          <b class="adm-text-big color-dark-lighter">Предъявлен</b>
+          <b class="adm-text-big color-dark-lighter">Редактирование документа участника</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../../assets/images/wiki.svg' class="wmax-none">
