@@ -554,41 +554,41 @@
         this.stotvSearchInfoList = stotvSearchInfoList;
       },
 
-      async changeInspVozbKod() {
+      async changeInspSostKod() {
         let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.docsPost.inspVozbKod) && express.test(this.docsPost.inspVozbKod)) {
+        if (funcUtils.isNotEmpty(this.docsPost.inspSostKod) && express.test(this.docsPost.inspSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: this.docsPost.inspVozbKod
+              inspKod: this.docsPost.inspSostKod
             }
           });
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
-            this.docsPost.inspVozbId = data.inspId;
-            this.docsPost.inspVozbKod = data.inspKod;
-            this.docsPost.inspVozbName = data.inspName;
-            this.docsPost.inspVozbDolz = data.inspDolz;
-            this.docsPost.inspVozbRang = data.inspRang;
-            this.docsPost.organVozbId = data.ogaiId;
-            this.docsPost.organVozbKod = data.organKod;
-            this.docsPost.organVozbName = data.ogaiName;
+            this.docsPost.inspSostId = data.inspId;
+            this.docsPost.inspSostKod = data.inspKod;
+            this.docsPost.inspSostName = data.inspName;
+            this.docsPost.inspSostDolz = data.inspDolz;
+            this.docsPost.inspSostRang = data.inspRang;
+            this.docsPost.organSostId = data.ogaiId;
+            this.docsPost.organSostKod = data.organKod;
+            this.docsPost.organSostName = data.ogaiName;
             this.store();
           } else {
-            this.clearInspVozb();
+            this.clearInspSost();
           }
         } else {
-          this.clearInspVozb();
+          this.clearInspSost();
         }
       },
-      async changeOrganVozbKod() {
+      async changeOrganSostKod() {
         let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.docsPost.organVozbKod) && express.test(this.docsPost.organVozbKod)) {
+        if (funcUtils.isNotEmpty(this.docsPost.organSostKod) && express.test(this.docsPost.organSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
-              organKod: this.docsPost.organVozbKod
+              organKod: this.docsPost.organSostKod
             }
           });
           let gibddList = JSON.parse(eventResponse.response).data;
@@ -596,10 +596,10 @@
             this.organModal.visible = true;
             this.organModal.gibddList = gibddList;
           } else {
-            this.clearOrganVozb();
+            this.clearOrganSost();
           }
         } else {
-          this.clearOrganVozb();
+          this.clearOrganSost();
         }
       },
       changeDateNar() {
@@ -613,8 +613,8 @@
       },
       changeFIO() {
         let fioLength = 0;
-        let fioArr = this.docsPost.inspVozbName.split(' ');
-        this.docsPost.inspVozbName = '';
+        let fioArr = this.docsPost.inspSostName.split(' ');
+        this.docsPost.inspSostName = '';
         for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
           let express = /^[а-яА-ЯёЁ]+$/;
           let item = fioArr[i];
@@ -622,65 +622,65 @@
             switch (fioLength) {
               case 0:
               {
-                this.docsPost.inspVozbName += item;
+                this.docsPost.inspSostName += item;
                 break;
               }
               case 1:
               {
-                this.docsPost.inspVozbName += ' ' + item;
+                this.docsPost.inspSostName += ' ' + item;
                 break;
               }
               case 2:
               {
-                this.docsPost.inspVozbName += ' ' + item;
+                this.docsPost.inspSostName += ' ' + item;
                 break;
               }
             }
             fioLength++;
           }
         }
-        this.clearInspVozbKod();
+        this.clearInspSostKod();
       },
 
       onSispClick(data) {
-        this.docsPost.inspVozbId = data.inspId;
-        this.docsPost.inspVozbKod = data.inspKod;
-        this.docsPost.inspVozbName = data.inspName;
-        this.docsPost.inspVozbDolz = data.inspDolz;
-        this.docsPost.inspVozbRang = data.inspRang;
-        this.docsPost.organVozbId = data.ogaiId;
-        this.docsPost.organVozbKod = data.organKod;
-        this.docsPost.organVozbName = data.ogaiName;
+        this.docsPost.inspSostId = data.inspId;
+        this.docsPost.inspSostKod = data.inspKod;
+        this.docsPost.inspSostName = data.inspName;
+        this.docsPost.inspSostDolz = data.inspDolz;
+        this.docsPost.inspSostRang = data.inspRang;
+        this.docsPost.organSostId = data.ogaiId;
+        this.docsPost.organSostKod = data.organKod;
+        this.docsPost.organSostName = data.ogaiName;
         this.dolzModal.visible = false;
         this.dolzModal.sispList = null;
         this.store();
       },
       onGibddClick(data) {
-        this.docsPost.organVozbId = data.ID;
-        this.docsPost.organVozbKod = data.ORGAN_KOD;
-        this.docsPost.organVozbName = data.ORGAN_NAME;
+        this.docsPost.organSostId = data.ID;
+        this.docsPost.organSostKod = data.ORGAN_KOD;
+        this.docsPost.organSostName = data.ORGAN_NAME;
         this.organModal.gibddList = null;
         this.organModal.visible = false;
         this.store();
       },
 
-      clearInspVozbKod() {
-        this.docsPost.inspVozbId = null;
-        this.docsPost.inspVozbKod = null;
+      clearInspSostKod() {
+        this.docsPost.inspSostId = null;
+        this.docsPost.inspSostKod = null;
         this.store();
       },
-      clearInspVozb() {
-        this.docsPost.inspVozbId = null;
-        this.docsPost.inspVozbKod = null;
-        this.docsPost.inspVozbName = null;
-        this.docsPost.inspVozbDolz = null;
-        this.docsPost.inspVozbRang = null;
+      clearInspSost() {
+        this.docsPost.inspSostId = null;
+        this.docsPost.inspSostKod = null;
+        this.docsPost.inspSostName = null;
+        this.docsPost.inspSostDolz = null;
+        this.docsPost.inspSostRang = null;
         this.store();
       },
-      clearOrganVozb() {
-        this.docsPost.organVozbId = null;
-        this.docsPost.organVozbKod = null;
-        this.docsPost.organVozbName = null;
+      clearOrganSost() {
+        this.docsPost.organSostId = null;
+        this.docsPost.organSostKod = null;
+        this.docsPost.organSostName = null;
         this.store();
       },
       store() {
