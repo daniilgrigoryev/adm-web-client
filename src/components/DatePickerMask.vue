@@ -10,7 +10,7 @@
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import CalendarHeader from "~/components/CalendarHeader";
   import CalendarBody from "~/components/CalendarBody";
-  import ClickOutside from 'vue-click-outside'
+  import ClickOutside from 'vue-click-outside';
 
   export default {
     name: "DatePickerMask",
