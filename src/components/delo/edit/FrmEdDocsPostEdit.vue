@@ -168,40 +168,40 @@
               </Row>
             </div>
           </div>
-          <div class="adm-form__item">
+          <!--<div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">ТС</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                <!-- TODO -->
-                  <Input class="adm-input adm-input--regular" v-model="docsPost.vehsName" @on-input-change="store"></Input>
-                <!-- ENDTODO -->
+                &lt;!&ndash; TODO &ndash;&gt;
+                  <Input class="adm-input adm-input&#45;&#45;regular" v-model="docsPost.vehsName" @on-input-change="store"></Input>
+                &lt;!&ndash; ENDTODO &ndash;&gt;
                 </Col>
               </Row>
             </div>
-          </div>
-          <div class="adm-form__item">
+          </div>-->
+          <!--<div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">ЛВОК</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="docsPost.uchastName" @on-input-change="store"></Input>
+                  <Input class="adm-input adm-input&#45;&#45;regular" v-model="docsPost.uchastName" @on-input-change="store"></Input>
                 </Col>
               </Row>
             </div>
-          </div>
-          <div class="adm-form__item">
+          </div>-->
+          <!--<div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                <!-- TODO -->
-                  <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" @on-input-change="store"></Input>
-                <!-- ENDTODO -->
+                &lt;!&ndash; TODO &ndash;&gt;
+                  <Input class="adm-input adm-input&#45;&#45;regular" v-model="docsPost.workPlace" @on-input-change="store"></Input>
+                &lt;!&ndash; ENDTODO &ndash;&gt;
                 </Col>
               </Row>
             </div>
-          </div>
+          </div>-->
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
             <div class="adm-form__item_content">
@@ -225,9 +225,6 @@
         </div>
       </div>
     </div>
-        
-        
-        
         
     <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
       <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
