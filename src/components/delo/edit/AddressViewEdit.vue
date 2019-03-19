@@ -62,10 +62,10 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="store" ></Input>
-                    <!-- <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
+                  <!-- <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="store" ></Input> -->
+                    <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
                       <Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select> -->
+                    </Select>
                   </Col>
                 </Row>
               </div>
@@ -76,7 +76,10 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input>
+                    <!-- <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input> -->
+                    <Select class="adm-input adm-input--regular" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+                      <Option class=" txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
                   </Col>
                 </Row>
               </div>
