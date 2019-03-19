@@ -20,7 +20,7 @@
       <div class="adm-form__container mt6">
         <div class="adm-form__content px36">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Сумма наложенного штрафа</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения решения</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Вручение</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата вручения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -50,7 +50,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Вступление в законную силу</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -173,7 +173,7 @@
   }
   .adm-form__label{
     padding: 0;
-    min-width: 200px;
+    min-width: 120px;
     padding-right: 12px;
   }
   .adm-form__item_content{

@@ -1,10 +1,24 @@
 <template>
   <div v-if="body" class="px36 pb6">
+    <div class="amd-title amd-title--sticky bg-white px36 pt24 pb18"><!-- wmax940 mx-auto -->
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <!-- <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <img src='../../assets/images/pen.svg' class="wmax-none">
+          </Button> -->
+          <b class="adm-text-big color-dark-lighter">Оплата штрафа</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
+
     <div class="adm-form">
       <div class="adm-form__container mt6">
         <div class="adm-form__content px36">
           <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения по решению</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата оплаты штрафа</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
                 <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
@@ -12,7 +26,7 @@
             </Row>
           </div>
           <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаты штрафа (руб.)</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаты штрафа</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
                 <Input class="adm-input adm-input--regular" readonly :value="body.sumOpl" ></Input>
@@ -20,7 +34,7 @@
             </Row>
           </div>
           <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Универсальный идентификатор платежа</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">УИП</small>
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
                 <Input class="adm-input adm-input--regular" readonly :value="body.uip" ></Input>
@@ -104,5 +118,9 @@
 </script>
 
 <style scoped>
-
+  .adm-form__label{
+    padding: 0;
+    min-width: 120px;
+    padding-right: 12px;
+  }
 </style>
