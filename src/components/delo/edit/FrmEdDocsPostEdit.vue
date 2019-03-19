@@ -43,7 +43,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
+                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder=" "></DatePicker>
                     </Col>
                   </Row>
                 </div>
@@ -114,7 +114,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder="Select date"></DatePicker>
+                  <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="docsPost.dateSost" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder=" "></DatePicker>
                 </Col>
               </Row>
             </div>

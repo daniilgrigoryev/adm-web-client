@@ -45,7 +45,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateVyd" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
+            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateVyd" format="dd-MM-yyyy" @on-change="store" placeholder=" "></DatePicker>
           </Col>
         </Row>
       </div>
@@ -54,7 +54,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateSrok" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
+            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateSrok" format="dd-MM-yyyy" @on-change="store" placeholder=" "></DatePicker>
           </Col>
         </Row>
       </div>
@@ -139,7 +139,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateUtil" format="dd-MM-yyyy" @on-change="store" placeholder="Select date"></DatePicker>
+            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateUtil" format="dd-MM-yyyy" @on-change="store" placeholder=" "></DatePicker>
           </Col>
         </Row>
       </div>

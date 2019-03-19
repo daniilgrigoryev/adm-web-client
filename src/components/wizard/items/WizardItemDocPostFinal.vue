@@ -5,7 +5,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата уведомления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.dateUved" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date"></DatePicker>
+            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.dateUved" format="dd-MM-yyyy" @on-change="storeElementData" placeholder=" "></DatePicker>
           </Col>
         </Row>
       </div>
@@ -13,7 +13,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.dateIspoln" format="dd-MM-yyyy" @on-change="storeElementData" placeholder="Select date"></DatePicker>
+            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.dateIspoln" format="dd-MM-yyyy" @on-change="storeElementData" placeholder=" "></DatePicker>
           </Col>
         </Row>
       </div>
