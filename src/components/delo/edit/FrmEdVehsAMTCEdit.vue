@@ -586,15 +586,22 @@
     }
     &.__grid {
       grid-template-columns: repeat(2, 1fr);
-      align-items: flex-start;
       display: grid;
       .adm-form .adm-form__container {
         margin: 0;
+        height: 100%;
       }
       .adm-form__content{
         padding-left: 36px !important;
+        padding: 8px !important;
       }
     }
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 0;
   }
   .chast-title {
     display: flex;
@@ -604,15 +611,7 @@
   .adm-form {
     margin: 10px;
   }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    // min-height: 90px;
-  }
+  
   .adm-form__label{
     padding: 0;
     padding-right: 12px;
