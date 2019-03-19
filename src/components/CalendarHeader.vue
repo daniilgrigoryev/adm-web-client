@@ -34,14 +34,14 @@
       </ul>
     </div>
     <div v-show="visibleTime && isTime" class="time">
-      <ul v-show="isShowHours" class="time-list">
-        <li :class="['time-item', {'select-time': null != selectedTime && item == selectedHours}]" v-for="(item, key) in hours" :key="key" @click="setHour(item)">{{item}}</li>
+      <ul v-show="isShowHours" class="time-list hours-list">
+        <li :class="['time-item', {'select-time select-hour': null != selectedTime && item == selectedHours}]" v-for="(item, key) in hours" :key="key" @click="setHour(item)">{{item}}</li>
       </ul>
-      <ul v-show="isShowMinutes" class="time-list">
-        <li :class="['time-item', {'select-time': null != selectedTime && item == selectedMinutes}]" v-for="(item, key) in minutes" :key="key" @click="setMinute(item)">{{item}}</li>
+      <ul v-show="isShowMinutes" class="time-list minutes-list">
+        <li :class="['time-item', {'select-time select-minute': null != selectedTime && item == selectedMinutes}]" v-for="(item, key) in minutes" :key="key" @click="setMinute(item)">{{item}}</li>
       </ul>
-      <ul v-show="isShowSeconds" class="time-list">
-        <li :class="['time-item', {'select-time': null != selectedTime && item == selectedSeconds}]" v-for="(item, key) in seconds" :key="key" @click="setSecond(item)">{{item}}</li>
+      <ul v-show="isShowSeconds" class="time-list seconds-list">
+        <li :class="['time-item', {'select-time select-second': null != selectedTime && item == selectedSeconds}]" v-for="(item, key) in seconds" :key="key" @click="setSecond(item)">{{item}}</li>
       </ul>
     </div>
     <div class="ivu-picker-confirm confirm">
@@ -87,6 +87,11 @@
         this.dateContext = moment();
         this.selectedDate = null;
         this.selectedTime = null;
+      }
+    },
+    updated() {
+      if (this.visibleTime && this.isTime) {
+        this.scrollToSelectTime();
       }
     },
     data() {
@@ -195,6 +200,17 @@
           }
         }
         return res;
+      },
+      scrollToSelectTime() {
+        if (this.isShowHours) {
+          document.querySelector('.hours-list').scrollTop = document.querySelector('.select-hour').offsetTop - document.querySelector('.hours-list').offsetHeight / 2;
+        }
+        if (this.isShowMinutes) {
+          document.querySelector('.minutes-list').scrollTop = document.querySelector('.select-minute').offsetTop - document.querySelector('.minutes-list').offsetHeight / 2;
+        }
+        if (this.isShowSeconds) {
+          document.querySelector('.seconds-list').scrollTop = document.querySelector('.select-second').offsetTop - document.querySelector('.seconds-list').offsetHeight / 2;
+        }
       },
       setHour(hours) {
         let dateContext = this.dateContext.toDate();
