@@ -1,6 +1,8 @@
 <template>
-  <div>
+  <div class="content">
     <input-mask v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" :maskProps="maskInput" :clearable="clearable" :placeholder="placeholder"></input-mask>
+
+    <i @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
   </div>
 </template>
 
@@ -81,6 +83,14 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .content {
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
 
+    .date-icon {
+      position: relative;
+    }
+  }
 </style>

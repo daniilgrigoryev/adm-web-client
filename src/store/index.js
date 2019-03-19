@@ -13,6 +13,7 @@ import deloTreeCardView from './modules/deloTreeCardView';
 import frmEdDelo from './modules/frmEdDelo';
 import frmEdDocsOpred from './modules/frmEdDocsOpred';
 import frmEdDocsPost from './modules/frmEdDocsPost';
+import frmEdDocsProt from './modules/frmEdDocsProt';
 import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
 import frmEdIspolnShtraf from './modules/frmEdIspolnShtraf';
 import frmEdVehsAMTC from './modules/frmEdVehsAMTC';
@@ -123,6 +124,7 @@ const store = new Vuex.Store({
     frmEdDelo,
     frmEdDocsOpred,
     frmEdDocsPost,
+    frmEdDocsProt,
     frmEdDecisShtraf,
     frmEdIspolnShtraf,
     frmEdVehsAMTC,

@@ -1,36 +1,60 @@
 <template>
-  <div class="calendar" style="max-width: 210px;">
-    <div v-show="!visibleTime" class="calendar-header">
-      <button type="button" @click="subtractMonth">Назад месяц</button>
-      <button type="button" @click="subtractYear">Назад год</button>
-      <h4>{{month + ' - ' + year}}</h4>
-      <button type="button" @click="addMonth">Вперед месяц</button>
-      <button type="button" @click="addYear">Вперед год</button>
+  <div class="calendar">
+
+    <div v-show="!visibleTime" class="ivu-date-picker-header">
+      <span @click="subtractYear" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow-double">
+        <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
+      </span>
+      <span @click="subtractMonth" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow">
+        <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
+      </span>
+      <span>
+        <span>{{capitalizeFirstLetter(month)}}</span>
+        <span>{{year}}</span>
+      </span>
+      <span @click="addYear" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow-double">
+        <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
+      </span>
+      <span @click="addMonth" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow">
+        <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
+      </span>
     </div>
-    <div v-show="!visibleTime">
-      <ul class="weekdays" style="display: flex;">
-        <li v-for="day in days" style="width: 30px; height: 30px;">{{day}}</li>
+
+    <div v-show="!visibleTime" class="ivu-picker-panel-content">
+      <ul class="weekdays">
+        <li class="day" v-for="day in days">{{day}}</li>
       </ul>
-      <ul class="dates" style="display: flex; flex-wrap: wrap;">
-        <li style="width: 30px; height: 30px;" v-for="blank in firstDayOfMonth">&nbsp;</li>
-        <li style="width: 30px; height: 30px;" v-for="date in daysInMonth"
-            :class="{'current-day': null != selectedDate && date == day && month == selectedMonth && year == selectedYear, 'day': currentDay == date && currentMonth == month && currentYear == year}">
-          <span @click="changeDate(date)">{{date}}</span>
+      <ul class="dates">
+        <li class="day" v-for="blank in firstDayOfMonth">&nbsp;</li>
+        <li v-for="date in daysInMonth"
+            @click="changeDate(date)"
+            :class="['day', 'date', {'select-day': null != selectedDate && date == day && month == selectedMonth && year == selectedYear, 'current-day': currentDay == date && currentMonth == month && currentYear == year}]">
+          <span>{{date}}</span>
         </li>
       </ul>
     </div>
-    <div v-if="visibleTime && isTime" style="display: flex;">
-      <ul v-if="isShowHours" style="display: flex; flex-direction: column; height: 200px; overflow-y: auto;">
-        <li v-for="(item, key) in hours" :key="key" @click="setHour(item)">{{item}}</li>
+    <div v-show="visibleTime && isTime" class="time">
+      <ul v-show="isShowHours" class="time-list">
+        <li :class="['time-item', {'select-time': null != selectedTime && item == selectedHours}]" v-for="(item, key) in hours" :key="key" @click="setHour(item)">{{item}}</li>
       </ul>
-      <ul v-if="isShowMinutes" style="display: flex; flex-direction: column; height: 200px; overflow-y: auto;">
-        <li v-for="(item, key) in minutes" :key="key" @click="setMinute(item)">{{item}}</li>
+      <ul v-show="isShowMinutes" class="time-list">
+        <li :class="['time-item', {'select-time': null != selectedTime && item == selectedMinutes}]" v-for="(item, key) in minutes" :key="key" @click="setMinute(item)">{{item}}</li>
       </ul>
-      <ul v-if="isShowSeconds" style="display: flex; flex-direction: column; height: 200px; overflow-y: auto;">
-        <li v-for="(item, key) in seconds" :key="key" @click="setSecond(item)">{{item}}</li>
+      <ul v-show="isShowSeconds" class="time-list">
+        <li :class="['time-item', {'select-time': null != selectedTime && item == selectedSeconds}]" v-for="(item, key) in seconds" :key="key" @click="setSecond(item)">{{item}}</li>
       </ul>
     </div>
-    <span v-if="isTime" @click="showTime">Показать время</span>
+    <div class="ivu-picker-confirm confirm">
+      <button v-show="!visibleTime && isTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
+        <span>Выбрать время</span>
+      </button>
+      <button v-show="visibleTime && isTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
+        <span>Выбрать дату</span>
+      </button>
+      <button :disabled="!selectedDate" @click="clear" type="button" class="ivu-btn ivu-btn-default ivu-btn-small">
+        <span>Очистить</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -58,9 +82,11 @@
       if (funcUtils.isNotEmpty(this.value)) {
         this.dateContext = moment(this.value);
         this.selectedDate = moment(this.value);
+        this.selectedTime = moment(this.value);
       } else {
         this.dateContext = moment();
         this.selectedDate = null;
+        this.selectedTime = null;
       }
     },
     data() {
@@ -70,6 +96,7 @@
         currentMonth: moment().format('MMMM'),
         currentYear: moment().format('Y'),
         selectedDate: null,
+        selectedTime: null,
         dateContext: moment(),
         days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
         hours: [],
@@ -82,9 +109,11 @@
         if (funcUtils.isNotEmpty(newValue)) {
           this.dateContext = moment(newValue);
           this.selectedDate = moment(newValue);
+          this.selectedTime = moment(newValue);
         } else {
           this.dateContext = moment();
           this.selectedDate = null;
+          this.selectedTime = null;
         }
       },
     },
@@ -109,6 +138,15 @@
       },
       day() {
         return this.dateContext.get('date');
+      },
+      selectedHours() {
+        return this.selectedTime.hours();
+      },
+      selectedMinutes() {
+        return this.selectedTime.minutes();
+      },
+      selectedSeconds() {
+        return this.selectedTime.seconds();
       },
       selectedYear() {
         return this.selectedDate.format('Y');
@@ -139,6 +177,9 @@
         for (let i = 0; i < 60; i++) {
           this.seconds.push(i < 10 ? `0${i}` : String(i));
         }
+      },
+      capitalizeFirstLetter(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
       },
       checkAcceptingType(values, format) {
         let res = false;
@@ -193,19 +234,93 @@
         let date = new Date(milliseconds);
         this.$emit('change', date);
       },
-      clearCurrent() {
-        this.dateContext = moment();
-        this.selectedDate = null;
+      clear() {
+        this.$emit('change', null);
       },
     }
   }
 </script>
 
-<style type="scss">
-  .current-day {
-    background: violet;
-  }
-  .day {
-    border: 1px solid violet;
+<style scoped lang="scss">
+  .calendar {
+    max-width: 240px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.2);
+
+    .weekdays {
+      display: flex;
+      background-color: #FAFAFA;
+    }
+
+    .day {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2px;
+    }
+
+    .dates {
+      display: flex;
+      flex-wrap: wrap;
+
+      .date {
+        cursor: pointer;
+        line-height: 24px;
+        font-style: normal;
+        border-radius: 3px;
+        text-align: center;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+          background: #e1f0fe;
+        }
+      }
+
+      .select-day {
+        background: #2d8cf0;
+        color: #fff;
+
+        &:hover {
+          background: #2d8cf0;
+        }
+      }
+      .current-day {
+        box-shadow: 0 0 0 1px #2d8cf0 inset;
+      }
+    }
+
+    .time {
+      display: flex;
+
+      .time-list {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        overflow-y: auto;
+        flex: 1;
+
+        .time-item {
+          padding: 10px;
+          cursor: pointer;
+          transition: background .2s ease-in-out;
+
+          &:hover {
+            background: #f3f3f3;
+
+          }
+        }
+
+        .select-time {
+          background: #f3f3f3;
+        }
+      }
+    }
+
+    .confirm {
+
+    }
   }
 </style>

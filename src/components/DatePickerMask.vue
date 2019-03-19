@@ -2,7 +2,7 @@
   <div v-click-outside="hide">
     <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="bodyChange" @onClick="show" @onClear="onClear" :value="currentValue" :placeholder="placeholder" clearable></calendar-body>
 
-    <calendar-header v-if="visible" ref="calendarHeader" :format="maskFormat" :type="type" style="position: absolute; background: red; z-index: 15;" @change="headerChange" :value="currentValue"></calendar-header>
+    <calendar-header v-if="visible" :format="maskFormat" :type="type" style="position: absolute; background: #fff; border-color: rgb(81, 90, 110); z-index: 15;" @change="headerChange" :value="currentValue"></calendar-header>
   </div>
 </template>
 
@@ -32,7 +32,7 @@
       momentFormat: String,
     },
     created() {
-      this.formatValue();
+      this.formatValue(this.value);
     },
     data() {
       return {
@@ -42,18 +42,19 @@
     },
     watch: {
       value(newValue, oldValue) {
-        this.formatValue();
+        this.formatValue(newValue);
       },
     },
     methods: {
-      formatValue() {
-        let value  = this.value;
+      formatValue(value) {
         if (funcUtils.isNotEmpty(value)) {
           if (value instanceof Number) {
             this.currentValue = new Date(value);
           } else if (value instanceof Date) {
             this.currentValue = value;
           }
+        } else {
+          this.currentValue = null;
         }
       },
       hide() {
@@ -65,7 +66,6 @@
       onClear() {
         this.$emit('input', null);
         this.$emit('change', null);
-        this.$refs.calendarHeader.clearCurrent();
       },
       headerChange(date) {
         this.$emit('input', date);
@@ -74,9 +74,6 @@
       bodyChange(date) {
         this.$emit('input', date);
         this.$emit('change', date);
-        if (funcUtils.isEmpty(date)) {
-          this.$refs.calendarHeader.clearCurrent();
-        }
       },
     }
   }

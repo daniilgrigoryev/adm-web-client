@@ -15,6 +15,7 @@
       <frm-ed-vu-vyd v-if="isVisible('FrmEdVuVyd')"></frm-ed-vu-vyd>
       <frm-ed-ispoln-post-uvedom v-if="isVisible('FrmEdIspolnPostUvedom')"></frm-ed-ispoln-post-uvedom>
       <dlg-ed-foto-material v-if="isVisible('DlgEdFotoMaterial')"></dlg-ed-foto-material>
+      <frm-ed-docs-prot v-if="isVisible('FrmEdDocsProt')"></frm-ed-docs-prot>
     </div>
   </div>
 </template>
@@ -34,6 +35,7 @@
   import FrmEdVuPred from "~/components/delo/FrmEdVuPred";
   import FrmEdVuVyd from "~/components/delo/FrmEdVuVyd";
   import FrmEdIspolnPostUvedom from "~/components/delo/FrmEdIspolnPostUvedom";
+  import FrmEdDocsProt from "~/components/delo/FrmEdDocsProt";
   import DlgEdFotoMaterial from "~/components/delo/DlgEdFotoMaterial";
 
   export default {
@@ -52,6 +54,7 @@
       FrmEdIspolnShtraf,
       FrmEdVehsAMTC,
       FrmEdUchastFL,
+      FrmEdDocsProt,
       FrmEdDelo
     },
     async created() {
