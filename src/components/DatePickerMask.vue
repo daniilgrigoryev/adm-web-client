@@ -2,7 +2,7 @@
   <div v-click-outside="hide">
     <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="bodyChange" @onClick="show" @onClear="onClear" :value="currentValue" :placeholder="placeholder" clearable></calendar-body>
 
-    <calendar-header v-show="visible" ref="calendarHeader" :type="type" style="position: absolute; background: red; z-index: 15;" @change="headerChange" :value="currentValue"></calendar-header>
+    <calendar-header v-if="visible" ref="calendarHeader" :format="maskFormat" :type="type" style="position: absolute; background: red; z-index: 15;" @change="headerChange" :value="currentValue"></calendar-header>
   </div>
 </template>
 
@@ -11,6 +11,11 @@
   import CalendarHeader from "~/components/CalendarHeader";
   import CalendarBody from "~/components/CalendarBody";
   import ClickOutside from 'vue-click-outside';
+
+  /*
+  * Маски для moment - https://momentjs.com/docs/
+  * Маски для inputmask - https://github.com/RobinHerbots/Inputmask
+  */
 
   export default {
     name: "DatePickerMask",
