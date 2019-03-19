@@ -46,14 +46,14 @@
           <p class="adm-14 color-dark-lighter wmax300">{{viol.violStotvName}}</p>
         </div>
 
-        <div class="my60">
+        <div class="mt60 mb18">
           <div class="flex-parent">
             <div class="mr24 mt24">
                 <img src="../../assets/images/police.svg" alt="">
             </div>
             <div>
               <div v-if="isNotEmptyField(body.inspVozbName)">
-                <p class="adm-14 color-dark-lighter mb6">Должностное лицо возбудившее дело</p>
+                <p class="adm-14 color-dark-lighter mb6">Должностное лицо, возбудившее дело</p>
                 <h3 class="adm-h3 color-dark-lighter">{{body.inspVozbName}}</h3>
               </div>
               
@@ -63,7 +63,7 @@
               </div>
 
               <div class="my12">
-                <p class="adm-14 color-dark-lighter">Орган возбудивший дело</p>
+                <p class="adm-14 color-dark-lighter">Орган, возбудивший дело</p>
                 <p class="adm-text-big color-dark-lighter">{{body.organVozbId, body.organVozbName | concatByDelimiter('-') }}</p>
               </div>
             </div>
@@ -78,9 +78,6 @@
             <p class="adm-14 color-dark-lighter">Уникальный номер АП</p>
             <h3 class="adm-h3 color-dark-lighter">{{viol.mvidFisFull}}</h3>
           </div>
-
- 
-          
         </div>
       </div>
   </div>
