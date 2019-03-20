@@ -113,6 +113,55 @@ export function formatDateTime(dateTime, format) {
   return moment(dateTime, format);
 }
 
+export function isString(value) {
+  if (isEmpty(value)) {
+    return false;
+  }
+  return typeof value === 'string' || value instanceof String;
+}
+
+export function isNumber (value) {
+  if (isEmpty(value)) {
+    return false;
+  }
+  return typeof value === 'number' && isFinite(value);
+}
+
+export function isArray (value) {
+  if (isEmpty(value)) {
+    return false;
+  }
+  return value && typeof value === 'object' && value.constructor === Array;
+}
+
+export function isFunction (value) {
+  if (isEmpty(value)) {
+    return false;
+  }
+  return typeof value === 'function';
+}
+
+export function isObject (value) {
+  if (isEmpty(value)) {
+    return false;
+  }
+  return value && typeof value === 'object' && value.constructor === Object;
+}
+
+export function isBoolean (value) {
+  if (isEmpty(value)) {
+    return false;
+  }
+  return typeof value === 'boolean';
+}
+
+export function isDate (value) {
+  if (isEmpty(value)) {
+    return false;
+  }
+  return value instanceof Date;
+}
+
 export function convertNumberToDate(num) {
   if (isEmpty(num) || !Number.isInteger(num)) {
     return null;

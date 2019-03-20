@@ -48,12 +48,12 @@
     },
     methods: {
       formatValue(value) {
-        if (funcUtils.isNotEmpty(value) && this.validType(value)) {
-          if (typeof value === 'number') {
+        if (this.validType(value)) {
+          if (funcUtils.isNumber(value)) {
             this.currentValue = new Date(value);
-          } else if (value instanceof Date) {
+          } else if (funcUtils.isDate(value)) {
             this.currentValue = value;
-          } else if (typeof value === 'string') {
+          } else if (funcUtils.isString(value)) {
             let date = funcUtils.formatDateTime(value, this.stringFormat);
             if (date.isValid()) {
               this.currentValue = date.toDate();
@@ -66,7 +66,7 @@
         }
       },
       validType(value) {
-        return typeof value === 'number' || value instanceof Date || typeof value === 'string';
+        return funcUtils.isNumber(value) || funcUtils.isDate(value) || funcUtils.isString(value);
       },
       hide() {
         this.visible = false;
@@ -79,7 +79,7 @@
         this.$emit('change', null);
       },
       change(date) {
-        if (typeof this.value === 'string') {
+        if (funcUtils.isString(this.value)) {
           date = funcUtils.parseDateTime(date, this.stringFormat);
         }
         this.$emit('input', date);
