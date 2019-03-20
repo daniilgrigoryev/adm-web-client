@@ -12,8 +12,8 @@
         </p>
       </div>
     </div>
-    <div class="adm-form bg-white">
-      <div class="adm-form__container">
+    <div class="adm-form bg-white mt0">
+      <div class="adm-form__container mt0">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование Участника дела</h2>
         <div class="adm-form__content py24 px36">
           <Row>
@@ -30,7 +30,6 @@
                   </Row>
                 </div>
               </div>
-              
             </Col>
             <Col span="12">
               <div class="adm-form__item">
@@ -194,7 +193,7 @@
         </div> 
       </div> 
     </div>
-    <hr class="txt-hr" style="margin: 70px 0px 20px;">
+    <hr class="txt-hr my0">
     <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
       <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
       <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
