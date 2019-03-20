@@ -8,7 +8,7 @@
         </Button>
       </div> -->
 
-      <div class="ml36 pt36">
+      <div class="ml60 pt36">
         <div>
           <div v-if="isNotEmptyField(viol.violDatNar)" class="flex-parent my6">
             <div class="flex-parent flex-parent--center-cross  wmin240 wmax240 h36">

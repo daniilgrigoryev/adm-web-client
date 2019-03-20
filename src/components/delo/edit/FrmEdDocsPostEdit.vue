@@ -20,8 +20,8 @@
 
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
-    <div class="adm-form bg-white">
-      <div class="adm-form__container">
+    <div class="adm-form bg-white mt0">
+      <div class="adm-form__container mt0">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Постановление по делу № {{ docsPost.docN }} от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY HH:mm') }}</h2>
         <div class="adm-form__content py24 px36">
           <Row>

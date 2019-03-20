@@ -27,21 +27,21 @@
           <Row>
             <Col>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.stotvName" ></Input>
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.pnpaKod + ', ' + body.pnpaName" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.pnpaName" ></Input>
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod + ', ' + body.stotvName" ></Input>
                     </Col>
                   </Row>
                 </div>
