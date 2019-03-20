@@ -8,10 +8,10 @@
         </Button>
       </div> -->
 
-      <div class="wmax940 ml120 pt36">
+      <div class="ml36 pt36">
         <div>
           <div v-if="isNotEmptyField(viol.violDatNar)" class="flex-parent my6">
-            <div class="flex-parent flex-parent--center-cross w240 h36">
+            <div class="flex-parent flex-parent--center-cross  wmin240 wmax240 h36">
               <div class="s40 flex-parent flex-parent--center-cross flex-parent--center-main">
                 <img src="../../assets/images/time.svg" alt="">
               </div>
@@ -23,14 +23,14 @@
           </div>
 
           <div v-if="isNotEmptyField(viol.violPlaceNarFull)"  class="flex-parent my6">
-            <div class="flex-parent flex-parent--center-cross w240 h36">
+            <div class="flex-parent flex-parent--center-cross wmin240 wmax240 h36">
               <div class="s40 flex-parent flex-parent--center-cross flex-parent--center-main">
                 <img src="../../assets/images/map.svg" alt="">
               </div>
               <p class="adm-14 color-dark-lighter">Место нарушения</p>
             </div>
             <div>
-              <p class="adm-14 color-dark-lighter wmax300 py6">{{viol.violPlaceNarFull}}</p>
+              <p class="adm-14 color-dark-lighter wmax600 pr12 py6">{{viol.violPlaceNarFull}}</p>
             </div>
           </div>
         </div>
@@ -43,11 +43,11 @@
         <div v-if="isNotEmptyField(body.stotvZakon)" class="px12 mt24">
           <p class="adm-text-big color-dark-lighter">Статья {{body.stotvZakon}}</p>
           <h1 class="adm-h1 color-dark-lighter">{{viol.violStotvKod}}</h1>
-          <p class="adm-14 color-dark-lighter wmax300">{{viol.violStotvName}}</p>
+          <p class="adm-14 color-dark-lighter">{{viol.violStotvName}}</p>
         </div>
 
-        <div class="mt60 mb18">
-          <div class="flex-parent">
+        <div class="">
+          <div class="flex-parent my36">
             <div class="mr24 mt24">
                 <img src="../../assets/images/police.svg" alt="">
             </div>
@@ -69,12 +69,12 @@
             </div>
           </div>
 
-          <div v-if="isNotEmptyField(body.docVozbName)" class="pt18">
+          <div v-if="isNotEmptyField(body.docVozbName)" class="my12">
             <p class="adm-14 color-dark-lighter">Документ основание</p>
             <h3 class="adm-h3 color-dark-lighter">{{body.docVozbName}}</h3>
           </div>
 
-          <div v-if="isNotEmptyField(viol.mvidFisFull)" class="pt18">
+          <div v-if="isNotEmptyField(viol.mvidFisFull)" class="my12">
             <p class="adm-14 color-dark-lighter">Уникальный номер АП</p>
             <h3 class="adm-h3 color-dark-lighter">{{viol.mvidFisFull}}</h3>
           </div>
