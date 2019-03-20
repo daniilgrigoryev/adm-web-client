@@ -176,7 +176,7 @@
   }
   .adm-form__label{
     padding: 0;
-    min-width: 210px;
+    min-width: 140px;
     padding-right: 12px;
   }
   .adm-form__item_content{

@@ -39,7 +39,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата отправки Уведомления</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата отправки</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -48,9 +48,8 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Участник дела Ф.И.О. - год рождения (статус лица)</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Участник дела</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -59,13 +58,12 @@
               </Row>
             </div>
           </div>
-
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Уведомление направлено по адресу</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.placeIspoln.adr.adrFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                  <Input class="adm-input adm-input--regular" readonly :value="body.placeIspoln.placeFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                 </Col>
               </Row>
             </div>
