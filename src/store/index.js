@@ -29,6 +29,7 @@ import frmEdVuPredEdit from './modules/frmEdVuPredEdit';
 import frmEdVuVydEdit from './modules/frmEdVuVydEdit';
 import frmEdDocsPostEdit from './modules/frmEdDocsPostEdit';
 import frmEdVehsAMTCEdit from './modules/frmEdVehsAMTCEdit';
+import frmEdDocsProtEdit from './modules/frmEdDocsProtEdit';
 import frmEdUchastFLIndividEdit from './modules/frmEdUchastFLIndividEdit';
 import frmEdUchastFLOrganizationEdit from './modules/frmEdUchastFLOrganizationEdit';
 import placeViewEdit from './modules/placeViewEdit';
@@ -141,6 +142,7 @@ const store = new Vuex.Store({
     frmEdVuVydEdit,
     frmEdDocsPostEdit,
     frmEdVehsAMTCEdit,
+    frmEdDocsProtEdit,
     frmEdDecisEdit,
     frmEdUchastFLIndividEdit,
     frmEdUchastFLOrganizationEdit,

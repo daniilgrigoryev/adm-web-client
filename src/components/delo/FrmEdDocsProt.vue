@@ -3,7 +3,7 @@
     <div class="amd-title amd-title--sticky bg-white px36 pt24 pb18">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <Button @click="" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+          <Button @click="getDocsProtEdit()" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Протокол об АНП</b>
@@ -164,7 +164,7 @@
           };
 
           formStack.toNext({
-            module: this.$store.state.frmEdDocsPostEdit,
+            module: this.$store.state.frmEdDocsProtEdit,
             vm: this,
             notRemoved: false,
             params: params,

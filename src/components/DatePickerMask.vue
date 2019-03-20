@@ -51,9 +51,9 @@
         if (this.validType(value)) {
           if (funcUtils.isNumber(value)) {
             this.currentValue = new Date(value);
-          } else if (funcUtils.isDate(value)) {
-            this.currentValue = value;
-          } else if (funcUtils.isString(value)) {
+          } else if (value instanceof Date) {
+            this.currentValue = value;  
+          } else if (typeof value === 'string') {
             let date = funcUtils.formatDateTime(value, this.stringFormat);
             if (date.isValid()) {
               this.currentValue = date.toDate();
