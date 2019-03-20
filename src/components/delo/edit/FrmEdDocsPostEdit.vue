@@ -39,7 +39,7 @@
             </Col>
             <Col span="12">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время вынесения</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Дата и время вынесения</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
@@ -58,11 +58,11 @@
         <h2 class="adm-text-big color-dark-light adm-form__headding">Составил</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должносное лицо</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName + ' ' + docsPost.inspSostRang" ></Input>
+                  <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName + ', ' + docsPost.inspSostRang" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
@@ -110,7 +110,7 @@
         <h2 class="adm-text-big color-dark-light adm-form__headding">Сведения о нарушении</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">

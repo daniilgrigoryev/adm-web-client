@@ -38,7 +38,7 @@
         </Row>
       </div>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время нарушения</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder=" "></DatePicker>
@@ -46,7 +46,7 @@
         </Row>
       </div>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и Время рассмотрения</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата и время рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateRasm" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder=" "></DatePicker>

@@ -1,10 +1,22 @@
 <template>
   <div v-if="uchastIndivid" class="wmax1280 mx-auto">
-    <div class="chast-title">
+
+
+    <div class="pt24 px36">
       <div class="flex-parent flex-parent--center-cross">
-        <a href="#" @click="getPrev" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
+        <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover color-dark-lighter color-blue-on-hover transition">
+          <div class="flex-parent flex-parent--center-cross">
+            <Icon type="ios-arrow-dropleft mr24" class="bg-whte" :size="30" />
+            <b class="adm-text-big">В просмотр участника дела</b>
+          </div>
+        </Button>
+      </div>
+    </div>
+    <div class="pb24 pt18 px36">
+      <div class="flex-parent flex-parent--center-cross">
+        <a href="#" @click="getPrev" class="delo__headding link color-dark-lighter color-blue-on-hover">
           <span class="adm-h3">Дело №</span>
-          <span class="adm-h1">377</span>
+          <span class="adm-h2">377</span>
         </a>
         <p class="color-green-base ml24 flex-parent flex-parent--center-cross">
           <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23" /> 
@@ -12,6 +24,8 @@
         </p>
       </div>
     </div>
+
+
     <div class="adm-form bg-white mt0">
       <div class="adm-form__container mt0">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование Участника дела</h2>
