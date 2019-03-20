@@ -247,7 +247,6 @@
     destroyed() {
       this.$store.dispatch('deloReestrSetCid', null);
       this.$store.dispatch('deloReestrSetData', null);
-      // localStorage.tableColumnsForOptions = JSON.stringify(this.tableColumnsForOptions);
     },
     data() {
       return {

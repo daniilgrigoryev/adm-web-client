@@ -1,8 +1,8 @@
 <template>
   <div v-click-outside="hide">
-    <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="bodyChange" @onClick="show" @onClear="onClear" :value="currentValue" :placeholder="placeholder" clearable></calendar-body>
+    <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @onClick="show" @onClear="onClear" :value="currentValue" :placeholder="placeholder" clearable></calendar-body>
 
-    <calendar-header v-if="visible" :format="maskFormat" :type="type" style="position: absolute; background: #fff; border-color: rgb(81, 90, 110); z-index: 15;" @change="headerChange" :value="currentValue"></calendar-header>
+    <calendar-header v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" :value="currentValue"></calendar-header>
   </div>
 </template>
 
@@ -24,12 +24,13 @@
       ClickOutside
     },
     props: {
-      value: [Date, Number],
+      value: [Date, Number, String],
       clearable: Boolean,
       placeholder: String,
       type: String,
       maskFormat: String,
       momentFormat: String,
+      stringFormat: String
     },
     created() {
       this.formatValue(this.value);
@@ -47,15 +48,25 @@
     },
     methods: {
       formatValue(value) {
-        if (funcUtils.isNotEmpty(value)) {
-          if (value instanceof Number) {
+        if (funcUtils.isNotEmpty(value) && this.validType(value)) {
+          if (typeof value === 'number') {
             this.currentValue = new Date(value);
           } else if (value instanceof Date) {
             this.currentValue = value;
+          } else if (typeof value === 'string') {
+            let date = funcUtils.formatDateTime(value, this.stringFormat);
+            if (date.isValid()) {
+              this.currentValue = date.toDate();
+            } else {
+              this.currentValue = null;
+            }
           }
         } else {
           this.currentValue = null;
         }
+      },
+      validType(value) {
+        return typeof value === 'number' || value instanceof Date || typeof value === 'string';
       },
       hide() {
         this.visible = false;
@@ -67,11 +78,10 @@
         this.$emit('input', null);
         this.$emit('change', null);
       },
-      headerChange(date) {
-        this.$emit('input', date);
-        this.$emit('change', date);
-      },
-      bodyChange(date) {
+      change(date) {
+        if (typeof this.value === 'string') {
+          date = funcUtils.parseDateTime(date, this.stringFormat);
+        }
         this.$emit('input', date);
         this.$emit('change', date);
       },
@@ -79,6 +89,11 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .calendar-header {
+    position: absolute;
+    background: #fff;
+    border-color: rgb(81, 90, 110);
+    z-index: 15;
+  }
 </style>

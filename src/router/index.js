@@ -147,8 +147,7 @@ router.beforeEach( async (to, from, next) => {
       next();
     } else {
       let current = formStack.getCurrent();
-      let checkSession = await router.app.$options.methods.checkSession();
-      if (funcUtils.isNull(current) || funcUtils.isEmpty(localStorage.getItem('admSid')) || !checkSession) {
+      if (funcUtils.isNull(current) || funcUtils.isEmpty(localStorage.getItem('admSid'))) {
         window.open(ConstantUtils.HTTP_URL_AUTH, '_self');
       } else if (funcUtils.isNull(to) || funcUtils.isNull(to.name)) {
         next({name: current.routeName});

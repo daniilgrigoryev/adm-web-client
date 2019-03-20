@@ -95,7 +95,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular" type="datetime" v-model="birthdayDate" format="dd/MM/yyyy" @on-change="formatBirthday" placeholder></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular" v-model="birthdayDate" @change="formatBirthday" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy" stringFormat="DD/MM/YYYY"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -221,11 +221,13 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import InputMask from "../../InputMask";
+  import DatePickerMask from "~/components/DatePickerMask";
 
   export default {
     name: "FrmEdUchastFLIndividEdit",
     components: {
-      InputMask
+      InputMask,
+      DatePickerMask
     },
     async created() {
       try {
@@ -299,10 +301,7 @@
         let birthdayDay = uchastIndivid.individ.birthdayDay;
         let birthdayYear = uchastIndivid.individ.birthdayYear;
         if (funcUtils.isNotEmpty(birthdayDay) && funcUtils.isNotEmpty(birthdayYear)) {
-          let date = funcUtils.formatDateTime(birthdayDay + '/' + birthdayYear, 'DD-MM-YYYY');
-          if (date.isValid()) {
-            this.birthdayDate = date.toDate();
-          }
+          this.birthdayDate = birthdayDay + '/' + birthdayYear;
         }
       },
       formatBirthday(e) {

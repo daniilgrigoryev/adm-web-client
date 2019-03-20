@@ -8,9 +8,9 @@
       <span @click="subtractMonth" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow">
         <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
       </span>
-      <span>
-        <span>{{capitalizeFirstLetter(month)}}</span>
-        <span>{{year}}</span>
+      <span class="header-title">
+        <span class="header-title-item">{{capitalizeFirstLetter(month)}}</span>
+        <span class="header-title-item">{{year}}</span>
       </span>
       <span @click="addYear" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow-double">
         <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
@@ -25,10 +25,19 @@
         <li class="day" v-for="day in days">{{day}}</li>
       </ul>
       <ul class="dates">
-        <li class="day" v-for="blank in firstDayOfMonth">&nbsp;</li>
+        <li :class="['day', 'date', 'prev-days', {'select-prev-day': null != selectedDate && date == selectedDay && prevMonth == selectedMonth && (year == selectedYear || prevYear == selectedYear)}]"
+            v-for="date in firstDayOfMonth"
+            @click="changePrevDate(date)">
+          <span>{{date}}</span>
+        </li>
         <li v-for="date in daysInMonth"
             @click="changeDate(date)"
-            :class="['day', 'date', {'select-day': null != selectedDate && date == day && month == selectedMonth && year == selectedYear, 'current-day': currentDay == date && currentMonth == month && currentYear == year}]">
+            :class="['day', 'date', {'select-day': null != selectedDate && date == selectedDay && month == selectedMonth && year == selectedYear, 'current-day': currentDay == date && currentMonth == month && currentYear == year}]">
+          <span>{{date}}</span>
+        </li>
+        <li :class="['day', 'date', 'next-days', {'select-next-day': null != selectedDate && date == selectedDay && nextMonth == selectedMonth && (year == selectedYear || nextYear == selectedYear)}]"
+            v-for="date in lastDayOfMonth"
+            @click="changeNextDate(date)">
           <span>{{date}}</span>
         </li>
       </ul>
@@ -144,6 +153,18 @@
       day() {
         return this.dateContext.get('date');
       },
+      prevMonth() {
+        return moment(this.dateContext).subtract(1, 'month').format('MMMM');
+      },
+      prevYear() {
+        return moment(this.dateContext).subtract(1, 'year').format('Y');
+      },
+      nextMonth() {
+        return moment(this.dateContext).add(1, 'month').format('MMMM');
+      },
+      nextYear() {
+        return moment(this.dateContext).add(1, 'year').format('Y');
+      },
       selectedHours() {
         return this.selectedTime.hours();
       },
@@ -153,6 +174,9 @@
       selectedSeconds() {
         return this.selectedTime.seconds();
       },
+      selectedDay() {
+        return this.selectedDate.get('date');
+      },
       selectedYear() {
         return this.selectedDate.format('Y');
       },
@@ -160,8 +184,31 @@
         return this.selectedDate.format('MMMM');
       },
       firstDayOfMonth() {
+        let res = [];
         let firstDay = moment(this.dateContext).subtract(this.day - 1, 'days');
-        return firstDay.weekday();
+        let lastDay = moment(this.dateContext).subtract(1, 'month');
+        let daysInMonth = lastDay.daysInMonth();
+        let weekday = firstDay.weekday();
+        while (weekday !== 0) {
+          res.push(daysInMonth--);
+          weekday--;
+        }
+        res.reverse();
+        return res;
+      },
+      lastDayOfMonth() {
+        let res = [];
+        let firstDay = moment(this.dateContext).subtract(this.day - 1, 'days');
+        let daysInMonth = this.daysInMonth;
+        let weekday = firstDay.weekday();
+        let all = daysInMonth + weekday;
+        let balance = all > 35 ? 42 : 35;
+        let diff = balance - all;
+        while (diff > 0) {
+          res.push(diff--);
+        }
+        res.reverse();
+        return res;
       },
       daysInMonth() {
         return this.dateContext.daysInMonth();
@@ -202,31 +249,33 @@
         return res;
       },
       scrollToSelectTime() {
-        if (this.isShowHours) {
-          document.querySelector('.hours-list').scrollTop = document.querySelector('.select-hour').offsetTop - document.querySelector('.hours-list').offsetHeight / 2;
-        }
-        if (this.isShowMinutes) {
-          document.querySelector('.minutes-list').scrollTop = document.querySelector('.select-minute').offsetTop - document.querySelector('.minutes-list').offsetHeight / 2;
-        }
-        if (this.isShowSeconds) {
-          document.querySelector('.seconds-list').scrollTop = document.querySelector('.select-second').offsetTop - document.querySelector('.seconds-list').offsetHeight / 2;
+        if (this.selectedTime) {
+          if (this.isShowHours) {
+            document.querySelector('.hours-list').scrollTop = document.querySelector('.select-hour').offsetTop - document.querySelector('.hours-list').offsetHeight / 2;
+          }
+          if (this.isShowMinutes) {
+            document.querySelector('.minutes-list').scrollTop = document.querySelector('.select-minute').offsetTop - document.querySelector('.minutes-list').offsetHeight / 2;
+          }
+          if (this.isShowSeconds) {
+            document.querySelector('.seconds-list').scrollTop = document.querySelector('.select-second').offsetTop - document.querySelector('.seconds-list').offsetHeight / 2;
+          }
         }
       },
       setHour(hours) {
         let dateContext = this.dateContext.toDate();
-        let milliseconds = dateContext.setHours(hours, dateContext.getMinutes(), dateContext.getSeconds(), dateContext.getMilliseconds());
+        let milliseconds = dateContext.setHours(hours, 0, 0, 0);
         let date = new Date(milliseconds);
         this.$emit('change', date);
       },
       setMinute(minutes) {
         let dateContext = this.dateContext.toDate();
-        let milliseconds = dateContext.setMinutes(minutes, dateContext.getSeconds(), dateContext.getMilliseconds());
+        let milliseconds = dateContext.setMinutes(minutes, 0, 0);
         let date = new Date(milliseconds);
         this.$emit('change', date);
       },
       setSecond(seconds) {
         let dateContext = this.dateContext.toDate();
-        let milliseconds = dateContext.setSeconds(seconds, dateContext.getMilliseconds());
+        let milliseconds = dateContext.setSeconds(seconds, 0);
         let date = new Date(milliseconds);
         this.$emit('change', date);
       },
@@ -244,6 +293,14 @@
       },
       subtractYear() {
         this.dateContext = moment(this.dateContext).subtract(1, 'year');
+      },
+      changePrevDate(day) {
+        this.subtractMonth();
+        this.changeDate(day);
+      },
+      changeNextDate(day) {
+        this.addMonth();
+        this.changeDate(day);
       },
       changeDate(day) {
         let milliseconds = this.dateContext.toDate().setDate(day);
@@ -263,6 +320,13 @@
     box-sizing: border-box;
     border-radius: 4px;
     box-shadow: 0 1px 6px rgba(0,0,0,.2);
+
+    .header-title {
+      .header-title-item {
+        font-weight: 600;
+        font-size: 15px;
+      }
+    }
 
     .weekdays {
       display: flex;
@@ -293,6 +357,20 @@
         &:hover {
           background: #e1f0fe;
         }
+
+        span {
+          position: absolute;
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+
+      .prev-days {
+        color: #c1c0c0;
+      }
+
+      .next-days {
+        color: #c1c0c0;
       }
 
       .select-day {
@@ -303,8 +381,25 @@
           background: #2d8cf0;
         }
       }
-      .current-day {
+
+      .select-prev-day {
         box-shadow: 0 0 0 1px #2d8cf0 inset;
+      }
+
+      .select-next-day {
+        box-shadow: 0 0 0 1px #2d8cf0 inset;
+      }
+
+      .current-day:after {
+        content: '';
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #2d8cf0;
+        position: relative;
+        top: -10px;
+        right: -10px;
       }
     }
 
@@ -319,9 +414,11 @@
         flex: 1;
 
         .time-item {
-          padding: 10px;
+          padding: 10px 30px 10px;
           cursor: pointer;
           transition: background .2s ease-in-out;
+          font-weight: 600;
+          font-size: 14px;
 
           &:hover {
             background: #f3f3f3;
