@@ -476,6 +476,37 @@ html, body, #app {
   }
 }
 
+
+.adm-input[remote]{
+  .ivu-select-selection > div::before{
+    content: "\F116";
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    line-height: 1;
+    margin-top: -7px;
+    font-size: 14px;
+    color: #808695;
+    transition: all .2s ease-in-out;
+    display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    vertical-align: middle;
+  }
+  &:hover .ivu-select-selection > div::before{
+    content: " ";
+  }
+}
+
+
 .adm-input {
   .ivu-select-selection,
   .ivu-select-input,
@@ -560,7 +591,6 @@ html, body, #app {
     }
   }
 }
-
 .adm-input--regular {
   .ivu-select-selection,
   .ivu-select-input,
