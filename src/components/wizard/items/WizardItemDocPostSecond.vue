@@ -98,7 +98,6 @@
       },
 
       parseDate(data) {
-        data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
         data.dateNar = funcUtils.convertNumberToDate(data.dateNar);
       },
 
