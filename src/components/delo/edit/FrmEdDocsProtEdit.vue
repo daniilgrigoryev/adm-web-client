@@ -260,7 +260,7 @@
     async created() {
       try {
         let current = formStack.getCurrent();
-        await this.$store.dispatch('FrmEdDocsProtEditSetCid', current.cid);
+        await this.$store.dispatch('frmEdDocsProtEditSetCid', current.cid);
         let prepareParams = {
           method: 'restore'
         };

@@ -1,40 +1,39 @@
 import Vue from 'vue'
-import moment from 'moment';
 import * as funcUtils from "~/assets/js/utils/funcUtils";
-
-moment.locale('ru');
 
 // Кастомный фильтр форматирования дат
 Vue.filter('formatDateTime', function (dateTime, format) {
   if (funcUtils.isEmpty(dateTime) || funcUtils.isEmpty(format)) {
     return '';
   }
-  return moment(dateTime).format(format);
+  funcUtils.parseDateTime(dateTime, format);
 });
 
 // Кастомный фильтр склеивания значений
-Vue.filter('concatByDelimiter', function (value1, value2, delimiter) {
-  let res = '';
-  if (funcUtils.isNotEmpty(value1) && funcUtils.isEmpty(value2)) {
-    return value1;
-  } else if (funcUtils.isNotEmpty(value2) && funcUtils.isEmpty(value1)) {
-    return value2;
-  } else if (funcUtils.isNotEmpty(value1) && funcUtils.isNotEmpty(value2)) {
-    switch (delimiter) {
-      case '-': {
-        res = value1 + ' - ' + value2;
-        break;
-      }
-      case ',': {
-        res = value1 + ', ' + value2;
-        break;
-      }
-      default: {
-        res = value1 + delimiter + value2;
-        break;
-      }
+Vue.filter('concatByDelimiter', function () {
+  let res = [];
+  for (let i = 0; i < arguments.length - 1; i++) {
+    let value = arguments[i];
+    if (funcUtils.isNotEmpty(value)) {
+      res.push(value);
     }
   }
 
+  if (res.length > 0) {
+    let delimiter = arguments[arguments.length - 1];
+    switch (delimiter) {
+      case '-': {
+        delimiter = ' - ';
+        break;
+      }
+      case ',': {
+        delimiter = ', ';
+        break;
+      }
+    }
+    res = res.join(delimiter);
+  } else {
+    res = '';
+  }
   return res;
 });
