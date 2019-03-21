@@ -35,15 +35,19 @@
           </div>
         </div>
 
-        <div v-if="isNotEmptyField(viol.violPnpaKod)" class="px12 mt36">
-          <p class="adm-text-big color-dark-lighter">Пункт НПА</p>
-          <h1 class="adm-h1 color-dark-lighter">{{viol.violPnpaKod}}</h1>
-          <p class="adm-14 color-dark-lighter">{{viol.violPnpaName}}</p>
+        <div v-if="isNotEmptyField(viol.violPnpaKod)" class="px12 my24">
+          <p class="adm-text-big color-dark-lighter ">Пункт НПА</p>
+          <div class="flex-parent flex-parent--center-cross my6">
+            <h3 class="adm-h3 color-dark-lighter">{{viol.violPnpaKod}}</h3>
+            <p class="adm-14 color-dark-lighter ml18">{{viol.violPnpaName}}</p>
+          </div>
         </div>
-        <div v-if="isNotEmptyField(body.stotvZakon)" class="px12 mt24">
+        <div v-if="isNotEmptyField(body.stotvZakon)" class="px12 my24">
           <p class="adm-text-big color-dark-lighter">Статья {{body.stotvZakon}}</p>
-          <h1 class="adm-h1 color-dark-lighter">{{viol.violStotvKod}}</h1>
-          <p class="adm-14 color-dark-lighter">{{viol.violStotvName}}</p>
+          <div class="flex-parent flex-parent--center-cross my6">
+            <h3 class="adm-h3 color-dark-lighter">{{viol.violStotvKod}}</h3>
+            <p class="adm-14 color-dark-lighter ml18">{{viol.violStotvName}}</p>
+          </div>
         </div>
 
         <div class="">
