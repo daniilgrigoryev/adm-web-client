@@ -32,7 +32,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата изъятия ВУ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.dateLishBeg" format="dd-MM-yyyy" @on-change="storeElementData" placeholder=" "></DatePicker>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateLishBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -56,7 +56,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Время начала ареста</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.arestTimeBeg" format="dd-MM-yyyy" @on-change="storeElementData" placeholder=" "></DatePicker>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.arestTimeBeg" @change="storeElementData" clearable type="time" placeholder="чч:мм" momentFormat="HH:mm" maskFormat="HH:MM"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -80,7 +80,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата начала</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.stopWorkBeg" format="dd-MM-yyyy" @on-change="storeElementData" placeholder=" "></DatePicker>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.stopWorkBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -108,9 +108,13 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
+  import DatePickerMask from "~/components/DatePickerMask";
 
   export default {
     name: "WizardItemDecis",
+    components: {
+      DatePickerMask
+    },
     props: {
       info: Object,
       title: String

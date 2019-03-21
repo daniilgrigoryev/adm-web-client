@@ -1,7 +1,7 @@
 <template>
   <div class="calendar">
 
-    <div v-show="!visibleTime" class="ivu-date-picker-header">
+    <div v-show="!visibleTime && !isOnlyTime" class="ivu-date-picker-header">
       <span @click="subtractYear" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow-double">
         <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
       </span>
@@ -20,7 +20,7 @@
       </span>
     </div>
 
-    <div v-show="!visibleTime" class="ivu-picker-panel-content">
+    <div v-show="!visibleTime && !isOnlyTime" class="ivu-picker-panel-content">
       <ul class="weekdays">
         <li class="day" v-for="day in days">{{day}}</li>
       </ul>
@@ -54,13 +54,13 @@
       </ul>
     </div>
     <div class="ivu-picker-confirm confirm">
-      <button v-show="!visibleTime && isTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
+      <button v-show="!visibleTime && isTime && !isOnlyTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
         <span>Выбрать время</span>
       </button>
-      <button v-show="visibleTime && isTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
+      <button v-show="visibleTime && isTime && !isOnlyTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
         <span>Выбрать дату</span>
       </button>
-      <button :disabled="!selectedDate" @click="clear" type="button" class="ivu-btn ivu-btn-default ivu-btn-small">
+      <button :disabled="!selectedDate || (!selectedTime && isOnlyTime)" @click="clear" type="button" class="ivu-btn ivu-btn-default ivu-btn-small">
         <span>Очистить</span>
       </button>
     </div>
@@ -85,9 +85,14 @@
       format: String,
     },
     created() {
-      this.fillHours();
-      this.fillMinutes();
-      this.fillSeconds();
+      if (this.isTime) {
+        this.fillHours();
+        this.fillMinutes();
+        this.fillSeconds();
+      }
+      if (this.isOnlyTime) {
+        this.visibleTime = true;
+      }
       if (funcUtils.isNotEmpty(this.value)) {
         this.dateContext = moment(this.value);
         this.selectedDate = moment(this.value);
@@ -96,6 +101,11 @@
         this.dateContext = moment();
         this.selectedDate = null;
         this.selectedTime = null;
+      }
+    },
+    mounted() {
+      if (this.visibleTime && this.isTime) {
+        this.scrollToSelectTime();
       }
     },
     updated() {
@@ -133,7 +143,10 @@
     },
     computed: {
       isTime() {
-        return this.type === 'datetime' && (this.isShowHours || this.isShowMinutes || this.isShowSeconds);
+        return (this.type === 'datetime' || this.type === 'time') && (this.isShowHours || this.isShowMinutes || this.isShowSeconds);
+      },
+      isOnlyTime() {
+        return this.type === 'time';
       },
       isShowHours() {
         return this.checkAcceptingType(CONFIG.HOUR_TOKENS, this.format);

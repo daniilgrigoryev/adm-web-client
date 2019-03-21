@@ -54,7 +54,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateZader" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateZader" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -68,7 +68,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateVyd" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -80,7 +80,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateVozv" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateVozv" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -106,7 +106,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateUtil" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateUtil" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -134,7 +134,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuPred.dateUtrat" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateUtrat" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -156,10 +156,14 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
+  import DatePickerMask from "~/components/DatePickerMask";
 
   export default {
     name: "FrmEdVuPredEdit",
-    components: {WizardModal},
+    components: {
+      WizardModal,
+      DatePickerMask
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

@@ -45,7 +45,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateVyd" format="dd-MM-yyyy" @on-change="store" placeholder=" "></DatePicker>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -54,7 +54,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateSrok" format="dd-MM-yyyy" @on-change="store" placeholder=" "></DatePicker>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateSrok" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -139,7 +139,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vuVyd.dateUtil" format="dd-MM-yyyy" @on-change="store" placeholder=" "></DatePicker>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateUtil" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -154,10 +154,14 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
+  import DatePickerMask from "~/components/DatePickerMask";
 
   export default {
     name: "FrmEdVuVydEdit",
-    components: {WizardModal},
+    components: {
+      WizardModal,
+      DatePickerMask
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

@@ -13,6 +13,7 @@
   import ClickOutside from 'vue-click-outside';
 
   /*
+  * type: date, time, datetime
   * Маски для moment - https://momentjs.com/docs/
   * Маски для inputmask - https://github.com/RobinHerbots/Inputmask
   */

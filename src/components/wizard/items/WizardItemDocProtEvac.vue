@@ -39,7 +39,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.dateNar" format="dd-MM-yyyy HH:mm" @on-change="changeDateNar" placeholder></DatePicker>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateNar" @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -115,7 +115,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата время акта</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="data.evacActTime" format="dd-MM-yyyy HH:mm" @on-change="storeElementData" placeholder></DatePicker>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.evacActTime" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -405,8 +405,7 @@
                 }
               }
             ]
-        },
-        date: new Date()
+        }
       }
     },
     methods: {
@@ -424,7 +423,6 @@
         } else {
           await this.fillPnpaList();
 
-          this.parseDate(data);
           this.data = data;
 
           if (funcUtils.isNotEmpty(data.dateNar)) {
@@ -432,13 +430,6 @@
           }
         }
       },
-
-      parseDate(data) {
-        data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
-        data.dateNar = funcUtils.convertNumberToDate(data.dateNar);
-        data.evacActTime = funcUtils.convertNumberToDate(data.evacActTime);
-      },
-
       async createProtNum() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
@@ -453,7 +444,6 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-          this.parseDate(data);
           this.data = data;
 
           if (funcUtils.isNotEmpty(data.dateNar)) {
@@ -475,7 +465,6 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-          this.parseDate(data);
           this.data = data;
 
           if (funcUtils.isNotEmpty(data.dateNar)) {
