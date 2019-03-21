@@ -227,13 +227,13 @@
               <Row :gutter="16" type="flex" align="middle">
 								<!-- TODO -->
                 <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" disabled v-model="docsProt.placeNar.placeFull"></Input>
+                  <Input class="adm-input adm-input--regular" disabled ></Input>
                 </Col>
-                <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
-                  </Button>
-                </Col>
+                <!--<Col :xs="2" :md="2" :lg="2">-->
+                  <!--<Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">-->
+                    <!--<Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />-->
+                  <!--</Button>-->
+                <!--</Col>-->
 								<!-- ENDTODO -->
               </Row>
             </div>
