@@ -88,7 +88,6 @@
         } else {
           await this.fillPnpaList();
 
-          this.parseDate(data);
           this.data = data;
 
           if (funcUtils.isNotEmpty(data.dateNar)) {
@@ -99,10 +98,6 @@
         if (funcUtils.isNotEmpty(this.data.stotvId)) {
           this.fillKBKSearchInfo();
         }
-      },
-
-      parseDate(data) {
-        data.dateNar = funcUtils.convertNumberToDate(data.dateNar);
       },
 
       async fillPnpaList() {

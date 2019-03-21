@@ -187,7 +187,6 @@
           await this.fillDocStatusList();
           await this.fillDocTypeList();
 
-          this.parseDate(vuPred);
           this.vuPred = vuPred;
         }
       } catch (e) {
@@ -310,15 +309,6 @@
           this.ogaiModal.ogaiList = null;
         }
         this.ogaiModal.visible = visible;
-      },
-
-      parseDate(data) {
-        data.dateZader = funcUtils.convertNumberToDate(data.dateZader);
-        data.dateVozv = funcUtils.convertNumberToDate(data.dateVozv);
-        data.dateUtil = funcUtils.convertNumberToDate(data.dateUtil);
-        data.dateUtrat = funcUtils.convertNumberToDate(data.dateUtrat);
-        data.dateVyd = funcUtils.convertNumberToDate(data.dateVyd);
-        data.dateSrok = funcUtils.convertNumberToDate(data.dateSrok);
       },
 
       async fillDocStatusList() {

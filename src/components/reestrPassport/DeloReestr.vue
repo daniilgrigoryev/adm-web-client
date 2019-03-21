@@ -2,7 +2,7 @@
   <div>
     <div class="adm-search-filter-panel">
       <div class="wmax1920 mx-auto">
-        <div @keydown.enter="filterClick" class="adm-form">
+        <div class="adm-form">
           <Row type="flex" justify="start" :gutter="8">
             <Col :xs="24" :md="20" :lg="21">
               <!-- в каждом Row не должно быть больше 4 Col -->

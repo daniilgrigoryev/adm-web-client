@@ -62,7 +62,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName + ', ' + docsPost.inspSostDolz + ', ' + docsPost.inspSostRang"></Input>
+                  <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName, docsPost.inspSostDolz, docsPost.inspSostRang | concatByDelimiter(',')"></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
@@ -234,7 +234,6 @@
         } else {
           await this.fillPnpaList();
 
-          this.parseDate(docsPost);
           this.docsPost = docsPost;
 
           if (funcUtils.isNotEmpty(docsPost.dateNar)) {
@@ -478,11 +477,6 @@
           this.organModal.gibddList = null;
         }
         this.organModal.visible = visible;
-      },
-
-      parseDate(data) {
-        data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
-        data.dateNar = funcUtils.convertNumberToDate(data.dateNar);
       },
 
       async fillPnpaList() {

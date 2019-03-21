@@ -336,14 +336,9 @@ export default {
         let error = JSON.parse(eventResponse.response).error.errorMsg;
         alert(error);
       } else {
-        this.parseDate(data);
         this.data = data;
       }
 		},
-
-    parseDate(data) {
-      data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
-    },
 
 		async createNewUIN() {
 			let eventResponse = await RequestApi.prepareData({
@@ -359,7 +354,6 @@ export default {
         let error = JSON.parse(eventResponse.response).error.errorMsg;
         alert(error);
       } else {
-        this.parseDate(data);
         this.data = data;
       }
 		},
@@ -377,7 +371,6 @@ export default {
         let error = JSON.parse(eventResponse.response).error.errorMsg;
         alert(error);
       } else {
-        this.parseDate(data);
         this.data = data;
       }
 		},

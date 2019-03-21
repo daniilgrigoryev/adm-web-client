@@ -156,7 +156,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="uchastOrganization.organization.phone" ></Input>
+                      <input-mask v-model="uchastOrganization.organization.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></input-mask>
                     </Col>
                   </Row>
                 </div>
@@ -199,7 +199,8 @@
   export default {
     name: "FrmEdUchastFLOrganizationEdit",
     components: {
-      DatePickerMask
+      DatePickerMask,
+      InputMask
     },
     async created() {
       try {
@@ -231,7 +232,6 @@
 
           uchastOrganization.organization.priznOffice = uchastOrganization.organization.priznOffice === '+';
 
-          this.parseDate(uchastOrganization);
           this.uchastOrganization = uchastOrganization;
 
           await this.readDelo();
@@ -254,13 +254,14 @@
         orgFormList: null,
         vedomsList: null,
         tipULList: null,
-        delo: null
+        delo: null,
+        phoneMask: {
+          placeholder: ' ',
+          mask: '99999999999'
+        },
       }
     },
     methods: {
-      parseDate(data) {
-        // data.organization.dateReg = funcUtils.convertNumberToDate(data.organization.dateReg);
-      },
       async readDelo() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getDeloBody'

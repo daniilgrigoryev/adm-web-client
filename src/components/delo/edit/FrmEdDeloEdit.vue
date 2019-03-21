@@ -235,7 +235,6 @@
           await this.fillPnpaList();
           await this.fillDeloVidList();
 
-          this.parseDate(delo);
           this.delo = delo;
 
           if (funcUtils.isNotEmpty(delo.dateNar)) {
@@ -585,11 +584,6 @@
           this.ogaiModal.ogaiList = null;
         }
         this.ogaiModal.visible = visible;
-      },
-
-      parseDate(data) {
-        data.deloDate = funcUtils.convertNumberToDate(data.deloDate);
-        data.dateNar = funcUtils.convertNumberToDate(data.dateNar);
       },
 
       async fillDeloVidList() {

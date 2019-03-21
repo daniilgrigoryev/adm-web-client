@@ -599,7 +599,6 @@
           await this.fillPnpaList();
           await this.fillDecisList();
 
-          this.parseDate(decis);
           this.decis = decis;
 
           if (funcUtils.isNotEmpty(decis.decisDate)) {
@@ -904,33 +903,6 @@
       }
     },
     methods: {
-      parseDate(data) {
-        data.decisDate = funcUtils.convertNumberToDate(data.decisDate);
-        data.dateVstup = funcUtils.convertNumberToDate(data.dateVstup);
-        data.dateUved = funcUtils.convertNumberToDate(data.dateUved);
-        data.dateLishBeg = funcUtils.convertNumberToDate(data.dateLishBeg);
-        data.datLishEnd = funcUtils.convertNumberToDate(data.datLishEnd);
-        data.dateIspoln = funcUtils.convertNumberToDate(data.dateIspoln);
-        data.dateDiskvBeg = funcUtils.convertNumberToDate(data.dateDiskvBeg);
-        data.datDiskvEnd = funcUtils.convertNumberToDate(data.datDiskvEnd);
-        data.dateVozv = funcUtils.convertNumberToDate(data.dateVozv);
-        data.dateRasm = funcUtils.convertNumberToDate(data.dateRasm);
-        data.dateOtprav = funcUtils.convertNumberToDate(data.dateOtprav);
-        data.datePerenos = funcUtils.convertNumberToDate(data.datePerenos);
-        data.arestTimeBeg = funcUtils.convertNumberToDate(data.arestTimeBeg);
-        data.arestTimeEnd = funcUtils.convertNumberToDate(data.arestTimeEnd);
-        data.periodStart = funcUtils.convertNumberToDate(data.periodStart);
-      },
-      stringToDate(date) {
-        if (funcUtils.isNotEmpty(this.decis[date]) && typeof this.decis[date] === 'string' && this.decis[date].length > 0) {
-          let time = this.decis[date].split(':');
-          if (time.length > 0) {
-            let timeDate = new Date();
-            timeDate.setHours(time[0], time[1], 0, 0);
-            this.decis[date] = timeDate;
-          }
-        }
-      },
 
       async fillPnpaList() {
         let eventResponse = await RequestApi.prepareData({
@@ -1195,8 +1167,6 @@
       },
 
       store() {
-        this.stringToDate('arestTimeBeg');
-        this.stringToDate('arestTimeEnd');
         RequestApi.prepareData({
           method: 'store',
           params: {

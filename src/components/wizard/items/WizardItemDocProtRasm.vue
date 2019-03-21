@@ -478,19 +478,12 @@
         } else {
           await this.fillPnpaList();
 
-          this.parseDate(data);
           this.data = data;
 
           if (funcUtils.isNotEmpty(data.dateNar)) {
             this.fillStotvSearchInfo();
           }
         }
-      },
-
-      parseDate(data) {
-        data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
-        data.dateNar = funcUtils.convertNumberToDate(data.dateNar);
-        data.dateRasm = funcUtils.convertNumberToDate(data.dateRasm);
       },
 
       async createProtNum() {
@@ -507,7 +500,6 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-          this.parseDate(data);
           this.data = data;
 
           if (funcUtils.isNotEmpty(data.dateNar)) {
@@ -529,7 +521,6 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-          this.parseDate(data);
           this.data = data;
 
           if (funcUtils.isNotEmpty(data.dateNar)) {

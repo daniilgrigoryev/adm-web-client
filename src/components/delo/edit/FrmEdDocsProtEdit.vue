@@ -284,7 +284,6 @@
         } else {
           await this.fillPnpaList();
 
-          this.parseDate(docsProt);
           this.docsProt = docsProt;
 
           if (funcUtils.isNotEmpty(docsProt.dateNar)) {
@@ -528,11 +527,6 @@
           this.organModal.gibddList = null;
         }
         this.organModal.visible = visible;
-      },
-
-      parseDate(data) {
-        data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
-        data.dateNar = funcUtils.convertNumberToDate(data.dateNar);
       },
 
       async fillPnpaList() {

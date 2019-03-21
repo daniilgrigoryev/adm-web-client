@@ -348,7 +348,6 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-          this.parseDate(vehsAMTC);
           this.vehsAMTC = vehsAMTC;
 
           await this.fillKuzovTypeList();
@@ -389,11 +388,6 @@
       }
     },
     methods: {
-      parseDate(data) {
-        data.ptcDate = funcUtils.convertNumberToDate(data.ptcDate);
-        data.osagoDate = funcUtils.convertNumberToDate(data.osagoDate);
-        data.osagoSrok = funcUtils.convertNumberToDate(data.osagoSrok);
-      },
       async fillMarkAvtoList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getMarkAvtoDictionary'

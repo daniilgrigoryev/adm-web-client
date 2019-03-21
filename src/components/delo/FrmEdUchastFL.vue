@@ -49,11 +49,11 @@
             let currentForm = innerFormStack.getCurrent({
               uid: current.moduleName
             });
-            let eventResponse = await RequestApi.prepareData({
+            let resp = await RequestApi.prepareData({
               cid: currentForm.cid,
               withSpinner: false
             });
-            await vm.$store.dispatch('fillModule', {'event': eventResponse});
+            await vm.$store.dispatch('fillModule', {'event': resp});
           } catch (e) {
             alert(e.message);
           }

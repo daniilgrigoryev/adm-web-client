@@ -424,15 +424,8 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-          this.parseDate(data);
           this.data = data;
         }
-      },
-
-      parseDate(data) {
-        data.dateSost = funcUtils.convertNumberToDate(data.dateSost);
-        data.dateRasm = funcUtils.convertNumberToDate(data.dateRasm);
-        data.mainDeloDate = funcUtils.convertNumberToDate(data.mainDeloDate);
       },
 
       async createProtNum() {
@@ -449,7 +442,6 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-          this.parseDate(data);
           this.data = data;
         }
       },
@@ -467,7 +459,6 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-          this.parseDate(data);
           this.data = data;
         }
       },

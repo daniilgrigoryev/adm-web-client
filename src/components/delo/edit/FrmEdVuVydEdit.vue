@@ -236,7 +236,6 @@
           await this.fillDocTypeList();
           await this.fillVuPredList();
 
-          this.parseDate(vuVyd);
           this.vuVyd = vuVyd;
         }
       } catch (e) {
@@ -481,12 +480,6 @@
           this.ogaiModal.ogaiList = null;
         }
         this.ogaiModal.visible = visible;
-      },
-
-      parseDate(data) {
-        data.dateUtil = funcUtils.convertNumberToDate(data.dateUtil);
-        data.dateVyd = funcUtils.convertNumberToDate(data.dateVyd);
-        data.dateSrok = funcUtils.convertNumberToDate(data.dateSrok);
       },
 
       async fillVuPredList() {

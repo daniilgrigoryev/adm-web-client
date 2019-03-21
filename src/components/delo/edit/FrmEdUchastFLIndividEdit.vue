@@ -183,7 +183,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="uchastIndivid.individ.phone" ></Input>
+                      <input-mask v-model="uchastIndivid.individ.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></input-mask>
                     </Col>
                   </Row>
                 </div>
@@ -269,10 +269,9 @@
     },
     data() {
       return {
-        maskInputBirthday: {
-          alias: "datetime",
-          inputFormat: 'dd/mm/yyyy',
-          placeholder: '__/__/____'
+        phoneMask: {
+          placeholder: ' ',
+          mask: '99999999999'
         },
         birthdayDate: null,
         uchastIndivid: null,
