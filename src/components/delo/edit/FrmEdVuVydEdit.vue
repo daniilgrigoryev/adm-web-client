@@ -1,149 +1,196 @@
 <template>
-  <div v-if="vuVyd">
+  <div v-if="vuVyd" class="wmax940 mx-auto">
     <!-- данные по делу  -->
 
-    <Button @click="getPrev" type="text">Назад</Button>
-    <Button @click="save" type="text">Сохранить</Button>
+
+    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Редактирование</b>
+        </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
+    </div>
 
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
     <wizard-modal v-if="ogaiModal.visible" :columnsOptions="ogaiModal.columnsOptions" :data="ogaiModal.ogaiList" @showModal="showOgaiModal" @onRowDbClick="onOgaiClick"></wizard-modal>
 
-    <div class="adm-form">
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuVyd.docTip" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
+    <div class="adm-form bg-white">
+      <div class="adm-form__container py6 my6">
+        <div class="adm-form__content py24 px36">
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="24">
+                  <Select class="adm-input adm-input--regular wmax600" placeholder="" v-model="vuVyd.docTip" clearable filterable @on-change="store">
+                    <Option class="txt-break-word" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuVyd.vuPredId" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in vuPredList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuVyd.vuPredId" clearable filterable @on-change="store">
+                    <Option class="wmax360 txt-break-word" v-for="item in vuPredList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuVyd.vuN" ></Input>
-          </Col>
-        </Row>
-      </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuVyd.vuN" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-          </Col>
-        </Row>
-      </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateSrok" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-          </Col>
-        </Row>
-      </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateSrok" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydKod" @on-input-change="changeInspVydKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydName" @on-input-change="changeFIO" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydDolz" @on-input-change="clearInspVydKod" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydRang" @on-input-change="clearInspVydKod" ></Input>
-          </Col>
-        </Row>
-      </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydKod" @on-input-change="changeInspVydKod" ></Input>
+                </Col>
+                <Col :xs="24" :md="14" :lg="8">
+                  <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydName" @on-input-change="changeFIO" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydDolz" @on-input-change="clearInspVydKod" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydRang" @on-input-change="clearInspVydKod" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
+                </Col>
+                <Col :xs="24" :md="14" :lg="8">
+                  <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="vuVyd.remarks" @on-input-change="store" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" v-model="vuVyd.remarks" @on-input-change="store" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuVyd.status" clearable filterable @on-change="store">
-              <Option class="wmax360 txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuVyd.status" clearable filterable @on-change="store">
+                    <Option class="wmax360 txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
 
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateUtil" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-          </Col>
-        </Row>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuVyd.dateUtil" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </div>
       </div>
-
+      <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
+        <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
+        <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
+      </div>
     </div>
 
   </div>
@@ -629,6 +676,25 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .adm-form-content{
+    // border: 1px solid #000;
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    // min-height: 90px;
+    // outline: 1px solid;
+  }
+  .adm-form__label{
+    padding: 0;
+    min-width: 210px;
+    padding-right: 12px;
+  }
+  .adm-form__item_content{
+    width: 100%;
+  }
 </style>

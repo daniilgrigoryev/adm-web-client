@@ -20,7 +20,7 @@
     <wizard-modal v-if="ogaiModal.visible" :columnsOptions="ogaiModal.columnsOptions" :data="ogaiModal.ogaiList" @showModal="showOgaiModal" @onRowDbClick="onOgaiClick"></wizard-modal>
 
     <div class="adm-form bg-white">
-      <div class="adm-form__container mt0">
+      <div class="adm-form__container my6">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование документа участника</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
