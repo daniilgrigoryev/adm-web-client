@@ -6,10 +6,13 @@
     <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
-            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover color-dark-lighter color-blue-on-hover transition">
+            <div class="flex-parent flex-parent--center-cross">
+              <Icon type="ios-arrow-dropleft mr18" class="bg-whte" :size="35" />
+              <b class="adm-text-big">Назад</b>
+            </div>
           </Button>
-          <b class="adm-text-big color-dark-lighter">Редактирование</b>
+          <!-- <b class="adm-text-big color-dark-lighter">Редактирование</b> -->
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../../assets/images/wiki.svg' class="wmax-none">
