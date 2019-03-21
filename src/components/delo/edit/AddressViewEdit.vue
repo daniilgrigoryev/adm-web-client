@@ -160,7 +160,7 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart"></Input>
+                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="store"></Input>
                   </Col>
                 </Row>
               </div>
