@@ -191,6 +191,5 @@
 
 <style lang='scss'>
   .bold {
-
   }
 </style>
