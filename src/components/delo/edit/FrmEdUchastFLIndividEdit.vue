@@ -16,11 +16,11 @@
       <div class="flex-parent flex-parent--center-cross">
         <a href="#" @click="getPrev" class="delo__headding link color-dark-lighter color-blue-on-hover">
           <span class="adm-h3">Дело №</span>
-          <span class="adm-h2">377</span>
+          <span v-if="delo" class="adm-h2">{{delo.deloN}}</span>
         </a>
         <p class="color-green-base ml24 flex-parent flex-parent--center-cross">
           <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23" /> 
-          <span class="adm-txt-regular line30_letter02">Исполнение</span>
+          <span v-if="delo" class="adm-txt-regular line30_letter02">{{delo.stadDeloName}}</span>
         </p>
       </div>
     </div>
@@ -256,6 +256,8 @@
 
           this.uchastIndivid = uchastIndivid;
           this.parseBirthday(uchastIndivid);
+
+          await this.readDelo();
         }
       } catch (e) {
         alert(e.message);
@@ -288,6 +290,7 @@
             value: 'Ж'
           },
         ],
+        delo: null
       }
     },
     methods: {
@@ -314,6 +317,12 @@
           this.uchastIndivid.individ.birthdayYear = null;
         }
         this.store();
+      },
+      async readDelo() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getDeloBody'
+        });
+        this.delo = JSON.parse(eventResponse.response).data;
       },
       async fillVehsList() {
         let eventResponse = await RequestApi.prepareData({

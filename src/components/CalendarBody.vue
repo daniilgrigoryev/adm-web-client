@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <input-mask v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" :maskProps="maskInput" :clearable="clearable" :placeholder="placeholder"></input-mask>
+    <input-mask v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></input-mask>
 
     <i @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
   </div>
@@ -18,6 +18,12 @@
     props: {
       value: Date,
       clearable: Boolean,
+      disabled: {
+        type: Boolean
+      },
+      readonly: {
+        type: Boolean
+      },
       placeholder: String,
       maskFormat: String,
       momentFormat: String,
@@ -60,7 +66,9 @@
         }
       },
       onClick(e) {
-        this.$emit('onClick');
+        if (!this.disabled && !this.readonly) {
+          this.$emit('onClick');
+        }
       },
       onBlur(e) {
         // @onBlur="onBlur"

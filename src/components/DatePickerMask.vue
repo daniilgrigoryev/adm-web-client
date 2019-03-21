@@ -1,6 +1,6 @@
 <template>
   <div v-click-outside="hide">
-    <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @onClick="show" @onClear="onClear" :value="currentValue" :placeholder="placeholder" clearable></calendar-body>
+    <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @onClick="show" @onClear="onClear" :value="currentValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable"></calendar-body>
 
     <calendar-header v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" :value="currentValue"></calendar-header>
   </div>
@@ -27,6 +27,12 @@
       value: [Date, Number, String],
       clearable: Boolean,
       placeholder: String,
+      disabled: {
+        type: Boolean
+      },
+      readonly: {
+        type: Boolean
+      },
       type: String,
       maskFormat: String,
       momentFormat: String,
@@ -72,7 +78,9 @@
         this.visible = false;
       },
       show() {
-        this.visible = true;
+        if (!this.disabled && !this.readonly) {
+          this.visible = true;
+        }
       },
       onClear() {
         this.$emit('input', null);

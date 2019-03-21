@@ -3,9 +3,8 @@
          @input="onInput"
          @on-input-change="onInputChange"
          @on-enter="onEnter"
-
          :value="value"
-         :class="inputClass"
+         :class="[inputClass, {'ivu-input-icon-clear-hidden': hiddenClear}]"
          :placeholder="placeholder"
          :type="type"
          :size="size"
@@ -112,6 +111,11 @@
     data() {
       return {}
     },
+    computed: {
+      hiddenClear() {
+        return this.disabled || this.readonly;
+      },
+    },
     methods: {
       onInput(e) {
         if (e.length === 0) {
@@ -136,6 +140,10 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+  .ivu-input-icon-clear-hidden {
+    .ivu-input-icon-clear {
+      display: none !important;
+    }
+  }
 </style>
