@@ -16,7 +16,7 @@
 
     <div class="adm-form">
       <div class="adm-form__container mt6">
-        <div class="adm-form__content px36">
+        <div class="adm-form__content px36 py24">
           <div class="my12 adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Дата оплаты штрафа</small>
             <Row :gutter="16" type="flex" align="middle">
