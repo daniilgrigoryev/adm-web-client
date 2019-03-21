@@ -335,7 +335,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.decisDate" format="dd-MM-yyyy HH:mm" @on-change="changeDecisDate" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.decisDate" @change="changeDecisDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -346,7 +346,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateVstup" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -357,7 +357,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateUved" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateUved" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -368,7 +368,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateLishBeg" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateLishBeg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -379,7 +379,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datLishEnd" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datLishEnd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -390,7 +390,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateIspoln" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateIspoln" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -401,7 +401,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateDiskvBeg" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateDiskvBeg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -412,7 +412,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datDiskvEnd" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datDiskvEnd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -423,7 +423,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateVozv" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateVozv" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -434,7 +434,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateRasm" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateRasm" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -445,7 +445,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.dateOtprav" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateOtprav" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -456,7 +456,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.datePerenos" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datePerenos" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -467,7 +467,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <TimePicker class="adm-input adm-input--regular wmin120 wmax180" type="time" v-model="decis.arestTimeBeg" format="HH:mm" @on-change="store" placeholder=""></TimePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.arestTimeBeg" @change="store" clearable type="time" placeholder="чч:мм" momentFormat="HH:mm" maskFormat="HH:MM"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -478,7 +478,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <TimePicker class="adm-input adm-input--regular wmin120 wmax180" type="time" v-model="decis.arestTimeEnd" format="HH:mm" @on-change="store" placeholder=""></TimePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.arestTimeEnd" @change="store" clearable type="time" placeholder="чч:мм" momentFormat="HH:mm" maskFormat="HH:MM"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -547,7 +547,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="decis.periodStart" format="dd-MM-yyyy HH:mm" @on-change="store" placeholder=""></DatePicker>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -568,10 +568,14 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
+  import DatePickerMask from "~/components/DatePickerMask";
 
   export default {
     name: "FrmEdDecisEdit",
-    components: {WizardModal},
+    components: {
+      WizardModal,
+      DatePickerMask
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

@@ -100,7 +100,7 @@
               <div class="adm-form__item_content">
                 <Row type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="24">
-                    <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.ptcDate" format="dd-MM-yyyy" @on-change="store" placeholder></DatePicker>
+                    <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.ptcDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                   </Col>
                 </Row>
               </div>
@@ -288,7 +288,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.osagoDate" format="dd-MM-yyyy" @on-change="store" placeholder></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.osagoDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -298,7 +298,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="datetime" v-model="vehsAMTC.osagoSrok" format="dd-MM-yyyy" @on-change="store" placeholder></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.osagoSrok" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -320,11 +320,13 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import InputMask from "../../InputMask";
+  import DatePickerMask from "~/components/DatePickerMask";
 
   export default {
     name: "FrmEdVehsAMTCEdit",
     components: {
-      InputMask
+      InputMask,
+      DatePickerMask
     },
     async created() {
       try {

@@ -100,7 +100,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="uchastOrganization.organization.dateReg" format="dd-MM-yyyy" @on-change="store" placeholder=""></DatePicker>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="uchastOrganization.organization.dateReg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -194,9 +194,13 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import InputMask from "../../InputMask";
+  import DatePickerMask from "~/components/DatePickerMask";
 
   export default {
     name: "FrmEdUchastFLOrganizationEdit",
+    components: {
+      DatePickerMask
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

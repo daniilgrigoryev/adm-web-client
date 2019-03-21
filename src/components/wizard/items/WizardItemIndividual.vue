@@ -34,7 +34,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения:</small>
         <Row :gutter="16" type="flex" align="middle">
          <Col :xs="24" :md="14" :lg="16">
-            <DatePicker class="adm-input adm-input--regular wmin120 wmax180" type="date" v-model="data.birthdayDay" format="dd-MM-yyyy" @on-change="storeElementData" placeholder=" "></DatePicker>
+           <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.birthdayDay" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -72,9 +72,13 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
+  import DatePickerMask from "~/components/DatePickerMask";
 
   export default {
     name: "WizardItemIndividual",
+    components: {
+      DatePickerMask
+    },
     props: {
       info: Object
     },
