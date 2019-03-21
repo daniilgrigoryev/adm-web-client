@@ -5,18 +5,10 @@
 
 				<div class="flex-parent flex-parent--center-main flex-parent--center-cross" style="margin-top: 6%"><!-- style="height: calc(100vh - 66px);" -->
 					<div>
-						<Row type="flex" justify="center">
+						<Row type="flex" justify="center" :gutter="60">
 							<Col>
-								<Card class="px24 mb60 py12 mt60" style="min-width: 550px">
-									<div class="flex-parent flex-parent--center-cross">
-										<div class="mr36">
-											<img src="../../assets/images/case.svg" alt="">
-										</div>
-										<a href="#" @click="createWizardScenarioPost" class="adm-text-big link color-blue-base txt-underline-on-hover">Возбуждение административного дела <br> Постановлением</a>
-									</div>
-								</Card>
 								<Card class="truck-card px24 mb60" style="min-width: 550px">
-									<p class="adm-txt-regular color-dark-light my18">Эвакуация автомобиля</p>
+									<p class="adm-txt-regular color-dark-light my18">Эвакуация</p>
 									<ul>
 										<li class="my18">
 											<a href="#" @click="createWizardScenarioPZTC" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол о задержании транспортного средства</a>
@@ -25,12 +17,20 @@
 											<a href="#" @click="createWizardScenarioAPN" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об административном правонарушении</a>
 										</li>
 										<li class="my18">
-											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Определение об эвакуации автомобиля</a>
-											<p class="adm-text-small color-gray-medium">по обращению граждан или Московского паркинга</p>
+											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Определение о возбуждении дела об <br> административном правонарушении</a>
+											<!-- <p class="adm-text-small color-gray-medium">по обращению граждан или Московского паркинга</p> -->
 										</li>
 									</ul>
 								</Card>
-								<Row type="flex" justify="center">
+								<Card class="px24 mb60 py12 mt60" style="min-width: 550px">
+									<div class="flex-parent flex-parent--center-cross">
+										<div class="mr36">
+											<img src="../../assets/images/case.svg" alt="">
+										</div>
+										<a href="#" @click="createWizardScenarioPost" class="adm-text-big link color-blue-base txt-underline-on-hover">Постановление об адмнинистративном <br> правонарушении постановлением</a>
+									</div>
+								</Card>
+								<!-- <Row type="flex" justify="center">
 									<Col>
 										<Card class="px24 mr24" style="min-width: 255px">
 											<div class="flex-parent flex-parent--column flex-parent--center-cross">
@@ -51,28 +51,40 @@
 											</div>
 										</Card>
 									</Col>
-								</Row>
+								</Row> -->
 							</Col>
 							<Col>
-								<Card class="taxi-card px24 mb60 ml60 mt60" style="min-width: 320px">
-									<p class="adm-txt-regular color-dark-light my18">Дело в отношеннии Такси</p>
+								<Card class="taxi-card px24 mb60" style="min-width: 550px">
+									<p class="adm-txt-regular color-dark-light my18">Такси</p>
 									<ul>
 										<li class="my18">
-											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Извещением</a>
+											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об административном правонарушении</a>
 										</li>
 										<li class="my18">
-											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Протоколом</a>
+											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об изъятии вещей и документов</a>
+										</li>
+										<li class="my18">
+											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Определение о возбуждении дела об <br/> административном правонарушении</a>
 										</li>
 									</ul>
 								</Card>
-								<Card class="px24 ml60" style="min-width: 320px">
+								<Card class="px24 py12 mt60" style="min-width: 550px">
+									<div class="flex-parent flex-parent--center-cross">
+										<div class="mr36 h60 w60">
+											<img src="../../assets/images/tax.svg" class="h-full" alt="">
+										</div>
+										<a href="#" @click="createWizardScenarioPost" class="adm-text-big link color-blue-base txt-underline-on-hover">Возбуждение дела об административном <br> правонарушении по статье 20.25</a>
+									</div>
+								</Card>
+
+								<!-- <Card class="px24 ml60" style="min-width: 320px">
 									<div class="flex-parent flex-parent--column flex-parent--center-cross">
 										<div class="mb12">
 											<img src="../../assets/images/police.png" alt="">
 										</div>
 										<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Служба судебных приставов</a>
 									</div>
-								</Card>
+								</Card> -->
 							</Col>
 						</Row>
 					</div>

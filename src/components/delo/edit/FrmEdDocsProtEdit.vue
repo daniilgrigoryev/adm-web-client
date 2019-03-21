@@ -66,7 +66,7 @@
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Список должносных лиц" :size="35" />
+                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="список должностных лиц" :size="35" />
                   </Button>
                 </Col>
               </Row>
@@ -81,7 +81,7 @@
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Список подразделений" :size="35" />
+                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="список подразделений" :size="35" />
                   </Button>
                 </Col>
               </Row>

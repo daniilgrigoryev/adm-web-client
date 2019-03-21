@@ -25,7 +25,8 @@
               <MenuItem name="3" class="header-menu__item">Учет спецпродукции</MenuItem>
               <MenuItem name="4" class="header-menu__item">Состояние выгрузки</MenuItem>
               <MenuItem name="5" class="header-menu__item">Обработка документов</MenuItem>
-              <MenuItem name="6" class="header-menu__item">Почтовые реестры</MenuItem>
+              <MenuItem name="6" class="header-menu__item">Передача материалов в ФССП</MenuItem>
+              <MenuItem name="7" class="header-menu__item">Почтовые реестры</MenuItem>
             </div>
           </Menu>
         </Col>

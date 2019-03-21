@@ -5,10 +5,13 @@
     <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
-            <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition" :size="35" />
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover color-dark-lighter color-blue-on-hover transition">
+            <div class="flex-parent flex-parent--center-cross">
+              <Icon type="ios-arrow-dropleft mr18" class="bg-whte" :size="30" />
+              <b class="adm-text-big">Назад</b>
+            </div>
           </Button>
-          <b class="adm-text-big color-dark-lighter">Редактирование адреса</b>
+          <!-- <b class="adm-text-big color-dark-lighter">Редактирование адреса участника</b> -->
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../../assets/images/wiki.svg' class="wmax-none">
@@ -16,10 +19,11 @@
       </div>
     </div>
 
+
     <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование фактического/регистрации адреса участника</h2>
-        <div class="adm-form__content px36 py24">
+      <div class="adm-form__container mt0">
+        <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование адреса участника</h2>
+        <div class="adm-form__content mt0 px36 py24">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Страна</small>
             <div class="adm-form__item_content">
