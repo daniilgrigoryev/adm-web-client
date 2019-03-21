@@ -62,7 +62,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName + ', ' + docsPost.inspSostRang" ></Input>
+                  <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName + ', ' + docsPost.inspSostDolz + ', ' + docsPost.inspSostRang"></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
@@ -135,7 +135,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА нарушения</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -147,7 +147,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
