@@ -7,7 +7,7 @@
 
 
 
-    <div v-if="list && list.length > 0" class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
+    <div v-if="list && list.length > 0" class="flex-parent flex-parent--center-cross flex-parent--space-between-main bg-white">
       <Page v-if="limit" :total="list.length" :current="currentPage" :page-size="limit" class="ml12 adm-txt-regular" @on-change="changePage"/>
       <div class="flex-parent flex-parent--center-cross ml">
         <Input class="adm-input adm-input--big wmin600" v-model="filter" placeholder="Фильтр"></Input>
