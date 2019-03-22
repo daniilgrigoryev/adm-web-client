@@ -18,7 +18,7 @@
       
     <div class="adm-form">
       <div class="adm-form__container mt0">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование адреса места нарушения / места составления</h2>
+        <h2 class="adm-text-big color-dark-light adm-form__headding">{{title}}</h2>
         <div class="adm-form__content px36 py24">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
@@ -229,6 +229,18 @@
         let current = formStack.getCurrent();
         await this.$store.dispatch('placeViewEditSetCid', current.cid);
 
+
+        if(funcUtils.isNotEmpty(current.params.title)){
+          switch (current.params.title) {
+            case 'getPlaceSost':
+              this.title = "Редактирование адреса места вынесения";
+            break;
+            case 'getPlaceNar':
+              this.title = "Редактирование адреса места нарушения";
+            break;
+          }
+        }
+
         let eventResponse = await RequestApi.prepareData({
           method: 'restore'
         });
@@ -254,7 +266,8 @@
         placesList: null,
         dopStreetsList: null,
         dopRoadsList: null,
-        dopPlacesList: null
+        dopPlacesList: null,
+        title: 'Редактирование адреса места нарушения / места составления'
       }
     },
     computed: {

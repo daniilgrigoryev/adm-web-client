@@ -710,7 +710,10 @@
           vm: this,
           notRemoved: false,
           withCreate: false,
-          cid: cid
+          cid: cid,
+          params: {
+            title: 'getPlaceSost'
+          }
         });
       },
       async getPlaceNar() {
@@ -724,7 +727,10 @@
           vm: this,
           notRemoved: false,
           withCreate: false,
-          cid: cid
+          cid: cid,
+          params: {
+            title: 'getPlaceNar'
+          }
         });
       },
       getPrev() {
