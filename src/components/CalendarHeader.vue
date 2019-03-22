@@ -319,6 +319,7 @@
         let milliseconds = this.dateContext.toDate().setDate(day);
         let date = new Date(milliseconds);
         this.$emit('change', date);
+        this.$emit('hide');
       },
       clear() {
         this.$emit('change', null);
