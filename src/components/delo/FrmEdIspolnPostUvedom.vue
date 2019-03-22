@@ -60,11 +60,22 @@
           </div>
 
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Уведомление направлено по адресу</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Место исполнения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
                   <Input class="adm-input adm-input--regular" readonly :value="body.placeIspoln.placeFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Уведомление направлено по адресу</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" readonly type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                   <!-- адрес куда отправляются уведомления == место исполнения? -->
                 </Col>
               </Row>
