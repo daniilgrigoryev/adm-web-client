@@ -712,7 +712,7 @@
           withCreate: false,
           cid: cid,
           params: {
-            title: 'getPlaceSost'
+            type: 'placeSost'
           }
         });
       },
@@ -729,7 +729,7 @@
           withCreate: false,
           cid: cid,
           params: {
-            title: 'getPlaceNar'
+            type: 'placeNar'
           }
         });
       },
