@@ -10,7 +10,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Протокол №</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular wmax240" v-model="data.docN" @on-input-change="storeElementData" ></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
             <a href="#" @click="createProtNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
@@ -73,7 +73,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacRegno" ></Input>
+            <Input class="adm-input adm-input--regular wmax240" @on-input-change="storeElementData" v-model="data.evacRegno" ></Input>
           </Col>
         </Row>
       </div>
@@ -89,7 +89,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacActNumber" ></Input>
+            <Input class="adm-input adm-input--regular wmax240" @on-input-change="storeElementData" v-model="data.evacActNumber" ></Input>
           </Col>
         </Row>
       </div>
@@ -117,7 +117,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -127,7 +127,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-change="storeElementData">
               <Option class="wmax360 txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>

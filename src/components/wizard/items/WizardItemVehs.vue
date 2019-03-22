@@ -6,7 +6,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.regno" @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular wmax240" v-model="data.regno" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -35,7 +35,7 @@
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
           <!-- TODO -->
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular wmax240" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -54,7 +54,7 @@
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <!-- TODO -->
-            <Input class="adm-input adm-input--regular"  @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular wmax240"  @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -62,7 +62,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">VIN</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.vin"  @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular wmax240" v-model="data.vin"  @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -80,7 +80,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">Цвет</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.color" @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular wmax240" v-model="data.color" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -217,6 +217,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 </style>
+
