@@ -22,7 +22,7 @@ export async function toNext(payload) {
   let next = {
     beanName: beanName,
     routeName: routeName,
-    params: payload.params,
+    params: params,
     moduleName: module.moduleName,
     notRemoved: notRemoved,
     cid: cid,
