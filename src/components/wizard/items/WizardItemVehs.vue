@@ -54,7 +54,7 @@
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <!-- TODO -->
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular"  @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
@@ -62,8 +62,7 @@
         <small class="adm-text-small color-gray-medium adm-form__label">VIN</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <!-- TODO -->
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.vin"  @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
