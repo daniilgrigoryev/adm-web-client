@@ -1,42 +1,17 @@
 <template>
   <div v-if="data">
     <div class="adm-form">
-      <Row :gutter="16" type="flex" align="middle">
-        <Col>
-          <h2 class="adm-text-big color-dark-light my12">Транспортное средство</h2>
-        </Col>
-      </Row>
+      <h2 class="adm-text-big adm-form__headding" id="tc">Транспортное средство</h2>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Регистрационный знак ТС</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.regno" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
-       
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Цвет</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.color" @on-input-change="storeElementData" ></Input>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Тип кузова ТС</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" clearable @on-change="storeElementData" filterable>
-              <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Марка ТС</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Марка</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
@@ -46,7 +21,7 @@
         </Row>
       </div>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Модель ТС</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Модель</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()" filterable>
@@ -56,12 +31,57 @@
         </Row>
       </div>
       <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Модификация</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+          <!-- TODO -->
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Тип</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" clearable @on-change="storeElementData" filterable>
+              <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">СТС</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <!-- TODO -->
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">VIN</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <!-- TODO -->
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <!-- <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Принадлежность ТС</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.ownerTip" clearable @on-change="storeElementData">
               <Option v-for="item in ownerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
+          </Col>
+        </Row>
+      </div> -->
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Цвет</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="data.color" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>

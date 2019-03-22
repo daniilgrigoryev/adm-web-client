@@ -5,8 +5,9 @@
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
     <div class="adm-form">
+      <h2 class="title" id="head">Ввод данных по протоколу о задержании ТС</h2>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Номер протокола</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Протокол №</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" ></Input>
@@ -17,24 +18,92 @@
         </Row>
       </div>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Уникальный номер дела</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата и время составления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" ></Input>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateNar" @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div class="adm-form">
+      <h2 class="adm-text-big adm-form__headding" id="sost">Составил</h2>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" ></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
-            <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
+            <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
           </Col>
         </Row>
       </div>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и время задержания</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateSost" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+            <Input class="adm-input adm-input--regular" v-model="data.organSostName" @on-input-change="changeOrganSostKod" ></Input>
+          </Col>
+          <Col :xs="24" :md="14" :lg="8">
+            <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
           </Col>
         </Row>
       </div>
+    </div>
+    <div class="adm-form">
+      <h2 class="adm-text-big adm-form__headding" id="evac">Сведения об эвакуации</h2>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacOrgName" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Представитель</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacAgentName" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacRegno" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Штрафстоянка</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.impoundLotName" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacActNumber" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="my12 adm-form__item">
+        <small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.evacActTime" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div class="adm-form">
+      <h2 class="adm-text-big adm-form__headding" id="nar">Сведения о нарушении</h2>
       <div class="my12 adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -43,8 +112,9 @@
           </Col>
         </Row>
       </div>
+
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
@@ -54,7 +124,7 @@
         </Row>
       </div>
       <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+        <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-change="storeElementData">
@@ -71,123 +141,10 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.dopSved" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Название организации эвакуатора</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacOrgName" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacRegno" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Имя водителя эвакуатора</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacAgentName" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Номер акта эвакуации</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacActNumber" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата время акта</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.evacActTime" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Название штраф стоянки</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.impoundLotName" ></Input>
-          </Col>
-        </Row>
-      </div>
+
+
     </div>
 
-    <hr class="txt-hr my24">
-
-    <div class="adm-form">
-      <h2 class="adm-text-big color-dark-light my12">Составил</h2>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.inspSostRang" @on-input-change="clearInspSostKod" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.organSostKod" @on-input-change="changeOrganSostKod" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -703,6 +660,12 @@
   }
 </script>
 
-<style scoped>
 
+<style lang="scss" scoped>
+  h2.title {
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    margin: 30px;
+  }
 </style>
