@@ -705,7 +705,13 @@ html, body, #app {
     border: 1px solid #1888CC;
   }
 }
-
+.adm-btn-primary--free{
+  background-color: #1888CC;
+  line-height: 100%;
+  &:hover {
+    background-color: #1172AC;
+  }
+}
 .adm-btn-primary {
   background-color: #1888CC;
   height: 45px;
