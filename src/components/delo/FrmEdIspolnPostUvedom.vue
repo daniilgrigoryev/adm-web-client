@@ -75,7 +75,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                  <Input class="adm-input adm-input--regular" :value="body.placeIspoln.placeFull" readonly type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                   <!-- адрес куда отправляются уведомления == место исполнения? -->
                 </Col>
               </Row>
