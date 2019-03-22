@@ -391,6 +391,7 @@
                 minWidth: 120,
                 ellipsis: true,
                 sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -402,6 +403,7 @@
                 minWidth: 120,
                 ellipsis: true,
                 sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -413,6 +415,7 @@
                 minWidth: 120,
                 ellipsis: true,
                 sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -424,6 +427,7 @@
                 minWidth: 120,
                 ellipsis: true,
                 sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -435,6 +439,7 @@
                 minWidth: 120,
                 ellipsis: true,
                 sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -446,6 +451,7 @@
                 minWidth: 120,
                 ellipsis: true,
                 sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -457,6 +463,7 @@
                 minWidth: 120,
                 ellipsis: true,
                 sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -468,6 +475,7 @@
                 minWidth: 120,
                 ellipsis: true,
                 sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
