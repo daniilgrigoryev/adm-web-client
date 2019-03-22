@@ -162,13 +162,6 @@ export function isDate (value) {
   return value instanceof Date;
 }
 
-export function convertNumberToDate(num) {
-  if (isEmpty(num) || !Number.isInteger(num)) {
-    return null;
-  }
-  return new Date(num);
-}
-
 export function undefinedJSONreplacer(key, value) {
   if (typeof value === 'undefined') {
     return null;

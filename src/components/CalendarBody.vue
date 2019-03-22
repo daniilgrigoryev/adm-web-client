@@ -1,8 +1,8 @@
 <template>
   <div class="content">
-    <input-mask v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></input-mask>
+    <input-mask v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" @onInputChange="onInputChange" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></input-mask>
 
-    <i @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
+    <i v-if="!isHidden" @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
   </div>
 </template>
 
@@ -44,6 +44,11 @@
         }
       },
     },
+    computed: {
+      isHidden() {
+        return this.disabled || this.readonly;
+      },
+    },
     data() {
       return {
         maskInput: {
@@ -81,6 +86,13 @@
             this.$emit('change', null);
             this.currentValue = null;
           }
+        }
+      },
+      onInputChange(e) {
+        let value = e.currentTarget.value;
+        let date = funcUtils.formatDateTime(value, this.momentFormat);
+        if (value.length > 0 && value.indexOf(this.momentFormat) === -1 && date.isValid()) {
+
         }
       },
       onClear(e) {

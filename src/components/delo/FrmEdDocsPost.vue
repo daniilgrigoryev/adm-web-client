@@ -8,7 +8,7 @@
           <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Постановление по делу № {{ body.docN }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY HH:mm') }}</b>
+          <b class="adm-text-big color-dark-lighter">Постановление по делу № {{ body.docN }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
@@ -55,7 +55,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.datUved | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.datUved | formatDateTime('DD.MM.YYYY')" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY')" ></Input>
                     </Col>
                   </Row>
                 </div>

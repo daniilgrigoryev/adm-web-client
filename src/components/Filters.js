@@ -6,7 +6,10 @@ Vue.filter('formatDateTime', function (dateTime, format) {
   if (funcUtils.isEmpty(dateTime) || funcUtils.isEmpty(format)) {
     return '';
   }
-  funcUtils.parseDateTime(dateTime, format);
+  if (funcUtils.isNumber(dateTime)) {
+    dateTime = new Date(dateTime);
+  }
+  return funcUtils.parseDateTime(dateTime, format);
 });
 
 // Кастомный фильтр склеивания значений
