@@ -230,12 +230,12 @@
         await this.$store.dispatch('placeViewEditSetCid', current.cid);
 
 
-        if(funcUtils.isNotEmpty(current.params.title)){
-          switch (current.params.title) {
-            case 'getPlaceSost':
+        if(funcUtils.isNotEmpty(current.params.type)){
+          switch (current.params.type) {
+            case 'placeSost':
               this.title = "Редактирование адреса места вынесения";
             break;
-            case 'getPlaceNar':
+            case 'placeNar':
               this.title = "Редактирование адреса места нарушения";
             break;
           }
