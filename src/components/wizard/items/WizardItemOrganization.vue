@@ -144,6 +144,8 @@
                 key: 'name',
                 minWidth: 120,
                 ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -154,6 +156,8 @@
                 key: 'inn',
                 minWidth: 120,
                 ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -164,6 +168,8 @@
                 key: 'ogrn',
                 minWidth: 120,
                 ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -174,6 +180,8 @@
                 key: 'okpo',
                 minWidth: 120,
                 ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -184,6 +192,8 @@
                 key: 'kpp',
                 minWidth: 120,
                 ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)
@@ -194,6 +204,8 @@
                 key: 'streetName',
                 minWidth: 120,
                 ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
                 tooltip: true,
                 renderHeader: (h, params) => {
                   return h('h4', params.column.title)

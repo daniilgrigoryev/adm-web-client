@@ -159,6 +159,8 @@
         let resp =  JSON.parse(eventResponse.response);
         if (resp.error && resp.error.errorMsg) {
           alert(resp.error.errorMsg);
+        } else {
+          this.getPrev();
         }
       },
       getPrev() {

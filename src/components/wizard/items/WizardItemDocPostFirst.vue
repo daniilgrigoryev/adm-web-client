@@ -137,6 +137,8 @@ export default {
               key: 'inspKod',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -147,6 +149,8 @@ export default {
               key: 'inspName',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -157,6 +161,8 @@ export default {
               key: 'inspDolz',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -167,6 +173,8 @@ export default {
               key: 'inspRang',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -177,6 +185,8 @@ export default {
               key: 'organKod',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -187,6 +197,8 @@ export default {
               key: 'ogaiName',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -197,6 +209,8 @@ export default {
               key: 'otdName',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -207,6 +221,8 @@ export default {
               key: 'phone',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -217,6 +233,8 @@ export default {
               key: 'dateBeg',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -227,6 +245,8 @@ export default {
               key: 'dateEnd',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -244,6 +264,8 @@ export default {
               key: 'ORGAN_KOD',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -254,6 +276,8 @@ export default {
               key: 'RESP_KOD',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -264,6 +288,8 @@ export default {
               key: 'REGION_NAME',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -274,6 +300,8 @@ export default {
               key: 'RAYON_NAME',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -284,6 +312,8 @@ export default {
               key: 'TIP',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -294,6 +324,8 @@ export default {
               key: 'ORGAN_NAME',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -304,6 +336,8 @@ export default {
               key: 'CONTACTS',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
@@ -314,6 +348,8 @@ export default {
               key: 'KA_ADR_FULL',
               minWidth: 120,
               ellipsis: true,
+              sortable: 'custom',
+              filterable: true,
               tooltip: true,
               renderHeader: (h, params) => {
                 return h('h4', params.column.title)
