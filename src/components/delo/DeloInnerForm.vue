@@ -16,6 +16,7 @@
       <frm-ed-ispoln-post-uvedom v-if="isVisible('FrmEdIspolnPostUvedom')"></frm-ed-ispoln-post-uvedom>
       <dlg-ed-foto-material v-if="isVisible('DlgEdFotoMaterial')"></dlg-ed-foto-material>
       <frm-ed-docs-prot v-if="isVisible('FrmEdDocsProt')"></frm-ed-docs-prot>
+      <dlg-advice v-if="isVisible('DlgAdvice')"></dlg-advice>
     </div>
   </div>
 </template>
@@ -37,6 +38,7 @@
   import FrmEdIspolnPostUvedom from "~/components/delo/FrmEdIspolnPostUvedom";
   import FrmEdDocsProt from "~/components/delo/FrmEdDocsProt";
   import DlgEdFotoMaterial from "~/components/delo/DlgEdFotoMaterial";
+  import DlgAdvice from "~/components/delo/DlgAdvice";
 
   export default {
     name: "DeloInnerForm",
@@ -44,6 +46,7 @@
       sizeInnerStack: Number
     },
     components: {
+      DlgAdvice,
       DlgEdFotoMaterial,
       FrmEdIspolnPostUvedom,
       FrmEdVuPred,

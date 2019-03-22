@@ -1,7 +1,9 @@
 <template>
-  <div class="adm-wizard-modal">
-    <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
-      <Page v-if="limit" :total="data.length" :current="currentPage" :page-size="limit" class="ml12 adm-txt-regular" @on-change="changePage"/>
+  <div v-if="dataList" class="adm-wizard-modal">
+    <Input class="adm-input adm-input--regular" v-model="filter"></Input>
+    <Button :disabled="!filterKeys" type="text" style="outline: 0!important;" @click="filterClick" class="px0 py0 cursor-pointer">Поиск</Button>
+    <div v-if="list && list.length > 0" class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
+      <Page v-if="limit" :total="list.length" :current="currentPage" :page-size="limit" class="ml12 adm-txt-regular" @on-change="changePage"/>
       <Button type="text" @click="showModal(false)" class="px0 py0 bg-transparent" style="box-shadow: none">
         <div class="flex-parent flex-parent--center-cross">
           <div class="adm-text-big color-blue-base">Закрыть</div>
@@ -9,8 +11,8 @@
         </div>
       </Button>
     </div>
-    <div>
-      <Table :columns="columnsOptions" @on-row-dblclick="onRowDbClick" :data="dataList" class="custom-table" :height="tableHeight" ref="selection" size="large" ></Table>
+    <div v-if="list && list.length > 0">
+      <Table :columns="columnsOptions" @on-row-dblclick="onRowDbClick" :data="dataList" @on-sort-change="sortChange" class="custom-table" :height="tableHeight" ref="selection" size="large" ></Table>
     </div>
   </div>
 </template>
@@ -22,14 +24,25 @@
     name: "WizardModal",
     props: {
       columnsOptions: Array,
-      data: Array,
+      data: Array
+    },
+    created() {
+      this.list = this.data.slice();
+      let filterKeys = [];
+      this.columnsOptions.forEach((item) => {
+        if (item.filterable) {
+          filterKeys.push(item.key);
+        }
+      });
+      if (filterKeys.length > 0) {
+        this.filterKeys = filterKeys;
+      }
     },
     mounted() {
       try {
         this.$nextTick(() => {
           this.changeTableHeight();
         });
-        this.fillDataList();
 
         window.addEventListener('resize', () => {
           this.changeTableHeight();
@@ -42,6 +55,18 @@
         });
       }
     },
+    computed: {
+      dataList() {
+        let res = [];
+        for (let i = this.from; i < this.to; i++) {
+          let item = this.list[i];
+          if (item) {
+            res.push(item);
+          }
+        }
+        return res;
+      },
+    },
     data() {
       return {
         tableHeight: 0,
@@ -50,29 +75,60 @@
         limit: 40,
         delta: 40,
         currentPage: 1,
-        dataList: []
+        list: null,
+        filter: null,
+        filterKeys: null
       }
     },
     methods: {
+      filterClick() {
+        if (this.filter.length === 0) {
+          this.list = this.data;
+          return;
+        }
+        this.list = [];
+        let filter = this.filter.toUpperCase();
+        for (let i = 0; i < this.data.length; i++) {
+          let item = this.data[i];
+          for (let j = 0; j < this.filterKeys.length; j++) {
+            let itemValue = item[this.filterKeys[j]];
+            if (funcUtils.isNotEmpty(itemValue)) {
+              itemValue = ('' + itemValue).toUpperCase();
+              if (itemValue.indexOf(filter) !== -1) {
+                this.list.push(item);
+                break;
+              }
+            }
+          }
+        }
+      },
+      sortChange(options) {
+        this.list.sort((a, b) => {
+          let aS = +a[options.key] || a[options.key];
+          let bS = +b[options.key] || b[options.key];
+          if (aS > bS) return 1;
+          if (aS < bS) return -1;
+          if (aS === bS) return 0;
+        });
+        switch (options.order) {
+          case 'desc': {
+            this.list.reverse();
+            break;
+          }
+          case 'normal': {
+            this.list = this.data.slice();
+            break;
+          }
+        }
+      },
       changePage(nextPage) {
         this.to = this.delta * nextPage;
         this.from = (this.delta * nextPage) - this.delta;
         this.currentPage = nextPage;
-        this.fillDataList();
       },
       changeTableHeight() {
         let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
         this.tableHeight = window.innerHeight - tableBounds.y;
-      },
-      fillDataList() {
-        let res = [];
-        for (let i = this.from; i < this.to; i++) {
-          let item = this.data[i];
-          if (item) {
-            res.push(item);
-          }
-        }
-        this.dataList = res;
       },
       onRowDbClick(item) {
         this.$emit('onRowDbClick', item);
