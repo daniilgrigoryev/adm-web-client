@@ -95,6 +95,9 @@
               case docTipEnum.VIDEOFIX_FOTO: {
                 return photo;
               }
+              case docTipEnum.ADVICE: {
+                return ispolnUved;
+              }
               case docTipEnum.ZALOB: {
                 return ispolnDecisAppeal;
               }

@@ -1,16 +1,9 @@
 <template>
   <div v-if="dataList" class="adm-wizard-modal">
-
-
-
-
-
-
-
-    <div v-if="list && list.length > 0" class="flex-parent flex-parent--center-cross flex-parent--space-between-main bg-white">
+    <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main bg-white">
       <Page v-if="limit" :total="list.length" :current="currentPage" :page-size="limit" class="ml12 adm-txt-regular" @on-change="changePage"/>
       <div class="flex-parent flex-parent--center-cross ml">
-        <Input class="adm-input adm-input--big wmin600" v-model="filter" placeholder="Фильтр"></Input>
+        <Input class="adm-input adm-input--big wmin600" @on-enter="filterClick" v-model="filter" placeholder="Фильтр" clearable></Input>
         <Button @click="filterClick" type="default" :disabled="!filterKeys" class="adm-btn-primary--free adm-btn-regular color-white h36 px24 ml24">поиск</Button>
       </div>
       <Button type="text" @click="showModal(false)" class="px0 py0 bg-transparent" style="box-shadow: none">
