@@ -184,7 +184,7 @@
                 <Input class="adm-input adm-input--regular" v-model="decis.organSostKod" @on-input-change="changeOrganSostKod" ></Input>
               </Col>
               <Col :xs="24" :md="14" :lg="8">
-                <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+                <a href="#" @click="showOrganModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">уполномоченные органы</a>
               </Col>
             </Row>
           </div>
@@ -209,7 +209,7 @@
                 <Input class="adm-input adm-input--regular" v-model="decis.organNapravlKod" @on-input-change="changeOrganNapravSostKod" ></Input>
               </Col>
               <Col :xs="24" :md="14" :lg="8">
-                <a href="#" @click="showOrganNapravModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+                <a href="#" @click="showOrganNapravModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">уполномоченные органы</a>
               </Col>
             </Row>
           </div>

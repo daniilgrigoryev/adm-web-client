@@ -669,7 +669,7 @@
                   title: 'Дата последнего решения', // Дата посл.реш.
                   key: 'decisDateLast',
                   position: 8,
-                  minWidth: 240,
+                  minWidth: 250,
                   ellipsis: true,
                   visible: false,
                   tooltip: true,

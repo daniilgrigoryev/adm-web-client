@@ -138,7 +138,7 @@
                   <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
                 </Col>
                 <Col :xs="24" :md="14" :lg="8">
-                  <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Уполномеченные органы</a>
+                  <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">уполномоченные органы</a>
                 </Col>
               </Row>
             </div>
