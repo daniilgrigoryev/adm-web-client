@@ -24,7 +24,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.sumShtraf" ></Input>
+                  <Input class="adm-input adm-input--regular wmin120 wmax180" readonly :value="body.sumShtraf" ></Input>
                 </Col>
               </Row>
             </div>
@@ -34,7 +34,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                  <Input class="adm-input adm-input--regular wmin120 wmax180" readonly :value="body.dateIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
                 </Col>
               </Row>
             </div>
@@ -44,7 +44,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                  <Input class="adm-input adm-input--regular wmin120 wmax180" readonly :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
                 </Col>
               </Row>
             </div>
@@ -54,7 +54,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateVstup | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                  <Input class="adm-input adm-input--regular wmin120 wmax180" readonly :value="body.dateVstup | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
                 </Col>
               </Row>
             </div>
@@ -173,7 +173,7 @@
   }
   .adm-form__label{
     padding: 0;
-    min-width: 210px;
+    min-width: 130px;
     padding-right: 12px;
   }
   .adm-form__item_content{

@@ -1,7 +1,5 @@
 <template>
   <div v-if="decis" class="wmax940 mx-auto">
-
-
     <div class="adm-title amd-title--sticky px36 py24 bg-white-light"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
@@ -24,6 +22,50 @@
 
     <div class="adm-form bg-white">
       <div class="adm-form__container my6 py24 px36">
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Input class="adm-input adm-input--regular wmax180" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.decisDate" @change="changeDecisDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата вручения</small><!-- Дата уведомления -->
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateUved" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
+        <div class="adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+              </Col>
+            </Row>
+          </div>
+        </div>
+<!-- 
         <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Часы обязательных работ</small>
           <div class="adm-form__item_content">
@@ -33,7 +75,6 @@
               </Col>
             </Row>
           </div>
-
         </div>
         <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Лишение месяцы</small>
@@ -218,19 +259,8 @@
               </Col>
             </Row>
           </div>
-
         </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
-              </Col>
-            </Row>
-          </div>
 
-        </div>
         <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Недостатки</small>
           <div class="adm-form__item_content">
@@ -330,39 +360,9 @@
           </div>
 
         </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.decisDate" @change="changeDecisDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-              </Col>
-            </Row>
-          </div>
 
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-              </Col>
-            </Row>
-          </div>
 
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата уведомления</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateUved" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-              </Col>
-            </Row>
-          </div>
 
-        </div>
         <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Дата начала лишения</small>
           <div class="adm-form__item_content">
@@ -552,7 +552,7 @@
             </Row>
           </div>
 
-        </div>
+        </div> -->
       </div>
       <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
         <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
@@ -1263,24 +1263,23 @@
     },
   }
 </script>
-
 <style scoped lang="scss">
   .adm-form-content{
-
+    // border: 1px solid #000;
   }
   .adm-form__item{
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     // min-height: 90px;
+    // outline: 1px solid;
   }
   .adm-form__label{
     padding: 0;
+    min-width: 130px;
     padding-right: 12px;
-    min-width: 210px;
   }
   .adm-form__item_content{
     width: 100%;
