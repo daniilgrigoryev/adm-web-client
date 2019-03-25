@@ -144,7 +144,6 @@
 
 <script>
   import * as funcUtils from "../../assets/js/utils/funcUtils";
-  import {bus} from "../../assets/js/utils/bus";
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
@@ -160,9 +159,8 @@
     async created() {
       try {
         let current = formStack.getCurrent();
-        let currentForm = innerFormStack.getCurrent({
-          uid: current.moduleName
-        });
+        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+        let currentForm = innerFormStack.getCurrent(uid);
         await this.$store.dispatch('frmEdDeloSetCid', currentForm.cid);
 
         let prepareParams = {
@@ -183,9 +181,8 @@
         this.$store.watch(this.$store.getters.frmEdDeloGetCommand, async () => {
           try {
             let current = formStack.getCurrent();
-            let currentForm = innerFormStack.getCurrent({
-              uid: current.moduleName
-            });
+            let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+            let currentForm = innerFormStack.getCurrent(uid);
             let eventResponse = await RequestApi.prepareData({
               cid: currentForm.cid,
               withSpinner: false
@@ -211,7 +208,7 @@
         return funcUtils.isNotEmpty(field);
       },
       getMainDelo() {
-        bus.$emit('getMainDelo', this.body.deloMainId);
+        this.$emit('getMainDelo', this.body.deloMainId);
       },
       changeClass(errorPriority) {
         if (funcUtils.isNotEmpty(errorPriority)) {
@@ -252,9 +249,8 @@
       getDeloEdit() {
         try {
           let current = formStack.getCurrent();
-          let currentForm = innerFormStack.getCurrent({
-            uid: current.moduleName
-          });
+          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+          let currentForm = innerFormStack.getCurrent(uid);
           let params = {
             node: currentForm.params
           };

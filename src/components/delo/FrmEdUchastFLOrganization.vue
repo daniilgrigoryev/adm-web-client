@@ -129,9 +129,8 @@
       getUchastFLOrganizationEdit() {
         try {
           let current = formStack.getCurrent();
-          let currentForm = innerFormStack.getCurrent({
-            uid: current.moduleName
-          });
+          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+          let currentForm = innerFormStack.getCurrent(uid);
           let params = {
             node: currentForm.params
           };

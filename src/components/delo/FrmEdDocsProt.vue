@@ -97,9 +97,8 @@
     async created() {
       try {
         let current = formStack.getCurrent();
-        let currentForm = innerFormStack.getCurrent({
-          uid: current.moduleName
-        });
+        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+        let currentForm = innerFormStack.getCurrent(uid);
         await this.$store.dispatch('frmEdDocsProtSetCid', currentForm.cid);
 
         let prepareParams = {
@@ -120,9 +119,8 @@
         this.$store.watch(this.$store.getters.frmEdDocsProtGetCommand, async () => {
           try {
             let current = formStack.getCurrent();
-            let currentForm = innerFormStack.getCurrent({
-              uid: current.moduleName
-            });
+            let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+            let currentForm = innerFormStack.getCurrent(uid);
             let eventResponse = await RequestApi.prepareData({
               cid: currentForm.cid,
               withSpinner: false
@@ -156,9 +154,8 @@
       getDocsProtEdit() {
         try {
           let current = formStack.getCurrent();
-          let currentForm = innerFormStack.getCurrent({
-            uid: current.moduleName
-          });
+          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+          let currentForm = innerFormStack.getCurrent(uid);
           let params = {
             node: currentForm.params
           };

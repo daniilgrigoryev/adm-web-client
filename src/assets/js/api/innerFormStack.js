@@ -8,7 +8,7 @@ export async function toNext(payload) {
   let routeName = payload.routeName;
   let params = payload.params;
 
-  let uid = payload.uid + '-' + sessionStorage.getItem('admWid');
+  let uid = payload.uid;
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
   let prev = stack.peek();
   if (prev) {
@@ -46,7 +46,7 @@ export async function toNext(payload) {
 }
 
 export async function toPrev(payload) {
-  let uid = payload.uid + '-' + sessionStorage.getItem('admWid');
+  let uid = payload.uid;
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
   let current = stack.pop();
   let prev = stack.peek();
@@ -64,26 +64,26 @@ export async function toPrev(payload) {
   return current;
 }
 
-export function getCurrent(payload) {
-  let uid = payload.uid + '-' + sessionStorage.getItem('admWid');
+export function getCurrent(uid) {
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
   return stack.peek();
 }
 
-export function stackSize(payload) {
-  let uid = payload.uid + '-' + sessionStorage.getItem('admWid');
+export function stackSize(uid) {
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
   return stack.size();
 }
 
-export function getPrev(payload) {
-  let uid = payload.uid + '-' + sessionStorage.getItem('admWid');
+export function getPrev(uid) {
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
-  return this.stackIndexOf(stack.size() - 2);
+  let params = {
+    index: stack.size() - 2,
+    uid: uid
+  };
+  return this.stackIndexOf(params);
 }
 
-export async function clearStack(payload) {
-  let uid = payload.uid + '-' + sessionStorage.getItem('admWid');
+export async function clearStack(uid) {
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
 
   while (stack.size() !== 0) {
@@ -100,7 +100,7 @@ export async function clearStack(payload) {
 
 export function stackIndexOf(payload) {
   let res = null;
-  let uid = payload.uid + '-' + sessionStorage.getItem('admWid');
+  let uid = payload.uid;
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
   if (payload.index <= stack.size()) {
     res = stack.indexOf(payload.index);
@@ -110,15 +110,17 @@ export function stackIndexOf(payload) {
 
 export function searchByCid(payload) {
   let res = null;
-  let uid = payload.uid + '-' + sessionStorage.getItem('admWid');
+  let uid = payload.uid;
   let stack = new Stack(funcUtils.getFromSessionStorage(uid));
   let cid = payload.cid;
-  for (let i = stack.size() - 1; i >= 0; i--) {
+  let i = stack.size() - 1;
+  while (i !== 0) {
     let item = stack.indexOf(i);
     if (item.cid === cid) {
       res = item;
       break;
     }
+    i--;
   }
   return res;
 }

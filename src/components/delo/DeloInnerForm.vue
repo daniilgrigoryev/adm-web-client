@@ -2,7 +2,7 @@
   <div v-if="sizeInnerStack > 0 && current" class="bg-white">
 
     <div class="hmin360">
-      <frm-ed-delo v-if="isVisible('FrmEdDelo')"></frm-ed-delo>
+      <frm-ed-delo v-if="isVisible('FrmEdDelo')" @getMainDelo="getMainDelo"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')"></frm-ed-docs-opred>
       <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')"></frm-ed-decis-shtraf>
@@ -65,13 +65,7 @@
     },
     async created() {
       try {
-        if (this.sizeInnerStack > 0) {
-          let current = formStack.getCurrent();
-          this.current = innerFormStack.getCurrent({
-            uid: current.moduleName
-          });
-          this.current.restore = true;
-        }
+        this.init();
       } catch (e) {
         alert(e.message);
       }
@@ -83,7 +77,17 @@
     },
     computed: {},
     methods: {
+      init() {
+        if (this.sizeInnerStack > 0) {
+          let current = formStack.getCurrent();
+          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+          this.current = innerFormStack.getCurrent(uid);
+          this.current.restore = true;
+        }
+      },
       async addForm(node) {
+        let currentModule = formStack.getCurrent();
+        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + currentModule.cid;
         let eventResponse = await RequestApi.prepareData({
           method: 'getBeanNameByNode',
           params: {
@@ -94,25 +98,22 @@
         let current = await innerFormStack.toNext({
           beanName: beanName,
           params: node,
-          uid: this.$store.state.deloTreeCardView.moduleName
+          uid: uid
         });
         await this.updateSizeStack();
         this.current = current;
       },
       async removeForm() {
         let current = formStack.getCurrent();
+        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
         await innerFormStack.toPrev({
-          uid: current.moduleName
+          uid: uid
         });
         await this.updateSizeStack();
-        this.current = innerFormStack.getCurrent({
-          uid: current.moduleName
-        });
+        this.current = innerFormStack.getCurrent(uid);
       },
       async updateSizeStack() {
-        await this.$emit('updateSizeStack', {
-          uid: formStack.getCurrent().moduleName
-        });
+        await this.$emit('updateSizeStack');
       },
       clearCurrent() {
         this.current = null;
@@ -120,6 +121,9 @@
       isVisible(beanName) {
         return funcUtils.isNotEmpty(this.current) && this.current.beanName === beanName;
       },
+      getMainDelo(mainDeloId) {
+        this.$emit('getMainDelo', mainDeloId);
+      }
     }
   }
 </script>
