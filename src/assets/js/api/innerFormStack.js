@@ -80,7 +80,7 @@ export function getPrev(uid) {
     index: stack.size() - 2,
     uid: uid
   };
-  return this.stackIndexOf(params);
+  return stackIndexOf(params);
 }
 
 export async function clearStack(uid) {

@@ -228,6 +228,7 @@
       TreeNode
     },
     async created() {
+
       await this.init();
 
       let vm = this;
@@ -244,6 +245,11 @@
       });
     },
     async destroyed() {
+      let current = formStack.getCurrent();
+      let prev = formStack.getPrev();
+      if ((funcUtils.isEmpty(prev) || prev.routeName !== this.$store.state.deloTreeCardView.routeName) && current.routeName !== this.$store.state.deloTreeCardView.routeName) {
+        this.clearIfExist();
+      }
       this.$store.dispatch('deloTreeCardViewSetCid', null);
       this.$store.dispatch('deloTreeCardViewSetData', null);
     },
@@ -290,17 +296,21 @@
       },
     },
     methods: {
-      async init() {
+      async init(mainDeloId) {
         try {
           let current = formStack.getCurrent();
           await this.$store.dispatch('deloTreeCardViewSetCid', current.cid);
           let prepareParams = {
             method: 'restore'
           };
-          if (funcUtils.isNotEmpty(this.$route.params.deloId)) {
+          if (funcUtils.isNotEmpty(this.$route.params.deloId) && funcUtils.isEmpty(mainDeloId)) {
+            this.clearIfExist();
+          }
+          let deloId = mainDeloId || this.$route.params.deloId;
+          if (funcUtils.isNotEmpty(deloId)) {
             prepareParams.method = 'getData';
             prepareParams.params = {
-              'deloId': current.params.deloId
+              'deloId': deloId
             };
             let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
             let innerStack = funcUtils.getFromSessionStorage(uid);
@@ -338,25 +348,30 @@
             params: params,
             withCreate: true
           });
-          await this.init();
+          await this.init(mainDeloId);
         } catch (e) {
           alert(e.message);
         }
       },
       async clearIfExist() {
+        let toRemove = [];
+        for (let i = 0; i < sessionStorage.length; i++) {
+          let key = sessionStorage.key(i);
+          if (funcUtils.isString(key) && key.indexOf(this.$store.state.deloTreeCardView.moduleName) !== -1) {
+            await innerFormStack.clearStack(key);
+            toRemove.push(key);
+          }
+        }
+        for (let i = 0; i < toRemove.length; i++) {
+          let key = toRemove[i];
+          sessionStorage.removeItem(key);
+        }
+      },
+      async clearComponent() {
         let current = formStack.getCurrent();
         let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        let stackSize = formStack.stackSize();
-        let moduleNames = [];
-        for (let i = 0; i < stackSize; i++) {
-          let module = formStack.stackIndexOf(i);
-          moduleNames.push(module.cid);
-        }
-        let modulePos = moduleNames.indexOf(current.cid);
-        if (modulePos !== -1) {
-          await innerFormStack.clearStack(uid);
-          sessionStorage.removeItem(uid);
-        }
+        await innerFormStack.clearStack(uid);
+        sessionStorage.removeItem(uid);
       },
       async getDelo() {
         await this.nodeClick(this.deloInfo);
@@ -470,14 +485,14 @@
       },
       async getPrev() {
         try {
-          await this.clearIfExist();
+          await this.clearComponent();
           formStack.toPrev({
             vm: this
           });
 
           let current = formStack.getCurrent();
           if (current.routeName === this.$store.state.deloTreeCardView.routeName) {
-            await this.init();
+            await this.init(current.params.deloId);
             this.$refs.innerForm.init();
           }
         } catch (e) {

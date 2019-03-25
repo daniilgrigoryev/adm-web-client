@@ -95,7 +95,7 @@ export function stackSize() {
 export function getPrev() {
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
-  return this.stackIndexOf(stack.size() - 2);
+  return stackIndexOf(stack.size() - 2);
 }
 
 export function clearStack(isLogout) {
