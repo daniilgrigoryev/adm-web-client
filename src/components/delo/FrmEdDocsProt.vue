@@ -32,7 +32,7 @@
           <div class="my12 adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
             <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.dateNar + body.timeNar" ></Input>
+              <Input class="adm-input adm-input--regular" readonly :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
             </Row>
           </div>
           <div class="my12 adm-form__item">
