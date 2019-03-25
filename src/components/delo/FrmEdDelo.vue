@@ -85,7 +85,7 @@
           </div>
 
           <div v-if="isNotEmptyField(body.deloMainDescr)" class="my12">
-            <p class="adm-14 color-dark-lighter">Дело - основание </p>
+            <p class="adm-14 color-dark-lighter">Дело - основание</p>
             <h3 class="adm-h3 color-dark-lighter link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo">{{body.deloMainDescr}}</h3>
           </div>
         </div>
@@ -93,9 +93,9 @@
 
       <div class="adm-form errors-table" v-if="isNotEmptyField(errors)">
         <div class="adm-form__container">
-          <h2 class="adm-text-big color-dark-light adm-form__headding flex-parent flex-parent--space-between-main">
+          <h2  @click="hideMore = !hideMore" class="adm-text-big color-dark-light adm-form__headding cursor-pointer flex-parent flex-parent--space-between-main">
             <span>Ошибки</span>
-            <Button  @click="hideMore = !hideMore" type="text" class="bg-transparent" style="box-shadow: none;">
+            <Button type="text" class="bg-transparent" style="box-shadow: none;">
               <Icon v-if="hideMore" type="md-remove" class="color-white" :size="25" title="свернуть" />
               <Icon v-else type="md-add" class="color-white" :size="25" title="развернуть"/>
             </Button>
