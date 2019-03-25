@@ -78,9 +78,58 @@
             <h3 class="adm-h3 color-dark-lighter">{{body.docVozbName}}</h3>
           </div>
 
+
           <div v-if="isNotEmptyField(viol.mvidFisFull)" class="my12">
             <p class="adm-14 color-dark-lighter">Уникальный номер АП</p>
             <h3 class="adm-h3 color-dark-lighter">{{viol.mvidFisFull}}</h3>
+          </div>
+
+          <div v-if="isNotEmptyField(body.deloMainN)" class="my12">
+            <p class="adm-14 color-dark-lighter">Дело - основание </p>
+            <h3 class="adm-h3 color-dark-lighter">№ {{body.deloMainN}}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="adm-form errors-table" v-if="isNotEmptyField(errors)">
+        <div class="adm-form__container">
+          <h2 class="adm-text-big color-dark-light adm-form__headding">Ошибки</h2>
+          <div class="adm-form__content">
+            <table class='adm-table-simple table table--fixed border--0'>
+              <thead>
+                <tr class="bg-white-light">
+                  <th class="error-th"></th>
+                  <th class="w180 align-middle">
+                    <p class="adm-text-big txt-normal color-dark-lighter">Код ошибки</p>
+                  </th>
+                  <th class="w180 align-middle">
+                    <p class="adm-text-big txt-normal color-dark-lighter">Проверил</p>
+                    <i class="adm-txt-regular txt-normal color-dark-lighter">Время проверки</i>
+                  </th>
+                  <th class="align-middle">
+                    <p class="adm-text-big txt-normal color-dark-lighter">Ошибка</p>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(error, index) in errors">
+                  <td class="align-center align-middle">
+                    <div class="inline-block round-full w12 h12" :class="changeClass(error.priority)">
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <p class="adm-14">{{error.kod}}</p>
+                  </td>
+                  <td>
+                    <p class="adm-14 color-dark-base">{{error.checkIspName}}</p>
+                    <p class="adm-12">{{error.checkDate | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+                  </td>
+                  <td>
+                    <p class="adm-14 color-dark-base">{{error.mesg}}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -237,6 +286,23 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .errors-table{
+    .table td{
+      border-bottom: 0;
+    }
+    margin-top: 30px;
+    .error-th{
+      width: 60px;
+    }
+    .adm-table-simple thead tr th{
+      padding: 8px 12px;
+    }
+    .adm-form__headding{
+      height: 40px;
+      line-height: 40px;
+      padding-left: 40px;
+    }
+  }
 </style>
+
