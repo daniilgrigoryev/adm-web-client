@@ -93,8 +93,14 @@
 
       <div class="adm-form errors-table" v-if="isNotEmptyField(errors)">
         <div class="adm-form__container">
-          <h2 class="adm-text-big color-dark-light adm-form__headding">Ошибки</h2>
-          <div class="adm-form__content">
+          <h2 class="adm-text-big color-dark-light adm-form__headding flex-parent flex-parent--space-between-main">
+            <span>Ошибки</span>
+            <Button title="развернуть" @click="hideMore = !hideMore" type="text" class="bg-transparent" style="box-shadow: none;">
+              <Icon v-if="hideMore" type="md-add" class="color-white" :size="25" />
+              <Icon v-else type="md-remove" class="color-white" :size="25"/>
+            </Button>
+          </h2>
+          <div class="adm-form__content" v-show="hideMore">
             <table class='adm-table-simple table table--fixed border--0'>
               <thead>
                 <tr class="bg-white-light">
@@ -146,6 +152,11 @@
 
   export default {
     name: "FrmEdDelo",
+    data() {
+      return {
+        hideMore: false,
+      }
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

@@ -27,8 +27,8 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular wmax180" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
               </Col>
             </Row>
           </div>
@@ -37,8 +37,8 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.decisDate" @change="changeDecisDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+              <Col :xs="24" :md="24" :lg="24">
+                <DatePickerMask class="adm-input adm-input--regular" v-model="decis.decisDate" @change="changeDecisDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -48,8 +48,8 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Дата вручения</small><!-- Дата уведомления -->
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateUved" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+              <Col :xs="24" :md="24" :lg="24">
+                <DatePickerMask class="adm-input adm-input--regular" v-model="decis.dateUved" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -59,8 +59,8 @@
           <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+              <Col :xs="24" :md="24" :lg="24">
+                <DatePickerMask class="adm-input adm-input--regular" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>

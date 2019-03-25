@@ -21,7 +21,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Дата оплаты штрафа</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
+                <Col :xs="24" :md="24" :lg="24">
                   <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
                 </Col>
               </Row>
@@ -31,7 +31,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаты штрафа</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
+                <Col :xs="24" :md="24" :lg="24">
                   <Input class="adm-input adm-input--regular" readonly :value="body.sumOpl" ></Input>
                 </Col>
               </Row>
@@ -41,7 +41,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">УИП</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
+                <Col :xs="24" :md="24" :lg="24">
                   <Input class="adm-input adm-input--regular" readonly :value="body.uip" ></Input>
                 </Col>
               </Row>
