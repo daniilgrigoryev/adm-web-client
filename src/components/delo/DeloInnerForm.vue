@@ -8,7 +8,7 @@
       <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')"></frm-ed-decis-shtraf>
       <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')"></frm-ed-ispoln-shtraf>
       <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')"></frm-ed-vehs-a-m-t-c>
-      <frm-ed-prot-p-z-t-c v-if="isVisible('FrmEdProtPZTC')"></frm-ed-prot-p-z-t-c>
+      <frm-ed-prot-p-z-t-c v-if="isVisible('FrmEdDocsOtherProt')"></frm-ed-prot-p-z-t-c>
       <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastFL')"></frm-ed-uchast-f-l>
       <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastUL')"></frm-ed-uchast-f-l>
       <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastOther')"></frm-ed-uchast-f-l>
@@ -58,6 +58,7 @@
       FrmEdDecisShtraf,
       FrmEdIspolnShtraf,
       FrmEdVehsAMTC,
+      FrmEdProtPZTC,
       FrmEdUchastFL,
       FrmEdDocsProt,
       FrmEdDelo

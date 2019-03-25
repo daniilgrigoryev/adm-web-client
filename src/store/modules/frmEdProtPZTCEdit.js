@@ -2,7 +2,7 @@ export default {
     state: {
       moduleName: 'frmEdProtPZTCEdit',
       cid: null,
-      bean: 'FrmEdProtPZTCEdit',
+      bean: 'FrmEdDocsOtherEdit',
       routeName: 'FrmEdProtPZTCEdit',
       data: null,
       command: null

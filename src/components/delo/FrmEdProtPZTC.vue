@@ -1,183 +1,106 @@
 <template>
-  <div v-if="body" class="ml18 mb18"> <!-- wmax940 mx-auto -->
-    <div class="adm-title amd-title--sticky bg-white px36 py24"><!-- wmax940 mx-auto -->
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-          <div class="flex-parent flex-parent--center-cross">
-            <Button @click="getProtPZTCEdit"  type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-              <img src='../../assets/images/pen.svg' class="wmax-none">
-            </Button>
-            <b class="adm-text-big color-dark-lighter">Протокол о задержании ТС</b>
-          </div>
-          <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-            <img src='../../assets/images/wiki.svg' class="wmax-none">
+  <div v-if="body" class="ml18">
+    <div class="amd-title amd-title--sticky bg-white px36 pt24 pb18">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getDocsProtEdit()" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
+          <b class="adm-text-big color-dark-lighter">Протокол о задержании ТС</b>
         </div>
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+          <img src='../../assets/images/wiki.svg' class="wmax-none">
+        </Button>
+      </div>
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container my6 mx0 py12 px36">
-        <div class="adm-form__content">
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">ГРЗ</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular err" readonly :value="body.regno" >
-                      </Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col :xs="24" :md="24" :lg="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">СТС</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.ctc"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
+      <div class="adm-form__container mt6">
+        <div class="adm-form__content px36">
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.pnpaName" ></Input>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.stotvName" ></Input>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.placeNar.placeFull" ></Input>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName + body.inspSostDolz" ></Input>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" ></Input>
+            </Row>
+          </div>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull" ></Input>
+            </Row>
+          </div>
+          <Row>
+						<Col span="12">
+							<div class="my12 adm-form__item">
+								<small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
+								<Row type="flex" align="middle">
+									<Input class="adm-input adm-input--regular" readonly :value="body.placeSost.evacActTime" ></Input>
+								</Row>
+							</div>
+						</Col>
+						<Col span="12">
+							<div class="my12 adm-form__item">
+								<small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
+								<Row type="flex" align="middle">
+									<Input class="adm-input adm-input--regular" readonly :value="body.evacActNumber" ></Input>
+								</Row>
+							</div>
+						</Col>
           </Row>
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="24">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Марка, модель</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto, body.modavtoName | concatByDelimiter(' ')"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Цвет</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.color" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Тип двигателя</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label ">Тип</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.tiptcName" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Масса без нагрузки</small><!-- Снаряженная масса автомобиля (кг.) -->
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.massa" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">VIN</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.vin" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col :xs="24" :md="24" :lg="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Год выпуска</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.yearVyp" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Экологический класс</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.motorEcologClass" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Категория</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.katcKod" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Максимальная масса</small><!-- Разрешенная максимальная масса автомобиля (кг.) -->
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.massaMax" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">ПТС</small><!-- Номер ПТС -->
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.ptcN" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="24">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Владелец</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.sobstvName" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
+          <div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.evacOrgName" ></Input>
+            </Row>
+          </div>
+					<div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Представитель</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.evacAgentName" ></Input>
+            </Row>
+          </div>
+					<div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.evacRegno" ></Input>
+            </Row>
+          </div>
+					<div class="my12 adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Штрафстоянка</small>
+            <Row type="flex" align="middle">
+              <Input class="adm-input adm-input--regular" readonly :value="body.impoundLotName"></Input>
+            </Row>
+          </div>
         </div>
       </div>
     </div>
@@ -189,7 +112,7 @@
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import {mapGetters} from 'vuex';
+  import { mapGetters } from 'vuex';
 
   export default {
     name: "FrmEdProtPZTC",
@@ -215,12 +138,6 @@
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
 
-        await this.fillComponent({
-          vm: this,
-          cid: currentForm.cid,
-          photos: this.dataStore ? this.dataStore.fotoList : null
-        });
-
         let vm = this;
         this.$store.watch(this.$store.getters.frmEdProtPZTCGetCommand, async () => {
           try {
@@ -233,12 +150,6 @@
               withSpinner: false
             });
             await vm.$store.dispatch('fillModule', {'event': eventResponse});
-
-            await this.fillComponent({
-              vm: vm,
-              cid: currentForm.cid,
-              photos: vm.dataStore ? vm.dataStore.fotoList : null
-            });
           } catch (e) {
             alert(e.message);
           }
@@ -251,46 +162,20 @@
       this.$store.dispatch('frmEdProtPZTCSetCid', null);
       this.$store.dispatch('frmEdProtPZTCSetData', null);
     },
-    data() {
-      return {
-        checkAMTS: {},
-        photos: []
-      }
+    computed: {
+      ...mapGetters({
+        dataStore: 'frmEdProtPZTCGetData'
+      }),
+      body() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.body;
+        }
+        return res;
+      },
     },
     methods: {
-      async fillComponent(params) {
-        let cid = params.cid;
-        let photos = params.photos;
-        let vm = params.vm;
-
-        /*let eventResponse = await RequestApi.prepareData({
-          method: 'checkUchastinc',
-          cid: cid
-        });
-        vm.checkAMTS = JSON.parse(eventResponse.response).data;*/
-
-        vm.photos = [];
-        if (photos && photos.length > 0) {
-          let item;
-          let eventResponse;
-          let photo;
-          for (let i = 0; i < photos.length; i++) {
-            item = photos[i];
-            eventResponse = await RequestApi.prepareData({
-              method: 'getPhotoBody',
-              params: {
-                'node': item.id
-              },
-              cid: cid
-            });
-            if (eventResponse.response) {
-              photo = JSON.parse(eventResponse.response).data;
-              vm.photos.push('data:image/jpeg;base64,' + photo);
-            }
-          }
-        }
-      },
-      getProtPZTCEdit() {
+      getDocsProtEdit() {
         try {
           let current = formStack.getCurrent();
           let currentForm = innerFormStack.getCurrent({
@@ -311,75 +196,13 @@
           alert(e.message);
         }
       },
-      getCheckName(checkKey) {
-        switch (checkKey) {
-          case '+': {
-            return {
-              value: 'В розыске',
-              color: ''
-            };
-          }
-          case '-': {
-            return {
-              value: 'В розыске не значится',
-              color: ''
-            };
-          }
-          case '?': {
-            return {
-              value: 'Подозрение на розыск',
-              color: ''
-            };
-          }
-          default: {
-            return {
-              value: 'Нет данных',
-              color: ''
-            };
-          }
-        }
-      },
-    },
-    computed: {
-      ...mapGetters({
-        dataStore: 'frmEdProtPZTCGetData'
-      }),
-      body() {
-        let res = null;
-        if (this.dataStore) {
-          res = this.dataStore.body;
-        }
-        return res;
-      }
-    },
+    }
   }
 </script>
 
-<style scoped lang="scss">
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+
+<style scoped lang="scss"> 
+  .adm-form__label {
+    min-width: 180px;
   }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 130px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
-  // .err:after{
-  //   content: "";
-  //   position: absolute;
-  //   width: 12px;
-  //   height: 12px;
-  //   top: 10px;
-  //   right: 10px;
-  //   border-radius: 100%;
-  //   display: inline-block;
-  //   background-color: #6FB81E;
-  // }
 </style>
