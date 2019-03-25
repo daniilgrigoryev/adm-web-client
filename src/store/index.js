@@ -17,6 +17,7 @@ import frmEdDocsProt from './modules/frmEdDocsProt';
 import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
 import frmEdIspolnShtraf from './modules/frmEdIspolnShtraf';
 import frmEdVehsAMTC from './modules/frmEdVehsAMTC';
+import frmEdProtPZTC from './modules/frmEdProtPZTC';
 import frmEdUchastFL from './modules/frmEdUchastFL';
 import frmEdVuVyd from './modules/frmEdVuVyd';
 import frmEdVuPred from './modules/frmEdVuPred';
@@ -30,6 +31,7 @@ import frmEdVuPredEdit from './modules/frmEdVuPredEdit';
 import frmEdVuVydEdit from './modules/frmEdVuVydEdit';
 import frmEdDocsPostEdit from './modules/frmEdDocsPostEdit';
 import frmEdVehsAMTCEdit from './modules/frmEdVehsAMTCEdit';
+import frmEdProtPZTCEdit from './modules/frmEdProtPZTCEdit';
 import frmEdDocsProtEdit from './modules/frmEdDocsProtEdit';
 import frmEdUchastFLIndividEdit from './modules/frmEdUchastFLIndividEdit';
 import frmEdUchastFLOrganizationEdit from './modules/frmEdUchastFLOrganizationEdit';
@@ -133,6 +135,7 @@ const store = new Vuex.Store({
     frmEdUchastFL,
     frmEdVuVyd,
     frmEdVuPred,
+    frmEdProtPZTC,
     frmEdIspolnPostUvedom,
     dlgEdFotoMaterial,
     dlgAdvice,
@@ -144,6 +147,7 @@ const store = new Vuex.Store({
     frmEdVuVydEdit,
     frmEdDocsPostEdit,
     frmEdVehsAMTCEdit,
+    frmEdProtPZTCEdit,
     frmEdDocsProtEdit,
     frmEdDecisEdit,
     frmEdUchastFLIndividEdit,
