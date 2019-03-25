@@ -86,7 +86,7 @@
 
           <div v-if="isNotEmptyField(body.deloMainDescr)" class="my12">
             <p class="adm-14 color-dark-lighter">Дело - основание </p>
-            <h3 class="adm-h3 color-dark-lighter" @click="getDelo">{{body.deloMainDescr}}</h3>
+            <h3 class="adm-h3 color-dark-lighter" @click="getMainDelo">{{body.deloMainDescr}}</h3>
           </div>
         </div>
       </div>
@@ -199,8 +199,8 @@
         }
         return funcUtils.isNotEmpty(field);
       },
-      getDelo() {
-        bus.$emit('getDelo', this.body.deloMainId);
+      getMainDelo() {
+        bus.$emit('getMainDelo', this.body.deloMainId);
       },
       changeClass(errorPriority) {
         if (funcUtils.isNotEmpty(errorPriority)) {
