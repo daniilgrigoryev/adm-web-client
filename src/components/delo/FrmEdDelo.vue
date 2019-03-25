@@ -86,7 +86,7 @@
 
           <div v-if="isNotEmptyField(body.deloMainDescr)" class="my12">
             <p class="adm-14 color-dark-lighter">Дело - основание </p>
-            <h3 class="adm-h3 color-dark-lighter" @click="getDelo">{{body.deloMainDescr}}</h3>
+            <h3 class="adm-h3 color-dark-lighter txt-underline-on-hover color-blue-light-on-hover" @click="getDelo">{{body.deloMainDescr}}</h3>
           </div>
         </div>
       </div>
