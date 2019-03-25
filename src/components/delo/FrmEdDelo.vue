@@ -86,7 +86,7 @@
 
           <div v-if="isNotEmptyField(body.deloMainDescr)" class="my12">
             <p class="adm-14 color-dark-lighter">Дело - основание </p>
-            <h3 class="adm-h3 color-dark-lighter">{{body.deloMainDescr}}</h3>
+            <h3 class="adm-h3 color-dark-lighter" @click="getDelo">{{body.deloMainDescr}}</h3>
           </div>
         </div>
       </div>
@@ -138,6 +138,7 @@
 
 <script>
   import * as funcUtils from "../../assets/js/utils/funcUtils";
+  import {bus} from "../../assets/js/utils/bus";
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
@@ -197,6 +198,9 @@
           return funcUtils.isNotEmpty(field) && field.length > 0;
         }
         return funcUtils.isNotEmpty(field);
+      },
+      getDelo() {
+        bus.$emit('getDelo', this.body.deloMainId);
       },
       changeClass(errorPriority) {
         if (funcUtils.isNotEmpty(errorPriority)) {

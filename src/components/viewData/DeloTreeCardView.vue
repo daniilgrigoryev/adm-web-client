@@ -195,6 +195,7 @@
 
 <script>
   import * as funcUtils from "../../assets/js/utils/funcUtils";
+  import {bus} from "../../assets/js/utils/bus";
   import * as formStack from '../../assets/js/api/formStack';
   import Stack from '../../assets/js/api/stack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
@@ -210,54 +211,7 @@
       TreeNode
     },
     async created() {
-      try {
-        let current = formStack.getCurrent();
-        await this.$store.dispatch('deloTreeCardViewSetCid', current.cid);
-        let prepareParams = {
-          method: 'restore'
-        };
-        if (funcUtils.isNotEmpty(this.$route.params.deloId)) {
-          prepareParams.method = 'getData';
-          prepareParams.params = {
-            'deloId': this.$route.params.deloId
-          };
-          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
-          let innerStack = funcUtils.getFromSessionStorage(uid);
-          if (funcUtils.isNotEmpty(innerStack)) {
-            await this.clearInnerStack();
-          } else {
-            funcUtils.addToSessionStorage(uid, new Stack());
-          }
-        }
-        this.updateSizeStack({
-          uid: this.$store.state.deloTreeCardView.moduleName
-        });
-
-        let eventResponse = await RequestApi.prepareData(prepareParams);
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
-        if (this.sizeInnerStack === 0) {
-          if (this.$refs.innerForm) {
-            this.nodeClick(this.deloInfo);
-          }
-        } else {
-          this.updateSelected();
-        }
-
-        let vm = this;
-        this.$store.watch(this.$store.getters.deloTreeCardViewGetCommand, async () => {
-          try {
-            let eventResponse = await RequestApi.prepareData({
-              method: 'restore',
-              withSpinner: false
-            });
-            await vm.$store.dispatch('fillModule', {'event': eventResponse});
-          } catch (e) {
-            alert(e.message);
-          }
-        });
-      } catch (e) {
-        alert(e.message);
-      }
+      await this.init();
     },
     async destroyed() {
       await this.clearIfExist();
@@ -307,6 +261,76 @@
       },
     },
     methods: {
+      async init() {
+        try {
+        let current = formStack.getCurrent();
+        await this.$store.dispatch('deloTreeCardViewSetCid', current.cid);
+        let prepareParams = {
+          method: 'restore'
+        };
+        if (funcUtils.isNotEmpty(this.$route.params.deloId)) {
+          prepareParams.method = 'getData';
+          prepareParams.params = {
+            'deloId': this.$route.params.deloId
+          };
+          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
+          let innerStack = funcUtils.getFromSessionStorage(uid);
+          if (funcUtils.isNotEmpty(innerStack)) {
+            await this.clearInnerStack();
+          } else {
+            funcUtils.addToSessionStorage(uid, new Stack());
+          }
+        }
+        this.updateSizeStack({
+          uid: this.$store.state.deloTreeCardView.moduleName
+        });
+
+        let eventResponse = await RequestApi.prepareData(prepareParams);
+        await this.$store.dispatch('fillModule', {'event': eventResponse});
+        if (this.sizeInnerStack === 0) {
+          if (this.$refs.innerForm) {
+            this.nodeClick(this.deloInfo);
+          }
+        } else {
+          this.updateSelected();
+        }
+
+        bus.$on('getDelo', this.getDelo);
+
+        let vm = this;
+        this.$store.watch(this.$store.getters.deloTreeCardViewGetCommand, async () => {
+          try {
+            let eventResponse = await RequestApi.prepareData({
+              method: 'restore',
+              withSpinner: false
+            });
+            await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          } catch (e) {
+            alert(e.message);
+          }
+        });
+      } catch (e) {
+        alert(e.message);
+      }
+      },
+      async getDelo(deloId) {
+        try {
+          let params = {
+            deloId: deloId
+          };
+
+          await formStack.toNext({
+            module: this.$store.state.deloTreeCardView,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+          await this.init();
+        } catch (e) {
+          alert(e.message);
+        }
+      },
       async clearIfExist() {
         let currentModuleName = this.$store.state.deloTreeCardView.moduleName;
         let stackSize = formStack.stackSize();
