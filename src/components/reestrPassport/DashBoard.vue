@@ -27,7 +27,7 @@
 										<div class="mr36">
 											<img src="../../assets/images/case.svg" alt="">
 										</div>
-										<a href="#" @click="createWizardScenarioPost" class="adm-text-big link color-blue-base txt-underline-on-hover">Постановление об  адмнинистративном <br> правонарушении</a>
+										<a href="#" @click="createWizardScenarioPost" class="adm-text-big link color-blue-base txt-underline-on-hover">Постановление об  административном <br> правонарушении</a>
 									</div>
 								</Card>
 								<!-- <Row type="flex" justify="center">

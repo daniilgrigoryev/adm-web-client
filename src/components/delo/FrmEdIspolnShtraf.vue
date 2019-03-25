@@ -3,9 +3,9 @@
     <div class="amd-title amd-title--sticky bg-white px36 pt24 pb18"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <!-- <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+          <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
-          </Button> -->
+          </Button>
           <b class="adm-text-big color-dark-lighter">Оплата штрафа</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
@@ -19,27 +19,33 @@
         <div class="adm-form__content px36 py24">
           <div class="my12 adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Дата оплаты штрафа</small>
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-              </Col>
-            </Row>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                </Col>
+              </Row>
+            </div>
           </div>
           <div class="my12 adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаты штрафа</small>
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.sumOpl" ></Input>
-              </Col>
-            </Row>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.sumOpl" ></Input>
+                </Col>
+              </Row>
+            </div>
           </div>
           <div class="my12 adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">УИП</small>
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <Input class="adm-input adm-input--regular" readonly :value="body.uip" ></Input>
-              </Col>
-            </Row>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="14" :lg="16">
+                  <Input class="adm-input adm-input--regular" readonly :value="body.uip" ></Input>
+                </Col>
+              </Row>
+            </div>
           </div>
         </div>
       </div>
@@ -117,10 +123,25 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  .adm-form-content{
+    // border: 1px solid #000;
+  }
+  .adm-form__item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    // min-height: 90px;
+    // outline: 1px solid;
+  }
   .adm-form__label{
     padding: 0;
-    min-width: 120px;
+    min-width: 210px;
     padding-right: 12px;
+  }
+  .adm-form__item_content{
+    width: 100%;
   }
 </style>

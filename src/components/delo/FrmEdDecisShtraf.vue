@@ -4,9 +4,9 @@
     <div class="amd-title amd-title--sticky bg-white px36 pt24 pb18"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <!-- <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+          <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
-          </Button> -->
+          </Button>
           <b class="adm-text-big color-dark-lighter">Оштрафовать</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
@@ -18,7 +18,7 @@
 
     <div class="adm-form">
       <div class="adm-form__container mt6">
-        <div class="adm-form__content px36">
+        <div class="adm-form__content px36 py24">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
             <div class="adm-form__item_content">
@@ -173,7 +173,7 @@
   }
   .adm-form__label{
     padding: 0;
-    min-width: 120px;
+    min-width: 210px;
     padding-right: 12px;
   }
   .adm-form__item_content{
