@@ -95,9 +95,9 @@
         <div class="adm-form__container">
           <h2 class="adm-text-big color-dark-light adm-form__headding flex-parent flex-parent--space-between-main">
             <span>Ошибки</span>
-            <Button title="развернуть" @click="hideMore = !hideMore" type="text" class="bg-transparent" style="box-shadow: none;">
-              <Icon v-if="hideMore" type="md-add" class="color-white" :size="25" />
-              <Icon v-else type="md-remove" class="color-white" :size="25"/>
+            <Button  @click="hideMore = !hideMore" type="text" class="bg-transparent" style="box-shadow: none;">
+              <Icon v-if="hideMore" type="md-remove" class="color-white" :size="25" title="свернуть" />
+              <Icon v-else type="md-add" class="color-white" :size="25" title="развернуть"/>
             </Button>
           </h2>
           <div class="adm-form__content" v-show="hideMore">
