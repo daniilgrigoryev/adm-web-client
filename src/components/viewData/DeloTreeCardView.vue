@@ -3,12 +3,15 @@
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
 
 
-      <div v-if="deloContext" class="bg-white"><!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
+      <div v-if="deloContext" class="bg-white">
+        <!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py24">
           <div class="flex-parent flex-parent--center-cross">
 
-            <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
-              <Icon type="ios-arrow-dropleft" class="bg-whte color-gray-light color-blue-on-hover transition px0 py0 mx0 my0" :size="45" />
+            <Button @click="getPrev" type="text" style="outline: 0!important;"
+                    class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+              <Icon type="ios-arrow-dropleft"
+                    class="bg-whte color-gray-light color-blue-on-hover transition px0 py0 mx0 my0" :size="45"/>
             </Button>
 
             <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
@@ -16,15 +19,17 @@
               <span class="adm-h1">{{deloContext.deloN}}</span>
             </a>
             <p class="color-green-base ml24 flex-parent flex-parent--center-cross">
-              <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23" /> 
+              <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23"/>
               <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
             </p>
 
           </div>
-          
+
           <div>
             <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
-              <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+              <Button type="text"
+                      class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
+                      style="box-shadow: none">
                 <span>Возбуждение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
               </Button>
               <div slot="content">
@@ -43,7 +48,9 @@
             </Poptip>
 
             <Poptip width="700" placement="bottom-end" class="amd-poptip-sub">
-              <Button @click="hideMore = !hideMore"  type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+              <Button @click="hideMore = !hideMore" type="text"
+                      class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
+                      style="box-shadow: none">
                 <span>Рассмотрение дела 
                   <Icon v-if="hideMore" type="md-arrow-dropup" :size="16"/>
                   <Icon v-else type="md-arrow-dropdown" :size="16"/>
@@ -134,38 +141,46 @@
             </Poptip>
 
 
-
             <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
-              <Button type="text" class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0' style="box-shadow: none">
+              <Button type="text"
+                      class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
+                      style="box-shadow: none">
                 <span>Исполнение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
               </Button>
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
                   <li>
-                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол АПН на бланке</Button>
+                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол АПН на
+                      бланке
+                    </Button>
                   </li>
                   <li>
                     <Button type="text" class="adm-btn-regular">Протокол АПН на A4, статья 20.25 ч.1</Button>
                   </li>
                   <li>
-                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление об АПН</Button>
+                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление об АПН
+                    </Button>
                   </li>
                   <li>
-                    <Button @click="createWizardScenarioPZTC" type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
+                    <Button @click="createWizardScenarioPZTC" type="text" class="adm-btn-regular">Протокол задержания
+                      ТС
+                    </Button>
                   </li>
                 </ul>
               </div>
             </Poptip>
 
-            <Button type="text" class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
+            <Button type="text"
+                    class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
               <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
-              <span style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
+              <span
+                style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
             </Button>
-<!-- 
-            <ButtonGroup>
-              <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
-              <Button type="default" @click="addUchastWizard">Добавить участника</Button>
-            </ButtonGroup> -->
+            <!--
+                        <ButtonGroup>
+                          <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
+                          <Button type="default" @click="addUchastWizard">Добавить участника</Button>
+                        </ButtonGroup> -->
           </div>
         </div>
 
@@ -173,18 +188,18 @@
       </div>
 
 
-
       <hr class="txt-hr my0">
       <div v-if="deloTree">
         <Row type="flex">
           <Col>
-          <div class="h-full bg-blue-thin">
-            <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
-          </div>
+            <div class="h-full bg-blue-thin">
+              <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
+            </div>
           </Col>
           <Col class="col"> <!-- :xs="24" :sm="16" :md="16" :lg="16" -->
             <div class="wmax940"><!-- mx-auto -->
-              <delo-inner-form ref="innerForm" :sizeInnerStack="sizeInnerStack" @updateSizeStack="updateSizeStack" @updateSelected="updateSelected"></delo-inner-form>
+              <delo-inner-form ref="innerForm" :sizeInnerStack="sizeInnerStack" @updateSizeStack="updateSizeStack"
+                               @updateSelected="updateSelected"></delo-inner-form>
             </div>
           </Col>
         </Row>
@@ -200,7 +215,7 @@
   import Stack from '../../assets/js/api/stack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import { mapGetters } from 'vuex';
+  import {mapGetters} from 'vuex';
   import DeloInnerForm from "~/components/delo/DeloInnerForm";
   import TreeNode from "~/components/TreeNode";
 
@@ -263,57 +278,57 @@
     methods: {
       async init() {
         try {
-        let current = formStack.getCurrent();
-        await this.$store.dispatch('deloTreeCardViewSetCid', current.cid);
-        let prepareParams = {
-          method: 'restore'
-        };
-        if (funcUtils.isNotEmpty(this.$route.params.deloId)) {
-          prepareParams.method = 'getData';
-          prepareParams.params = {
-            'deloId': this.$route.params.deloId
+          let current = formStack.getCurrent();
+          await this.$store.dispatch('deloTreeCardViewSetCid', current.cid);
+          let prepareParams = {
+            method: 'restore'
           };
-          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
-          let innerStack = funcUtils.getFromSessionStorage(uid);
-          if (funcUtils.isNotEmpty(innerStack)) {
-            await this.clearInnerStack();
+          if (funcUtils.isNotEmpty(this.$route.params.deloId)) {
+            prepareParams.method = 'getData';
+            prepareParams.params = {
+              'deloId': this.$route.params.deloId
+            };
+            let uid = this.$store.state.deloTreeCardView.moduleName + '-' + sessionStorage.getItem('admWid');
+            let innerStack = funcUtils.getFromSessionStorage(uid);
+            if (funcUtils.isNotEmpty(innerStack)) {
+              await this.clearInnerStack();
+            } else {
+              funcUtils.addToSessionStorage(uid, new Stack());
+            }
+          }
+          this.updateSizeStack({
+            uid: this.$store.state.deloTreeCardView.moduleName
+          });
+
+          let eventResponse = await RequestApi.prepareData(prepareParams);
+          await this.$store.dispatch('fillModule', {'event': eventResponse});
+          if (this.sizeInnerStack === 0) {
+            if (this.$refs.innerForm) {
+              this.nodeClick(this.deloInfo);
+            }
           } else {
-            funcUtils.addToSessionStorage(uid, new Stack());
+            this.updateSelected();
           }
+
+          bus.$on('getMainDelo', this.getMainDelo);
+
+          let vm = this;
+          this.$store.watch(this.$store.getters.deloTreeCardViewGetCommand, async () => {
+            try {
+              let eventResponse = await RequestApi.prepareData({
+                method: 'restore',
+                withSpinner: false
+              });
+              await vm.$store.dispatch('fillModule', {'event': eventResponse});
+            } catch (e) {
+              alert(e.message);
+            }
+          });
+        } catch (e) {
+          alert(e.message);
         }
-        this.updateSizeStack({
-          uid: this.$store.state.deloTreeCardView.moduleName
-        });
-
-        let eventResponse = await RequestApi.prepareData(prepareParams);
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
-        if (this.sizeInnerStack === 0) {
-          if (this.$refs.innerForm) {
-            this.nodeClick(this.deloInfo);
-          }
-        } else {
-          this.updateSelected();
-        }
-
-        bus.$on('getDelo', this.getDelo);
-
-        let vm = this;
-        this.$store.watch(this.$store.getters.deloTreeCardViewGetCommand, async () => {
-          try {
-            let eventResponse = await RequestApi.prepareData({
-              method: 'restore',
-              withSpinner: false
-            });
-            await vm.$store.dispatch('fillModule', {'event': eventResponse});
-          } catch (e) {
-            alert(e.message);
-          }
-        });
-      } catch (e) {
-        alert(e.message);
-      }
       },
-      async getDelo(deloId) {
+      async getMainDelo(deloId) {
         try {
           let params = {
             deloId: deloId
@@ -341,7 +356,7 @@
         }
         let modulePos = moduleNames.indexOf(currentModuleName);
         if (modulePos === -1) {
-          await innerFormStack.clearStack({ uid: currentModuleName });
+          await innerFormStack.clearStack({uid: currentModuleName});
           let uid = currentModuleName + '-' + sessionStorage.getItem('admWid');
           sessionStorage.removeItem(uid);
         }
@@ -362,7 +377,7 @@
       },
       getCopyObj(node) {
         let cache = [];
-        let objectJSONreplacer = function(key, value) {
+        let objectJSONreplacer = function (key, value) {
           if (typeof value === 'object' && funcUtils.isNotEmpty(value)) {
             if (cache.indexOf(value) !== -1) {
               try {
@@ -546,10 +561,11 @@
 </script>
 
 <style lang="scss" scoped>
-  .delo__headding{
+  .delo__headding {
     border-bottom: 2px solid transparent;
   }
-  .delo__headding:hover{
+
+  .delo__headding:hover {
     border-bottom: 2px solid #00b1ff;
   }
 </style>
