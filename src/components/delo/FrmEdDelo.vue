@@ -84,9 +84,9 @@
             <h3 class="adm-h3 color-dark-lighter">{{viol.mvidFisFull}}</h3>
           </div>
 
-          <div v-if="isNotEmptyField(body.deloMainN)" class="my12">
+          <div v-if="isNotEmptyField(body.deloMainDescr)" class="my12">
             <p class="adm-14 color-dark-lighter">Дело - основание </p>
-            <h3 class="adm-h3 color-dark-lighter">№ {{body.deloMainN}}</h3>
+            <h3 class="adm-h3 color-dark-lighter">{{body.deloMainDescr}}</h3>
           </div>
         </div>
       </div>
