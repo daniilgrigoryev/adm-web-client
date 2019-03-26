@@ -238,9 +238,6 @@ export default {
 			streetsList: null,
 			roadsList: null,
 			placesList: null,
-			dopStreetsList: null,
-			dopRoadsList: null,
-			dopPlacesList: null
 		}
 	},
 	computed: {
@@ -271,15 +268,6 @@ export default {
 		async initData() {
 			let data = await this.getData();
 			if (this.placeModal.visible) {
-				data['placeTip1'] = data['placeTip1'] === 1;
-				data['placeTip2'] = data['placeTip2'] === 1;
-				data['placeTip3'] = data['placeTip3'] === 1;
-				data['placeTip4'] = data['placeTip4'] === 1;
-				data['placeTip5'] = data['placeTip5'] === 1;
-				data['placeTip6'] = data['placeTip6'] === 1;
-				data['placeTip7'] = data['placeTip7'] === 1;
-				data['placeTip8'] = data['placeTip8'] === 1;
-
 				this.data = data;
 
 				await this.fillRegionList();
@@ -288,12 +276,6 @@ export default {
 				await this.fillRoadList();
 				await this.fillPlaceList();
         await this.fillStreetList();
-
-				if (this.showDopAddress) {
-					await this.fillDopRoadList();
-					await this.fillDopPlaceList();
-          await this.fillDopStreetList();
-				}
 			}
 
 			this.fullAddress = data.placeFull;
@@ -366,24 +348,6 @@ export default {
 			}
 			this.storeElementData();
 		},
-		async changeDopStreet(query) {
-			let limit;
-			if (this.isNotEmptyCityId()) {
-				limit = 1;
-			} else if (this.isNotEmptyRayonId()) {
-				limit = 2;
-			} else if (this.isNotEmptyRegionId()) {
-				limit = 3;
-			}
-			if ((funcUtils.isEmpty(query) || query.length === 0)) {
-				this.dopStreetsList = null;
-				this.data.adrDop.streetId = null;
-			} else if (query.length > limit) {
-				await this.fillDopStreetList(query);
-			}
-
-			this.storeElementData();
-		},
 		changeDopPlace(query) {
 			if ((funcUtils.isEmpty(query) || query.length === 0)) {
 				this.data.dopPlaceId = null;
@@ -399,22 +363,12 @@ export default {
 		async changePlaceTip(placeTip) {
 			let val = this.data[placeTip];
 			if (placeTip === 'placeTip5' || placeTip === 'placeTip6' || placeTip === 'placeTip8') {
-				this.data['placeTip1'] = false;
-				this.data['placeTip2'] = false;
-				this.data['placeTip3'] = false;
-				this.data['placeTip4'] = false;
-				this.data['placeTip7'] = false;
 				this.clearDopAddress();
 
 				if (val) {
 					this.data['placeTip5'] = placeTip === 'placeTip5' ? val : false;
 					this.data['placeTip6'] = placeTip === 'placeTip6' ? val : false;
 					this.data['placeTip8'] = placeTip === 'placeTip8' ? val : false;
-
-					if (funcUtils.isEmpty(this.dopStreetsList) && funcUtils.isEmpty(this.dopPlacesList)) {
-						await this.fillDopRoadList();
-						await this.fillDopPlaceList();
-					}
 				}
 			} else if (placeTip !== 'placeTip5' && placeTip !== 'placeTip6' && placeTip !== 'placeTip8' && this.showDopAddress) {
 				this.data['placeTip5'] = false;
@@ -633,92 +587,6 @@ export default {
 				this.streetsList = streetsList;
 			}
 		},
-		async fillDopRoadList() {
-			let eventResponse = await RequestApi.prepareData({
-				method: 'invokeElementMethod',
-				params: {
-					eCID: this.info.eCID,
-					methodName: 'getRoads',
-					data: null
-				}
-			});
-			let roadsList = [];
-			let roadsDict = JSON.parse(JSON.parse(eventResponse.response).data);
-			for (let i = 0; i < roadsDict.length; i++) {
-				let road = roadsDict[i];
-				roadsList.push({
-					label: road.NAME,
-					value: road.ID
-				});
-			}
-			this.dopRoadsList = roadsList;
-		},
-		async fillDopPlaceList() {
-			let eventResponse = await RequestApi.prepareData({
-				method: 'invokeElementMethod',
-				params: {
-					eCID: this.info.eCID,
-					methodName: 'getPlaces',
-					data: null
-				}
-			});
-			let placesList = [];
-			let placesDict = JSON.parse(JSON.parse(eventResponse.response).data);
-			for (let i = 0; i < placesDict.length; i++) {
-				let place = placesDict[i];
-				placesList.push({
-					label: place.PLACE_NAME,
-					value: place.PLACE_ID
-				});
-			}
-			this.dopPlacesList = placesList;
-		},
-		async fillDopStreetList(query = '') {
-			let eventResponse;
-			if (this.isNotEmptyCityId()) {
-				eventResponse = await RequestApi.prepareData({
-					method: 'invokeElementMethod',
-					params: {
-						eCID: this.info.eCID,
-						methodName: 'getStreetsDictByCity',
-						data: JSON.stringify({
-							cityId: this.data.adr.cityId,
-							substr: query
-						})
-					},
-					withSpinner: false
-				});
-			} else if (this.isNotEmptyRayonId()) {
-				eventResponse = await RequestApi.prepareData({
-					method: 'invokeElementMethod',
-					params: {
-						eCID: this.info.eCID,
-						methodName: 'getStreetsDictByRayon',
-						data: JSON.stringify({
-							rayonId: this.data.adr.rayonId,
-							substr: query
-						})
-					},
-					withSpinner: false
-				});
-			}
-
-			if (eventResponse) {
-				let streetsList = [];
-				let streetsDict = JSON.parse(JSON.parse(eventResponse.response).data);
-				for (let i = 0; i < streetsDict.length; i++) {
-					let street = streetsDict[i];
-					if (funcUtils.isNotEmpty(this.data.adrDop.streetId) && street.id != this.data.adrDop.streetId) {
-						continue;
-					}
-					streetsList.push({
-						label: street.name,
-						value: street.id
-					});
-				}
-				this.dopStreetsList = streetsList;
-			}
-		},
 		async showPlaceModal(visible) {
 			this.placeModal.visible = visible;
 
@@ -762,9 +630,6 @@ export default {
 			this.citiesList = null;
 			this.roadsList = null;
 			this.placesList = null;
-			this.dopStreetsList = null;
-			this.dopRoadsList = null;
-			this.dopPlacesList = null;
 		},
 		isNotEmptyRegionId() {
 			return funcUtils.isNotEmpty(this.data.adr.regionId);
@@ -777,15 +642,6 @@ export default {
 		},
 		storeElementData() {
 			let copyData = JSON.parse(JSON.stringify(this.data));
-			copyData['placeTip1'] = copyData['placeTip1'] ? 1 : null;
-			copyData['placeTip2'] = copyData['placeTip2'] ? 1 : null;
-			copyData['placeTip3'] = copyData['placeTip3'] ? 1 : null;
-			copyData['placeTip4'] = copyData['placeTip4'] ? 1 : null;
-			copyData['placeTip5'] = copyData['placeTip5'] ? 1 : null;
-			copyData['placeTip6'] = copyData['placeTip6'] ? 1 : null;
-			copyData['placeTip7'] = copyData['placeTip7'] ? 1 : null;
-			copyData['placeTip8'] = copyData['placeTip8'] ? 1 : null;
-
 			this.$emit('storeElementData', {
 				eCID: this.info.eCID,
 				data: copyData
