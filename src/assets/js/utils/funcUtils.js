@@ -98,13 +98,11 @@ export function lookupValue(dictName, key) {
 }
 
 export function clearAll() {
-  localStorage.clear();
-  sessionStorage.clear();
-  /*localStorage.removeItem('admSid');
+  localStorage.removeItem('admSid');
   localStorage.removeItem('admLastActive');
   localStorage.removeItem('admDeloReestr');
   localStorage.removeItem('admUserInfo');
-  sessionStorage.removeItem('mainMenuActiveName');*/
+  sessionStorage.removeItem('mainMenuActiveName');
 }
 
 export function parseDateTime(dateTime, format) {
