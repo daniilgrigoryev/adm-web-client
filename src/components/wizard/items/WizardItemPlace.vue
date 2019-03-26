@@ -1,19 +1,21 @@
 <template>
 	<div>
 		<div class="adm-form">
-			<div class="my12 adm-form__item">
-				<small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
-				<div class="adm-form__item_content">
-					<Row :gutter="16" type="flex" align="middle">
-						<Col :xs="22" :md="22" :lg="22">
-							<Input class="adm-input adm-input--regular" v-model="fullAddress" disabled type="textarea"></Input>
-						</Col>
-						<Col :xs="2" :md="2" :lg="2">
-							<Button @click="showPlaceModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-								<Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
-							</Button>
-						</Col>
-					</Row>
+			<div class="adm-form__container mt6">
+				<div class="my12 adm-form__item">
+					<small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
+					<div class="adm-form__item_content">
+						<Row :gutter="16" type="flex" align="middle">
+							<Col :xs="22" :md="22" :lg="22">
+								<Input class="adm-input adm-input--regular" v-model="fullAddress" disabled type="textarea"></Input>
+							</Col>
+							<Col :xs="2" :md="2" :lg="2">
+								<Button @click="showPlaceModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+									<Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+								</Button>
+							</Col>
+						</Row>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -596,9 +598,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.prot-pztc .adm-form .adm-form__headding {
-		border-radius: 4px 4px 0 0
-	}
 	.address-modal {
 		position: fixed;
 		width: 100vw;
@@ -611,6 +610,9 @@ export default {
 		z-index: 920;
 		top: 0;
 		left: 0;
+		.adm-form__container {
+			border: none;
+		}
 		.adm-form {
 			min-width: 800px;
 			position: relative;

@@ -133,8 +133,7 @@
   .prot-pztc {
     .adm-form {
       .adm-form__headding {
-        border-radius: 0;
-        margin: 12px 0;
+        margin: 0;
       }
       .adm-form__label {
         min-width: 210px;

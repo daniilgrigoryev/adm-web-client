@@ -385,16 +385,19 @@ html, body, #app {
   .adm-form__headding{
     background-color: #1888CC;
     padding-left: 60px;
-    height: 30px;
+    height: 38px;
+    display: flex;
+    align-items: center;
     color: #fff;
     line-height: 30px;
     // margin-top: 20px;
     border-radius: 4px 4px 0 0;
   }
   .adm-form__container{
+    border: 1px solid #CCCCCC;
     border-radius: 4px;	
     background-color: #FDFDFD;	
-    box-shadow: 0 0 1px 0 rgba(0,0,0,0.26), 0 0 4px 0 rgba(0,0,0,0.16);
+    // box-shadow: 0 0 1px 0 rgba(0,0,0,0.26), 0 0 4px 0 rgba(0,0,0,0.16);
     margin: 20px 0;
   }
   .adm-form__content{
@@ -521,7 +524,7 @@ html, body, #app {
     background-color: transparent;
     transition: all ease 300ms;
     color: $dark-base;
-    font-size: 13px;
+    font-size: 16px;
     font-family: 'Open Sans', sans-serif;
   }
   .ivu-icon.ivu-input-icon-clear,
@@ -599,7 +602,7 @@ html, body, #app {
   .ivu-select-selection,
   .ivu-select-input,
   .ivu-input {
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 0.2px;
   }
 }
