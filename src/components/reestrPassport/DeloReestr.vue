@@ -46,8 +46,9 @@
                     <Col :xs="24" :md="24" :lg="6">
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item my12">
-                          <Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ"
-                                 clearable></Input>
+                          <!-- <Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ"
+                                 clearable></Input> -->
+                          <masked-input v-model="filter.regno" placeholder="ГРЗ" :maskProps="{casing: 'upper',}" inputClass="adm-input adm-input--big" clearable></masked-input> 
                         </div>
                       </div>
                     </Col>
@@ -61,9 +62,7 @@
                       <Row type="flex" :gutter="20">
                         <Col :xs="12" :md="12" :lg="12">
                           <Select class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable>
-                            <Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label
-                              }}
-                            </Option>
+                            <Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
                           </Select>
                         </Col>
                         <Col :xs="12" :md="12" :lg="12">
@@ -108,17 +107,13 @@
                       <Row type="flex" :gutter="20">
                         <Col :xs="24" :md="12" :lg="12">
                           <Select class="adm-input adm-input--big" v-model="filter.stadDeloKod" filterable clearable>
-                            <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label
-                              }}
-                            </Option>
+                            <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
                           </Select>
                         </Col>
                         <Col :xs="24" :md="12" :lg="12">
                           <Select class="adm-input adm-input--big" placeholder="По статье" v-model="filter.stotvId"
                                   filterable clearable>
-                            <Option style="max-width: 100%;" v-for="item in articleProcDict" :value="item.id"
-                                    :key="item.id">{{ item.value + ', ' + item.label }}
-                            </Option>
+                            <Option style="max-width: 100%;" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                           </Select>
                         </Col>
                       </Row>
@@ -1158,6 +1153,7 @@
                         h('span', {
                           class: {
                             'txt-truncate': true,
+                            'txt-uppercase': true,
                           }
                         }, params.row.uchastName),
                       ]),
