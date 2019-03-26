@@ -1,25 +1,19 @@
 <template>
 	<div>
 		<div class="adm-form">
-			<div class="adm-form__container mt6">
-        <div class="adm-form__content px36 py24">
-					<div class="adm-form__item">
-						<small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
-						<div class="adm-form__item_content">
-							<Row :gutter="16" type="flex" align="middle">
-								<Col :xs="22" :md="22" :lg="22">
-									<Input class="adm-input adm-input--regular" v-model="fullAddress" disabled></Input>
-								</Col>
-								<Col :xs="2" :md="2" :lg="2">
-									<Button  @click="showPlaceModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-										<Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
-									</Button>
-								</Col>
-							</Row>
-						</div>
-					</div>
-        </div>
-      </div>
+			<div class="my12 adm-form__item">
+				<small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
+				<Row :gutter="16" type="flex" align="middle">
+					<Col :xs="22" :md="22" :lg="22">
+						<Input class="adm-input adm-input--regular" v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+					</Col>
+					<Col :xs="2" :md="2" :lg="2">
+						<Button @click="showPlaceModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+							<Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+						</Button>
+					</Col>
+				</Row>
+			</div>
 		</div>
 		<div v-if="data && placeModal.visible" class="address-modal" @click="outside">
 			<div class="adm-form" ref="bodyModal">

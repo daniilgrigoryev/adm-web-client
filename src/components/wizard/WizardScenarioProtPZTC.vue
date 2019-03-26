@@ -137,7 +137,7 @@
         margin: 12px 0;
       }
       .adm-form__label {
-        min-width: 180px;
+        min-width: 210px;
         width: auto;
       }
     }

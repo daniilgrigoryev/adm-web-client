@@ -90,11 +90,13 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
+                <Col :xs="22" :md="22" :lg="22">
                   <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydKod" @on-input-change="changeInspVydKod" ></Input>
                 </Col>
-                <Col :xs="24" :md="14" :lg="8">
-                  <a href="#" @click="showDolzModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник сотрудников</a>
+                <Col :xs="2" :md="2" :lg="2">
+                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Список должностных лиц" :size="35" />
+                  </Button>
                 </Col>
               </Row>
             </div>
@@ -134,11 +136,13 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
+                <Col :xs="22" :md="22" :lg="22">
                   <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
                 </Col>
-                <Col :xs="24" :md="14" :lg="8">
-                  <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">уполномоченные органы</a>
+                <Col :xs="2" :md="2" :lg="2">
+                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
+                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Справочник подразделений" :size="35" />
+                  </Button>
                 </Col>
               </Row>
             </div>
