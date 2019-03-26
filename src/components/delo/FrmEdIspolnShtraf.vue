@@ -6,7 +6,7 @@
           <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Оплата штрафа</b>
+          <b class="adm-text-big color-dark-lighter">Исполнение по решению - Оплата штрафа</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
@@ -17,7 +17,7 @@
     <div class="adm-form">
       <div class="adm-form__container mt6">
         <div class="adm-form__content px36 py24">
-          <div class="my12 adm-form__item">
+          <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Дата оплаты штрафа</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
@@ -27,7 +27,7 @@
               </Row>
             </div>
           </div>
-          <div class="my12 adm-form__item">
+          <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаты штрафа</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
@@ -37,7 +37,7 @@
               </Row>
             </div>
           </div>
-          <div class="my12 adm-form__item">
+          <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">УИП</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">

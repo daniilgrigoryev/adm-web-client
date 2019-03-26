@@ -7,7 +7,7 @@
           <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Оштрафовать</b>
+          <b class="adm-text-big color-dark-lighter">Решение по делу - Штраф</b>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
@@ -24,7 +24,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.sumShtraf" ></Input>
+                  <Input class="adm-input adm-input--regular wmax360" readonly :value="body.sumShtraf" ></Input>
                 </Col>
               </Row>
             </div>
@@ -34,7 +34,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                  <Input class="adm-input adm-input--regular wmax180" readonly :value="body.dateIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
                 </Col>
               </Row>
             </div>
@@ -44,7 +44,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                  <Input class="adm-input adm-input--regular wmax180" readonly :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
                 </Col>
               </Row>
             </div>
@@ -54,14 +54,19 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateVstup | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                  <Input class="adm-input adm-input--regular wmax180" readonly :value="body.dateVstup | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
                 </Col>
               </Row>
             </div>
           </div>
+          <!-- <div class="flex-parent flex-parent--end-main">
+            <Button type="text" class="adm-btn adm-btn-regular adm-btn-border txt-uppercase color-blue-base">Исполнение решения</Button>
+          </div> -->
         </div>
       </div>
     </div>
+
+
   </div>
 </template>
 
