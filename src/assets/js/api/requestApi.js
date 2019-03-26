@@ -45,6 +45,8 @@ export default class RequestApi {
       // When data is received
       socket.onmessage = (event) => {
         console.log('Message in websocket');
+        let data = event.data;
+        console.log(JSON.parse(data));
         vm.$store.dispatch('fillModule', {'vm': vm, 'event': event});
       };
 
