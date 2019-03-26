@@ -134,12 +134,12 @@ router.beforeEach( async (to, from, next) => {
     } else if (funcUtils.isNotEmpty(to.params.sid) && to.name === 'Authorization') {
       next();
     } else {
+      let rootMethods = router.app.$options.methods;
       let current = formStack.getCurrent();
-      if (funcUtils.isNull(current) || funcUtils.isEmpty(localStorage.getItem('admSid'))) {
-        window.open(ConstantUtils.HTTP_URL_AUTH, '_self');
-      } else if (funcUtils.isNull(to) || funcUtils.isNull(to.name)) {
-        next({name: current.routeName});
-      } else if (current.routeName !== to.name) {
+      let isValidSession = await rootMethods.isValidSession();
+      if (funcUtils.isNull(current) || !isValidSession) {
+        rootMethods.logout.call(router.app);
+      } else if (funcUtils.isNotEmpty(current) && (to.matched.length === 0 || current.routeName !== to.name)) {
         next({name: current.routeName});
       } else {
         next();

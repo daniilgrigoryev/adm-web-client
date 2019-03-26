@@ -13,14 +13,9 @@
     async created() {
       try {
         let eventResponse;
-        let sid = localStorage.getItem('admSid');
-        let checkSession = false;
-        if (funcUtils.isNotEmpty(sid)) {
-          checkSession = await this.$root.checkSession();
-        }
+        let isValidSession = await this.$root.isValidSession();
 
-        if (!checkSession) {
-          funcUtils.clearAll();
+        if (!isValidSession) {
           let loginParams = new RequestEntity.LoginParamsSID(new Fingerprint().get(), funcUtils.webGlId(), navigator.platform, navigator.userAgent, null, null, this.$route.params.sid);
           eventResponse = await RequestApi.prepareData({
             beanName: null,

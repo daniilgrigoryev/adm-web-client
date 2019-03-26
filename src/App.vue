@@ -32,12 +32,12 @@
     },
     data() {
       return {
-        isCollapsed: true,
+        isCollapsed: true
       }
     },
     methods: {
-      isHeaderRender() {
-        return funcUtils.isNotEmpty(localStorage.getItem('admSid')) && formStack.getCurrent();
+      async isHeaderRender() {
+        return funcUtils.isNotEmpty(localStorage.getItem('admSid')) && funcUtils.isNotEmpty(formStack.getCurrent());
       },
       collapsedSider() {
         this.$refs.siderMenu.$refs.sider.toggleCollapse();

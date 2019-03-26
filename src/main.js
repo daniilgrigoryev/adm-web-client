@@ -39,8 +39,8 @@ let vue = new Vue({
       funcUtils.addToSessionStorage(sessionStorage.getItem('admWid'), new Stack());
     }
     funcUtils.addToLocalStorage('admLastActive', new Date().getTime());
-    let checkSession = await this.checkSession();
-    if (funcUtils.isNotEmpty(localStorage.getItem('admSid')) && checkSession) {
+    let isValidSession = await this.isValidSession();
+    if (isValidSession) {
       let requestHead = new RequestEntity.RequestHead(localStorage.getItem('admSid'), sessionStorage.getItem('admWid'), null, null, 'addWID');
       RequestApi.sendSocketRequest({
         body: new RequestEntity.RequestParam(requestHead, null),
@@ -70,8 +70,8 @@ let vue = new Vue({
         funcUtils.clearAll();
         RequestApi.closeSocket();
         formStack.clearStack(true);
-        // window.close();
-        window.location.href = constantUtils.HTTP_URL_AUTH;
+        window.close();
+        // window.location.href = constantUtils.HTTP_URL_AUTH;
       }
     },
     async getDeloReestr() {
@@ -102,11 +102,11 @@ let vue = new Vue({
         alert(e.message);
       }
     },
-    async checkSession() {
-      let res = true;
+    async isValidSession() {
+      let res = false;
       let sid = localStorage.getItem('admSid');
-      let loginParams = new RequestEntity.LoginParamsSID(new Fingerprint().get(), funcUtils.webGlId(), navigator.platform, navigator.userAgent, null, null, sid);
       if (funcUtils.isNotEmpty(sid)) {
+        let loginParams = new RequestEntity.LoginParamsSID(new Fingerprint().get(), funcUtils.webGlId(), navigator.platform, navigator.userAgent, null, null, sid);
         let eventResponse = await RequestApi.prepareData({
           beanName: null,
           method: 'checkSession',
