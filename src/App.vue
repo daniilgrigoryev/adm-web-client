@@ -17,9 +17,9 @@
 </template>
 
 <script>
-  import Indicator from './components/Indicator.vue';
-  import MainMenu from './components/MainMenu.vue';
-  import SiderMenu from './components/SiderMenu.vue';
+  import Indicator from './components/shared/Indicator.vue';
+  import MainMenu from './components/shared/MainMenu.vue';
+  import SiderMenu from './components/shared/SiderMenu.vue';
   import * as funcUtils from "./assets/js/utils/funcUtils";
   import * as formStack from './assets/js/api/formStack';
 

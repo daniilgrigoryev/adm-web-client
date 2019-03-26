@@ -7,9 +7,9 @@
 </template>
 
 <script>
-  import * as funcUtils from "~/assets/js/utils/funcUtils";
-  import CalendarHeader from "~/components/CalendarHeader";
-  import CalendarBody from "~/components/CalendarBody";
+  import * as funcUtils from "../../assets/js/utils/funcUtils";
+  import CalendarHeader from "~/components/shared/CalendarHeader";
+  import CalendarBody from "~/components/shared/CalendarBody";
   import ClickOutside from 'vue-click-outside';
 
   /*

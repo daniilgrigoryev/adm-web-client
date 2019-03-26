@@ -240,15 +240,6 @@ export default {
 			placesList: null,
 		}
 	},
-	computed: {
-		showDopAddress() {
-			let res = false;
-			if (this.data) {
-				res = this.data.placeTip5 === true || this.data.placeTip6 === true || this.data.placeTip8 === true;
-			}
-			return res;
-		}
-	},
 	methods: {
 		outside(e) {
 			if (e.target.contains(this.$refs.bodyModal)) {
@@ -347,49 +338,6 @@ export default {
 				this.data.roadId = null;
 			}
 			this.storeElementData();
-		},
-		changeDopPlace(query) {
-			if ((funcUtils.isEmpty(query) || query.length === 0)) {
-				this.data.dopPlaceId = null;
-			}
-			this.storeElementData();
-		},
-		changeDopRoad(query) {
-			if ((funcUtils.isEmpty(query) || query.length === 0)) {
-				this.data.dopRoadId = null;
-			}
-			this.storeElementData();
-		},
-		async changePlaceTip(placeTip) {
-			let val = this.data[placeTip];
-			if (placeTip === 'placeTip5' || placeTip === 'placeTip6' || placeTip === 'placeTip8') {
-				this.clearDopAddress();
-
-				if (val) {
-					this.data['placeTip5'] = placeTip === 'placeTip5' ? val : false;
-					this.data['placeTip6'] = placeTip === 'placeTip6' ? val : false;
-					this.data['placeTip8'] = placeTip === 'placeTip8' ? val : false;
-				}
-			} else if (placeTip !== 'placeTip5' && placeTip !== 'placeTip6' && placeTip !== 'placeTip8' && this.showDopAddress) {
-				this.data['placeTip5'] = false;
-				this.data['placeTip6'] = false;
-				this.data['placeTip8'] = false;
-				this.clearDopAddress();
-			}
-
-			this.storeElementData();
-		},
-		clearDopAddress() {
-			this.data.adrDop.streetId = null;
-			this.data.dopRoadId = null;
-			this.data.dopPlaceId = null;
-			this.data.dopMachta = null;
-			this.data.dopMgt = null;
-			this.data.dopKm = null;
-			this.data.adrDop.ndom = null;
-			this.data.adrDop.nkorpus = null;
-			this.data.adrDop.nstroenie = null;
-			this.data.dopDopSved = null;
 		},
 		async fillRegionList() {
 			let eventResponse = await RequestApi.prepareData({

@@ -3,7 +3,7 @@
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
-   
+
    <div class="adm-form">
       <h2 class="title" id="head">Ввод данных по протоколу о задержании ТС</h2>
       <div class="adm-form__container mt6">
@@ -13,7 +13,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <input-mask inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="data.docN" @on-input-change="storeElementData"></input-mask>
+                  <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="data.docN" @on-input-change="storeElementData"></masked-input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
@@ -104,7 +104,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <input-mask inputClass="adm-input adm-input--regular" :maskProps="maskInputGrz" v-model="data.evacRegno"  @on-input-change="storeElementData"></input-mask>
+                  <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputGrz" v-model="data.evacRegno"  @on-input-change="storeElementData"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -204,12 +204,12 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
-  import DatePickerMask from "~/components/DatePickerMask";
-  import InputMask from "~/components/InputMask";
+  import DatePickerMask from "~/components/shared/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "WizardItemDocProtEvac",
-    components: {WizardModal, DatePickerMask, InputMask},
+    components: {WizardModal, DatePickerMask, MaskedInput},
     props: {
       info: Object
     },

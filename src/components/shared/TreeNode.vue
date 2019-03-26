@@ -10,8 +10,8 @@
             <p v-html="node.name" class="adm-text-big color-dark-base txt-break-word"></p>
           </div>
           <span v-if="isParent && isFolder">
-            <img v-if='open' src='../assets/images/controls-switch-chevron-up.svg'>
-            <img v-else src='../assets/images/controls-switch-chevron-down.svg'>
+            <img v-if='open' src='../../assets/images/controls-switch-chevron-up.svg'>
+            <img v-else src='../../assets/images/controls-switch-chevron-down.svg'>
           </span>
         </a>
       </li>
@@ -28,20 +28,20 @@
 </template>
 
 <script>
-  import * as funcUtils from "../assets/js/utils/funcUtils";
-  import docTipEnum from "../assets/js/utils/docTipEnum";
-  import decisIspolnEnum from "../assets/js/utils/decisIspolnEnum";
-  import * as ispolnShtraf from '../assets/images/ispolnShtraf.png';
-  import * as ispolnUved from '../assets/images/ispolnUved.png';
-  import * as decis from '../assets/images/decis.png';
-  import * as predDoc from '../assets/images/predDoc.png';
-  import * as delo from '../assets/images/delo.png';
-  import * as amtc from '../assets/images/amtc.png';
-  import * as uchast from '../assets/images/uchast.png';
-  import * as ispolnDecisAppeal from '../assets/images/ispolnDecisAppeal.png';
-  import * as ispolnAppeal from '../assets/images/ispolnAppeal.png';
-  import * as deloProizv from '../assets/images/deloProizv.png';
-  import * as photo from '../assets/images/photo.png';
+  import * as funcUtils from "../../assets/js/utils/funcUtils";
+  import docTipEnum from "../../assets/js/utils/docTipEnum";
+  import decisIspolnEnum from "../../assets/js/utils/decisIspolnEnum";
+  import * as ispolnShtraf from '../../assets/images/ispolnShtraf.png';
+  import * as ispolnUved from '../../assets/images/ispolnUved.png';
+  import * as decis from '../../assets/images/decis.png';
+  import * as predDoc from '../../assets/images/predDoc.png';
+  import * as delo from '../../assets/images/delo.png';
+  import * as amtc from '../../assets/images/amtc.png';
+  import * as uchast from '../../assets/images/uchast.png';
+  import * as ispolnDecisAppeal from '../../assets/images/ispolnDecisAppeal.png';
+  import * as ispolnAppeal from '../../assets/images/ispolnAppeal.png';
+  import * as deloProizv from '../../assets/images/deloProizv.png';
+  import * as photo from '../../assets/images/photo.png';
 
   export default {
     name: "TreeNode",

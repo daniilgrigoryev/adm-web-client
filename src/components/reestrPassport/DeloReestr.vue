@@ -83,18 +83,18 @@
                       <div class="adm-12 color-dark-lighter my6">Физическое лицо</div>
                       <Row type="flex" :gutter="20">
                         <Col :xs="8" :md="8" :lg="8">
-                          <input-mask v-model="filter.firstName" @input="changeFIO" :maskProps="maskInputFIO"
+                          <masked-input v-model="filter.firstName" @input="changeFIO" :maskProps="maskInputFIO"
                                       inputClass="adm-input adm-input--big" clearable
-                                      placeholder="Фамилия"></input-mask>
+                                      placeholder="Фамилия"></masked-input>
                         </Col>
                         <Col :xs="8" :md="8" :lg="8">
-                          <input-mask v-model="filter.secondName" @input="changeFIO" :maskProps="maskInputFIO"
-                                      inputClass="adm-input adm-input--big" clearable placeholder="Имя"></input-mask>
+                          <masked-input v-model="filter.secondName" @input="changeFIO" :maskProps="maskInputFIO"
+                                      inputClass="adm-input adm-input--big" clearable placeholder="Имя"></masked-input>
                         </Col>
                         <Col :xs="8" :md="8" :lg="8">
-                          <input-mask v-model="filter.thirdName" @input="changeFIO" :maskProps="maskInputFIO"
+                          <masked-input v-model="filter.thirdName" @input="changeFIO" :maskProps="maskInputFIO"
                                       inputClass="adm-input adm-input--big" clearable
-                                      placeholder="Отчество"></input-mask>
+                                      placeholder="Отчество"></masked-input>
                         </Col>
                       </Row>
                     </div>
@@ -212,14 +212,14 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import InputMask from "../InputMask";
+  import MaskedInput from "../shared/MaskedInput";
   import {mapGetters} from 'vuex';
-  import DatePickerMask from "~/components/DatePickerMask";
+  import DatePickerMask from "~/components/shared/DatePickerMask";
 
   export default {
     name: "DeloReestr",
     components: {
-      InputMask,
+      MaskedInput,
       DatePickerMask
     },
     async created() {

@@ -31,7 +31,7 @@
   import Inputmask from 'inputmask';
 
   export default {
-    name: "InputMask",
+    name: "MaskedInput",
     props: {
       type: {
         type: String

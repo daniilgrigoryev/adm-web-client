@@ -3,7 +3,7 @@ import App from './App'
 import store from './store'
 import router from './router'
 import $ from "jquery";
-import './components/Filters'
+import './components/shared/Filters'
 import '@mapbox/assembly/dist/assembly.min.css';
 import '@mapbox/assembly/dist/assembly.js';
 import iView from 'iview';

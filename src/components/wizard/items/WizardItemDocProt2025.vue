@@ -178,7 +178,7 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
-  import DatePickerMask from "~/components/DatePickerMask";
+  import DatePickerMask from "~/components/shared/DatePickerMask";
 
   export default {
     name: "WizardItemDocProt2025",

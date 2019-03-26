@@ -9,7 +9,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <input-mask inputClass="adm-input adm-input--regular wmax240" :maskProps="maskInputRegno" v-model="data.regno" @on-input-change="storeElementData"></input-mask>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" :maskProps="maskInputRegno" v-model="data.regno" @on-input-change="storeElementData"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -44,7 +44,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
                 <!-- TODO -->
-                  <input-mask inputClass="adm-input adm-input--regular wmax240"  @on-input-change="storeElementData" :maskProps="{casing: 'upper'}"></input-mask>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240"  @on-input-change="storeElementData" :maskProps="{casing: 'upper'}"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -67,7 +67,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
                   <!-- TODO -->
-                  <input-mask inputClass="adm-input adm-input--regular wmax240" :maskProps="{casing: 'upper'}" @on-input-change="storeElementData" ></input-mask>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" :maskProps="{casing: 'upper'}" @on-input-change="storeElementData" ></masked-input>
                 </Col>
               </Row>
             </div>
@@ -77,7 +77,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <input-mask inputClass="adm-input adm-input--regular wmax240" v-model="data.vin" :maskProps="{casing: 'upper'}"  @on-input-change="storeElementData"></input-mask>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.vin" :maskProps="{casing: 'upper'}"  @on-input-change="storeElementData"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -87,7 +87,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <input-mask inputClass="adm-input adm-input--regular wmax240" v-model="data.color" :maskProps="{casing: 'upper'}"  @on-input-change="storeElementData"></input-mask>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.color" :maskProps="{casing: 'upper'}"  @on-input-change="storeElementData"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -102,11 +102,11 @@
 import * as funcUtils from "../../../assets/js/utils/funcUtils";
 import * as formStack from '../../../assets/js/api/formStack';
 import RequestApi from "../../../assets/js/api/requestApi";
-import InputMask from "~/components/InputMask";
+import MaskedInput from "~/components/shared/MaskedInput";
 
 export default {
     name: "WizardItemVehs",
-    components: {InputMask},
+    components: {MaskedInput},
     props: {
         info: Object
     },

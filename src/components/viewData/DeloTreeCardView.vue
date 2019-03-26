@@ -219,7 +219,7 @@
   import RequestApi from "../../assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
   import DeloInnerForm from "~/components/delo/DeloInnerForm";
-  import TreeNode from "~/components/TreeNode";
+  import TreeNode from "~/components/shared/TreeNode";
 
   export default {
     name: "DeloTreeCardView",

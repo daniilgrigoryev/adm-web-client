@@ -210,7 +210,7 @@
                 <Row type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="24">
                     <!--<Input class="adm-input adm-input&#45;&#45;regular" v-model="vehsAMTC.yearVyp"></Input>-->
-                    <input-mask v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable></input-mask>
+                    <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable></masked-input>
                   </Col>
                 </Row>
               </div>
@@ -319,13 +319,13 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import InputMask from "../../InputMask";
-  import DatePickerMask from "~/components/DatePickerMask";
+  import MaskedInput from "../../shared/MaskedInput";
+  import DatePickerMask from "~/components/shared/DatePickerMask";
 
   export default {
     name: "FrmEdVehsAMTCEdit",
     components: {
-      InputMask,
+      MaskedInput,
       DatePickerMask
     },
     async created() {

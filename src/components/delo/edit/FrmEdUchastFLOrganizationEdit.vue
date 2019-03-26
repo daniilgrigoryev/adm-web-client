@@ -156,7 +156,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <input-mask v-model="uchastOrganization.organization.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></input-mask>
+                      <masked-input v-model="uchastOrganization.organization.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -193,14 +193,14 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import InputMask from "../../InputMask";
-  import DatePickerMask from "~/components/DatePickerMask";
+  import MaskedInput from "../../shared/MaskedInput";
+  import DatePickerMask from "~/components/shared/DatePickerMask";
 
   export default {
     name: "FrmEdUchastFLOrganizationEdit",
     components: {
       DatePickerMask,
-      InputMask
+      MaskedInput
     },
     async created() {
       try {

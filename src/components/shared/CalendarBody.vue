@@ -1,19 +1,19 @@
 <template>
   <div class="content">
-    <input-mask v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" @onInputChange="onInputChange" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></input-mask>
+    <masked-input v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" @onInputChange="onInputChange" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></masked-input>
 
     <i v-if="!isHidden" @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
   </div>
 </template>
 
 <script>
-  import InputMask from "~/components/InputMask";
-  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import MaskedInput from "~/components/shared/MaskedInput";
+  import * as funcUtils from "../../assets/js/utils/funcUtils";
 
   export default {
     name: "CalendarBody",
     components: {
-      InputMask
+      MaskedInput
     },
     props: {
       value: Date,

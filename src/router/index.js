@@ -19,10 +19,6 @@ import AddressViewEdit from '../components/delo/edit/AddressViewEdit';
 
 import WizardExecuter from '../components/wizard/WizardExecuter';
 
-// верстка
-import Accounting from '../components/verstka/Accounting.vue';
-import Delo from '../components/verstka/Delo.vue';
-import Offense from '../components/verstka/Offense.vue';
 import * as funcUtils from "./../assets/js/utils/funcUtils";
 import * as ConstantUtils from "./../assets/js/utils/constantUtils";
 import * as formStack from './../assets/js/api/formStack';
@@ -126,21 +122,6 @@ const router = new Router({
       name: 'WizardExecuter',
       component: WizardExecuter,
       props: true
-    },
-    {
-      path: '/accounting',
-      name: 'Accounting',
-      component: Accounting,
-    },
-    {
-      path: '/offense',
-      name: 'Offense',
-      component: Offense,
-    },
-    {
-      path: '/delo',
-      name: 'Delo',
-      component: Delo,
     },
   ]
 });
