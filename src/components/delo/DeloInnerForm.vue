@@ -1,5 +1,5 @@
 <template>
-  <div v-if="sizeInnerStack > 0 && current" class="bg-white">
+  <div v-if="sizeInnerStack > 0 && current" class="">
 
     <div class="hmin360">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')" @getMainDelo="getMainDelo"></frm-ed-delo>
@@ -127,7 +127,3 @@
     }
   }
 </script>
-
-<style scoped>
-
-</style>

@@ -1,7 +1,7 @@
 <template>
   <div v-if="body" class="ml18">
 
-    <div class="amd-title amd-title--sticky bg-white px36 pt24 pb18">
+    <div class="amd-title amd-title--sticky px36 pt24 pb18">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <!-- <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover" title="редактирование постановления">

@@ -1,6 +1,6 @@
 <template>
   <div v-if="body" class="ml18 mb18"> <!-- wmax940 mx-auto -->
-    <div class="adm-title amd-title--sticky bg-white px36 py24"><!-- wmax940 mx-auto -->
+    <div class="adm-title amd-title--sticky px36 py24"><!-- wmax940 mx-auto -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
           <div class="flex-parent flex-parent--center-cross">
             <Button @click="getVehsAMTCEdit"  type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
