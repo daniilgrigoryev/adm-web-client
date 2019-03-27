@@ -80,37 +80,37 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.ndom" @on-input-change="store" ></Input>
+                    <Input class="adm-input adm-input--regular wmin60" v-model="data.adr.ndom" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
             </div>
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label wmax60 wmin60">Корпус</small>
+              <small class="adm-text-small color-gray-medium adm-form__label">Корпус</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nkorpus" @on-input-change="store" ></Input>
+                    <Input class="adm-input adm-input--regular wmin60" v-model="data.adr.nkorpus" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
             </div> 
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label  wmax60 wmin60">Строение</small>
+              <small class="adm-text-small color-gray-medium adm-form__label">Строение</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nstroenie" @on-input-change="store" ></Input>
+                    <Input class="adm-input adm-input--regular wmin60" v-model="data.adr.nstroenie" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
             </div>
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label  wmax60 wmin60">Индекс</small>
+              <small class="adm-text-small color-gray-medium adm-form__label">Индекс</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax240" v-model="data.adr.pindex" disabled ></Input>
+                    <Input class="adm-input adm-input--regular wmin120" v-model="data.adr.pindex" disabled ></Input>
                   </Col>
                 </Row>
               </div>
@@ -221,9 +221,11 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-
+  import MaskedInput from "~/components/shared/MaskedInput";
+  
   export default {
     name: "PlaceViewEdit",
+    components: {MaskedInput},
     async created() {
       try {
         let current = formStack.getCurrent();

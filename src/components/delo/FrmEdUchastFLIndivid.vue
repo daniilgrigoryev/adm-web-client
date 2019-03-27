@@ -6,7 +6,7 @@
             <Button @click="getUchastFLIndividEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
               <img src='../../assets/images/pen.svg' class="wmax-none">
             </Button>
-            <b class="adm-text-big color-dark-lighter">{{body.individ.firstName + ' ' + body.individ.secondName + ' ' + body.individ.thirdName + ' ', body.individ.birthdayDay.replace(/[\.\/]/g,'.') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.')}}</b>
+            <b class="adm-text-big color-dark-lighter">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'/') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('/')}}</b>
           </div>
           <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
             <img src='../../assets/images/wiki.svg' class="wmax-none">
@@ -22,7 +22,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.individ.firstName + ' ' + body.individ.secondName + ' ' + body.individ.thirdName + ' ', body.individ.birthdayDay.replace(/[\.\/]/g,'.') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.')" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                  <Input class="adm-input adm-input--regular" readonly :value="body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'/') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('/')" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                 </Col>
               </Row>
             </div>

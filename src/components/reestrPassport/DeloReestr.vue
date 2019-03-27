@@ -46,9 +46,7 @@
                     <Col :xs="24" :md="24" :lg="6">
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item my12">
-                          <!-- <Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ"
-                                 clearable></Input> -->
-                          <masked-input v-model="filter.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}" inputClass="adm-input adm-input--big" clearable></masked-input> 
+                          <masked-input v-model="filter.regno" placeholder="ГРЗ" :maskProps="maskRegno" inputClass="adm-input adm-input--big" clearable></masked-input> 
                         </div>
                       </div>
                     </Col>
@@ -300,6 +298,11 @@
           birthday: null,
           regno: null,
           upi: null
+        },
+        maskRegno: {
+          regex: '[a-zA-Zа-яА-Я0-9]+', 
+          casing: 'upper', 
+          placeholder: '' 
         },
         maskInputFIO: {
           regex: '[а-яА-ЯёЁ]+',

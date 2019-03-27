@@ -13,7 +13,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="data.docN" @on-input-change="storeElementData"></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="data.docN" @onInputChange="storeElementData"></masked-input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
@@ -104,7 +104,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <masked-input inputClass="adm-input adm-input--regular"  v-model="data.evacRegno"  @on-input-change="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                  <masked-input inputClass="adm-input adm-input--regular"  v-model="data.evacRegno"  @onInputChange="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
                 </Col>
               </Row>
             </div>

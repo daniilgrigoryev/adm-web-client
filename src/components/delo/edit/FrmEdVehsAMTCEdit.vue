@@ -27,7 +27,7 @@
               <div class="adm-form__item_content">
                 <Row type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="24">
-                    <masked-input inputClass="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                    <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="vehsAMTC.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
                   </Col>
                 </Row>
               </div>

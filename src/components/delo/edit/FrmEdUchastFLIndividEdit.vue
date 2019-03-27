@@ -63,7 +63,8 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastIndivid.individ.firstName" ></Input>
+                  <!-- <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastIndivid.individ.firstName" ></Input> -->
+                  <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastIndivid.individ.firstName" :maskProps="maskInputFIO"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -73,7 +74,8 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastIndivid.individ.secondName" ></Input>
+                  <!-- <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastIndivid.individ.secondName" ></Input> -->
+                  <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastIndivid.individ.secondName" :maskProps="maskInputFIO"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -83,7 +85,9 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="uchastIndivid.individ.thirdName" ></Input>
+                  <!-- <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="uchastIndivid.individ.thirdName" ></Input> -->
+                  <masked-input inputClass="adm-input adm-input--regular"  @onInputChange="store" v-model="uchastIndivid.individ.thirdName"  :maskProps="maskInputFIO"></masked-input>
+                  {{uchastIndivid.individ.thirdName}}
                 </Col>
               </Row>
             </div>
@@ -279,6 +283,11 @@
         tipList: null,
         birthMestoList: null,
         gragdanstvoList: null,
+        maskInputFIO: {
+          regex: '[а-яА-ЯёЁ]+',
+          casing: 'upper',
+          placeholder: ''
+        },
         sexList: [
           {
             label: 'Мужской',

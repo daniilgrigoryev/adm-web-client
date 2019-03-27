@@ -173,7 +173,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" @on-input-change="store"></Input>
+                  <Input class="adm-input adm-input--regular" v-model="docsPost.workPlace" @on-input-change="store" :maxlength="120"></Input>
                 </Col>
               </Row>
             </div>
@@ -183,7 +183,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="docsPost.dopSved" @on-input-change="store"></Input>
+                  <Input class="adm-input adm-input--regular" v-model="docsPost.dopSved" @on-input-change="store"  :maxlength="255"></Input>
                 </Col>
               </Row>
             </div>
@@ -205,12 +205,14 @@
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
   import DatePickerMask from "~/components/shared/DatePickerMask";
-  
+  import MaskedInput from "~/components/shared/MaskedInput";
+
   export default {
     name: "FrmEdDocsPostEdit",
     components: {
       WizardModal,
-      DatePickerMask
+      DatePickerMask,
+      MaskedInput
     },
     async created() {
       try {

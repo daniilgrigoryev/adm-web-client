@@ -9,7 +9,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.regno" @on-input-change="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                  <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.regno" @onInputChange="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
                 </Col>
               </Row>
             </div>
@@ -44,7 +44,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
                 <!-- TODO -->
-                  <masked-input inputClass="adm-input adm-input--regular wmax240"  @on-input-change="storeElementData" :maskProps="{casing: 'upper'}"></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240"  @onInputChange="storeElementData" :maskProps="{casing: 'upper'}"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -67,7 +67,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
                   <!-- TODO -->
-                  <masked-input inputClass="adm-input adm-input--regular wmax240" :maskProps="{casing: 'upper'}" @on-input-change="storeElementData" ></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" :maskProps="{casing: 'upper'}" @onInputChange="storeElementData" ></masked-input>
                 </Col>
               </Row>
             </div>
@@ -77,7 +77,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.vin" :maskProps="{casing: 'upper'}"  @on-input-change="storeElementData"></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.vin" :maskProps="{casing: 'upper'}"  @onInputChange="storeElementData"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -87,7 +87,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.color" :maskProps="{casing: 'upper'}"  @on-input-change="storeElementData"></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.color" :maskProps="{casing: 'upper'}"  @onInputChange="storeElementData"></masked-input>
                 </Col>
               </Row>
             </div>

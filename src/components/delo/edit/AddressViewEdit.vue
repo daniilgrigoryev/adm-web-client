@@ -130,17 +130,17 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax60" v-model="data.ndom" @on-input-change="store" ></Input>
+                    <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
             </div>
             <div class="adm-form__item ml18">
-              <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax60">Корпус</small>
+              <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax120">Корпус</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nkorpus" @on-input-change="store" ></Input>
+                    <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
@@ -150,7 +150,7 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nstroenie" @on-input-change="store" ></Input>
+                    <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
@@ -160,7 +160,7 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="store"></Input>
+                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
@@ -191,9 +191,11 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
+  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "AddressViewEdit",
+    components: {MaskedInput},
     async created() {
       try {
         let current = formStack.getCurrent();
