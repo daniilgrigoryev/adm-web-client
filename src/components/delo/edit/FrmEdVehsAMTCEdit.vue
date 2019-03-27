@@ -9,15 +9,16 @@
           <b class="adm-text-big color-dark-lighter">Редактирование ТС</b>
         </div>
         <div class="buttons-wrap">
-          <button @click="grid = true">2 колонки</button>
-          <button @click="grid = false">1 колонка</button>
+          <button @click="itemsStyleClass = '__grid'">2 колонки</button>
+          <button @click="itemsStyleClass = ''">1 колонка</button>
+          <button @click="itemsStyleClass = 'new-grid'">Новая версия</button>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../../assets/images/wiki.svg' class="wmax-none">
         </Button>
       </div>
     </div>
-    <div class="items-wrap" :class="{__grid: grid}">
+    <div class="items-wrap" :class="itemsStyleClass">
       <div class="adm-form">
         <div class="adm-form__container ">
           <h2 class="adm-text-big color-dark-light adm-form__headding">Основные сведения</h2>
@@ -218,7 +219,7 @@
           </div>
         </div>
       </div>
-      <div>
+      <div class="sub-wrap">
         <div class="adm-form">
           <div class="adm-form__container ">
             <h2 class="adm-text-big color-dark-light adm-form__headding">Агрегаты</h2>
@@ -384,7 +385,7 @@
           alias: "datetime",
           inputFormat: 'yyyy'
         },
-        grid: true
+        itemsStyleClass: "new-grid"
       }
     },
     methods: {
@@ -596,6 +597,39 @@
         padding: 8px !important;
       }
     }
+    &.new-grid {
+      display: grid;
+      grid-gap: 15px;
+      padding: 0 20px;
+      .adm-form {
+        margin: 0;
+        .adm-form__container {
+          height: 100%;
+          margin: 0;
+          padding: 15px 40px;
+          .adm-form__headding {
+            height: auto;
+            padding: 0;
+            background: transparent;
+            color: #797979;
+            margin-bottom: 10px;
+          }
+          .adm-form__content{
+            padding: 0 !important;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 5px;
+          }
+          .adm-form__label {
+            min-width: 160px;
+          }
+        }
+      }
+      .sub-wrap {
+        grid-gap: 15px;
+        display: grid;
+      }
+    }
   }
   .adm-form__item{
     display: flex;
@@ -611,7 +645,6 @@
   .adm-form {
     margin: 10px;
   }
-  
   .adm-form__label{
     padding: 0;
     padding-right: 12px;
@@ -623,15 +656,4 @@
   .adm-form__item_content{
     width: 100%;
   }
-  // .err:after{
-  //   content: "";
-  //   position: absolute;
-  //   width: 12px;
-  //   height: 12px;
-  //   top: 10px;
-  //   right: 10px;
-  //   border-radius: 100%;
-  //   display: inline-block;
-  //   background-color: #6FB81E;
-  // }
 </style>
