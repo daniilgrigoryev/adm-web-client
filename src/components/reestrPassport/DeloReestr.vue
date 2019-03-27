@@ -48,7 +48,7 @@
                         <div class="w-full adm-form__item my12">
                           <!-- <Input class="adm-input adm-input--big" v-model="filter.regno" placeholder="ГРЗ"
                                  clearable></Input> -->
-                          <masked-input v-model="filter.regno" placeholder="ГРЗ" :maskProps="{casing: 'upper',}" inputClass="adm-input adm-input--big" clearable></masked-input> 
+                          <masked-input v-model="filter.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}" inputClass="adm-input adm-input--big" clearable></masked-input> 
                         </div>
                       </div>
                     </Col>

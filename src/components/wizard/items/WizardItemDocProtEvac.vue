@@ -104,7 +104,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputGrz" v-model="data.evacRegno"  @on-input-change="storeElementData"></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular"  v-model="data.evacRegno"  @on-input-change="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
                 </Col>
               </Row>
             </div>
@@ -224,10 +224,6 @@
         maskInputProt: {
           casing: 'upper',
           placeholder: 'номер протокола'
-        },
-        maskInputGrz: {
-          casing: 'upper',
-          placeholder: ' '
         },
         dolzModal: {
           visible: false,

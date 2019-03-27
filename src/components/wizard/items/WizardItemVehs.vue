@@ -9,7 +9,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <masked-input inputClass="adm-input adm-input--regular wmax240" :maskProps="maskInputRegno" v-model="data.regno" @on-input-change="storeElementData"></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.regno" @on-input-change="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
                 </Col>
               </Row>
             </div>
@@ -119,10 +119,6 @@ export default {
             markAvtoList: null,
             kuzovTypeList: null,
             modelList: null,
-            maskInputRegno: {
-              casing: 'upper',
-              placeholder: ' '
-            },
             ownerList: [{
                     label: 'ЛВОК',
                     value: 1
