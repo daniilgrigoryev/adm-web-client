@@ -13,7 +13,7 @@
       </Col>
       <Col :xs="24" :sm="18" :md="18" :lg="18">
         <div>
-          <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
+          <Layout ref="Main" class=" px36 py12" style="min-height: calc(100vh - 125px);">
 
             <wizard-item-doc-prot-rasm id="DocProtRasm" v-if="isVisible('DocProtRasm')" ref="DocProtRasm" :info="getInfo('DocProtRasm')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-rasm>
 

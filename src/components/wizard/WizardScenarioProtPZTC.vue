@@ -12,7 +12,7 @@
       </Col>
       <Col :xs="24" :sm="18" :md="18" :lg="18">
         <div>
-          <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
+          <Layout ref="Main" class=" px36 py12" style="min-height: calc(100vh - 125px);">
             <wizard-item-doc-prot-evac v-if="isVisible('DocProtEvac')" ref="DocProtEvac" :info="getInfo('DocProtEvac')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-evac>
             <wizard-item-place v-if="isVisible('DocProtEvac.PlaceNar')" ref="DocProtEvac.PlaceNar" :info="getInfo('DocProtEvac.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
             <wizard-item-place id="DocProtEvac.PlaceSost" v-if="isVisible('DocProtEvac.PlaceSost')" ref="DocProtEvac.PlaceSost" :info="getInfo('DocProtEvac.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
