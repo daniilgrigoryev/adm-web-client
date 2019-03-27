@@ -426,13 +426,17 @@
           }
         });
         let modelList = [];
+        let modelListTemp = [];
         let modelDict = JSON.parse(eventResponse.response).data;
         for (let i = 0; i < modelDict.length; i++) {
           let model = modelDict[i];
-          modelList.push({
-            label: model.modName,
-            value: model.modName // id
-          });
+          if (!modelListTemp.includes(model.modName)) {
+            modelList.push({
+              label: model.modName,
+              value: model.modName // id
+            });
+            modelListTemp.push(model.modName);
+          }
         }
         this.modelList = modelList;
       },
