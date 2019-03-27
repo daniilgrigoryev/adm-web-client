@@ -1,53 +1,53 @@
 <template>
   <div v-if="data">
     <div class="adm-form">
-      <Row :gutter="16" type="flex" align="middle">
-        <Col>
-          <h2 class="adm-text-big color-dark-light my12">Лицо в отношении которого заводится дело (ЛВОК)</h2>
-        </Col>
-        <Col>
-          <Select class="adm-input adm-input--regular wmax240 wmin180" disabled placeholder="" v-model="data.status" clearable @on-change="changeStatus">
-            <Option class="wmax360 txt-break-word" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>
-        </Col>
-      </Row>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
+      <div class="adm-form__container mt6">
+        <h2 class="adm-text-big adm-form__headding" >Лицо в отношении которого заводится дело (ЛВОК)</h2>
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData"  placeholder="">
-              <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+          <Col>
+            <Select class="adm-input adm-input--regular wmax240 wmin180" disabled placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+              <Option class="wmax360 txt-break-word" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
         </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.lvokName" disabled @on-input-change="changeFIO" ></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
-              <Option class="wmax360 txt-break-word" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-      <div class="my12 adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Присутствие ЛВОКа:</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="adm-input adm-input--regular wmin180" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">
-              <Option class="wmax360 txt-break-word" v-for="item in presenceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData"  placeholder="">
+                <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </div>
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Input class="adm-input adm-input--regular" v-model="data.lvokName" disabled @on-input-change="changeFIO" ></Input>
+            </Col>
+          </Row>
+        </div>
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
+                <Option class="wmax360 txt-break-word" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </div>
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Присутствие ЛВОКа:</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="adm-input adm-input--regular wmin180" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">
+                <Option class="wmax360 txt-break-word" v-for="item in presenceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </div>
       </div>
     </div>
   </div>
