@@ -81,7 +81,7 @@
 							<div class="adm-form__item_content">
 								<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-									<Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.ndom" @on-input-change="storeElementData" ></Input>
+									<Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.ndom" @on-input-change="storeElementData" :maxlength="5"></Input>
 								</Col>
 								</Row>
 							</div>
@@ -91,7 +91,7 @@
 							<div class="adm-form__item_content">
 								<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-									<Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nkorpus" @on-input-change="storeElementData" ></Input>
+									<Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nkorpus" @on-input-change="storeElementData" :maxlength="5"></Input>
 								</Col>
 								</Row>
 							</div>
@@ -101,7 +101,7 @@
 							<div class="adm-form__item_content">
 								<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-									<Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nstroenie" @on-input-change="storeElementData" ></Input>
+									<Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nstroenie" @on-input-change="storeElementData" :maxlength="5"></Input>
 								</Col>
 								</Row>
 							</div>

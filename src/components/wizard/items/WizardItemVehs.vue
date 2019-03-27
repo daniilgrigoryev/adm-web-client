@@ -44,7 +44,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
                 <!-- TODO -->
-                  <masked-input inputClass="adm-input adm-input--regular wmax240"  @onInputChange="storeElementData" :maskProps="{casing: 'upper'}"></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240"  @onInputChange="storeElementData" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9/]+', placeholder: ''}"></masked-input>
                 </Col>
               </Row>
             </div>
