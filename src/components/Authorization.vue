@@ -66,35 +66,32 @@
             let loginParams = new RequestEntity.LoginParams(new Fingerprint().get(), funcUtils.webGlId(), navigator.platform, navigator.userAgent, null, this.userName, null, this.password);
             let isValidSession = await this.$root.isValidSession();
 
-            if (isValidSession) {
-              loginParams = new RequestEntity.LoginParamsSID(new Fingerprint().get(), funcUtils.webGlId(), navigator.platform, navigator.userAgent, null, null, localStorage.getItem('admSid'));
-            }
-
-            eventResponse = await RequestApi.prepareData({
-              beanName: null,
-              method: 'login',
-              params: loginParams,
-              cid: null
-            });
-            if (eventResponse.status === 200) {
-              let data = eventResponse.response;
-              if (data.length > 0) {
-                let dataJson = JSON.parse(data);
-                let respData = dataJson.data;
-                let respError = dataJson.error;
-                if (!funcUtils.isNull(respData)) {
-                  if (dataJson.method === 'login') {
+            if (!isValidSession) {
+              funcUtils.clearAll();
+              eventResponse = await RequestApi.prepareData({
+                beanName: null,
+                method: 'login',
+                params: loginParams,
+                cid: null
+              });
+              if (eventResponse.status === 200) {
+                let data = eventResponse.response;
+                if (data.length > 0) {
+                  let dataJson = JSON.parse(data);
+                  let respData = dataJson.data;
+                  let respError = dataJson.error;
+                  if (!funcUtils.isNull(respData)) {
                     localStorage.setItem('admSid', respData.sid);
-                    this.$root.activateTimer();
-                    sessionStorage.removeItem('admAuthSid');
+                  } else {
+                    alert('Неправильное имя пользователя или пароль');
+                    console.log(respError.errorMsg);
                   }
-                } else {
-                  alert('Неправильное имя пользователя или пароль');
                 }
               }
             }
 
             if (funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
+              this.$root.activateTimer();
               let wid = sessionStorage.getItem('admWid');
               let requestHead = new RequestEntity.RequestHead(localStorage.getItem('admSid'), wid, null, null, 'addWID');
               RequestApi.sendSocketRequest({

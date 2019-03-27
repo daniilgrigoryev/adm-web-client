@@ -115,10 +115,10 @@ function clearDeloTreeCardView() {
 export function clearAll() {
   clearDeloTreeCardView();
   localStorage.removeItem('admSid');
-  localStorage.removeItem('admAuthSid');
   localStorage.removeItem('admLastActive');
   localStorage.removeItem('admDeloReestr');
   localStorage.removeItem('admUserInfo');
+  sessionStorage.removeItem('admAuthSid');
   sessionStorage.removeItem('mainMenuActiveName');
 }
 
