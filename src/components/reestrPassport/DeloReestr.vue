@@ -325,6 +325,9 @@
               res.push(item);
             }
           }
+          res.sort((a, b) => {
+            return b.deloDate - a.deloDate;
+          });
         }
         return res;
       },
@@ -352,7 +355,7 @@
     },
     methods: {
       isEmptyData() {
-        return funcUtils.isEmpty(this.dataStore) || funcUtils.isEmpty(this.dataStore.data);
+        return funcUtils.isEmpty(this.dataStore) || funcUtils.isEmpty(this.dataStore.data) || funcUtils.isEmpty(this.dataStore.data.fields);
       },
       declOfNum(number, titles) {
         let cases = [2, 0, 1, 1, 1, 2];
