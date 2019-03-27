@@ -69,7 +69,7 @@
 
           </Layout>
 
-          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light adm-btn-footer--sticky">
             <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
             <Button @click="save" type="primary" class="ml12">Возбудить</Button>
           </div>
@@ -83,15 +83,15 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import WizardItemAddress from "~/components/wizard/items/WizardItemAddress";
-  import WizardItemDocProtRasm from "~/components/wizard/items/WizardItemDocProtRasm";
-  import WizardItemIndividual from "~/components/wizard/items/WizardItemIndividual";
-  import WizardItemLvok from "~/components/wizard/items/WizardItemLvok";
-  import WizardItemOrganization from "~/components/wizard/items/WizardItemOrganization";
-  import WizardItemOwner from "~/components/wizard/items/WizardItemOwner";
-  import WizardItemPlace from "~/components/wizard/items/WizardItemPlace";
-  import WizardItemPredDoc from "~/components/wizard/items/WizardItemPredDoc";
-  import WizardItemVehs from "~/components/wizard/items/WizardItemVehs";
+  import WizardItemAddress from "./items/WizardItemAddress.vue";
+  import WizardItemDocProtRasm from "./items/WizardItemDocProtRasm.vue";
+  import WizardItemIndividual from "./items/WizardItemIndividual.vue";
+  import WizardItemLvok from "./items/WizardItemLvok.vue";
+  import WizardItemOrganization from "./items/WizardItemOrganization.vue";
+  import WizardItemOwner from "./items/WizardItemOwner.vue";
+  import WizardItemPlace from "./items/WizardItemPlace.vue";
+  import WizardItemPredDoc from "./items/WizardItemPredDoc.vue";
+  import WizardItemVehs from "./items/WizardItemVehs.vue";
 
   export default {
     name: "WizardScenarioProtAPN",

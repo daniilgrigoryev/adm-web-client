@@ -12,13 +12,13 @@
       </Col>
       <Col :xs="24" :sm="18" :md="18" :lg="18">
         <div>
-          <Layout ref="Main" class="bg-white py24" style="min-height: calc(100vh - 125px);">
+          <Layout ref="Main" class="bg-white px36 py12" style="min-height: calc(100vh - 125px);">
             <wizard-item-doc-prot-evac v-if="isVisible('DocProtEvac')" ref="DocProtEvac" :info="getInfo('DocProtEvac')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot-evac>
             <wizard-item-place v-if="isVisible('DocProtEvac.PlaceNar')" ref="DocProtEvac.PlaceNar" :info="getInfo('DocProtEvac.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
             <wizard-item-place id="DocProtEvac.PlaceSost" v-if="isVisible('DocProtEvac.PlaceSost')" ref="DocProtEvac.PlaceSost" :info="getInfo('DocProtEvac.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
             <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
           </Layout>
-          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light adm-btn-footer--sticky">
             <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
             <Button @click="save" type="primary" class="ml12">Возбудить</Button>
           </div>
