@@ -97,8 +97,25 @@ export function lookupValue(dictName, key) {
   return res;
 }
 
+function clearDeloTreeCardView() {
+  let toRemove = [];
+  let searchKey = 'deloTreeCardView';
+  for (let i = 0; i < sessionStorage.length; i++) {
+    let key = sessionStorage.key(i);
+    if (isString(key) && key.indexOf(searchKey) !== -1) {
+      toRemove.push(key);
+    }
+  }
+  for (let i = 0; i < toRemove.length; i++) {
+    let key = toRemove[i];
+    sessionStorage.removeItem(key);
+  }
+}
+
 export function clearAll() {
+  clearDeloTreeCardView();
   localStorage.removeItem('admSid');
+  localStorage.removeItem('admAuthSid');
   localStorage.removeItem('admLastActive');
   localStorage.removeItem('admDeloReestr');
   localStorage.removeItem('admUserInfo');

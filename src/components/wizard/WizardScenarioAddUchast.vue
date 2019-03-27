@@ -29,7 +29,7 @@
 
           </Layout>
 
-          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light">
+          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light adm-btn-footer--sticky">
             <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
             <Button @click="save" type="primary" class="ml12">Возбудить</Button>
           </div>

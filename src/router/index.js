@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Authorization from '../components/Authorization';
 import DeloReestr from '../components/reestrPassport/DeloReestr';
 import DashBoard from '../components/reestrPassport/DashBoard';
 
@@ -30,11 +29,6 @@ const router = new Router({
   base: '/admWeb/',
   hashbang: false,
   routes: [
-    {
-      path: '/',
-      name: 'Authorization',
-      component: Authorization
-    },
     {
       path: '/deloReestr',
       name: 'DeloReestr',
@@ -129,17 +123,23 @@ const router = new Router({
 router.beforeEach( async (to, from, next) => {
   try {
     let sid = to.query.sid;
-    if (funcUtils.isNotEmpty(sid) && to.name === 'Authorization') {
-      next({name: 'Authorization', params: {sid: sid}});
-    } else if (funcUtils.isNotEmpty(to.params.sid) && to.name === 'Authorization') {
-      next();
+    if (funcUtils.isNotEmpty(sid)) {
+      sessionStorage.setItem('admAuthSid', sid);
+      next(false);
+      await router.app.$store.dispatch('authorizationSetData', {
+        auth: true,
+        authorization: false
+      });
     } else {
       let rootMethods = router.app.$options.methods;
       let current = formStack.getCurrent();
       let isValidSession = await rootMethods.isValidSession();
-      if (funcUtils.isNull(current) || !isValidSession) {
+
+      if (funcUtils.isNull(current)) {
+        next(false);
+      } else if (!isValidSession) {
         rootMethods.logout.call(router.app);
-      } else if (funcUtils.isNotEmpty(current) && (to.matched.length === 0 || current.routeName !== to.name)) {
+      }  else if (funcUtils.isNotEmpty(current) && (to.matched.length === 0 || current.routeName !== to.name)) {
         next({name: current.routeName});
       } else {
         next();
