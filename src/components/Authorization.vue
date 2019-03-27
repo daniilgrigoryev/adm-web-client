@@ -86,6 +86,7 @@
                   if (dataJson.method === 'login') {
                     localStorage.setItem('admSid', respData.sid);
                     this.$root.activateTimer();
+                    sessionStorage.removeItem('admAuthSid');
                   }
                 } else {
                   alert('Неправильное имя пользователя или пароль');
