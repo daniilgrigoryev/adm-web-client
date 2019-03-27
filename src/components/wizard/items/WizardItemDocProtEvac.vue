@@ -124,7 +124,8 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular wmax240" @on-input-change="storeElementData" v-model="data.evacActNumber" ></Input>
+                  <!-- <Input class="adm-input adm-input--regular wmax240" @on-input-change="storeElementData" v-model="data.evacActNumber" ></Input> -->
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.evacActNumber" @onInputChange="storeElementData" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
                 </Col>
               </Row>
             </div>
@@ -222,6 +223,7 @@
         pnpaList: null,
         stotvSearchInfoList: null,
         maskInputProt: {
+          regex: '[0-9]+',
           casing: 'upper',
           placeholder: 'номер протокола'
         },

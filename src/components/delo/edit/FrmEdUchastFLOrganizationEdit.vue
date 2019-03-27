@@ -62,7 +62,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="uchastOrganization.organization.name" ></Input>
+                  <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.name" :maskProps="maskInputFIO" :maxlength="100"></masked-input>
                 </Col>
               </Row>
             </div>
@@ -74,7 +74,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="uchastOrganization.organization.inn" ></Input>
+                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.inn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -86,7 +86,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastOrganization.organization.kpp" ></Input>
+                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.kpp" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="10"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -112,7 +112,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastOrganization.organization.ogrn" ></Input>
+                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.ogrn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="13"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -255,6 +255,11 @@
         vedomsList: null,
         tipULList: null,
         delo: null,
+        maskInputFIO: {
+          regex: '[а-яА-ЯёЁ]+',
+          casing: 'upper',
+          placeholder: ''
+        },
         phoneMask: {
           placeholder: ' ',
           mask: '99999999999'
