@@ -52,7 +52,7 @@ export async function toNext(payload) {
   stack.push(next);
   funcUtils.addToSessionStorage(wid, stack);
 
-  vm.$router.push({name: routeName, params});
+  vm.$router.replace({name: routeName, params});
 
   return next;
 }
@@ -75,7 +75,7 @@ export function toPrev(payload) {
   }
 
   funcUtils.addToSessionStorage(wid, stack);
-  vm.$router.push({name: prev.routeName});
+  vm.$router.replace({name: prev.routeName});
 
   return current;
 }

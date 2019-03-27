@@ -3,9 +3,6 @@ import Vuex from 'vuex';
 import VueResource from 'vue-resource'
 
 import authorization from './modules/authorization';
-import accounting from './modules/accounting';
-import offense from './modules/offense';
-import delo from './modules/delo';
 import deloReestr from './modules/deloReestr';
 import dashBoard from './modules/dashBoard';
 
@@ -177,9 +174,6 @@ const store = new Vuex.Store({
     wizardItemPredDoc,
     wizardItemVehs,
     wizardItemAddUchast,
-    accounting,
-    delo,
-    offense,
     authorization,
   }
 });

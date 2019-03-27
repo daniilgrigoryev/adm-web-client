@@ -247,7 +247,7 @@
     async destroyed() {
       let current = formStack.getCurrent();
       let prev = formStack.getPrev();
-      if ((funcUtils.isEmpty(prev) || prev.routeName !== this.$store.state.deloTreeCardView.routeName) && current.routeName !== this.$store.state.deloTreeCardView.routeName) {
+      if ((funcUtils.isEmpty(prev) || prev.routeName !== this.$store.state.deloTreeCardView.routeName) && (funcUtils.isNotEmpty(current) && current.routeName !== this.$store.state.deloTreeCardView.routeName)) {
         this.clearIfExist();
       }
       this.$store.dispatch('deloTreeCardViewSetCid', null);
@@ -358,7 +358,9 @@
         for (let i = 0; i < sessionStorage.length; i++) {
           let key = sessionStorage.key(i);
           if (funcUtils.isString(key) && key.indexOf(this.$store.state.deloTreeCardView.moduleName) !== -1) {
-            await innerFormStack.clearStack(key);
+            if (formStack.stackSize() > 0) {
+              await innerFormStack.clearStack(key);
+            }
             toRemove.push(key);
           }
         }

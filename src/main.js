@@ -68,10 +68,14 @@ let vue = new Vue({
         alert(e.message);
       } finally {
         funcUtils.clearAll();
+        await this.$store.dispatch('authorizationSetData', {
+          auth: false,
+          authorization: false
+        });
         RequestApi.closeSocket();
         formStack.clearStack(true);
-        window.close();
-        // window.location.href = constantUtils.HTTP_URL_AUTH;
+        // window.close();
+        window.location.href = location.origin + constantUtils.contextPath;
       }
     },
     async getDeloReestr() {

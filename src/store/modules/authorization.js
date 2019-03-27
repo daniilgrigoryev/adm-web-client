@@ -19,14 +19,14 @@ export default {
     }
   },
   actions: {
-    authorizationSetCid: ({commit}, payload) => {
-      commit('authorizationSetCid', payload);
+    authorizationSetCid(vm, cid) {
+      vm.state.cid = cid;
     },
-    authorizationSetData: ({commit}, payload) => {
-      commit('authorizationSetData', payload.data);
+    authorizationSetData(vm, data) {
+      vm.state.data = data;
     },
-    authorizationSetCommand: ({commit}, payload) => {
-      commit('authorizationSetCommand', payload.data);
+    authorizationSetCommand(vm, command) {
+      vm.state.command = command;
     }
   },
   getters: {
