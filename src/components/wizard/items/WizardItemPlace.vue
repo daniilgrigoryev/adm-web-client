@@ -136,7 +136,8 @@
 							<div class="adm-form__item_content">
 								<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-									<Input class="adm-input adm-input--regular" v-model="data.km" @on-input-change="storeElementData" ></Input>
+									<!-- <Input class="adm-input adm-input--regular" v-model="data.km" @on-input-change="storeElementData" ></Input> -->
+									<masked-input inputClass="adm-input adm-input--regular" v-model="data.km" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
 								</Col>
 								</Row>
 							</div>
@@ -213,9 +214,11 @@
 import * as funcUtils from "../../../assets/js/utils/funcUtils";
 import * as formStack from '../../../assets/js/api/formStack';
 import RequestApi from "../../../assets/js/api/requestApi";
+import MaskedInput from "~/components/shared/MaskedInput";
 
 export default {
 	name: "WizardItemPlace",
+	components: {MaskedInput},
 	props: {
 		info: Object,
 		title: String
