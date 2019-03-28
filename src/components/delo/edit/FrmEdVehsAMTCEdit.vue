@@ -321,7 +321,7 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import MaskedInput from "../../shared/MaskedInput";
-  import DatePickerMask from "~/components/shared/DatePickerMask";
+  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
 
   export default {
     name: "FrmEdVehsAMTCEdit",

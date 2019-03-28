@@ -52,7 +52,7 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import DatePickerMask from "~/components/shared/DatePickerMask";
+  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
 
   export default {
     name: "WizardItemDocPostSecond",

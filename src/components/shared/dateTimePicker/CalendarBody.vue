@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import MaskedInput from "~/components/shared/MaskedInput";
-  import * as funcUtils from "../../assets/js/utils/funcUtils";
+  import MaskedInput from "../MaskedInput";
+  import * as funcUtils from "../../../assets/js/utils/funcUtils";
 
   export default {
     name: "CalendarBody",
