@@ -211,7 +211,7 @@
                 <Row type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="24">
                     <!--<Input class="adm-input adm-input&#45;&#45;regular" v-model="vehsAMTC.yearVyp"></Input>-->
-                    <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable></masked-input>
+                    <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable :placeholder="maskInputYearVyp.placeholder"></masked-input>
                   </Col>
                 </Row>
               </div>
@@ -383,7 +383,8 @@
         typeTCList: null,
         maskInputYearVyp: {
           alias: "datetime",
-          inputFormat: 'yyyy'
+          inputFormat: 'yyyy',
+          placeholder: 'гггг'
         },
         itemsStyleClass: "new-grid"
       }
