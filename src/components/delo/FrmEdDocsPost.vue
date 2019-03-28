@@ -31,7 +31,8 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" ></Input>
+                      <!-- <Input class="adm-input adm-input--regular" readonly :value="" ></Input> -->
+                      <p class="adm-txt-regular color-dark-base">{{body.pnpaKod, body.pnpaName | concatByDelimiter(',')}}</p>
                     </Col>
                   </Row>
                 </div>
@@ -41,7 +42,8 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" ></Input>
+                      <!-- <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" ></Input> -->
+                      <p class="adm-txt-regular color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(',')}}</p>
                     </Col>
                   </Row>
                 </div>
@@ -55,7 +57,8 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.datUved | formatDateTime('DD.MM.YYYY')" ></Input>
+                      <!-- <Input class="adm-input adm-input--regular" readonly :value="body.datUved | formatDateTime('DD.MM.YYYY')" ></Input> -->
+                      <p class="adm-txt-regular color-dark-base">{{body.datUved | formatDateTime('DD.MM.YYYY')}}</p>
                     </Col>
                   </Row>
                 </div>
@@ -67,7 +70,8 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY')" ></Input>
+                      <!-- <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY')" ></Input> -->
+                      <p class="adm-txt-regular color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY')}}</p>
                     </Col>
                   </Row>
                 </div>
@@ -79,7 +83,8 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" ></Input>
+                  <!-- <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" ></Input> -->
+                  <p class="adm-txt-regular color-dark-base">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')}}</p>
                 </Col>
               </Row>
             </div>
@@ -89,7 +94,8 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" ></Input>
+                  <!-- <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" ></Input> -->
+                  <p class="adm-txt-regular color-dark-base">{{body.organSostName}}</p>
                 </Col>
               </Row>
             </div>
@@ -99,7 +105,8 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull" ></Input>
+                  <!-- <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull" ></Input> -->
+                  <p class="adm-txt-regular color-dark-base">{{body.placeSost.placeFull}}</p>
                 </Col>
               </Row>
             </div>
@@ -210,7 +217,7 @@
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    min-height: 90px;
+    min-height: 80px;
     // outline: 1px solid;
   }
   .adm-form__label{
