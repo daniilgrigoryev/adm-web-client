@@ -526,6 +526,13 @@
         let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
         this.sizeInnerStack = innerFormStack.stackSize(uid);
       },
+      getSelectedNode() {
+        return this.deloTree.filter((item) => {
+          if (item.selected) {
+            return item;
+          }
+        })[0];
+      },
       async getPrev() {
         try {
           await this.clearComponent();
@@ -544,7 +551,7 @@
       },
       addUchastWizard() {
         try {
-          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
           let params = {
             scenarioName: 'AddUchast',
             node: copyNode
@@ -563,7 +570,7 @@
       },
       createWizardScenarioPZTC() {
         try {
-          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
           let params = {
             scenarioName: 'CreateProtPZTC',
             node: copyNode
@@ -582,7 +589,7 @@
       },
       createWizardScenarioAPN() {
         try {
-          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
           let params = {
             scenarioName: 'CreateProtAPN',
             node: copyNode
@@ -601,7 +608,7 @@
       },
       createWizardScenarioPost() {
         try {
-          let copyNode = this.getCopyObj(this.deloInfo, 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
           let params = {
             scenarioName: 'CreatePost',
             node: copyNode

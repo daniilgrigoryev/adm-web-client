@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <masked-input v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" @onInputChange="onInputChange" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></masked-input>
+    <masked-input v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></masked-input>
 
     <i v-if="!isHidden" @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
   </div>
@@ -73,26 +73,6 @@
       onClick(e) {
         if (!this.disabled && !this.readonly) {
           this.$emit('onClick');
-        }
-      },
-      onBlur(e) {
-        // @onBlur="onBlur"
-        let value = e.currentTarget.value;
-        if (value !== funcUtils.parseDateTime(this.currentValue, this.momentFormat)) {
-          let date = funcUtils.formatDateTime(value, this.momentFormat);
-          if (date.isValid()) {
-            this.$emit('change', date.toDate());
-          } else {
-            this.$emit('change', null);
-            this.currentValue = null;
-          }
-        }
-      },
-      onInputChange(e) {
-        let value = e.currentTarget.value;
-        let date = funcUtils.formatDateTime(value, this.momentFormat);
-        if (value.length > 0 && value.indexOf(this.momentFormat) === -1 && date.isValid()) {
-
         }
       },
       onClear(e) {
