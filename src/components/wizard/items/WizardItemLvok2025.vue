@@ -3,13 +3,16 @@
     <div class="adm-form">
       <div class="adm-form__container mt6">
         <h2 class="adm-text-big adm-form__headding" >Лицо в отношении которого заводится дело (ЛВОК)</h2>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col>
-            <Select class="adm-input adm-input--regular wmax240 wmin180" disabled placeholder="" v-model="data.status" clearable @on-change="changeStatus">
-              <Option class="wmax360 txt-break-word" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
+        <div class="my12 adm-form__item">
+          <small class="adm-text-small color-gray-medium adm-form__label">Статус</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col>
+              <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+                <Option class="wmax360 txt-break-word" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </div>
         <div class="my12 adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
           <Row :gutter="16" type="flex" align="middle">
