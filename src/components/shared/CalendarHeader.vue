@@ -1,7 +1,7 @@
 <template>
   <div class="calendar">
 
-    <div v-show="!visibleTime && !isOnlyTime" class="ivu-date-picker-header">
+    <div v-if="!visibleTime && !isOnlyTime" class="ivu-date-picker-header">
       <span @click="subtractYear" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow-double">
         <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
       </span>
@@ -20,7 +20,7 @@
       </span>
     </div>
 
-    <div v-show="!visibleTime && !isOnlyTime" class="ivu-picker-panel-content">
+    <div v-if="!visibleTime && !isOnlyTime" class="ivu-picker-panel-content">
       <ul class="weekdays">
         <li class="day" v-for="day in days">{{day}}</li>
       </ul>
@@ -42,22 +42,22 @@
         </li>
       </ul>
     </div>
-    <div v-show="visibleTime && isTime" class="time">
-      <ul v-show="isShowHours" class="time-list hours-list">
+    <div v-if="visibleTime && isTime" class="time">
+      <ul v-if="isShowHours" class="time-list hours-list">
         <li :class="['time-item', {'select-time select-hour': null != selectedTime && item == selectedHours}]" v-for="(item, key) in hours" :key="key" @click="setHour(item)">{{item}}</li>
       </ul>
-      <ul v-show="isShowMinutes" class="time-list minutes-list">
+      <ul v-if="isShowMinutes" class="time-list minutes-list">
         <li :class="['time-item', {'select-time select-minute': null != selectedTime && item == selectedMinutes}]" v-for="(item, key) in minutes" :key="key" @click="setMinute(item)">{{item}}</li>
       </ul>
-      <ul v-show="isShowSeconds" class="time-list seconds-list">
+      <ul v-if="isShowSeconds" class="time-list seconds-list">
         <li :class="['time-item', {'select-time select-second': null != selectedTime && item == selectedSeconds}]" v-for="(item, key) in seconds" :key="key" @click="setSecond(item)">{{item}}</li>
       </ul>
     </div>
     <div class="ivu-picker-confirm confirm">
-      <button v-show="!visibleTime && isTime && !isOnlyTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
+      <button v-if="!visibleTime && isTime && !isOnlyTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
         <span>Выбрать время</span>
       </button>
-      <button v-show="visibleTime && isTime && !isOnlyTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
+      <button v-if="visibleTime && isTime && !isOnlyTime" @click="showTime" type="button" class="ivu-btn ivu-btn-text ivu-btn-small ivu-picker-confirm-time">
         <span>Выбрать дату</span>
       </button>
       <button :disabled="!selectedDate || (!selectedTime && isOnlyTime)" @click="clear" type="button" class="ivu-btn ivu-btn-default ivu-btn-small">
