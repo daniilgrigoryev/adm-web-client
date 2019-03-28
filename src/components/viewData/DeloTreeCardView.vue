@@ -18,8 +18,12 @@
               <span class="adm-h3">Дело №</span>
               <span class="adm-h1">{{deloContext.deloN}}</span>
             </a>
-            <p class="color-green-base ml24 flex-parent flex-parent--center-cross">
-              <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23"/>
+
+
+
+
+            <p class="ml24 flex-parent flex-parent--center-cross" :class="changeClass(deloContext.stadKod)">
+              <Icon class="color-green-bas mx6" type="ios-checkmark-circle-outline" :size="23"/>
               <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
             </p>
 
@@ -256,7 +260,7 @@
     data() {
       return {
         hideMore: false,
-        sizeInnerStack: 0
+        sizeInnerStack: 0,
       }
     },
     computed: {
@@ -419,6 +423,43 @@
         if (this.$refs.innerForm) {
           await this.$refs.innerForm.addForm(copyNode);
           this.updateSelected();
+        }
+      },
+      changeClass(stadKod) {
+        if (funcUtils.isNotEmpty(stadKod)) {
+          switch (stadKod) {
+            case 1: {
+              // Возбуждено
+              return "color-red";
+            }
+            case 2: {
+              // Рассмотрение
+              return "color-orange";
+            }
+            case 3: {
+              // Обжалование
+              return "color-yellow";
+            }
+            case 4: {
+              // Пересмотр
+              return "color-green";
+            }
+            case 5: {
+              // Исполнение
+              return "color-blue";
+            }
+            case 6: {
+              // Исполнено
+              return "color-purple";
+            }
+            case 7: {
+              // Прекращено
+              return "color-red";
+            }
+            default: {
+              return "";
+            }
+          }
         }
       },
       arrayToTree(arr) {

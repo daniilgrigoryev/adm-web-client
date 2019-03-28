@@ -6,8 +6,8 @@
           <div class="ml18" style="width: 40px; height: 40px;">
             <img :src="iconNode" alt="">
           </div>
-          <div class="col mx18">
-            <p v-html="node.name" class="adm-text-big color-dark-base txt-break-word"></p>
+          <div class="col mx18 formatter">
+            <p v-html="format" class="adm-text-big color-dark-base txt-break-word"></p>
           </div>
           <span v-if="isParent && isFolder">
             <img v-if='open' src='../../assets/images/controls-switch-chevron-up.svg'>
@@ -58,6 +58,10 @@
       }
     },
     computed: {
+      format(){
+        let nodeName = this.node.name.replace(/\<br\>/g," ").replace(/\<b\>/g," ");
+        return nodeName;
+      },
       isParent() {
         return this.node.height === 3;
       },
