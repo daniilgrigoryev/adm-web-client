@@ -75,15 +75,17 @@
         from: 0,
         to: 40,
         limit: 40,
-        delta: 40,
         currentPage: 1,
         list: null,
-        filter: null,
+        filter: '',
         filterKeys: null
       }
     },
     methods: {
       filterClick() {
+        this.from = 0;
+        this.to = 40;
+        this.currentPage = 1;
         if (this.filter.length === 0) {
           this.list = this.data;
           return;
@@ -124,8 +126,8 @@
         }
       },
       changePage(nextPage) {
-        this.to = this.delta * nextPage;
-        this.from = (this.delta * nextPage) - this.delta;
+        this.to = this.limit * nextPage;
+        this.from = (this.limit * nextPage) - this.limit;
         this.currentPage = nextPage;
       },
       changeTableHeight() {
