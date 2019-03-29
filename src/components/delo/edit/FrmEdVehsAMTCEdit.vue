@@ -9,9 +9,10 @@
           <b class="adm-text-big color-dark-lighter">Редактирование ТС</b>
         </div>
         <div class="buttons-wrap">
-          <button @click="itemsStyleClass = '__grid'">2 колонки</button>
-          <button @click="itemsStyleClass = ''">1 колонка</button>
-          <button @click="itemsStyleClass = 'new-grid'">Новая версия</button>
+          <button @click="itemsStyleClass = ''">v1</button>
+          <button @click="itemsStyleClass = '__grid'">v2</button>
+          <button @click="itemsStyleClass = 'new-grid'">v3</button>
+          <button @click="itemsStyleClass = 'gray-blocks-style'">v4</button>
         </div>
         <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../../assets/images/wiki.svg' class="wmax-none">
@@ -560,7 +561,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss">
   
   .buttons-wrap {
     display: grid;
@@ -629,6 +630,48 @@
       .sub-wrap {
         grid-gap: 15px;
         display: grid;
+      }
+    }
+    &.gray-blocks-style {
+      .adm-form {
+        margin: 0;
+        border-bottom: 1px solid #e4e4e4;
+        .adm-form__container {
+          background: #f3f3f3;
+          margin: 0;
+          border: none;
+          border-radius: 0;
+          .adm-form__headding {
+            border-radius: 0;
+            background: #fff;
+            height: 46px;
+            color: #6b94c2;
+            border-bottom: 1px solid #e4e4e4;
+          }
+          .adm-form__content{
+            padding: 20px 50px !important;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 5px;
+            .adm-form__label {
+              min-width: 160px;
+              font-weight: 500;
+            }
+            .adm-input .ivu-select-selection {
+              outline: none;
+            }
+            .adm-input .ivu-select-input, .adm-input .ivu-input {
+              border: 1px solid #DEDEDE;
+              background: #fff;
+              &:hover {
+                border-color: #9A9A9A;
+              }
+              &:focus {
+                border-color: #53A4D6;
+              }
+            }
+          }
+        }
       }
     }
   }
