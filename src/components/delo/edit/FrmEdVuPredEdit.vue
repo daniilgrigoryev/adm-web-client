@@ -35,7 +35,7 @@
               </Row>
             </div>
           </div>
-          <Row>
+          <Row :gutter="16">
             <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Номер</small>
@@ -61,7 +61,7 @@
               </div>
             </Col>
           </Row>
-          <Row>
+          <Row :gutter="16">
             <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
@@ -88,7 +88,7 @@
             </Col>
           </Row>
           
-          <Row>
+          <Row :gutter="16">
             <Col span="24">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан</small>
@@ -102,8 +102,7 @@
               </div>  
             </Col>
           </Row>
-
-          <Row>
+          <Row :gutter="16">
             <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Утилизации</small>
@@ -129,7 +128,7 @@
               </div>
             </Col>
           </Row>
-          <Row>
+          <Row :gutter="16">
             <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Статус</small>
@@ -445,7 +444,7 @@
   .adm-form__label{
     padding: 0;
     padding-right: 12px;
-    min-width: 210px;
+    min-width: 130px;
   }
   .adm-form__item_content{
     width: 100%;
