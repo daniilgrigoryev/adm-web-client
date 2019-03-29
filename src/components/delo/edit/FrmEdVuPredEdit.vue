@@ -24,12 +24,12 @@
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование документа участника</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Тип предъявленного документа</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Тип документа</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
-                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="store">
-                    <Option class="wmax360 txt-break-word" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  <Select class="adm-input adm-input--regular" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="store">
+                    <Option class="txt-break-word" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                   </Select>
                 </Col>
               </Row>
@@ -38,7 +38,7 @@
           <Row>
             <Col span="12">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Номер</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -68,7 +68,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular" v-model="vuPred.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -87,10 +87,11 @@
               </div>
             </Col>
           </Row>
+          
           <Row>
-            <Col span="12">
+            <Col span="24">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан документ</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -98,8 +99,11 @@
                     </Col>
                   </Row>
                 </div>
-              </div>
+              </div>  
             </Col>
+          </Row>
+
+          <Row>
             <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Утилизации</small>
@@ -107,22 +111,6 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateUtil" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
-                        <Option class="wmax360 txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
                     </Col>
                   </Row>
                 </div>
@@ -140,6 +128,23 @@
                 </div>
               </div>
             </Col>
+          </Row>
+          <Row>
+            <Col span="12">
+              <div class="adm-form__item">
+                <small class="adm-text-small color-gray-medium adm-form__label">Статус</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Select class="adm-input adm-input--regular" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
+                        <Option class="txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+
           </Row>
         </div>
       </div>

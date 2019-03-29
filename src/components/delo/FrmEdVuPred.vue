@@ -31,7 +31,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Номер</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -51,7 +51,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан документ</small>
+                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
