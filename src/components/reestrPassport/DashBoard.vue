@@ -108,7 +108,7 @@
       createWizardScenarioPZTC() {
         try {
           let params = {
-            scenarioName: 'CreateProtPZTC'
+            scenarioName: 'CreateProtEvac'
           };
 
           formStack.toNext({

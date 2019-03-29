@@ -572,7 +572,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
           let params = {
-            scenarioName: 'CreateProtPZTC',
+            scenarioName: 'CreateProtEvac',
             node: copyNode
           };
 
