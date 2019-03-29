@@ -196,7 +196,7 @@
       <div v-if="deloTree">
         <Row type="flex">
           <Col>
-            <div class="h-full bg-blue-thin">
+            <div class="bg-blue-thin">
               <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
             </div>
           </Col>
@@ -572,7 +572,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
           let params = {
-            scenarioName: 'CreateProtPZTC',
+            scenarioName: 'CreateProtEvac',
             node: copyNode
           };
 

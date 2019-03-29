@@ -49,6 +49,15 @@
 
         let eventResponse = await RequestApi.prepareData(prepareParams);
         let cids = Object.keys(JSON.parse(eventResponse.response).data);
+
+        let parentNode = null;
+        eventResponse = await RequestApi.prepareData({
+          method: 'getParentNode',
+        });
+        if (eventResponse.response) {
+          parentNode = JSON.parse(eventResponse.response).data;
+        }
+
         let info = {};
         for (let i = 0; i < cids.length; i++) {
           let cid = cids[i];
@@ -59,6 +68,7 @@
             }
           });
           info[cid] = JSON.parse(eventResponse.response).data;
+          info[cid].parentNode = parentNode;
         }
         let pathes = {};
         for (let prop in info) {
@@ -109,6 +119,13 @@
         await this.updateComponents(cids);
       },
       async updateComponents(cids) {
+        let parentNode = null;
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getParentNode',
+        });
+        if (eventResponse.response) {
+          parentNode = JSON.parse(eventResponse.response).data;
+        }
         let cidsKeySet = Object.keys(cids);
         for (let i = 0; i < cidsKeySet.length; i++) {
           let cid = cidsKeySet[i];
@@ -129,6 +146,7 @@
             let info = JSON.parse(eventResponse.response).data;
             if (funcUtils.isEmpty(this.pathes[info.path])) {
               info.eCID = cid;
+              info.parentNode = parentNode;
               this.pathes[info.path] = info;
               this.$refs[this.scenario].$forceUpdate();
             }
