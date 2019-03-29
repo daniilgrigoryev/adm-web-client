@@ -313,7 +313,7 @@
     },
     methods: {
       async showOgaiModal(visible) {
-        if (visible) {
+        if (visible && funcUtils.isEmpty(this.ogaiModal.ogaiList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
@@ -324,9 +324,6 @@
           this.ogaiModal.ogaiList = ogaiList.filter((item) => {
             return funcUtils.isNotEmpty(item.OGAI_KOD);
           });
-
-        } else {
-          this.ogaiModal.ogaiList = null;
         }
         this.ogaiModal.visible = visible;
       },

@@ -4,7 +4,9 @@
 
       <wizard-scenario2025 v-if="isVisible('CreateProt2025')" ref="CreateProt2025" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario2025>
 
-      <wizard-scenario-prot-p-z-t-c v-if="isVisible('CreateProtPZTC')" ref="CreateProtPZTC" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-p-z-t-c>
+      <!--<wizard-scenario-prot-p-z-t-c v-if="isVisible('CreateProtPZTC')" ref="CreateProtPZTC" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-p-z-t-c>-->
+
+      <wizard-scenario-prot-evac v-if="isVisible('CreateProtEvac')" ref="CreateProtEvac" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-evac>
 
       <wizard-scenario-prot-a-p-n v-if="isVisible('CreateProtAPN')" ref="CreateProtAPN" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-a-p-n>
 
@@ -18,6 +20,7 @@
   import WizardScenario2025 from "~/components/wizard/WizardScenario2025";
   import WizardScenarioPost from "~/components/wizard/WizardScenarioPost";
   import WizardScenarioProtPZTC from "~/components/wizard/WizardScenarioProtPZTC";
+  import WizardScenarioProtEvac from "~/components/wizard/WizardScenarioProtEvac";
   import WizardScenarioProtAPN from "~/components/wizard/WizardScenarioProtAPN";
   import WizardScenarioAddUchast from "~/components/wizard/WizardScenarioAddUchast";
 
@@ -28,6 +31,7 @@
       WizardScenarioPost,
       WizardScenarioProtPZTC,
       WizardScenarioProtAPN,
+      WizardScenarioProtEvac,
       WizardScenarioAddUchast
     },
     async created() {
