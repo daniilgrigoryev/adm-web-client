@@ -1,6 +1,7 @@
 import * as ConstantUtils from './../utils/constantUtils';
 import $ from "jquery";
 import moment from 'moment';
+import Stack from "~/assets/js/api/stack";
 
 export function guid() {
   function s4() {
@@ -110,6 +111,15 @@ function clearDeloTreeCardView() {
     let key = toRemove[i];
     sessionStorage.removeItem(key);
   }
+}
+
+export function newExternalSessionStorage() {
+  let sessionStorageCopy = JSON.parse(JSON.stringify(sessionStorage));
+  let copyStack = sessionStorageCopy[sessionStorageCopy['admWid']];
+  delete sessionStorageCopy[sessionStorageCopy['admWid']];
+  sessionStorageCopy['admWid'] = guid();
+  sessionStorageCopy[sessionStorageCopy['admWid']] = new Stack(JSON.parse(copyStack));
+  return sessionStorageCopy;
 }
 
 export function clearAll() {

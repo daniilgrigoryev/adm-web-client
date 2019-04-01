@@ -1413,6 +1413,26 @@
           alert(e.message);
         }
       },
+      /*getDelo(delo) {
+        try {
+          let params = {
+            deloId: delo.deloId,
+            isExternal: true
+          };
+          let externalSessionStorage = funcUtils.newExternalSessionStorage();
+
+          formStack.toNextNewTab({
+            module: this.$store.state.deloTreeCardView,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true,
+            externalSessionStorage: externalSessionStorage
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },*/
     }
   }
 </script>

@@ -1,6 +1,7 @@
 import * as funcUtils from "../utils/funcUtils";
 import RequestApi from "./requestApi";
 import Stack from "./stack";
+import * as constantUtils from "~/assets/js/utils/constantUtils";
 
 export async function toNext(payload) {
   let module = payload.module;
@@ -12,9 +13,14 @@ export async function toNext(payload) {
   let cid = payload.cid;
   let withCreate = payload.withCreate;
   let params = payload.params;
+  let externalSessionStorage = payload.externalSessionStorage;
+  let externalStack;
+  if (funcUtils.isNotEmpty(externalSessionStorage)) {
+    externalStack = externalSessionStorage[externalSessionStorage.admWid];
+  }
 
   let wid = sessionStorage.getItem('admWid');
-  let stack = new Stack(funcUtils.getFromSessionStorage(wid));
+  let stack = externalStack || new Stack(funcUtils.getFromSessionStorage(wid));
   let prev = stack.peek();
   if (prev) {
     prev.current = false;
@@ -50,11 +56,20 @@ export async function toNext(payload) {
   }
 
   stack.push(next);
-  funcUtils.addToSessionStorage(wid, stack);
-
-  vm.$router.replace({name: routeName, params});
+  if (!externalStack) {
+    funcUtils.addToSessionStorage(wid, stack);
+    vm.$router.replace({name: routeName, params});
+  }
 
   return next;
+}
+
+export async function toNextNewTab(payload) {
+  await toNext(payload);
+  funcUtils.addToLocalStorage('admWidNew', payload.externalSessionStorage);
+
+  let addr = location.origin + constantUtils.contextPath + payload.module.routeName;
+  window.open(addr, '_blank');
 }
 
 export function toPrev(payload) {
@@ -78,6 +93,14 @@ export function toPrev(payload) {
   vm.$router.replace({name: prev.routeName});
 
   return current;
+}
+
+export function updateCurrent(current) {
+  let wid = sessionStorage.getItem('admWid');
+  let stack = new Stack(funcUtils.getFromSessionStorage(wid));
+  stack.pop();
+  stack.push(current);
+  funcUtils.addToSessionStorage(wid, stack);
 }
 
 export function getCurrent() {

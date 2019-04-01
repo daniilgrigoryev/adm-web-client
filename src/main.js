@@ -34,6 +34,14 @@ let vue = new Vue({
   data: {},
   render: h => h(App),
   async created() {
+    let externalSessionStorage = funcUtils.getfromLocalStorage('admWidNew');
+    if (funcUtils.isNotEmpty(externalSessionStorage)) {
+      let admWid = externalSessionStorage.admWid;
+      sessionStorage.setItem('admWid', admWid);
+      funcUtils.addToSessionStorage(admWid, externalSessionStorage[admWid]);
+      localStorage.removeItem('admWidNew');
+    }
+
     if (funcUtils.isNull(sessionStorage.getItem('admWid'))) {
       sessionStorage.setItem('admWid', funcUtils.guid());
       funcUtils.addToSessionStorage(sessionStorage.getItem('admWid'), new Stack());
