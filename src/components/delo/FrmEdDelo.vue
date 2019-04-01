@@ -136,7 +136,7 @@
         </div>
 
 
-        <div v-if="isNotEmptyField(body.stotvZakon)" class="ml60 my18">
+        <div v-if="isNotEmptyField(body.violStotvKod)" class="ml60 my18">
           <p class="adm-14 color-dark-lighter mb6">Статья {{body.stotvZakon}}</p>
           <h2 class="adm-h2 color-dark-base mb6">{{viol.violStotvKod}}</h2>
           <p class="adm-text-italic color-dark-base">{{viol.violStotvName}}</p>

@@ -129,7 +129,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .prot-pztc {
     .adm-form {
       .adm-form__headding {

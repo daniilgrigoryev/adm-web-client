@@ -561,7 +561,7 @@
   }
 </script>
 
-<style  lang="scss">
+<style  lang="scss" scoped>
   
   .buttons-wrap {
     display: grid;
