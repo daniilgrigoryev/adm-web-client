@@ -1,72 +1,67 @@
 <template>
   <div v-if="data">
-    <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <h2 class="adm-text-big adm-form__headding" id="sost">ЛВОК</h2>
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
-          <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-              <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
-                <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
-              </Select>
-            </Col>
-          </Row>
-        </div>
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="fio" @on-input-change="changeFIO" placeholder="ФИО"></Input>
-            </Col>
-          </Row>
-        </div>
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Пол:</small>
-          <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-              <Select class="adm-input adm-input--regular wmin180" v-model="data.sex" @on-change="storeElementData" placeholder="">
-                <Option value="М">Мужской</Option>
-                <Option value="Ж">Женский</Option>
-              </Select>
-            </Col>
-          </Row>
-        </div>
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения:</small>
-          <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.birthdayDay" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-            </Col>
-          </Row>
-        </div>
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
-          <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-              <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData" >
-                <Option class="wmax360 txt-break-word" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
-              </Select>
-            </Col>
-          </Row>
-        </div>
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Место работы:</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Место работы:"></Input>
-            </Col>
-          </Row>
-        </div>
-        <div class="my12 adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Телефон:</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон:"></Input>
-            </Col>
-          </Row>
-        </div>
-      </div>
+    <div class="my12 adm-form__item">
+      <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
+      <Row :gutter="16" type="flex" align="middle">
+      <Col :xs="24" :md="14" :lg="16">
+          <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
+            <Option class="wmax360 txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+          </Select>
+        </Col>
+      </Row>
+    </div>
+    <div class="my12 adm-form__item">
+      <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="fio" @on-input-change="changeFIO" placeholder="ФИО"></Input>
+        </Col>
+      </Row>
+    </div>
+    <div class="my12 adm-form__item">
+      <small class="adm-text-small color-gray-medium adm-form__label">Пол:</small>
+      <Row :gutter="16" type="flex" align="middle">
+      <Col :xs="24" :md="14" :lg="16">
+          <Select class="adm-input adm-input--regular wmin180" v-model="data.sex" @on-change="storeElementData" placeholder="">
+            <Option value="М">Мужской</Option>
+            <Option value="Ж">Женский</Option>
+          </Select>
+        </Col>
+      </Row>
+    </div>
+    <div class="my12 adm-form__item">
+      <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения:</small>
+      <Row :gutter="16" type="flex" align="middle">
+      <Col :xs="24" :md="14" :lg="16">
+        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.birthdayDay" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+        </Col>
+      </Row>
+    </div>
+    <div class="my12 adm-form__item">
+      <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
+      <Row :gutter="16" type="flex" align="middle">
+      <Col :xs="24" :md="14" :lg="16">
+          <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData" >
+            <Option class="wmax360 txt-break-word" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+          </Select>
+        </Col>
+      </Row>
+    </div>
+    <div class="my12 adm-form__item">
+      <small class="adm-text-small color-gray-medium adm-form__label">Место работы:</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Место работы:"></Input>
+        </Col>
+      </Row>
+    </div>
+    <div class="my12 adm-form__item">
+      <small class="adm-text-small color-gray-medium adm-form__label">Телефон:</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон:"></Input>
+        </Col>
+      </Row>
     </div>
   </div>
 </template>
