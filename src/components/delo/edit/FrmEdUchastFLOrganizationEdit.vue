@@ -3,7 +3,7 @@
 
     <div class="pt24 px36">
       <div class="flex-parent flex-parent--center-cross">
-        <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover color-dark-lighter color-blue-on-hover transition">
+        <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus color-dark-lighter color-blue-on-hover transition">
           <div class="flex-parent flex-parent--center-cross">
             <Icon type="ios-arrow-dropleft mr24" class="bg-whte" :size="30" />
             <b class="adm-text-big">В просмотр участника дела</b>
@@ -127,8 +127,8 @@
                   <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.organization.address.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+                  <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                   </Button>
                 </Col>
               </Row>
@@ -142,8 +142,8 @@
                   <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.factAddr.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+                  <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                   </Button>
                 </Col>
               </Row>

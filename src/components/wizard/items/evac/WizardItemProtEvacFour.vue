@@ -4,7 +4,7 @@
       <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="24" :lg="24">
+          <Col :xs="24" :md="22" :lg="22">
             <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
               <Option class="txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
@@ -16,7 +16,7 @@
       <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="24" :lg="24">
+          <Col :xs="24" :md="22" :lg="22">
             <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-change="storeElementData">
               <Option class="txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
@@ -28,7 +28,7 @@
       <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="24" :lg="24">
+          <Col :xs="24" :md="22" :lg="22">
             <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.factSved" ></Input>
           </Col>
         </Row>

@@ -44,7 +44,7 @@
           <div class="my12 adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
             <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName + body.inspSostDolz" ></Input>
+              <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" ></Input>
             </Row>
           </div>
           <div class="my12 adm-form__item">

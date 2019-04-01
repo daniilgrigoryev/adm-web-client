@@ -11,7 +11,7 @@
           </Select>
         </Col>
       </Row>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Вид:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -21,7 +21,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item" v-if="vehsList && vehsList.length > 0">
+      <div class="adm-form__item" v-if="vehsList && vehsList.length > 0">
         <small class="adm-text-small color-gray-medium adm-form__label">Список ТС:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -31,7 +31,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item" v-if="tipList && tipList.length > 0">
+      <div class="adm-form__item" v-if="tipList && tipList.length > 0">
         <small class="adm-text-small color-gray-medium adm-form__label">Тип участника:</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">

@@ -1,15 +1,15 @@
 <template>
 	<div>
-		<div class="my12 adm-form__item">
+		<div class="adm-form__item">
 			<small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
 			<div class="adm-form__item_content">
 				<Row :gutter="16" type="flex" align="middle">
 					<Col :xs="22" :md="22" :lg="22">
-						<Input class="adm-input adm-input--regular" v-model="fullAddress" disabled type="textarea"></Input>
+						<Input class="adm-input adm-input--regular" v-model="fullAddress" disabled></Input>
 					</Col>
 					<Col :xs="2" :md="2" :lg="2">
-						<Button @click="showPlaceModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-							<Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+						<Button @click="showPlaceModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+							<Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
 						</Button>
 					</Col>
 				</Row>
@@ -665,8 +665,6 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
     // min-height: 90px;
     // outline: 1px solid;
   }

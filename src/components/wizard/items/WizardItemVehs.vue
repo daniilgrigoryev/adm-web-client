@@ -11,7 +11,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.regno"
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="data.regno"
                                     @onInputChange="storeElementData" placeholder="ГРЗ"
                                     :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"
                                     clearable></masked-input>
@@ -26,7 +26,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.vin"
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="data.vin"
                                     :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: '', casing: 'upper'}"
                                     @onInputChange="storeElementData"></masked-input>
                     </Col>
@@ -75,7 +75,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
                       <!-- TODO -->
-                      <masked-input inputClass="adm-input adm-input--regular wmax240"
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180"
                                     :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}"
                                     @onInputChange="storeElementData"></masked-input>
                     </Col>
@@ -89,7 +89,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.color"
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="data.color"
                                     :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: '', casing: 'upper'}"
                                     @onInputChange="storeElementData"></masked-input>
                     </Col>
@@ -136,12 +136,16 @@
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Владелец</small>
             <div class="adm-form__item_content">
-              <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.ownerTip"
-                      :disabled="isEmptyParentNode()" clearable @on-change="storeElementData" filterable>
-                <Option v-for="item in ownerList" :value="item.value" :key="item.value">
-                  {{ item.label }}
-                </Option>
-              </Select>
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="22" :lg="22">
+                  <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.ownerTip"
+                          :disabled="isEmptyParentNode()" clearable @on-change="storeElementData" filterable>
+                    <Option v-for="item in ownerList" :value="item.value" :key="item.value">
+                      {{ item.label }}
+                    </Option>
+                  </Select>
+                </Col>
+              </Row>
             </div>
           </div>
         </div>
@@ -293,10 +297,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    // min-height: 90px;
-    // outline: 1px solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .adm-form__label {

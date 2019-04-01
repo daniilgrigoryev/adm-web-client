@@ -526,8 +526,16 @@ html, body, #app {
   }
 }
 
+.ivu-btn-text:focus.color-blue-on-focus:focus {
+  color: #57a3f3 !important;
+}
+
+.ivu-select-single .ivu-select-selection .ivu-select-placeholder, .ivu-select-single .ivu-select-selection .ivu-select-selected-value {
+  font-size: 16px;
+}
 
 .adm-input {
+
   .ivu-select-selection,
   .ivu-select-input,
   .ivu-input {

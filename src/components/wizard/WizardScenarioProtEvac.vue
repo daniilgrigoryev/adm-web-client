@@ -3,7 +3,7 @@
     <Row type="flex">
       <Col :xs="24" :sm="8" :md="6" :lg="6">
         <div class="bg-blue-thin h-full">
-          <ul class="ml60 mr24 my24 min-nav" v-if="isVisible('DocProtEvacOne')">
+          <ul class="ml60 mr24 my24 min-nav" style="top: 100px" v-if="isVisible('DocProtEvacOne')">
             <li v-for="item in goToSectionNav" :key="item.id">
               <a :href="'#' + item.name" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">{{item.title}}</a>
             </li>
@@ -49,9 +49,6 @@
               </div>
             </div>
 
-
-
-
             <wizard-item-vehs id="nar" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
 
             <div class="adm-form">
@@ -64,7 +61,7 @@
                 </div>
               </div>
             </div>
-            <wizard-item-prot-evac-five id="DocProtEvacFive" v-if="isVisible('DocProtEvacFive')" ref="DocProtEvacFive" :info="getInfo('DocProtEvacFive1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
+            <wizard-item-prot-evac-five id="DocProtEvacFive" v-if="isVisible('DocProtEvacFive')" ref="DocProtEvacFive" :info="getInfo('DocProtEvacFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
 
 
             <div class="adm-form">
@@ -214,7 +211,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .prot-pztc {
     .adm-form {
       .adm-form__headding {
@@ -222,7 +219,6 @@
       }
       .adm-form__label {
         min-width: 180px;
-        width: auto;
       }
     }
   }

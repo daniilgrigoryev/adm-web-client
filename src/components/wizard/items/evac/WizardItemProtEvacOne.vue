@@ -10,8 +10,8 @@
                 <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="data.docN" @onInputChange="storeElementData"></masked-input>
               </Col>
               <Col span="6">
-                <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                  <Icon type="md-key"  class="bg-whte color-gray-light color-blue-on-hover transition" title="Получить уникальный номер" :size="35" />
+                <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Icon type="md-key" title="Получить уникальный номер" :size="35" />
                 </Button>
               </Col>
             </Row>

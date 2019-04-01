@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="adm-form">
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="22" :md="22" :lg="22">
-            <Input class="adm-input adm-input--regular" v-model="fullAddress" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+            <Input class="adm-input adm-input--regular" v-model="fullAddress" disabled :autosize="{minRows: 2,maxRows: 5}"></Input>
           </Col>
           <Col :xs="2" :md="2" :lg="2">
-            <Button @click="showAddressModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-              <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Адресный справочник" :size="35" />
+            <Button @click="showAddressModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus color-blue-on-hover color-gray-light transition color-blue-on-focus">
+              <Icon type="ios-bookmarks-outline" class="bg-whte" title="Адресный справочник" :size="35" />
             </Button>
           </Col>
         </Row>
@@ -25,7 +25,7 @@
         </Button>
       </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Страна</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -37,7 +37,7 @@
         </div>
 
       <div v-if="showIfRussia">
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -48,7 +48,7 @@
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -59,7 +59,7 @@
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -70,7 +70,7 @@
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -83,7 +83,7 @@
       </div>
 
       <div v-if="!showIfRussia">
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -92,7 +92,7 @@
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -104,7 +104,7 @@
 
 
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -113,7 +113,7 @@
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Корпус</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -122,7 +122,7 @@
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Строение</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -131,7 +131,7 @@
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Почтовый индекс</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -140,7 +140,7 @@
           </Row>
         </div>
 
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -524,4 +524,13 @@
 
 <style scoped>
 
+</style>
+
+
+<style lang="scss" scoped>
+  .button-directory {
+    &:focus {
+      color: #448ee4;
+    }
+  }
 </style>

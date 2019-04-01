@@ -3,7 +3,7 @@
     <div class="adm-form">
       <div class="adm-form__container mt6">
         <h2 class="adm-text-big adm-form__headding" >Лицо в отношении которого заводится дело (ЛВОК)</h2>
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Статус</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col>
@@ -13,7 +13,7 @@
             </Col>
           </Row>
         </div>
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -23,7 +23,7 @@
             </Col>
           </Row>
         </div>
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -31,7 +31,7 @@
             </Col>
           </Row>
         </div>
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
@@ -41,7 +41,7 @@
             </Col>
           </Row>
         </div>
-        <div class="my12 adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-text-small color-gray-medium adm-form__label">Присутствие ЛВОКа:</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">

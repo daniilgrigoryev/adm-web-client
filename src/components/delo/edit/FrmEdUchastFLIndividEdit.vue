@@ -158,7 +158,7 @@
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                   </Button>
                 </Col>
               </Row>
@@ -173,7 +173,7 @@
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="адресный справочник" :size="35" />
+                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                   </Button>
                 </Col>
               </Row>

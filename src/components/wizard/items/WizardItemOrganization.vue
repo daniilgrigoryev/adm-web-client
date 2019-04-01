@@ -4,7 +4,7 @@
     <wizard-modal v-if="ulModal.visible" :columnsOptions="ulModal.columnsOptions" :data="ulModal.ulList" @showModal="showUlModal" @onRowDbClick="onUlClick"></wizard-modal>
 
     <div class="adm-form">
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Название организации</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -15,7 +15,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">ИНН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -26,7 +26,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">ИНН кем выдан</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -34,7 +34,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">ОГРН</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -42,7 +42,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">КПП</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -50,7 +50,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">ОКПО</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -58,7 +58,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дата регистрации Юр. лица</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -66,7 +66,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Тип ЮЛ</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
@@ -76,7 +76,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Форма собственности</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
@@ -86,7 +86,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">ОПФ</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
@@ -96,7 +96,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Ведомство</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">

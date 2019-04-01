@@ -18,7 +18,7 @@
 
     
       <div class="adm-form">
-				<div class="my12 adm-form__item">
+				<div class="adm-form__item">
 					<small class="adm-text-small color-gray-medium adm-form__label">Поиск</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
@@ -33,7 +33,7 @@
 					</Row>
 				</div>
 
-				<div class="my12 adm-form__item" v-if="deloModal.deloList">
+				<div class="adm-form__item" v-if="deloModal.deloList">
 					<small class="adm-text-small color-gray-medium adm-form__label">
             <span v-if="deloModal.paramKey == 'deloNum'">Дело</span>
             <span v-if="deloModal.paramKey == 'postNum'">Постановление</span>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="adm-form">
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Номер постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -61,7 +61,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Уникальный номер дела</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -72,7 +72,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дата и время задержания</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -80,20 +80,20 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="22" :md="22" :lg="22">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
           </Col>
           <Col :xs="2" :md="2" :lg="2">
-            <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-              <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Список должностных лиц" :size="35" />
+            <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+              <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
             </Button>
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -101,7 +101,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -109,7 +109,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -117,7 +117,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -125,7 +125,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -133,7 +133,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -141,7 +141,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Орган рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -152,7 +152,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дата и время рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -160,7 +160,7 @@
           </Col>
         </Row>
       </div>
-      <div class="my12 adm-form__item">
+      <div class="adm-form__item">
         <small class="adm-text-small color-gray-medium adm-form__label">Дело - основание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">

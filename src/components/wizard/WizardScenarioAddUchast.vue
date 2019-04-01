@@ -3,7 +3,7 @@
     <Row type="flex">
       <Col :xs="24" :sm="8" :md="6" :lg="6">
           <div class="bg-blue-thin h-full">
-            <ul class="ml60 mr24 my24 min-nav">
+            <ul class="ml60 mr24 my24 min-nav" style="top: 100px">
               <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Постановление составил</a></li>
               <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Лицо в отношении которого заводится дело</a></li>
               <li class=""><a href="#" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">Транспортное средство</a></li>

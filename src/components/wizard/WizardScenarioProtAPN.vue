@@ -4,7 +4,7 @@
     <Row type="flex">
       <Col :xs="24" :sm="8" :md="6" :lg="6">
           <div class="bg-blue-thin h-full">
-            <ul class="ml60 mr24 my24 min-nav">
+            <ul class="ml60 mr24 my24 min-nav" style="top: 100px">
               <li v-for="item in goToSectionNav" :key="item.id" >
                 <a :href="'#' + item.name" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">{{item.title}}</a>
               </li>

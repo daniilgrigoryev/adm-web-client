@@ -9,9 +9,9 @@
           <div class="flex-parent flex-parent--center-cross">
 
             <Button @click="getPrev" type="text" style="outline: 0!important;"
-                    class="py0 px0 mr18 bg-transparent-on-hover" title="вернуться назад">
+                    class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="вернуться назад">
               <Icon type="ios-arrow-dropleft"
-                    class="bg-whte color-gray-light color-blue-on-hover transition px0 py0 mx0 my0" :size="45"/>
+                    class="  px0 py0 mx0 my0" :size="45"/>
             </Button>
 
             <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">

@@ -6,7 +6,7 @@
     <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover color-dark-lighter color-blue-on-hover transition">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus color-dark-lighter color-blue-on-hover transition">
             <div class="flex-parent flex-parent--center-cross">
               <Icon type="ios-arrow-dropleft mr18" class="bg-whte" :size="35" />
               <b class="adm-text-big">Назад</b>
@@ -94,8 +94,8 @@
                   <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydKod" @on-input-change="changeInspVydKod" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Список должностных лиц" :size="35" />
+                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
                   </Button>
                 </Col>
               </Row>
@@ -140,8 +140,8 @@
                   <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Справочник подразделений" :size="35" />
+                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
                   </Button>
                 </Col>
               </Row>

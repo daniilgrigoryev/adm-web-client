@@ -16,8 +16,8 @@
                   <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="data.docN" @onInputChange="storeElementData"></masked-input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="md-key"  class="bg-whte color-gray-light color-blue-on-hover transition" title="Получить уникальный номер" :size="35" />
+                  <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="md-key"  class=" " title="Получить уникальный номер" :size="35" />
                   </Button>
                 </Col>
               </Row>
@@ -48,8 +48,8 @@
                   <Input class="adm-input adm-input--regular" disabled v-model="data.inspSostName" @on-input-change="changeFIO" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Список должностных лиц" :size="35" />
+                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
                   </Button>
                 </Col>
               </Row>
@@ -63,8 +63,8 @@
                   <Input class="adm-input adm-input--regular" disabled v-model="data.organSostName" @on-input-change="changeOrganSostKod" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class="py0 px0 mr18 bg-transparent-on-hover">
-                    <Icon type="ios-bookmarks-outline" class="bg-whte color-gray-light color-blue-on-hover transition" title="Справочник подразделений" :size="35" />
+                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
                   </Button>
                 </Col>
               </Row>
@@ -745,8 +745,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
     // min-height: 90px;
     // outline: 1px solid;
   }
