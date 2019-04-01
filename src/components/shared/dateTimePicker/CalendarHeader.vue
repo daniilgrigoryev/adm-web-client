@@ -424,8 +424,13 @@
         display: flex;
         flex-direction: column;
         height: 200px;
-        overflow-y: auto;
+        overflow-y: hidden;
         flex: 1;
+        max-width: 75px;
+
+        &:hover {
+          overflow-y: auto;
+        }
 
         .time-item {
           padding: 10px 30px 10px;
