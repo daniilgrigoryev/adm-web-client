@@ -1,5 +1,15 @@
 <template>
   <div v-if="data">
+    <div class="adm-form__item">
+      <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateNar" @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+          </Col>
+        </Row>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -7,9 +17,13 @@
   import * as funcUtils from "../../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../../assets/js/api/formStack';
   import RequestApi from "../../../../assets/js/api/requestApi";
+  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
+
 
   export default {
-    name: "WizardItemProtEvacOne",
+    name: "WizardItemProtEvacThree",
+    components: {DatePickerMask, MaskedInput},
     props: {
       info: Object
     },
@@ -36,6 +50,10 @@
         } else {
           this.data = data;
         }
+      },
+      changeDateNar() {
+        this.stotvSearchInfoList = null;
+        this.storeElementData();
       },
 
       storeElementData() {

@@ -1,5 +1,79 @@
 <template>
   <div v-if="data">
+    <div class="adm-form">
+      <div class="adm-form__container mt6">
+        <h2 class="adm-text-big adm-form__headding" id="evac">Сведения об эвакуации</h2>
+        <div class="adm-form__content px36 py24">
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacOrgName" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Представитель</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.evacAgentName" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <masked-input inputClass="adm-input adm-input--regular"  v-model="data.evacRegno"  @onInputChange="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Штрафстоянка</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.impoundLotName" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <Row>
+            <Col span="12">
+              <div class="adm-form__item">
+                <small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="22" :md="22" :lg="22">
+                      <!-- <Input class="adm-input adm-input--regular wmax240" @on-input-change="storeElementData" v-model="data.evacActNumber" ></Input> -->
+                      <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.evacActNumber" @onInputChange="storeElementData" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+            <Col span="12">
+              <div class="adm-form__item">
+                <small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="22" :md="22" :lg="22">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.evacActTime" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -8,8 +82,12 @@
   import * as formStack from '../../../../assets/js/api/formStack';
   import RequestApi from "../../../../assets/js/api/requestApi";
 
+  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
+
   export default {
-    name: "WizardItemProtEvacOne",
+    name: "WizardItemProtEvacFive",
+    components: {DatePickerMask, MaskedInput},
     props: {
       info: Object
     },
