@@ -323,6 +323,7 @@
       },
       clear() {
         this.$emit('change', null);
+        this.$emit('hide');
       },
     }
   }

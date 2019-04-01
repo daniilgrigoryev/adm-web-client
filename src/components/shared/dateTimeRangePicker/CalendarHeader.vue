@@ -565,9 +565,11 @@
           valueFirst: this.selectedDateFirst.toDate(),
           valueSecond: this.selectedDateSecond.toDate()
         });
+        this.$emit('hide');
       },
       clear() {
         this.$emit('onClear');
+        this.$emit('hide');
       },
     }
   }
