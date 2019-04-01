@@ -3,7 +3,7 @@
     <ul class="tree">
       <li @click="parentNodeClick">
         <a href="javascript:void(0)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : node.selected }'>
-          <div class="ml18" style="width: 40px; height: 40px;">
+          <div class="ml18" style="width: 30px; height: 30px;">
             <img :src="iconNode" alt="">
           </div>
           <div class="col mx18 formatter">

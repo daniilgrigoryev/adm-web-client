@@ -200,6 +200,14 @@ html, body, #app {
     padding-left: 30px;
   }
 }
+.tree_wrapper{
+  position: -webkit-sticky;
+  position: sticky;
+  position: -webkit-sticky;
+  background: #f5fafd;
+  top: 66px;
+  z-index: 9;
+}
 .tree {
   max-width: 400px;
   position: -webkit-sticky;
@@ -257,6 +265,9 @@ html, body, #app {
 
 .header {
   border-bottom: 1px solid #CCCCCC;
+  position: sticky;
+  top: -1px;
+  z-index: 999;
   .header-menu {
     height: inherit;
     &:after {
@@ -365,8 +376,9 @@ html, body, #app {
 }
 .amd-title--sticky{
   position: sticky;
-  top: -1px;
+  top: 65px;
   z-index: 9;
+  background-color: #FAFAFA;
 }
 .adm-nav-jump{
   display: flex;

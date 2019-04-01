@@ -8,16 +8,17 @@
             </Button>
             <b class="adm-text-big color-dark-lighter">Транспортное средство</b>
           </div>
+          <div class="flex-parent flex-parent--end-main">
+            <Button type="primary" @click="optionView = 1" class="mx12">v1</Button>
+            <Button type="primary" @click="optionView = 2" class="mx12">v2</Button>
+          </div>
           <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
             <img src='../../assets/images/wiki.svg' class="wmax-none">
           </Button>
+
         </div>
     </div>
 
-      <div class="flex-parent flex-parent--end-main py24">
-        <Button type="primary" @click="optionView = 1" class="mx12">v1</Button>
-        <Button type="primary" @click="optionView = 2" class="mx12">v2</Button>
-      </div>
 
     <div class="adm-form" v-if="optionView == 1">
       <div class="adm-form__container my6 mx0 py12 px36">
@@ -220,7 +221,7 @@
       <div v-if="isNotEmptyField(body.motorTip) || isNotEmptyField(body.motorEcologClass)" class="py18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
         <div class="flex-parent">
           <div class="s40 mt12">
-              <img src="../../assets/images/eng.svg" class="w-full" alt="">
+              <img src="../../assets/images/eng.svg" class="mx-auto block" alt="">
           </div>
           <div class="ml18 w-full">
             <div class="grid">
@@ -276,7 +277,7 @@
       </div>
       <div class="flex-parent flex-parent--center-cross py30" v-if="isNotEmptyField(body.sobstvName)">
         <div class="s40">
-            <img src="../../assets/images/owner.svg" class="w-full h-full" alt="">
+            <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
         </div>
         <div class="ml18">
           <div>

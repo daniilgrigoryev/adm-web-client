@@ -8,10 +8,13 @@
         </Button>
       </div> -->
 
-      <div class="flex-parent flex-parent--end-main py24">
-        <Button type="primary" @click="optionView = 1" class="mx12">v1</Button>
-        <Button type="primary" @click="optionView = 2" class="mx12">v2</Button>
+      <div class="relative w-full">
+        <div class="flex-parent flex-parent--end-main absolute" style="right: 0">
+          <Button type="primary" @click="optionView = 1" class="mx12">v1</Button>
+          <Button type="primary" @click="optionView = 2" class="mx12">v2</Button>
+        </div>
       </div>
+
 
 
 
@@ -126,21 +129,21 @@
           </div>
         </div>
 
-        <div v-if="isNotEmptyField(viol.violPnpaKod)" class="ml60 my24">
+        <div v-if="isNotEmptyField(viol.violPnpaKod)" class="ml60 my18">
           <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
           <h2 class="adm-h2 color-dark-base mb6">{{viol.violPnpaKod}}</h2>
           <p class="adm-text-italic color-dark-base">{{viol.violPnpaName}}</p>
         </div>
 
 
-        <div v-if="isNotEmptyField(body.stotvZakon)" class="ml60 my24">
+        <div v-if="isNotEmptyField(body.stotvZakon)" class="ml60 my18">
           <p class="adm-14 color-dark-lighter mb6">Статья {{body.stotvZakon}}</p>
           <h2 class="adm-h2 color-dark-base mb6">{{viol.violStotvKod}}</h2>
           <p class="adm-text-italic color-dark-base">{{viol.violStotvName}}</p>
         </div>
 
         <div>
-          <div class="flex-parent py30" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
+          <div class="flex-parent py18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;" v-if="isNotEmptyField(body.inspVozbName) || isNotEmptyField(body.inspVozbRang) || isNotEmptyField(body.organVozbId)">
             <div class="s40 mt12">
                 <img src="../../assets/images/police.svg" class="w-full h-full" alt="">
             </div>
@@ -154,7 +157,7 @@
                 <p class="adm-text-italic color-dark-base mb6">{{ body.inspVozbRang, body.inspVozbDolz | concatByDelimiter(',') }}</p>
               </div>
 
-              <div v-if="isNotEmptyField(body.organVozbId)" class="mt30">
+              <div v-if="isNotEmptyField(body.organVozbId)" class="mt18">
                 <p class="adm-14 color-dark-lighter mb6">Орган, возбудивший дело</p>
                 <p class="adm-text-big color-dark-base">{{body.organVozbId, body.organVozbName | concatByDelimiter('-') }}</p>
               </div>
@@ -163,18 +166,18 @@
 
 
           <div class="ml60">
-            <div v-if="isNotEmptyField(body.docVozbName)" class="mt30">
+            <div v-if="isNotEmptyField(body.docVozbName)" class="mt12">
               <p class="adm-14 color-dark-lighter mb6">Документ основание</p>
               <p class="adm-text-big color-dark-base">{{body.docVozbName}}</p>
             </div>
 
 
-            <div v-if="isNotEmptyField(viol.mvidFisFull)" class="mt30">
+            <div v-if="isNotEmptyField(viol.mvidFisFull)" class="mt12">
               <p class="adm-14 color-dark-lighter mb6">Уникальный номер АП</p>
               <p class="adm-text-big color-dark-base">{{viol.mvidFisFull}}</p>
             </div>
 
-            <div v-if="isNotEmptyField(body.deloMainDescr)" class="mt30">
+            <div v-if="isNotEmptyField(body.deloMainDescr)" class="mt12">
               <p class="adm-14 color-dark-lighter mb6">Дело - основание</p>
               <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo">{{body.deloMainDescr}}</p>
             </div>

@@ -5,7 +5,7 @@
 
       <div v-if="deloContext" class="bg-white">
         <!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py24">
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py12">
           <div class="flex-parent flex-parent--center-cross">
 
             <Button @click="getPrev" type="text" style="outline: 0!important;"
@@ -196,7 +196,7 @@
       <div v-if="deloTree">
         <Row type="flex">
           <Col>
-            <div class="bg-blue-thin">
+            <div class="bg-blue-thin tree_wrapper">
               <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
             </div>
           </Col>
