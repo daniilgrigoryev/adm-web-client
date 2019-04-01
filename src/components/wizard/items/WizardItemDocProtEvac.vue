@@ -36,8 +36,6 @@
         </div>
       </div>
     </div>
-
-
     <div class="adm-form">
       <div class="adm-form__container mt6">
         <h2 class="adm-text-big adm-form__headding" id="sost">Составил</h2>
