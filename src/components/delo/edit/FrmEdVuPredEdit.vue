@@ -50,25 +50,39 @@
             </Col>
             <Col span="9">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата задержания</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateZader" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row :gutter="16">
-            <Col span="15">
-              <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+          </Row>          
+          <Row :gutter="16">
+            <Col span="24">
+              <div class="adm-form__item">
+                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.ogaiVydName"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>  
+            </Col>
+          </Row>
+          <Row :gutter="16">
+            <Col span="15">
+              <div class="adm-form__item">
+                <small class="adm-text-small color-gray-medium adm-form__label">Дата задержания</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateZader" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -85,21 +99,6 @@
                   </Row>
                 </div>
               </div>
-            </Col>
-          </Row>
-          
-          <Row :gutter="16">
-            <Col span="24">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.ogaiVydName"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>  
             </Col>
           </Row>
           <Row :gutter="16">
@@ -128,6 +127,8 @@
               </div>
             </Col>
           </Row>
+
+
           <Row :gutter="16">
             <Col span="12">
               <div class="adm-form__item">
