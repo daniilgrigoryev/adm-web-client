@@ -25,7 +25,7 @@
             </div>
             <div class="adm-form">
               <div class="adm-form__container mt6">
-                <h2 class="adm-text-big adm-form__headding">ЛВОК</h2>
+                <h2 class="adm-text-big adm-form__headding" id="lvok">ЛВОК</h2>
                 <div class="adm-form__content px36 py24">
                 <!-- TODO -->
                 <!-- <div v-if="isNotEmptyParentNode('LVOK')"> -->
@@ -52,11 +52,11 @@
 
 
 
-            <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
+            <wizard-item-vehs id="nar" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
 
             <div class="adm-form">
               <div class="adm-form__container mt6">
-                <h2 class="adm-text-big adm-form__headding">Сведения о нарушении</h2>
+                <h2 class="adm-text-big adm-form__headding" id="violation-information">Сведения о нарушении</h2>
                 <div class="adm-form__content px36 py24">
                   <wizard-item-prot-evac-three id="DocProtEvacThree" v-if="isVisible('DocProtEvacThree')" ref="DocProtEvacThree" :info="getInfo('DocProtEvacThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-three>
                   <wizard-item-place v-if="isVisible('DocProtEvacThree.PlaceNar')" ref="DocProtEvacThree.PlaceNar" :info="getInfo('DocProtEvacThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
@@ -69,7 +69,7 @@
 
             <div class="adm-form">
               <div class="adm-form__container mt6">
-                <h2 class="adm-text-big adm-form__headding">Понятые</h2>
+                <h2 id="witness" class="adm-text-big adm-form__headding">Понятые</h2>
                 <div class="adm-form__content px36 py24">
                   <div class="adm-form__container mt6">
                     <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
@@ -140,20 +140,24 @@
             name: "head",
           },
           {
-            title: "Составил",
-            name: "sost",
+            title: "ЛВОК",
+            name: "lvok",
           },
           {
-            title: "Сведения об эвакуации",
-            name: "evac",
+            title: "Транспортное средство",
+            name: "Vehs",
           },
           {
             title: "Сведения о нарушении",
             name: "nar",
           },
           {
-            title: "Транспортное средство",
-            name: "tc",
+            title: "Сведения о нарушении",
+            name: "nar",
+          },
+          {
+            title: "Понятые",
+            name: "witness",
           },
         ]
       }
