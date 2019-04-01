@@ -3,7 +3,7 @@
     <div class="adm-title amd-title--sticky px36 py24"><!-- wmax940 mx-auto -->
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
           <div class="flex-parent flex-parent--center-cross">
-            <Button @click="getVehsAMTCEdit"  type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <Button @click="getVehsAMTCEdit"  type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24 bg-transparent" title="Редактировать">
               <img src='../../assets/images/pen.svg' class="wmax-none">
             </Button>
             <b class="adm-text-big color-dark-lighter">Транспортное средство</b>
@@ -14,7 +14,12 @@
         </div>
     </div>
 
-    <div class="adm-form">
+      <div class="flex-parent flex-parent--end-main py24">
+        <Button type="primary" @click="optionView = 1" class="mx12">v1</Button>
+        <Button type="primary" @click="optionView = 2" class="mx12">v2</Button>
+      </div>
+
+    <div class="adm-form" v-if="optionView == 1">
       <div class="adm-form__container my6 mx0 py12 px36">
         <div class="adm-form__content">
           <Row type="flex" :gutter="60">
@@ -181,6 +186,116 @@
         </div>
       </div>
     </div>
+
+    <div class="ml60 pt36" v-if="optionView == 2">
+      <div class="ml60" v-if="isNotEmptyField(body.regno) || isNotEmptyField(body.ctc)">
+        <div class="w-full">
+          <div class="grid">
+            <div class="col col--6" v-if="isNotEmptyField(body.regno)">
+              <p class="adm-14 color-dark-lighter mb6">Номер ГРЗ</p>
+              <p class="adm-text-big color-dark-base">{{body.regno}}</p>
+            </div>
+            <div class="col col--6" v-if="isNotEmptyField(body.ctc)">
+              <p class="adm-14 color-dark-lighter mb6">СТС</p>
+              <p class="adm-text-big color-dark-base">{{body.ctc}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml60 my18" v-if="isNotEmptyField(body.markaAvto) || isNotEmptyField(body.modavtoName) || isNotEmptyField(body.yearVyp)">
+        <div class="w-full">
+          <div class="col col--6">
+            <p class="adm-14 color-dark-lighter mb6">Марка, модель, год выпуска</p>
+            <p class="adm-text-big color-dark-base">{{body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',')}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml60 my18" v-if="isNotEmptyField(body.color)">
+        <div class="w-full">
+          <div class="col col--6">
+            <p class="adm-14 color-dark-lighter mb6">Цвет ТС</p>
+            <p class="adm-text-big color-dark-base">{{body.color}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="isNotEmptyField(body.motorTip) || isNotEmptyField(body.motorEcologClass)" class="py18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
+        <div class="flex-parent">
+          <div class="s40 mt12">
+              <img src="../../assets/images/eng.svg" class="w-full" alt="">
+          </div>
+          <div class="ml18 w-full">
+            <div class="grid">
+              <div class="col col--6" v-if="isNotEmptyField(body.motorTip)">
+                <p class="adm-14 color-dark-lighter mb6">Тип двигателя</p>
+                <p class="adm-text-big color-dark-base">{{body.motorTip}}</p>
+              </div>
+              <div class="col col--6" v-if="isNotEmptyField(body.motorEcologClass)">
+                <p class="adm-14 color-dark-lighter mb6">Экологический класс</p>
+                <p class="adm-text-big color-dark-base">{{body.motorEcologClass}}</p>
+              </div>
+            </div>
+
+            <div class="grid mt18" v-if="isNotEmptyField(body.tiptcName) || isNotEmptyField(body.katcKod)">
+              <div class="col col--6" v-if="isNotEmptyField(body.tiptcName)">
+                <p class="adm-14 color-dark-lighter mb6">Тип ТС</p>
+                <p class="adm-text-big color-dark-base">{{body.tiptcName}}</p>
+              </div>
+              <div class="col col--6" v-if="isNotEmptyField(body.katcKod)">
+                <p class="adm-14 color-dark-lighter mb6">Категория ТС</p>
+                <p class="adm-text-big color-dark-base">{{body.katcKod}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml60 mt18" v-if="isNotEmptyField(body.massa) || isNotEmptyField(body.massaMax)">
+        <div class="w-full">
+          <div class="grid">
+            <div class="col col--6" v-if="isNotEmptyField(body.massa)">
+              <p class="adm-14 color-dark-lighter mb6">Масса без нагрузки</p>
+              <p class="adm-text-big color-dark-base">{{body.massa}}</p>
+            </div>
+            <div class="col col--6" v-if="isNotEmptyField(body.massaMax)">
+              <p class="adm-14 color-dark-lighter mb6">Максимальная масса</p>
+              <p class="adm-text-big color-dark-base">{{body.massaMax}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ml60 mt18" v-if="isNotEmptyField(body.vin) || isNotEmptyField(body.ptcN)">
+        <div class="w-full">
+          <div class="grid">
+            <div class="col col--6" v-if="isNotEmptyField(body.vin)">
+              <p class="adm-14 color-dark-lighter mb6">VIN номер</p>
+              <p class="adm-text-big color-dark-base">{{body.vin}}</p>
+            </div>
+            <div class="col col--6" v-if="isNotEmptyField(body.ptcN)">
+              <p class="adm-14 color-dark-lighter mb6">ПТС</p>
+              <p class="adm-text-big color-dark-base">{{body.ptcN}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="flex-parent flex-parent--center-cross py30" v-if="isNotEmptyField(body.sobstvName)">
+        <div class="s40">
+            <img src="../../assets/images/owner.svg" class="w-full h-full" alt="">
+        </div>
+        <div class="ml18">
+          <div>
+            <p class="adm-14 color-dark-lighter mb6">Владелец, дата рождения</p>
+            <p class="adm-text-big color-dark-base">{{body.sobstvName}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -252,10 +367,17 @@
     data() {
       return {
         checkAMTS: {},
-        photos: []
+        photos: [],
+        optionView: 2
       }
     },
     methods: {
+      isNotEmptyField(field) {
+        if (typeof field === 'string') {
+          return funcUtils.isNotEmpty(field) && field.length > 0;
+        }
+        return funcUtils.isNotEmpty(field);
+      },
       async fillComponent(params) {
         let cid = params.cid;
         let photos = params.photos;
