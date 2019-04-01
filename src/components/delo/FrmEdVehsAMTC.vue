@@ -186,7 +186,6 @@
         </div>
       </div>
     </div>
-
     <div class="ml60 pt36" v-if="optionView == 2">
       <div class="ml60" v-if="isNotEmptyField(body.regno) || isNotEmptyField(body.ctc)">
         <div class="w-full">
@@ -202,7 +201,6 @@
           </div>
         </div>
       </div>
-
       <div class="ml60 my18" v-if="isNotEmptyField(body.markaAvto) || isNotEmptyField(body.modavtoName) || isNotEmptyField(body.yearVyp)">
         <div class="w-full">
           <div class="col col--6">
@@ -211,7 +209,6 @@
           </div>
         </div>
       </div>
-
       <div class="ml60 my18" v-if="isNotEmptyField(body.color)">
         <div class="w-full">
           <div class="col col--6">
@@ -220,7 +217,6 @@
           </div>
         </div>
       </div>
-
       <div v-if="isNotEmptyField(body.motorTip) || isNotEmptyField(body.motorEcologClass)" class="py18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
         <div class="flex-parent">
           <div class="s40 mt12">
@@ -237,7 +233,6 @@
                 <p class="adm-text-big color-dark-base">{{body.motorEcologClass}}</p>
               </div>
             </div>
-
             <div class="grid mt18" v-if="isNotEmptyField(body.tiptcName) || isNotEmptyField(body.katcKod)">
               <div class="col col--6" v-if="isNotEmptyField(body.tiptcName)">
                 <p class="adm-14 color-dark-lighter mb6">Тип ТС</p>
@@ -251,7 +246,6 @@
           </div>
         </div>
       </div>
-
       <div class="ml60 mt18" v-if="isNotEmptyField(body.massa) || isNotEmptyField(body.massaMax)">
         <div class="w-full">
           <div class="grid">
@@ -266,7 +260,6 @@
           </div>
         </div>
       </div>
-
       <div class="ml60 mt18" v-if="isNotEmptyField(body.vin) || isNotEmptyField(body.ptcN)">
         <div class="w-full">
           <div class="grid">
@@ -281,8 +274,6 @@
           </div>
         </div>
       </div>
-
-
       <div class="flex-parent flex-parent--center-cross py30" v-if="isNotEmptyField(body.sobstvName)">
         <div class="s40">
             <img src="../../assets/images/owner.svg" class="w-full h-full" alt="">
@@ -294,7 +285,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>

@@ -35,20 +35,20 @@
               </Row>
             </div>
           </div>
-          <Row :gutter="16">
-            <Col span="12">
+          <Row :gutter="16" type="flex">
+            <Col span="15">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Номер</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.vuN" ></Input>
+                      <Input class="adm-input adm-input--regular wmin120 wmax180" @on-input-change="store" v-model="vuPred.vuN" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
             </Col>
-            <Col span="12">
+            <Col span="9">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Дата задержания</small>
                 <div class="adm-form__item_content">
@@ -62,19 +62,19 @@
             </Col>
           </Row>
           <Row :gutter="16">
-            <Col span="12">
+            <Col span="15">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular" v-model="vuPred.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vuPred.dateVyd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
               </div>
             </Col>
-            <Col span="12">
+            <Col span="9">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Возврата</small>
                 <div class="adm-form__item_content">
@@ -95,7 +95,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.ogaiVydName" type="textarea"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuPred.ogaiVydName"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -103,7 +103,7 @@
             </Col>
           </Row>
           <Row :gutter="16">
-            <Col span="12">
+            <Col span="15">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Утилизации</small>
                 <div class="adm-form__item_content">
@@ -115,7 +115,7 @@
                 </div>
               </div>
             </Col>
-            <Col span="12">
+            <Col span="9">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Утраты</small>
                 <div class="adm-form__item_content">
@@ -135,7 +135,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
+                      <Select class="adm-input adm-input--regular wmax180" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
                         <Option class="txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -436,7 +436,7 @@
     padding-top: 12px;
     // outline: 1px solid red;
     padding-bottom: 12px;
-    // min-height: 90px;
+    min-height: 65px;
   }
   .adm-form__label{
     padding: 0;
