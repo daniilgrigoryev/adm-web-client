@@ -50,7 +50,7 @@
       nodeClick: Function
     },
     created() {
-      this.open = this.node.height !== 3;
+      this.open = this.node.height !== 3 || this.hasSelectedChildren(this.node);
     },
     data() {
       return {
@@ -183,6 +183,19 @@
       },
     },
     methods: {
+      hasSelectedChildren(node) {
+        if (node.selected) {
+          return true;
+        }
+        let res = false;
+        if (node.children && node.children.length > 0) {
+          for (let i = 0; i < node.children.length; i++) {
+            let child = node.children[i];
+            res = this.hasSelectedChildren(child);
+          }
+        }
+        return res;
+      },
       parentNodeClick() {
         this.nodeClick(this.node);
         this.toggle();

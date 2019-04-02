@@ -467,9 +467,16 @@
         let mappedArr = {};
         let arrElem;
         let mappedElem;
+        let current = formStack.getCurrent();
+        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+        let currentForm = innerFormStack.getCurrent(uid);
+
 
         let copyDelo = this.getCopyObj(arr[0], 'children');
         tree.push(copyDelo);
+        arr.forEach((item) => {
+          this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === JSON.stringify(item));
+        });
 
         for (let i = 0, len = arr.length; i < len; i++) {
           arrElem = arr[i];
@@ -519,7 +526,7 @@
           this.$refs.innerForm.clearCurrent();
         }
         this.sizeInnerStack = 0;
-        this.updateSelected();
+        // this.updateSelected();
       },
       updateSizeStack() {
         let current = formStack.getCurrent();
