@@ -441,7 +441,15 @@
   }
 </script>
 
+<style>
+  html{
+    overflow-y: scroll;
+  }
+</style>
+
+
 <style lang="scss" scoped>
+
   .errors-table{
     .table td{
       border-bottom: 0;

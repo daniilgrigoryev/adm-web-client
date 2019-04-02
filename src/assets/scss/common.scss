@@ -1,6 +1,11 @@
 @import './variables.scss';
 @import "../fonts/opensans/stylesheet.css";
 
+
+
+html{
+  overflow-y: auto;
+}
 body {
   font-family: 'Open Sans', sans-serif;
 }
