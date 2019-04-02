@@ -11,6 +11,7 @@ import FrmEdDocsPostEdit from '../components/delo/edit/FrmEdDocsPostEdit';
 import FrmEdDocsProtEdit from '../components/delo/edit/FrmEdDocsProtEdit';
 import FrmEdDecisEdit from '../components/delo/edit/FrmEdDecisEdit';
 import FrmEdVehsAMTCEdit from '../components/delo/edit/FrmEdVehsAMTCEdit';
+import FrmEdProtPZTCEdit from '../components/delo/edit/FrmEdProtPZTCEdit';
 import FrmEdUchastFLIndividEdit from '../components/delo/edit/FrmEdUchastFLIndividEdit';
 import FrmEdUchastFLOrganizationEdit from '../components/delo/edit/FrmEdUchastFLOrganizationEdit';
 import PlaceViewEdit from '../components/delo/edit/PlaceViewEdit';
@@ -85,6 +86,12 @@ const router = new Router({
       path: '/frmEdDocsProtEdit',
       name: 'FrmEdDocsProtEdit',
       component: FrmEdDocsProtEdit,
+      props: true
+    },
+    {
+      path: '/frmEdProtPZTCEdit',
+      name: 'FrmEdProtPZTCEdit',
+      component: FrmEdProtPZTCEdit,
       props: true
     },
     {

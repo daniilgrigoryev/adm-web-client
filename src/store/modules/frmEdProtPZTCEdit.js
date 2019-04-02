@@ -2,7 +2,7 @@ export default {
     state: {
       moduleName: 'frmEdProtPZTCEdit',
       cid: null,
-      bean: 'FrmEdDocsOtherEdit',
+      bean: 'FrmEdDocsOtherPZTCEdit',
       routeName: 'FrmEdProtPZTCEdit',
       data: null,
       command: null
@@ -38,4 +38,3 @@ export default {
       }
     }
   };
-  

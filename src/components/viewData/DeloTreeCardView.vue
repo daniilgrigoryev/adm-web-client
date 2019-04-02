@@ -30,149 +30,103 @@
           </div>
 
           <div>
-            <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
+            <Poptip v-if="menuVisible(menu.createDelo)" width="350" placement="bottom-start" class="amd-poptip-sub">
               <Button type="text"
                       class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
                       style="box-shadow: none">
-                <span>Возбуждение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
+                <span>Создать дело  <Icon type="md-arrow-dropdown" :size="16"/></span>
               </Button>
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
-                  <li>
-                    <Button type="text" class="adm-btn-regular">Определение о возбуждении дела</Button>
+                  <li v-if="menuItemVisible(menu.createDelo[0])">
+                    <Button type="text" class="adm-btn-regular">Протокол об АПН на другое лицо</Button>
                   </li>
-                  <li>
-                    <Button type="text" class="adm-btn-regular">Протокол изъятия вещей и документов</Button>
+                  <li v-if="menuItemVisible(menu.createDelo[1])">
+                    <Button type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
                   </li>
-                  <li>
-                    <Button type="text" class="adm-btn-regular">Протокол осмотра места</Button>
+                  <li v-if="menuItemVisible(menu.createDelo[2])">
+                    <Button type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
                   </li>
                 </ul>
               </div>
             </Poptip>
 
-            <Poptip width="700" placement="bottom-end" class="amd-poptip-sub">
-              <Button @click="hideMore = !hideMore" type="text"
+            <Poptip v-if="menuVisible(menu.addDocument)" width="700" placement="bottom-end" class="amd-poptip-sub">
+              <Button type="text"
                       class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
                       style="box-shadow: none">
-                <span>Рассмотрение дела
-                  <Icon v-if="hideMore" type="md-arrow-dropup" :size="16"/>
-                  <Icon v-else type="md-arrow-dropdown" :size="16"/>
+                <span>Добавить документ
+                  <Icon type="md-arrow-dropdown" :size="16"/>
                 </span>
               </Button>
               <div slot="content">
-                <div class="grid">
-                  <div class="col col--6">
-                    <ul class="amd-poptip-sub__nav">
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Постановление об АПН</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Определение об АПН</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Протокол об АПН на бланке</Button>
-                      </li>
-                      <hr class="txt-hr adm-txt-hr my0">
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Жалоба</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Решение по жалобе</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Заключение по жалобе</Button>
-                      </li>
-                      <hr class="txt-hr adm-txt-hr my0">
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Добавить Участника дела</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Добавить Транспортное средство</Button>
-                      </li>
-                      <hr class="txt-hr adm-txt-hr my0">
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Предьявленный документ</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Добавить фото и видео материалы</Button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col col--6">
-                    <ul class="amd-poptip-sub__nav">
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Протокол задержания ТС</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Разрешение на выдачу ТС</Button>
-                      </li>
-                      <hr class="txt-hr adm-txt-hr my0">
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Протокол изьятия вещей и документов</Button>
-                      </li>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Протокол Осмотра места</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Обьяснение</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Извещение</Button>
-                      </li>
-                      <li>
-                        <Button type="text" class="adm-btn-regular">Документ pdf</Button>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div>
-                  <hr class="txt-hr my0">
-                  <ul class="amd-poptip-sub__nav">
-                    <li>
-                      <Button type="text" class="adm-btn-regular py6 mb0" style="margin-top: 10px;">
-                        <div class="flex-parent flex-parent--center-cross">
-                          <span>Перенос даты рассмотрения дела</span>
-                          <i class="ml24"><img src="../../assets/images/carry_date.svg" alt=""></i>
-                        </div>
-                      </Button>
-                    </li>
-                  </ul>
-                </div>
-
-              </div>
-            </Poptip>
-
-
-            <Poptip width="350" placement="bottom-start" class="amd-poptip-sub">
-              <Button type="text"
-                      class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
-                      style="box-shadow: none">
-                <span>Исполнение дела  <Icon type="md-arrow-dropdown" :size="16"/></span>
-              </Button>
-              <div slot="content">
                 <ul class="amd-poptip-sub__nav">
-                  <li>
-                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол АПН на
-                      бланке
-                    </Button>
+                  <li v-if="menuItemVisible(menu.addDocument[0])">
+                    <Button type="text" class="adm-btn-regular">Приложить документ к делу</Button>
                   </li>
-                  <li>
-                    <Button type="text" class="adm-btn-regular">Протокол АПН на A4, статья 20.25 ч.1</Button>
+                  <li v-if="menuItemVisible(menu.addDocument[1])">
+                    <Button type="text" class="adm-btn-regular">Добавить фото и видеоматериалы</Button>
                   </li>
-                  <li>
-                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление об АПН
-                    </Button>
+                  <li v-if="menuItemVisible(menu.addDocument[2])">
+                    <Button type="text" class="adm-btn-regular">Объяснение</Button>
                   </li>
-                  <li>
-                    <Button @click="createWizardScenarioPZTC" type="text" class="adm-btn-regular">Протокол задержания
-                      ТС
-                    </Button>
+                  <li v-if="menuItemVisible(menu.addDocument[3])">
+                    <Button type="text" class="adm-btn-regular">Протокол об АПН</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[4])">
+                    <Button type="text" class="adm-btn-regular">Опредение о проведении АР</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[5])">
+                    <Button type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[6])">
+                    <Button type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[7])">
+                    <Button type="text" class="adm-btn-regular">Извещение</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[8])">
+                    <Button type="text" class="adm-btn-regular">Перенос даты рассмотрения дела</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[9])">
+                    <Button type="text" class="adm-btn-regular">Ходатайство о продлении сроков административного расследования</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[10])">
+                    <Button type="text" class="adm-btn-regular">Решение по жалобе</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[11])">
+                    <Button type="text" class="adm-btn-regular">Заключение по жалобе</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[12])">
+                    <Button type="text" class="adm-btn-regular">Приостановление исполнения</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[13])">
+                    <Button type="text" class="adm-btn-regular">Возобновление исполнения</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[14])">
+                    <Button type="text" class="adm-btn-regular">Уплата штрафа (ГИБДД)</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[15])">
+                    <Button type="text" class="adm-btn-regular">Передача в ГИБДД</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[16])">
+                    <Button type="text" class="adm-btn-regular">Возврат материала из суда</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[17])">
+                    <Button type="text" class="adm-btn-regular">Проверено после возврата из ФССП</Button>
+                  </li>
+                  <li v-if="menuItemVisible(menu.addDocument[18])">
+                    <Button type="text" class="adm-btn-regular">Документ участника</Button>
                   </li>
                 </ul>
               </div>
             </Poptip>
+
+            <Button type="text"
+                    class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
+                    style="box-shadow: none">
+              <span>Добавить участника</span>
+            </Button>
 
             <Button type="text"
                     class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
@@ -224,6 +178,7 @@
   import {mapGetters} from 'vuex';
   import DeloInnerForm from "~/components/delo/DeloInnerForm";
   import TreeNode from "~/components/shared/TreeNode";
+  import decisEnum from "../../assets/js/utils/decisEnum";
 
   export default {
     name: "DeloTreeCardView",
@@ -259,8 +214,35 @@
     },
     data() {
       return {
-        hideMore: false,
         sizeInnerStack: 0,
+        menu: {
+          createDelo: [
+            'ProtAPNAnothFace',
+            'OpredAPNAnothFace',
+            'PostAPNAnothFace'
+          ],
+          addDocument: [
+            'ApplyDocOnDelo',
+            'AddFotoVideo',
+            'Explanation',
+            'ProtAPN',
+            'OpredProvedAP',
+            'PostDeloAPN',
+            'PostPrekrDeloAPN',
+            'Izvesh',
+            'ChangeDateRasmDelo',
+            'HodatayProdlSrok',
+            'DecicAppeal',
+            'ConclusAppeal',
+            'SuspensIspoln',
+            'ResumptIspoln',
+            'PaymentShtraf',
+            'TransferGIBDD',
+            'ReturnMaterial',
+            'CheckReturnFSSP',
+            'DocumentUchast'
+          ]
+        }
       }
     },
     computed: {
@@ -461,6 +443,96 @@
             }
           }
         }
+      },
+      menuItemVisible(item) {
+        let current = formStack.getCurrent();
+        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+        let currentForm = innerFormStack.getCurrent(uid);
+        if (funcUtils.isEmpty(currentForm)) {
+          return false;
+        }
+
+        switch (item) {
+          case 'ProtAPNAnothFace': {
+            return currentForm.params.recType === 'DELO';
+          }
+          case 'OpredAPNAnothFace': {
+            return currentForm.params.recType === 'DELO';
+          }
+          case 'PostAPNAnothFace': {
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 6 || this.deloContext.stadKod === 7);
+          }
+          case 'ApplyDocOnDelo': {
+            return currentForm.params.recType === 'DELO';
+          }
+          case 'AddFotoVideo': {
+            return currentForm.params.recType === 'DELO';
+          }
+          case 'Explanation': {
+            return currentForm.params.recType === 'DELO';
+          }
+          case 'ProtAPN': {
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+          }
+          case 'OpredProvedAP': {
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+          }
+          case 'PostDeloAPN': {
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+          }
+          case 'PostPrekrDeloAPN': {
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+          }
+          case 'Izvesh': {
+            break;
+          }
+          case 'ChangeDateRasmDelo': {
+            break;
+          }
+          case 'HodatayProdlSrok': {
+            return currentForm.params.recType === 'DOCS_OPRED' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+          }
+          case 'DecicAppeal': {
+            return currentForm.params.recType === 'DOCS_GALOB';
+          }
+          case 'ConclusAppeal': {
+            return currentForm.params.recType === 'DOCS_GALOB';
+          }
+          case 'SuspensIspoln': {
+            return currentForm.params.recType === 'DECIS';
+          }
+          case 'ResumptIspoln': {
+            return currentForm.params.recType === 'DECIS';
+          }
+          case 'PaymentShtraf': {
+            return currentForm.params.recType === 'DECIS';
+          }
+          case 'TransferGIBDD': {
+            break;
+          }
+          case 'ReturnMaterial': {
+            break;
+          }
+          case 'CheckReturnFSSP': {
+            break;
+          }
+          case 'DocumentUchast': {
+            return currentForm.params.recType === 'UCHASTFL' || currentForm.params.recType === 'UCHASTUL' || currentForm.params.recType === 'UCHASTOTHER';
+          }
+        }
+        return false;
+      },
+      menuVisible(items) {
+        let res = false;
+        for (let i = 0; i < items.length; i++) {
+          let item = items[i];
+          let itemVisible = this.menuItemVisible(item);
+          if (itemVisible) {
+            res = true;
+            break;
+          }
+        }
+        return res;
       },
       arrayToTree(arr) {
         let tree = [];

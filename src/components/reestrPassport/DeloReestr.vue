@@ -828,8 +828,8 @@
                     let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(new Date(params.row.deloDate), 'DD.MM.YYYY') : '';
                     return h('div', {
                       on: {
-                        click: () => {
-                          this.getDelo(params.row);
+                        click: (e) => {
+                          this.getDelo(params.row, e);
                         }
                       },
                       class: ['cursor-pointer']
@@ -1246,8 +1246,8 @@
                     title: 'открыть'
                   },
                   on: {
-                    click: () => {
-                      this.getDelo(params.row);
+                    click: (e) => {
+                      this.getDelo(params.row, e);
                     }
                   }
                 });
@@ -1399,8 +1399,11 @@
         });
         await this.fillModule(eventResponse);
       },
-      getDelo(delo) {
+      getDelo(delo, e) {
         try {
+          /*if (e && e.ctrlKey) {
+            this.getDeloNewTab(delo);
+          } */
           let params = {
             deloId: delo.deloId
           };
@@ -1416,7 +1419,7 @@
           alert(e.message);
         }
       },
-      /*getDelo(delo) {
+      /*getDeloNewTab(delo) {
         try {
           let params = {
             deloId: delo.deloId,
