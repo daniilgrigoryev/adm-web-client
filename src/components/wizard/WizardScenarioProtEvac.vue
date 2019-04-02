@@ -5,7 +5,7 @@
         <div class="bg-blue-thin h-full">
           <ul class="ml60 mr24 my24 min-nav" style="top: 100px" v-if="isVisible('DocProtEvacOne')">
             <li v-for="item in goToSectionNav" :key="item.id">
-              <a :href="'#' + item.name" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">{{item.title}}</a>
+              <a :href="'#' + item.name" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block ">{{item.title}}</a>
             </li>
           </ul>
         </div>
@@ -17,11 +17,10 @@
               <div class="adm-form__container mt6">
                 <h2 class="adm-text-big adm-form__headding" id="head">
                   Ввод данных по протоколу о задержании ТС по делу №
-                  <div class="adm-form__item">
-                    <div class="adm-form__item_content">
-                      <masked-input inputClass="adm-input adm-input--regular white-color-input" :maskProps="maskInputProt"></masked-input>
-                    </div>
-                  </div>
+                  <masked-input style="width: 120px" inputClass="adm-input adm-input--regular white-color-input" :maskProps="maskInputProt"></masked-input>
+                  <Button @click="" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-white-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="md-key" title="Получить уникальный номер" :size="35" />
+                  </Button>
                 </h2>
                 <div class="adm-form__content px36 py24">
                   <wizard-item-prot-evac-one id="DocProtEvacOne" v-if="isVisible('DocProtEvacOne')" ref="DocProtEvacOne" :info="getInfo('DocProtEvacOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-one>
@@ -146,16 +145,8 @@
             name: "head",
           },
           {
-            title: "ЛВОК",
-            name: "lvok",
-          },
-          {
             title: "Транспортное средство",
             name: "Vehs",
-          },
-          {
-            title: "Сведения о нарушении",
-            name: "nar",
           },
           {
             title: "Сведения о нарушении",

@@ -15,92 +15,76 @@
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <div class="adm-form__content px36">
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.placeNar.placeFull" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull" ></Input>
-            </Row>
-          </div>
-          <Row>
-						<Col span="12">
-							<div class="my12 adm-form__item">
-								<small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
-								<Row type="flex" align="middle">
-									<Input class="adm-input adm-input--regular" readonly :value="body.evacActTime | formatDateTime('DD.MM.YYYY')" ></Input>
-								</Row>
-							</div>
-						</Col>
-						<Col span="12">
-							<div class="my12 adm-form__item">
-								<small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
-								<Row type="flex" align="middle">
-									<Input class="adm-input adm-input--regular" readonly :value="body.evacActNumber" ></Input>
-								</Row>
-							</div>
-						</Col>
-          </Row>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.evacOrgName" ></Input>
-            </Row>
-          </div>
-					<div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Представитель</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.evacAgentName" ></Input>
-            </Row>
-          </div>
-					<div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.evacRegno" ></Input>
-            </Row>
-          </div>
-					<div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Штрафстоянка</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.impoundLotName"></Input>
-            </Row>
-          </div>
+      <div class="adm-form__container">
+        <div class="items-wrap">
+          <view-data-item 
+            label="Пункт НПА" 
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Статья КРФоАП" 
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Дата и время нарушения" 
+            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Место нарушения" 
+            :value="body.placeNar.placeFull" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Должностное лицо" 
+            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/police.svg')"
+          />
+          <view-data-item 
+            label="Подразделение" 
+            :value="body.organSostName" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Место составления" 
+            :value="body.placeSost.placeFull" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Дата составления акта" 
+            :value="body.evacActTime | formatDateTime('DD.MM.YYYY')" 
+          />
+          <view-data-item 
+            label="№ акта эвакуации" 
+            :value="body.evacActNumber" 
+          />
+          <view-data-item 
+            label="Организация эвакуатора" 
+            :value="body.evacOrgName" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/truck.png')"
+          />
+          <view-data-item 
+            label="Представитель" 
+            :value="body.evacAgentName" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/owner.svg')"
+          />
+          <view-data-item 
+            label="ГРЗ эвакуатора" 
+            :value="body.evacRegno" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Штрафстоянка" 
+            :value="body.impoundLotName" 
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
@@ -112,10 +96,14 @@
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
+  import ViewDataItem from "~/components/shared/ui/view-data-item.vue";
   import { mapGetters } from 'vuex';
 
   export default {
     name: "FrmEdProtPZTC",
+    components: {
+      ViewDataItem,
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -199,7 +187,23 @@
 
 
 <style scoped lang="scss"> 
-  .adm-form__label {
-    min-width: 180px;
+  .--gcs2 {
+    grid-column: span 2;
+  }
+  .adm-form__container {
+    margin-top: 6px;
+    .items-wrap {
+      padding: 36px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 18px;
+      hr {
+        height: 1px;
+        width: 100%;
+        color: #cccccc;
+        background: #cccccc;
+        grid-column: span 2;
+      }
+    }
   }
 </style>
