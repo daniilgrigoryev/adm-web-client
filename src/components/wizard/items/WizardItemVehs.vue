@@ -103,13 +103,11 @@
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Категория</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <!-- TODO -->
-                    <Col :xs="24" :md="14" :lg="16">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod"
-                              clearable @on-change="storeElementData" filterable>
-                        <Option v-for="item in []" :value="item.value" :key="item.value">{{ item.label }}
-                        </Option>
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.katcKod"
+                              clearable @on-clear="storeElementData" @on-change="storeElementData" filterable>
+                        <Option v-for="item in categoryTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
@@ -175,6 +173,7 @@
         markAvtoList: null,
         kuzovTypeList: null,
         modelList: null,
+        categoryTCList: null,
         ownerList: [{
           label: 'ЛВОК',
           value: 1
