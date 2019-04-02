@@ -442,6 +442,7 @@
 </script>
 
 <style>
+  /* этот стиль нужно применять только на этой странице */
   html{
     overflow-y: scroll;
   }
@@ -449,7 +450,6 @@
 
 
 <style lang="scss" scoped>
-
   .errors-table{
     .table td{
       border-bottom: 0;
