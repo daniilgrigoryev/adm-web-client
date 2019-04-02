@@ -15,7 +15,14 @@
           <Layout ref="Main" class=" px36 py12" style="min-height: calc(100vh - 125px);">
             <div class="adm-form">
               <div class="adm-form__container mt6">
-                <h2 class="adm-text-big adm-form__headding" id="head">Ввод данных по протоколу о задержании ТС</h2>
+                <h2 class="adm-text-big adm-form__headding" id="head">
+                  Ввод данных по протоколу о задержании ТС по делу №
+                  <div class="adm-form__item">
+                    <div class="adm-form__item_content">
+                      <masked-input inputClass="adm-input adm-input--regular white-color-input" :maskProps="maskInputProt"></masked-input>
+                    </div>
+                  </div>
+                </h2>
                 <div class="adm-form__content px36 py24">
                   <wizard-item-prot-evac-one id="DocProtEvacOne" v-if="isVisible('DocProtEvacOne')" ref="DocProtEvacOne" :info="getInfo('DocProtEvacOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-one>
                   <wizard-item-place v-if="isVisible('DocProtEvacOne.PlaceSost')" ref="DocProtEvacOne.PlaceSost" :info="getInfo('DocProtEvacOne.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
@@ -27,8 +34,7 @@
               <div class="adm-form__container mt6">
                 <h2 class="adm-text-big adm-form__headding" id="lvok">ЛВОК</h2>
                 <div class="adm-form__content px36 py24">
-                <!-- TODO -->
-                <!-- <div v-if="isNotEmptyParentNode('LVOK')"> -->
+                <div v-if="isNotEmptyParentNode('LVOK')">
                   <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
                   <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
                   <wizard-item-individual v-if="isVisible('LVOK.Individual')" ref="LVOK.Individual" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
@@ -37,7 +43,7 @@
                   <wizard-item-organization v-if="isVisible('LVOK.Organization')" ref="LVOK.Organization" :info="getInfo('LVOK.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
                   <wizard-item-address v-if="isVisible('LVOK.Organization.regAddr')" ref="LVOK.Organization.regAddr" :info="getInfo('LVOK.Organization.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
                   <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-                <!-- </div> -->
+                </div>
                 <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
                 <wizard-item-individual id="Owner.Individual" v-if="isVisible('Owner.Individual')" ref="Owner.Individual" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
                 <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')" ref="Owner.Individual.regAddr" :info="getInfo('Owner.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
@@ -108,6 +114,8 @@
   import WizardItemAddress from "./items/WizardItemAddress.vue";
   import WizardItemOwner from "./items/WizardItemOwner.vue";
   import WizardItemVehs from "./items/WizardItemVehs.vue";
+  import MaskedInput from "~/components/shared/MaskedInput";
+
 
   export default {
     name: "WizardScenarioProtEvac",
@@ -128,6 +136,7 @@
       WizardItemAddress,
       WizardItemOwner,
       WizardItemVehs,
+      MaskedInput,
     },
     data() {
       return {
@@ -156,7 +165,12 @@
             title: "Понятые",
             name: "witness",
           },
-        ]
+        ],
+        maskInputProt: {
+          regex: '[0-9]+',
+          casing: 'upper',
+          placeholder: ' '
+        },
       }
     },
     methods: {

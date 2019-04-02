@@ -541,6 +541,13 @@ html, body, #app {
 
 .adm-input {
 
+  &.white-color-input {
+    .ivu-select-selection,
+    .ivu-select-input,
+    .ivu-input {
+      color: $white-base;
+    }
+  }
   .ivu-select-selection,
   .ivu-select-input,
   .ivu-input {
