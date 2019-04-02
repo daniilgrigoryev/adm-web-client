@@ -138,6 +138,19 @@
               </div>
             </div>
             <div class="adm-form__item">
+              <small class="adm-text-small adm-form__label">Тип</small>
+              <div class="adm-form__item_content">
+                <Row type="flex" align="middle">
+                  <Col :xs="24" :md="14" :lg="24">
+                    <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tiptcKod"
+                            clearable @on-change="store" filterable>
+                      <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item">
               <small class="adm-text-small adm-form__label">Тип кузова ТС</small>
               <div class="adm-form__item_content">
                 <Row type="flex" align="middle">
