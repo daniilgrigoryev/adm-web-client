@@ -21,48 +21,49 @@
     <wizard-modal v-if="organNapravModal.visible" :columnsOptions="organNapravModal.columnsOptions" :data="organNapravModal.gibddList" @showModal="showOrganNapravModal" @onRowDbClick="onOrganNapravlick"></wizard-modal>
 
     <div class="adm-form bg-white">
-      <div class="adm-form__container my6 py24 px36">
-
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <Input class="adm-input adm-input--regular" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
-              </Col>
-            </Row>
+      <div class="adm-form__container my0">
+         <div class="adm-form__content px36 py24">
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
+                </Col>
+              </Row>
+            </div>
           </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <DatePickerMask class="adm-input adm-input--regular" v-model="decis.decisDate" @change="changeDecisDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-              </Col>
-            </Row>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <DatePickerMask class="adm-input adm-input--regular" v-model="decis.decisDate" readonly @change="changeDecisDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                </Col>
+              </Row>
+            </div>
           </div>
-        </div>
 
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата вручения</small><!-- Дата уведомления -->
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <DatePickerMask class="adm-input adm-input--regular" v-model="decis.dateUved" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-              </Col>
-            </Row>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата вручения</small><!-- Дата уведомления -->
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <DatePickerMask class="adm-input adm-input--regular" v-model="decis.dateUved" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                </Col>
+              </Row>
+            </div>
           </div>
-        </div>
 
-        <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="24" :lg="24">
-                <DatePickerMask class="adm-input adm-input--regular" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-              </Col>
-            </Row>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <DatePickerMask class="adm-input adm-input--regular" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                </Col>
+              </Row>
+            </div>
           </div>
         </div>
 <!-- 
@@ -1012,7 +1013,6 @@
         if (funcUtils.isNotEmpty(this.decis.decisDate)) {
           this.fillStotvSearchInfo();
         }
-
         this.store();
       },
       async showDolzModal(visible) {
