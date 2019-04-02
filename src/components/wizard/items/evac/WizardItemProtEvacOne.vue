@@ -55,7 +55,7 @@
         maskInputProt: {
           regex: '[0-9]+',
           casing: 'upper',
-          placeholder: 'номер протокола'
+          placeholder: ' '
         },
       }
     },
@@ -90,10 +90,6 @@
           alert(error);
         } else {
           this.data = data;
-
-          if (funcUtils.isNotEmpty(data.dateNar)) {
-            this.fillStotvSearchInfo();
-          }
         }
       },
 

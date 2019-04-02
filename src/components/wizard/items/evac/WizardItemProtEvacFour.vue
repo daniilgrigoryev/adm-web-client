@@ -73,10 +73,6 @@
           await this.fillPnpaList();
 
           this.data = data;
-          
-          if (funcUtils.isNotEmpty(data.dateNar)) {
-            this.fillStotvSearchInfo();
-          }
         }
       },
        async fillPnpaList() {

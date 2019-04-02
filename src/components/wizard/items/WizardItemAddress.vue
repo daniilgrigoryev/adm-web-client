@@ -528,9 +528,9 @@
 
 
 <style lang="scss" scoped>
-  .button-directory {
-    &:focus {
-      color: #448ee4;
-    }
+  .adm-form__item{
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    align-items: center;
   }
 </style>
