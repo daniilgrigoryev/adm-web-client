@@ -71,6 +71,7 @@
           alert(error);
         } else {
           await this.fillPnpaList();
+          await this.fillStotvSearchInfo();
 
           this.data = data;
         }
@@ -102,9 +103,7 @@
           params: {
             eCID: this.info.eCID,
             methodName: 'getStotvSearchInfo',
-            data: JSON.stringify({
-              date: this.data.dateNar
-            })
+            data: null
           }
         });
         let stotvSearchInfoList = [];
