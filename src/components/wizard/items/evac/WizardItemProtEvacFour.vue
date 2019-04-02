@@ -17,7 +17,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">
-            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="storeElementData">
               <Option class="txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -71,6 +71,7 @@
           alert(error);
         } else {
           await this.fillPnpaList();
+          await this.fillStotvSearchInfo();
 
           this.data = data;
         }
@@ -102,9 +103,7 @@
           params: {
             eCID: this.info.eCID,
             methodName: 'getStotvSearchInfo',
-            data: JSON.stringify({
-              date: this.data.dateNar
-            })
+            data: null
           }
         });
         let stotvSearchInfoList = [];
