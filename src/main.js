@@ -34,13 +34,17 @@ let vue = new Vue({
   data: {},
   render: h => h(App),
   async created() {
-    let externalSessionStorage = funcUtils.getfromLocalStorage('admWidNew');
+    /*let externalSessionStorage = funcUtils.getfromLocalStorage('admWidNew');
     if (funcUtils.isNotEmpty(externalSessionStorage)) {
       let admWid = externalSessionStorage.admWid;
       sessionStorage.setItem('admWid', admWid);
       funcUtils.addToSessionStorage(admWid, externalSessionStorage[admWid]);
       localStorage.removeItem('admWidNew');
-    }
+    }*/
+
+    Date.prototype.toJSON = function() {
+      return moment(this).format();
+    };
 
     if (funcUtils.isNull(sessionStorage.getItem('admWid'))) {
       sessionStorage.setItem('admWid', funcUtils.guid());

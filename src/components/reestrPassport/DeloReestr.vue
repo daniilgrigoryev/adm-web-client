@@ -1375,6 +1375,9 @@
           method: 'getArticleProcDictionary'
         });
         let articleProcList = JSON.parse(eventResponse.response).data;
+        articleProcList.sort((a, b) => {
+          return a.values.STOTV_KOD - b.values.STOTV_KOD;
+        });
         articleProcList.forEach((item) => {
           articleProcDict.push({
             label: item.values['STOTV_NAME'],

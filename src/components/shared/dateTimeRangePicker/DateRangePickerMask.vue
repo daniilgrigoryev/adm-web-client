@@ -1,6 +1,6 @@
 <template>
   <div v-click-outside="hide">
-    <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @onClick="show" @onClear="onClear" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable" :inputClass="inputClass"></calendar-body>
+    <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @hide="hide" @onClick="show" @onClear="onClear" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable" :inputClass="inputClass"></calendar-body>
 
     <calendar-header v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @onClear="onClear" @hide="hide" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond"></calendar-header>
   </div>

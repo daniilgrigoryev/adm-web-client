@@ -20,13 +20,13 @@
           <div class="my12 adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
             <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.pnpaName" ></Input>
+              <Input class="adm-input adm-input--regular" readonly :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" ></Input>
             </Row>
           </div>
           <div class="my12 adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
             <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.stotvName" ></Input>
+              <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" ></Input>
             </Row>
           </div>
           <div class="my12 adm-form__item">
@@ -64,7 +64,7 @@
 							<div class="my12 adm-form__item">
 								<small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
 								<Row type="flex" align="middle">
-									<Input class="adm-input adm-input--regular" readonly :value="body.placeSost.evacActTime" ></Input>
+									<Input class="adm-input adm-input--regular" readonly :value="body.evacActTime | formatDateTime('DD.MM.YYYY')" ></Input>
 								</Row>
 							</div>
 						</Col>

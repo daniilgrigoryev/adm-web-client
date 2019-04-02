@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <masked-input v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="maskInput.placeholder" :inputClass="inputClass"></masked-input>
+    <masked-input v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" @onBlur="onBlur" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="maskInput.placeholder" :inputClass="inputClass"></masked-input>
 
     <i v-if="!isHidden" @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
   </div>
@@ -85,6 +85,30 @@
           this.currentValue = null;
         }
         this.$emit('change', res);
+        this.$emit('hide');
+      },
+      onBlur(e) {
+        let value = e.currentTarget.value;
+        if (value !== this.currentValue) {
+          let res = {
+            valueFirst: null,
+            valueSecond: null
+          };
+          let dates = value.split(' - ');
+          let valueFirst = funcUtils.formatDateTime(dates[0], this.momentFormat);
+          let valueSecond = funcUtils.formatDateTime(dates[1], this.momentFormat);
+          if (valueSecond.toDate().getTime() < valueFirst.toDate().getTime()) {
+            if (valueSecond.toDate().getTime() < valueFirst.toDate().getTime()) {
+              let tmp = valueSecond;
+              valueSecond = valueFirst;
+              valueFirst = tmp;
+            }
+            res.valueFirst = valueFirst.toDate();
+            res.valueSecond = valueSecond.toDate();
+            this.$emit('change', res);
+            this.$emit('hide');
+          }
+        }
       },
       onClick(e) {
         if (!this.disabled && !this.readonly) {

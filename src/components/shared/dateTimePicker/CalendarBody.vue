@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <masked-input v-model="currentValue" @onClick="onClick" @onEnter="onEnter" @onClear="onClear" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></masked-input>
+    <masked-input :value="currentValue" @onClick="onClick" @onEnter="onEnter" @onBlur="onBlur" @onClear="onClear" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></masked-input>
 
     <i v-if="!isHidden" @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
   </div>
@@ -69,6 +69,17 @@
           this.$emit('change', null);
           this.currentValue = null;
         }
+        this.$emit('hide');
+      },
+      onBlur(e) {
+        let value = e.currentTarget.value;
+        if (value !== this.currentValue) {
+          let date = funcUtils.formatDateTime(value, this.momentFormat);
+          if (date.isValid()) {
+            this.$emit('change', date.toDate());
+            this.$emit('hide');
+          }
+        }
       },
       onClick(e) {
         if (!this.disabled && !this.readonly) {
@@ -78,6 +89,7 @@
       onClear(e) {
         this.currentValue = null;
         this.$emit('onClear');
+        this.$emit('hide');
       },
     }
   }
