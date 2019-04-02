@@ -45,7 +45,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="body.dateVyd | formatDateTime('DD.MM.YYYY')" ></Input>
                     </Col>
                   </Row>
                 </div>
