@@ -29,6 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	@import "scss/variables.scss";
 	.item {
 		display: grid;
 		grid-gap: 4px;
@@ -52,14 +53,14 @@ export default {
 		.item__label {
 			font-size: 14px;
 			line-height: 22px;
-			color: #797979;
+			color: $dark-lighter;
 		}
 		.item__value {
 			font-size: 16px;
 			letter-spacing: 0.1px;
 			line-height: 26px;
 			font-weight: 600;
-			color: #373737;
+			color: $dark-base;
 		}
 	}
 </style>

@@ -18,12 +18,12 @@
       <div class="adm-form__container">
         <div class="items-wrap">
           <view-data-item 
-            label="Пункт НПА" 
+            label="№ НПА" 
             :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" 
             style="grid-column: span 2;"
           />
           <view-data-item 
-            label="Статья КРФоАП" 
+            label="№ статьи" 
             :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
             style="grid-column: span 2;"
           />
