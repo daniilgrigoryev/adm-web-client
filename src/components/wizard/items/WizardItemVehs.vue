@@ -197,7 +197,6 @@
 
         await this.fillKuzovTypeList();
         await this.fillMarkAvtoList();
-        await this.fillCategoryTCList();
         if (this.isNotEmptyMarkId()) {
           await this.fillModelList();
         }
@@ -244,21 +243,6 @@
           });
         }
         this.kuzovTypeList = kuzovTypeList;
-      },
-      async fillCategoryTCList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getKategTcDictionary'
-        });
-        let categoryTCList = [];
-        let categoryTCDict = JSON.parse(eventResponse.response).data;
-        for (let i = 0; i < categoryTCDict.length; i++) {
-          let categoryTC = categoryTCDict[i];
-          categoryTCList.push({
-            label: categoryTC.KATC_NAME,
-            value: categoryTC.KATC_KOD
-          });
-        }
-        this.categoryTCList = categoryTCList;
       },
       async fillModelList() {
         let eventResponse = await RequestApi.prepareData({
