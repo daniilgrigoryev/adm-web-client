@@ -8,7 +8,7 @@
             <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt"></masked-input>
           </Col>
           <Col span="6">
-            <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+            <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
               <Icon type="md-key" title="Получить уникальный номер" :size="30" />
             </Button>
           </Col>
@@ -23,7 +23,7 @@
             <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="data.docN" @onInputChange="storeElementData"></masked-input>
           </Col>
           <Col span="6">
-            <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+            <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
               <Icon type="md-key" title="Получить уникальный номер" :size="30" />
             </Button>
           </Col>
@@ -62,7 +62,7 @@
       return {
         data: null,
         maskInputProt: {
-          regex: '[0-9]+',
+          regex: '[а-яА-Я0-9]+',
           casing: 'upper',
           placeholder: ' '
         },

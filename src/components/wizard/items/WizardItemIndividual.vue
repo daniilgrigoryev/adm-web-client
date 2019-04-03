@@ -22,7 +22,7 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
           <Select class="wmin180 adm-input adm-input--regular" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData" >
-            <Option class="wmax360 txt-break-word" style="width: 250px;" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+            <Option class="txt-break-word" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
           </Select>
         </Col>
       </Row>
@@ -43,7 +43,7 @@
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
           <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
-            <Option class="wmax360 txt-break-word" style="width: 250px;" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+            <Option class="txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
           </Select>
         </Col>
       </Row>
