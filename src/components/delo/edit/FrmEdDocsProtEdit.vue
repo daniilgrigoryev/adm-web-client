@@ -65,7 +65,7 @@
                   <Input class="adm-input adm-input--regular" readonly :value="docsProt.inspSostName, docsProt.inspSostRang | concatByDelimiter(',')" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
                   </Button>
                 </Col>
@@ -80,7 +80,7 @@
                   <Input class="adm-input adm-input--regular" readonly :value="docsProt.organSostName" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
                   </Button>
                 </Col>
@@ -95,7 +95,7 @@
                   <Input class="adm-input adm-input--regular" disabled v-model="docsProt.placeSost.placeFull"></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                   </Button>
                 </Col>
@@ -127,7 +127,7 @@
                   <Input class="adm-input adm-input--regular" disabled v-model="docsProt.placeNar.placeFull"></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                   </Button>
                 </Col>
@@ -214,7 +214,7 @@
                   <Input class="adm-input adm-input--regular" readonly :value="docsProt.organRasmName" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
                   </Button>
                 </Col>
@@ -230,7 +230,7 @@
                   <Input class="adm-input adm-input--regular" disabled ></Input>
                 </Col>
                 <!--<Col :xs="2" :md="2" :lg="2">-->
-                  <!--<Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">-->
+                  <!--<Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">-->
                     <!--<Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />-->
                   <!--</Button>-->
                 <!--</Col>-->

@@ -94,7 +94,7 @@
                   <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydKod" @on-input-change="changeInspVydKod" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
                   </Button>
                 </Col>
@@ -140,7 +140,7 @@
                   <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
                   </Button>
                 </Col>
