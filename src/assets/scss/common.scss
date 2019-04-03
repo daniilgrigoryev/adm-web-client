@@ -493,6 +493,9 @@ html, body, #app {
 	}
 }
 
+.adm-input[remote] .ivu-select-selection > div::before {
+  z-index: 5;
+}
 
 .adm-input.ivu-date-picker{
   .ivu-select-dropdown{

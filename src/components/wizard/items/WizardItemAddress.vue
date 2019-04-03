@@ -91,7 +91,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="changeCountry" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -101,7 +101,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="changeCountry" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -113,7 +113,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-input-change="changeCountry" :maxlength="5"></Input>
+                      <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-input-change="storeElementData" :maxlength="5"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -123,7 +123,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-input-change="changeCountry" :maxlength="5"></Input>
+                      <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-input-change="storeElementData" :maxlength="5"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -133,7 +133,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-input-change="changeCountry" :maxlength="5"></Input>
+                      <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-input-change="storeElementData" :maxlength="5"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -143,17 +143,17 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="changeCountry" :maxlength="5"></Input>
+                      <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="storeElementData" :maxlength="5"></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax60">Индекс</small>
+                <small class="adm-text-small color-gray-medium adm-form__label wmin60">Индекс</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.pindex" disabled></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.pindex" disabled style="width: 72px;"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -537,6 +537,7 @@
 
 
 <style lang="scss" scoped>
+
   .address-modal {
 		position: fixed;
 		width: 100vw;
