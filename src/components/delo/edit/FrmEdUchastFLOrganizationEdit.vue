@@ -261,7 +261,7 @@
           placeholder: ''
         },
         phoneMask: {
-          placeholder: ' ',
+          placeholder: '',
           mask: '99999999999'
         },
       }

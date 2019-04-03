@@ -118,22 +118,6 @@
               </Row>
             </div>
           </div>
-
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Владелец</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="22" :lg="22">
-                  <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.ownerTip"
-                          :disabled="isEmptyParentNode()" clearable @on-change="storeElementData" filterable>
-                    <Option v-for="item in ownerList" :value="item.value" :key="item.value">
-                      {{ item.label }}
-                    </Option>
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-          </div>
         </div>
       </div>
     </div>

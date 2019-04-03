@@ -203,7 +203,7 @@
             </Button>
             <DropdownMenu slot="list" class="wmin240">
               <DropdownItem v-for="column in tableColumnsForOptions" :key="column.id" class="px0 py0">
-                <Checkbox v-model="column.visible" class="adm-text-small py6 align-middle ml12">
+                <Checkbox v-model="column.visible" @on-change="setFields" class="adm-text-small py6 align-middle ml12">
                   <span class="mx6">{{column.title}}</span>
                 </Checkbox>
               </DropdownItem>
@@ -318,6 +318,22 @@
           birthday: null,
           regno: null,
           upi: null
+        },
+        sort: {
+          deloId: null,
+          dateStadIspolnLast: null,
+          decisDateFirst: null,
+          decisDateLast: null,
+          deloVidName: null,
+          docN: null,
+          opredN: null,
+          postN: null,
+          protN: null,
+          regno: null,
+          stotv: null,
+          stotvKod: null,
+          uchastName: null,
+          ulName: null
         },
         maskRegno: {
           regex: '[a-zA-Zа-яА-Я0-9]+', 
@@ -440,7 +456,7 @@
                   position: 6,
                   minWidth: 180,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('deloId'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -478,7 +494,7 @@
                   position: 3,
                   ellipsis: true,
                   tooltip: true,
-                  visible: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('stotvKod'),
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -524,7 +540,7 @@
                   position: 99,
                   minWidth: 160,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('birthday'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -548,7 +564,7 @@
                   align: 'center',
                   width: 25,
                   ellipsis: true,
-                  visible: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('checkPriority'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -582,7 +598,7 @@
                   position: 9,
                   minWidth: 280,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('dateStadIspolnLast'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -637,7 +653,7 @@
                   position: 7,
                   minWidth: 220,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('decisDateFirst'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -692,7 +708,7 @@
                   position: 8,
                   minWidth: 250,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('decisDateLast'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -747,7 +763,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('decisNameFirst'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -770,7 +786,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('decisNameLast'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -793,7 +809,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('deloDate'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -822,7 +838,7 @@
                   minWidth: 145,
                   position: 2,
                   ellipsis: true,
-                  visible: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('deloN'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -879,6 +895,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('deloVidName'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -901,6 +918,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('docN'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -922,7 +940,7 @@
                   key: 'lockName',
                   position: 99,
                   minWidth: 180,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('lockName'),
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
@@ -946,6 +964,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('lvokName'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -968,6 +987,7 @@
                   position: 99,
                   minWidth: 220,
                   ellipsis: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('opredN'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -999,7 +1019,7 @@
                   position: 99,
                   minWidth: 200,
                   ellipsis: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('postN'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -1022,6 +1042,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('protN'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -1042,7 +1063,7 @@
                   title: 'ГРЗ', // РегЗнак
                   key: 'regno',
                   position: 5,
-                  visible: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('regno'),
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
@@ -1068,7 +1089,7 @@
                   minWidth: 180,
                   ellipsis: true,
                   tooltip: true,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('stadDeloName'),
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
@@ -1089,7 +1110,7 @@
                   key: 'stadIspolnNameLast',
                   position: 99,
                   minWidth: 250,
-                  visible: false,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('stadIspolnNameLast'),
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
@@ -1113,6 +1134,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('stotv'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -1134,7 +1156,7 @@
                   key: 'uchastName',
                   position: 4,
                   minWidth: 230,
-                  visible: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('uchastName'),
                   ellipsis: true,
                   tooltip: true,
                   renderHeader: (h, params) => {
@@ -1205,6 +1227,7 @@
                   position: 99,
                   minWidth: 180,
                   ellipsis: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('ulName'),
                   tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
@@ -1231,7 +1254,7 @@
               width: 120,
               align: "center",
               key: 'action',
-              visible: false,
+              visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('action'),
               fixed: "right",
               renderHeader: (h, params) => {
                 return h('Tooltip', {
@@ -1321,6 +1344,15 @@
           this.tableHeight = window.innerHeight - tableBounds.y;
         }
       },
+      async setFields(fields) {
+        await RequestApi.prepareData({
+          method: 'setFields',
+          params: {
+            fields: funcUtils.isEmpty(fields) ? null : this.tableFilteredColumns.map(column => column.key)
+          },
+          withSpinner: false
+        });
+      },
       getFilterFields() {
         let filterObj = {};
         let filter = this.filter;
@@ -1337,6 +1369,7 @@
         return filterObj;
       },
       async clearFilter() {
+        this.setFields(null);
         let filter = this.filter;
         for (let prop in filter) {
           if (filter.hasOwnProperty(prop)) {

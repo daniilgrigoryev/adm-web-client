@@ -38,13 +38,13 @@
               </Button>
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
-                  <li v-if="menuItemVisible(menu.createDelo[0])">
+                  <li v-if="menuItemVisible(menu.createDelo.ProtAPNAnothFace)">
                     <Button type="text" class="adm-btn-regular">Протокол об АПН на другое лицо</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.createDelo[1])">
+                  <li v-if="menuItemVisible(menu.createDelo.OpredAPNAnothFace)">
                     <Button type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.createDelo[2])">
+                  <li v-if="menuItemVisible(menu.createDelo.PostAPNAnothFace)">
                     <Button type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
                   </li>
                 </ul>
@@ -61,71 +61,61 @@
               </Button>
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
-                  <li v-if="menuItemVisible(menu.addDocument[0])">
+                  <li v-if="menuItemVisible(menu.addDocument.ApplyDocOnDelo)">
                     <Button type="text" class="adm-btn-regular">Приложить документ к делу</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[1])">
+                  <li v-if="menuItemVisible(menu.addDocument.AddFotoVideo)">
                     <Button type="text" class="adm-btn-regular">Добавить фото и видеоматериалы</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[2])">
+                  <li v-if="menuItemVisible(menu.addDocument.Explanation)">
                     <Button type="text" class="adm-btn-regular">Объяснение</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[3])">
+                  <li v-if="menuItemVisible(menu.addDocument.ProtAPN)">
                     <Button type="text" class="adm-btn-regular">Протокол об АПН</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[4])">
+                  <li v-if="menuItemVisible(menu.addDocument.OpredProvedAP)">
                     <Button type="text" class="adm-btn-regular">Опредение о проведении АР</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[5])">
+                  <li v-if="menuItemVisible(menu.addDocument.PostDeloAPN)">
                     <Button type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[6])">
+                  <li v-if="menuItemVisible(menu.addDocument.PostPrekrDeloAPN)">
                     <Button type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[7])">
+                  <li v-if="menuItemVisible(menu.addDocument.Izvesh)">
                     <Button type="text" class="adm-btn-regular">Извещение</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[8])">
+                  <li v-if="menuItemVisible(menu.addDocument.ChangeDateRasmDelo)">
                     <Button type="text" class="adm-btn-regular">Перенос даты рассмотрения дела</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[9])">
+                  <li v-if="menuItemVisible(menu.addDocument.HodatayProdlSrok)">
                     <Button type="text" class="adm-btn-regular">Ходатайство о продлении сроков административного расследования</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[10])">
+                  <li v-if="menuItemVisible(menu.addDocument.DecicAppeal)">
                     <Button type="text" class="adm-btn-regular">Решение по жалобе</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[11])">
+                  <li v-if="menuItemVisible(menu.addDocument.ConclusAppeal)">
                     <Button type="text" class="adm-btn-regular">Заключение по жалобе</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument[12])">
-                    <Button type="text" class="adm-btn-regular">Приостановление исполнения</Button>
-                  </li>
-                  <li v-if="menuItemVisible(menu.addDocument[13])">
-                    <Button type="text" class="adm-btn-regular">Возобновление исполнения</Button>
-                  </li>
-                  <li v-if="menuItemVisible(menu.addDocument[14])">
-                    <Button type="text" class="adm-btn-regular">Уплата штрафа (ГИБДД)</Button>
-                  </li>
-                  <li v-if="menuItemVisible(menu.addDocument[15])">
-                    <Button type="text" class="adm-btn-regular">Передача в ГИБДД</Button>
-                  </li>
-                  <li v-if="menuItemVisible(menu.addDocument[16])">
-                    <Button type="text" class="adm-btn-regular">Возврат материала из суда</Button>
-                  </li>
-                  <li v-if="menuItemVisible(menu.addDocument[17])">
-                    <Button type="text" class="adm-btn-regular">Проверено после возврата из ФССП</Button>
-                  </li>
-                  <li v-if="menuItemVisible(menu.addDocument[18])">
+                  <li v-if="menuItemVisible(menu.addDocument.DocumentUchast)">
                     <Button type="text" class="adm-btn-regular">Документ участника</Button>
                   </li>
                 </ul>
               </div>
             </Poptip>
 
-            <Button type="text"
+            <Button v-if="menuVisible(menu.addUchast)"
+                    type="text"
                     class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
                     style="box-shadow: none">
               <span>Добавить участника</span>
+            </Button>
+
+            <Button v-if="menuVisible(menu.addIspoln)"
+                    type="text"
+                    class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
+                    style="box-shadow: none">
+              <span>Добавить исполнение</span>
             </Button>
 
             <Button type="text"
@@ -179,6 +169,7 @@
   import DeloInnerForm from "~/components/delo/DeloInnerForm";
   import TreeNode from "~/components/shared/TreeNode";
   import decisEnum from "../../assets/js/utils/decisEnum";
+  import docTipEnum from "../../assets/js/utils/docTipEnum";
 
   export default {
     name: "DeloTreeCardView",
@@ -216,32 +207,28 @@
       return {
         sizeInnerStack: 0,
         menu: {
-          createDelo: [
-            'ProtAPNAnothFace',
-            'OpredAPNAnothFace',
-            'PostAPNAnothFace'
-          ],
-          addDocument: [
-            'ApplyDocOnDelo',
-            'AddFotoVideo',
-            'Explanation',
-            'ProtAPN',
-            'OpredProvedAP',
-            'PostDeloAPN',
-            'PostPrekrDeloAPN',
-            'Izvesh',
-            'ChangeDateRasmDelo',
-            'HodatayProdlSrok',
-            'DecicAppeal',
-            'ConclusAppeal',
-            'SuspensIspoln',
-            'ResumptIspoln',
-            'PaymentShtraf',
-            'TransferGIBDD',
-            'ReturnMaterial',
-            'CheckReturnFSSP',
-            'DocumentUchast'
-          ]
+          createDelo: {
+            ProtAPNAnothFace: 'ProtAPNAnothFace',
+            OpredAPNAnothFace: 'OpredAPNAnothFace',
+            PostAPNAnothFace: 'PostAPNAnothFace'
+          },
+          addDocument: {
+            ApplyDocOnDelo: 'ApplyDocOnDelo',
+            AddFotoVideo: 'AddFotoVideo',
+            Explanation: 'Explanation',
+            ProtAPN: 'ProtAPN',
+            OpredProvedAP: 'OpredProvedAP',
+            PostDeloAPN: 'PostDeloAPN',
+            PostPrekrDeloAPN: 'PostPrekrDeloAPN',
+            Izvesh: 'Izvesh',
+            ChangeDateRasmDelo: 'ChangeDateRasmDelo',
+            HodatayProdlSrok: 'HodatayProdlSrok',
+            DecicAppeal: 'DecicAppeal',
+            ConclusAppeal: 'ConclusAppeal',
+            DocumentUchast: 'DocumentUchast'
+          },
+          addUchast: {AddUchast: 'AddUchast'},
+          addIspoln: {AddIspoln: 'AddIspoln'}
         }
       }
     },
@@ -460,7 +447,25 @@
             return currentForm.params.recType === 'DELO';
           }
           case 'PostAPNAnothFace': {
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 6 || this.deloContext.stadKod === 7);
+            let galobs = {};
+            let decisGalobs = [];
+            let arrElem;
+
+            for (let i = 0; i < this.dataStore.tree.length; i++) {
+              arrElem = this.dataStore.tree[i];
+              if (arrElem.recType === 'DOCS_GALOB') {
+                galobs[arrElem.category] = arrElem;
+              }
+            }
+
+            for (let i = 0; i < this.dataStore.tree.length; i++) {
+              arrElem = this.dataStore.tree[i];
+              let galob = galobs[arrElem.parentCategory];
+              if (galob && arrElem.kod === decisEnum.PREKRASH_DELO) {
+                decisGalobs.push(arrElem);
+              }
+            }
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 6 || this.deloContext.stadKod === 7) && decisGalobs.length > 0;
           }
           case 'ApplyDocOnDelo': {
             return currentForm.params.recType === 'DELO';
@@ -472,22 +477,64 @@
             return currentForm.params.recType === 'DELO';
           }
           case 'ProtAPN': {
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+            let apnDocs = this.dataStore.tree.filter((item) => {
+              return item.recType === 'DOCS_POST' || item.recType === 'DOCS_PROT';
+            });
+            let pztcDocs = this.dataStore.tree.filter((item) => {
+              return (item.recType === 'DOCS_OTHER' && item.kod === docTipEnum.PROT_ZADER_TC) || item.recType === 'DOCS_OPRED';
+            });
+
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && (apnDocs.length === 0 || pztcDocs.length > 0);
           }
           case 'OpredProvedAP': {
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+            let apnDocs = this.dataStore.tree.filter((item) => {
+              return item.recType === 'DOCS_POST' || item.recType === 'DOCS_PROT';
+            });
+            let pztcDocs = this.dataStore.tree.filter((item) => {
+              return item.recType === 'DOCS_OTHER' && item.kod === docTipEnum.PROT_ZADER_TC;
+            });
+            let twoDays = 1000 * 60 * 60 * 24 * 2;
+            let currentDate = new Date();
+            let opreds = {};
+            let decisVozbAPN = [];
+            let arrElem;
+
+            for (let i = 0; i < this.dataStore.tree.length; i++) {
+              arrElem = this.dataStore.tree[i];
+              if (arrElem.recType === 'DOCS_OPRED') {
+                opreds[arrElem.category] = arrElem;
+              }
+            }
+
+            for (let i = 0; i < this.dataStore.tree.length; i++) {
+              arrElem = this.dataStore.tree[i];
+              let opred = opreds[arrElem.parentCategory];
+              if (opred && arrElem.kod === decisEnum.VOZB_DELO_APN) {
+                decisVozbAPN.push(arrElem);
+              }
+            }
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && (decisVozbAPN.length === 0 && apnDocs.length === 0) || (pztcDocs.length > 0 && currentDate > (this.deloContext.deloDate + twoDays));
           }
           case 'PostDeloAPN': {
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+            let apnPost = this.dataStore.tree.filter((item) => {
+              return item.recType === 'DOCS_POST';
+            });
+            let apnProt = this.dataStore.tree.filter((item) => {
+              return item.recType === 'DOCS_PROT';
+            });
+            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && apnProt.length > 0 && apnPost.length === 0;
           }
           case 'PostPrekrDeloAPN': {
             return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
           }
           case 'Izvesh': {
-            break;
+            let apnPost = this.dataStore.tree.filter((item) => {
+              return item.recType === 'DOCS_POST';
+            });
+            return (currentForm.params.recType === 'DOCS_OPRED' || currentForm.params.recType === 'DOCS_PROT') && apnPost.length === 0;
           }
           case 'ChangeDateRasmDelo': {
-            break;
+            return currentForm.params.recType === 'DOCS_OPRED' || currentForm.params.recType === 'DOCS_PROT';
           }
           case 'HodatayProdlSrok': {
             return currentForm.params.recType === 'DOCS_OPRED' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
@@ -498,32 +545,21 @@
           case 'ConclusAppeal': {
             return currentForm.params.recType === 'DOCS_GALOB';
           }
-          case 'SuspensIspoln': {
-            return currentForm.params.recType === 'DECIS';
-          }
-          case 'ResumptIspoln': {
-            return currentForm.params.recType === 'DECIS';
-          }
-          case 'PaymentShtraf': {
-            return currentForm.params.recType === 'DECIS';
-          }
-          case 'TransferGIBDD': {
-            break;
-          }
-          case 'ReturnMaterial': {
-            break;
-          }
-          case 'CheckReturnFSSP': {
-            break;
-          }
           case 'DocumentUchast': {
             return currentForm.params.recType === 'UCHASTFL' || currentForm.params.recType === 'UCHASTUL' || currentForm.params.recType === 'UCHASTOTHER';
+          }
+          case 'AddIspoln': {
+            return currentForm.params.recType === 'DECIS' && this.deloContext.stadKod !== 7;
+          }
+          case 'AddUchast': {
+            return currentForm.params.recType === 'DELO';
           }
         }
         return false;
       },
-      menuVisible(items) {
+      menuVisible(menuItem) {
         let res = false;
+        let items = Object.values(menuItem);
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
           let itemVisible = this.menuItemVisible(item);
@@ -543,14 +579,13 @@
         let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
         let currentForm = innerFormStack.getCurrent(uid);
 
-
         let copyDelo = this.getCopyObj(arr[0], 'children');
         tree.push(copyDelo);
         arr.forEach((item) => {
           this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === JSON.stringify(item));
         });
 
-        for (let i = 0, len = arr.length; i < len; i++) {
+        for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
           arrElem.height = 0;
           mappedArr[arrElem.category] = arrElem;

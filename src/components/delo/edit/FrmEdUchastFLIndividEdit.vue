@@ -273,7 +273,7 @@
     data() {
       return {
         phoneMask: {
-          placeholder: ' ',
+          placeholder: '',
           mask: '99999999999'
         },
         birthdayDate: null,

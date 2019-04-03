@@ -64,7 +64,7 @@
         maskInputProt: {
           regex: '[а-яА-Я0-9]+',
           casing: 'upper',
-          placeholder: ' '
+          placeholder: ''
         },
       }
     },
