@@ -194,12 +194,12 @@
               <div class="adm-form__item_content">
                 <Row type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular" v-model="vehsAMTC.color"></Input>
+                    <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.color"  @on-input-change="store"></Input> -->
+                    <masked-input inputClass="adm-input adm-input--regular" v-model="vehsAMTC.color" @onInputChange="store" :maskProps="{casing: 'upper', placeholder: ''}" placeholder=""></masked-input>
                   </Col>
                 </Row>
               </div>
             </div>
-            <!-- dddddd -->
             <div class="adm-form__item">
               <small class="adm-text-small adm-form__label">Масса без нагрузки</small>
               <div class="adm-form__item_content">
@@ -227,7 +227,7 @@
               <div class="adm-form__item_content">
                 <Row type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="24">
-                    <!--<Input class="adm-input adm-input&#45;&#45;regular" v-model="vehsAMTC.yearVyp"></Input>-->
+                    <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.yearVyp"  @on-input-change="store"></Input> -->
                     <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable :placeholder="maskInputYearVyp.placeholder"></masked-input>
                   </Col>
                 </Row>

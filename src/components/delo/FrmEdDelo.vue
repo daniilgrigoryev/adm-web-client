@@ -8,97 +8,7 @@
         </Button>
       </div> -->
 
-      <div class="relative w-full">
-        <div class="flex-parent flex-parent--end-main absolute" style="right: 0">
-          <Button type="primary" @click="optionView = 1" class="mx12">v1</Button>
-          <Button type="primary" @click="optionView = 2" class="mx12">v2</Button>
-        </div>
-      </div>
-
-      <div class="ml60 pt36" v-if="optionView == 1">
-        <div>
-          <div v-if="isNotEmptyField(viol.violDatNar)" class="flex-parent my6">
-            <div class="flex-parent flex-parent--center-cross  wmin240 wmax240 h36">
-              <div class="s40 flex-parent flex-parent--center-cross flex-parent--center-main">
-                <img src="../../assets/images/time.svg" alt="">
-              </div>
-              <p class="adm-14 color-dark-lighter">Дата - время нарушения</p>
-            </div>
-            <div>
-              <p class="adm-14 color-dark-lighter py6">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
-            </div>
-          </div>
-
-          <div v-if="isNotEmptyField(viol.violPlaceNarFull)"  class="flex-parent my6">
-            <div class="flex-parent flex-parent--center-cross wmin240 wmax240 h36">
-              <div class="s40 flex-parent flex-parent--center-cross flex-parent--center-main">
-                <img src="../../assets/images/map.svg" alt="">
-              </div>
-              <p class="adm-14 color-dark-lighter">Место нарушения</p>
-            </div>
-            <div>
-              <p class="adm-14 color-dark-lighter wmax600 pr12 py6">{{viol.violPlaceNarFull}}</p>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="isNotEmptyField(viol.violPnpaKod)" class="px12 my24">
-          <p class="adm-text-big color-dark-lighter ">Пункт НПА</p>
-          <div class="flex-parent flex-parent--center-cross my6">
-            <h3 class="adm-h3 color-dark-lighter">{{viol.violPnpaKod}}</h3>
-            <p class="adm-14 color-dark-lighter ml18">{{viol.violPnpaName}}</p>
-          </div>
-        </div>
-        <div v-if="isNotEmptyField(body.stotvZakon)" class="px12 my24">
-          <p class="adm-text-big color-dark-lighter">Статья {{body.stotvZakon}}</p>
-          <div class="flex-parent flex-parent--center-cross my6">
-            <h3 class="adm-h3 color-dark-lighter">{{viol.violStotvKod}}</h3>
-            <p class="adm-14 color-dark-lighter ml18">{{viol.violStotvName}}</p>
-          </div>
-        </div>
-
-        <div class="">
-          <div class="flex-parent my36">
-            <div class="mr24 mt24">
-                <img src="../../assets/images/police.svg" alt="">
-            </div>
-            <div>
-              <div v-if="isNotEmptyField(body.inspVozbName)">
-                <p class="adm-14 color-dark-lighter mb6">Должностное лицо, возбудившее дело</p>
-                <h3 class="adm-h3 color-dark-lighter">{{body.inspVozbName}}</h3>
-              </div>
-              
-              <div class="my8">
-                <!-- <p class="adm-14 color-dark-lighter txt-em my6">Код сотрудника: {{body.inspVozbKod}} </p> -->
-                <p v-if="isNotEmptyField(body.inspVozbRang)" class="adm-14 color-dark-lighter txt-em my6">{{ body.inspVozbRang, body.inspVozbDolz | concatByDelimiter(',') }}</p>
-              </div>
-
-              <div class="my12">
-                <p class="adm-14 color-dark-lighter">Орган, возбудивший дело</p>
-                <p class="adm-text-big color-dark-lighter">{{body.organVozbId, body.organVozbName | concatByDelimiter('-') }}</p>
-              </div>
-            </div>
-          </div>
-
-          <div v-if="isNotEmptyField(body.docVozbName)" class="my12">
-            <p class="adm-14 color-dark-lighter">Документ основание</p>
-            <h3 class="adm-h3 color-dark-lighter">{{body.docVozbName}}</h3>
-          </div>
-
-
-          <div v-if="isNotEmptyField(viol.mvidFisFull)" class="my12">
-            <p class="adm-14 color-dark-lighter">Уникальный номер АП</p>
-            <h3 class="adm-h3 color-dark-lighter">{{viol.mvidFisFull}}</h3>
-          </div>
-
-          <div v-if="isNotEmptyField(body.deloMainDescr)" class="my12">
-            <p class="adm-14 color-dark-lighter">Дело - основание</p>
-            <h3 class="adm-h3 color-dark-lighter link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo">{{body.deloMainDescr}}</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="ml60 pt36" v-if="optionView == 2">
+      <div class="ml60 pt36">
         <div>
           <div v-if="isNotEmptyField(viol.violDatNar)" class="flex-parent my6">
             <div class="flex-parent flex-parent--center-cross w-full">
@@ -109,7 +19,6 @@
                 <p class="adm-14 color-dark-lighter">Дата - время нарушения</p>
                 <p class="adm-text-big color-dark-base py6">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
               </div>
-
             </div>
           </div>
 
@@ -129,14 +38,14 @@
         <div v-if="isNotEmptyField(viol.violPnpaKod)" class="ml60 my18">
           <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
           <h2 class="adm-h2 color-dark-base mb6">{{viol.violPnpaKod}}</h2>
-          <p class="adm-text-italic color-dark-base">{{viol.violPnpaName}}</p>
+          <p class="adm-text-italic color-dark-base">{{viol.violPnpaName || 'нет информации'}}</p>
         </div>
 
 
         <div v-if="isNotEmptyField(body.stotvZakon)" class="ml60 my18">
           <p class="adm-14 color-dark-lighter mb6">Статья {{body.stotvZakon}}</p>
-          <h2 class="adm-h2 color-dark-base mb6">{{viol.violStotvKod}}</h2>
-          <p class="adm-text-italic color-dark-base">{{viol.violStotvName}}</p>
+          <h2 class="adm-h2 color-dark-base mb6">{{viol.violStotvKod || 'нет информации'}}</h2>
+          <p class="adm-text-italic color-dark-base">{{viol.violStotvName || 'нет информации'}}</p>
         </div>
 
         <div>
@@ -182,57 +91,7 @@
         </div>
       </div>
 
-
-
-      <div class="adm-form errors-table" v-if="isNotEmptyField(errors) && optionView == 1">
-        <div class="adm-form__container">
-          <h2  @click="hideMore = !hideMore" class="adm-text-big color-dark-light adm-form__headding cursor-pointer flex-parent flex-parent--space-between-main">
-            <span>Ошибки</span>
-            <Button type="text" class="bg-transparent" style="box-shadow: none;">
-              <Icon v-if="hideMore" type="md-remove" class="color-white" :size="25" title="свернуть" />
-              <Icon v-else type="md-add" class="color-white" :size="25" title="развернуть"/>
-            </Button>
-          </h2>
-          <div class="adm-form__content" v-show="hideMore">
-            <table class='adm-table-simple table table--fixed border--0'>
-              <thead>
-                <tr class="bg-white-light">
-                  <th class="error-th"></th>
-                  <th class="w180 align-middle">
-                    <p class="adm-text-big txt-normal color-dark-lighter">Код ошибки</p>
-                  </th>
-                  <th class="w180 align-middle">
-                    <p class="adm-text-big txt-normal color-dark-lighter">Проверил</p>
-                    <i class="adm-txt-regular txt-normal color-dark-lighter">Время проверки</i>
-                  </th>
-                  <th class="align-middle">
-                    <p class="adm-text-big txt-normal color-dark-lighter">Ошибка</p>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(error, index) in errors">
-                  <td class="align-center align-middle">
-                    <div class="inline-block round-full w12 h12" :class="changeClass(error.priority)">
-                    </div>
-                  </td>
-                  <td class="align-middle">
-                    <p class="adm-14">{{error.kod}}</p>
-                  </td>
-                  <td>
-                    <p class="adm-14 color-dark-base">{{error.checkIspName}}</p>
-                    <p class="adm-12">{{error.checkDate | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
-                  </td>
-                  <td>
-                    <p class="adm-14 color-dark-base">{{error.mesg}}</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="adm-form errors-table errors-table--v2" v-if="isNotEmptyField(errors) && optionView == 2">
+      <div class="adm-form errors-table errors-table--v2">
         <div class="adm-form__container">
           <h2  @click="hideMore = !hideMore" class="adm-text-big adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
             <span class="color-dark-lighter">Ошибки</span>
@@ -297,7 +156,6 @@
     data() {
       return {
         hideMore: false,
-        optionView: 2
       }
     },
     async created() {

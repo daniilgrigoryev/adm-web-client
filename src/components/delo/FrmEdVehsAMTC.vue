@@ -8,219 +8,58 @@
             </Button>
             <b class="adm-text-big color-dark-lighter">Транспортное средство</b>
           </div>
-          <div class="flex-parent flex-parent--end-main">
-            <Button type="primary" @click="optionView = 1" class="mx12">v1</Button>
-            <Button type="primary" @click="optionView = 2" class="mx12">v2</Button>
-          </div>
           <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
             <img src='../../assets/images/wiki.svg' class="wmax-none">
           </Button>
         </div>
     </div>
-
-
-    <div class="adm-form" v-if="optionView == 1">
-      <div class="adm-form__container my6 mx0 py12 px36">
-        <div class="adm-form__content">
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">ГРЗ</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular err" readonly :value="body.regno" >
-                      </Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col :xs="24" :md="24" :lg="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">СТС</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.ctc"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="24">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Марка, модель</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.markaAvto, body.modavtoName | concatByDelimiter(' ')"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Цвет</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.color" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Тип двигателя</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.motorTip" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label ">Тип</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.tiptcName" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Масса без нагрузки</small><!-- Снаряженная масса автомобиля (кг.) -->
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.massa" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">VIN</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.vin" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col :xs="24" :md="24" :lg="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Год выпуска</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.yearVyp" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Экологический класс</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.motorEcologClass" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Категория</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.katcKod" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Максимальная масса</small><!-- Разрешенная максимальная масса автомобиля (кг.) -->
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.massaMax" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">ПТС</small><!-- Номер ПТС -->
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.ptcN" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="24">
-              <div class="adm-form__item">
-                <small class="adm-text-small adm-form__label">Владелец</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.sobstvName" ></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </div>
-    </div>
-    <div v-if="optionView == 2">
+    <div>
       <div class="adm-form">
-        <div class="adm-form__container my0 mx0 py18 px36">
+        <div class="adm-form__container my0 mx0 py12 px36">
           <div class="adm-form__content">
             <div class="ml60">
               <div class="w-full">
                 <div class="grid">
                   <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">Номер ГРЗ</p>
+                    <p class="adm-14 color-dark-lighter mb6">ГРЗ</p>
                     <p class="adm-text-big color-dark-base">{{body.regno || 'нет информации'}}</p>
                   </div>
-                  <div class="col col--6" v-if="isNotEmptyField(body.ctc)">
-                    <p class="adm-14 color-dark-lighter mb6">СТС</p>
-                    <p class="adm-text-big color-dark-base">{{body.ctc}}</p>
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">VIN</p>
+                    <p class="adm-text-big color-dark-base">{{body.vin || 'нет информации'}}</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="ml60 my18">
+            <div class="ml60 my12">
               <div class="w-full">
-                <div class="col col--6">
-                  <p class="adm-14 color-dark-lighter mb6">Марка, модель, год выпуска</p>
-                  <p class="adm-text-big color-dark-base">{{body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',') || 'нет информации'}}</p>
+                <div class="grid">
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">Марка, модель, год выпуска</p>
+                    <p class="adm-text-big color-dark-base">{{body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',') || 'нет информации'}}</p>
+                  </div>
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">СТС</p>
+                    <p class="adm-text-big color-dark-base">{{body.ctc || 'нет информации'}}</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="ml60 my18">
+            <div class="ml60 my12">
               <div class="w-full">
-                <div class="col col--6">
-                  <p class="adm-14 color-dark-lighter mb6">Цвет ТС</p>
-                  <p class="adm-text-big color-dark-base">{{body.color || 'нет информации'}}</p>
+                <div class="grid">
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">Цвет ТС</p>
+                    <p class="adm-text-big color-dark-base">{{body.color || 'нет информации'}}</p>
+                  </div>
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">ПТС</p>
+                    <p class="adm-text-big color-dark-base">{{body.ptcN || 'нет информации'}}</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="py18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
+            <div class="py12" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
               <div class="flex-parent">
                 <div class="s40 mt12">
                     <img src="../../assets/images/eng.svg" class="mx-auto block" alt="">
@@ -236,7 +75,7 @@
                       <p class="adm-text-big color-dark-base">{{body.motorEcologClass || 'нет информации'}}</p>
                     </div>
                   </div>
-                  <div class="grid mt18">
+                  <div class="grid mt12">
                     <div class="col col--6">
                       <p class="adm-14 color-dark-lighter mb6">Тип ТС</p>
                       <p class="adm-text-big color-dark-base">{{body.tiptcName || 'нет информации'}}</p>
@@ -249,7 +88,7 @@
                 </div>
               </div>
             </div>
-            <div class="ml60 mt18">
+            <div class="ml60 mt12">
               <div class="w-full">
                 <div class="grid">
                   <div class="col col--6">
@@ -263,25 +102,11 @@
                 </div>
               </div>
             </div>
-            <div class="ml60 mt18">
-              <div class="w-full">
-                <div class="grid">
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">VIN номер</p>
-                    <p class="adm-text-big color-dark-base">{{body.vin || 'нет информации'}}</p>
-                  </div>
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">ПТС</p>
-                    <p class="adm-text-big color-dark-base">{{body.ptcN || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="flex-parent flex-parent--center-cross py30">
+            <div class="py12 flex-parent flex-parent--center-cross">
               <div class="s40">
                   <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
               </div>
-              <div class="ml18">
+              <div class="ml18 w-full">
                 <div>
                   <p class="adm-14 color-dark-lighter mb6">Владелец, дата рождения</p>
                   <p class="adm-text-big color-dark-base">{{body.sobstvName || 'нет информации'}}</p>
@@ -364,7 +189,6 @@
       return {
         checkAMTS: {},
         photos: [],
-        optionView: 2
       }
     },
     methods: {
