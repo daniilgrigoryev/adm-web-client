@@ -69,8 +69,11 @@
               <div class="adm-form__container">
                 <h2 id="witness" class="adm-text-big adm-form__headding">Понятые</h2>
                 <div class="adm-form__content px36 py24">
+                  <h4 class="h4">1 понятой</h4>
                   <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
                   <wizard-item-address v-if="isVisible('Witness1.regAddr')" ref="Witness1.regAddr" :info="getInfo('Witness1.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+                  <hr>
+                  <h4 class="h4">2 понятой</h4>
                   <wizard-item-individual v-if="isVisible('Witness2')" ref="Witness2" :info="getInfo('Witness2')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
                   <wizard-item-address v-if="isVisible('Witness2.regAddr')" ref="Witness2.regAddr" :info="getInfo('Witness2.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
                 </div>
@@ -221,6 +224,17 @@
         margin: 0;
         border: none;
         border-radius: 0;
+        hr {
+          height: 1px;
+          width: 100%;
+          background: #e4e4e4;
+          color: #e4e4e4;
+          margin: 20px;
+        }
+        h4.h4 {
+          color: #6b94c2;
+          font-size: 14px;
+        }
         .adm-form__headding {
           border-radius: 0;
           background: #fff;
