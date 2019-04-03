@@ -14,9 +14,9 @@
           <button @click="itemsStyleClass = 'new-grid'">v3</button>
           <button @click="itemsStyleClass = 'gray-blocks-style'">v4</button>
         </div>
-        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../../assets/images/wiki.svg' class="wmax-none">
-        </Button>
+        </Button> -->
       </div>
     </div>
     <div class="items-wrap" :class="itemsStyleClass">

@@ -9,9 +9,9 @@
           </Button>
           <b class="adm-text-big color-dark-lighter">Решение по делу - Штраф</b>
         </div>
-        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
-        </Button>
+        </Button> -->
       </div>
     </div>
 

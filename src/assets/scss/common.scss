@@ -669,7 +669,7 @@ html, body, #app {
       padding-left: 50px;
       padding-top: 10px;
       padding-bottom: 10px;
-      &:hover{
+      &.ivu-select-item-focus, &:hover{
         background-color: $gray-light;
       }
       &.ivu-select-item-selected{
@@ -677,7 +677,7 @@ html, body, #app {
         background-repeat: no-repeat;
         background-position: 15px center;
         transition: none;
-        background-color: #f3f3f3;
+        background-color: $gray-light; // #f3f3f3
       }
     }
   }

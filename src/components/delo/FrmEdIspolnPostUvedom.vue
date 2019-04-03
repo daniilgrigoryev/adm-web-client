@@ -9,84 +9,61 @@
           </Button> -->
           <b class="adm-text-big color-dark-lighter">Почтовое уведомление</b>
         </div>
-        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../assets/images/wiki.svg' class="wmax-none">
-        </Button>
       </div>
     </div>
 
-    <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <div class="adm-form__content px36 pt24">
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Уникальный почтовый идентификатор</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.upi" ></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Номер реестра</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.reestrN" ></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата отправки</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateOtpravVu | formatDateTime('DD.MM.YYYY')" ></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Участник дела</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.uchastName"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
+      <div class="adm-form">
+        <div class="adm-form__container my0 mx0 py12 px36">
+          <div class="adm-form__content">
 
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место исполнения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.placeIspoln.placeFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
+            <div class="ml60">
+              <div class="w-full">
+                <div class="my12">
+                  <div class="grid">
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">Уникальный почтовый идентификатор</p>
+                      <p class="adm-text-big color-dark-base">{{body.upi || 'нет информации'}}</p>
+                    </div>
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">Номер реестра</p>
+                      <p class="adm-text-big color-dark-base">{{body.reestrN || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
 
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Уведомление направлено по адресу</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" :value="body.placeIspoln.placeFull" readonly type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                  <!-- адрес куда отправляются уведомления == место исполнения? -->
-                </Col>
-              </Row>
+
+                <div>
+                  <div class="grid">
+                    <div class="col col--12 my12">
+                      <p class="adm-14 color-dark-lighter mb6">Дата отправки</p>
+                      <p class="adm-text-big color-dark-base">{{body.dateOtpravVu | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                    </div>
+                    <div class="col col--12 my12">
+                      <p class="adm-14 color-dark-lighter mb6">Участник дела</p>
+                      <p class="adm-text-big color-dark-base">{{body.uchastName || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="grid">
+                    <div class="col col--12 my12">
+                      <p class="adm-14 color-dark-lighter mb6">Место исполнения</p>
+                      <p class="adm-text-big color-dark-base">{{body.placeIspoln.placeFull || 'нет информации'}}</p>
+                    </div>
+                    <div class="col col--12 my12">
+                      <p class="adm-14 color-dark-lighter mb6">Уведомление направлено по адресу</p>
+                      <p class="adm-text-big color-dark-base">{{body.placeIspoln.placeFull || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+
+
           </div>
         </div>
       </div>
-
-
-
-    </div>
   </div>
 </template>
 
