@@ -160,6 +160,9 @@
               </div> 
             </div>
           </div>
+          <div class="button-wrap">
+            <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase save-place">Сохранить</Button>
+          </div>
         </div>
       </div>
     </div>
