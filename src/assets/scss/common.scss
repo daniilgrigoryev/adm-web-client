@@ -666,6 +666,9 @@ html, body, #app {
       padding-left: 50px;
       padding-top: 10px;
       padding-bottom: 10px;
+      &:hover{
+        background-color: $gray-light;
+      }
       &.ivu-select-item-selected{
         background-image: url(../images/select.svg);
         background-repeat: no-repeat;
