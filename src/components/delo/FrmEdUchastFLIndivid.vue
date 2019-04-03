@@ -13,79 +13,65 @@
           </Button> -->
         </div>
     </div>
+
     <div class="adm-form">
-      <div class="adm-form__container  mt0 mx0">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Данные об участнике дела</h2>
-        <div class="adm-form__content my6 py12 px36">
-          <div v-if="isNotEmptyField(body.individ.firstName) && isNotEmptyField(body.individ.secondName) && isNotEmptyField(body.individ.thirdName)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">ФИО, дата рождения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'/') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('/')" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-
-          <div v-if="isNotEmptyField(body.individ.birthMesto)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Место рождения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.individ.birthMesto"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          
-          <div v-if="isNotEmptyField(body.individ.gragdName)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Гражданство</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.individ.gragdName" ></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-
-
-          <div v-if="isNotEmptyField(body.individ.address.adrFull)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Адрес регистрации</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.individ.address.adrFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-
-          <div v-if="isNotEmptyField(body.factAddr.adrFull)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Фактический адрес</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.factAddr.adrFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-
-          <div v-if="isNotEmptyField(body.individ.address.phone)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Телефон</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.individ.address.phone"></Input>
-                </Col>
-              </Row>
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="w-full">
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--12">
+                    <p class="adm-14 color-dark-lighter mb6">ФИО, дата рождения</p>
+                    <p class="adm-text-big color-dark-base">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'/') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('/') || 'нет информации'}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--12">
+                    <p class="adm-14 color-dark-lighter mb6">Место рождения</p>
+                    <p class="adm-text-big color-dark-base">{{body.individ.birthMesto || 'нет информации'}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--12">
+                    <p class="adm-14 color-dark-lighter mb6">Гражданство</p>
+                    <p class="adm-text-big color-dark-base">{{body.individ.gragdName || 'нет информации'}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--12">
+                    <p class="adm-14 color-dark-lighter mb6">Адрес регистрации</p>
+                    <p class="adm-text-big color-dark-base">{{body.individ.address.adrFull || 'нет информации'}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--12">
+                    <p class="adm-14 color-dark-lighter mb6">Фактический адрес</p>
+                    <p class="adm-text-big color-dark-base">{{body.factAddr.adrFull || 'нет информации'}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--12">
+                    <p class="adm-14 color-dark-lighter mb6">Телефон</p>
+                    <p class="adm-text-big color-dark-base">{{body.individ.address.phone || 'нет информации'}}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>   
   </div>
 </template>
 

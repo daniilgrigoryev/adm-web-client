@@ -12,58 +12,52 @@
       </div>
     </div>
 
-      <div class="adm-form">
-        <div class="adm-form__container my0 mx0 py12 px36">
-          <div class="adm-form__content">
-
-            <div class="ml60">
-              <div class="w-full">
-                <div class="my12">
-                  <div class="grid">
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Уникальный почтовый идентификатор</p>
-                      <p class="adm-text-big color-dark-base">{{body.upi || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Номер реестра</p>
-                      <p class="adm-text-big color-dark-base">{{body.reestrN || 'нет информации'}}</p>
-                    </div>
+    <div class="adm-form">
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="w-full">
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">Уникальный почтовый идентификатор</p>
+                    <p class="adm-text-big color-dark-base">{{body.upi || 'нет информации'}}</p>
+                  </div>
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">Номер реестра</p>
+                    <p class="adm-text-big color-dark-base">{{body.reestrN || 'нет информации'}}</p>
                   </div>
                 </div>
-
-
-                <div>
-                  <div class="grid">
-                    <div class="col col--12 my12">
-                      <p class="adm-14 color-dark-lighter mb6">Дата отправки</p>
-                      <p class="adm-text-big color-dark-base">{{body.dateOtpravVu | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--12 my12">
-                      <p class="adm-14 color-dark-lighter mb6">Участник дела</p>
-                      <p class="adm-text-big color-dark-base">{{body.uchastName || 'нет информации'}}</p>
-                    </div>
+              </div>
+              <div>
+                <div class="grid">
+                  <div class="col col--12 my12">
+                    <p class="adm-14 color-dark-lighter mb6">Дата отправки</p>
+                    <p class="adm-text-big color-dark-base">{{body.dateOtpravVu | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  </div>
+                  <div class="col col--12 my12">
+                    <p class="adm-14 color-dark-lighter mb6">Участник дела</p>
+                    <p class="adm-text-big color-dark-base">{{body.uchastName || 'нет информации'}}</p>
                   </div>
                 </div>
-                <div>
-                  <div class="grid">
-                    <div class="col col--12 my12">
-                      <p class="adm-14 color-dark-lighter mb6">Место исполнения</p>
-                      <p class="adm-text-big color-dark-base">{{body.placeIspoln.placeFull || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--12 my12">
-                      <p class="adm-14 color-dark-lighter mb6">Уведомление направлено по адресу</p>
-                      <p class="adm-text-big color-dark-base">{{body.placeIspoln.placeFull || 'нет информации'}}</p>
-                    </div>
+              </div>
+              <div>
+                <div class="grid">
+                  <div class="col col--12 my12">
+                    <p class="adm-14 color-dark-lighter mb6">Место исполнения</p>
+                    <p class="adm-text-big color-dark-base">{{body.placeIspoln.placeFull || 'нет информации'}}</p>
+                  </div>
+                  <div class="col col--12 my12">
+                    <p class="adm-14 color-dark-lighter mb6">Уведомление направлено по адресу</p>
+                    <p class="adm-text-big color-dark-base">{{body.placeIspoln.placeFull || 'нет информации'}}</p>
                   </div>
                 </div>
               </div>
             </div>
-
-
-
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
