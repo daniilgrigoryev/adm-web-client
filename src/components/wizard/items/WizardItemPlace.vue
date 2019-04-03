@@ -632,7 +632,7 @@ export default {
 				position: absolute;
 				padding: 0;
 				background: #fff;
-				top: 0;
+				top: -15px;
 				right: -22px;
 				z-index: 5;
 				transition: .3s ease;
@@ -656,23 +656,6 @@ export default {
 			}
 		}
 	}
-
-
-  .adm-form-content{
-    // border: 1px solid #000;
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    // min-height: 90px;
-    // outline: 1px solid;
-  }
-  .adm-form__label{
-    padding: 0;
-    min-width: 130px;
-    padding-right: 12px;
-  }
   .adm-form__item_content{
     width: 100%;
   }

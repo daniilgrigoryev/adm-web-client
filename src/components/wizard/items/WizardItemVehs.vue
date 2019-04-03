@@ -1,11 +1,10 @@
 <template>
   <div v-if="data">
     <div class="adm-form">
-      <div class="adm-form__container mt6">
+      <div class="adm-form__container">
         <h2 class="adm-text-big adm-form__headding" id="tc">Транспортное средство</h2>
         <div class="adm-form__content px36 py24">
-          <Row>
-            <Col span="12">
+          
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ</small>
                 <div class="adm-form__item_content">
@@ -20,7 +19,6 @@
                 </div>
               </div>
             </Col>
-            <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">VIN</small>
                 <div class="adm-form__item_content">
@@ -33,10 +31,8 @@
                   </Row>
                 </div>
               </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="12">
+            
+          
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Марка</small>
                 <div class="adm-form__item_content">
@@ -51,7 +47,6 @@
                 </div>
               </div>
             </Col>
-            <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Модель</small>
                 <div class="adm-form__item_content">
@@ -65,10 +60,8 @@
                   </Row>
                 </div>
               </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="12">
+            
+          
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">СТС</small>
                 <div class="adm-form__item_content">
@@ -83,7 +76,6 @@
                 </div>
               </div>
             </Col>
-            <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Цвет</small>
                 <div class="adm-form__item_content">
@@ -96,10 +88,8 @@
                   </Row>
                 </div>
               </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="12">
+            
+          
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Категория</small>
                 <div class="adm-form__item_content">
@@ -114,7 +104,6 @@
                 </div>
               </div>
             </Col>
-            <Col span="12">
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label">Тип</small>
                 <div class="adm-form__item_content">
@@ -129,8 +118,7 @@
                   </Row>
                 </div>
               </div>
-            </Col>
-          </Row>
+            
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Владелец</small>
             <div class="adm-form__item_content">
@@ -288,23 +276,8 @@
 </script>
 
 <style lang="scss" scoped>
-  .adm-form-content {
-    // border: 1px solid #000;
-  }
 
-  .adm-form__item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
 
-  .adm-form__label {
-    padding: 0;
-    min-width: 130px;
-    padding-right: 12px;
-  }
 
   .adm-form__item_content {
     width: 100%;

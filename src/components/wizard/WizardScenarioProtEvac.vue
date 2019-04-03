@@ -1,11 +1,11 @@
 <template>
-  <div class="wmax1920 prot-pztc">
+  <div class="wmax1920 WizardScenarioProtEvac">
     <Row type="flex">
       <Col :xs="24" :sm="8" :md="6" :lg="6">
-        <div class="bg-blue-thin h-full">
+        <div class="h-full">
           <ul class="ml60 mr24 my24 min-nav" style="top: 100px" v-if="isVisible('DocProtEvacOne')">
             <li v-for="item in goToSectionNav" :key="item.id">
-              <a :href="'#' + item.name" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block ">{{item.title}}</a>
+              <a :href="'#' + item.name" class="link color-dark-base adm-txt-regular txt-underline-on-hover py12 block ">{{item.title}}</a>
             </li>
           </ul>
         </div>
@@ -14,13 +14,9 @@
         <div>
           <Layout ref="Main" class=" px36 py12" style="min-height: calc(100vh - 125px);">
             <div class="adm-form">
-              <div class="adm-form__container mt6">
+              <div class="adm-form__container">
                 <h2 class="adm-text-big adm-form__headding" id="head">
-                  Ввод данных по протоколу о задержании ТС по делу №
-                  <masked-input style="width: 120px" inputClass="adm-input adm-input--regular white-color-input" :maskProps="maskInputProt"></masked-input>
-                  <Button @click="" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-white-on-hover color-gray-light transition color-blue-on-focus">
-                    <Icon type="md-key" title="Получить уникальный номер" :size="35" />
-                  </Button>
+                  Ввод данных по протоколу о задержании ТС
                 </h2>
                 <div class="adm-form__content px36 py24">
                   <wizard-item-prot-evac-one id="DocProtEvacOne" v-if="isVisible('DocProtEvacOne')" ref="DocProtEvacOne" :info="getInfo('DocProtEvacOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-one>
@@ -31,7 +27,7 @@
             </div>
             <div class="adm-form">
               <div v-if="isNotEmptyParentNode('LVOK')">
-                <div class="adm-form__container mt6">
+                <div class="adm-form__container">
                   <h2 class="adm-text-big adm-form__headding" id="lvok">ЛВОК</h2>
                   <div class="adm-form__content px36 py24">
                     <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
@@ -57,7 +53,7 @@
             <wizard-item-vehs id="nar" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
 
             <div class="adm-form">
-              <div class="adm-form__container mt6">
+              <div class="adm-form__container">
                 <h2 class="adm-text-big adm-form__headding" id="violation-information">Сведения о нарушении</h2>
                 <div class="adm-form__content px36 py24">
                   <wizard-item-prot-evac-three id="DocProtEvacThree" v-if="isVisible('DocProtEvacThree')" ref="DocProtEvacThree" :info="getInfo('DocProtEvacThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-three>
@@ -70,17 +66,13 @@
 
 
             <div class="adm-form">
-              <div class="adm-form__container mt6">
+              <div class="adm-form__container">
                 <h2 id="witness" class="adm-text-big adm-form__headding">Понятые</h2>
                 <div class="adm-form__content px36 py24">
-                  <div class="adm-form__container mt6">
-                    <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-                    <wizard-item-address v-if="isVisible('Witness1.regAddr')" ref="Witness1.regAddr" :info="getInfo('Witness1.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-                  </div>
-                  <div class="adm-form__container mt6">
-                    <wizard-item-individual v-if="isVisible('Witness2')" ref="Witness2" :info="getInfo('Witness2')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-                    <wizard-item-address v-if="isVisible('Witness2.regAddr')" ref="Witness2.regAddr" :info="getInfo('Witness2.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-                  </div>
+                  <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+                  <wizard-item-address v-if="isVisible('Witness1.regAddr')" ref="Witness1.regAddr" :info="getInfo('Witness1.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+                  <wizard-item-individual v-if="isVisible('Witness2')" ref="Witness2" :info="getInfo('Witness2')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+                  <wizard-item-address v-if="isVisible('Witness2.regAddr')" ref="Witness2.regAddr" :info="getInfo('Witness2.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
                 </div>
               </div>
             </div>
@@ -217,14 +209,58 @@
 </script>
 
 <style lang="scss">
-  .prot-pztc {
+  .WizardScenarioProtEvac {
+    .adm-form__content {
+      padding-left: 330px !important;
+    }
     .adm-form {
-      .adm-form__headding {
+      margin: 0;
+      border-bottom: 1px solid #e4e4e4;
+      .adm-form__container {
+        background: #f3f3f3;
         margin: 0;
+        border: none;
+        border-radius: 0;
+        .adm-form__headding {
+          border-radius: 0;
+          background: #fff;
+          height: 46px;
+          color: #6b94c2;
+          border-bottom: 1px solid #e4e4e4;
+        }
+        .adm-form__content{
+          padding: 20px 50px !important;
+          display: grid;
+          grid-gap: 5px;
+          .adm-form__label {
+            font-weight: 500;
+            // padding: 0 7px 0 0;
+            padding: 0;
+          }
+          .adm-input .ivu-select-selection {
+            outline: none;
+          }
+          .adm-input .ivu-select-input, .adm-input .ivu-input {
+            border: 1px solid #DEDEDE;
+            background: #fff;
+            &:hover {
+              border-color: #9A9A9A;
+            }
+            &:focus {
+              border-color: #53A4D6;
+            }
+          }
+        }
       }
-      .adm-form__label {
-        min-width: 180px;
-      }
+    }
+    .adm-form__item{
+      display: grid;
+      align-items: center;
+      grid-template-columns: 150px 1fr;
+      padding: 5px 0;
+    }
+    .adm-form__item_content{
+      width: 100%;
     }
   }
 </style>
