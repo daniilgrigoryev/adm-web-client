@@ -205,8 +205,7 @@
               <div class="adm-form__item_content">
                 <Row type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="24">
-                    <!-- <Input class="adm-input adm-input--regular" @on-input-change="changeVehsAMTCMassa" v-model="vehsAMTC.massa"></Input> -->
-                    <masked-input inputClass="adm-input adm-input--regular" v-model="vehsAMTC.massa" @onInputChange="changeVehsAMTCMassa" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" placeholder=""></masked-input>
+                    <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massa"></Input>
                   </Col>
                 </Row>
               </div>
@@ -216,8 +215,7 @@
               <div class="adm-form__item_content">
                 <Row type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="24">
-                    <!-- <Input class="adm-input adm-input--regular" @on-input-change="changeVehsAMTCMassaMax" v-model="vehsAMTC.massaMax"></Input> -->
-                    <masked-input inputClass="adm-input adm-input--regular" v-model="vehsAMTC.massaMax" @onInputChange="changeVehsAMTCMassaMax" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" placeholder=""></masked-input>
+                    <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massaMax"></Input>
                   </Col>
                 </Row>
               </div>
@@ -375,8 +373,6 @@
           await this.fillCategoryTCList();
           await this.fillTypeTCList();
           await this.fillOsagoCompanyList();
-
-
           if (this.isNotEmptyMarkId()) {
             await this.fillModelList();
           }
@@ -405,22 +401,10 @@
           inputFormat: 'yyyy',
           placeholder: 'гггг'
         },
-        itemsStyleClass: "new-grid",
+        itemsStyleClass: "new-grid"
       }
     },
     methods: {
-      changeVehsAMTCMassa(){
-        if(funcUtils.isNotEmpty(this.vehsAMTC.massa) && funcUtils.isNotEmpty(this.vehsAMTC.massaMax) && parseInt(this.vehsAMTC.massa) > parseInt(this.vehsAMTC.massaMax)){
-          this.vehsAMTC.massa = null;
-        }
-        this.store();
-      },
-      changeVehsAMTCMassaMax(){
-        if(funcUtils.isNotEmpty(this.vehsAMTC.massa) && funcUtils.isNotEmpty(this.vehsAMTC.massaMax) && parseInt(this.vehsAMTC.massa) > parseInt(this.vehsAMTC.massaMax)){
-          this.vehsAMTC.massaMax = null;
-        }
-        this.store();
-      },
       async fillMarkAvtoList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getMarkAvtoDictionary'

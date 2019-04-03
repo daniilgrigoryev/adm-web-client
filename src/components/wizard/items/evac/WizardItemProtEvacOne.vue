@@ -9,7 +9,7 @@
           </Col>
           <Col span="6">
             <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-              <Icon type="md-key" title="Получить уникальный номер" :size="35" />
+              <Icon type="md-key" title="Получить уникальный номер" :size="30" />
             </Button>
           </Col>
         </Row>
@@ -24,7 +24,7 @@
           </Col>
           <Col span="6">
             <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-              <Icon type="md-key" title="Получить уникальный номер" :size="35" />
+              <Icon type="md-key" title="Получить уникальный номер" :size="30" />
             </Button>
           </Col>
         </Row>
