@@ -125,7 +125,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="22" :lg="22">
                   <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.ownerTip"
-                          :disabled="isEmptyParentNode()" clearable @on-change="storeElementData" filterable>
+                          clearable @on-change="storeElementData" filterable>
                     <Option v-for="item in ownerList" :value="item.value" :key="item.value">
                       {{ item.label }}
                     </Option>
@@ -188,9 +188,6 @@
         if (this.isNotEmptyMarkId()) {
           await this.fillModelList();
         }
-      },
-      isEmptyParentNode() {
-        return funcUtils.isEmpty(this.info.parentNode);
       },
       async fillMarkAvtoList() {
         let eventResponse = await RequestApi.prepareData({

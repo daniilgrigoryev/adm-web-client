@@ -50,7 +50,7 @@
               </div>
             </div>
 
-            <wizard-item-vehs id="nar" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
+            <wizard-item-vehs-evac id="nar" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs-evac>
 
             <div class="adm-form">
               <div class="adm-form__container">
@@ -107,7 +107,7 @@
   import WizardItemOrganization from "./items/WizardItemOrganization.vue";
   import WizardItemAddress from "./items/WizardItemAddress.vue";
   import WizardItemOwner from "./items/WizardItemOwner.vue";
-  import WizardItemVehs from "./items/WizardItemVehs.vue";
+  import WizardItemVehsEvac from "./items/evac/WizardItemVehsEvac.vue";
   import MaskedInput from "~/components/shared/MaskedInput";
 
 
@@ -129,7 +129,7 @@
       WizardItemOrganization,
       WizardItemAddress,
       WizardItemOwner,
-      WizardItemVehs,
+      WizardItemVehsEvac,
       MaskedInput,
     },
     data() {

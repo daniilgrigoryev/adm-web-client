@@ -127,7 +127,7 @@
                   <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.organization.address.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                   </Button>
                 </Col>
@@ -142,7 +142,7 @@
                   <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.factAddr.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                  <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                     <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                   </Button>
                 </Col>
