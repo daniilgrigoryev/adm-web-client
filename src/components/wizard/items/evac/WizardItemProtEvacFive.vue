@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
     <div class="adm-form">
-      <div class="adm-form__container mt6">
+      <div class="adm-form__container">
         <h2 class="adm-text-big adm-form__headding" id="evac">Сведения об эвакуации</h2>
         <div class="adm-form__content px36 py24">
           <div class="adm-form__item">
@@ -29,7 +29,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <masked-input inputClass="adm-input adm-input--regular"  v-model="data.evacRegno"  @onInputChange="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                  <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.evacRegno"  @onInputChange="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
                 </Col>
               </Row>
             </div>

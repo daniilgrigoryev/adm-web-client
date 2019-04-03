@@ -8,7 +8,7 @@
         </Col>
         <Col :xs="2" :md="2" :lg="2">
           <Button @click="showAddressModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus color-blue-on-hover color-gray-light transition color-blue-on-focus">
-            <Icon type="ios-bookmarks-outline" class="bg-whte" title="Адресный справочник" :size="35" />
+            <Icon type="ios-bookmarks-outline" class="bg-whte" title="Адресный справочник" :size="30" />
           </Button>
         </Col>
       </Row>
