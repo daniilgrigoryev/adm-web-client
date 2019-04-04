@@ -2,10 +2,10 @@
   <div v-if="data">
     <div class="adm-form">
       <div class="adm-form__container">
-        <h2 class="adm-text-big adm-form__headding" id="evac">Сведения об эвакуации</h2>
+        <h2 class="adm-form__headding" id="evac">Сведения об эвакуации</h2>
         <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
+            <small class="adm-form__label">Организация эвакуатора</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Представитель</small>
+            <small class="adm-form__label">Представитель</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
+            <small class="adm-form__label">ГРЗ эвакуатора</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Штрафстоянка</small>
+            <small class="adm-form__label">Штрафстоянка</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -45,7 +45,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
+            <small class="adm-form__label">№ акта эвакуации</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
+            <small class="adm-form__label">Дата составления акта</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">

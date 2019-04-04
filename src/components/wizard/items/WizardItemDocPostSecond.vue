@@ -7,7 +7,7 @@
         </Col>
       </Row>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Время нарушения</small>
+        <small class="adm-form__label">Время нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateNar" @change="changeDateNar" clearable type="time" placeholder="чч:мм" momentFormat="HH:mm" maskFormat="HH:MM"></DatePickerMask>
@@ -15,7 +15,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
+        <small class="adm-form__label">п.НПА нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
@@ -25,7 +25,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+        <small class="adm-form__label">Статья ответственности</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateNar" @on-clear="changeStotvSearchInfo" @on-change="changeStotvSearchInfo">
@@ -35,7 +35,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">КБК</small>
+        <small class="adm-form__label">КБК</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.kbk" clearable filterable :disabled="!data.stotvId" @on-clear="storeElementData" @on-change="storeElementData">

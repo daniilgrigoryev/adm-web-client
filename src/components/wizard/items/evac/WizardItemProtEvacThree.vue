@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
+      <small class="adm-form__label">Дата и время нарушения</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="adm-form__item">
-			<small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
+			<small class="adm-form__label">{{title}}</small>
 			<div class="adm-form__item_content">
 				<Row :gutter="16" type="flex" align="middle">
 					<Col :xs="22" :md="22" :lg="22">
@@ -22,9 +22,9 @@
 				</Button>
 				<div class="adm-form__container">
 					<h2 class="adm-text-big color-dark-light adm-form__headding">{{title}}</h2>
-					<div class="adm-form__content px36 py24">
+					<div class="adm-form__content">
 						<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
+							<small class="adm-form__label">Регион</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -36,7 +36,7 @@
 							</div>
 						</div>
 						<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+							<small class="adm-form__label">Район</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -48,7 +48,7 @@
 							</div>
 						</div>
 						<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+							<small class="adm-form__label">Населенный пункт</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -60,7 +60,7 @@
 							</div>
 						</div>
 						<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+							<small class="adm-form__label">Улица</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -73,7 +73,7 @@
 						</div>
 						<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
+                <small class="adm-form__label">Дом</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -83,7 +83,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmax60 wmin60">Корпус</small>
+                <small class="adm-form__label wmax60 wmin60">Корпус</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -93,7 +93,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label  wmax60 wmin60">Строение</small>
+                <small class="adm-form__label  wmax60 wmin60">Строение</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -103,7 +103,7 @@
                 </div>
               </div>
 							<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label  wmax60 wmin60">Индекс</small>
+							<small class="adm-form__label  wmax60 wmin60">Индекс</small>
 							<div class="adm-form__item_content">
 								<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -114,7 +114,7 @@
 							</div>
 						</div>
 						<div class="adm-form__item ">
-							<small class="adm-text-small color-gray-medium adm-form__label">Место</small>
+							<small class="adm-form__label">Место</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -128,7 +128,7 @@
 						</div>
 						<div class="flex-parent flex-parent--center-cross">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">км, метр</small>
+                <small class="adm-form__label">км, метр</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -139,7 +139,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60">МГО</small>
+                <small class="adm-form__label wmin60">МГО</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -149,7 +149,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60">МГТ</small>
+                <small class="adm-form__label wmin60">МГТ</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -160,7 +160,7 @@
               </div>
             </div>
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Доп. сведения</small>
+              <small class="adm-form__label">Доп. сведения</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -172,7 +172,7 @@
             <Row :gutter="16" type="flex" align="middle" >
               <Col :xs="12" :md="12" :lg="12">
                 <div class="adm-form__item">
-                  <small class="adm-text-small color-gray-medium adm-form__label">Широта</small>
+                  <small class="adm-form__label">Широта</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
@@ -184,7 +184,7 @@
               </Col>
               <Col :xs="12" :md="12" :lg="12">
                 <div class="adm-form__item">
-                  <small class="adm-text-small color-gray-medium adm-form__label">Долгота</small>
+                  <small class="adm-form__label">Долгота</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">

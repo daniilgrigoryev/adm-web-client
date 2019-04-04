@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Дело №</small>
+      <small class="adm-form__label">Дело №</small>
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">
           <Col span="10">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Протокол №</small>
+      <small class="adm-form__label">Протокол №</small>
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">
           <Col span="10">
@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Дата и время составления</small>
+      <small class="adm-form__label">Дата и время составления</small>
       <div class="adm-form__item_content">
         <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateSost" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
       </div>

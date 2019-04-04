@@ -11,9 +11,9 @@
           </Button>
           <b class="adm-text-big color-dark-lighter">Редактирование дела</b>
         </div>
-        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
+        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../../assets/images/wiki.svg' class="wmax-none">
-        </Button> -->
+        </Button>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
     <div class="adm-form bg-white">
       <div class="adm-form__container my6 py24 px36">
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата возбуждения</small>
+          <small class="adm-form__label">Дата возбуждения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
+          <small class="adm-form__label">Дата и время нарушения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">п.НПА нарушения</small>
+          <small class="adm-form__label">п.НПА нарушения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+          <small class="adm-form__label">Статья ответственности</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
@@ -71,7 +71,7 @@
           </div>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Вид</small>
+          <small class="adm-form__label">Вид</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Примечания</small>
+          <small class="adm-form__label">Примечания</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
@@ -98,7 +98,7 @@
         <h2 class="adm-text-big color-dark-light adm-form__headding">Составил</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
+            <small class="adm-form__label">Личный номер сотрудника</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -113,7 +113,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
+            <small class="adm-form__label">ФИО сотрудника</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -123,7 +123,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
+            <small class="adm-form__label">Должность сотрудника</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -133,7 +133,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
+            <small class="adm-form__label">Звание</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -143,7 +143,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
+            <small class="adm-form__label">Код подразделения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -158,7 +158,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+            <small class="adm-form__label">Подразделение</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -168,7 +168,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Код местонахождения</small>
+            <small class="adm-form__label">Код местонахождения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -181,7 +181,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Местонахождение</small>
+            <small class="adm-form__label">Местонахождение</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">

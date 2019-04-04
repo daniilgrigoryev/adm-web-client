@@ -19,7 +19,7 @@
     
       <div class="adm-form">
 				<div class="adm-form__item">
-					<small class="adm-text-small color-gray-medium adm-form__label">Поиск</small>
+					<small class="adm-form__label">Поиск</small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" v-model="deloModal.paramValue" @on-input-change="changeDeloValue">
@@ -34,7 +34,7 @@
 				</div>
 
 				<div class="adm-form__item" v-if="deloModal.deloList">
-					<small class="adm-text-small color-gray-medium adm-form__label">
+					<small class="adm-form__label">
             <span v-if="deloModal.paramKey == 'deloNum'">Дело</span>
             <span v-if="deloModal.paramKey == 'postNum'">Постановление</span>
           </small>
@@ -51,7 +51,7 @@
 
     <div class="adm-form">
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Номер постановления</small>
+        <small class="adm-form__label">Номер постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" ></Input>
@@ -62,7 +62,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Уникальный номер дела</small>
+        <small class="adm-form__label">Уникальный номер дела</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" ></Input>
@@ -73,7 +73,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и время задержания</small>
+        <small class="adm-form__label">Дата и время задержания</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateSost" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
@@ -81,7 +81,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
+        <small class="adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="22" :md="22" :lg="22">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
@@ -94,7 +94,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
+        <small class="adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" ></Input>
@@ -102,7 +102,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
+        <small class="adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" ></Input>
@@ -110,7 +110,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
+        <small class="adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostRang" @on-input-change="clearInspSostKod" ></Input>
@@ -118,7 +118,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
+        <small class="adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.organSostKod" disabled ></Input>
@@ -126,7 +126,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+        <small class="adm-form__label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
@@ -134,7 +134,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статья ответственности</small>
+        <small class="adm-form__label">Статья ответственности</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="stotv" disabled ></Input>
@@ -142,7 +142,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Орган рассмотрения</small>
+        <small class="adm-form__label">Орган рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.organRasmName" disabled ></Input>
@@ -153,7 +153,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и время рассмотрения</small>
+        <small class="adm-form__label">Дата и время рассмотрения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateRasm" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
@@ -161,7 +161,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дело - основание</small>
+        <small class="adm-form__label">Дело - основание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="mainDelo" disabled ></Input>

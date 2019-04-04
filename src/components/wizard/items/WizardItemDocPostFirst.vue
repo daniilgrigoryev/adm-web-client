@@ -1,13 +1,13 @@
 <template>
  <div v-if="data">
+  <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
+  <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
-    <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
-
-    <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
-
-    <div class="adm-form">
+  <div class="adm-form__container">
+    <h2 class="adm-form__headding" id="lvok">ЛВОК</h2>
+    <div class="adm-form__content">
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Номер постановления</small>
+        <small class="adm-form__label">Номер постановления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" placeholder="Номер постановления" clearable></Input>
@@ -18,7 +18,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Уникальный номер правонарушения</small>
+        <small class="adm-form__label">Уникальный номер правонарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.apn" @on-input-change="storeElementData" placeholder="Уникальный номер правонарушения"></Input>
@@ -26,7 +26,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Уникальный номер дела</small>
+        <small class="adm-form__label">Уникальный номер дела</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" placeholder="Уникальный номер дела"></Input>
@@ -37,7 +37,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата и время задержания</small>
+        <small class="adm-form__label">Дата и время задержания</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateSost" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
@@ -45,13 +45,12 @@
         </Row>
       </div>
     </div>
-
-    <hr class="txt-hr my24">
-
-    <div class="adm-form">
-      <h2 class="adm-text-big color-dark-light my12">Составил</h2>
+  </div>
+  <div class="adm-form__container">
+    <h2 class="adm-form__headding" id="lvok">Составил</h2>
+    <div class="adm-form__content">
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
+        <small class="adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="22" :md="22" :lg="22">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" placeholder="Личный номер сотрудника"></Input>
@@ -64,7 +63,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
+        <small class="adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" placeholder="ФИО сотрудника"></Input>
@@ -72,7 +71,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
+        <small class="adm-form__label">Должность сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostDolz" @on-input-change="clearInspSostKod" placeholder="Должность сотрудника"></Input>
@@ -80,7 +79,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
+        <small class="adm-form__label">Звание</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.inspSostRang" @on-input-change="clearInspSostKod" placeholder="Звание"></Input>
@@ -88,7 +87,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Код подразделения</small>
+        <small class="adm-form__label">Код подразделения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="22" :md="22" :lg="22">
             <Input class="adm-input adm-input--regular" v-model="data.organSostKod" @on-input-change="changeOrganSostKod" placeholder="Код подразделения"></Input>
@@ -101,7 +100,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+        <small class="adm-form__label">Подразделение</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.organSostName" disabled type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>

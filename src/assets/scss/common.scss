@@ -445,37 +445,46 @@ html, body, #app {
 
 
 .adm-form{
+  border-bottom: 1px solid #e4e4e4;
   .adm-form__headding{
-    background-color: #1888CC;
+    background-color: #fff;
     padding-left: 60px;
-    height: 38px;
     display: flex;
     align-items: center;
-    color: #fff;
-    line-height: 30px;
-    // margin-top: 20px;
-    border-radius: 4px 4px 0 0;
+    color: #6b94c2;
+    line-height: 40px;
+    height: 46px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    font-size: 16px;
   }
   .adm-form__container{
-    border: 1px solid #CCCCCC;
-    border-radius: 4px;	
-    background-color: #FDFDFD;	
-    // box-shadow: 0 0 1px 0 rgba(0,0,0,0.26), 0 0 4px 0 rgba(0,0,0,0.16);
-    margin: 20px 0;
-  }
-  .adm-form__content{
-    // padding: 20px;
+    border-bottom: 1px solid #e4e4e4;
+    background: #f3f3f3;
   }
   .adm-form__item{
-    padding-top: 10px;
-    padding-bottom: 10px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 150px 1fr;
+    padding: 5px 0;
   }
   .adm-form__item::after{
     content: "";
     display: block;
     clear: both;
   }
-
+  hr {
+    height: 1px;
+    width: 100%;
+    background: #e4e4e4;
+    color: #e4e4e4;
+    margin: 20px;
+  }
+  .adm-form__content {
+    padding: 20px 50px;
+    display: grid;
+    grid-gap: 5px;
+  }
 	.adm-form__label{
 		text-align: right;
 		vertical-align: middle;
@@ -483,17 +492,17 @@ html, body, #app {
 		font-size: 14px;
 		color: #797979;
 		line-height: 1;
-    padding: 10px 12px 10px 0;
-    
-    // padding-right: 12px;
-    box-sizing: border-box;
-    width: 140px;
+    font-weight: 500;
+    width: 100%;
     line-height: 16px;
-    // width: 180px;
-	}
+    padding-right: 10px;
+  }
 }
 
 .adm-input[remote] .ivu-select-selection > div::before {
+  z-index: 5;
+}
+.adm-input .ivu-select-selection > div::before {
   z-index: 5;
 }
 
@@ -596,17 +605,26 @@ html, body, #app {
       color: $white-base;
     }
   }
-  .ivu-select-selection,
+  .ivu-select-selected-value,
   .ivu-select-input,
+  .ivu-select-selection ,
   .ivu-input {
-    border: none;
+    border: 1px solid #DEDEDE;
     border-radius: 0;
-    border-bottom: 1px solid $gray-light;
-    background-color: transparent;
+    background-color: #fff;
     transition: all ease 300ms;
     color: $dark-base;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
+    box-shadow: none;
+    outline: none;
+  }
+  .ivu-select-selection {
+    .ivu-select-input {
+      border: none;
+      height: 30px;
+    }
+    
   }
   .ivu-icon.ivu-input-icon-clear,
   .ivu-icon.ivu-icon-ios-close-circle {
@@ -631,12 +649,14 @@ html, body, #app {
   .ivu-input:hover:not([readonly]),
   .ivu-select-input:hover:not([readonly]),
   .ivu-select-selection:hover:not([readonly]){
-    border-bottom: 1px solid $gray-medium;
+    border-color: #9A9A9A;
   }
   .ivu-input:focus:not([readonly]),
   .ivu-select-input:focus:not([readonly]),
   .ivu-select-selection:focus:not([readonly]){
-    border-bottom: 2px solid $blue-light;
+    border-color: #53A4D6;
+  }
+  .ivu-select-disabled {
   }
   .ivu-select-input:focus,
   .ivu-select-input:hover,
@@ -825,4 +845,75 @@ html, body, #app {
   // height: calc(100vh - 66px);
   height: 100vh;
   // padding-top: 40px;
+}
+
+.view-data__container {
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  padding: 36px;
+}
+
+.create-prosecution {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-auto-rows: calc(100vh - 66px);
+  overflow: hidden;
+  aside {
+    border-right: 1px solid #D9D9D9;
+    height: 100%;
+    h3 {
+      background: #fff;
+      color: #6b94c2;
+      font-size: 16px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      height: 46px;
+      letter-spacing: 0.1px;
+      line-height: 26px;
+      border-bottom: 1px solid #D9D9D9;
+      font-weight: 600;
+    }
+    ul {
+      padding: 10px 0;
+      li {
+        a {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          color: $dark-lighter;
+          border-left: 4px solid transparent;
+          transition: .3s ease;
+          padding: 3px 20px 3px 20px;
+          font-weight: 500;
+          &:hover {
+            border-color: $blue-base;
+            color: $blue-base;
+          }
+        }
+      }
+    }
+  }
+  main {
+    display: grid;
+    grid-template-rows: 1fr 55px;
+    .layout-wrap {
+      overflow-y: scroll;
+      .layout {
+        max-width: 1000px;
+      }
+    }
+    .bot-wrap {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 36px;
+      border-top: 1px solid #D9D9D9;
+    }
+  }
+  h4.h4 {
+    color: #6b94c2;
+    font-size: 14px;
+  }
 }

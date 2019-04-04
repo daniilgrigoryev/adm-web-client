@@ -1,34 +1,26 @@
 <template>
   <div v-if="dataStore" class="layout">
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
-
-
       <div v-if="deloContext" class="bg-white">
         <!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py12">
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py6">
           <div class="flex-parent flex-parent--center-cross">
 
             <Button @click="getPrev" type="text" style="outline: 0!important;"
                     class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="вернуться назад">
               <Icon type="ios-arrow-dropleft"
-                    class="  px0 py0 mx0 my0" :size="45"/>
+                    class="  px0 py0 mx0 my0" :size="30"/>
             </Button>
 
             <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
               <span class="adm-h3">Дело №</span>
-              <span class="adm-h1">{{deloContext.deloN}}</span>
+              <span class="adm-h2">{{deloContext.deloN}}</span>
             </a>
-
-
-
-
             <p class="ml24 flex-parent flex-parent--center-cross" :class="changeClass(deloContext.stadKod)">
               <Icon class="color-green-bas mx6" type="ios-checkmark-circle-outline" :size="23"/>
               <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
             </p>
-
           </div>
-
           <div>
             <Poptip v-if="menuVisible(menu.createDelo)" width="350" placement="bottom-start" class="amd-poptip-sub">
               <Button type="text"

@@ -1,41 +1,32 @@
 <template>
-  <div class="wmax1920">
-    <Row type="flex">
-      <Col :xs="24" :sm="8" :md="6" :lg="6">
-          <div class="bg-blue-thin h-full">
-            <ul class="ml60 mr24 my24 min-nav" style="top: 100px">
-              <li v-for="item in goToSectionNav" :key="item.id"  v-if="isVisible(item.name)">
-                <a :href="'#' + item.name" class="link color-blue-base adm-txt-regular txt-underline-on-hover py12 block">{{item.title}}</a>
-              </li>
-            </ul>
-          </div>
-      </Col>
-      <Col :xs="24" :sm="18" :md="18" :lg="18">
-        <div>
-          <Layout ref="Main" class=" px36 py12" style="min-height: calc(100vh - 125px);">
+  <div class="create-prosecution">
+    <aside>
+      <h3>Список подразделов</h3>
+      <ul>
+        <li v-for="item in goToSectionNav" :key="item.id">
+          <a :href="'#' + item.name">{{item.title}}</a>
+        </li>
+      </ul>
+    </aside>
+    <main>
+      <div class="layout-wrap">
+        <Layout ref="Main" class="layout">
+          <div class="adm-form">
             <wizard-item-doc-prot2025 id="DocProt" v-if="isVisible('DocProt')" ref="DocProt" :info="getInfo('DocProt')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot2025>
-          
             <wizard-item-place v-if="isVisible('DocProt.PlaceSost')" ref="DocProt.PlaceSost" :info="getInfo('DocProt.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-
             <wizard-item-lvok2025 v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok2025>
-
             <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
-
             <wizard-item-address  id="LVOK.regAddr" v-if="isVisible('LVOK.regAddr')" ref="LVOK.regAddr" :info="getInfo('LVOK.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-
             <wizard-item-individual v-if="isVisible('Repres')" ref="Repres" :info="getInfo('Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-
             <wizard-item-address  id="Repres.regAddr" v-if="isVisible('Repres.regAddr')" ref="Repres.regAddr" :info="getInfo('Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-
-          </Layout>
-
-          <div class="px36 py12 flex-parent flex-parent--end-main border-t border-b border--gray-faint bg-white-light adm-btn-footer--sticky">
-            <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-            <Button @click="save" type="primary" class="ml12">Возбудить</Button>
           </div>
-        </div>
-      </Col>
-    </Row>
+        </Layout>
+      </div>
+      <div class="bot-wrap">
+        <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
+        <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+      </div>
+    </main>
   </div>
 </template>
 
@@ -43,12 +34,12 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import WizardItemDocProt2025 from "~/components/wizard/items/WizardItemDocProt2025";
-  import WizardItemLvok2025 from "~/components/wizard/items/WizardItemLvok2025";
-  import WizardItemPlace from "~/components/wizard/items/WizardItemPlace";
-  import WizardItemPredDoc from "~/components/wizard/items/WizardItemPredDoc";
-  import WizardItemAddress from "~/components/wizard/items/WizardItemAddress";
-  import WizardItemIndividual from "~/components/wizard/items/WizardItemIndividual";
+  import WizardItemDocProt2025 from "./items/WizardItemDocProt2025.vue";
+  import WizardItemLvok2025 from "./items/WizardItemLvok2025.vue";
+  import WizardItemPlace from "./items/WizardItemPlace.vue";
+  import WizardItemPredDoc from "./items/WizardItemPredDoc.vue";
+  import WizardItemAddress from "./items/WizardItemAddress.vue";
+  import WizardItemIndividual from "./items/WizardItemIndividual.vue";
 
   export default {
     name: "WizardScenario2025",

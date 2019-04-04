@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
+      <small class="adm-form__label">Пункт НПА</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
+      <small class="adm-form__label">Статья КРФоАП</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+      <small class="adm-form__label">Фактические сведения</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">

@@ -3,7 +3,7 @@
     <div class="adm-form">
       <h2 class="adm-text-big color-dark-light my12">Решение по делу</h2>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">{{ title }}</small>
+        <small class="adm-form__label">{{ title }}</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.decisKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
@@ -13,7 +13,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.shtraf)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
+        <small class="adm-form__label">Сумма штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.sumShtraf" @on-input-change="storeElementData" ></Input>
@@ -21,7 +21,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Срок лишения (мес.)</small>
+        <small class="adm-form__label">Срок лишения (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.lishMes" @on-input-change="storeElementData" ></Input>
@@ -29,7 +29,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата изъятия ВУ</small>
+        <small class="adm-form__label">Дата изъятия ВУ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateLishBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
@@ -37,7 +37,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.discval)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Срок дисквалификации (мес.)</small>
+        <small class="adm-form__label">Срок дисквалификации (мес.)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.diskvMes" @on-input-change="storeElementData" ></Input>
@@ -45,7 +45,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Срок ареста (дни)</small>
+        <small class="adm-form__label">Срок ареста (дни)</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.arestDay" @on-input-change="storeElementData" ></Input>
@@ -53,7 +53,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Время начала ареста</small>
+        <small class="adm-form__label">Время начала ареста</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.arestTimeBeg" @change="storeElementData" clearable type="time" placeholder="чч:мм" momentFormat="HH:mm" maskFormat="HH:MM"></DatePickerMask>
@@ -61,7 +61,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.hoursToWork)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Кол-во часов обяз-х работ</small>
+        <small class="adm-form__label">Кол-во часов обяз-х работ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.hoursToWork" @on-input-change="storeElementData" ></Input>
@@ -69,7 +69,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Количество суток</small>
+        <small class="adm-form__label">Количество суток</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.stopWorkDay"  @on-input-change="storeElementData" ></Input>
@@ -77,7 +77,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата начала</small>
+        <small class="adm-form__label">Дата начала</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.stopWorkBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
@@ -85,7 +85,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1, decisKods.decis.decis2)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Количество месяцев</small>
+        <small class="adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.decisMes" @on-input-change="storeElementData" ></Input>
@@ -93,7 +93,7 @@
         </Row>
       </div>
       <div v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1, decisKods.decis.decis2)" class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Количество дней</small>
+        <small class="adm-form__label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.decisDay" @on-input-change="storeElementData" ></Input>

@@ -7,7 +7,7 @@
         </Col>
       </Row>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Статус</small>
+        <small class="adm-form__label">Статус</small>
         <Row :gutter="16" type="flex" align="middle">
            <Col :xs="24" :md="14" :lg="16">
             <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
