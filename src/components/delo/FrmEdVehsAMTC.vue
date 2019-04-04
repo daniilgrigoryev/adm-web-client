@@ -17,48 +17,56 @@
       <div class="adm-form">
         <div class="adm-form__container my0 mx0 py12 px36">
           <div class="adm-form__content">
-            <div class="ml60">
-              <div class="w-full">
-                <div class="grid">
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">ГРЗ</p>
-                    <p class="adm-text-big color-dark-base">{{body.regno || 'нет информации'}}</p>
+
+            <div class="py12">
+              <div class="flex-parent flex-parent--center-cross">
+                <div class="s40 mt12">
+                  <img src="../../assets/images/vehicle_passport.svg" width="30px" class="mx-auto block" alt="">
+                </div>
+                <div class="ml18 w-full">
+                  <div class="grid">
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">ГРЗ</p>
+                      <p class="adm-text-big color-dark-base">{{body.regno || 'нет информации'}}</p>
+                    </div>
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">VIN</p>
+                      <p class="adm-text-big color-dark-base">{{body.vin || 'нет информации'}}</p>
+                    </div>
                   </div>
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">VIN</p>
-                    <p class="adm-text-big color-dark-base">{{body.vin || 'нет информации'}}</p>
+                </div>
+              </div>
+              <div class="ml60 my12">
+                <div class="w-full">
+                  <div class="grid">
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">Марка, модель, год выпуска</p>
+                      <p class="adm-text-big color-dark-base">{{body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',') || 'нет информации'}}</p>
+                    </div>
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">СТС</p>
+                      <p class="adm-text-big color-dark-base">{{body.ctc || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ml60 my12">
+                <div class="w-full">
+                  <div class="grid">
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">Цвет ТС</p>
+                      <p class="adm-text-big color-dark-base">{{body.color || 'нет информации'}}</p>
+                    </div>
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">ПТС</p>
+                      <p class="adm-text-big color-dark-base">{{body.ptcN || 'нет информации'}}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="ml60 my12">
-              <div class="w-full">
-                <div class="grid">
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">Марка, модель, год выпуска</p>
-                    <p class="adm-text-big color-dark-base">{{body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',') || 'нет информации'}}</p>
-                  </div>
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">СТС</p>
-                    <p class="adm-text-big color-dark-base">{{body.ctc || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ml60 my12">
-              <div class="w-full">
-                <div class="grid">
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">Цвет ТС</p>
-                    <p class="adm-text-big color-dark-base">{{body.color || 'нет информации'}}</p>
-                  </div>
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">ПТС</p>
-                    <p class="adm-text-big color-dark-base">{{body.ptcN || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+
             <div class="py12" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
               <div class="flex-parent">
                 <div class="s40 mt12">
@@ -89,16 +97,21 @@
               </div>
             </div>
 
-            <div class="pl60 my18" style="border-bottom: 1px solid #CCCCCC;">
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">Масса без нагрузки</p>
-                    <p class="adm-text-big color-dark-base">{{body.massa || 'нет информации'}}</p>
-                  </div>
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">Максимальная масса</p>
-                    <p class="adm-text-big color-dark-base">{{body.massaMax || 'нет информации'}}</p>
+            <div class="py12" style="border-bottom: 1px solid #CCCCCC;">
+              <div class="flex-parent flex-parent--center-cross">
+                <div class="s40 mt12">
+                  <img src="../../assets/images/car_weight.svg" class="mx-auto block" width="20px" alt="">
+                </div>
+                <div class="ml18 w-full">
+                  <div class="grid">
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">Масса без нагрузки</p>
+                      <p class="adm-text-big color-dark-base">{{body.massa || 'нет информации'}}</p>
+                    </div>
+                    <div class="col col--6">
+                      <p class="adm-14 color-dark-lighter mb6">Максимальная масса</p>
+                      <p class="adm-text-big color-dark-base">{{body.massaMax || 'нет информации'}}</p>
+                    </div>
                   </div>
                 </div>
               </div>
