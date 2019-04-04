@@ -13,7 +13,7 @@
         </Col>
       </Row>
     </div>
-    <div v-if="data && addressModal.visible" class="address-modal">
+    <div v-if="data && addressModal.visible" class="address-modal" @click="outside">
       <div class="adm-form" ref="bodyModal">
         <Button type="text" ref="closeButton"  @click="showAddressModal(false)" class="close-modal">
 					<Icon type="md-close" size="40" class="color-blue-base cursor-pointer"/>
@@ -91,7 +91,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="storeElementData" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -101,7 +101,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="storeElementData" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -113,7 +113,7 @@
                  <div class="adm-form__item_content">
                    <Row :gutter="16" type="flex" align="middle">
                      <Col :xs="24" :md="24" :lg="24">
-                       <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-input-change="storeElementData" :maxlength="5"></Input>
+                       <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-change="storeElementData" :maxlength="5"></Input>
                      </Col>
                    </Row>
                  </div>
@@ -123,7 +123,7 @@
                  <div class="adm-form__item_content">
                    <Row :gutter="16" type="flex" align="middle">
                      <Col :xs="24" :md="24" :lg="24">
-                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-input-change="storeElementData" :maxlength="5"></Input>
+                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-change="storeElementData" :maxlength="5"></Input>
                      </Col>
                    </Row>
                  </div>
@@ -133,7 +133,7 @@
                  <div class="adm-form__item_content">
                    <Row :gutter="16" type="flex" align="middle">
                      <Col :xs="24" :md="24" :lg="24">
-                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-input-change="storeElementData" :maxlength="5"></Input>
+                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-change="storeElementData" :maxlength="5"></Input>
                      </Col>
                    </Row>
                  </div>
@@ -143,7 +143,7 @@
                  <div class="adm-form__item_content">
                    <Row :gutter="16" type="flex" align="middle">
                      <Col :xs="24" :md="24" :lg="24">
-                       <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="storeElementData" :maxlength="5"></Input>
+                       <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-change="storeElementData" :maxlength="5"></Input>
                      </Col>
                    </Row>
                  </div>
@@ -502,7 +502,7 @@
           }
         });
       },
-      async save(e) {
+      async save() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {

@@ -98,7 +98,7 @@
         maskInputProt: {
           regex: '[а-яА-Я\ ]+',
           casing: 'upper',
-          placeholder: ' '
+          placeholder: ''
         },
       }
     },

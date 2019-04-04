@@ -151,7 +151,7 @@
         maskInputProt: {
           regex: '[0-9]+',
           casing: 'upper',
-          placeholder: ' '
+          placeholder: ''
         },
       }
     },
