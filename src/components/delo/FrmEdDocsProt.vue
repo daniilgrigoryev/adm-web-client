@@ -15,69 +15,81 @@
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <div class="adm-form__content px36">
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.pnpaName" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.stotvName" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.placeNar.placeFull" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName + body.inspSostDolz" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место вынесения</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время рассмотр.</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.dateRasm" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Орган рассмотрения</small>
-            <Row type="flex" align="middle">
-              <Input class="adm-input adm-input--regular" readonly :value="body.organRasmName" ></Input>
-            </Row>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место рассмотрения</small>
-            <Row type="flex" align="middle">
-              <!-- TODO -->
-              <Input class="adm-input adm-input--regular" readonly value="" ></Input>
-              <!-- ENDTODO -->
-            </Row>
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
+                  <p class="adm-text-big color-dark-base">{{body.pnpaName || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Статья КРФоАП</p>
+                  <p class="adm-text-big color-dark-base">{{body.stotvName || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата и время нарушения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateNar | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Место нарушения</p>
+                  <p class="adm-text-big color-dark-base">{{body.placeNar.placeFull || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspSostName, body.inspSostDolz | concatByDelimiter(' ') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Подразделение</p>
+                  <p class="adm-text-big color-dark-base">{{body.organSostName || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Место вынесения</p>
+                  <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата и время рассмотрения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateRasm || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Орган рассмотрения</p>
+                  <p class="adm-text-big color-dark-base">{{body.organRasmName || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

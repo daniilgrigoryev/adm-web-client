@@ -21,94 +21,66 @@
       </div> -->
     </div>
 
+
     <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <div class="adm-form__content px36">
-          <Row>
-            <Col>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" ></Input>
-                      <!-- <p class="adm-txt-regular color-dark-base">{{body.pnpaKod, body.pnpaName | concatByDelimiter(',')}}</p> -->
-                    </Col>
-                  </Row>
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
+                  <p class="adm-text-big color-dark-base">{{body.pnpaKod, body.pnpaName | concatByDelimiter(',') || 'нет информации'}}</p>
                 </div>
               </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" ></Input>
-                      <!-- <p class="adm-txt-regular color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(',')}}</p> -->
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата вручения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.datUved | formatDateTime('DD.MM.YYYY')" ></Input>
-                      <!-- <p class="adm-txt-regular color-dark-base">{{body.datUved | formatDateTime('DD.MM.YYYY')}}</p> -->
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY')" ></Input>
-                      <!-- <p class="adm-txt-regular color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY')}}</p> -->
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" ></Input>
-                  <!-- <p class="adm-txt-regular color-dark-base">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')}}</p> -->
-                </Col>
-              </Row>
             </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.organSostName" ></Input>
-                  <!-- <p class="adm-txt-regular color-dark-base">{{body.organSostName}}</p> -->
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Статья КРФоАП</p>
+                  <p class="adm-text-big color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место вынесения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull" ></Input>
-                  <!-- <p class="adm-txt-regular color-dark-base">{{body.placeSost.placeFull}}</p> -->
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
+                  <p class="adm-text-big color-dark-base">{{body.datUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Подразделение</p>
+                  <p class="adm-text-big color-dark-base">{{body.organSostName || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Место вынесения</p>
+                  <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
