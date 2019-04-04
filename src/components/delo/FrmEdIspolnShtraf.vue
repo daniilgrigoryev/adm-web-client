@@ -15,41 +15,38 @@
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <div class="adm-form__content px36 py24">
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата оплаты штрафа</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-                </Col>
-              </Row>
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата оплаты штрафа</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Сумма оплаты штрафа</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.sumOpl" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Сумма оплаты штрафа</p>
+                  <p class="adm-text-big color-dark-base">{{body.sumOpl || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">УИП</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.uip" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">УИП</p>
+                  <p class="adm-text-big color-dark-base">{{body.uip || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
