@@ -63,7 +63,7 @@
                 <div class="grid">
                   <div class="col col--12">
                     <p class="adm-14 color-dark-lighter mb6">Телефон</p>
-                    <p class="adm-text-big color-dark-base">{{body.individ.address.phone || 'нет информации'}}</p>
+                    <p class="adm-text-big color-dark-base">{{body.individ.phone || 'нет информации'}}</p>
                   </div>
                 </div>
               </div>
