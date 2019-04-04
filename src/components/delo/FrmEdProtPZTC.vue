@@ -18,17 +18,6 @@
       <div class="adm-form__container">
         <div class="items-wrap">
           <view-data-item 
-            label="№ НПА" 
-            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" 
-            style="grid-column: span 2;"
-          />
-          <view-data-item 
-            label="№ статьи" 
-            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
-            style="grid-column: span 2;"
-          />
-          <hr>
-          <view-data-item 
             label="Дата и время нарушения" 
             :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
             style="grid-column: span 2;"
@@ -36,6 +25,22 @@
           <view-data-item 
             label="Место нарушения" 
             :value="body.placeNar.placeFull" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Пункт НПА" 
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Статья КРФоАП" 
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Место составления" 
+            :value="body.placeSost.placeFull" 
             style="grid-column: span 2;"
           />
           <view-data-item 
@@ -50,11 +55,7 @@
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Место составления" 
-            :value="body.placeSost.placeFull" 
-            style="grid-column: span 2;"
-          />
+
           <view-data-item 
             label="Дата составления акта" 
             :value="body.evacActTime | formatDateTime('DD.MM.YYYY')" 
@@ -66,24 +67,22 @@
           <view-data-item 
             label="Организация эвакуатора" 
             :value="body.evacOrgName" 
-            style="grid-column: span 2;"
             :icon="require('../../assets/images/truck.png')"
+          />
+          <view-data-item 
+            label="ГРЗ эвакуатора" 
+            :value="body.evacRegno" 
+          />
+          <view-data-item 
+            label="Штрафстоянка" 
+            :value="body.impoundLotName" 
+            style="grid-column: span 2;"
           />
           <view-data-item 
             label="Представитель" 
             :value="body.evacAgentName" 
             style="grid-column: span 2;"
             :icon="require('../../assets/images/owner.svg')"
-          />
-          <view-data-item 
-            label="ГРЗ эвакуатора" 
-            :value="body.evacRegno" 
-            style="grid-column: span 2;"
-          />
-          <view-data-item 
-            label="Штрафстоянка" 
-            :value="body.impoundLotName" 
-            style="grid-column: span 2;"
           />
         </div>
       </div>
@@ -196,7 +195,7 @@
       padding: 36px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: 18px;
+      grid-gap: 12px;
       hr {
         height: 1px;
         width: 100%;
