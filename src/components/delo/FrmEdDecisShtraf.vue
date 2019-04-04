@@ -15,58 +15,46 @@
       </div>
     </div>
 
-
     <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <div class="adm-form__content px36 py24">
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Сумма штрафа</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular wmax360" readonly :value="body.sumShtraf" ></Input>
-                </Col>
-              </Row>
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Сумма штрафа</p>
+                  <p class="adm-text-big color-dark-base">{{body.sumShtraf || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата решения</p>
+                  <p class="adm-text-big color-dark-base">{{body.decisDate | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateVstup | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата решения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular wmax180" readonly :value="body.decisDate | formatDateTime('DD.MM.YYYY')"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата вручения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular wmax180" readonly :value="body.dateUved | formatDateTime('DD.MM.YYYY')"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата вступления</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular wmax180" readonly :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <!-- <div class="flex-parent flex-parent--end-main">
-            <Button type="text" class="adm-btn adm-btn-regular adm-btn-border txt-uppercase color-blue-base">Исполнение решения</Button>
-          </div> -->
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
