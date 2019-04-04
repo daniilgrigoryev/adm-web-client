@@ -23,21 +23,6 @@
         <h2 class="adm-text-big adm-form__headding" id="lvok">Протокол по делу</h2>
         <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дело №</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col span="10">
-                  <masked-input :autofocus="true" inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt"></masked-input>
-                </Col>
-                <Col span="6">
-                  <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                    <Icon type="md-key" title="Получить уникальный номер" :size="30" />
-                  </Button>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Протокол №</small>
             <div class="adm-form__item_content">
               <Row type="flex" align="middle">
@@ -127,7 +112,7 @@
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="30" />
                   </Button>
                 </Col>
               </Row>
