@@ -15,53 +15,44 @@
         </Button> -->
       </div>
     </div>
+
     <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <div class="adm-form__content py24 px36">
-          <Row type="flex" :gutter="60">
-            <Col :xs="24" :md="24" :lg="24">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Тип документа</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.docTipName" ></Input>
-                    </Col>
-                  </Row>
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Тип документа</p>
+                  <p class="adm-text-big color-dark-base">{{body.docTipName || 'нет информации'}}</p>
                 </div>
               </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Номер</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.vuN" ></Input>
-                    </Col>
-                  </Row>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Номер</p>
+                  <p class="adm-text-big color-dark-base">{{body.vuN || 'нет информации'}}</p>
                 </div>
               </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.dateVyd | formatDateTime('DD.MM.YYYY')" ></Input>
-                    </Col>
-                  </Row>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата выдачи</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateVyd | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
                 </div>
               </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly :value="body.ogaiVydName" ></Input>
-                    </Col>
-                  </Row>
+            </div>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Кем выдан</p>
+                  <p class="adm-text-big color-dark-base">{{body.ogaiVydName || 'нет информации'}}</p>
                 </div>
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
       </div>
     </div>
