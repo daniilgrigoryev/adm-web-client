@@ -16,7 +16,7 @@
               <h2 class="adm-text-big adm-form__headding" id="head">
                 Ввод данных по протоколу о задержании ТС
               </h2>
-              <div class="adm-form__content px36 py24">
+              <div class="adm-form__content">
                 <wizard-item-prot-evac-one id="DocProtEvacOne" v-if="isVisible('DocProtEvacOne')" ref="DocProtEvacOne" :info="getInfo('DocProtEvacOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-one>
                 <wizard-item-place v-if="isVisible('DocProtEvacOne.PlaceSost')" ref="DocProtEvacOne.PlaceSost" :info="getInfo('DocProtEvacOne.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
                 <wizard-item-prot-evac-two id="DocProtEvacTwo" v-if="isVisible('DocProtEvacTwo')" ref="DocProtEvacTwo" :info="getInfo('DocProtEvacTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-two>
@@ -27,7 +27,7 @@
             <div v-if="isNotEmptyParentNode('LVOK')">
               <div class="adm-form__container">
                 <h2 class="adm-text-big adm-form__headding" id="lvok">ЛВОК</h2>
-                <div class="adm-form__content px36 py24">
+                <div class="adm-form__content">
                   <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
                   <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
                   <wizard-item-individual v-if="isVisible('LVOK.Individual')" ref="LVOK.Individual" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
@@ -51,7 +51,7 @@
           <div class="adm-form">
             <div class="adm-form__container">
               <h2 id="nar" class="adm-text-big adm-form__headding">Сведения о нарушении</h2>
-              <div class="adm-form__content px36 py24">
+              <div class="adm-form__content">
                 <wizard-item-prot-evac-three id="DocProtEvacThree" v-if="isVisible('DocProtEvacThree')" ref="DocProtEvacThree" :info="getInfo('DocProtEvacThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-three>
                 <wizard-item-place v-if="isVisible('DocProtEvacThree.PlaceNar')" ref="DocProtEvacThree.PlaceNar" :info="getInfo('DocProtEvacThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
                 <wizard-item-prot-evac-four id="DocProtEvacFour" v-if="isVisible('DocProtEvacFour')" ref="DocProtEvacFour" :info="getInfo('DocProtEvacFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-four>
@@ -62,7 +62,7 @@
           <div class="adm-form">
             <div class="adm-form__container">
               <h2 id="witness" class="adm-text-big adm-form__headding">Понятые</h2>
-              <div class="adm-form__content px36 py24">
+              <div class="adm-form__content">
                 <h4 class="h4">1 понятой</h4>
                 <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
                 <wizard-item-address v-if="isVisible('Witness1.regAddr')" ref="Witness1.regAddr" :info="getInfo('Witness1.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="protPZTC" class="wmax1280 mx-auto">
+  <div v-if="protPZTC" class="wmax1280 mx-auto FrmEdProtPZTCEdit">
 
     <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
@@ -18,54 +18,68 @@
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
 
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
-
-    <div class="adm-form bg-white mt0">
-      <div class="adm-form__container mt0">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Постановление по делу № {{ protPZTC.docN }} от {{ protPZTC.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
-        <div class="adm-form__content py24 px36">
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Постановление №</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" readonly :value="protPZTC.docN"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата и время вынесения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="protPZTC.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </div>
-    </div>
-    <div class="adm-form bg-white">
-      <div class="adm-form__container my6">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Составил</h2>
-        <div class="adm-form__content py24 px36">
+    <div class="adm-form">
+      <div class="adm-form__container">
+        <h2 class="adm-text-big adm-form__headding" id="lvok">Протокол по делу</h2>
+        <div class="adm-form__content">
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дело №</small>
+            <div class="adm-form__item_content">
+              <Row type="flex" align="middle">
+                <Col span="10">
+                  <masked-input :autofocus="true" inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt"></masked-input>
+                </Col>
+                <Col span="6">
+                  <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="md-key" title="Получить уникальный номер" :size="30" />
+                  </Button>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Протокол №</small>
+            <div class="adm-form__item_content">
+              <Row type="flex" align="middle">
+                <Col span="10">
+                  <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="protPZTC.docN" @onInputChange="store"></masked-input>
+                </Col>
+                <Col span="6">
+                  <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="md-key" title="Получить уникальный номер" :size="30" />
+                  </Button>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.placeSost.placeFull"></Input>
+                </Col>
+                <Col :xs="2" :md="2" :lg="2">
+                  <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="30" />
+                  </Button>
+                </Col>
+              </Row>
+            </div>
+          </div>
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" readonly :value="protPZTC.inspSostName, protPZTC.inspSostDolz, protPZTC.inspSostRang | concatByDelimiter(',')"></Input>
+                <Col :xs="4" :md="4" :lg="4">
+                  <Input class="adm-input adm-input--regular" v-model="protPZTC.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
+                </Col>
+                <Col :xs="18" :md="18" :lg="18">
+                  <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.inspSostName" @on-input-change="changeFIO" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                    <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
+                    <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="30" />
                   </Button>
                 </Col>
               </Row>
@@ -75,27 +89,15 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" readonly :value="protPZTC.organSostName" ></Input>
+                <Col :xs="4" :md="4" :lg="4">
+                  <Input class="adm-input adm-input--regular" v-model="protPZTC.organSostKod" @on-input-change="changeOrganSostKod" ></Input>
+                </Col>
+                <Col :xs="18" :md="18" :lg="18">
+                  <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.organSostName" @on-input-change="changeOrganSostKod" ></Input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                    <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
-                  </Button>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место вынесения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.placeSost.placeFull"></Input>
-                </Col>
-                <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                    <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="30" />
                   </Button>
                 </Col>
               </Row>
@@ -103,11 +105,9 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="adm-form bg-white">
-      <div class="adm-form__container my6">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Сведения о нарушении</h2>
-        <div class="adm-form__content py24 px36">
+      <div class="adm-form__container">
+        <h2 id="nar" class="adm-text-big adm-form__headding">Сведения о нарушении</h2>
+        <div class="adm-form__content">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
             <div class="adm-form__item_content">
@@ -137,7 +137,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
+                <Col :xs="22" :md="22" :lg="22">
                   <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.pnpaId" clearable filterable @on-change="store">
                     <Option class=" txt-break-word" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                   </Select>
@@ -149,7 +149,7 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
+                <Col :xs="22" :md="22" :lg="22">
                   <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.stotvId" clearable filterable :disabled="!protPZTC.dateNar" @on-change="store">
                     <Option class=" txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                   </Select>
@@ -161,28 +161,74 @@
             <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
+                <Col :xs="22" :md="22" :lg="22">
                   <Input class="adm-input adm-input--regular" v-model="protPZTC.factSved" @on-input-change="store"></Input>
                 </Col>
               </Row>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="adm-form__container">
+        <h2 class="adm-text-big adm-form__headding" id="evac">Сведения об эвакуации</h2>
+        <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="protPZTC.workPlace" @on-input-change="store"></Input>
+                <Col :xs="22" :md="22" :lg="22">
+                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="protPZTC.evacOrgName" ></Input>
                 </Col>
               </Row>
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Доп. сведения</small>
+            <small class="adm-text-small color-gray-medium adm-form__label">Представитель</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" v-model="protPZTC.dopSved" @on-input-change="store"></Input>
+                <Col :xs="22" :md="22" :lg="22">
+                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="protPZTC.evacAgentName" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="protPZTC.evacRegno"  @onInputChange="store" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Штрафстоянка</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="protPZTC.impoundLotName" ></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <!-- <Input class="adm-input adm-input--regular wmax240" @on-input-change="store" v-model="protPZTC.evacActNumber" ></Input> -->
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="protPZTC.evacActNumber" @onInputChange="store" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="22" :md="22" :lg="22">
+                  <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="protPZTC.evacActTime" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                 </Col>
               </Row>
             </div>
@@ -204,12 +250,15 @@
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
+
   
   export default {
     name: "FrmEdProtPZTCEdit",
     components: {
       WizardModal,
-      DatePickerMask
+      DatePickerMask,
+      MaskedInput
     },
     async created() {
       try {
@@ -252,6 +301,11 @@
         protPZTC: null,
         pnpaList: null,
         stotvSearchInfoList: null,
+        maskInputProt: {
+          regex: '[а-яА-Я0-9]+',
+          casing: 'upper',
+          placeholder: ''
+        },
         dolzModal: {
           visible: false,
           sispList: null,
@@ -741,30 +795,63 @@
   }
 </script>
 
-<style scoped lang="scss">
-  .chast-title {
-    display: flex;
-    align-items: center;
-    padding: 24px 36px;
-  }
-  .adm-form {
-    margin: 20px;
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    // min-height: 90px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 210px;
-  }
-  .adm-form__item_content{
-    width: 100%;
+<style lang="scss">
+  .FrmEdProtPZTCEdit {
+    .adm-form {
+      margin: 0;
+      border-bottom: 1px solid #e4e4e4;
+      .adm-form__container {
+        background: #f3f3f3;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        hr {
+          height: 1px;
+          width: 100%;
+          background: #e4e4e4;
+          color: #e4e4e4;
+          margin: 20px;
+        }
+        h4.h4 {
+          color: #6b94c2;
+          font-size: 14px;
+        }
+        .adm-form__headding {
+          border-radius: 0;
+          background: #fff;
+          height: 46px;
+          color: #6b94c2;
+          border-bottom: 1px solid #e4e4e4;
+        }
+        .adm-form__content{
+          padding: 20px 50px;
+          display: grid;
+          grid-gap: 5px;
+          .adm-form__label {
+            font-weight: 500;
+            padding: 0;
+          }
+          .adm-input .ivu-select-selection {
+            outline: none;
+          }
+          .adm-input .ivu-select-input, .adm-input .ivu-input {
+            border: 1px solid #DEDEDE;
+            background: #fff;
+            &:hover {
+              border-color: #9A9A9A;
+            }
+            &:focus {
+              border-color: #53A4D6;
+            }
+          }
+        }
+      }
+    }
+    .adm-form__item{
+      display: grid;
+      align-items: center;
+      grid-template-columns: 150px 1fr;
+      padding: 5px 0;
+    }
   }
 </style>

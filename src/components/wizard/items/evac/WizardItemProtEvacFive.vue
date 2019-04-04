@@ -3,7 +3,7 @@
     <div class="adm-form">
       <div class="adm-form__container">
         <h2 class="adm-text-big adm-form__headding" id="evac">Сведения об эвакуации</h2>
-        <div class="adm-form__content px36 py24">
+        <div class="adm-form__content">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
             <div class="adm-form__item_content">
