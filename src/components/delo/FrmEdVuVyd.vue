@@ -16,136 +16,112 @@
     </div>
 
     <div class="adm-form">
-      <div class="adm-form__container mt6">
-        <div class="adm-form__content py24 px36">
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Вид предъявленного документа</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.docTipName" ></Input>
-                </Col>
-              </Row>
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Вид предъявленного документа</p>
+                  <p class="adm-text-big color-dark-base">{{body.docTipName || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.vuN" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Номер документа</p>
+                  <p class="adm-text-big color-dark-base">{{body.vuN || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата выдачи</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Срок действия</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Срок действия</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Личный номер сотрудника</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.inspVydKod" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Личный номер сотрудника</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspVydKod || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">ФИО сотрудника</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.inspVydName" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">ФИО сотрудника</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspVydName || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должность сотрудника</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.inspVydDolz" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Должность сотрудника</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspVydDolz || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Звание</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.inspVydRang" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Звание</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspVydRang || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан документ. Код - Название организации</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-')" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Кем выдан документ. Код - Название организации</p>
+                  <p class="adm-text-big color-dark-base">{{body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дополнительные сведения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.remarks"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дополнительные сведения</p>
+                  <p class="adm-text-big color-dark-base">{{body.remarks || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Предъявленный документ</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.vuPred"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Предъявленный документ</p>
+                  <p class="adm-text-big color-dark-base">{{body.vuPred || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Статус документа</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.statusName" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Статус документа</p>
+                  <p class="adm-text-big color-dark-base">{{body.statusName || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="my12 adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата утилизации документа</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm')" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата утилизации документа</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
