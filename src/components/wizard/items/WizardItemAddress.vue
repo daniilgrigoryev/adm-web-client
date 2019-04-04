@@ -91,7 +91,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.npunktName" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -101,53 +101,53 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.streetName" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
             </div>
-            <div class="small-items-wrap">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular"  v-model="data.ndom" :maxlength="5"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax120">Корпус</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" :maxlength="5"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60">Строение</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" :maxlength="5"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60">Квартира</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" :maxlength="5"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
+             <div class="small-items-wrap">
+               <div class="adm-form__item">
+                 <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
+                 <div class="adm-form__item_content">
+                   <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="24" :lg="24">
+                       <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-input-change="storeElementData" :maxlength="5"></Input>
+                     </Col>
+                   </Row>
+                 </div>
+               </div>
+               <div class="adm-form__item">
+                 <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax120">Корпус</small>
+                 <div class="adm-form__item_content">
+                   <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="24" :lg="24">
+                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-input-change="storeElementData" :maxlength="5"></Input>
+                     </Col>
+                   </Row>
+                 </div>
+               </div>
+               <div class="adm-form__item">
+                 <small class="adm-text-small color-gray-medium adm-form__label wmin60">Строение</small>
+                 <div class="adm-form__item_content">
+                   <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="24" :lg="24">
+                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-input-change="storeElementData" :maxlength="5"></Input>
+                     </Col>
+                   </Row>
+                 </div>
+               </div>
+               <div class="adm-form__item">
+                 <small class="adm-text-small color-gray-medium adm-form__label wmin60">Квартира</small>
+                 <div class="adm-form__item_content">
+                   <Row :gutter="16" type="flex" align="middle">
+                     <Col :xs="24" :md="24" :lg="24">
+                       <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="storeElementData" :maxlength="5"></Input>
+                     </Col>
+                   </Row>
+                 </div>
+               </div>
               <div class="adm-form__item">
                 <small class="adm-text-small color-gray-medium adm-form__label wmin60">Индекс</small>
                 <div class="adm-form__item_content">
@@ -502,7 +502,7 @@
           }
         });
       },
-      async save() {
+      async save(e) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {

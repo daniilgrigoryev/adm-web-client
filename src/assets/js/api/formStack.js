@@ -13,6 +13,7 @@ export async function toNext(payload) {
   let cid = payload.cid;
   let withCreate = payload.withCreate;
   let params = payload.params;
+  let withTransition = payload.withTransition || true;
   let externalSessionStorage = payload.externalSessionStorage;
   let externalStack;
   if (funcUtils.isNotEmpty(externalSessionStorage)) {
@@ -58,6 +59,8 @@ export async function toNext(payload) {
   stack.push(next);
   if (!externalStack) {
     funcUtils.addToSessionStorage(wid, stack);
+  }
+  if (!externalStack && withTransition) {
     vm.$router.replace({name: routeName, params});
   }
 
@@ -65,6 +68,7 @@ export async function toNext(payload) {
 }
 
 export async function toNextNewTab(payload) {
+  payload.externalSessionStorage = funcUtils.newExternalSessionStorage();
   await toNext(payload);
   funcUtils.addToLocalStorage('admWidNew', payload.externalSessionStorage);
 
@@ -77,6 +81,7 @@ export function toPrev(payload) {
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
   let current = stack.pop();
+  let withTransition = payload.withTransition || true;
   let prev = stack.peek();
   prev.current = true;
 
@@ -90,7 +95,9 @@ export function toPrev(payload) {
   }
 
   funcUtils.addToSessionStorage(wid, stack);
-  vm.$router.replace({name: prev.routeName});
+  if (withTransition) {
+    vm.$router.replace({name: prev.routeName});
+  }
 
   return current;
 }
