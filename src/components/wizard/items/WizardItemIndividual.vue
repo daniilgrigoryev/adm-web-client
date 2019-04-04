@@ -5,7 +5,7 @@
       <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
-          <Input class="adm-input adm-input--regular" v-model="fio" @on-input-change="changeFIO" placeholder="ФИО"></Input>
+          <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="fio" @onInputChange="changeFIO"></masked-input>
         </Col>
       </Row>
     </div>
@@ -74,11 +74,14 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
+
 
   export default {
     name: "WizardItemIndividual",
     components: {
-      DatePickerMask
+      DatePickerMask,
+      MaskedInput,
     },
     props: {
       info: Object
@@ -91,7 +94,12 @@
         data: null,
         birthList: null,
         gragdanstvoList: null,
-        fio: null
+        fio: null,
+        maskInputProt: {
+          regex: '[а-яА-Я\ ]+',
+          casing: 'upper',
+          placeholder: ' '
+        },
       }
     },
     methods: {
