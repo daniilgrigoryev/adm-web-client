@@ -5,7 +5,7 @@
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">
           <Col span="10">
-            <masked-input :autofocus="true" inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt"></masked-input>
+            <masked-input :autofocus="true" inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" @onInputChange="storeElementData"></masked-input>
           </Col>
           <Col span="6">
             <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">

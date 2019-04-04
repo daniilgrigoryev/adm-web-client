@@ -320,23 +320,10 @@
           upi: null
         },
         sort: {
-          deloId: null,
-          dateStadIspolnLast: null,
-          decisDateFirst: null,
-          decisDateLast: null,
-          deloVidName: null,
-          docN: null,
-          opredN: null,
-          postN: null,
-          protN: null,
-          regno: null,
-          stotv: null,
-          stotvKod: null,
-          uchastName: null,
-          ulName: null
+          deloDate: null
         },
         maskRegno: {
-          regex: '[a-zA-Zа-яА-Я0-9]+', 
+          regex: '[а-яА-Я0-9]+',
           casing: 'upper', 
           placeholder: '' 
         },
@@ -837,6 +824,8 @@
                   key: 'deloN',
                   minWidth: 145,
                   position: 2,
+                  referenceName: "deloDate",
+                  sortable: 'custom',
                   ellipsis: true,
                   visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('deloN'),
                   tooltip: true,
@@ -1370,6 +1359,8 @@
       },
       async clearFilter() {
         this.setFields(null);
+        this.hideMore = false;
+        this.columnsOptionsVisible = false;
         let filter = this.filter;
         for (let prop in filter) {
           if (filter.hasOwnProperty(prop)) {
@@ -1442,6 +1433,7 @@
       },
       async filterClick() {
         this.hideMore = false;
+        this.columnsOptionsVisible = false;
         let filter = this.getFilterFields();
         let eventResponse = await RequestApi.prepareData({
           method: 'getData',
@@ -1475,18 +1467,15 @@
       /*getDeloNewTab(delo) {
         try {
           let params = {
-            deloId: delo.deloId,
-            isExternal: true
+            deloId: delo.deloId
           };
-          let externalSessionStorage = funcUtils.newExternalSessionStorage();
 
           formStack.toNextNewTab({
             module: this.$store.state.deloTreeCardView,
             vm: this,
             notRemoved: false,
             params: params,
-            withCreate: true,
-            externalSessionStorage: externalSessionStorage
+            withCreate: true
           });
         } catch (e) {
           alert(e.message);
