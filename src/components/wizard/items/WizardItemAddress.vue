@@ -540,7 +540,6 @@
 
 
 <style lang="scss" scoped>
-
   .address-modal {
 		position: fixed;
 		width: 100vw;
@@ -612,17 +611,4 @@
 			}
 		}
 	}
-  .adm-form__item{
-    // display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .adm-form__label{
-    padding: 0;
-    min-width: 130px;
-    padding-right: 12px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
 </style>

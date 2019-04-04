@@ -22,8 +22,6 @@
                 <wizard-item-prot-evac-two id="DocProtEvacTwo" v-if="isVisible('DocProtEvacTwo')" ref="DocProtEvacTwo" :info="getInfo('DocProtEvacTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-two>
               </div>
             </div>
-          </div>
-          <div class="adm-form">
             <div v-if="isNotEmptyParentNode('LVOK')">
               <div class="adm-form__container">
                 <h2 class="adm-form__headding" id="lvok">ЛВОК</h2>
@@ -46,9 +44,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <wizard-item-vehs-evac id="vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs-evac>
-          <div class="adm-form">
+            <wizard-item-vehs-evac id="vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs-evac>
             <div class="adm-form__container">
               <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
               <div class="adm-form__content">
@@ -57,9 +53,7 @@
                 <wizard-item-prot-evac-four id="DocProtEvacFour" v-if="isVisible('DocProtEvacFour')" ref="DocProtEvacFour" :info="getInfo('DocProtEvacFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-four>
               </div>
             </div>
-          </div>
-          <wizard-item-prot-evac-five id="evac" v-if="isVisible('DocProtEvacFive')" ref="DocProtEvacFive" :info="getInfo('DocProtEvacFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
-          <div class="adm-form">
+            <wizard-item-prot-evac-five id="evac" v-if="isVisible('DocProtEvacFive')" ref="DocProtEvacFive" :info="getInfo('DocProtEvacFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
             <div class="adm-form__container">
               <h2 id="witness" class="adm-form__headding">Понятые</h2>
               <div class="adm-form__content">

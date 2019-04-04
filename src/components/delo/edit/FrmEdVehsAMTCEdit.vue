@@ -1,6 +1,6 @@
 <template>
   <div v-if="vehsAMTC" class="mx-auto wmax1280 FrmEdVehsAMTCEdit">
-    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="вернуться назад">
@@ -8,13 +8,10 @@
           </Button>
           <b class="adm-text-big color-dark-lighter">Редактирование ТС</b>
         </div>
-        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../../assets/images/wiki.svg' class="wmax-none">
-        </Button> -->
       </div>
     </div>
     <div class="adm-form">
-      <div class="adm-form__container ">
+      <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Основные сведения</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
@@ -65,9 +62,7 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="adm-form">
-      <div class="adm-form__container ">
+      <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Документы</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
@@ -112,9 +107,7 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="adm-form">
-      <div class="adm-form__container ">
+      <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Технические характеристики</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
