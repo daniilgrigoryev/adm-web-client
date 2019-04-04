@@ -88,8 +88,10 @@
                 </div>
               </div>
             </div>
-            <div class="ml60 mt12">
-              <div class="w-full">
+
+         
+            <div class="pl60 my18" style="border-bottom: 1px solid #CCCCCC;">
+              <div class="my12">
                 <div class="grid">
                   <div class="col col--6">
                     <p class="adm-14 color-dark-lighter mb6">Масса без нагрузки</p>
@@ -102,6 +104,9 @@
                 </div>
               </div>
             </div>
+           
+
+
             <div class="py12 flex-parent flex-parent--center-cross">
               <div class="s40">
                   <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
