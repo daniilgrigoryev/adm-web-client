@@ -13,104 +13,80 @@
           </Button> -->
         </div>
     </div>
+
+
+
     <div class="adm-form">
-      <div class="adm-form__container  mt0 mx0">
-        <!-- <h2 class="adm-text-big color-dark-light adm-form__headding">Данные об участнике дела</h2> -->
-        <div class="adm-form__content my6 py12 px36">
-          <div v-if="isNotEmptyField(body.docN)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Номер извещения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.docN"></Input>
-                </Col>
-              </Row>
+      <div class="adm-form__container my0 mx0 py12 px36">
+        <div class="adm-form__content">
+          <div class="ml60">
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Номер извещения</p>
+                  <p class="adm-text-big color-dark-base">{{body.docN || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div v-if="isNotEmptyField(body.dateSost)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Дата составления</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateSost | formatDateTime('DD.MM.YYYY')" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Дата составления</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div v-if="isNotEmptyField(body.dateRasm)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Рассмотрения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateRasm | formatDateTime('DD.MM.YYYY')" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Рассмотрения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateRasm | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div v-if="isNotEmptyField(body.dateUved)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Вручения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.dateUved | formatDateTime('DD.MM.YYYY')" ></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Вручения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Должностное лицо составившее Извещение</h2>
-        <div class="adm-form__content my6 py12 px36">
-          <div v-if="isNotEmptyField(body.inspSostKod) && isNotEmptyField(body.inspSostName)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Код сотрудника - Ф.И.О.</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Код сотрудника - Ф.И.О.</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspSostKod, body.inspSostName  | concatByDelimiter('-') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div v-if="isNotEmptyField(body.inspSostRang) && isNotEmptyField(body.inspSostDolz)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Звание, Должность</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.inspSostRang, body.inspSostDolz | concatByDelimiter(',')"></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Звание, Должность</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspSostRang, body.inspSostDolz | concatByDelimiter(',') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div v-if="isNotEmptyField(body.placeSost.placeFull)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Место составления Извещения</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.placeSost.placeFull"  type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Место составления извещения</p>
+                  <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div v-if="isNotEmptyField(body.stotvKod)" class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Статья основания</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <Input class="adm-input adm-input--regular" readonly :value="body.stotvKod, body.stotvName | concatByDelimiter(',')"></Input>
-                </Col>
-              </Row>
+            <div class="my12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Статья основания</p>
+                  <p class="adm-text-big color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
 </template>
