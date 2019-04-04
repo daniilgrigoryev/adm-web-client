@@ -1,7 +1,7 @@
 <template>
   <div class="WizardScenarioProtEvac">
     <aside>
-      <h3>СПИСОК ПОДРАЗДЕЛОВ</h3>
+      <h3>Список подразделов</h3>
       <ul v-if="isVisible('DocProtEvacOne')">
         <li v-for="item in goToSectionNav" :key="item.id">
           <a :href="'#' + item.name">{{item.title}}</a>
@@ -151,7 +151,7 @@
         maskInputProt: {
           regex: '[0-9]+',
           casing: 'upper',
-          placeholder: ''
+          placeholder: ' '
         },
       }
     },
@@ -220,8 +220,11 @@
       h3 {
         background: #fff;
         color: #6b94c2;
-        font-size: 12px;
-        padding: 2px 20px;
+        font-size: 16px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        height: 46px;
         letter-spacing: 0.1px;
         line-height: 26px;
         border-bottom: 1px solid #D9D9D9;
