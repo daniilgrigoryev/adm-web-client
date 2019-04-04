@@ -63,7 +63,7 @@
                   <div class="grid">
                     <div class="col col--12">
                       <p class="adm-14 color-dark-lighter mb6">Уведомление направлено по адресу</p>
-                      <p class="adm-text-big color-dark-base">{{body.placeIspoln.placeFull || 'нет информации'}}</p>
+                      <p class="adm-text-big color-dark-base">{{dopData.sendingAddress || 'нет информации'}}</p>
                     </div>
                   </div>
                 </div>
@@ -138,6 +138,13 @@
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
+        }
+        return res;
+      },
+      dopData() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.dopData;
         }
         return res;
       },

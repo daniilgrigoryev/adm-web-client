@@ -89,7 +89,6 @@
               </div>
             </div>
 
-         
             <div class="pl60 my18" style="border-bottom: 1px solid #CCCCCC;">
               <div class="my12">
                 <div class="grid">
@@ -105,8 +104,6 @@
               </div>
             </div>
            
-
-
             <div class="py12 flex-parent flex-parent--center-cross">
               <div class="s40">
                   <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
