@@ -19,30 +19,34 @@
         <div class="adm-form__content">
           <div class="ml60">
             <div class="w-full">
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">ФИО, дата рождения</p>
-                    <p class="adm-text-big color-dark-base">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'/') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('/') || 'нет информации'}}</p>
+
+              <div class="my18" style="border-bottom: 1px solid #CCCCCC;">
+                <div class="my12">
+                  <div class="grid">
+                    <div class="col col--12">
+                      <p class="adm-14 color-dark-lighter mb6">ФИО, дата рождения</p>
+                      <p class="adm-text-big color-dark-base">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'/') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('/') || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="my12">
+                  <div class="grid">
+                    <div class="col col--12">
+                      <p class="adm-14 color-dark-lighter mb6">Место рождения</p>
+                      <p class="adm-text-big color-dark-base">{{body.individ.birthMesto || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="my12">
+                  <div class="grid">
+                    <div class="col col--12">
+                      <p class="adm-14 color-dark-lighter mb6">Гражданство</p>
+                      <p class="adm-text-big color-dark-base">{{body.individ.gragdName || 'нет информации'}}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Место рождения</p>
-                    <p class="adm-text-big color-dark-base">{{body.individ.birthMesto || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Гражданство</p>
-                    <p class="adm-text-big color-dark-base">{{body.individ.gragdName || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
+
               <div class="my12">
                 <div class="grid">
                   <div class="col col--12">

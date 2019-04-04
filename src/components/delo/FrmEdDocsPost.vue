@@ -42,23 +42,27 @@
                 </div>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
-                  <p class="adm-text-big color-dark-base">{{body.datUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+
+            <div class="my18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--12">
+                    <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
+                    <p class="adm-text-big color-dark-base">{{body.datUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--12">
+                    <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
+                    <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
+
+            <div class="my12" >
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
@@ -82,6 +86,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
