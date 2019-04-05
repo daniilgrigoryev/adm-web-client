@@ -4,7 +4,7 @@
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
+      <small class="adm-form__label">Должностное лицо</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="4" :md="4" :lg="4">
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+      <small class="adm-form__label">Подразделение</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="4" :md="4" :lg="4">

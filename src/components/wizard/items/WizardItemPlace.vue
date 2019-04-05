@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="adm-form__item">
-			<small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
+			<small class="adm-form__label">{{title}}</small>
 			<div class="adm-form__item_content">
 				<Row :gutter="16" type="flex" align="middle">
 					<Col :xs="22" :md="22" :lg="22">
@@ -22,9 +22,9 @@
 				</Button>
 				<div class="adm-form__container">
 					<h2 class="adm-text-big color-dark-light adm-form__headding">{{title}}</h2>
-					<div class="adm-form__content px36 py24">
+					<div class="adm-form__content">
 						<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
+							<small class="adm-form__label">Регион</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -36,7 +36,7 @@
 							</div>
 						</div>
 						<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+							<small class="adm-form__label">Район</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -48,7 +48,7 @@
 							</div>
 						</div>
 						<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+							<small class="adm-form__label">Населенный пункт</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -60,7 +60,7 @@
 							</div>
 						</div>
 						<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+							<small class="adm-form__label">Улица</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -73,37 +73,37 @@
 						</div>
 						<div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
+                <small class="adm-form__label">Дом</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.ndom" @on-input-change="storeElementData" :maxlength="5"></Input>
+                      <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.ndom" @on-change="storeElementData" :maxlength="5"></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmax60 wmin60">Корпус</small>
+                <small class="adm-form__label wmax60 wmin60">Корпус</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nkorpus" @on-input-change="storeElementData" :maxlength="5"></Input>
+                      <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nkorpus" @on-change="storeElementData" :maxlength="5"></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label  wmax60 wmin60">Строение</small>
+                <small class="adm-form__label  wmax60 wmin60">Строение</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nstroenie" @on-input-change="storeElementData" :maxlength="5"></Input>
+                      <Input class="adm-input adm-input--regular wmin60 wmax60" v-model="data.adr.nstroenie" @on-change="storeElementData" :maxlength="5"></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
 							<div class="adm-form__item">
-							<small class="adm-text-small color-gray-medium adm-form__label  wmax60 wmin60">Индекс</small>
+							<small class="adm-form__label  wmax60 wmin60">Индекс</small>
 							<div class="adm-form__item_content">
 								<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -114,7 +114,7 @@
 							</div>
 						</div>
 						<div class="adm-form__item ">
-							<small class="adm-text-small color-gray-medium adm-form__label">Место</small>
+							<small class="adm-form__label">Место</small>
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
@@ -128,43 +128,43 @@
 						</div>
 						<div class="flex-parent flex-parent--center-cross">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">км, метр</small>
+                <small class="adm-form__label">км, метр</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular" v-model="data.km" @on-input-change="storeElementData" ></Input> -->
+                      <!-- <Input class="adm-input adm-input--regular" v-model="data.km" @on-change="storeElementData" ></Input> -->
                       <masked-input inputClass="adm-input adm-input--regular" v-model="data.km" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60">МГО</small>
+                <small class="adm-form__label wmin60">МГО</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.machta" @on-input-change="storeElementData" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.machta" @on-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60">МГТ</small>
+                <small class="adm-form__label wmin60">МГТ</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.mgt" @on-input-change="storeElementData" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.mgt" @on-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
             </div>
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Доп. сведения</small>
+              <small class="adm-form__label">Доп. сведения</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-input-change="storeElementData"></Input>
+                    <Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-change="storeElementData"></Input>
                   </Col>
                 </Row>
               </div>
@@ -172,11 +172,11 @@
             <Row :gutter="16" type="flex" align="middle" >
               <Col :xs="12" :md="12" :lg="12">
                 <div class="adm-form__item">
-                  <small class="adm-text-small color-gray-medium adm-form__label">Широта</small>
+                  <small class="adm-form__label">Широта</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular" v-model="data.y" @on-input-change="storeElementData" disabled></Input>
+                        <Input class="adm-input adm-input--regular" v-model="data.y" @on-change="storeElementData" disabled></Input>
                       </Col>
                     </Row>
                   </div>
@@ -184,11 +184,11 @@
               </Col>
               <Col :xs="12" :md="12" :lg="12">
                 <div class="adm-form__item">
-                  <small class="adm-text-small color-gray-medium adm-form__label">Долгота</small>
+                  <small class="adm-form__label">Долгота</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular" v-model="data.x" @on-input-change="storeElementData" disabled></Input>
+                        <Input class="adm-input adm-input--regular" v-model="data.x" @on-change="storeElementData" disabled></Input>
                       </Col>
                     </Row>
                   </div>

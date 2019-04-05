@@ -2,7 +2,7 @@
   <div v-if="data" class="wmax940 mx-auto">
 
 
-    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus color-dark-lighter color-blue-on-hover transition">
@@ -25,7 +25,7 @@
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование адреса участника</h2>
         <div class="adm-form__content mt0 px36 py24">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Страна</small>
+            <small class="adm-form__label">Страна</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -38,7 +38,7 @@
           </div>
           <div v-if="showIfRussia">
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
+              <small class="adm-form__label">Регион</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -50,7 +50,7 @@
               </div>
             </div>
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+              <small class="adm-form__label">Район</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -62,7 +62,7 @@
               </div>
             </div>
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+              <small class="adm-form__label">Населенный пункт</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -76,7 +76,7 @@
             </div>
 
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+              <small class="adm-form__label">Улица</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -90,7 +90,7 @@
             </div>
 
             <!-- <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+              <small class="adm-form__label">Улица</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -104,7 +104,7 @@
           </div>
           <div v-if="!showIfRussia">
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+              <small class="adm-form__label">Населенный пункт</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -114,7 +114,7 @@
               </div>
             </div>
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+              <small class="adm-form__label">Улица</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -124,9 +124,9 @@
               </div>
             </div>
           </div>
-          <div class="flex-parent flex-parent--center-cross">
+          <div class="small-items-wrap">
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
+              <small class="adm-form__label">Дом</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -135,38 +135,38 @@
                 </Row>
               </div>
             </div>
-            <div class="adm-form__item ml18">
-              <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax120">Корпус</small>
+            <div class="adm-form__item">
+              <small class="adm-form__label wmin60 wmax120">Корпус</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-input-change="store" :maxlength="5"></Input>
+                    <Input class="adm-input adm-input--regular"  v-model="data.nkorpus" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
             </div>
-            <div class="adm-form__item ml18">
-              <small class="adm-text-small color-gray-medium adm-form__label wmin60">Строение</small>
+            <div class="adm-form__item">
+              <small class="adm-form__label wmin60">Строение</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-input-change="store" :maxlength="5"></Input>
+                    <Input class="adm-input adm-input--regular"  v-model="data.nstroenie" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
             </div>
-            <div class="adm-form__item ml18">
-              <small class="adm-text-small color-gray-medium adm-form__label wmin60">Квартира</small>
+            <div class="adm-form__item">
+              <small class="adm-form__label wmin60">Квартира</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="store" :maxlength="5"></Input>
+                    <Input class="adm-input adm-input--regular" v-model="data.nkvart" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
             </div>
-            <div class="adm-form__item ml18">
-              <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax60">Индекс</small>
+            <div class="adm-form__item">
+              <small class="adm-form__label wmin60">Индекс</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -491,25 +491,21 @@
   }
 </script>
 
-<style scoped lang="scss">
-  .adm-form-content{
-
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    // min-height: 90px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 130px;
-  }
-  .adm-form__item_content{
-    width: 100%;
+<style lang="scss" scoped>
+  .small-items-wrap {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    .adm-form__item {
+      grid-template-columns: 84px 80px;
+      &:first-child {
+        grid-template-columns: 150px 60px;
+      }
+      .adm-form__label {
+        max-width: 100%;
+        width: auto;
+        padding-right: 7px;
+      }
+    }
   }
 </style>
+

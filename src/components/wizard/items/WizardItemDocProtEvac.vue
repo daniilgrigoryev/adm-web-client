@@ -7,9 +7,9 @@
    <div class="adm-form">
       <h2 class="title" id="head">Ввод данных по протоколу о задержании ТС</h2>
       <div class="adm-form__container mt6">
-        <div class="adm-form__content px36 py24">
+        <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Протокол №</small>
+            <small class="adm-form__label">Протокол №</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время составления</small>
+            <small class="adm-form__label">Дата и время составления</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -38,10 +38,10 @@
     </div>
     <div class="adm-form">
       <div class="adm-form__container mt6">
-        <h2 class="adm-text-big adm-form__headding" id="sost">Составил</h2>
-        <div class="adm-form__content px36 py24">
+        <h2 class="adm-form__headding" id="sost">Составил</h2>
+        <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
+            <small class="adm-form__label">Должностное лицо</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+            <small class="adm-form__label">Подразделение</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -75,10 +75,10 @@
     </div>
     <div class="adm-form">
       <div class="adm-form__container mt6">
-        <h2 class="adm-text-big adm-form__headding" id="evac">Сведения об эвакуации</h2>
-        <div class="adm-form__content px36 py24">
+        <h2 class="adm-form__headding" id="evac">Сведения об эвакуации</h2>
+        <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
+            <small class="adm-form__label">Организация эвакуатора</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -88,7 +88,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Представитель</small>
+            <small class="adm-form__label">Представитель</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
+            <small class="adm-form__label">ГРЗ эвакуатора</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Штрафстоянка</small>
+            <small class="adm-form__label">Штрафстоянка</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -118,7 +118,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
+            <small class="adm-form__label">№ акта эвакуации</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -129,7 +129,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
+            <small class="adm-form__label">Дата составления акта</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -143,10 +143,10 @@
     </div>
     <div class="adm-form">
       <div class="adm-form__container mt6">
-        <h2 class="adm-text-big adm-form__headding" id="nar">Сведения о нарушении</h2>
-        <div class="adm-form__content px36 py24">
+        <h2 class="adm-form__headding" id="nar">Сведения о нарушении</h2>
+        <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
+            <small class="adm-form__label">Дата и время нарушения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -157,7 +157,7 @@
           </div>
 
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
+            <small class="adm-form__label">Пункт НПА</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -169,7 +169,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
+            <small class="adm-form__label">Статья КРФоАП</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -181,7 +181,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+            <small class="adm-form__label">Фактические сведения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">

@@ -1,34 +1,32 @@
 <template>
   <div v-if="data">
-    <div class="adm-form">
-      <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Номер документа</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" :disabled="data.docId" v-model="data.docNum" @on-input-change="storeElementData" placeholder="Номер документа"></Input>
-          </Col>
-        </Row>
-      </div>
-      <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Документ удостоверяющий личность:</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180 adm-input adm-input--regular" :disabled="data.docId" placeholder="" v-model="data.docTip" clearable @on-change="storeElementData">
-              <Option class="wmax360 txt-break-word" v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
-      <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Список документов ЛВОКа из дела:</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" clearable @on-change="storeElementData">
-              <Option class="wmax360 txt-break-word" v-for="item in lvokDeloDocsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
-      </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Номер документа</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" :disabled="data.docId" v-model="data.docNum" @on-input-change="storeElementData" placeholder="Номер документа"></Input>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Документ удостоверяющий личность:</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Select class="wmax240 wmin180 adm-input adm-input--regular" :disabled="data.docId" placeholder="" v-model="data.docTip" clearable @on-change="storeElementData">
+            <Option class="wmax360 txt-break-word" v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Список документов ЛВОКа из дела:</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" clearable @on-change="storeElementData">
+            <Option class="wmax360 txt-break-word" v-for="item in lvokDeloDocsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
+        </Col>
+      </Row>
     </div>
   </div>
 </template>

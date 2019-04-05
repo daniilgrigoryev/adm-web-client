@@ -2,7 +2,7 @@
   <div v-if="data">
     <div class="adm-form">
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата уведомления</small>
+        <small class="adm-form__label">Дата уведомления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateUved" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
@@ -10,7 +10,7 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-text-small color-gray-medium adm-form__label">Дата исполнения</small>
+        <small class="adm-form__label">Дата исполнения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateIspoln" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>

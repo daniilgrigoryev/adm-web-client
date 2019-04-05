@@ -2,7 +2,7 @@
   <div v-if="docsPost" class="wmax1280 mx-auto">
     <!-- данные по делу  -->
 
-    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="редактирование постановления">
@@ -23,7 +23,7 @@
     <div class="adm-form bg-white mt0">
       <div class="adm-form__container mt0">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Постановление по делу № {{ docsPost.docN }} от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
-        <div class="adm-form__content py24 px36">
+        <div class="adm-form__content">
           <Row>
             <Col span="12">
               <div class="adm-form__item">
@@ -54,9 +54,9 @@
       </div>
     </div>
     <div class="adm-form bg-white">
-      <div class="adm-form__container my6">
+      <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Составил</h2>
-        <div class="adm-form__content py24 px36">
+        <div class="adm-form__content">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
             <div class="adm-form__item_content">
@@ -106,9 +106,9 @@
       </div>
     </div>
     <div class="adm-form bg-white">
-      <div class="adm-form__container my6">
+      <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Сведения о нарушении</h2>
-        <div class="adm-form__content py24 px36">
+        <div class="adm-form__content">
           <div class="adm-form__item">
             <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
             <div class="adm-form__item_content">
@@ -743,31 +743,3 @@
     },
   }
 </script>
-
-<style scoped lang="scss">
-  .chast-title {
-    display: flex;
-    align-items: center;
-    padding: 24px 36px;
-  }
-  .adm-form {
-    margin: 20px;
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    // min-height: 90px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 210px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
-</style>

@@ -15,9 +15,8 @@
       </div>
     </div>
 
-    <div class="adm-form">
-      <div class="adm-form__container my0 mx0 py12 px36">
-        <div class="adm-form__content">
+    <div class="view-data">
+      <div class="view-data__container">
           <div class="ml60">
             <div class="my12">
               <div class="grid">

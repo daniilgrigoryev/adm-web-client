@@ -14,25 +14,18 @@
         </div>
     </div>
     <div>
-      <div class="adm-form">
-        <div class="adm-form__container my0 mx0 py12 px36">
-          <div class="adm-form__content">
-
-            <div class="py12">
-              <div class="flex-parent flex-parent--center-cross">
-                <div class="s40 mt12">
-                  <img src="../../assets/images/vehicle_passport.svg" width="30px" class="mx-auto block" alt="">
-                </div>
-                <div class="ml18 w-full">
-                  <div class="grid">
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">ГРЗ</p>
-                      <p class="adm-text-big color-dark-base">{{body.regno || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">VIN</p>
-                      <p class="adm-text-big color-dark-base">{{body.vin || 'нет информации'}}</p>
-                    </div>
+      <div class="view-data">
+        <div class="view-data__container">
+            <div class="ml60">
+              <div class="w-full">
+                <div class="grid">
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">ГРЗ</p>
+                    <p class="adm-text-big color-dark-base">{{body.regno || 'нет информации'}}</p>
+                  </div>
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">VIN</p>
+                    <p class="adm-text-big color-dark-base">{{body.vin || 'нет информации'}}</p>
                   </div>
                 </div>
               </div>

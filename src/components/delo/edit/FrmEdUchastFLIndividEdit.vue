@@ -1,27 +1,14 @@
 <template>
   <div v-if="uchastIndivid" class="wmax1280 mx-auto">
 
-
-    <div class="pt24 px36">
-      <div class="flex-parent flex-parent--center-cross">
-        <Button @click="getPrev" type="text" style="outline: 0!important;" class="py0 px0 mr18 bg-transparent-on-hover color-dark-lighter color-blue-on-hover transition">
-          <div class="flex-parent flex-parent--center-cross">
-            <Icon type="ios-arrow-dropleft mr18" class="bg-whte" :size="30" />
-            <b class="adm-text-big">В просмотр участника дела</b>
-          </div>
-        </Button>
-      </div>
-    </div>
-    <div class="pb24 pt18 px36">
-      <div class="flex-parent flex-parent--center-cross">
-        <a href="#" @click="getPrev" class="delo__headding link color-dark-lighter color-blue-on-hover">
-          <span class="adm-h3">Дело №</span>
-          <span v-if="delo" class="adm-h2">{{delo.deloN}}</span>
-        </a>
-        <p class="color-green-base ml24 flex-parent flex-parent--center-cross">
-          <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23" /> 
-          <span v-if="delo" class="adm-txt-regular line30_letter02">{{delo.stadDeloName}}</span>
-        </p>
+    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="редактирование постановления">
+            <Icon type="ios-arrow-dropleft" class=" " :size="35" />
+          </Button>
+          <b class="adm-text-big">В просмотр участника дела</b>
+        </div>
       </div>
     </div>
 
@@ -30,36 +17,30 @@
       <div class="adm-form__container mt0">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование Участника дела</h2>
         <div class="adm-form__content py24 px36">
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Тип участника</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.uchastTip" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Статус</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly v-model="uchastIndivid.uchastStatusName"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Фамилия</small>
+            <small class="adm-form__label">Тип участника</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.uchastTip" clearable filterable @on-change="store">
+                    <Option class="txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label">Статус</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" readonly v-model="uchastIndivid.uchastStatusName"></Input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label">Фамилия</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -70,7 +51,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Имя</small>
+            <small class="adm-form__label">Имя</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -81,7 +62,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Отчество</small>
+            <small class="adm-form__label">Отчество</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -91,66 +72,54 @@
               </Row>
             </div>
           </div>
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата рождения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular" v-model="birthdayDate" @change="formatBirthday" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy" stringFormat="DD/MM/YYYY"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.birthMestoKod" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in birthMestoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Пол</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.sex" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Гражданство</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.gragdKod" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Адрес регистрации</small>
+            <small class="adm-form__label">Дата рождения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <DatePickerMask class="adm-input adm-input--regular" v-model="birthdayDate" @change="formatBirthday" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy" stringFormat="DD/MM/YYYY"></DatePickerMask>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label">Место рождения</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.birthMestoKod" clearable filterable @on-change="store">
+                    <Option class="txt-break-word" v-for="item in birthMestoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label">Пол</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.sex" clearable filterable @on-change="store">
+                    <Option class="txt-break-word" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label">Гражданство</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.gragdKod" clearable filterable @on-change="store">
+                    <Option class="txt-break-word" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label">Адрес регистрации</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -165,7 +134,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Фактический адрес</small>
+            <small class="adm-form__label">Фактический адрес</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -179,34 +148,28 @@
               </Row>
             </div>
           </div>
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Телефон</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <masked-input v-model="uchastIndivid.individ.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">АМТС</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.vehsId" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>  
+          <div class="adm-form__item">
+            <small class="adm-form__label">Телефон</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <masked-input v-model="uchastIndivid.individ.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
+                </Col>
+              </Row>
+            </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label">АМТС</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.vehsId" clearable filterable @on-change="store">
+                    <Option class="txt-break-word" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                  </Select>
+                </Col>
+              </Row>
+            </div>
+          </div>
         </div> 
       </div> 
     </div>
@@ -452,29 +415,4 @@
 </script>
 
 <style scoped lang="scss">
-  .chast-title {
-    display: flex;
-    align-items: center;
-    padding: 24px 36px;
-  }
-  .adm-form {
-    margin: 20px;
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    // min-height: 90px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 210px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
 </style>

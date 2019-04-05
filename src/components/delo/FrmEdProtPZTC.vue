@@ -14,8 +14,8 @@
       </div>
     </div>
 
-    <div class="adm-form">
-      <div class="adm-form__container">
+    <div class="view-data">
+      <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item 
             label="Дата и время нарушения" 
@@ -189,20 +189,16 @@
   .--gcs2 {
     grid-column: span 2;
   }
-  .adm-form__container {
-    margin-top: 6px;
-    .items-wrap {
-      padding: 36px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 12px;
-      hr {
-        height: 1px;
-        width: 100%;
-        color: #cccccc;
-        background: #cccccc;
-        grid-column: span 2;
-      }
+  .items-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 12px;
+    hr {
+      height: 1px;
+      width: 100%;
+      color: #cccccc;
+      background: #cccccc;
+      grid-column: span 2;
     }
   }
 </style>

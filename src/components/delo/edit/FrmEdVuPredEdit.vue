@@ -2,7 +2,7 @@
   <div v-if="vuPred" class="wmax940 mx-auto">
     <!-- данные по делу  -->
 
-    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="вернуться назад">
@@ -24,7 +24,7 @@
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование документа участника</h2>
         <div class="adm-form__content py24 px36">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Тип документа</small>
+            <small class="adm-form__label">Тип документа</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -38,7 +38,7 @@
           <Row :gutter="16" type="flex">
             <Col span="15">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Номер</small>
+                <small class="adm-form__label">Номер</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -51,7 +51,7 @@
             </Col>
             <Col span="9">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата выдачи</small>
+                <small class="adm-form__label">Дата выдачи</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -65,7 +65,7 @@
           <Row :gutter="16">
             <Col span="24">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Кем выдан</small>
+                <small class="adm-form__label">Кем выдан</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -79,7 +79,7 @@
           <Row :gutter="16">
             <Col span="15">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата задержания</small>
+                <small class="adm-form__label">Дата задержания</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -91,7 +91,7 @@
             </Col>
             <Col span="9">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Возврата</small>
+                <small class="adm-form__label">Возврата</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -105,7 +105,7 @@
           <Row :gutter="16">
             <Col span="15">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Утилизации</small>
+                <small class="adm-form__label">Утилизации</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -117,7 +117,7 @@
             </Col>
             <Col span="9">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Утраты</small>
+                <small class="adm-form__label">Утраты</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -133,7 +133,7 @@
           <Row :gutter="16">
             <Col span="12">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Статус</small>
+                <small class="adm-form__label">Статус</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -429,25 +429,3 @@
   }
 </script>
 
-<style scoped lang="scss">
-  .adm-form-content{
-
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    min-height: 65px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 130px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
-</style>

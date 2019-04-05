@@ -2,9 +2,9 @@
   <div v-if="data">
     <div class="adm-form">
       <div class="adm-form__container mt6">
-        <h2 class="adm-text-big adm-form__headding" >Лицо в отношении которого заводится дело (ЛВОК)</h2>
+        <h2 class="adm-form__headding" >Лицо в отношении которого заводится дело (ЛВОК)</h2>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Статус</small>
+          <small class="adm-form__label">Статус</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col>
               <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
@@ -14,7 +14,7 @@
           </Row>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Гражданство:</small>
+          <small class="adm-form__label">Гражданство:</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData"  placeholder="">
@@ -24,7 +24,7 @@
           </Row>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">ФИО:</small>
+          <small class="adm-form__label">ФИО:</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" v-model="data.lvokName" disabled @on-input-change="changeFIO" ></Input>
@@ -32,7 +32,7 @@
           </Row>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Место рождения</small>
+          <small class="adm-form__label">Место рождения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
@@ -42,7 +42,7 @@
           </Row>
         </div>
         <div class="adm-form__item">
-          <small class="adm-text-small color-gray-medium adm-form__label">Присутствие ЛВОКа:</small>
+          <small class="adm-form__label">Присутствие ЛВОКа:</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Select class="adm-input adm-input--regular wmin180" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">

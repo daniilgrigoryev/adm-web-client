@@ -1,8 +1,8 @@
 <template>
-  <div class="WizardScenarioProtEvac">
+  <div class="create-prosecution">
     <aside>
       <h3>Список подразделов</h3>
-      <ul v-if="isVisible('DocProtEvacOne')">
+      <ul>
         <li v-for="item in goToSectionNav" :key="item.id">
           <a :href="'#' + item.name">{{item.title}}</a>
         </li>
@@ -13,7 +13,7 @@
         <Layout ref="Main" class="layout">
           <div class="adm-form">
             <div class="adm-form__container">
-              <h2 class="adm-text-big adm-form__headding" id="head">
+              <h2 class="adm-form__headding" id="head">
                 Ввод данных по протоколу о задержании ТС
               </h2>
               <div class="adm-form__content">
@@ -22,11 +22,9 @@
                 <wizard-item-prot-evac-two id="DocProtEvacTwo" v-if="isVisible('DocProtEvacTwo')" ref="DocProtEvacTwo" :info="getInfo('DocProtEvacTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-two>
               </div>
             </div>
-          </div>
-          <div class="adm-form">
             <div v-if="isNotEmptyParentNode('LVOK')">
               <div class="adm-form__container">
-                <h2 class="adm-text-big adm-form__headding" id="lvok">ЛВОК</h2>
+                <h2 class="adm-form__headding" id="lvok">ЛВОК</h2>
                 <div class="adm-form__content">
                   <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
                   <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
@@ -46,22 +44,18 @@
                 </div>
               </div>
             </div>
-          </div>
-          <wizard-item-vehs-evac id="vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs-evac>
-          <div class="adm-form">
+            <wizard-item-vehs-evac id="vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs-evac>
             <div class="adm-form__container">
-              <h2 id="nar" class="adm-text-big adm-form__headding">Сведения о нарушении</h2>
+              <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
               <div class="adm-form__content">
                 <wizard-item-prot-evac-three id="DocProtEvacThree" v-if="isVisible('DocProtEvacThree')" ref="DocProtEvacThree" :info="getInfo('DocProtEvacThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-three>
                 <wizard-item-place v-if="isVisible('DocProtEvacThree.PlaceNar')" ref="DocProtEvacThree.PlaceNar" :info="getInfo('DocProtEvacThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
                 <wizard-item-prot-evac-four id="DocProtEvacFour" v-if="isVisible('DocProtEvacFour')" ref="DocProtEvacFour" :info="getInfo('DocProtEvacFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-four>
               </div>
             </div>
-          </div>
-          <wizard-item-prot-evac-five id="evac" v-if="isVisible('DocProtEvacFive')" ref="DocProtEvacFive" :info="getInfo('DocProtEvacFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
-          <div class="adm-form">
+            <wizard-item-prot-evac-five id="evac" v-if="isVisible('DocProtEvacFive')" ref="DocProtEvacFive" :info="getInfo('DocProtEvacFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
             <div class="adm-form__container">
-              <h2 id="witness" class="adm-text-big adm-form__headding">Понятые</h2>
+              <h2 id="witness" class="adm-form__headding">Понятые</h2>
               <div class="adm-form__content">
                 <h4 class="h4">1 понятой</h4>
                 <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
@@ -151,7 +145,7 @@
         maskInputProt: {
           regex: '[0-9]+',
           casing: 'upper',
-          placeholder: ' '
+          placeholder: ''
         },
       }
     },
@@ -227,122 +221,3 @@
   }
 </script>
 
-<style lang="scss">
-	@import "scss/variables.scss";
-  .WizardScenarioProtEvac {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    grid-auto-rows: calc(100vh - 66px);
-    overflow: hidden;
-    aside {
-      border-right: 1px solid #D9D9D9;
-      height: 100%;
-      h3 {
-        background: #fff;
-        color: #6b94c2;
-        font-size: 16px;
-        padding: 0 20px;
-        display: flex;
-        align-items: center;
-        height: 46px;
-        letter-spacing: 0.1px;
-        line-height: 26px;
-        border-bottom: 1px solid #D9D9D9;
-        font-weight: 600;
-      }
-      ul {
-        padding: 10px 0;
-        li {
-          a {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            color: $dark-lighter;
-            border-left: 4px solid transparent;
-            transition: .3s ease;
-            padding: 3px 20px 3px 20px;
-            font-weight: 500;
-            &:hover {
-              border-color: $blue-base;
-              color: $blue-base;
-            }
-          }
-        }
-      }
-    }
-    main {
-      display: grid;
-      grid-template-rows: 1fr 55px;
-      .layout-wrap {
-        overflow-y: scroll;
-        .layout {
-          max-width: 1000px;
-        }
-      }
-      .bot-wrap {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        padding: 0 36px;
-        border-top: 1px solid #D9D9D9;
-      }
-    }
-    .adm-form {
-      margin: 0;
-      border-bottom: 1px solid #e4e4e4;
-      .adm-form__container {
-        background: #f3f3f3;
-        margin: 0;
-        border: none;
-        border-radius: 0;
-        hr {
-          height: 1px;
-          width: 100%;
-          background: #e4e4e4;
-          color: #e4e4e4;
-          margin: 20px;
-        }
-        h4.h4 {
-          color: #6b94c2;
-          font-size: 14px;
-        }
-        .adm-form__headding {
-          border-radius: 0;
-          background: #fff;
-          height: 46px;
-          color: #6b94c2;
-          border-bottom: 1px solid #e4e4e4;
-        }
-        .adm-form__content{
-          padding: 20px 50px !important;
-          display: grid;
-          grid-gap: 5px;
-          .adm-form__label {
-            font-weight: 500;
-            // padding: 0 7px 0 0;
-            padding: 0;
-          }
-          .adm-input .ivu-select-selection {
-            outline: none;
-          }
-          .adm-input .ivu-select-input, .adm-input .ivu-input {
-            border: 1px solid #DEDEDE;
-            background: #fff;
-            &:hover {
-              border-color: #9A9A9A;
-            }
-            &:focus {
-              border-color: #53A4D6;
-            }
-          }
-        }
-      }
-    }
-    .adm-form__item{
-      display: grid;
-      align-items: center;
-      grid-template-columns: 150px 1fr;
-      padding: 5px 0;
-    }
-  }
-</style>

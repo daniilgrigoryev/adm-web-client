@@ -2,11 +2,11 @@
   <div v-if="data">
     <div class="adm-form">
       <div class="adm-form__container">
-        <h2 class="adm-text-big adm-form__headding" id="tc">Транспортное средство</h2>
-        <div class="adm-form__content px36 py24">
+        <h2 class="adm-form__headding" id="tc">Транспортное средство</h2>
+        <div class="adm-form__content">
 
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ</small>
+            <small class="adm-form__label">ГРЗ</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -20,7 +20,7 @@
           </div>
           </Col>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">VIN</small>
+            <small class="adm-form__label">VIN</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -34,7 +34,7 @@
 
 
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Марка</small>
+            <small class="adm-form__label">Марка</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -48,7 +48,7 @@
           </div>
           </Col>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Модель</small>
+            <small class="adm-form__label">Модель</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -63,7 +63,7 @@
 
 
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">СТС</small>
+            <small class="adm-form__label">СТС</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -77,7 +77,7 @@
           </div>
           </Col>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Цвет</small>
+            <small class="adm-form__label">Цвет</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -91,7 +91,7 @@
 
 
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Категория</small>
+            <small class="adm-form__label">Категория</small>
             <div class="adm-form__item_content">
               <Row type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="24">
@@ -105,7 +105,7 @@
           </div>
           </Col>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Тип</small>
+            <small class="adm-form__label">Тип</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -258,13 +258,4 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-
-
-
-  .adm-form__item_content {
-    width: 100%;
-  }
-</style>
 

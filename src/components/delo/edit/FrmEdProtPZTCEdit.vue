@@ -1,7 +1,7 @@
 <template>
   <div v-if="protPZTC" class="wmax1280 mx-auto FrmEdProtPZTCEdit">
 
-    <div class="amd-title amd-title--sticky px36 py24 bg-white-light">
+    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="редактирование постановления">
@@ -20,10 +20,10 @@
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
     <div class="adm-form">
       <div class="adm-form__container">
-        <h2 class="adm-text-big adm-form__headding" id="lvok">Протокол по делу</h2>
+        <h2 class="adm-form__headding" id="lvok">Протокол по делу</h2>
         <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Протокол №</small>
+            <small class="adm-form__label">Протокол №</small>
             <div class="adm-form__item_content">
               <Row type="flex" align="middle">
                 <Col span="10">
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место составления</small>
+            <small class="adm-form__label">Место составления</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
+            <small class="adm-form__label">Должностное лицо</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="4" :md="4" :lg="4">
@@ -71,7 +71,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+            <small class="adm-form__label">Подразделение</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="4" :md="4" :lg="4">
@@ -91,10 +91,10 @@
         </div>
       </div>
       <div class="adm-form__container">
-        <h2 id="nar" class="adm-text-big adm-form__headding">Сведения о нарушении</h2>
+        <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
         <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
+            <small class="adm-form__label">Дата и время нарушения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -104,7 +104,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
+            <small class="adm-form__label">Место нарушения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -119,7 +119,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
+            <small class="adm-form__label">Пункт НПА</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -131,7 +131,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
+            <small class="adm-form__label">Статья КРФоАП</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -143,7 +143,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+            <small class="adm-form__label">Фактические сведения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -155,10 +155,10 @@
         </div>
       </div>
       <div class="adm-form__container">
-        <h2 class="adm-text-big adm-form__headding" id="evac">Сведения об эвакуации</h2>
+        <h2 class="adm-form__headding" id="evac">Сведения об эвакуации</h2>
         <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Организация эвакуатора</small>
+            <small class="adm-form__label">Организация эвакуатора</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -168,7 +168,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Представитель</small>
+            <small class="adm-form__label">Представитель</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -178,7 +178,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">ГРЗ эвакуатора</small>
+            <small class="adm-form__label">ГРЗ эвакуатора</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -188,7 +188,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Штрафстоянка</small>
+            <small class="adm-form__label">Штрафстоянка</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -198,7 +198,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">№ акта эвакуации</small>
+            <small class="adm-form__label">№ акта эвакуации</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -209,7 +209,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата составления акта</small>
+            <small class="adm-form__label">Дата составления акта</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -786,48 +786,14 @@
       margin: 0;
       border-bottom: 1px solid #e4e4e4;
       .adm-form__container {
-        background: #f3f3f3;
-        margin: 0;
-        border: none;
-        border-radius: 0;
-        hr {
-          height: 1px;
-          width: 100%;
-          background: #e4e4e4;
-          color: #e4e4e4;
-          margin: 20px;
-        }
         h4.h4 {
           color: #6b94c2;
           font-size: 14px;
         }
-        .adm-form__headding {
-          border-radius: 0;
-          background: #fff;
-          height: 46px;
-          color: #6b94c2;
-          border-bottom: 1px solid #e4e4e4;
-        }
         .adm-form__content{
-          padding: 20px 50px;
-          display: grid;
-          grid-gap: 5px;
-          .adm-form__label {
-            font-weight: 500;
-            padding: 0;
-          }
-          .adm-input .ivu-select-selection {
-            outline: none;
-          }
           .adm-input .ivu-select-input, .adm-input .ivu-input {
-            border: 1px solid #DEDEDE;
             background: #fff;
-            &:hover {
-              border-color: #9A9A9A;
-            }
-            &:focus {
-              border-color: #53A4D6;
-            }
+            
           }
         }
       }

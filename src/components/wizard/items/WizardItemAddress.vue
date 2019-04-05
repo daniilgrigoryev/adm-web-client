@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="adm-form__item">
-      <small class="adm-text-small color-gray-medium adm-form__label">{{title}}</small>
+      <small class="adm-form__label">{{title}}</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="22" :md="22" :lg="22">
           <Input class="adm-input adm-input--regular" v-model="fullAddress" disabled :autosize="{minRows: 2,maxRows: 5}"></Input>
@@ -13,16 +13,16 @@
         </Col>
       </Row>
     </div>
-    <div v-if="data && addressModal.visible" class="address-modal">
+    <div v-if="data && addressModal.visible" class="address-modal" @click="outside">
       <div class="adm-form" ref="bodyModal">
         <Button type="text" ref="closeButton"  @click="showAddressModal(false)" class="close-modal">
 					<Icon type="md-close" size="40" class="color-blue-base cursor-pointer"/>
 				</Button>
         <div class="adm-form__container">
 					<h2 class="adm-text-big color-dark-light adm-form__headding">{{title}}</h2>
-           <div class="adm-form__content mt0 px36 py24">
+           <div class="adm-form__content">
             <div class="adm-form__item">
-              <small class="adm-text-small color-gray-medium adm-form__label">Страна</small>
+              <small class="adm-form__label">Страна</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
@@ -35,7 +35,7 @@
             </div>
             <div v-if="showIfRussia">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Регион</small>
+                <small class="adm-form__label">Регион</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Район</small>
+                <small class="adm-form__label">Район</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -59,7 +59,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+                <small class="adm-form__label">Населенный пункт</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -72,7 +72,7 @@
               </div>
 
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+                <small class="adm-form__label">Улица</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -87,21 +87,21 @@
             </div>
             <div v-if="!showIfRussia">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Населенный пункт</small>
+                <small class="adm-form__label">Населенный пункт</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="storeElementData" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Улица</small>
+                <small class="adm-form__label">Улица</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="storeElementData" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-change="storeElementData" ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -109,47 +109,47 @@
             </div>
              <div class="small-items-wrap">
                <div class="adm-form__item">
-                 <small class="adm-text-small color-gray-medium adm-form__label">Дом</small>
+                 <small class="adm-form__label">Дом</small>
                  <div class="adm-form__item_content">
                    <Row :gutter="16" type="flex" align="middle">
                      <Col :xs="24" :md="24" :lg="24">
-                       <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-input-change="storeElementData" :maxlength="5"></Input>
+                       <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-change="storeElementData" :maxlength="5"></Input>
                      </Col>
                    </Row>
                  </div>
                </div>
                <div class="adm-form__item">
-                 <small class="adm-text-small color-gray-medium adm-form__label wmin60 wmax120">Корпус</small>
+                 <small class="adm-form__label wmin60 wmax120">Корпус</small>
                  <div class="adm-form__item_content">
                    <Row :gutter="16" type="flex" align="middle">
                      <Col :xs="24" :md="24" :lg="24">
-                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-input-change="storeElementData" :maxlength="5"></Input>
+                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nkorpus" @on-change="storeElementData" :maxlength="5"></Input>
                      </Col>
                    </Row>
                  </div>
                </div>
                <div class="adm-form__item">
-                 <small class="adm-text-small color-gray-medium adm-form__label wmin60">Строение</small>
+                 <small class="adm-form__label wmin60">Строение</small>
                  <div class="adm-form__item_content">
                    <Row :gutter="16" type="flex" align="middle">
                      <Col :xs="24" :md="24" :lg="24">
-                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-input-change="storeElementData" :maxlength="5"></Input>
+                       <Input class="adm-input adm-input--regular wmax60"  v-model="data.nstroenie" @on-change="storeElementData" :maxlength="5"></Input>
                      </Col>
                    </Row>
                  </div>
                </div>
                <div class="adm-form__item">
-                 <small class="adm-text-small color-gray-medium adm-form__label wmin60">Квартира</small>
+                 <small class="adm-form__label wmin60">Квартира</small>
                  <div class="adm-form__item_content">
                    <Row :gutter="16" type="flex" align="middle">
                      <Col :xs="24" :md="24" :lg="24">
-                       <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-input-change="storeElementData" :maxlength="5"></Input>
+                       <Input class="adm-input adm-input--regular wmax60" v-model="data.nkvart" @on-change="storeElementData" :maxlength="5"></Input>
                      </Col>
                    </Row>
                  </div>
                </div>
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label wmin60">Индекс</small>
+                <small class="adm-form__label wmin60">Индекс</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
@@ -502,7 +502,7 @@
           }
         });
       },
-      async save(e) {
+      async save() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
@@ -540,7 +540,6 @@
 
 
 <style lang="scss" scoped>
-
   .address-modal {
 		position: fixed;
 		width: 100vw;
@@ -612,17 +611,4 @@
 			}
 		}
 	}
-  .adm-form__item{
-    // display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  .adm-form__label{
-    padding: 0;
-    min-width: 130px;
-    padding-right: 12px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
 </style>
