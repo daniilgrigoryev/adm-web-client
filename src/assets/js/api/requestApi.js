@@ -76,7 +76,7 @@ export default class RequestApi {
   }
 
   static prepareData(payload) {
-    let withSpinner = false;
+    let withSpinner = true;
     let handleError = true;
     if (funcUtils.isNotEmpty(payload.withSpinner)) {
       withSpinner = payload.withSpinner;
@@ -119,7 +119,7 @@ export default class RequestApi {
         radius: 45, // The radius of the inner circle
         scale: 0.85, // Scales overall size of the spinner
         corners: 1, // Corner roundness (0..1)
-        color: '#ffffff', // CSS color or array of colors
+        color: 'black', // CSS color or array of colors
         fadeColor: 'transparent', // CSS color or array of colors
         speed: 0.7, // Rounds per second
         rotate: 0, // The rotation offset

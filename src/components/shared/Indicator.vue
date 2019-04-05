@@ -1,7 +1,6 @@
 <template>
   <div>
     <div id="indicator"></div>
-    <div id="fakeIndicator"></div>
   </div>
 </template>
 
@@ -13,21 +12,13 @@
 
 <style>
   #indicator {
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    opacity: 0.8;
-    z-index: 1000000000;
-    background: grey;
-  }
-
-  #fakeIndicator {
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    z-index: 1100000000;
+    /*display: none;*/
+    /*width: 100vw;*/
+    /*height: 100vh;*/
+    /*position: fixed;*/
+    /*opacity: 0.8;*/
+    /*z-index: 1000000000;*/
+    /*background: grey;*/
   }
 
   @keyframes spinner-line-fade-more {
