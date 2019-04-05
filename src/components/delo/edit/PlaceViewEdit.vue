@@ -74,47 +74,57 @@
           </div>
 
 
-          <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main">
+          <div class="small-items-wrap">
             <div class="adm-form__item">
               <small class="adm-form__label">Дом</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmin60" v-model="data.adr.ndom" @on-input-change="store" :maxlength="5"></Input>
+                    <Input class="adm-input adm-input--regular"  v-model="data.adr.ndom" @on-input-change="store" :maxlength="5"></Input>
                   </Col>
                 </Row>
               </div>
             </div>
             <div class="adm-form__item">
-              <small class="adm-form__label">Корпус</small>
+              <small class="adm-form__label wmin60 wmax120">Корпус</small>
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmin60" v-model="data.adr.nkorpus" @on-input-change="store" :maxlength="5"></Input>
+                    <Input class="adm-input adm-input--regular"  v-model="data.adr.nkorpus" @on-input-change="store" :maxlength="5"></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item">
+              <small class="adm-form__label wmin60">Строение</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular"  v-model="data.adr.nstroenie" @on-input-change="store" :maxlength="5"></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item">
+              <small class="adm-form__label wmin60">Квартира</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular" v-model="data.adr.nkvart" @on-input-change="store" :maxlength="5"></Input>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item">
+              <small class="adm-form__label wmin60">Индекс</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="24" :lg="24">
+                    <Input class="adm-input adm-input--regular" v-model="data.adr.pindex" disabled></Input>
                   </Col>
                 </Row>
               </div>
             </div> 
-            <div class="adm-form__item">
-              <small class="adm-form__label">Строение</small>
-              <div class="adm-form__item_content">
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmin60" v-model="data.adr.nstroenie" @on-input-change="store" :maxlength="5"></Input>
-                  </Col>
-                </Row>
-              </div>
-            </div>
-            <div class="adm-form__item">
-              <small class="adm-form__label">Индекс</small>
-              <div class="adm-form__item_content">
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular wmin120" v-model="data.adr.pindex" disabled ></Input>
-                  </Col>
-                </Row>
-              </div>
-            </div>
           </div>
 
 
@@ -134,36 +144,34 @@
           </div>
 
 
-          <div class="flex-parent flex-parent--center-cross">
-            <div class="adm-form__item">
-              <small class="adm-form__label">км, метр</small>
-              <div class="adm-form__item_content">
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <masked-input inputClass="adm-input adm-input--regular" v-model="data.km" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store" ></masked-input>
-                  </Col>
-                </Row>
-              </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label">км, метр</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <masked-input inputClass="adm-input adm-input--regular" v-model="data.km" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store" ></masked-input>
+                </Col>
+              </Row>
             </div>
-            <div class="adm-form__item">
-              <small class="adm-form__label wmin60">МГО</small>
-              <div class="adm-form__item_content">
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular" v-model="data.machta" @on-input-change="store" ></Input>
-                  </Col>
-                </Row>
-              </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label wmin60">МГО</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" v-model="data.machta" @on-input-change="store" ></Input>
+                </Col>
+              </Row>
             </div>
-            <div class="adm-form__item">
-              <small class="adm-form__label wmin60">МГТ</small>
-              <div class="adm-form__item_content">
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="24" :lg="24">
-                    <Input class="adm-input adm-input--regular" v-model="data.mgt" @on-input-change="store" ></Input>
-                  </Col>
-                </Row>
-              </div>
+          </div>
+          <div class="adm-form__item">
+            <small class="adm-form__label wmin60">МГТ</small>
+            <div class="adm-form__item_content">
+              <Row :gutter="16" type="flex" align="middle">
+                <Col :xs="24" :md="24" :lg="24">
+                  <Input class="adm-input adm-input--regular" v-model="data.mgt" @on-input-change="store" ></Input>
+                </Col>
+              </Row>
             </div>
           </div>
 
@@ -729,25 +737,24 @@
   }
 </script>
 
-<style scoped lang="scss">
-  .adm-form-content{
 
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    // min-height: 90px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 130px;
-  }
-  .adm-form__item_content{
-    width: 100%;
+
+<style lang="scss" scoped>
+  .small-items-wrap {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    .adm-form__item {
+      grid-template-columns: 84px 80px;
+      &:first-child {
+        grid-template-columns: 150px 60px;
+      }
+      .adm-form__label {
+        max-width: 100%;
+        width: auto;
+        padding-right: 7px;
+      }
+    }
   }
 </style>
+
+
