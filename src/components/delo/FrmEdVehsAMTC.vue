@@ -16,7 +16,7 @@
     <div>
       <div class="view-data">
         <div class="view-data__container">
-          <div class="py12">
+          <div class="">
             <div class="flex-parent flex-parent--center-cross">
                 <div class="s40 mt12">
                   <img src="../../assets/images/vehicle_passport.svg" width="30px" class="mx-auto block" alt="">
@@ -115,7 +115,7 @@
               </div>
             </div>
            
-            <div class="py12 flex-parent flex-parent--center-cross">
+            <div class="pt12 flex-parent flex-parent--center-cross">
               <div class="s40">
                   <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
               </div>

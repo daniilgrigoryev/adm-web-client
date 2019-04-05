@@ -7,7 +7,7 @@
           <Button @click="getUchastFLOrganizationEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">{{body.organization.name}}</b>
+          <b class="adm-text-big color-dark-lighter">Участник дела - {{body.uchastTipName}}</b>
         </div>
         <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
@@ -17,7 +17,7 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="ml60">
-          <div class="my12">
+          <div class="mb12">
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Наименование организации</p>
