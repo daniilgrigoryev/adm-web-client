@@ -17,7 +17,6 @@
                 </Row>
               </div>
             </div>
-          </Col>
             <div class="adm-form__item">
               <small class="adm-form__label">VIN</small>
               <div class="adm-form__item_content">
@@ -45,7 +44,6 @@
                 </Row>
               </div>
             </div>
-          </Col>
             <div class="adm-form__item">
               <small class="adm-form__label">Модель</small>
               <div class="adm-form__item_content">
@@ -74,7 +72,6 @@
                 </Row>
               </div>
             </div>
-          </Col>
             <div class="adm-form__item">
               <small class="adm-form__label">Цвет</small>
               <div class="adm-form__item_content">
@@ -87,37 +84,50 @@
                 </Row>
               </div>
             </div>
-          
-        
-            <div class="adm-form__item">
-              <small class="adm-form__label">Категория</small>
-              <div class="adm-form__item_content">
-                <Row type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.katcKod"
-                            clearable @on-clear="storeElementData" @on-change="storeElementData" filterable>
-                      <Option v-for="item in categoryTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select>
-                  </Col>
-                </Row>
-              </div>
-            </div>
-          </Col>
-            <div class="adm-form__item">
-              <small class="adm-form__label">Тип</small>
-              <div class="adm-form__item_content">
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="16">
-                    <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod"
-                            clearable @on-change="storeElementData" filterable>
-                      <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}
-                      </Option>
-                    </Select>
-                  </Col>
-                </Row>
-              </div>
-            </div>
-          
+
+
+        <div class="adm-form__item">
+          <small class="adm-form__label">Категория ТС</small>
+          <div class="adm-form__item_content">
+            <Row type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="24">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.katcKod"
+                        clearable @on-change="storeElementData" filterable>
+                  <Option v-for="item in categoryTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Тип</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tiptcKod"
+                        clearable @on-change="storeElementData" filterable>
+                  <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}
+                  </Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Тип кузова ТС</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod"
+                        clearable @on-change="storeElementData" filterable>
+                  <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}
+                  </Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+
         <div class="adm-form__item">
           <small class="adm-form__label">Владелец</small>
           <div class="adm-form__item_content">
@@ -158,8 +168,9 @@
         data: null,
         markAvtoList: null,
         kuzovTypeList: null,
-        modelList: null,
         categoryTCList: null,
+        typeTCList: null,
+        modelList: null,
         ownerList: [{
           label: 'ЛВОК',
           value: 1
@@ -183,6 +194,8 @@
 
         await this.fillKuzovTypeList();
         await this.fillMarkAvtoList();
+        await this.fillCategoryTCList();
+        await this.fillTypeTCList();
         if (this.isNotEmptyMarkId()) {
           await this.fillModelList();
         }
@@ -226,6 +239,46 @@
           });
         }
         this.kuzovTypeList = kuzovTypeList;
+      },
+      async fillCategoryTCList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getKategTCDictionary',
+            data: null
+          }
+        });
+        let categoryTCList = [];
+        let categoryTCDict =  JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < categoryTCDict.length; i++) {
+          let categoryTC = categoryTCDict[i];
+          categoryTCList.push({
+            label: categoryTC.KATC_NAME,
+            value: categoryTC.KATC_KOD
+          });
+        }
+        this.categoryTCList = categoryTCList;
+      },
+      async fillTypeTCList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getTypeTCDictionary',
+            data: null
+          }
+        });
+        let typeTCList = [];
+        let typeTCDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < typeTCDict.length; i++) {
+          let typeTC = typeTCDict[i];
+          typeTCList.push({
+            label: typeTC.TIPTC_NAME,
+            value: typeTC.TIPTC_KOD
+          });
+        }
+        this.typeTCList = typeTCList;
       },
       async fillModelList() {
         let eventResponse = await RequestApi.prepareData({
