@@ -19,7 +19,7 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="ml60">
-          <div class="my12">
+          <div class="mb12">
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Номер извещения</p>
@@ -36,7 +36,7 @@
             </div>
           </div>
         </div>
-        <div class="flex-parent my18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
+        <div class="flex-parent" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
           <div class="s40 mt18">
             <img src="../../assets/images/ispolnUved.png" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
           </div>
@@ -59,23 +59,33 @@
             </div>
           </div>
         </div>
+
+        <div class="py12 flex-parent" style=" border-bottom: 1px solid #CCCCCC;">
+          <div class="s40 mt6">
+              <img src="../../assets/images/police.svg" class="mx-auto block" width="30px" alt="">
+          </div>
+          <div class="ml18 w-full">
+            <div class="">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Код сотрудника - Ф.И.О.</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspSostKod, body.inspSostName  | concatByDelimiter('-') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt12">
+              <div class="grid">
+                <div class="col col--12">
+                  <p class="adm-14 color-dark-lighter mb6">Звание, Должность</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspSostRang, body.inspSostDolz | concatByDelimiter(',') || 'нет информации'}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="ml60">
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Код сотрудника - Ф.И.О.</p>
-                <p class="adm-text-big color-dark-base">{{body.inspSostKod, body.inspSostName  | concatByDelimiter('-') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Звание, Должность</p>
-                <p class="adm-text-big color-dark-base">{{body.inspSostRang, body.inspSostDolz | concatByDelimiter(',') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
+
           <div class="my12">
             <div class="grid">
               <div class="col col--12">
