@@ -19,8 +19,8 @@
       <div class="view-data__container">
         <div class="ml60">
           <div class="w-full">
-            <div class="my18" style="border-bottom: 1px solid #CCCCCC;">
-              <div class="my12">
+            <div class="mb18" style="border-bottom: 1px solid #CCCCCC;">
+              <div class="mb12">
                 <div class="grid">
                   <div class="col col--12">
                     <p class="adm-14 color-dark-lighter mb6">ФИО, дата рождения</p>
@@ -62,7 +62,7 @@
                 </div>
               </div>
             </div>
-            <div class="my12">
+            <div class="mt12">
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Телефон</p>
