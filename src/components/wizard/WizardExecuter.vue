@@ -1,15 +1,11 @@
 <template>
-    <div>
-      <wizard-scenario-post v-if="isVisible('CreatePost')" ref="CreatePost" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-post>
-
-      <wizard-scenario2025 v-if="isVisible('CreateProt2025')" ref="CreateProt2025" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario2025>
-
-      <wizard-scenario-prot-evac v-if="isVisible('CreateProtEvac')" ref="CreateProtEvac" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-evac>
-
-      <wizard-scenario-prot-a-p-n v-if="isVisible('CreateProtAPN')" ref="CreateProtAPN" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-a-p-n>
-
-      <wizard-scenario-add-uchast v-if="isVisible('AddUchast')" ref="AddUchast" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-uchast>
-    </div>
+  <div>
+    <wizard-scenario-post v-if="isVisible('CreatePost')" ref="CreatePost" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-post>
+    <wizard-scenario2025 v-if="isVisible('CreateProt2025')" ref="CreateProt2025" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario2025>
+    <wizard-scenario-prot-evac v-if="isVisible('CreateProtEvac')" ref="CreateProtEvac" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-evac>
+    <wizard-scenario-prot-a-p-n v-if="isVisible('CreateProtAPN')" ref="CreateProtAPN" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-a-p-n>
+    <wizard-scenario-add-uchast v-if="isVisible('AddUchast')" ref="AddUchast" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-uchast>
+  </div>
 </template>
 
 <script>

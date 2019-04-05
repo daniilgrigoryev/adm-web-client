@@ -1,31 +1,11 @@
 <template>
-  <div v-if="delo" class="wmax940 mx-auto">
-    <!-- данные по делу  -->
-    
-
-    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
-      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-        <div class="flex-parent flex-parent--center-cross">
-          <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="вернуться назад">
-            <Icon type="ios-arrow-dropleft" class=" " :size="35" />
-          </Button>
-          <b class="adm-text-big color-dark-lighter">Редактирование дела</b>
-        </div>
-        <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../../assets/images/wiki.svg' class="wmax-none">
-        </Button>
-      </div>
-    </div>
-
-
+  <aside-template :listSectionNav="listSectionNav" title="Редактирование дела" v-if="delo">
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
-
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
-
     <wizard-modal v-if="ogaiModal.visible" :columnsOptions="ogaiModal.columnsOptions" :data="ogaiModal.ogaiList" @showModal="showOgaiModal" @onRowDbClick="onOgaiClick"></wizard-modal>
 
-    <div class="adm-form bg-white">
-      <div class="adm-form__container my6 py24 px36">
+    <div class="adm-form">
+      <div class="adm-form__container">
         <div class="adm-form__item">
           <small class="adm-form__label">Дата возбуждения</small>
           <div class="adm-form__item_content">
@@ -93,10 +73,9 @@
           </div>
         </div>
       </div>
-
-      <div class="adm-form__container mb6">
+      <div class="adm-form__container">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Составил</h2>
-        <div class="adm-form__content py24 px36">
+        <div class="adm-form__content">
           <div class="adm-form__item">
             <small class="adm-form__label">Личный номер сотрудника</small>
             <div class="adm-form__item_content">
@@ -195,12 +174,11 @@
       </div>
     </div>
 
-
-    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
-      <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
-      <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Отменить изменения</Button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
     </div>
-  </div>
+  </aside-template>
 </template>
 
 <script>
@@ -208,11 +186,13 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
+  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
 
   export default {
     name: "FrmEdDeloEdit",
     components: {
+      AsideTemplate,
       WizardModal,
       DatePickerMask
     },

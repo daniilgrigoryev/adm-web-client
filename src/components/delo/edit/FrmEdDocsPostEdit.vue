@@ -1,33 +1,16 @@
 <template>
-  <div v-if="docsPost" class="wmax1280 mx-auto">
-    <!-- данные по делу  -->
-
-    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
-      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-        <div class="flex-parent flex-parent--center-cross">
-          <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="редактирование постановления">
-            <Icon type="ios-arrow-dropleft" class=" " :size="35" />
-          </Button>
-          <b class="adm-text-big color-dark-lighter">Постановление по делу</b>
-        </div>
-        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../../assets/images/wiki.svg' class="wmax-none">
-        </Button> -->
-      </div>
-    </div>
-
+  <aside-template :listSectionNav="listSectionNav" title="Постановление по делу" v-if="docsPost">
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
-
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
-    <div class="adm-form bg-white mt0">
-      <div class="adm-form__container mt0">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Постановление по делу № {{ docsPost.docN }} от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
+    <div class="adm-form">
+      <div class="adm-form__container">
+        <h2 class="adm-form__headding" id="head">Постановление по делу № {{ docsPost.docN }} от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
         <div class="adm-form__content">
           <Row>
             <Col span="12">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Постановление №</small>
+                <small class="adm-form__label">Постановление №</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
@@ -39,7 +22,7 @@
             </Col>
             <Col span="12">
               <div class="adm-form__item">
-                <small class="adm-text-small color-gray-medium adm-form__label">Дата и время вынесения</small>
+                <small class="adm-form__label">Дата и время вынесения</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
@@ -52,13 +35,11 @@
           </Row>
         </div>
       </div>
-    </div>
-    <div class="adm-form bg-white">
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Составил</h2>
+        <h2 class="adm-form__headding">Составил</h2>
         <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Должностное лицо</small>
+            <small class="adm-form__label">Должностное лицо</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -73,7 +54,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Подразделение</small>
+            <small class="adm-form__label">Подразделение</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -88,7 +69,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место вынесения</small>
+            <small class="adm-form__label">Место вынесения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -104,13 +85,11 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="adm-form bg-white">
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Сведения о нарушении</h2>
+        <h2 class="adm-form__headding">Сведения о нарушении</h2>
         <div class="adm-form__content">
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Дата и время нарушения</small>
+            <small class="adm-form__label">Дата и время нарушения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
@@ -120,7 +99,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место нарушения</small>
+            <small class="adm-form__label">Место нарушения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
@@ -135,7 +114,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Пункт НПА</small>
+            <small class="adm-form__label">Пункт НПА</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -147,7 +126,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Статья КРФоАП</small>
+            <small class="adm-form__label">Статья КРФоАП</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -159,7 +138,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Фактические сведения</small>
+            <small class="adm-form__label">Фактические сведения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -169,7 +148,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Место работы</small>
+            <small class="adm-form__label">Место работы</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -179,7 +158,7 @@
             </div>
           </div>
           <div class="adm-form__item">
-            <small class="adm-text-small color-gray-medium adm-form__label">Доп. сведения</small>
+            <small class="adm-form__label">Доп. сведения</small>
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="24" :lg="24">
@@ -191,12 +170,12 @@
         </div>
       </div>
     </div>
-        
-    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
-      <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
-      <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Отменить изменения</Button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
     </div>
-  </div>
+  </aside-template>
+
 </template>
 
 <script>
@@ -205,11 +184,13 @@
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "FrmEdDocsPostEdit",
     components: {
+      AsideTemplate,
       WizardModal,
       DatePickerMask,
       MaskedInput
@@ -255,6 +236,20 @@
         docsPost: null,
         pnpaList: null,
         stotvSearchInfoList: null,
+        listSectionNav: [
+          {
+            title: "Постановление по делу",
+            name: "head",
+          },
+          {
+            title: "Составил",
+            name: "sost",
+          },
+          {
+            title: "Сведения о нарушении",
+            name: "nar",
+          },
+        ],
         dolzModal: {
           visible: false,
           sispList: null,

@@ -1,39 +1,30 @@
 <template>
-  <div class="create-prosecution">
-    <aside>
-      <h3>Список подразделов</h3>
-      <ul>
-        <li v-for="item in listSectionNav" :key="item.id">
-          <a :href="'#' + item.name">{{item.title}}</a>
-        </li>
-      </ul>
-    </aside>
-    <main>
-      <div class="layout-wrap">
-        <Layout ref="Main" class="layout">
-          <div class="adm-form">
-            <wizard-item-doc-prot2025 id="DocProt" v-if="isVisible('DocProt')" ref="DocProt" :info="getInfo('DocProt')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot2025>
-            <wizard-item-place v-if="isVisible('DocProt.PlaceSost')" ref="DocProt.PlaceSost" :info="getInfo('DocProt.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-            <wizard-item-lvok2025 v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok2025>
-            <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
-            <wizard-item-address  id="LVOK.regAddr" v-if="isVisible('LVOK.regAddr')" ref="LVOK.regAddr" :info="getInfo('LVOK.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-            <wizard-item-individual v-if="isVisible('Repres')" ref="Repres" :info="getInfo('Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-            <wizard-item-address  id="Repres.regAddr" v-if="isVisible('Repres.regAddr')" ref="Repres.regAddr" :info="getInfo('Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-          </div>
-        </Layout>
-      </div>
-      <div class="bot-wrap">
-        <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-        <Button @click="save" type="primary" class="ml12">Возбудить</Button>
-      </div>
-    </main>
-  </div>
+  <aside-template :listSectionNav="listSectionNav">
+    <div class="layout-wrap">
+      <Layout ref="Main" class="layout">
+        <div class="adm-form">
+          <wizard-item-doc-prot2025 id="DocProt" v-if="isVisible('DocProt')" ref="DocProt" :info="getInfo('DocProt')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-prot2025>
+          <wizard-item-place v-if="isVisible('DocProt.PlaceSost')" ref="DocProt.PlaceSost" :info="getInfo('DocProt.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+          <wizard-item-lvok2025 v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok2025>
+          <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
+          <wizard-item-address  id="LVOK.regAddr" v-if="isVisible('LVOK.regAddr')" ref="LVOK.regAddr" :info="getInfo('LVOK.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+          <wizard-item-individual v-if="isVisible('Repres')" ref="Repres" :info="getInfo('Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+          <wizard-item-address  id="Repres.regAddr" v-if="isVisible('Repres.regAddr')" ref="Repres.regAddr" :info="getInfo('Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+        </div>
+      </Layout>
+    </div>
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
+      <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+    </div>
+  </aside-template>
 </template>
 
 <script>
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
+  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import WizardItemDocProt2025 from "./items/WizardItemDocProt2025.vue";
   import WizardItemLvok2025 from "./items/WizardItemLvok2025.vue";
   import WizardItemPlace from "./items/WizardItemPlace.vue";
@@ -47,6 +38,7 @@
       pathes: Object
     },
     components: {
+      AsideTemplate,
       WizardItemDocProt2025,
       WizardItemLvok2025,
       WizardItemAddress,

@@ -1,11 +1,6 @@
 <template>
   <div v-if="data">
-    <div class="adm-form">
-      <Row :gutter="16" type="flex" align="middle">
-        <Col>
-          <h2 class="adm-text-big color-dark-light my12">Владелец транспортного средства</h2>
-        </Col>
-      </Row>
+      <h4 class="h4">Владелец транспортного средства</h4>
       <div class="adm-form__item">
         <small class="adm-form__label">Статус</small>
         <Row :gutter="16" type="flex" align="middle">
