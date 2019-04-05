@@ -18,73 +18,77 @@
 
     <div class="view-data">
       <div class="view-data__container">
-          <div class="ml60">
+        <div class="ml60">
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Номер извещения</p>
+                <p class="adm-text-big color-dark-base">{{body.docN || 'нет информации'}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Дата составления</p>
+                <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-parent my18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
+          <div class="s40 mt18">
+            <img src="../../assets/images/ispolnUved.png" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
+          </div>
+          <div class="ml18 w-full">
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Номер извещения</p>
-                  <p class="adm-text-big color-dark-base">{{body.docN || 'нет информации'}}</p>
+                  <p class="adm-14 color-dark-lighter mb6">Рассмотрения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateRasm | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата составления</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  <p class="adm-14 color-dark-lighter mb6">Вручения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
-
-            <div class="my18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Рассмотрения</p>
-                    <p class="adm-text-big color-dark-base">{{body.dateRasm | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Вручения</p>
-                    <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                  </div>
-                </div>
+          </div>
+        </div>
+        <div class="ml60">
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Код сотрудника - Ф.И.О.</p>
+                <p class="adm-text-big color-dark-base">{{body.inspSostKod, body.inspSostName  | concatByDelimiter('-') || 'нет информации'}}</p>
               </div>
             </div>
-
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Код сотрудника - Ф.И.О.</p>
-                  <p class="adm-text-big color-dark-base">{{body.inspSostKod, body.inspSostName  | concatByDelimiter('-') || 'нет информации'}}</p>
-                </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Звание, Должность</p>
+                <p class="adm-text-big color-dark-base">{{body.inspSostRang, body.inspSostDolz | concatByDelimiter(',') || 'нет информации'}}</p>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Звание, Должность</p>
-                  <p class="adm-text-big color-dark-base">{{body.inspSostRang, body.inspSostDolz | concatByDelimiter(',') || 'нет информации'}}</p>
-                </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Место составления извещения</p>
+                <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Место составления извещения</p>
-                  <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Статья основания</p>
-                  <p class="adm-text-big color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
-                </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Статья основания</p>
+                <p class="adm-text-big color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
               </div>
             </div>
           </div>
