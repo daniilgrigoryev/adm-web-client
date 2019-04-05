@@ -24,8 +24,13 @@
 
     <div class="view-data">
       <div class="view-data__container">
-          <div class="ml60">
-            <div class="my12">
+
+
+          <div class="flex-parent flex-parent--center-cross">
+            <div class="s40 mt12">
+              <img src="../../assets/images/case_decision.svg" class="mx-auto block" style="filter: grayscale(100%);" alt="">
+            </div>
+            <div class="ml18 w-full">
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
@@ -33,6 +38,9 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="ml60">
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">

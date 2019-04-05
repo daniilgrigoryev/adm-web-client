@@ -16,35 +16,45 @@
 
     <div class="view-data">
       <div class="view-data__container">
-          <div class="ml60">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата оплаты штрафа</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-                </div>
+
+        <div class="flex-parent flex-parent--center-cross">
+          <div class="s40 mt12">
+            <img src="../../assets/images/rub.svg" class="mx-auto block" style="filter: grayscale(100%);" alt="">
+          </div>
+          <div class="ml18 w-full">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Сумма оплаты штрафа</p>
+                <p class="adm-text-big color-dark-base">{{body.sumOpl || 'нет информации'}}</p>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Сумма оплаты штрафа</p>
-                  <p class="adm-text-big color-dark-base">{{body.sumOpl || 'нет информации'}}</p>
-                </div>
+          </div>
+        </div>
+
+
+
+        
+        <div class="ml60 mt12" style="border-top: 1px solid #CCCCCC;">
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Дата оплаты штрафа</p>
+                <p class="adm-text-big color-dark-base">{{body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">УИП</p>
-                  <p class="adm-text-big color-dark-base">{{body.uip || 'нет информации'}}</p>
-                </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">УИП</p>
+                <p class="adm-text-big color-dark-base">{{body.uip || 'нет информации'}}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+ 
 
   </div>
 </template>

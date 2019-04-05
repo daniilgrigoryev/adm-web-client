@@ -29,7 +29,7 @@
                   </div>
                 </div>
               </div>
-              <div class="ml60 my12">
+              <div class="my12">
                 <div class="w-full">
                   <div class="grid">
                     <div class="col col--6">
@@ -43,7 +43,7 @@
                   </div>
                 </div>
               </div>
-              <div class="ml60 my12">
+              <div class="my12">
                 <div class="w-full">
                   <div class="grid">
                     <div class="col col--6">
@@ -87,7 +87,6 @@
                 </div>
               </div>
             </div>
-
             <div class="py12" style="border-bottom: 1px solid #CCCCCC;">
               <div class="flex-parent flex-parent--center-cross">
                 <div class="s40 mt12">

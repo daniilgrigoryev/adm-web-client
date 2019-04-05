@@ -17,43 +17,48 @@
 
     <div class="view-data">
       <div class="view-data__container">
-          <div class="ml60">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Сумма штрафа</p>
-                  <p class="adm-text-big color-dark-base">{{body.sumShtraf || 'нет информации'}}</p>
-                </div>
+        <div class="flex-parent flex-parent--center-cross">
+          <div class="s40 mt12">
+            <img src="../../assets/images/penalty.svg" class="mx-auto block" style="filter: grayscale(100%);" alt="">
+          </div>
+          <div class="ml18 w-full">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Сумма штрафа</p>
+                <p class="adm-text-big color-dark-base">{{body.sumShtraf || 'нет информации'}}</p>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата решения</p>
-                  <p class="adm-text-big color-dark-base">{{body.decisDate | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                </div>
+          </div>
+        </div>
+        <div class="ml60 mt12" style="border-top: 1px solid #CCCCCC;">
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Дата решения</p>
+                <p class="adm-text-big color-dark-base">{{body.decisDate | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
+                <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateVstup | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
+                <p class="adm-text-big color-dark-base">{{body.dateVstup | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
