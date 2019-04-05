@@ -139,12 +139,7 @@
 
   export default {
     name: "WizardItemVehsEvac",
-    extends: WizardItemVehs,
-    data() {
-      return {
-
-      }
-    }
+    extends: WizardItemVehs
   }
 </script>
 

@@ -67,12 +67,7 @@
     },
     data() {
       return {
-        data: null,
-        maskInputProt: {
-          regex: '[0-9]+',
-          casing: 'upper',
-          placeholder: 'номер протокола'
-        },
+        data: null
       }
     },
     methods: {

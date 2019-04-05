@@ -81,11 +81,11 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import WizardItemProtEvacOne from "./items/evac/WizardItemProtEvacOne.vue";
-  import WizardItemProtEvacTwo from "./items/evac/WizardItemProtEvacTwo.vue";
-  import WizardItemProtEvacThree from "./items/evac/WizardItemProtEvacThree.vue";
-  import WizardItemProtEvacFour from "./items/evac/WizardItemProtEvacFour.vue";
-  import WizardItemProtEvacFive from "./items/evac/WizardItemProtEvacFive.vue";
+  import WizardItemProtEvacOne from "./items/protEvac/WizardItemProtEvacOne.vue";
+  import WizardItemProtEvacTwo from "./items/protEvac/WizardItemProtEvacTwo.vue";
+  import WizardItemProtEvacThree from "./items/protEvac/WizardItemProtEvacThree.vue";
+  import WizardItemProtEvacFour from "./items/protEvac/WizardItemProtEvacFour.vue";
+  import WizardItemProtEvacFive from "./items/protEvac/WizardItemProtEvacFive.vue";
   import WizardItemPlace from "./items/WizardItemPlace.vue";
   import WizardItemLvok from "./items/WizardItemLvok.vue";
   import WizardItemPredDoc from "./items/WizardItemPredDoc.vue";
@@ -93,7 +93,7 @@
   import WizardItemOrganization from "./items/WizardItemOrganization.vue";
   import WizardItemAddress from "./items/WizardItemAddress.vue";
   import WizardItemOwner from "./items/WizardItemOwner.vue";
-  import WizardItemVehsEvac from "./items/evac/WizardItemVehsEvac.vue";
+  import WizardItemVehsEvac from "./items/protEvac/WizardItemVehsEvac.vue";
   import MaskedInput from "~/components/shared/MaskedInput";
 
 
