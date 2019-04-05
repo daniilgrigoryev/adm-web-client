@@ -43,7 +43,7 @@
               </div>
             </Poptip>
 
-            <Poptip v-if="menuVisible(menu.addDocument)" width="700" placement="bottom-end" class="amd-poptip-sub">
+            <Poptip v-if="menuVisible(menu.addDocument)" placement="bottom-end" class="amd-poptip-sub"><!--  width="700" -->
               <Button type="text"
                       class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
                       style="box-shadow: none">
