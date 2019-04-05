@@ -1,7 +1,5 @@
 <template>
   <div v-if="data" class="wmax940 mx-auto">
-
-
     <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
@@ -18,8 +16,6 @@
         </Button> -->
       </div>
     </div>
-
-
     <div class="adm-form">
       <div class="adm-form__container mt0">
         <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование адреса участника</h2>

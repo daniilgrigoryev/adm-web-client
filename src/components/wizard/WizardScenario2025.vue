@@ -3,7 +3,7 @@
     <aside>
       <h3>Список подразделов</h3>
       <ul>
-        <li v-for="item in goToSectionNav" :key="item.id">
+        <li v-for="item in listSectionNav" :key="item.id">
           <a :href="'#' + item.name">{{item.title}}</a>
         </li>
       </ul>
@@ -56,7 +56,7 @@
     },
     data() {
       return {
-        goToSectionNav: [
+        listSectionNav: [
           {
             title: "Переход на секцию",
             name: "DocProt",
