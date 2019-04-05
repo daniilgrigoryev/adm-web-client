@@ -10,12 +10,15 @@ import FrmEdVuVydEdit from '../components/delo/edit/FrmEdVuVydEdit';
 import FrmEdDocsPostEdit from '../components/delo/edit/FrmEdDocsPostEdit';
 import FrmEdDocsProtEdit from '../components/delo/edit/FrmEdDocsProtEdit';
 import FrmEdDecisEdit from '../components/delo/edit/FrmEdDecisEdit';
+import DlgAdviceEdit from '../components/delo/edit/DlgAdviceEdit';
+
 import FrmEdVehsAMTCEdit from '../components/delo/edit/FrmEdVehsAMTCEdit';
 import FrmEdProtPZTCEdit from '../components/delo/edit/FrmEdProtPZTCEdit';
 import FrmEdUchastFLIndividEdit from '../components/delo/edit/FrmEdUchastFLIndividEdit';
 import FrmEdUchastFLOrganizationEdit from '../components/delo/edit/FrmEdUchastFLOrganizationEdit';
 import PlaceViewEdit from '../components/delo/edit/PlaceViewEdit';
 import AddressViewEdit from '../components/delo/edit/AddressViewEdit';
+
 
 import WizardExecuter from '../components/wizard/WizardExecuter';
 
@@ -116,6 +119,12 @@ const router = new Router({
       path: '/addressViewEdit',
       name: 'AddressViewEdit',
       component: AddressViewEdit,
+      props: true
+    },
+    {
+      path: '/dlgAdviceEdit',
+      name: 'DlgAdviceEdit',
+      component: DlgAdviceEdit,
       props: true
     },
     {
