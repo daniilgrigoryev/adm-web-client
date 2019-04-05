@@ -213,7 +213,7 @@
           </Dropdown>
         </div>
 
-        <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large"
+        <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large"
                :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-sort-change="sortClick"></Table>
       </div>
     </div>

@@ -259,7 +259,7 @@ html, body, #app {
   z-index: 9;
 }
 .tree {
-  max-width: 400px;
+  max-width: 430px;
   position: -webkit-sticky;
   position: sticky;
   position: -webkit-sticky;
@@ -342,6 +342,22 @@ html, body, #app {
   background-color: #FAFAFA;
   padding: 20px;
 }
+
+
+
+// ________сортировка для главной таблицы в deloReestr
+.custom-table--sort{
+  .ivu-table-cell{
+    position: relative;
+    .ivu-table-sort{
+      position: absolute;
+      right: 0;
+      top: 8px;
+    }
+  }
+}
+// ________сортировка для главной таблицы в deloReestr
+
 
 .custom-table {
   border: none;
