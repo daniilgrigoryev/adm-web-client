@@ -49,51 +49,69 @@
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="my18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
+            <div class="flex-parent">
+              <div class="s40 mt18">
+                <img src="../../assets/images/ispolnUved.png" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
+              </div>
+              <div class="ml18 w-full" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
+                <div class="my12">
+                  <div class="grid">
+                    <div class="col col--12">
+                      <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
+                      <p class="adm-text-big color-dark-base">{{body.datUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="my12">
+                  <div class="grid">
+                    <div class="col col--12">
+                      <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
+                      <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="flex-parent">
+             <div class="s40 mt18">
+                <img src="../../assets/images/police.svg" class="mx-auto block" style="filter: grayscale(100%); width: 30px;" alt="">
+              </div>
+              <div class="ml18 w-full">
+                <div class="mt12">
+                  <div class="grid">
+                    <div class="col col--12">
+                      <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
+                      <p class="adm-text-big color-dark-base">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',') || 'нет информации'}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="ml60">
               <div class="my12">
                 <div class="grid">
                   <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
-                    <p class="adm-text-big color-dark-base">{{body.datUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                    <p class="adm-14 color-dark-lighter mb6">Подразделение</p>
+                    <p class="adm-text-big color-dark-base">{{body.organSostName || 'нет информации'}}</p>
                   </div>
                 </div>
               </div>
               <div class="my12">
                 <div class="grid">
                   <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
-                    <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                    <p class="adm-14 color-dark-lighter mb6">Место вынесения</p>
+                    <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="my12" >
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
-                  <p class="adm-text-big color-dark-base">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Подразделение</p>
-                  <p class="adm-text-big color-dark-base">{{body.organSostName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Место вынесения</p>
-                  <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
