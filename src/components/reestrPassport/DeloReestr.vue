@@ -165,7 +165,7 @@
             <Col :xs="24" :md="4" :lg="3">
               <div class="h-full flex-parent flex-parent--end-main flex-parent--wrap">
                 <Button @click="filterClick" type="default" class="adm-btn adm-btn-primary adm-btn-regular color-white  txt-uppercase my-auto w120 mr12">найти</Button>
-                <Button @click="clearFilter" type="default" class="adm-btn adm-btn-regular my-auto w120 mr12 mt6">Очистить</Button>
+                <Button @click="clearFilterSort" type="default" class="adm-btn adm-btn-regular my-auto w120 mr12 mt6">Очистить</Button>
               </div>
             </Col>
           </Row>
@@ -214,7 +214,7 @@
         </div>
 
         <Table class="custom-table" ref="selection" :columns="tableFilteredColumns" :data="cases" size="large"
-               :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo"></Table>
+               :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-sort-change="sortClick"></Table>
       </div>
     </div>
   </div>
@@ -246,7 +246,8 @@
             method: 'getData',
             params: {
               find: null,
-              kind: null
+              kind: null,
+              sort: null
             }
           });
         } else {
@@ -319,7 +320,7 @@
           upi: null
         },
         sort: {
-          deloDate: null
+          deloDate: true
         },
         maskRegno: {
           regex: '[а-яА-Я0-9]+',
@@ -347,9 +348,6 @@
               res.push(item);
             }
           }
-          res.sort((a, b) => {
-            return b.deloDate - a.deloDate;
-          });
         }
         return res;
       },
@@ -387,6 +385,9 @@
       async fillModule(eventResponse) {
         await this.$store.dispatch('fillModule', {'event': eventResponse});
         this.fillColumnsOptions();
+
+        let sort = JSON.parse(eventResponse.response).data.sort;
+        this.parseSort(sort);
       },
       changePage(nextPage) {
         this.to = this.delta * nextPage;
@@ -420,6 +421,26 @@
               }
             }
           }
+        }
+      },
+      parseSort(sort) {
+        if (funcUtils.isNotEmpty(sort) && funcUtils.isNotEmpty(sort.sort)) {
+          sort.sort.forEach(item => {
+            this.sort[item.field] = item.desc;
+            this.columnsOptions.forEach(col => {
+              if (
+                funcUtils.isNotEmpty(col) &&
+                funcUtils.isNotEmpty(col.referenceName)
+              ) {
+                let colNames = col.referenceName.split(",");
+                colNames.forEach(colName => {
+                  if (colName === item.field) {
+                    this.$set(col, "sortType", item.desc ? "desc" : "asc");
+                  }
+                });
+              }
+            });
+          });
         }
       },
       changeFIO() {
@@ -1356,11 +1377,12 @@
 
         return filterObj;
       },
-      async clearFilter() {
+      async clearFilterSort() {
         this.setFields(null);
         this.hideMore = false;
         this.columnsOptionsVisible = false;
         let filter = this.filter;
+        let sort = this.sort;
         for (let prop in filter) {
           if (filter.hasOwnProperty(prop)) {
             switch (prop) {
@@ -1375,11 +1397,79 @@
             }
           }
         }
+        for (let prop in sort) {
+          if (sort.hasOwnProperty(prop)) {
+            switch (prop) {
+              case 'deloDate': {
+                sort[prop] = true;
+                break;
+              }
+              default: {
+                sort[prop] = null;
+                break;
+              }
+            }
+          }
+        }
         let eventResponse = await RequestApi.prepareData({
           method: 'getData',
           params: {
             find: null,
-            kind: null
+            kind: null,
+            sort: this.getSortedFields()
+          }
+        });
+        await this.fillModule(eventResponse);
+      },
+      getSortedFields() {
+        let sortObj = {
+          sort: []
+        };
+
+        let fields = this.sort;
+        for (let prop in fields) {
+          if (fields.hasOwnProperty(prop)) {
+            let propObj = fields[prop];
+            if (!funcUtils.isNull(propObj)) {
+              sortObj.sort.push({
+                field: prop,
+                desc: propObj
+              });
+            }
+          }
+        }
+
+        return sortObj;
+      },
+      async sortClick(name) {
+        this.from = 0;
+        let fields = this.sort;
+        let nameArr = name.column.referenceName.split(",");
+        nameArr.forEach(item => {
+          switch (name.order) {
+            case "asc": {
+              fields[item] = false;
+              break;
+            }
+            case "desc": {
+              fields[item] = true;
+              break;
+            }
+            case "normal": {
+              fields[item] = null;
+              break;
+            }
+          }
+        });
+
+        let sortedFields = this.getSortedFields();
+        let filterFields = this.getFilterFields();
+        let eventResponse = await RequestApi.prepareData({
+          method: "getData",
+          params: {
+            find: filterFields,
+            kind: null,
+            sort: sortedFields
           }
         });
         await this.fillModule(eventResponse);
@@ -1434,11 +1524,13 @@
         this.hideMore = false;
         this.columnsOptionsVisible = false;
         let filter = this.getFilterFields();
+        let sort = this.getSortedFields();
         let eventResponse = await RequestApi.prepareData({
           method: 'getData',
           params: {
             find: filter,
-            kind: null
+            kind: null,
+            sort: sort
           }
         });
         await this.fillModule(eventResponse);

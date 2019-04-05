@@ -76,7 +76,7 @@ export default class RequestApi {
   }
 
   static prepareData(payload) {
-    let withSpinner = true;
+    let withSpinner = false;
     let handleError = true;
     if (funcUtils.isNotEmpty(payload.withSpinner)) {
       withSpinner = payload.withSpinner;
