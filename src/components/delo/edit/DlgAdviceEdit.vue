@@ -50,6 +50,15 @@
       }
     },
     methods: {
+      store() {
+        let copy = JSON.parse(JSON.stringify(this.dataAdvice));
+        RequestApi.prepareData({
+          method: 'store',
+          params: {
+            data: copy
+          }
+        });
+      },
       async save() {
         let eventResponse = await RequestApi.prepareData({
           method: 'update'
