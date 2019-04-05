@@ -634,12 +634,15 @@ html, body, #app {
     color: $dark-base;
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
+    // box-shadow: inset 0 1px 2px rgba(0,0,0,.4);
     box-shadow: none;
     outline: none;
   }
   .ivu-select-selection {
-    .ivu-select-input {
+    .ivu-select-input,.ivu-select-selected-value {
+      box-shadow: none;
       border: none;
+      background: transparent;
       height: 30px;
     }
     
@@ -668,11 +671,15 @@ html, body, #app {
   .ivu-select-input:hover:not([readonly]),
   .ivu-select-selection:hover:not([readonly]){
     border-color: #9A9A9A;
+    // box-shadow: inset 0 1px 2px rgba(154, 154, 154, 0.4);
+
   }
   .ivu-input:focus:not([readonly]),
   .ivu-select-input:focus:not([readonly]),
   .ivu-select-selection:focus:not([readonly]){
     border-color: #53A4D6;
+    // box-shadow: inset 0 1px 2px rgba(83, 164, 214, 0.4);
+
   }
   .ivu-select-disabled {
   }
@@ -680,7 +687,6 @@ html, body, #app {
   .ivu-select-input:hover,
   .ivu-input:focus,
   .ivu-input:hover {
-    box-shadow: none;
   }
   textarea.ivu-input {
     border: 1px solid $gray-light;
