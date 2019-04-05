@@ -74,7 +74,7 @@
         </div>
       </div>
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Составил</h2>
+        <h2 class="adm-form__headding">Составил</h2>
         <div class="adm-form__content">
           <div class="adm-form__item">
             <small class="adm-form__label">Личный номер сотрудника</small>

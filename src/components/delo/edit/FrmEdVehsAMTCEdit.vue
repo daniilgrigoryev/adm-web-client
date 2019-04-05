@@ -1,324 +1,313 @@
 <template>
-  <div v-if="vehsAMTC" class="mx-auto wmax1280 FrmEdVehsAMTCEdit">
-    <div class="amd-title amd-title--sticky px36 py6 bg-white-light">
-      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
-        <div class="flex-parent flex-parent--center-cross">
-          <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="вернуться назад">
-            <Icon type="ios-arrow-dropleft" class=" " :size="35" />
-          </Button>
-          <b class="adm-text-big color-dark-lighter">Редактирование ТС</b>
-        </div>
-      </div>
-    </div>
-    <div class="adm-form">
-      <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Основные сведения</h2>
-        <div class="adm-form__content py24 px36">
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">ГРЗ</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="vehsAMTC.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Марка</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.markaAvto"
-                          clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
-                    <Option v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Модель</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.modavtoName"
-                          clearable @on-change="store" :disabled="!isNotEmptyMarkId()" filterable>
-                    <Option v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Модификация</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.modifavtoName"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Документы</h2>
-        <div class="adm-form__content py24 px36">
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">СТС</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ctc"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">ПТС</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ptcN"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Дата выдачи ПТС</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.ptcDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Кем выдан ПТС</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ptcKemVydan"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Технические характеристики</h2>
-        <div class="adm-form__content py24 px36">
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Категория ТС</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.katcKod"
-                          clearable @on-clear="store" @on-change="store" filterable>
-                    <Option v-for="item in categoryTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Тип</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tiptcKod"
-                          clearable @on-change="store" filterable>
-                    <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Тип кузова ТС</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tipkuzKod"
-                          clearable @on-change="store" filterable>
-                    <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Тип двигателя</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorTip"
-                          clearable @on-clear="store" @on-change="store" filterable>
-                    <Option v-for="item in motorTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>  
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Экологический класс</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorEcologClass"
-                          clearable @on-clear="store" @on-change="store" filterable>
-                    <Option v-for="item in motorEcologClassList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Цвет</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.color"  @on-input-change="store"></Input> -->
-                  <masked-input inputClass="adm-input adm-input--regular" v-model="vehsAMTC.color" @onInputChange="store" :maskProps="{casing: 'upper', placeholder: ''}" placeholder=""></masked-input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Масса без нагрузки</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massa"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Максимальная масса</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massaMax"></Input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-text-small adm-form__label">Год выпуска</small>
-            <div class="adm-form__item_content">
-              <Row type="flex" align="middle">
-                <Col :xs="24" :md="14" :lg="24">
-                  <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.yearVyp"  @on-input-change="store"></Input> -->
-                  <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable :placeholder="maskInputYearVyp.placeholder"></masked-input>
-                </Col>
-              </Row>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-wrap">
-      <div class="adm-form">
-        <div class="adm-form__container ">
-          <h2 class="adm-text-big color-dark-light adm-form__headding">Агрегаты</h2>
-          <div class="adm-form__content py24 px36">
-            <div class="adm-form__item">
-              <small class="adm-text-small adm-form__label">VIN</small>
-              <div class="adm-form__item_content">
-                <Row type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.vin"></Input>
-                  </Col>
-                </Row>
+  <aside-template title="Редактирование ТС" v-if="vehsAMTC">
+    <div class="layout-wrap">
+      <div class="layout">
+        <div class="adm-form">
+          <div class="adm-form__container">
+            <h2 class="adm-form__headding">Основные сведения</h2>
+            <div class="adm-form__content py24 px36">
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">ГРЗ</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="vehsAMTC.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                    </Col>
+                  </Row>
+                </div>
               </div>
-            </div>
-            <div class="adm-form__item">
-              <small class="adm-text-small adm-form__label">№ кузова</small>
-              <div class="adm-form__item_content">
-                <Row type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.nkuzov"></Input>
-                  </Col>
-                </Row>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Марка</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.markaAvto"
+                              clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
+                        <Option v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
               </div>
-            </div>
-            <div class="adm-form__item">
-              <small class="adm-text-small adm-form__label">№ шасси</small>
-              <div class="adm-form__item_content">
-                <Row type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.nshasi"></Input>
-                  </Col>
-                </Row>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Модель</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.modavtoName"
+                              clearable @on-change="store" :disabled="!isNotEmptyMarkId()" filterable>
+                        <Option v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Модификация</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.modifavtoName"></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="adm-form">
-        <div class="adm-form__container ">
-          <h2 class="adm-text-big color-dark-light adm-form__headding">Полис ОСАГО</h2>
-          <div class="adm-form__content py24 px36">
-            <div class="adm-form__item">
-              <small class="adm-text-small adm-form__label">№</small>
-              <div class="adm-form__item_content">
-                <Row type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.osagoN"></Input>
-                  </Col>
-                </Row>
+          <div class="adm-form__container">
+            <h2 class="adm-form__headding">Документы</h2>
+            <div class="adm-form__content py24 px36">
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">СТС</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ctc"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">ПТС</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ptcN"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Дата выдачи ПТС</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.ptcDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Кем выдан ПТС</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ptcKemVydan"></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
-            <div class="adm-form__item">
-              <small class="adm-text-small adm-form__label">Кем выдан ОСАГО</small>
-              <div class="adm-form__item_content">
-                <Row type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.osagoKemVydanId"
-                            clearable @on-clear="store" @on-change="store" filterable>
-                      <Option v-for="item in osagoCompanyList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select>
-                  </Col>
-                </Row>
+          </div>
+          <div class="adm-form__container">
+            <h2 class="adm-form__headding">Технические характеристики</h2>
+            <div class="adm-form__content py24 px36">
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Категория ТС</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.katcKod"
+                              clearable @on-clear="store" @on-change="store" filterable>
+                        <Option v-for="item in categoryTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Тип</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tiptcKod"
+                              clearable @on-change="store" filterable>
+                        <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Тип кузова ТС</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tipkuzKod"
+                              clearable @on-change="store" filterable>
+                        <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Тип двигателя</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorTip"
+                              clearable @on-clear="store" @on-change="store" filterable>
+                        <Option v-for="item in motorTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>  
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Экологический класс</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorEcologClass"
+                              clearable @on-clear="store" @on-change="store" filterable>
+                        <Option v-for="item in motorEcologClassList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Цвет</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.color"  @on-input-change="store"></Input> -->
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="vehsAMTC.color" @onInputChange="store" :maskProps="{casing: 'upper', placeholder: ''}" placeholder=""></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Масса без нагрузки</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massa"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Максимальная масса</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massaMax"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Год выпуска</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.yearVyp"  @on-input-change="store"></Input> -->
+                      <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable :placeholder="maskInputYearVyp.placeholder"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
-            <div class="adm-form__item">
-              <small class="adm-text-small adm-form__label">Дата выдачи</small>
-              <div class="adm-form__item_content">
-                <Row type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.osagoDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                  </Col>
-                </Row>
+          </div>
+          <div class="adm-form__container ">
+            <h2 class="adm-form__headding">Агрегаты</h2>
+            <div class="adm-form__content py24 px36">
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">VIN</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.vin"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">№ кузова</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.nkuzov"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">№ шасси</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.nshasi"></Input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
-            <div class="adm-form__item">
-              <small class="adm-text-small adm-form__label">Дата окончания</small>
-              <div class="adm-form__item_content">
-                <Row type="flex" align="middle">
-                  <Col :xs="24" :md="14" :lg="24">
-                    <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.osagoSrok" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                  </Col>
-                </Row>
+          </div>
+          <div class="adm-form__container ">
+            <h2 class="adm-form__headding">Полис ОСАГО</h2>
+            <div class="adm-form__content py24 px36">
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">№</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.osagoN"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Кем выдан ОСАГО</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.osagoKemVydanId"
+                              clearable @on-clear="store" @on-change="store" filterable>
+                        <Option v-for="item in osagoCompanyList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Дата выдачи</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.osagoDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-text-small adm-form__label">Дата окончания</small>
+                <div class="adm-form__item_content">
+                  <Row type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.osagoSrok" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
-      <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
-      <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Отменить изменения</Button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
     </div>
-  </div>
+  </aside-template>
 </template>
 
 <script>
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
+  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import RequestApi from "../../../assets/js/api/requestApi";
   import MaskedInput from "../../shared/MaskedInput";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
@@ -326,6 +315,7 @@
   export default {
     name: "FrmEdVehsAMTCEdit",
     components: {
+      AsideTemplate,
       MaskedInput,
       DatePickerMask
     },

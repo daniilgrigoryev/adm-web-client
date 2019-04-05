@@ -54,7 +54,7 @@
       </div>
 
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Фотоматериалы</h2>
+        <h2 class="adm-form__headding">Фотоматериалы</h2>
         <div class="adm-form__content px36">
           <div v-if="photos && photos.length > 0">
             <div class="active-photo">
@@ -75,7 +75,7 @@
 
       
       <div class="adm-form__container">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Должностное лицо</h2>
+        <h2 class="adm-form__headding">Должностное лицо</h2>
         <div class="adm-form__content px36">
           <div class="adm-form__item">
             <small class="adm-form__label">Личный номер сотрудника</small>

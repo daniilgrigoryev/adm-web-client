@@ -19,7 +19,7 @@
 					<Icon type="md-close" size="40" class="color-blue-base cursor-pointer"/>
 				</Button>
         <div class="adm-form__container">
-					<h2 class="adm-text-big color-dark-light adm-form__headding">{{title}}</h2>
+					<h2 class="adm-form__headding">{{title}}</h2>
            <div class="adm-form__content">
             <div class="adm-form__item">
               <small class="adm-form__label">Страна</small>

@@ -1,197 +1,176 @@
+
 <template>
-  <div v-if="uchastOrganization" class="wmax1280 mx-auto">
-
-    <div class="pt24 px36">
-      <div class="flex-parent flex-parent--center-cross">
-        <Button @click="getPrev" type="text" style="outline: 0!important;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus color-dark-lighter color-blue-on-hover transition">
-          <div class="flex-parent flex-parent--center-cross">
-            <Icon type="ios-arrow-dropleft mr24" class="bg-whte" :size="30" />
-            <b class="adm-text-big">В просмотр участника дела</b>
-          </div>
-        </Button>
-      </div>
-    </div>
-    <div class="pb24 pt18 px36">
-      <div class="flex-parent flex-parent--center-cross">
-        <a href="#" @click="getPrev" class="delo__headding link color-dark-lighter color-blue-on-hover">
-          <span class="adm-h3">Дело №</span>
-          <span v-if="delo" class="adm-h2">{{delo.deloN}}</span>
-        </a>
-        <p class="color-green-base ml24 flex-parent flex-parent--center-cross">
-          <Icon type="ios-checkmark-circle-outline color-green-bas mx6" :size="23" /> 
-          <span v-if="delo" class="adm-txt-regular line30_letter02">{{delo.stadDeloName}}</span>
-        </p>
-      </div>
-    </div>
-
-
-    <div class="adm-form bg-white mt0">
-      <div class="adm-form__container my0">
-        <h2 class="adm-text-big color-dark-light adm-form__headding">Редактирование Участника дела</h2>
-        <div class="adm-form__content py24 px36">
-          <Row>
-            <Col span="12">
+  <aside-template title="просмотр участника дела" v-if="uchastOrganization">
+    <div class="layout-wrap">
+      <div class="layout">
+        <div class="adm-form">
+          <div class="adm-form__container">
+            <h2 class="adm-form__headding">Редактирование Участника дела</h2>
+            <div class="adm-form__content">
+              <Row>
+                <Col span="12">
+                  <div class="adm-form__item">
+                    <small class="adm-form__label">Вид участника</small>
+                    <div class="adm-form__item_content">
+                      <Row :gutter="16" type="flex" align="middle">
+                        <Col :xs="24" :md="24" :lg="24">
+                          <Input class="adm-input adm-input--regular" readonly v-model="uchastOrganization.uchastVidName"></Input>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+                </Col>
+                <Col span="12">
+                  <div class="adm-form__item">
+                    <small class="adm-form__label">Тип участника</small>
+                    <div class="adm-form__item_content">
+                      <Row :gutter="16" type="flex" align="middle">
+                        <Col :xs="24" :md="24" :lg="24">
+                          <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastOrganization.uchastTip" clearable filterable @on-change="store">
+                            <Option class="txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                          </Select>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
               <div class="adm-form__item">
-                <small class="adm-form__label">Вид участника</small>
+                <small class="adm-form__label">Наименование</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly v-model="uchastOrganization.uchastVidName"></Input>
+                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.name" :maskProps="maskInputFIO" :maxlength="100"></masked-input>
                     </Col>
                   </Row>
                 </div>
               </div>
-            </Col>
-            <Col span="12">
+              <Row>
+                <Col span="12">
+                  <div class="adm-form__item">
+                    <small class="adm-form__label">ИНН</small>
+                    <div class="adm-form__item_content">
+                      <Row :gutter="16" type="flex" align="middle">
+                        <Col :xs="24" :md="24" :lg="24">
+                          <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.inn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+                </Col>
+                <Col span="12">
+                  <div class="adm-form__item">
+                    <small class="adm-form__label">КПП</small>
+                    <div class="adm-form__item_content">
+                      <Row :gutter="16" type="flex" align="middle">
+                        <Col :xs="24" :md="24" :lg="24">
+                          <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.kpp" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="10"></masked-input>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+              <Row>
+                <Col span="12">
+                  <div class="adm-form__item">
+                    <small class="adm-form__label">Дата регистрации</small>
+                    <div class="adm-form__item_content">
+                      <Row :gutter="16" type="flex" align="middle">
+                        <Col :xs="24" :md="24" :lg="24">
+                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="uchastOrganization.organization.dateReg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+                </Col>
+                <Col span="12">
+                  <div class="adm-form__item">
+                    <small class="adm-form__label">ОГРН</small>
+                    <div class="adm-form__item_content">
+                      <Row :gutter="16" type="flex" align="middle">
+                        <Col :xs="24" :md="24" :lg="24">
+                          <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.ogrn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="13"></masked-input>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
               <div class="adm-form__item">
-                <small class="adm-form__label">Тип участника</small>
+                <small class="adm-form__label">Адрес регистрации</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastOrganization.uchastTip" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                    <Col :xs="22" :md="22" :lg="22">
+                      <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.organization.address.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                    </Col>
+                    <Col :xs="2" :md="2" :lg="2">
+                      <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                      </Button>
                     </Col>
                   </Row>
                 </div>
               </div>
-            </Col>
-          </Row>
-          <div class="adm-form__item">
-            <small class="adm-form__label">Наименование</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="24" :md="24" :lg="24">
-                  <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.name" :maskProps="maskInputFIO" :maxlength="100"></masked-input>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Фактический адрес</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="22" :md="22" :lg="22">
+                      <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.factAddr.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
+                    </Col>
+                    <Col :xs="2" :md="2" :lg="2">
+                      <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <Row>
+                <Col span="12">
+                  <div class="adm-form__item">
+                    <small class="adm-form__label">Телефон</small>
+                    <div class="adm-form__item_content">
+                      <Row :gutter="16" type="flex" align="middle">
+                        <Col :xs="24" :md="24" :lg="24">
+                          <masked-input v-model="uchastOrganization.organization.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+                </Col>
+                <Col span="12">
+                  <div class="adm-form__item">
+                    <small class="adm-form__label">АМТС</small>
+                    <div class="adm-form__item_content">
+                      <Row :gutter="16" type="flex" align="middle">
+                        <Col :xs="24" :md="24" :lg="24">
+                          <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastOrganization.vehsId" clearable filterable @on-change="store">
+                            <Option class="txt-break-word" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                          </Select>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
                 </Col>
               </Row>
             </div>
           </div>
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-form__label">ИНН</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.inn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-form__label">КПП</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.kpp" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="10"></masked-input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-form__label">Дата регистрации</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="uchastOrganization.organization.dateReg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-form__label">ОГРН</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.ogrn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="13"></masked-input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <div class="adm-form__item">
-            <small class="adm-form__label">Адрес регистрации</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.organization.address.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-                <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
-                  </Button>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__item">
-            <small class="adm-form__label">Фактический адрес</small>
-            <div class="adm-form__item_content">
-              <Row :gutter="16" type="flex" align="middle">
-                <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" disabled v-model="uchastOrganization.factAddr.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                </Col>
-                <Col :xs="2" :md="2" :lg="2">
-                  <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                    <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
-                  </Button>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <Row>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-form__label">Телефон</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <masked-input v-model="uchastOrganization.organization.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-            <Col span="12">
-              <div class="adm-form__item">
-                <small class="adm-form__label">АМТС</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastOrganization.vehsId" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            </Col>
-          </Row>
         </div>
       </div>
     </div>
-    <hr class="txt-hr my0">
-    <div class="flex-parent flex-parent--center-cross flex-parent--end-main px36 adm-btn-footer--sticky bg-white-light py18">
-      <Button @click="getPrev" type="text" class="adm-btn adm-btn-small bg-transparent">Отменить изменения</Button>
-      <Button @click="save" type="text" class="adm-btn adm-btn-regular color-blue-base adm-btn-border txt-uppercase">Сохранить</Button>
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Отменить изменения</Button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
     </div>
-
-  </div>
+  </aside-template>
 </template>
 
 <script>
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
+  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import RequestApi from "../../../assets/js/api/requestApi";
   import MaskedInput from "../../shared/MaskedInput";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
@@ -199,6 +178,7 @@
   export default {
     name: "FrmEdUchastFLOrganizationEdit",
     components: {
+      AsideTemplate,
       DatePickerMask,
       MaskedInput
     },
