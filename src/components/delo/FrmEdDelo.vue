@@ -77,7 +77,6 @@
               <p class="adm-text-big color-dark-base">{{body.docVozbName}}</p>
             </div>
 
-
             <div v-if="isNotEmptyField(viol.mvidFisFull)" class="mt12">
               <p class="adm-14 color-dark-lighter mb6">Уникальный номер АП</p>
               <p class="adm-text-big color-dark-base">{{viol.mvidFisFull}}</p>
