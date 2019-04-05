@@ -91,8 +91,8 @@
         </div>
       </div>
 
-      <div class="adm-form errors-table errors-table--v2">
-        <div class="adm-form__container">
+      <div class="errors-table errors-table--v2">
+        <div class="errors-table__container">
           <h2  @click="hideMore = !hideMore" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
             <span class="color-dark-lighter">Ошибки</span>
             <Button type="text" class="bg-transparent" style="box-shadow: none;">
@@ -100,7 +100,7 @@
               <Icon v-else type="md-add" class="color-gray" :size="25" title="развернуть"/>
             </Button>
           </h2>
-          <div class="adm-form__content" v-show="hideMore">
+          <div class="errors-table__content" v-show="hideMore">
             <table class='adm-table-simple table table--fixed border--0'>
               <thead>
                 <tr class="bg-white-light">
@@ -325,10 +325,11 @@
       padding-left: 40px;
     }
   }
-  .errors-table--v2 .adm-form__container{
+  .errors-table--v2 .errors-table__container{
     border: none;
     border-radius: 4px;
     box-shadow: 0 0 1px 0 rgba(0,0,0,0.26), 0 0 4px 0 rgba(0,0,0,0.16);
+    background: #fff;
   }
 </style>
 
