@@ -25,38 +25,36 @@
                 </div>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">ИНН</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.inn || 'нет информации'}}</p>
+
+            <div class="my18" style="border-bottom: 1px solid #CCCCCC;">
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">ИНН</p>
+                    <p class="adm-text-big color-dark-base">{{body.organization.inn || 'нет информации'}}</p>
+                  </div>
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">КПП</p>
+                    <p class="adm-text-big color-dark-base">{{body.organization.kpp || 'нет информации'}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="my12">
+                <div class="grid">
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">ОГРН</p>
+                    <p class="adm-text-big color-dark-base">{{body.organization.ogrn || 'нет информации'}}</p>
+                  </div>
+                  <div class="col col--6">
+                    <p class="adm-14 color-dark-lighter mb6">Дата регистрации</p>
+                    <p class="adm-text-big color-dark-base">{{body.organization.dateReg || 'нет информации'}}</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">ОГРН</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.ogrn || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">КПП</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.kpp || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата регистрации</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.dateReg || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
+
+
+
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">
