@@ -7,7 +7,8 @@
               <img src='../../assets/images/pen.svg' class="wmax-none">
             </Button>
             <!-- <b class="adm-text-big color-dark-lighter">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'/') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('/')}}</b> -->
-            <b class="adm-text-big color-dark-lighter">Участник дела - {{body.uchastTipName}}</b>
+            <b class="adm-text-big color-dark-lighter">{{'Участник дела', body.uchastTipName | concatByDelimiter('-')}}</b>
+
           </div>
           <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
             <img src='../../assets/images/wiki.svg' class="wmax-none">
