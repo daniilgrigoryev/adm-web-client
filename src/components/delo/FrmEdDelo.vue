@@ -93,7 +93,7 @@
       <div class="errors-table errors-table--v2">
         <div class="errors-table__container">
           <h2  @click="hideMore = !hideMore" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
-            <span class="color-dark-lighter">Ошибки</span>
+            <span class="adm-h4 color-dark-lighter" style="line-height: inherit;">Ошибки</span>
             <Button type="text" class="bg-transparent" style="box-shadow: none;">
               <Icon v-if="hideMore" type="md-remove" class="color-gray" :size="25" title="свернуть" />
               <Icon v-else type="md-add" class="color-gray" :size="25" title="развернуть"/>
