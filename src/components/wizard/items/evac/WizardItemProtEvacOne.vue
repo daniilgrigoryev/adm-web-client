@@ -5,10 +5,10 @@
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">
           <Col span="10">
-            <masked-input :autofocus="true" inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" @onInputChange="storeElementData"></masked-input>
+            <masked-input :autofocus="true" inputClass="adm-input adm-input--regular wmin120" :value="data.deloN" :maskProps="maskInputProt" @onInputChange="storeElementData"></masked-input>
           </Col>
           <Col span="6">
-            <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+            <Button @click="createNewDeloNum" type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
               <Icon type="md-key" title="Получить уникальный номер" :size="30" />
             </Button>
           </Col>
@@ -91,6 +91,23 @@
           params: {
             eCID: this.info.eCID,
             methodName: 'createProtNum',
+            data: null
+          }
+        });
+        let data = JSON.parse(JSON.parse(eventResponse.response).data);
+        if (funcUtils.isEmpty(data)) {
+          let error = JSON.parse(eventResponse.response).error.errorMsg;
+          alert(error);
+        } else {
+          this.data = data;
+        }
+      },
+      async createNewDeloNum() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'createDeloNum',
             data: null
           }
         });
