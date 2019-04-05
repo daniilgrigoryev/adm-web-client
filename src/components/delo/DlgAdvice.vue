@@ -44,16 +44,16 @@
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Рассмотрения</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateRasm | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  <p class="adm-14 color-dark-lighter mb6">дата рассмотрения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Вручения</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -85,7 +85,6 @@
         </div>
 
         <div class="ml60">
-
           <div class="my12">
             <div class="grid">
               <div class="col col--12">
@@ -97,7 +96,7 @@
           <div class="my12">
             <div class="grid">
               <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Статья основания</p>
+                <p class="adm-14 color-dark-lighter mb6">Статья-основание</p>
                 <p class="adm-text-big color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
               </div>
             </div>
