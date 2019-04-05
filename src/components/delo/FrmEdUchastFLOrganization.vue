@@ -16,67 +16,62 @@
     </div>
     <div class="view-data">
       <div class="view-data__container">
-          <div class="ml60">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Наименование организации</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.name || 'нет информации'}}</p>
-                </div>
+        <div class="ml60">
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Наименование организации</p>
+                <p class="adm-text-big color-dark-base">{{body.organization.name || 'нет информации'}}</p>
               </div>
             </div>
-
-            <div class="my18" style="border-bottom: 1px solid #CCCCCC;">
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">ИНН</p>
-                    <p class="adm-text-big color-dark-base">{{body.organization.inn || 'нет информации'}}</p>
-                  </div>
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">КПП</p>
-                    <p class="adm-text-big color-dark-base">{{body.organization.kpp || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">ОГРН</p>
-                    <p class="adm-text-big color-dark-base">{{body.organization.ogrn || 'нет информации'}}</p>
-                  </div>
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">Дата регистрации</p>
-                    <p class="adm-text-big color-dark-base">{{body.organization.dateReg || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
+          </div>
+          <div class="my18" style="border-bottom: 1px solid #CCCCCC;">
             <div class="my12">
               <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Адрес регистрации</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.address.adrFull || 'нет информации'}}</p>
+                <div class="col col--6">
+                  <p class="adm-14 color-dark-lighter mb6">ИНН</p>
+                  <p class="adm-text-big color-dark-base">{{body.organization.inn || 'нет информации'}}</p>
+                </div>
+                <div class="col col--6">
+                  <p class="adm-14 color-dark-lighter mb6">КПП</p>
+                  <p class="adm-text-big color-dark-base">{{body.organization.kpp || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
             <div class="my12">
               <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Фактический адрес</p>
-                  <p class="adm-text-big color-dark-base">{{body.factAddr.adrFull || 'нет информации'}}</p>
+                <div class="col col--6">
+                  <p class="adm-14 color-dark-lighter mb6">ОГРН</p>
+                  <p class="adm-text-big color-dark-base">{{body.organization.ogrn || 'нет информации'}}</p>
+                </div>
+                <div class="col col--6">
+                  <p class="adm-14 color-dark-lighter mb6">Дата регистрации</p>
+                  <p class="adm-text-big color-dark-base">{{body.organization.dateReg || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Телефон</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.phone || 'нет информации'}}</p>
-                </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Адрес регистрации</p>
+                <p class="adm-text-big color-dark-base">{{body.organization.address.adrFull || 'нет информации'}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Фактический адрес</p>
+                <p class="adm-text-big color-dark-base">{{body.factAddr.adrFull || 'нет информации'}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="my12">
+            <div class="grid">
+              <div class="col col--12">
+                <p class="adm-14 color-dark-lighter mb6">Телефон</p>
+                <p class="adm-text-big color-dark-base">{{body.organization.phone || 'нет информации'}}</p>
               </div>
             </div>
           </div>
