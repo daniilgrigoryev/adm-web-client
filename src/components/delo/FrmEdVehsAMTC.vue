@@ -16,8 +16,12 @@
     <div>
       <div class="view-data">
         <div class="view-data__container">
-            <div class="ml60">
-              <div class="w-full">
+          <div class="py12">
+            <div class="flex-parent flex-parent--center-cross">
+                <div class="s40 mt12">
+                  <img src="../../assets/images/vehicle_passport.svg" width="30px" class="mx-auto block" alt="">
+                </div>
+                <div class="ml18 w-full">
                 <div class="grid">
                   <div class="col col--6">
                     <p class="adm-14 color-dark-lighter mb6">ГРЗ</p>
