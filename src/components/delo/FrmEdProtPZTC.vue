@@ -21,11 +21,13 @@
             label="Дата и время нарушения" 
             :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
             style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
           />
           <view-data-item 
             label="Место нарушения" 
             :value="body.placeNar.placeFull" 
             style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
           />
           <view-data-item 
             label="Пункт НПА" 
