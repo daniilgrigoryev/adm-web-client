@@ -19,10 +19,11 @@
   import RequestApi from "../../../../assets/js/api/requestApi";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
   import MaskedInput from "~/components/shared/MaskedInput";
-
+  import wizardItemProtThreeMethods from "~/components/mixins/prot/wizardItemProtThreeMethods";
 
   export default {
     name: "WizardItemProtEvacThree",
+    mixins: [wizardItemProtThreeMethods],
     components: {DatePickerMask, MaskedInput},
     props: {
       info: Object

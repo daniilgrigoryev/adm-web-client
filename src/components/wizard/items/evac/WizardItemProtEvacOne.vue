@@ -45,9 +45,11 @@
   import RequestApi from "../../../../assets/js/api/requestApi";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
   import MaskedInput from "~/components/shared/MaskedInput";
+  import wizardItemProtOneMethods from "~/components/mixins/prot/wizardItemProtOneMethods";
 
   export default {
     name: "WizardItemProtEvacOne",
+    mixins: [wizardItemProtOneMethods],
     components: {
       DatePickerMask,
       MaskedInput,
@@ -75,40 +77,6 @@
           method: 'getElementData',
           params: {
             eCID: this.info.eCID
-          }
-        });
-        let data = JSON.parse(JSON.parse(eventResponse.response).data);
-        if (funcUtils.isEmpty(data)) {
-          let error = JSON.parse(eventResponse.response).error.errorMsg;
-          alert(error);
-        } else {
-          this.data = data;
-        }
-      },
-      async createProtNum() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'createProtNum',
-            data: null
-          }
-        });
-        let data = JSON.parse(JSON.parse(eventResponse.response).data);
-        if (funcUtils.isEmpty(data)) {
-          let error = JSON.parse(eventResponse.response).error.errorMsg;
-          alert(error);
-        } else {
-          this.data = data;
-        }
-      },
-      async createNewDeloNum() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'createDeloNum',
-            data: null
           }
         });
         let data = JSON.parse(JSON.parse(eventResponse.response).data);
