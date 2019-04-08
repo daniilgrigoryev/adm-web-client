@@ -143,6 +143,10 @@
         </div>
       </div>
     </div>
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Отменить изменения</Button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
+    </div>
   </aside-template>
 </template>
 
