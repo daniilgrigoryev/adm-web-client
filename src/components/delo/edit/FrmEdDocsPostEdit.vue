@@ -43,10 +43,10 @@
                 <small class="adm-form__label">Должностное лицо</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="22" :md="22" :lg="22">
+                    <Col :xs="4" :md="4" :lg="4">
                       <masked-input inputClass="adm-input adm-input--regular" v-model="docsPost.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
                     </Col>
-                    <Col :xs="22" :md="22" :lg="22">
+                    <Col :xs="18" :md="18" :lg="18">
                       <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName, docsPost.inspSostDolz, docsPost.inspSostRang | concatByDelimiter(',')"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
@@ -61,10 +61,10 @@
                 <small class="adm-form__label">Подразделение</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="22" :md="22" :lg="22">
+                    <Col :xs="4" :md="4" :lg="4">
                       <masked-input inputClass="adm-input adm-input--regular" v-model="docsPost.organSostName" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
                     </Col>
-                    <Col :xs="22" :md="22" :lg="22">
+                    <Col :xs="18" :md="18" :lg="18">
                       <Input class="adm-input adm-input--regular" readonly :value="docsPost.organSostName" ></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
