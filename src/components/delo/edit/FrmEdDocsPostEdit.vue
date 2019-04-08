@@ -696,7 +696,6 @@
         } else {
           this.getPrev();
         }
-        debugger;
       },
       async getPlaceSost() {
         let eventResponse = await RequestApi.prepareData({
