@@ -40,29 +40,6 @@ import dlgAdviceEdit  from './modules/dlgAdviceEdit';
 
 
 import wizardExecuter from './modules/wizardExecuter';
-import wizardScenarioPost from './modules/wizardScenarioPost';
-import wizardScenario2025 from './modules/wizardScenario2025';
-import wizardScenarioProtPZTC from './modules/wizardScenarioProtPZTC';
-import wizardScenarioProtAPN from './modules/wizardScenarioProtAPN';
-import wizardScenarioAddUchast from './modules/wizardScenarioAddUchast';
-import wizardItemAddress from './modules/wizardItemAddress';
-import wizardItemDecis from './modules/wizardItemDecis';
-import wizardItemDocPostFinal from './modules/wizardItemDocPostFinal';
-import wizardItemDocPostFirst from './modules/wizardItemDocPostFirst';
-import wizardItemDocPostSecond from './modules/wizardItemDocPostSecond';
-import wizardItemDocProtEvac from './modules/wizardItemDocProtEvac';
-import wizardItemDocProt2025 from './modules/wizardItemDocProt2025';
-import wizardItemDocProtRasm from './modules/wizardItemDocProtRasm';
-import wizardItemDocProtFirst from './modules/wizardItemDocProtFirst';
-import wizardItemIndividual from './modules/wizardItemIndividual';
-import wizardItemLvok from './modules/wizardItemLvok';
-import wizardItemLvok2025 from './modules/wizardItemLvok2025';
-import wizardItemOrganization from './modules/wizardItemOrganization';
-import wizardItemOwner from './modules/wizardItemOwner';
-import wizardItemPlace from './modules/wizardItemPlace';
-import wizardItemPredDoc from './modules/wizardItemPredDoc';
-import wizardItemAddUchast from './modules/wizardItemAddUchast';
-import wizardItemVehs from './modules/wizardItemVehs';
 import * as funcUtils from "./../assets/js/utils/funcUtils";
 
 Vue.use(Vuex);
@@ -157,29 +134,6 @@ const store = new Vuex.Store({
     dlgAdviceEdit,
     
     wizardExecuter,
-    wizardScenarioPost,
-    wizardScenario2025,
-    wizardScenarioProtPZTC,
-    wizardScenarioProtAPN,
-    wizardScenarioAddUchast,
-    wizardItemAddress,
-    wizardItemDecis,
-    wizardItemDocPostFinal,
-    wizardItemDocPostFirst,
-    wizardItemDocPostSecond,
-    wizardItemDocProt2025,
-    wizardItemDocProtRasm,
-    wizardItemDocProtFirst,
-    wizardItemDocProtEvac,
-    wizardItemIndividual,
-    wizardItemLvok,
-    wizardItemLvok2025,
-    wizardItemOrganization,
-    wizardItemOwner,
-    wizardItemPlace,
-    wizardItemPredDoc,
-    wizardItemVehs,
-    wizardItemAddUchast,
     authorization,
   }
 });

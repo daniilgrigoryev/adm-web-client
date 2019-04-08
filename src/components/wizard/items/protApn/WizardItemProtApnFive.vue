@@ -7,10 +7,10 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="4" :md="4" :lg="4">
-            <Input class="adm-input adm-input--regular" v-model="data.organSostKod" @on-input-change="changeRasmKod"></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.organRasmKod" @on-input-change="changeRasmKod"></Input>
           </Col>
           <Col :xs="18" :md="18" :lg="18">
-            <Input class="adm-input adm-input--regular" disabled v-model="data.organSostName"></Input>
+            <Input class="adm-input adm-input--regular" disabled v-model="data.organRasmName"></Input>
           </Col>
           <Col :xs="2" :md="2" :lg="2">
             <Button @click="showRasmModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
