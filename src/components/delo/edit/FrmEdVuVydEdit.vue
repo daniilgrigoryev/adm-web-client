@@ -490,11 +490,11 @@
         this.dolzModal.visible = visible;
       },
       async showOgaiModal(visible) {
-        if (visible && funcUtils.isEmpty(this.ogaiModal.ogaiList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
-              ogaiKod: null
+              ogaiKod: this.vuVyd.ogaiVydKod
             }
           });
           let ogaiList = JSON.parse(eventResponse.response).data;
@@ -607,8 +607,7 @@
         }
       },
       async changeOgaiVydKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.vuVyd.ogaiVydKod) && express.test(this.vuVyd.ogaiVydKod)) {
+        if (funcUtils.isNotEmpty(this.vuVyd.ogaiVydKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {

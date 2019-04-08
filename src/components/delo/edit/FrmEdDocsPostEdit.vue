@@ -499,11 +499,11 @@
         this.dolzModal.visible = visible;
       },
       async showOrganModal(visible) {
-        if (visible && funcUtils.isEmpty(this.organModal.gibddList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
-              organKod: null
+              organKod: this.docsPost.organSostKod
             }
           });
           this.organModal.gibddList = JSON.parse(eventResponse.response).data;
@@ -576,8 +576,7 @@
         }
       },
       async changeOrganSostKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.docsPost.organSostKod) && express.test(this.docsPost.organSostKod)) {
+        if (funcUtils.isNotEmpty(this.docsPost.organSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {

@@ -302,11 +302,11 @@
     },
     methods: {
       async showOgaiModal(visible) {
-        if (visible && funcUtils.isEmpty(this.ogaiModal.ogaiList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
-              ogaiKod: null
+              ogaiKod: this.vuPred.ogaiVydKod
             }
           });
           let ogaiList = JSON.parse(eventResponse.response).data;
@@ -349,8 +349,7 @@
       },
 
       async changeOgaiVydKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.vuPred.ogaiVydKod) && express.test(this.vuPred.ogaiVydKod)) {
+        if (funcUtils.isNotEmpty(this.vuPred.ogaiVydKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {

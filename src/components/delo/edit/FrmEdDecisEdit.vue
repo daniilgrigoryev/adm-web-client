@@ -527,11 +527,11 @@
         this.dolzModal.visible = visible;
       },
       async showOrganModal(visible) {
-        if (visible && funcUtils.isEmpty(this.organModal.gibddList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
-              organKod: null
+              organKod: this.decis.organSostKod
             }
           });
           this.organModal.gibddList = JSON.parse(eventResponse.response).data;
@@ -543,19 +543,16 @@
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
-              organKod: null
+              organKod: this.decis.organNapravlKod
             }
           });
           this.organNapravModal.gibddList = JSON.parse(eventResponse.response).data;
-        } else {
-          this.organNapravModal.gibddList = null;
         }
         this.organNapravModal.visible = visible;
       },
 
       async changeOrganSostKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.decis.organSostKod) && express.test(this.decis.organSostKod)) {
+        if (funcUtils.isNotEmpty(this.decis.organSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
@@ -574,8 +571,7 @@
         }
       },
       async changeOrganNapravSostKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.decis.organNapravlKod) && express.test(this.decis.organNapravlKod)) {
+        if (funcUtils.isNotEmpty(this.decis.organNapravlKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
