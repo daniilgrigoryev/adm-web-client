@@ -12,7 +12,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.uchastTip" clearable filterable @on-change="store">
+                      <Select class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="uchastIndivid.uchastTip" clearable filterable @on-change="store">
                         <Option class="txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -24,7 +24,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" readonly v-model="uchastIndivid.uchastStatusName"></Input>
+                      <Input class="adm-input adm-input--regular wmax240" readonly v-model="uchastIndivid.uchastStatusName"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -35,7 +35,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <!-- <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastIndivid.individ.firstName" ></Input> -->
-                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastIndivid.individ.firstName" :maskProps="maskInputFIO" :maxlength="80"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240" @onInputChange="store" v-model="uchastIndivid.individ.firstName" :maskProps="maskInputFIO" :maxlength="80"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -46,7 +46,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <!-- <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastIndivid.individ.secondName" ></Input> -->
-                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastIndivid.individ.secondName" :maskProps="maskInputFIO" :maxlength="25"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240" @onInputChange="store" v-model="uchastIndivid.individ.secondName" :maskProps="maskInputFIO" :maxlength="25"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -57,7 +57,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <!-- <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="uchastIndivid.individ.thirdName" ></Input> -->
-                      <masked-input inputClass="adm-input adm-input--regular"  @onInputChange="store" v-model="uchastIndivid.individ.thirdName"  :maskProps="maskInputFIO" :maxlength="25"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240"  @onInputChange="store" v-model="uchastIndivid.individ.thirdName"  :maskProps="maskInputFIO" :maxlength="25"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular" v-model="birthdayDate" @change="formatBirthday" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy" stringFormat="DD/MM/YYYY"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="birthdayDate" @change="formatBirthday" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy" stringFormat="DD/MM/YYYY"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -89,7 +89,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.sex" clearable filterable @on-change="store">
+                      <Select class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="uchastIndivid.individ.sex" clearable filterable @on-change="store">
                         <Option class="txt-break-word" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -116,8 +116,8 @@
                       <Input class="adm-input adm-input--regular" disabled v-model="uchastIndivid.individ.address.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="getRegAddr" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class="py0 px0 mr18 bg-transparent-on-hover">
-                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                      <Button @click="getRegAddr" type="text" class="py0 px0 mr18 bg-transparent-on-hover">
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="30" />
                       </Button>
                     </Col>
                   </Row>
@@ -131,8 +131,8 @@
                       <Input class="adm-input adm-input--regular" disabled v-model="uchastIndivid.factAddr.adrFull" :autosize="{minRows: 2,maxRows: 5}"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="getFactAddr" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class="py0 px0 mr18 bg-transparent-on-hover">
-                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                      <Button @click="getFactAddr" type="text" class="py0 px0 mr18 bg-transparent-on-hover">
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="30" />
                       </Button>
                     </Col>
                   </Row>
@@ -143,7 +143,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input v-model="uchastIndivid.individ.phone" @onInputChange="store" inputClass="adm-input adm-input--regular" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
+                      <masked-input v-model="uchastIndivid.individ.phone" @onInputChange="store" inputClass="adm-input adm-input--regular wmax240" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
                     </Col>
                   </Row>
                 </div>
