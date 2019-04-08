@@ -291,14 +291,18 @@
             })
           }
         });
+        let modNames = [];
         let modelList = [];
         let modelDict = JSON.parse(JSON.parse(eventResponse.response).data);
         for (let i = 0; i < modelDict.length; i++) {
           let model = modelDict[i];
-          modelList.push({
-            label: model.modName,
-            value: model.modName // id
-          });
+          if (!modNames.includes(model.modName)) {
+            modelList.push({
+              label: model.modName,
+              value: model.modName // id
+            });
+            modNames.push(model.modName);
+          }
         }
         this.modelList = modelList;
       },
