@@ -15,7 +15,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="14" :lg="24">
-                          <masked-input @onInputChange="store" v-model="dataAdvice.docN" inputClass="adm-input adm-input--regular" :maskProps="{placeholder: '', regex: '[0-9\/\-]+'}" clearable></masked-input>
+                          <masked-input @onInputChange="store" v-model="dataAdvice.docN" inputClass="adm-input adm-input--regular wmin120 wmax180" :maskProps="{placeholder: '', regex: '[0-9\/\-]+'}" clearable readonly></masked-input>
                         </Col>
                       </Row>
                     </div>
@@ -27,7 +27,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateRasm" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateRasm" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM" disabled></DatePickerMask>
                         </Col>
                       </Row>
                     </div>
@@ -41,7 +41,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM" disabled></DatePickerMask>
                         </Col>
                       </Row>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateUved" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateUved" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM" disabled></DatePickerMask>
                         </Col>
                       </Row>
                     </div>
@@ -181,6 +181,7 @@
           this.dataAdvice = dataAdvice;
 
           this.fillStotvSearchInfo();
+
         }
 
       } catch (e) {
