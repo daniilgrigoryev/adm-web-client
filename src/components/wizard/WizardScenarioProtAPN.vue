@@ -48,13 +48,13 @@
             </div>
             <wizard-item-prot-apn-five id="apn" v-if="isVisible('DocProtApnFive')" ref="DocProtApnFive" :info="getInfo('DocProtApnFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-apn-five>
             <div class="adm-form__container">
-              <h2 id="witness" class="adm-form__headding">Понятые</h2>
+              <h2 id="witness" class="adm-form__headding">Свидетели</h2>
               <div class="adm-form__content">
-                <h4 class="h4">1 понятой</h4>
+                <h4 class="h4">1 свидетель</h4>
                 <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
                 <wizard-item-address v-if="isVisible('Witness1.regAddr')" ref="Witness1.regAddr" :info="getInfo('Witness1.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
                 <hr>
-                <h4 class="h4">2 понятой</h4>
+                <h4 class="h4">2 свидетель</h4>
                 <wizard-item-individual v-if="isVisible('Witness2')" ref="Witness2" :info="getInfo('Witness2')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
                 <wizard-item-address v-if="isVisible('Witness2.regAddr')" ref="Witness2.regAddr" :info="getInfo('Witness2.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
               </div>
@@ -130,7 +130,7 @@
             name: "nar"
           },
           {
-            title: "Понятые",
+            title: "Свидетели",
             name: "witness",
           },
         ]
