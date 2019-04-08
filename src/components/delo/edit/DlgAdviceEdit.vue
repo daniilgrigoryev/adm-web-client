@@ -1,7 +1,8 @@
 <template>
-  <aside-template title="Редактирование Извещения">
+  <aside-template title="Редактирование Извещения" v-if="dataAdvice">
     <div class="layout-wrap">
       <div class="layout">
+        <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
         <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
         <div class="adm-form">
           <div class="adm-form__container">
@@ -26,7 +27,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask v-model="dataAdvice.dateRasm" @change="" class="adm-input adm-input--regular"  clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateRasm" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                         </Col>
                       </Row>
                     </div>
@@ -40,7 +41,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask v-model="dataAdvice.dateSost" @change="" class="adm-input adm-input--regular"  clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                         </Col>
                       </Row>
                     </div>
@@ -52,7 +53,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask v-model="dataAdvice.dateUved" @change="" class="adm-input adm-input--regular"  clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateUved" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                         </Col>
                       </Row>
                     </div>
@@ -63,71 +64,71 @@
           </div>
           <div class="adm-form__container">
             <h2 class="adm-form__headding">Должностное лицо составившее Извещение</h2>
-              <div class="adm-form__content">
-
-                <div class="adm-form__item">
-                  <small class="adm-form__label">Должностное лицо</small>
-                  <div class="adm-form__item_content">
-                    <Row :gutter="16" type="flex" align="middle">
-                      <Col :xs="4" :md="4" :lg="4">
-                        <Input class="adm-input adm-input--regular" v-model="dataAdvice.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
-                      </Col>
-                      <Col :xs="18" :md="18" :lg="18">
-                        <Input class="adm-input adm-input--regular" disabled v-model="dataAdvice.inspSostName" @on-input-change="changeFIO" ></Input>
-                      </Col>
-                      <Col :xs="2" :md="2" :lg="2">
-                        <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class="bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                          <Icon type="ios-bookmarks-outline" title="Список должностных лиц" :size="30" />
-                        </Button>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-
-                <!-- <div class="adm-form__item">
-                  <small class="adm-form__label">Подразделение - Код подразделения</small>
-                  <div class="adm-form__item_content">
-                    <Row :gutter="16" type="flex" align="middle">
-                      <Col :xs="22" :md="22" :lg="22">
-                        <Input class="adm-input adm-input--regular" readonly :value="docsPost.organSostName" ></Input>
-                      </Col>
-                      <Col :xs="2" :md="2" :lg="2">
-                        <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                          <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
-                        </Button>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-                <div class="adm-form__item">
-                  <small class="adm-form__label">Место составления, индекс</small>
-                  <div class="adm-form__item_content">
-                    <Row :gutter="16" type="flex" align="middle">
-                      <Col :xs="22" :md="22" :lg="22">
-                        <Input class="adm-input adm-input--regular" disabled v-model="docsPost.placeSost.placeFull"></Input>
-                      </Col>
-                      <Col :xs="2" :md="2" :lg="2">
-                        <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                          <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
-                        </Button>
-                      </Col>
-                    </Row>
-                  </div>
-                </div> -->
-
-                <div class="adm-form__item">
-                  <small class="adm-form__label">Статья основание</small>
-                  <div class="adm-form__item_content">
-                    <Row :gutter="16" type="flex" align="middle">
-                      <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="dataAdvice.stotvId" clearable filterable  @on-change="store">
-                          <Option class=" txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-                        </Select>
-                      </Col>
-                    </Row>
-                  </div>
+            <div class="adm-form__content">
+              <div class="adm-form__item">
+                <small class="adm-form__label">Должностное лицо</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="4" :md="4" :lg="4">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="dataAdvice.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
+                    </Col>
+                    <Col :xs="18" :md="18" :lg="18">
+                      <Input class="adm-input adm-input--regular" readonly :value="dataAdvice.inspSostName, dataAdvice.inspSostDolz, dataAdvice.inspSostRang | concatByDelimiter(',')"></Input>
+                    </Col>
+                    <Col :xs="2" :md="2" :lg="2">
+                      <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
+                      </Button>
+                    </Col>
+                  </Row>
                 </div>
               </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Подразделение</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="4" :md="4" :lg="4">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="dataAdvice.organSostName" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
+                    </Col>
+                    <Col :xs="18" :md="18" :lg="18">
+                      <Input class="adm-input adm-input--regular" readonly :value="dataAdvice.organSostName" ></Input>
+                    </Col>
+                    <Col :xs="2" :md="2" :lg="2">
+                      <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Статья основание</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="dataAdvice.stotvId" clearable filterable  @on-change="store">
+                        <Option class=" txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Место составления</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="22" :md="22" :lg="22">
+                      <Input class="adm-input adm-input--regular" disabled v-model="dataAdvice.placeSost.placeFull"></Input>
+                    </Col>
+                    <Col :xs="2" :md="2" :lg="2">
+                      <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -321,6 +322,109 @@
               }
             ]
         },
+        organModal: {
+          visible: false,
+          gibddList: null,
+          columnsOptions:
+            [
+              {
+                title: 'Код органа',
+                key: 'ORGAN_KOD',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Код региона',
+                key: 'RESP_KOD',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Регион',
+                key: 'REGION_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Район',
+                key: 'RAYON_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Тип',
+                key: 'TIP',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Название',
+                key: 'ORGAN_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Контакты',
+                key: 'CONTACTS',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Адрес',
+                key: 'KA_ADR_FULL',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              }
+            ]
+        },
       }
     },
     methods: {
@@ -356,27 +460,119 @@
         this.dolzModal.sispList = null;
         this.store();
       },
+      onGibddClick(data) {
+        this.dataAdvice.organSostId = data.ID;
+        this.dataAdvice.organSostKod = data.ORGAN_KOD;
+        this.dataAdvice.organSostName = data.ORGAN_NAME;
+        this.organModal.gibddList = null;
+        this.organModal.visible = false;
+        this.store();
+      },
+
+      clearInspSostKod() {
+        this.dataAdvice.inspSostId = null;
+        this.dataAdvice.inspSostKod = null;
+        this.store();
+      },
+      clearInspSost() {
+        this.dataAdvice.inspSostId = null;
+        this.dataAdvice.inspSostKod = null;
+        this.dataAdvice.inspSostName = null;
+        this.dataAdvice.inspSostDolz = null;
+        this.dataAdvice.inspSostRang = null;
+        this.store();
+      },
+      clearOrganSost() {
+        this.dataAdvice.organSostId = null;
+        this.dataAdvice.organSostKod = null;
+        this.dataAdvice.organSostName = null;
+        this.store();
+      },
+      async getPlaceSost() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getPlaceSostCID'
+        });
+        let cid = JSON.parse(eventResponse.response).data;
+
+        formStack.toNext({
+          module: this.$store.state.placeViewEdit,
+          vm: this,
+          notRemoved: false,
+          withCreate: false,
+          cid: cid,
+          params: {
+            type: 'placeSost'
+          }
+        });
+      },
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: null
+              inspKod: this.dataAdvice.inspSostKod
             }
           });
           this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
         }
         this.dolzModal.visible = visible;
       },
-      // store() {
-      //   let copy = JSON.parse(JSON.stringify(this.dataAdvice));
-      //   RequestApi.prepareData({
-      //     method: 'store',
-      //     params: {
-      //       data: copy
-      //     }
-      //   });
-      // },
+      async showOrganModal(visible) {
+        if (visible) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'getGibddDict',
+            params: {
+              organKod: this.dataAdvice.organSostKod
+            }
+          });
+          this.organModal.gibddList = JSON.parse(eventResponse.response).data;
+        }
+        this.organModal.visible = visible;
+      },
+      async changeInspSostKod() {
+        if (funcUtils.isNotEmpty(this.dataAdvice.inspSostKod)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'getSinspList',
+            params: {
+              inspKod: this.dataAdvice.inspSostKod
+            }
+          });
+          this.clearInspSost();
+          let data = JSON.parse(eventResponse.response).data;
+          if (funcUtils.isNotEmpty(data) && data.length > 0) {
+            data = data[0];
+            this.dataAdvice.inspSostId = data.inspId;
+            this.dataAdvice.inspSostKod = data.inspKod;
+            this.dataAdvice.inspSostName = data.inspName;
+            this.dataAdvice.inspSostDolz = data.inspDolz;
+            this.dataAdvice.inspSostRang = data.inspRang;
+            this.dataAdvice.organSostId = data.ogaiId;
+            this.dataAdvice.organSostKod = data.organKod;
+            this.dataAdvice.organSostName = data.ogaiName;
+            this.store();
+          }
+        } else {
+          this.clearInspSost();
+        }
+      },
+      async changeOrganSostKod() {
+        if (funcUtils.isNotEmpty(this.dataAdvice.organSostKod)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'getGibddDict',
+            params: {
+              organKod: this.dataAdvice.organSostKod
+            }
+          });
+          this.clearOrganSost();
+          let gibddList = JSON.parse(eventResponse.response).data;
+          if (gibddList.length > 0) {
+            this.organModal.visible = true;
+            this.organModal.gibddList = gibddList;
+          }
+        } else {
+          this.clearOrganSost();
+        }
+      },
       store() {
         RequestApi.prepareData({
           method: 'store',
@@ -389,6 +585,7 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'update'
         });
+        this.store();
         if (eventResponse.response) {
           let error = JSON.parse(eventResponse.response).error;
           alert(error.errorMsg);
