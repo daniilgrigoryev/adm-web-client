@@ -43,7 +43,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="4" :md="4" :lg="4">
-                      <Input class="adm-input adm-input--regular" v-model="protPZTC.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="protPZTC.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
                     </Col>
                     <Col :xs="18" :md="18" :lg="18">
                       <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.inspSostName" @on-input-change="changeFIO" ></Input>
@@ -61,10 +61,10 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="4" :md="4" :lg="4">
-                      <Input class="adm-input adm-input--regular" v-model="protPZTC.organSostKod" @on-input-change="changeOrganSostKod" ></Input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="protPZTC.organSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
                     </Col>
                     <Col :xs="18" :md="18" :lg="18">
-                      <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.organSostName" @on-input-change="changeOrganSostKod" ></Input>
+                      <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.organSostName" ></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
                       <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -530,11 +530,11 @@
     },
     methods: {
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: null
+              inspKod: this.protPZTC.inspSostKod
             }
           });
           this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
@@ -591,14 +591,14 @@
       },
 
       async changeInspSostKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.protPZTC.inspSostKod) && express.test(this.protPZTC.inspSostKod)) {
+        if (funcUtils.isNotEmpty(this.protPZTC.inspSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
               inspKod: this.protPZTC.inspSostKod
             }
           });
+          this.clearInspSost();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
@@ -611,8 +611,6 @@
             this.protPZTC.organSostKod = data.organKod;
             this.protPZTC.organSostName = data.ogaiName;
             this.store();
-          } else {
-            this.clearInspSost();
           }
         } else {
           this.clearInspSost();
@@ -626,12 +624,11 @@
               organKod: this.protPZTC.organSostKod
             }
           });
+          this.clearOrganSost();
           let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organModal.visible = true;
             this.organModal.gibddList = gibddList;
-          } else {
-            this.clearOrganSost();
           }
         } else {
           this.clearOrganSost();

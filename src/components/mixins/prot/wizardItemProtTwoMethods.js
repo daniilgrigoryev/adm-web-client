@@ -220,8 +220,7 @@ export default {
   },
   methods: {
     async changeInspSostKod() {
-      let express = /^\d+$/;
-      if (funcUtils.isNotEmpty(this.data.inspSostKod) && express.test(this.data.inspSostKod)) {
+      if (funcUtils.isNotEmpty(this.data.inspSostKod)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
@@ -232,6 +231,7 @@ export default {
             })
           }
         });
+        this.clearInspSost();
         let data = JSON.parse(JSON.parse(eventResponse.response).data);
         if (funcUtils.isNotEmpty(data) && data.length > 0) {
           data = data[0];
@@ -244,8 +244,6 @@ export default {
           this.data.organSostKod = data.organKod;
           this.data.organSostName = data.ogaiName;
           this.storeElementData();
-        } else {
-          this.clearInspSost();
         }
       } else {
         this.clearInspSost();
@@ -263,26 +261,25 @@ export default {
             })
           }
         });
+        this.clearOrganSost();
         let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
         if (gibddList.length > 0) {
           this.organModal.visible = true;
           this.organModal.gibddList = gibddList;
-        } else {
-          this.clearOrganSost();
         }
       } else {
         this.clearOrganSost();
       }
     },
     async showDolzModal(visible) {
-      if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+      if (visible) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
             eCID: this.info.eCID,
             methodName: 'getSinspList',
             data: JSON.stringify({
-              inspKod: null
+              inspKod: this.data.inspSostKod
             })
           }
         });

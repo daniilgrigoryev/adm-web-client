@@ -27,7 +27,6 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <!-- <Input class="adm-input adm-input--regular wmin120 wmax180" @on-input-change="store" v-model="vuPred.vuN" ></Input> -->
                           <masked-input inputClass="adm-input adm-input--regular wmin120 wmax180" @onInputChange="store" v-model="vuPred.vuN" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"></masked-input>
                         </Col>
                       </Row>
@@ -356,12 +355,11 @@
               ogaiKod: this.vuPred.ogaiVydKod
             }
           });
+          this.clearOgai();
           let ogaiList = JSON.parse(eventResponse.response).data;
           if (ogaiList.length > 0) {
             this.ogaiModal.visible = true;
             this.ogaiModal.ogaiList = ogaiList;
-          } else {
-            this.clearOgai();
           }
         } else {
           this.clearOgai();

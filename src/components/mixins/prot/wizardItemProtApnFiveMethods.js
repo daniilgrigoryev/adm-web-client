@@ -138,12 +138,11 @@ export default {
             })
           }
         });
+        this.clearRasmSost();
         let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
         if (gibddList.length > 0) {
           this.rasmModal.visible = true;
           this.rasmModal.rasmList = gibddList;
-        } else {
-          this.clearRasmSost();
         }
       } else {
         this.clearRasmSost();
