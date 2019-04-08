@@ -4,7 +4,8 @@
       <small class="adm-form__label">Номер документа</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Input class="adm-input adm-input--regular" :disabled="data.docId" v-model="data.docNum" @on-input-change="storeElementData" placeholder="Номер документа"></Input>
+          <!-- <Input class="adm-input adm-input--regular" :disabled="data.docId" v-model="data.docNum" @on-input-change="storeElementData" placeholder="Номер документа"></Input> -->
+           <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.docNum" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" @onInputChange="storeElementData" :disabled="data.docId"></masked-input>
         </Col>
       </Row>
     </div>
@@ -12,7 +13,7 @@
       <small class="adm-form__label">Документ удостоверяющий личность:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="wmax240 wmin180 adm-input adm-input--regular" :disabled="data.docId" placeholder="" v-model="data.docTip" clearable @on-change="storeElementData">
+          <Select class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId" placeholder="" v-model="data.docTip" clearable @on-change="storeElementData">
             <Option class="wmax360 txt-break-word" v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -22,7 +23,7 @@
       <small class="adm-form__label">Список документов ЛВОКа из дела:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" clearable @on-change="storeElementData">
+          <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" clearable @on-change="storeElementData">
             <Option class="wmax360 txt-break-word" v-for="item in lvokDeloDocsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -35,9 +36,13 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
+  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "WizardItemPredDoc",
+    components: {
+      MaskedInput
+    },
     props: {
       info: Object
     },

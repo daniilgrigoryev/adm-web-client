@@ -5,17 +5,17 @@
       <Layout ref="Main" class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding">
+            <h2 class="adm-form__headding" id="head">
               Ввод данных по протоколу об административном правонарушении
             </h2>
             <div class="adm-form__content">
-              <wizard-item-prot-apn-one id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-apn-one>
+              <wizard-item-prot-apn-one  id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-apn-one>
               <wizard-item-place v-if="isVisible('DocProtApnOne.PlaceSost')" ref="DocProtApnOne.PlaceSost" :info="getInfo('DocProtApnOne.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
               <wizard-item-prot-apn-two id="DocProtApnTwo" v-if="isVisible('DocProtApnTwo')" ref="DocProtApnTwo" :info="getInfo('DocProtApnTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-apn-two>
             </div>
           </div>
           <div class="adm-form__container">
-            <h2 class="adm-form__headding">Лвок</h2>
+            <h2 class="adm-form__headding">ЛВОК</h2>
             <div class="adm-form__content">
               <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
               <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
@@ -114,16 +114,20 @@
       return {
         listSectionNav: [
           {
-            title: "Протокол об АПН",
+            title: "Ввод данных по протоколу об АПН",
             name: "head",
           },
           {
-            title: "Лвок",
-            name: "LVOK",
+            title: "ЛВОК",
+            name: "head",
           },
           {
             title: "Транспортное средство",
             name: "Vehs",
+          },
+          {
+            title: "Сведения о нарушении",
+            name: "nar"
           },
           {
             title: "Понятые",
