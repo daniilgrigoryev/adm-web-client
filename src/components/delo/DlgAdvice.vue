@@ -18,8 +18,11 @@
 
     <div class="view-data">
       <div class="view-data__container">
-        <div class="ml60">
-          <div class="mb12">
+        <div class="flex-parent">
+          <div class="s40 mt18">
+            <img src="../../assets/images/ispolnUved.png" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
+          </div>
+          <div class="ml18">
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Номер извещения</p>
@@ -27,6 +30,8 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="ml60">
           <div class="my12">
             <div class="grid">
               <div class="col col--12">
@@ -38,7 +43,7 @@
         </div>
         <div class="flex-parent" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
           <div class="s40 mt18">
-            <img src="../../assets/images/ispolnUved.png" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
+            <img src="../../assets/images/time.svg" class="mx-auto block" style="width: 30px;" alt="">
           </div>
           <div class="ml18 w-full">
             <div class="my12">

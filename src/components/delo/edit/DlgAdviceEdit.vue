@@ -121,7 +121,7 @@
                       <Input class="adm-input adm-input--regular" disabled v-model="dataAdvice.placeSost.placeFull"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                      <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class="bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
                         <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
                       </Button>
                     </Col>
@@ -585,7 +585,6 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'update'
         });
-        this.store();
         if (eventResponse.response) {
           let error = JSON.parse(eventResponse.response).error;
           alert(error.errorMsg);
