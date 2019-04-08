@@ -111,14 +111,14 @@ export default {
   },
   methods: {
     async showRasmModal(visible) {
-      if (visible && funcUtils.isEmpty(this.rasmModal.rasmList)) {
+      if (visible) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
             eCID: this.info.eCID,
             methodName: 'getGibddDict',
             data: JSON.stringify({
-              organKod: null
+              organKod: this.data.organRasmKod
             })
           }
         });
@@ -127,8 +127,7 @@ export default {
       this.rasmModal.visible = visible;
     },
     async changeRasmKod() {
-      let express = /^\d+$/;
-      if (funcUtils.isNotEmpty(this.data.organRasmKod) && express.test(this.data.organRasmKod)) {
+      if (funcUtils.isNotEmpty(this.data.organRasmKod)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {

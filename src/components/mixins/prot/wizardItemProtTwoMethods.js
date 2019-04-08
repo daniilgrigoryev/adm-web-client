@@ -252,8 +252,7 @@ export default {
       }
     },
     async changeOrganSostKod() {
-      let express = /^\d+$/;
-      if (funcUtils.isNotEmpty(this.data.organSostKod) && express.test(this.data.organSostKod)) {
+      if (funcUtils.isNotEmpty(this.data.organSostKod)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
@@ -292,14 +291,14 @@ export default {
       this.dolzModal.visible = visible;
     },
     async showOrganModal(visible) {
-      if (visible && funcUtils.isEmpty(this.organModal.gibddList)) {
+      if (visible) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
             eCID: this.info.eCID,
             methodName: 'getGibddDict',
             data: JSON.stringify({
-              organKod: null
+              organKod: this.data.organSostKod
             })
           }
         });
