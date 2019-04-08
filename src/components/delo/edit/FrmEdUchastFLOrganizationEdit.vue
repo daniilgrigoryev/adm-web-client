@@ -421,31 +421,3 @@
   }
 </script>
 
-
-<style scoped lang="scss">
-  .chast-title {
-    display: flex;
-    align-items: center;
-    padding: 24px 36px;
-  }
-  .adm-form {
-    margin: 20px;
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    // min-height: 90px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 210px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
-</style>
