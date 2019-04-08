@@ -48,8 +48,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="store" ></Input> -->
-                        <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
+                        <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
                           <Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -62,8 +61,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <!-- <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input> -->
-                        <Select class="adm-input adm-input--regular" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+                        <Select class="adm-input adm-input--regular" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-query-change="changeStreet" @on-clear="changeStreet">
                           <Option class=" txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -210,10 +208,20 @@
         this.data = data;
 
         await this.fillCountryList();
-        await this.fillRegionList();
-        await this.fillRayonList();
-        await this.fillCityList();
-        await this.fillStreetList();
+        if (this.isNotEmptyContryCode()) {
+          await this.fillRegionList();
+        }
+        if (this.isNotEmptyRegionId()) {
+          await this.fillRayonList();
+        }
+        if (this.showIfRussia) {
+          if ((this.isNotEmptyRegionId() && this.isNotEmptyCityId()) || this.isNotEmptyRayonId()) {
+            await this.fillCityList();
+          }
+          if ((this.isNotEmptyRegionId() && this.isNotEmptyStreetId()) || this.isNotEmptyRayonId() || this.isNotEmptyCityId()) {
+            await this.fillStreetList();
+          }
+        }
       },
       async changeCountry() {
         this.regionsList = null;
@@ -224,6 +232,8 @@
         this.data.rayonId = null;
         this.data.cityId = null;
         this.data.streetId = null;
+
+        await this.fillRegionList();
 
         this.store();
       },
@@ -239,20 +249,25 @@
 
         this.store();
       },
-      changeRayon() {
+      async changeRayon() {
         this.citiesList = null;
         this.streetsList = null;
         this.data.cityId = null;
         this.data.streetId = null;
+
+        if (this.isNotEmptyRayonId()) {
+          await this.fillCityList();
+          await this.fillStreetList();
+        }
 
         this.store();
       },
       async changeCity(query) {
         let limit;
         if (this.isNotEmptyRayonId()) {
-          limit = 1;
+          limit = 0;
         } else if (this.isNotEmptyRegionId()) {
-          limit = 2;
+          limit = 1;
         }
         if ((funcUtils.isEmpty(query) || query.length === 0)) {
           this.citiesList = null;
@@ -261,6 +276,8 @@
           this.data.streetId = null;
         } else if (query.length > limit) {
           await this.fillCityList(query);
+        } else {
+          this.citiesList = null;
         }
 
         this.store();
@@ -268,17 +285,19 @@
       async changeStreet(query) {
         let limit;
         if (this.isNotEmptyCityId()) {
-          limit = 1;
+          limit = 0;
         } else if (this.isNotEmptyRayonId()) {
-          limit = 2;
+          limit = 1;
         } else if (this.isNotEmptyRegionId()) {
-          limit = 3;
+          limit = 2;
         }
         if ((funcUtils.isEmpty(query) || query.length === 0)) {
           this.streetsList = null;
           this.data.streetId = null;
         } else if (query.length > limit) {
           await this.fillStreetList(query);
+        } else {
+          this.streetsList = null;
         }
 
         this.store();
@@ -432,6 +451,9 @@
           this.getPrev();
         }
       },
+      isNotEmptyContryCode() {
+        return funcUtils.isNotEmpty(this.data.countryCode);
+      },
       isNotEmptyRegionId() {
         return funcUtils.isNotEmpty(this.data.regionId);
       },
@@ -440,6 +462,9 @@
       },
       isNotEmptyRayonId() {
         return funcUtils.isNotEmpty(this.data.rayonId);
+      },
+      isNotEmptyStreetId() {
+        return funcUtils.isNotEmpty(this.data.streetId);
       },
       async store() {
         let eventResponse = await RequestApi.prepareData({
