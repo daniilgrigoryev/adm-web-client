@@ -72,7 +72,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydKod" @on-input-change="changeInspVydKod" ></Input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="vuVyd.inspVydKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspVydKod" ></masked-input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
                       <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -118,7 +118,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input--regular" v-model="vuVyd.ogaiVydKod" @on-input-change="changeOgaiVydKod" ></Input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="vuVyd.ogaiVydKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOgaiVydKod" ></masked-input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
                       <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -196,12 +196,14 @@
   import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import WizardModal from "~/components/wizard/items/WizardModal";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "FrmEdVuVydEdit",
     components: {
       AsideTemplate,
       WizardModal,
+      MaskedInput,
       DatePickerMask
     },
     async created() {
@@ -478,11 +480,11 @@
     },
     methods: {
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: null
+              inspKod: this.vuVyd.inspVydKod
             }
           });
           this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
@@ -582,14 +584,14 @@
         this.clearInspVydKod();
       },
       async changeInspVydKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.vuVyd.inspVydKod) && express.test(this.vuVyd.inspVydKod)) {
+        if (funcUtils.isNotEmpty(this.vuVyd.inspVydKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
               inspKod: this.vuVyd.inspVydKod
             }
           });
+          this.clearInspVyd();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
@@ -599,8 +601,6 @@
             this.vuVyd.inspVydDolz = data.inspDolz;
             this.vuVyd.inspVydRang = data.inspRang;
             this.store();
-          } else {
-            this.clearInspVyd();
           }
         } else {
           this.clearInspVyd();
@@ -614,12 +614,11 @@
               ogaiKod: this.vuVyd.ogaiVydKod
             }
           });
+          this.clearOgai();
           let ogaiList = JSON.parse(eventResponse.response).data;
           if (ogaiList.length > 0) {
             this.ogaiModal.visible = true;
             this.ogaiModal.ogaiList = ogaiList;
-          } else {
-            this.clearOgai();
           }
         } else {
           this.clearOgai();

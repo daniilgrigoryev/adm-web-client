@@ -515,11 +515,11 @@
         this.store();
       },
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: null
+              inspKod: this.decis.inspSostKod
             }
           });
           this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
@@ -559,12 +559,11 @@
               organKod: this.decis.organSostKod
             }
           });
+          this.clearOrganSost();
           let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organModal.visible = true;
             this.organModal.gibddList = gibddList;
-          } else {
-            this.clearOrganSost();
           }
         } else {
           this.clearOrganSost();
@@ -578,26 +577,25 @@
               organKod: this.decis.organNapravlKod
             }
           });
+          this.clearOrganNaprav();
           let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organNapravModal.visible = true;
             this.organNapravModal.gibddList = gibddList;
-          } else {
-            this.clearOrganNaprav();
           }
         } else {
           this.clearOrganNaprav();
         }
       },
       async changeInspSostKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.decis.inspSostKod) && express.test(this.decis.inspSostKod)) {
+        if (funcUtils.isNotEmpty(this.decis.inspSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
               inspKod: this.decis.inspSostKod
             }
           });
+          this.clearInspSost();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
@@ -611,8 +609,6 @@
             this.decis.organSostName = data.ogaiName;
             this.decis.ogaiSostKod = data.ogaiKod;
             this.store();
-          } else {
-            this.clearInspSost();
           }
         } else {
           this.clearInspSost();

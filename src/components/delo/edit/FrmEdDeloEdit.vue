@@ -81,7 +81,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbKod" @on-input-change="changeInspVozbKod" ></Input>
+                  <masked-input inputClass="adm-input adm-input--regular" v-model="delo.inspVozbKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspVozbKod" ></masked-input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -126,7 +126,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" v-model="delo.organVozbKod" @on-input-change="changeOrganVozbKod" ></Input>
+                  <masked-input inputClass="adm-input adm-input--regular" v-model="delo.organVozbKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganVozbKod" ></masked-input>
                 </Col>
                 <Col :xs="2" :md="2" :lg="2">
                   <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -151,7 +151,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" v-model="delo.ogaiNahKod" @on-input-change="changeOgaiNahKod" ></Input>
+                  <masked-input inputClass="adm-input adm-input--regular" v-model="delo.ogaiNahKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOgaiNahKod" ></masked-input>
                 </Col>
                 <Col :xs="24" :md="14" :lg="8">
                   <a href="#" @click="showOgaiModal(true)" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Подразделения</a>
@@ -188,12 +188,14 @@
   import WizardModal from "~/components/wizard/items/WizardModal";
   import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "FrmEdDeloEdit",
     components: {
       AsideTemplate,
       WizardModal,
+      MaskedInput,
       DatePickerMask
     },
     async created() {
@@ -576,11 +578,11 @@
     },
     methods: {
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: null
+              inspKod: this.delo.inspVozbKod
             }
           });
           this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
@@ -670,14 +672,14 @@
       },
 
       async changeInspVozbKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.delo.inspVozbKod) && express.test(this.delo.inspVozbKod)) {
+        if (funcUtils.isNotEmpty(this.delo.inspVozbKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
               inspKod: this.delo.inspVozbKod
             }
           });
+          this.clearInspVozb();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
@@ -690,8 +692,6 @@
             this.delo.organVozbKod = data.organKod;
             this.delo.organVozbName = data.ogaiName;
             this.store();
-          } else {
-            this.clearInspVozb();
           }
         } else {
           this.clearInspVozb();
@@ -705,12 +705,11 @@
               organKod: this.delo.organVozbKod
             }
           });
+          this.clearOrganVozb();
           let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organModal.visible = true;
             this.organModal.gibddList = gibddList;
-          } else {
-            this.clearOrganVozb();
           }
         } else {
           this.clearOrganVozb();

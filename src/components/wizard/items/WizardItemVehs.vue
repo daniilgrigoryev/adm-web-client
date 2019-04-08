@@ -65,7 +65,7 @@
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="16">
                     <!-- TODO -->
-                    <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180"
+                    <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="data.regdoc"
                                   :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}"
                                   @onInputChange="storeElementData"></masked-input>
                   </Col>
@@ -291,14 +291,18 @@
             })
           }
         });
+        let modNames = [];
         let modelList = [];
         let modelDict = JSON.parse(JSON.parse(eventResponse.response).data);
         for (let i = 0; i < modelDict.length; i++) {
           let model = modelDict[i];
-          modelList.push({
-            label: model.modName,
-            value: model.modName // id
-          });
+          if (!modNames.includes(model.modName)) {
+            modelList.push({
+              label: model.modName,
+              value: model.modName // id
+            });
+            modNames.push(model.modName);
+          }
         }
         this.modelList = modelList;
       },

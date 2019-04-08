@@ -125,6 +125,12 @@
         }
       },
       onInputChange(e) {
+        let value = e.target.value;
+        if (value.length === 0) {
+          this.$emit('input', null);
+        } else {
+          this.$emit('input', value);
+        }
         this.$emit('onInputChange', e);
       },
       onClick(e) {

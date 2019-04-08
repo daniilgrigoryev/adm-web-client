@@ -43,7 +43,10 @@
                 <small class="adm-form__label">Должностное лицо</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="22" :md="22" :lg="22">
+                    <Col :xs="4" :md="4" :lg="4">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsPost.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
+                    </Col>
+                    <Col :xs="18" :md="18" :lg="18">
                       <Input class="adm-input adm-input--regular" readonly :value="docsPost.inspSostName, docsPost.inspSostDolz, docsPost.inspSostRang | concatByDelimiter(',')"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
@@ -58,7 +61,10 @@
                 <small class="adm-form__label">Подразделение</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="22" :md="22" :lg="22">
+                    <Col :xs="4" :md="4" :lg="4">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsPost.organSostName" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
+                    </Col>
+                    <Col :xs="18" :md="18" :lg="18">
                       <Input class="adm-input adm-input--regular" readonly :value="docsPost.organSostName" ></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
@@ -487,11 +493,11 @@
     },
     methods: {
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: null
+              inspKod: this.docsPost.inspSostKod
             }
           });
           this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
@@ -548,14 +554,14 @@
       },
 
       async changeInspSostKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.docsPost.inspSostKod) && express.test(this.docsPost.inspSostKod)) {
+        if (funcUtils.isNotEmpty(this.docsPost.inspSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
               inspKod: this.docsPost.inspSostKod
             }
           });
+          this.clearInspSost();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
@@ -568,8 +574,6 @@
             this.docsPost.organSostKod = data.organKod;
             this.docsPost.organSostName = data.ogaiName;
             this.store();
-          } else {
-            this.clearInspSost();
           }
         } else {
           this.clearInspSost();
@@ -583,12 +587,11 @@
               organKod: this.docsPost.organSostKod
             }
           });
+          this.clearOrganSost();
           let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organModal.visible = true;
             this.organModal.gibddList = gibddList;
-          } else {
-            this.clearOrganSost();
           }
         } else {
           this.clearOrganSost();

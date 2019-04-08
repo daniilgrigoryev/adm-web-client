@@ -45,6 +45,9 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsProt.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
+                    </Col>
+                    <Col :xs="22" :md="22" :lg="22">
                       <Input class="adm-input adm-input--regular" readonly :value="docsProt.inspSostName, docsProt.inspSostRang | concatByDelimiter(',')" ></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
@@ -59,6 +62,9 @@
                 <small class="adm-form__label">Подразделение</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="22" :md="22" :lg="22">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsProt.organSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
+                    </Col>
                     <Col :xs="22" :md="22" :lg="22">
                       <Input class="adm-input adm-input--regular" readonly :value="docsProt.organSostName" ></Input>
                     </Col>
@@ -238,12 +244,14 @@
   import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import WizardModal from "~/components/wizard/items/WizardModal";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "FrmEdDocsProtEdit",
     components: {
       AsideTemplate,
       WizardModal,
+      MaskedInput,
       DatePickerMask
     },
     async created() {
@@ -539,11 +547,11 @@
     },
     methods: {
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: null
+              inspKod: this.docsProt.inspSostKod
             }
           });
           this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
@@ -600,14 +608,14 @@
       },
 
       async changeInspSostKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.docsProt.inspSostKod) && express.test(this.docsProt.inspSostKod)) {
+        if (funcUtils.isNotEmpty(this.docsProt.inspSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
               inspKod: this.docsProt.inspSostKod
             }
           });
+          this.clearInspSost();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
@@ -620,8 +628,6 @@
             this.docsProt.organSostKod = data.organKod;
             this.docsProt.organSostName = data.ogaiName;
             this.store();
-          } else {
-            this.clearInspSost();
           }
         } else {
           this.clearInspSost();
@@ -635,12 +641,11 @@
               organKod: this.docsProt.organSostKod
             }
           });
+          this.clearOrganSost();
           let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organModal.visible = true;
             this.organModal.gibddList = gibddList;
-          } else {
-            this.clearOrganSost();
           }
         } else {
           this.clearOrganSost();

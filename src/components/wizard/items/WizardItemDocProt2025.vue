@@ -84,7 +84,7 @@
         <small class="adm-form__label">Личный номер сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="22" :md="22" :lg="22">
-            <Input class="adm-input adm-input--regular" v-model="data.inspSostKod" @on-input-change="changeInspSostKod" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
           </Col>
           <Col :xs="2" :md="2" :lg="2">
             <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -181,11 +181,13 @@
   import RequestApi from "../../../assets/js/api/requestApi";
   import WizardModal from "~/components/wizard/items/WizardModal";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "WizardItemDocProt2025",
     components: {
       WizardModal,
+      MaskedInput,
       DatePickerMask
     },
     props: {
@@ -502,14 +504,14 @@
       },
 
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (visible) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
               eCID: this.info.eCID,
               methodName: 'getSinspList',
               data: JSON.stringify({
-                inspKod: null
+                inspKod: this.data.inspSostKod
               })
             }
           });
@@ -547,8 +549,7 @@
         }
       },
       async changeInspSostKod() {
-        let express = /^\d+$/;
-        if (funcUtils.isNotEmpty(this.data.inspSostKod) && express.test(this.data.inspSostKod)) {
+        if (funcUtils.isNotEmpty(this.data.inspSostKod)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
@@ -559,6 +560,7 @@
               })
             }
           });
+          this.clearInspSost();
           let data = JSON.parse(JSON.parse(eventResponse.response).data);
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data[0];
@@ -571,8 +573,6 @@
             this.data.organSostKod = data.organKod;
             this.data.organSostName = data.ogaiName;
             this.storeElementData();
-          } else {
-            this.clearInspSost();
           }
         } else {
           this.clearInspSost();
