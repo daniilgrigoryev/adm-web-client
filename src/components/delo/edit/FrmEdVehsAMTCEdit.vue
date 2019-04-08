@@ -1,17 +1,17 @@
 <template>
-  <aside-template title="Редактирование ТС" v-if="vehsAMTC">
+  <aside-template :listSectionNav="listSectionNav" title="Редактирование ТС" v-if="vehsAMTC">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding">Основные сведения</h2>
-            <div class="adm-form__content py24 px36">
+            <h2 class="adm-form__headding" id="head">Основные сведения</h2>
+            <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">ГРЗ</small>
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="vehsAMTC.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" @onInputChange="store" v-model="vehsAMTC.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
                     </Col>
                   </Row>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.modifavtoName"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.modifavtoName"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -55,14 +55,14 @@
             </div>
           </div>
           <div class="adm-form__container">
-            <h2 class="adm-form__headding">Документы</h2>
-            <div class="adm-form__content py24 px36">
+            <h2 class="adm-form__headding" id="doc">Документы</h2>
+            <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">СТС</small>
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ctc"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.ctc"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.ptcN"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.ptcN"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -82,7 +82,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.ptcDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmax240 wmin180" v-model="vehsAMTC.ptcDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -100,8 +100,8 @@
             </div>
           </div>
           <div class="adm-form__container">
-            <h2 class="adm-form__headding">Технические характеристики</h2>
-            <div class="adm-form__content py24 px36">
+            <h2 class="adm-form__headding" id="teh">Технические характеристики</h2>
+            <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">Категория ТС</small>
                 <div class="adm-form__item_content">
@@ -173,7 +173,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.color"  @on-input-change="store"></Input> -->
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="vehsAMTC.color" @onInputChange="store" :maskProps="{casing: 'upper', placeholder: ''}" placeholder=""></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="vehsAMTC.color" @onInputChange="store" :maskProps="{casing: 'upper', placeholder: ''}" placeholder=""></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -183,7 +183,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massa"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.massa"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -193,7 +193,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.massaMax"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.massaMax"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -204,7 +204,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.yearVyp"  @on-input-change="store"></Input> -->
-                      <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular" clearable :placeholder="maskInputYearVyp.placeholder"></masked-input>
+                      <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular wmax240 wmin180" clearable :placeholder="maskInputYearVyp.placeholder"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -212,14 +212,14 @@
             </div>
           </div>
           <div class="adm-form__container ">
-            <h2 class="adm-form__headding">Агрегаты</h2>
-            <div class="adm-form__content py24 px36">
+            <h2 class="adm-form__headding" id="aggregates">Агрегаты</h2>
+            <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">VIN</small>
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.vin"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.vin"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -229,7 +229,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.nkuzov"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.nkuzov"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -239,7 +239,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.nshasi"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.nshasi"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -247,14 +247,14 @@
             </div>
           </div>
           <div class="adm-form__container ">
-            <h2 class="adm-form__headding">Полис ОСАГО</h2>
-            <div class="adm-form__content py24 px36">
+            <h2 class="adm-form__headding" id="osago">Полис ОСАГО</h2>
+            <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">№</small>
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vehsAMTC.osagoN"></Input>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.osagoN"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -277,7 +277,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.osagoDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmax240 wmin180" v-model="vehsAMTC.osagoDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -287,7 +287,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="vehsAMTC.osagoSrok" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmax240 wmin180" v-model="vehsAMTC.osagoSrok" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -371,6 +371,28 @@
         modelList: null,
         osagoCompanyList: null,
         typeTCList: null,
+        listSectionNav: [
+          {
+            title: "Основные сведения",
+            name: "head",
+          },
+          {
+            title: "Документы",
+            name: "doc",
+          },
+          {
+            title: "Технические характеристики",
+            name: "teh",
+          },
+          {
+            title: "Агрегаты",
+            name: "aggregates",
+          },
+          {
+            title: "Полис ОСАГО",
+            name: "osago",
+          },
+        ],
         maskInputYearVyp: {
           alias: "datetime",
           inputFormat: 'yyyy',
