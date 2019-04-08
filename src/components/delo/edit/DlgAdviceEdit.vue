@@ -1,18 +1,138 @@
 <template>
-    <div>
-        {{dataAdvice}}
-        
-        
+  <aside-template title="Редактирование Извещения">
+
+    <div class="adm-form">
+      <div class="adm-form__container">
+        <h2 class="adm-form__headding" id="head">Редактирование Извещения</h2>
+        <div class="adm-form__content">
+          <Row>
+            <Col span="12">
+              <div class="adm-form__item">
+                <small class="adm-form__label">Номер извещения</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input @onInputChange="store" v-model="dataAdvice.docN" inputClass="adm-input adm-input--regular" :maskProps="{placeholder: '', regex: '[0-9\/\-]+'}" clearable></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+            <Col span="12">
+              <div class="adm-form__item">
+                <small class="adm-form__label">Дата рассмотрения</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="16">
+                      <DatePickerMask v-model="dataAdvice.dateRasm" @change="changeDateNar" class="adm-input adm-input--regular wmin120 wmax180"  clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col span="12">
+              <div class="adm-form__item">
+                <small class="adm-form__label">Дата составления</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <DatePickerMask v-model="dataAdvice.dateSost" @change="changeDateNar" class="adm-input adm-input--regular"  clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+            <Col span="12">
+              <div class="adm-form__item">
+                <small class="adm-form__label">Дата вручения</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <DatePickerMask v-model="dataAdvice.dateUved" @change="changeDateNar" class="adm-input adm-input--regular"  clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </div> 
+      </div>
+      <div class="adm-form__container">
+        <h2 class="adm-form__headding">Должностное лицо составившее Извещение</h2>
+          <div class="adm-form__content">
+            <div class="adm-form__item">
+              <small class="adm-form__label">Должностное лицо</small><!-- Личный номер - ФИО сотрудника Звание / Должность -->
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="22" :md="22" :lg="22">
+                    <Input class="adm-input adm-input--regular" readonly :value="dataAdvice.inspSostKod, dataAdvice.inspSostName | concatByDelimiter('-'), dataAdvice.inspSostRang, dataAdvice.inspSostDolz | concatByDelimiter(',')"></Input>
+                  </Col>
+                  <Col :xs="2" :md="2" :lg="2">
+                    <!-- <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                      <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
+                    </Button> -->
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <!-- <div class="adm-form__item">
+              <small class="adm-form__label">Подразделение - Код подразделения</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="22" :md="22" :lg="22">
+                    <Input class="adm-input adm-input--regular" readonly :value="docsPost.organSostName" ></Input>
+                  </Col>
+                  <Col :xs="2" :md="2" :lg="2">
+                    <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                      <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div class="adm-form__item">
+              <small class="adm-form__label">Место составления, индекс</small>
+              <div class="adm-form__item_content">
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="22" :md="22" :lg="22">
+                    <Input class="adm-input adm-input--regular" disabled v-model="docsPost.placeSost.placeFull"></Input>
+                  </Col>
+                  <Col :xs="2" :md="2" :lg="2">
+                    <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                      <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+            </div> -->
+          </div>
+      </div>
     </div>
+
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Отменить изменения</Button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
+    </div>
+  </aside-template>
 </template>
 
 <script>
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
+  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
+  import MaskedInput from "../../shared/MaskedInput";
+  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
 
   export default {
     name: "DlgAdviceEdit",
+    components: {
+      AsideTemplate,
+      MaskedInput,
+      DatePickerMask
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -33,7 +153,7 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         }else{
-            this.dataAdvice = dataAdvice;
+          this.dataAdvice = dataAdvice;
         }
 
       } catch (e) {
