@@ -7,10 +7,10 @@
         </Col>
       </Row>
       <div class="adm-form__item">
-        <small class="adm-form__label">Время нарушения</small>
+        <small class="adm-form__label">Дата и время нарушения</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateNar" @change="changeDateNar" clearable type="time" placeholder="чч:мм" momentFormat="HH:mm" maskFormat="HH:MM"></DatePickerMask>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateNar" @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -53,9 +53,11 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import wizardItemDocPostSecondMethods from "~/components/mixins/post/wizardItemDocPostSecondMethods.js";
 
   export default {
     name: "WizardItemDocPostSecond",
+    mixins: [wizardItemDocPostSecondMethods],
     components: {
       DatePickerMask
     },
@@ -100,73 +102,6 @@
         }
       },
 
-      async fillPnpaList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'getPnpaDict',
-            data: null
-          }
-        });
-        let pnpaList = [];
-        let pnpaDict = JSON.parse(JSON.parse(eventResponse.response).data);
-        for (let i = 0; i < pnpaDict.length; i++) {
-          let pnpa = pnpaDict[i];
-          pnpaList.push({
-            label: pnpa.PNPA_NAME,
-            value: pnpa.PNPA_KOD,
-            id: pnpa.PNPA_ID
-          });
-        }
-        this.pnpaList = pnpaList;
-      },
-      async fillStotvSearchInfo() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'getStotvSearchInfo',
-            data: JSON.stringify({
-              date: this.data.dateNar
-            })
-          }
-        });
-        let stotvSearchInfoList = [];
-        let stotvSearchInfoDict = JSON.parse(JSON.parse(eventResponse.response).data);
-        for (let i = 0; i < stotvSearchInfoDict.length; i++) {
-          let stotvSearchInfo = stotvSearchInfoDict[i];
-          stotvSearchInfoList.push({
-            label: stotvSearchInfo.stotvName,
-            value: stotvSearchInfo.stotvKod,
-            id: stotvSearchInfo.stotvId
-          });
-        }
-        this.stotvSearchInfoList = stotvSearchInfoList;
-      },
-      async fillKBKSearchInfo() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'getKBKSearchInfo',
-            data: JSON.stringify({
-              stotvId: this.data.stotvId
-            })
-          }
-        });
-        let KBKSearchInfoList = [];
-        let KBKSearchInfoDict = JSON.parse(JSON.parse(eventResponse.response).data);
-        for (let i = 0; i < KBKSearchInfoDict.length; i++) {
-          let KBKSearchInfo = KBKSearchInfoDict[i];
-          KBKSearchInfoList.push({
-            label: KBKSearchInfo.kbkName,
-            value: KBKSearchInfo.kbk,
-            id: KBKSearchInfo.id
-          });
-        }
-        this.KBKSearchInfoList = KBKSearchInfoList;
-      },
       changeDateNar() {
         this.stotvSearchInfoList = null;
         this.data.stotvId = null;
