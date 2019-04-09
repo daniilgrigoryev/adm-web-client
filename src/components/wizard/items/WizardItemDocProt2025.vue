@@ -504,14 +504,14 @@
       },
 
       async showDolzModal(visible) {
-        if (visible) {
+        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
               eCID: this.info.eCID,
               methodName: 'getSinspList',
               data: JSON.stringify({
-                inspKod: this.data.inspSostKod
+                inspKod: null
               })
             }
           });
@@ -520,7 +520,7 @@
         this.dolzModal.visible = visible;
       },
       async showSudModal(visible) {
-        if (visible) {
+        if (visible && funcUtils.isEmpty(this.sudModal.sudList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
@@ -530,8 +530,6 @@
             }
           });
           this.sudModal.sudList = JSON.parse(JSON.parse(eventResponse.response).data);
-        } else {
-          this.sudModal.sudList = null;
         }
         this.sudModal.visible = visible;
       },
