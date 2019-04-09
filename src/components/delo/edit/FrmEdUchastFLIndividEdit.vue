@@ -34,7 +34,6 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastIndivid.individ.firstName" ></Input> -->
                       <masked-input inputClass="adm-input adm-input--regular wmax240" @onInputChange="store" v-model="uchastIndivid.individ.firstName" :maskProps="maskInputFIO" :maxlength="80"></masked-input>
                     </Col>
                   </Row>
@@ -45,7 +44,6 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular " @on-input-change="store" v-model="uchastIndivid.individ.secondName" ></Input> -->
                       <masked-input inputClass="adm-input adm-input--regular wmax240" @onInputChange="store" v-model="uchastIndivid.individ.secondName" :maskProps="maskInputFIO" :maxlength="25"></masked-input>
                     </Col>
                   </Row>
@@ -56,7 +54,6 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="uchastIndivid.individ.thirdName" ></Input> -->
                       <masked-input inputClass="adm-input adm-input--regular wmax240"  @onInputChange="store" v-model="uchastIndivid.individ.thirdName"  :maskProps="maskInputFIO" :maxlength="25"></masked-input>
                     </Col>
                   </Row>
