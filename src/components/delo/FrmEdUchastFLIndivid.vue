@@ -18,7 +18,6 @@
 
     <div class="view-data">
       <div class="view-data__container">
-
         <div class="flex-parent flex-parent--center-cross">
           <div class="s40">
             <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
