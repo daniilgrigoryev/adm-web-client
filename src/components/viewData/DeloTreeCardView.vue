@@ -661,7 +661,7 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
           let params = {
             scenarioName: 'AddUchast',
-            node: copyNode
+            node: copyNode,
           };
 
           formStack.toNext({
