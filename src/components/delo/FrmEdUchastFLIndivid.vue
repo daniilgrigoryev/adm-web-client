@@ -21,7 +21,7 @@
 
         <div class="flex-parent flex-parent--center-cross">
           <div class="s40">
-            <img src="../../assets/images/owner.svg" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
+            <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
           </div>
           <div class="ml18">
             <div class="mt12">
