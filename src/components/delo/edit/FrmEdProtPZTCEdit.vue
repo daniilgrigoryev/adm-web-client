@@ -279,7 +279,7 @@
         stotvSearchInfoList: null,
         listSectionNav: [
           {
-            title: "Ввод данных по ПЗТС",
+            title: "Протокол по делу",
             name: "head",
           },
           {
