@@ -7,7 +7,7 @@
           <div class="adm-form__container">
             <h2 class="adm-form__headding">Редактирование Участника дела</h2>
             <div class="adm-form__content">
-              <div class="adm-form__item">
+              <div v-if="tipList && tipList.length > 0" class="adm-form__item">
                 <small class="adm-form__label">Тип участника</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
@@ -204,13 +204,14 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
+          this.uchastIndivid = uchastIndivid;
+          this.parseBirthday(uchastIndivid);
+          
           await this.fillVehsList();
+          await this.fillTipVidList();
           await this.fillTipList();
           await this.fillBirthMestoList();
           await this.fillGragdanstvoList();
-
-          this.uchastIndivid = uchastIndivid;
-          this.parseBirthday(uchastIndivid);
 
           await this.readDelo();
         }
@@ -232,6 +233,7 @@
         uchastIndivid: null,
         vehsList: null,
         tipList: null,
+        tipVidList: null,
         birthMestoList: null,
         gragdanstvoList: null,
         maskInputFIO: {
@@ -306,12 +308,28 @@
         let tipDict = JSON.parse(eventResponse.response).data;
         for (let i = 0; i < tipDict.length; i++) {
           let tip = tipDict[i];
-          tipList.push({
-            label: tip.UCHAST_TIP_NAME,
-            value: tip.UCHAST_TIP
-          });
+          if (this.tipVidList.includes(tip.UCHAST_TIP)) {
+            tipList.push({
+              label: tip.UCHAST_TIP_NAME,
+              value: tip.UCHAST_TIP
+            });
+          }
         }
         this.tipList = tipList;
+      },
+      async fillTipVidList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getTipVidDictionary'
+        });
+        let tipVidList = [];
+        let tipVidDict = JSON.parse(eventResponse.response).data;
+        for (let i = 0; i < tipVidDict.length; i++) {
+          let tipVid = tipVidDict[i];
+          if (this.uchastIndivid.uchastVid === tipVid.UCHAST_VID && funcUtils.isNotEmpty(tipVid.UCHAST_TIP)) {
+            tipVidList.push(tipVid.UCHAST_TIP);
+          }
+        }
+        this.tipVidList = tipVidList;
       },
       async fillBirthMestoList() {
         let eventResponse = await RequestApi.prepareData({

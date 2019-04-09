@@ -233,12 +233,14 @@
 
         if(funcUtils.isNotEmpty(current.params) && funcUtils.isNotEmpty(current.params.type)) {
           switch (current.params.type) {
-            case 'placeSost':
+            case 'placeSost': {
               this.title = "Редактирование адреса места вынесения";
-            break;
-            case 'placeNar':
+              break;
+            }
+            case 'placeNar': {
               this.title = "Редактирование адреса места нарушения";
-            break;
+              break;
+            }
           }
         }
 
