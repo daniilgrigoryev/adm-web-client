@@ -66,6 +66,11 @@
                   <div v-for="image in photos" :key="image" @click="acitveGalleryItem = image" class="view-photos__item flex-parent flex-parent--center-cross flex-parent--center-main">
                     <img alt="img" @load="checkPic($event.target)" :src="image"/>
                   </div>
+
+                  <div class="flex-parent flex-parent--center-cross flex-parent--center-main">
+                    <div id="dc-object-map" style="width: 200px; height: 200px;"></div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -145,12 +150,15 @@
 </template>
 
 <script>
+  import * as ConstantUtils from "../../assets/js/utils/constantUtils";
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
   import $ from "jquery";
+  import mapboxgl from 'mapbox-gl';
+  import '~/assets/mapbox/mapbox-gl.css';
 
   export default {
     name: "DlgEdFotoMaterial",
@@ -266,11 +274,51 @@
             }
           }
         }
+
+        if (vm.fotofix) {
+          this.createMapObjects('dc-object-map', [vm.fotofix.violPlaceLongitude, vm.fotofix.violPlaceLatitude]);
+          this.drawCamera([vm.fotofix.violPlaceLongitude, vm.fotofix.violPlaceLatitude]);
+        }
+      },
+      createMapObjects(id, coord) {
+        if (!coord[0]) {
+          coord = [37.632478, 55.749408];
+        }
+        this.map = new mapboxgl.Map({
+            container: id,
+            style: ConstantUtils.MAP_STYLE,
+            center: [coord[0], coord[1]],
+            zoom: 12,
+            showCompass: false,
+          }
+        );
+      },
+      drawCamera(coord) {
+        if (!coord[0]) {
+          coord = [37.632478, 55.749408];
+        }
+        document.querySelectorAll('.marker').forEach(function (marker) {
+          marker.remove();
+        });
+        let feature = {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [coord[0], coord[1]]
+          }
+        };
+        let el = document.createElement('div');
+        el.className = 'marker';
+        el.className += ' iconCamera';
+        new mapboxgl.Marker(el)
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(this.map);
       },
     },
     data() {
       return {
         photos: [],
+        map: null,
         acitveGalleryItem: ""
       }
     },
@@ -282,6 +330,13 @@
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
+        }
+        return res;
+      },
+      fotofix() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.fotofix;
         }
         return res;
       },
@@ -301,6 +356,19 @@
     img {
       max-width: 100%;
       max-height: 100%;
+    }
+  }
+</style>
+
+<style lang="scss">
+  .marker {
+    width: 20px;
+    height: 20px;
+    z-index: 3;
+
+    &.iconCamera {
+      background: url('../../assets/images/map-cam-b.svg') no-repeat center;
+      background-size: contain;
     }
   }
 </style>

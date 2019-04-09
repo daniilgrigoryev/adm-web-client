@@ -8,9 +8,9 @@
               Ввод данных по протоколу о задержании ТС
             </h2>
             <div class="adm-form__content">
-              <wizard-item-prot-evac-one id="DocProtEvacOne" v-if="isVisible('DocProtEvacOne')" ref="DocProtEvacOne" :info="getInfo('DocProtEvacOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-one>
+              <wizard-item-prot-one id="DocProtEvacOne" v-if="isVisible('DocProtEvacOne')" ref="DocProtEvacOne" :info="getInfo('DocProtEvacOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-one>
               <wizard-item-place v-if="isVisible('DocProtEvacOne.PlaceSost')" ref="DocProtEvacOne.PlaceSost" :info="getInfo('DocProtEvacOne.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-prot-evac-two id="DocProtEvacTwo" v-if="isVisible('DocProtEvacTwo')" ref="DocProtEvacTwo" :info="getInfo('DocProtEvacTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-two>
+              <wizard-item-prot-two id="DocProtEvacTwo" v-if="isVisible('DocProtEvacTwo')" ref="DocProtEvacTwo" :info="getInfo('DocProtEvacTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-two>
             </div>
           </div>
           <div v-if="isNotEmptyParentNode('LVOK')">
@@ -39,9 +39,9 @@
           <div class="adm-form__container">
             <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
-              <wizard-item-prot-evac-three id="DocProtEvacThree" v-if="isVisible('DocProtEvacThree')" ref="DocProtEvacThree" :info="getInfo('DocProtEvacThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-three>
+              <wizard-item-prot-three id="DocProtEvacThree" v-if="isVisible('DocProtEvacThree')" ref="DocProtEvacThree" :info="getInfo('DocProtEvacThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
               <wizard-item-place v-if="isVisible('DocProtEvacThree.PlaceNar')" ref="DocProtEvacThree.PlaceNar" :info="getInfo('DocProtEvacThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-prot-evac-four id="DocProtEvacFour" v-if="isVisible('DocProtEvacFour')" ref="DocProtEvacFour" :info="getInfo('DocProtEvacFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-four>
+              <wizard-item-prot-four id="DocProtEvacFour" v-if="isVisible('DocProtEvacFour')" ref="DocProtEvacFour" :info="getInfo('DocProtEvacFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
             </div>
           </div>
           <wizard-item-prot-evac-five id="evac" v-if="isVisible('DocProtEvacFive')" ref="DocProtEvacFive" :info="getInfo('DocProtEvacFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
@@ -72,10 +72,10 @@
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import WizardItemProtEvacOne from "./items/protEvac/WizardItemProtEvacOne.vue";
-  import WizardItemProtEvacTwo from "./items/protEvac/WizardItemProtEvacTwo.vue";
-  import WizardItemProtEvacThree from "./items/protEvac/WizardItemProtEvacThree.vue";
-  import WizardItemProtEvacFour from "./items/protEvac/WizardItemProtEvacFour.vue";
+  import WizardItemProtOne from "./items/WizardItemProtOne.vue";
+  import WizardItemProtTwo from "./items/WizardItemProtTwo.vue";
+  import WizardItemProtThree from "./items/WizardItemProtThree.vue";
+  import WizardItemProtFour from "./items/WizardItemProtFour.vue";
   import WizardItemProtEvacFive from "./items/protEvac/WizardItemProtEvacFive.vue";
   import WizardItemPlace from "./items/WizardItemPlace.vue";
   import WizardItemLvok from "./items/WizardItemLvok.vue";
@@ -95,10 +95,10 @@
     },
     components: {
       AsideTemplate,
-      WizardItemProtEvacOne,
-      WizardItemProtEvacTwo,
-      WizardItemProtEvacThree,
-      WizardItemProtEvacFour,
+      WizardItemProtOne,
+      WizardItemProtTwo,
+      WizardItemProtThree,
+      WizardItemProtFour,
       WizardItemProtEvacFive,
       WizardItemPlace,
       WizardItemLvok,

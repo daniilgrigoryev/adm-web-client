@@ -5,6 +5,7 @@
     <wizard-scenario-prot-evac v-if="isVisible('CreateProtEvac')" ref="CreateProtEvac" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-evac>
     <wizard-scenario-prot-a-p-n v-if="isVisible('CreateProtAPN')" ref="CreateProtAPN" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-a-p-n>
     <wizard-scenario-add-uchast v-if="isVisible('AddUchast')" ref="AddUchast" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-uchast>
+    <wizard-scenario-definition v-if="isVisible('CreateDefinition')" ref="CreateDefinition" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-definition>
   </div>
 </template>
 
@@ -15,6 +16,7 @@
   import WizardScenarioPost from "~/components/wizard/WizardScenarioPost";
   import WizardScenarioProtEvac from "~/components/wizard/WizardScenarioProtEvac";
   import WizardScenarioProtAPN from "~/components/wizard/WizardScenarioProtAPN";
+  import WizardScenarioDefinition from "~/components/wizard/WizardScenarioDefinition";
   import WizardScenarioAddUchast from "~/components/wizard/WizardScenarioAddUchast";
 
   export default {
@@ -24,6 +26,7 @@
       WizardScenarioPost,
       WizardScenarioProtAPN,
       WizardScenarioProtEvac,
+      WizardScenarioDefinition,
       WizardScenarioAddUchast
     },
     async created() {

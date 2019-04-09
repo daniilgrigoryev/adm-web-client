@@ -24,6 +24,8 @@
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "npm": "^6.4.1",
+    "mapbox-gl": "^0.45.0",
+    "mapbox-gl-vue": "^1.9.0",
     "source-sans-pro": "^2.20.2",
     "vue": "^2.5.16"
   },
