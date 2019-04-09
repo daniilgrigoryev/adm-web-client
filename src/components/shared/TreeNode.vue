@@ -7,7 +7,7 @@
             <img :src="iconNode" alt="">
           </div>
           <div class="col mx18 formatter">
-            <p v-html="format" class="adm-text-big color-dark-base txt-break-word"></p>
+            <p v-html="format" class="adm-text-big color-dark-base"></p>
           </div>
           <span v-if="isParent && isFolder">
             <img v-if='open' src='../../assets/images/controls-switch-chevron-up.svg'>

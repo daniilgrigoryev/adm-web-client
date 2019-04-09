@@ -353,12 +353,27 @@ html, body, #app {
       position: absolute;
       // right: 0;
       // top: 8px;
-      bottom: 0;
+      bottom: 0!important;
       right: 0;
     }
   }
 }
 // ________сортировка для главной таблицы в deloReestr
+
+// ________все остальные таблицы
+.custom-table{
+  .ivu-table-cell{
+    position: relative;
+    .ivu-table-sort{
+      position: absolute;
+      // right: 0;
+      // top: 8px;
+      bottom: 4px;
+      right: 0;
+    }
+  }
+}
+// ________все остальные таблицы
 
 
 .custom-table {
