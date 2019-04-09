@@ -111,14 +111,14 @@ export default {
   },
   methods: {
     async showRasmModal(visible) {
-      if (visible) {
+      if (visible && funcUtils.isEmpty(this.rasmModal.rasmList)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
             eCID: this.info.eCID,
             methodName: 'getGibddDict',
             data: JSON.stringify({
-              organKod: this.data.organRasmKod
+              organKod: null
             })
           }
         });

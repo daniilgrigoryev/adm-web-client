@@ -106,7 +106,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
                   <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tiptcKod"
-                          clearable @on-change="storeElementData" filterable>
+                          clearable @on-change="changeTipTc" filterable>
                     <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}
                     </Option>
                   </Select>
@@ -120,7 +120,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
                   <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod"
-                          clearable @on-change="storeElementData" filterable>
+                          :disabled="!isNotEmptyTipTcKod()" clearable @on-change="storeElementData" filterable>
                     <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}
                     </Option>
                   </Select>

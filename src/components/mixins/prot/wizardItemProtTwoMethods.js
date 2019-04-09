@@ -302,14 +302,14 @@ export default {
       this.clearInspSostKod();
     },
     async showDolzModal(visible) {
-      if (visible) {
+      if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
             eCID: this.info.eCID,
             methodName: 'getSinspList',
             data: JSON.stringify({
-              inspKod: this.data.inspSostKod
+              inspKod: null
             })
           }
         });
@@ -318,14 +318,14 @@ export default {
       this.dolzModal.visible = visible;
     },
     async showOrganModal(visible) {
-      if (visible) {
+      if (visible && funcUtils.isEmpty(this.organModal.gibddList)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
             eCID: this.info.eCID,
             methodName: 'getGibddDict',
             data: JSON.stringify({
-              organKod: this.data.organSostKod
+              organKod: null
             })
           }
         });

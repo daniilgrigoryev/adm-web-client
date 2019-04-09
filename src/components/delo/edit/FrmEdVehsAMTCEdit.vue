@@ -121,7 +121,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tiptcKod"
-                              clearable @on-change="store" filterable>
+                              clearable @on-change="changeTipTc" filterable>
                         <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -134,7 +134,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tipkuzKod"
-                              clearable @on-change="store" filterable>
+                              :disabled="!isNotEmptyTipTcKod()" clearable @on-change="store" filterable>
                         <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -341,7 +341,9 @@
         } else {
           this.vehsAMTC = vehsAMTC;
 
-          await this.fillKuzovTypeList();
+          if (this.isNotEmptyTipTcKod()) {
+            await this.fillKuzovTypeList();
+          }
           await this.fillMarkAvtoList();
           await this.fillMotorTypeList();
           await this.fillMotorEcologClassList();
@@ -419,7 +421,10 @@
       },
       async fillKuzovTypeList() {
         let eventResponse = await RequestApi.prepareData({
-          method: 'getKuzovTypeDictionary'
+          method: 'getKuzovTypeDictionary',
+          params: {
+            tipTcKod: this.vehsAMTC.tiptcKod
+          }
         });
         let kuzovTypeList = [];
         let kuzovTypeDict = JSON.parse(eventResponse.response).data;
@@ -529,6 +534,14 @@
         }
         this.typeTCList = typeTCList;
       },
+      async changeTipTc() {
+        this.kuzovTypeList = null;
+        this.vehsAMTC.tipkuzKod = null;
+        if (this.isNotEmptyTipTcKod()) {
+          await this.fillKuzovTypeList();
+        }
+        this.store();
+      },
       async changeMarkaAvto() {
         this.modelList = null;
         this.vehsAMTC.modavtoName = null;
@@ -539,6 +552,9 @@
       },
       isNotEmptyMarkId() {
         return funcUtils.isNotEmpty(this.vehsAMTC.markaAvto);
+      },
+      isNotEmptyTipTcKod() {
+        return funcUtils.isNotEmpty(this.vehsAMTC.tiptcKod);
       },
       store() {
         RequestApi.prepareData({

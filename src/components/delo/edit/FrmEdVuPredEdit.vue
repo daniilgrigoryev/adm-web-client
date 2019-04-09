@@ -312,11 +312,11 @@
     },
     methods: {
       async showOgaiModal(visible) {
-        if (visible) {
+        if (visible && funcUtils.isEmpty(this.ogaiModal.ogaiList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
-              ogaiKod: this.vuPred.ogaiVydKod
+              ogaiKod: null
             }
           });
           let ogaiList = JSON.parse(eventResponse.response).data;

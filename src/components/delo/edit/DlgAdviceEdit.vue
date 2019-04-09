@@ -507,11 +507,11 @@
         });
       },
       async showDolzModal(visible) {
-        if (visible) {
+        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: this.dataAdvice.inspSostKod
+              inspKod: null
             }
           });
           this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
@@ -519,11 +519,11 @@
         this.dolzModal.visible = visible;
       },
       async showOrganModal(visible) {
-        if (visible) {
+        if (visible && funcUtils.isEmpty(this.organModal.gibddList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
-              organKod: this.dataAdvice.organSostKod
+              organKod: null
             }
           });
           this.organModal.gibddList = JSON.parse(eventResponse.response).data;
