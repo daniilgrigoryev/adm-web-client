@@ -11,7 +11,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" v-model="data.adr.regionId" filterable clearable @on-change="changeRegion">
+                      <Select class="adm-input adm-input--regular wmin180" v-model="data.adr.regionId" filterable clearable @on-change="store">
                         <Option class="txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
                       </Select>
                     </Col>
@@ -24,7 +24,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                      <Select class="adm-input adm-input--regular wmin180" ref="rayon" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
                         <Option class="txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -37,7 +37,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
+                      <Select class="adm-input adm-input--regular wmin180" ref="city" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" @on-query-change="changeCity">
                         <Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -51,7 +51,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+                      <Select class="adm-input adm-input--regular wmin180" ref="street" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" @on-query-change="changeStreet">
                         <Option class="txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -120,7 +120,6 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular" v-model="data.placeId" ></Input> -->
                       <Select class="adm-input adm-input--regular wmin180" v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
                         <Option class="txt-break-word" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
@@ -266,81 +265,56 @@
         streetsList: null,
         roadsList: null,
         placesList: null,
-        dopStreetsList: null,
-        dopRoadsList: null,
-        dopPlacesList: null,
         title: 'Редактирование адреса места нарушения / места составления'
-      }
-    },
-    computed: {
-      showDopAddress() {
-        let res = false;
-        if (this.data) {
-          res = this.data.placeTip5 === true || this.data.placeTip6 === true || this.data.placeTip8 === true;
-        }
-        return res;
       }
     },
     methods: {
       async initData(data) {
-        data['placeTip1'] = data['placeTip1'] == 1;
-        data['placeTip2'] = data['placeTip2'] == 1;
-        data['placeTip3'] = data['placeTip3'] == 1;
-        data['placeTip4'] = data['placeTip4'] == 1;
-        data['placeTip5'] = data['placeTip5'] == 1;
-        data['placeTip6'] = data['placeTip6'] == 1;
-        data['placeTip7'] = data['placeTip7'] == 1;
-        data['placeTip8'] = data['placeTip8'] == 1;
-
         this.data = data;
-
-        await this.fillRegionList();
-        await this.fillRayonList();
-        await this.fillCityList();
-        await this.fillRoadList();
-        await this.fillPlaceList();
-        await this.fillStreetList();
-
-        if (this.showDopAddress) {
-          await this.fillDopRoadList();
-          await this.fillDopPlaceList();
-          await this.fillDopStreetList();
-        }
-      },
-      async changeRegion() {
+        this.regionsList = null;
         this.rayonsList = null;
         this.citiesList = null;
         this.streetsList = null;
-        this.data.adr.rayonId = null;
-        this.data.adr.cityId = null;
-        this.data.adr.streetId = null;
 
-        await this.fillRayonList();
-
-        this.store();
+        await this.fillRegionList();
+        await this.fillRoadList();
+        await this.fillPlaceList();
+        if (this.isNotEmptyRegionId()) {
+          await this.fillRayonList();
+        }
+        if ((this.isNotEmptyRegionId() && this.isNotEmptyCityId()) || this.isNotEmptyRayonId()) {
+          await this.fillCityList();
+        }
+        if ((this.isNotEmptyRegionId() && this.isNotEmptyStreetId()) || this.isNotEmptyRayonId() || this.isNotEmptyCityId()) {
+          await this.fillStreetList();
+        }
       },
       changeRayon() {
-        this.citiesList = null;
-        this.streetsList = null;
-        this.data.adr.cityId = null;
-        this.data.adr.streetId = null;
+        if (!this.isNotEmptyRayonId() && (this.isNotEmptyCityId() && this.isNotEmptyStreetId())) {
+          this.$refs.rayon.reset();
+        } else if (this.isNotEmptyRayonId()) {
+          this.data.adr.cityId = null;
+          this.data.adr.streetId = null;
+          this.$refs.city.reset();
+          this.$refs.street.reset();
+        }
 
         this.store();
       },
       async changeCity(query) {
         let limit;
         if (this.isNotEmptyRayonId()) {
-          limit = 1;
+          limit = 0;
         } else if (this.isNotEmptyRegionId()) {
-          limit = 2;
+          limit = 1;
         }
         if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.citiesList = null;
-          this.streetsList = null;
           this.data.adr.cityId = null;
           this.data.adr.streetId = null;
-        } else if (query.length > limit) {
+        } else if (query.length >= limit) {
           await this.fillCityList(query);
+        } else {
+          this.citiesList = null;
         }
 
         this.store();
@@ -348,17 +322,18 @@
       async changeStreet(query) {
         let limit;
         if (this.isNotEmptyCityId()) {
-          limit = 1;
+          limit = 0;
         } else if (this.isNotEmptyRayonId()) {
-          limit = 2;
+          limit = 1;
         } else if (this.isNotEmptyRegionId()) {
-          limit = 3;
+          limit = 2;
         }
         if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.streetsList = null;
           this.data.adr.streetId = null;
-        } else if (query.length > limit) {
+        } else if (query.length >= limit) {
           await this.fillStreetList(query);
+        } else {
+          this.streetsList = null;
         }
 
         this.store();
@@ -374,77 +349,6 @@
           this.data.roadId = null;
         }
         this.store();
-      },
-
-      async changeDopStreet(query) {
-        let limit;
-        if (this.isNotEmptyCityId()) {
-          limit = 1;
-        } else if (this.isNotEmptyRayonId()) {
-          limit = 2;
-        } else if (this.isNotEmptyRegionId()) {
-          limit = 3;
-        }
-        if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.dopStreetsList = null;
-          this.data.adrDop.streetId = null;
-        } else if (query.length > limit) {
-          await this.fillDopStreetList(query);
-        }
-
-        this.store();
-      },
-      changeDopPlace(query) {
-        if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.data.dopPlaceId = null;
-        }
-        this.store();
-      },
-      changeDopRoad(query) {
-        if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.data.dopRoadId = null;
-        }
-        this.store();
-      },
-      async changePlaceTip(placeTip) {
-        let val = this.data[placeTip];
-        if (placeTip === 'placeTip5' || placeTip === 'placeTip6' || placeTip === 'placeTip8') {
-          this.data['placeTip1'] = false;
-          this.data['placeTip2'] = false;
-          this.data['placeTip3'] = false;
-          this.data['placeTip4'] = false;
-          this.data['placeTip7'] = false;
-          this.clearDopAddress();
-
-          if (val) {
-            this.data['placeTip5'] = placeTip === 'placeTip5' ? val : false;
-            this.data['placeTip6'] = placeTip === 'placeTip6' ? val : false;
-            this.data['placeTip8'] = placeTip === 'placeTip8' ? val : false;
-            if (funcUtils.isEmpty(this.dopStreetsList) && funcUtils.isEmpty(this.dopPlacesList)) {
-              await this.fillDopRoadList();
-              await this.fillDopPlaceList();
-            }
-          }
-        } else if (placeTip !== 'placeTip5' && placeTip !== 'placeTip6' && placeTip !== 'placeTip8' && this.showDopAddress) {
-          this.data['placeTip5'] = false;
-          this.data['placeTip6'] = false;
-          this.data['placeTip8'] = false;
-          this.clearDopAddress();
-        }
-
-        this.store();
-      },
-      clearDopAddress() {
-        this.data.adrDop.streetId = null;
-        this.data.dopRoadId = null;
-        this.data.dopPlaceId = null;
-        this.data.dopMachta = null;
-        this.data.dopMgt = null;
-        this.data.dopKm = null;
-        this.data.adrDop.ndom = null;
-        this.data.adrDop.nkorpus = null;
-        this.data.adrDop.nstroenie = null;
-        this.data.dopDopSved = null;
       },
 
       async fillRegionList() {
@@ -605,75 +509,6 @@
         }
       },
 
-      async fillDopRoadList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getRoads'
-        });
-        let roadsList = [];
-        let roadsDict = JSON.parse(eventResponse.response).data;
-        for (let i = 0; i < roadsDict.length; i++) {
-          let road = roadsDict[i];
-          roadsList.push({
-            label: road.NAME,
-            value: road.ID
-          });
-        }
-        this.dopRoadsList = roadsList;
-      },
-      async fillDopPlaceList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getPlaces'
-        });
-        let placesList = [];
-        let placesDict = JSON.parse(eventResponse.response).data;
-        for (let i = 0; i < placesDict.length; i++) {
-          let place = placesDict[i];
-          placesList.push({
-            label: place.PLACE_NAME,
-            value: place.PLACE_ID
-          });
-        }
-        this.dopPlacesList = placesList;
-      },
-      async fillDopStreetList(query = '') {
-        let eventResponse;
-        if (this.isNotEmptyCityId()) {
-          eventResponse = await RequestApi.prepareData({
-            method: 'getStreetsDictByCity',
-            params: {
-              cityId: this.data.adr.cityId,
-              substr: query
-            },
-            withSpinner: false
-          });
-        } else if (this.isNotEmptyRayonId()) {
-          eventResponse = await RequestApi.prepareData({
-            method: 'getStreetsDictByRayon',
-            params: {
-              rayonId: this.data.adr.rayonId,
-              substr: query
-            },
-            withSpinner: false
-          });
-        }
-
-        if (eventResponse) {
-          let streetsList = [];
-          let streetsDict = JSON.parse(eventResponse.response).data;
-          for (let i = 0; i < streetsDict.length; i++) {
-            let street = streetsDict[i];
-            if (funcUtils.isNotEmpty(this.data.adrDop.streetId) && street.id != this.data.adrDop.streetId) {
-              continue;
-            }
-            streetsList.push({
-              label: street.name,
-              value: street.id
-            });
-          }
-          this.dopStreetsList = streetsList;
-        }
-      },
-
       async save() {
         let eventResponse = await RequestApi.prepareData({
           method: 'save'
@@ -694,21 +529,14 @@
       isNotEmptyRayonId() {
         return funcUtils.isNotEmpty(this.data.adr.rayonId);
       },
+      isNotEmptyStreetId() {
+        return funcUtils.isNotEmpty(this.data.adr.streetId);
+      },
       async store() {
-        let copyData = JSON.parse(JSON.stringify(this.data));
-        copyData['placeTip1'] = copyData['placeTip1'] ? 1 : null;
-        copyData['placeTip2'] = copyData['placeTip2'] ? 1 : null;
-        copyData['placeTip3'] = copyData['placeTip3'] ? 1 : null;
-        copyData['placeTip4'] = copyData['placeTip4'] ? 1 : null;
-        copyData['placeTip5'] = copyData['placeTip5'] ? 1 : null;
-        copyData['placeTip6'] = copyData['placeTip6'] ? 1 : null;
-        copyData['placeTip7'] = copyData['placeTip7'] ? 1 : null;
-        copyData['placeTip8'] = copyData['placeTip8'] ? 1 : null;
-
         let eventResponse = await RequestApi.prepareData({
           method: 'store',
           params: {
-            data: copyData
+            data: this.data
           }
         });
         if (eventResponse.response) {

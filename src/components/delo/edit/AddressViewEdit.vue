@@ -11,7 +11,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" v-model="data.countryCode" filterable clearable @on-change="changeCountry">
+                      <Select class="adm-input adm-input--regular wmin180" v-model="data.countryCode" filterable clearable @on-change="store">
                         <Option class="txt-break-word" v-for="item in countryList" :value="item.value" :key="item.value">{{item.label }}</Option>
                       </Select>
                     </Col>
@@ -24,7 +24,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular wmin180" v-model="data.regionId" filterable clearable @on-change="changeRegion">
+                        <Select class="adm-input adm-input--regular wmin180" v-model="data.regionId" filterable clearable @on-change="store">
                           <Option class="txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
                         </Select>
                       </Col>
@@ -36,7 +36,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular wmin180" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                        <Select class="adm-input adm-input--regular wmin180" ref="rayon" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
                           <Option class="txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -48,7 +48,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular wmin180" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
+                        <Select class="adm-input adm-input--regular wmin180" ref="city" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
                           <Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -61,7 +61,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-query-change="changeStreet" @on-clear="changeStreet">
+                        <Select class="adm-input adm-input--regular" ref="street" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-query-change="changeStreet" @on-clear="changeStreet">
                           <Option class=" txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -97,7 +97,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-input-change="store" :maxlength="5"></Input>
+                        <Input class="adm-input adm-input--regular" v-model="data.ndom" @on-input-change="store" :maxlength="5"></Input>
                       </Col>
                     </Row>
                   </div>
@@ -107,7 +107,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular"  v-model="data.nkorpus" @on-input-change="store" :maxlength="5"></Input>
+                        <Input class="adm-input adm-input--regular" v-model="data.nkorpus" @on-input-change="store" :maxlength="5"></Input>
                       </Col>
                     </Row>
                   </div>
@@ -117,7 +117,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular"  v-model="data.nstroenie" @on-input-change="store" :maxlength="5"></Input>
+                        <Input class="adm-input adm-input--regular" v-model="data.nstroenie" @on-input-change="store" :maxlength="5"></Input>
                       </Col>
                     </Row>
                   </div>
@@ -206,6 +206,11 @@
     methods: {
       async initData(data) {
         this.data = data;
+        this.countryList = null;
+        this.regionsList = null;
+        this.rayonsList = null;
+        this.citiesList = null;
+        this.streetsList = null;
 
         await this.fillCountryList();
         if (this.isNotEmptyContryCode()) {
@@ -223,41 +228,14 @@
           }
         }
       },
-      async changeCountry() {
-        this.regionsList = null;
-        this.rayonsList = null;
-        this.citiesList = null;
-        this.streetsList = null;
-        this.data.regionId = null;
-        this.data.rayonId = null;
-        this.data.cityId = null;
-        this.data.streetId = null;
-
-        await this.fillRegionList();
-
-        this.store();
-      },
-      async changeRegion() {
-        this.rayonsList = null;
-        this.citiesList = null;
-        this.streetsList = null;
-        this.data.rayonId = null;
-        this.data.cityId = null;
-        this.data.streetId = null;
-
-        await this.fillRayonList();
-
-        this.store();
-      },
       async changeRayon() {
-        this.citiesList = null;
-        this.streetsList = null;
-        this.data.cityId = null;
-        this.data.streetId = null;
-
-        if (this.isNotEmptyRayonId()) {
-          await this.fillCityList();
-          await this.fillStreetList();
+        if (!this.isNotEmptyRayonId() && (this.isNotEmptyCityId() && this.isNotEmptyStreetId())) {
+          this.$refs.rayon.reset();
+        } else if (this.isNotEmptyRayonId()) {
+          this.data.cityId = null;
+          this.data.streetId = null;
+          this.$refs.city.reset();
+          this.$refs.street.reset();
         }
 
         this.store();
@@ -270,11 +248,9 @@
           limit = 1;
         }
         if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.citiesList = null;
-          this.streetsList = null;
           this.data.cityId = null;
           this.data.streetId = null;
-        } else if (query.length > limit) {
+        } else if (query.length >= limit) {
           await this.fillCityList(query);
         } else {
           this.citiesList = null;
@@ -292,9 +268,8 @@
           limit = 2;
         }
         if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.streetsList = null;
           this.data.streetId = null;
-        } else if (query.length > limit) {
+        } else if (query.length >= limit) {
           await this.fillStreetList(query);
         } else {
           this.streetsList = null;

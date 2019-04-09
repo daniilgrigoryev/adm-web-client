@@ -28,7 +28,7 @@
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-								<Select class="adm-input adm-input--regular wmin180" v-model="data.adr.regionId" filterable clearable @on-change="changeRegion">
+								<Select class="adm-input adm-input--regular wmin180" v-model="data.adr.regionId" filterable clearable @on-change="storeElementData">
 									<Option class="txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
 								</Select>
 								</Col>
@@ -40,7 +40,7 @@
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-								<Select class="adm-input adm-input--regular wmin180" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+								<Select class="adm-input adm-input--regular wmin180" ref="rayon" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
 									<Option class="txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
 								</Col>
@@ -52,7 +52,7 @@
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-								<Select class="adm-input adm-input--regular wmin180" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-clear="changeCity" remote :remote-method="changeCity">
+								<Select class="adm-input adm-input--regular wmin180" ref="city" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
 									<Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
 								</Col>
@@ -64,7 +64,7 @@
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-								<Select class="adm-input adm-input--regular wmin180" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-clear="changeStreet" remote :remote-method="changeStreet">
+								<Select class="adm-input adm-input--regular wmin180" ref="street" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-query-change="changeStreet" @on-clear="changeStreet">
 									<Option class="txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
 								</Col>
@@ -118,7 +118,6 @@
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-								<!-- <Input class="adm-input adm-input--regular" v-model="data.placeId" ></Input> -->
 								<Select class="adm-input adm-input--regular wmin180" v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
 									<Option class="txt-break-word" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
@@ -132,7 +131,6 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular" v-model="data.km" @on-input-change="storeElementData" ></Input> -->
                       <masked-input inputClass="adm-input adm-input--regular" v-model="data.km" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
                     </Col>
                   </Row>
@@ -202,8 +200,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+  </div>
 </template>
 
 <script>
@@ -257,73 +254,76 @@ export default {
 		async initData() {
 			let data = await this.getData();
 			if (this.placeModal.visible) {
-				this.data = data;
+        this.data = data;
+        this.regionsList = null;
+        this.rayonsList = null;
+        this.citiesList = null;
+        this.streetsList = null;
 
-				await this.fillRegionList();
-				await this.fillRayonList();
-        await this.fillCityList();
-				await this.fillRoadList();
-				await this.fillPlaceList();
-        await this.fillStreetList();
+        await this.fillRegionList();
+        await this.fillRoadList();
+        await this.fillPlaceList();
+        if (this.isNotEmptyRegionId()) {
+          await this.fillRayonList();
+        }
+        if ((this.isNotEmptyRegionId() && this.isNotEmptyCityId()) || this.isNotEmptyRayonId()) {
+          await this.fillCityList();
+        }
+        if ((this.isNotEmptyRegionId() && this.isNotEmptyStreetId()) || this.isNotEmptyRayonId() || this.isNotEmptyCityId()) {
+          await this.fillStreetList();
+        }
 			}
 
 			this.fullAddress = data.placeFull;
 		},
-		async changeRegion() {
-			this.rayonsList = null;
-			this.citiesList = null;
-			this.streetsList = null;
-			this.data.adr.rayonId = null;
-			this.data.adr.cityId = null;
-			this.data.adr.streetId = null;
+		async changeRayon() {
+      if (!this.isNotEmptyRayonId() && (this.isNotEmptyCityId() && this.isNotEmptyStreetId())) {
+        this.$refs.rayon.reset();
+      } else if (this.isNotEmptyRayonId()) {
+        this.data.adr.cityId = null;
+        this.data.adr.streetId = null;
+        this.$refs.city.reset();
+        this.$refs.street.reset();
+      }
 
-			await this.fillRayonList();
-
-			this.storeElementData();
-		},
-		changeRayon() {
-			this.citiesList = null;
-			this.streetsList = null;
-			this.data.adr.cityId = null;
-			this.data.adr.streetId = null;
-
-			this.storeElementData();
+      this.storeElementData();
 		},
 		async changeCity(query) {
-			let limit;
-			if (this.isNotEmptyRayonId()) {
-				limit = 1;
-			} else if (this.isNotEmptyRegionId()) {
-				limit = 2;
-			}
-			if ((funcUtils.isEmpty(query) || query.length === 0)) {
-				this.citiesList = null;
-				this.streetsList = null;
-				this.data.adr.cityId = null;
-				this.data.adr.streetId = null;
-			} else if (query.length > limit) {
-				await this.fillCityList(query);
-			}
+      let limit;
+      if (this.isNotEmptyRayonId()) {
+        limit = 0;
+      } else if (this.isNotEmptyRegionId()) {
+        limit = 1;
+      }
+      if ((funcUtils.isEmpty(query) || query.length === 0)) {
+        this.data.adr.cityId = null;
+        this.data.adr.streetId = null;
+      } else if (query.length >= limit) {
+        await this.fillCityList(query);
+      } else {
+        this.citiesList = null;
+      }
 
-			this.storeElementData();
+      this.storeElementData();
 		},
 		async changeStreet(query) {
-			let limit;
-			if (this.isNotEmptyCityId()) {
-				limit = 1;
-			} else if (this.isNotEmptyRayonId()) {
-				limit = 2;
-			} else if (this.isNotEmptyRegionId()) {
-				limit = 3;
-			}
-			if ((funcUtils.isEmpty(query) || query.length === 0)) {
-				this.streetsList = null;
-				this.data.adr.streetId = null;
-			} else if (query.length > limit) {
-				await this.fillStreetList(query);
-			}
+      let limit;
+      if (this.isNotEmptyCityId()) {
+        limit = 0;
+      } else if (this.isNotEmptyRayonId()) {
+        limit = 1;
+      } else if (this.isNotEmptyRegionId()) {
+        limit = 2;
+      }
+      if ((funcUtils.isEmpty(query) || query.length === 0)) {
+        this.data.adr.streetId = null;
+      } else if (query.length >= limit) {
+        await this.fillStreetList(query);
+      } else {
+        this.streetsList = null;
+      }
 
-			this.storeElementData();
+      this.storeElementData();
 		},
 		changePlace(query) {
 			if ((funcUtils.isEmpty(query) || query.length === 0)) {
@@ -577,6 +577,7 @@ export default {
 			this.roadsList = null;
 			this.placesList = null;
 		},
+
 		isNotEmptyRegionId() {
 			return funcUtils.isNotEmpty(this.data.adr.regionId);
 		},
@@ -586,6 +587,9 @@ export default {
 		isNotEmptyRayonId() {
 			return funcUtils.isNotEmpty(this.data.adr.rayonId);
 		},
+    isNotEmptyStreetId() {
+      return funcUtils.isNotEmpty(this.data.adr.streetId);
+    },
 		storeElementData() {
 			let copyData = JSON.parse(JSON.stringify(this.data));
 			this.$emit('storeElementData', {
