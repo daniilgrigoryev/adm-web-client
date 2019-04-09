@@ -298,14 +298,6 @@
   }
 </script>
 
-<style>
-  /* этот стиль нужно применять только на этой странице */
-  html{
-    overflow-y: scroll;
-  }
-</style>
-
-
 <style lang="scss" scoped>
   .errors-table{
     .table td{
