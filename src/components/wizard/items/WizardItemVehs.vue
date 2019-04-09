@@ -105,7 +105,7 @@
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
                 <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tiptcKod"
-                        clearable @on-change="storeElementData" filterable>
+                        clearable @on-change="changeTipTc" filterable>
                   <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}
                   </Option>
                 </Select>
@@ -119,7 +119,7 @@
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
                 <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod"
-                        clearable @on-change="storeElementData" filterable>
+                        :disabled="!isNotEmptyTipTcKod()" clearable @on-change="storeElementData" filterable>
                   <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}
                   </Option>
                 </Select>
@@ -192,7 +192,9 @@
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
 
-        await this.fillKuzovTypeList();
+        if (this.isNotEmptyTipTcKod()) {
+          await this.fillKuzovTypeList();
+        }
         await this.fillMarkAvtoList();
         await this.fillCategoryTCList();
         await this.fillTypeTCList();
@@ -226,7 +228,9 @@
           params: {
             eCID: this.info.eCID,
             methodName: 'getKuzovTypeDictionary',
-            data: null
+            data: JSON.stringify({
+              tipTcKod: this.data.tiptcKod
+            })
           }
         });
         let kuzovTypeList = [];
@@ -306,6 +310,14 @@
         }
         this.modelList = modelList;
       },
+      async changeTipTc() {
+        this.kuzovTypeList = null;
+        this.data.tipkuzKod = null;
+        if (this.isNotEmptyTipTcKod()) {
+          await this.fillKuzovTypeList();
+        }
+        this.storeElementData();
+      },
       async changeMarkaAvto() {
         this.modelList = null;
         this.data.modavtoName = null;
@@ -313,6 +325,9 @@
           await this.fillModelList();
         }
         this.storeElementData();
+      },
+      isNotEmptyTipTcKod() {
+        return funcUtils.isNotEmpty(this.data.tiptcKod);
       },
       isNotEmptyMarkId() {
         return funcUtils.isNotEmpty(this.data.markaAvto);
