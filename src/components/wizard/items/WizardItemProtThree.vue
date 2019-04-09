@@ -14,15 +14,15 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../../assets/js/api/formStack';
-  import RequestApi from "../../../../assets/js/api/requestApi";
+  import * as funcUtils from "../../../assets/js/utils/funcUtils";
+  import * as formStack from '../../../assets/js/api/formStack';
+  import RequestApi from "../../../assets/js/api/requestApi";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
   import MaskedInput from "~/components/shared/MaskedInput";
   import wizardItemProtThreeMethods from "~/components/mixins/prot/wizardItemProtThreeMethods";
 
   export default {
-    name: "WizardItemProtEvacThree",
+    name: "WizardItemProtThree",
     mixins: [wizardItemProtThreeMethods],
     components: {DatePickerMask, MaskedInput},
     props: {

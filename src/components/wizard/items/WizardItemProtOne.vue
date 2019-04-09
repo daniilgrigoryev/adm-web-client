@@ -40,15 +40,15 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../../assets/js/api/formStack';
-  import RequestApi from "../../../../assets/js/api/requestApi";
+  import * as funcUtils from "../../../assets/js/utils/funcUtils";
+  import * as formStack from '../../../assets/js/api/formStack';
+  import RequestApi from "../../../assets/js/api/requestApi";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
   import MaskedInput from "~/components/shared/MaskedInput";
   import wizardItemProtOneMethods from "~/components/mixins/prot/wizardItemProtOneMethods";
 
   export default {
-    name: "WizardItemProtEvacOne",
+    name: "WizardItemProtOne",
     mixins: [wizardItemProtOneMethods],
     components: {
       DatePickerMask,

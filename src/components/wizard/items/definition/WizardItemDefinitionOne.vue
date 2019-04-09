@@ -40,71 +40,15 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../../assets/js/api/formStack';
-  import RequestApi from "../../../../assets/js/api/requestApi";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
-  import MaskedInput from "~/components/shared/MaskedInput";
-  import wizardItemProtOneMethods from "~/components/mixins/prot/wizardItemProtOneMethods";
+  import wizardItemDefinitionOneMethods from "~/components/mixins/prot/wizardItemDefinitionOneMethods";
+  import WizardItemProtOne from "~/components/wizard/items/WizardItemProtOne";
 
   export default {
-    name: "WizardItemProtApnOne",
-    mixins: [wizardItemProtOneMethods],
-    components: {
-      DatePickerMask,
-      MaskedInput,
-    },
-    props: {
-      info: Object
-    },
-    async created() {
-      await this.initData();
-      document.querySelector("input").focus();
-    },
-    data() {
-      return {
-        data: null,
-        maskInputProt: {
-          regex: '[а-яА-Я0-9]+',
-          casing: 'upper',
-          placeholder: ''
-        },
-      }
-    },
-    methods: {
-      async initData() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getElementData',
-          params: {
-            eCID: this.info.eCID
-          }
-        });
-        let data = JSON.parse(JSON.parse(eventResponse.response).data);
-        if (funcUtils.isEmpty(data)) {
-          let error = JSON.parse(eventResponse.response).error.errorMsg;
-          alert(error);
-        } else {
-          this.data = data;
-        }
-      },
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
-        });
-      },
-    }
+    name: "WizardItemDefinitionOne",
+    extends: WizardItemProtOne,
+    mixins: [wizardItemDefinitionOneMethods]
   }
 </script>
 
 <style lang="scss" scoped>
-  h2.title {
-    font-weight: 700;
-    font-size: 20px;
-    text-align: center;
-    margin: 30px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
 </style>

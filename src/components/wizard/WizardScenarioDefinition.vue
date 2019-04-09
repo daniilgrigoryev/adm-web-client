@@ -1,17 +1,17 @@
 <template>
-<!-- Протокол об административном правонарушении -->
+  <!-- Форма возбуждения дела Определением об административном правонарушении -->
   <aside-template :listSectionNav="listSectionNav" title="Протокол об АПН">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="head">
-              Ввод данных по протоколу об административном правонарушении
+              Форма возбуждения дела Определением об административном правонарушении
             </h2>
             <div class="adm-form__content">
-              <wizard-item-prot-one  id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-one>
-              <wizard-item-place v-if="isVisible('DocProtApnOne.PlaceSost')" ref="DocProtApnOne.PlaceSost" :info="getInfo('DocProtApnOne.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-prot-two id="DocProtApnTwo" v-if="isVisible('DocProtApnTwo')" ref="DocProtApnTwo" :info="getInfo('DocProtApnTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-two>
+              <wizard-item-definition-one  id="DocDefinitionOne" v-if="isVisible('DocDefinitionOne')" ref="DocDefinitionOne" :info="getInfo('DocDefinitionOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-one>
+              <wizard-item-place v-if="isVisible('DocDefinitionOne.PlaceSost')" ref="DocDefinitionOne.PlaceSost" :info="getInfo('DocDefinitionOne.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+              <wizard-item-prot-two id="DocDefinitionTwo" v-if="isVisible('DocDefinitionTwo')" ref="DocDefinitionTwo" :info="getInfo('DocDefinitionTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-two>
             </div>
           </div>
           <div class="adm-form__container">
@@ -41,21 +41,10 @@
             <div class="adm-form__container">
               <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
               <div class="adm-form__content">
-                <wizard-item-prot-three id="DocProtApnThree" v-if="isVisible('DocProtApnThree')" ref="DocProtApnThree" :info="getInfo('DocProtApnThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
-                <wizard-item-place v-if="isVisible('DocProtApnThree.PlaceNar')" ref="DocProtApnThree.PlaceNar" :info="getInfo('DocProtApnThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-                <wizard-item-prot-apn-five id="apn" v-if="isVisible('DocProtApnFive')" ref="DocProtApnFive" :info="getInfo('DocProtApnFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-apn-five>
-              </div>
-            </div>
-            <div class="adm-form__container">
-              <h2 id="witness" class="adm-form__headding">Свидетели</h2>
-              <div class="adm-form__content">
-                <h4 class="h4">1 свидетель</h4>
-                <wizard-item-individual v-if="isVisible('Witness1')" ref="Witness1" :info="getInfo('Witness1')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-                <wizard-item-address v-if="isVisible('Witness1.regAddr')" ref="Witness1.regAddr" :info="getInfo('Witness1.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-                <hr>
-                <h4 class="h4">2 свидетель</h4>
-                <wizard-item-individual v-if="isVisible('Witness2')" ref="Witness2" :info="getInfo('Witness2')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-                <wizard-item-address v-if="isVisible('Witness2.regAddr')" ref="Witness2.regAddr" :info="getInfo('Witness2.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+                <wizard-item-prot-three id="DocDefinitionThree" v-if="isVisible('DocDefinitionThree')" ref="DocDefinitionThree" :info="getInfo('DocDefinitionThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
+                <wizard-item-place v-if="isVisible('DocDefinitionThree.PlaceNar')" ref="DocDefinitionThree.PlaceNar" :info="getInfo('DocDefinitionThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+                <wizard-item-prot-four id="DocDefinitionFour" v-if="isVisible('DocDefinitionFour')" ref="DocDefinitionFour" :info="getInfo('DocDefinitionFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
+                <wizard-item-definition-five id="definition" v-if="isVisible('DocDefinitionFive')" ref="DocDefinitionFive" :info="getInfo('DocDefinitionFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-five>
               </div>
             </div>
           </div>
@@ -74,11 +63,11 @@
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import WizardItemProtOne from "./items/WizardItemProtOne.vue";
+  import WizardItemDefinitionOne from "./items/definition/WizardItemDefinitionOne.vue";
   import WizardItemProtTwo from "./items/WizardItemProtTwo.vue";
   import WizardItemProtThree from "./items/WizardItemProtThree.vue";
   import WizardItemProtFour from "./items/WizardItemProtFour.vue";
-  import WizardItemProtApnFive from "./items/protApn/WizardItemProtApnFive.vue";
+  import WizardItemDefinitionFive from "./items/definition/WizardItemDefinitionFive.vue";
   import WizardItemAddress from "./items/WizardItemAddress.vue";
   import WizardItemIndividual from "./items/WizardItemIndividual.vue";
   import WizardItemLvok from "./items/WizardItemLvok.vue";
@@ -89,17 +78,17 @@
   import WizardItemVehs from "./items/WizardItemVehs.vue";
 
   export default {
-    name: "WizardScenarioProtAPN",
+    name: "WizardScenarioDefinition",
     props: {
       pathes: Object
     },
     components: {
       AsideTemplate,
-      WizardItemProtOne,
+      WizardItemDefinitionOne,
       WizardItemProtTwo,
       WizardItemProtThree,
       WizardItemProtFour,
-      WizardItemProtApnFive,
+      WizardItemDefinitionFive,
       WizardItemAddress,
       WizardItemIndividual,
       WizardItemLvok,
@@ -113,7 +102,7 @@
       return {
         listSectionNav: [
           {
-            title: "Ввод данных по протоколу об АПН",
+            title: "Ввод данных по определению",
             name: "head",
           },
           {
@@ -127,10 +116,6 @@
           {
             title: "Сведения о нарушении",
             name: "nar"
-          },
-          {
-            title: "Свидетели",
-            name: "witness",
           },
         ]
       }
