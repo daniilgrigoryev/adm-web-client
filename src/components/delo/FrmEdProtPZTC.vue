@@ -8,9 +8,6 @@
           </Button>
           <b class="adm-text-big color-dark-lighter">Протокол о задержании ТС</b>
         </div>
-        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../assets/images/wiki.svg' class="wmax-none">
-        </Button> -->
       </div>
     </div>
 
@@ -188,9 +185,6 @@
 
 
 <style scoped lang="scss"> 
-  .--gcs2 {
-    grid-column: span 2;
-  }
   .items-wrap {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
