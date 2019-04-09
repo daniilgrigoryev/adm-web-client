@@ -10,10 +10,10 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-form__label">Дата исполнения</small>
+        <small class="adm-form__label">Дата вступления</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateIspoln" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateVstup" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
         </Row>
       </div>
@@ -26,9 +26,11 @@
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import wizardItemDocPostFinalMethods from "~/components/mixins/post/wizardItemDocPostFinalMethods.js";
 
   export default {
     name: "WizardItemDocPostFinal",
+    mixins: [wizardItemDocPostFinalMethods],
     components: {
       DatePickerMask
     },

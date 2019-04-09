@@ -63,13 +63,13 @@
                     <Button type="text" class="adm-btn-regular">Объяснение</Button>
                   </li>
                   <li v-if="menuItemVisible(menu.addDocument.ProtAPN)">
-                    <Button type="text" class="adm-btn-regular">Протокол об АПН</Button>
+                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол об АПН</Button>
                   </li>
                   <li v-if="menuItemVisible(menu.addDocument.OpredProvedAP)">
-                    <Button type="text" class="adm-btn-regular">Опредение о проведении АР</Button>
+                    <Button @click="createWizardScenarioDefinition" type="text" class="adm-btn-regular">Опредение о проведении АР</Button>
                   </li>
                   <li v-if="menuItemVisible(menu.addDocument.PostDeloAPN)">
-                    <Button type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
+                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
                   </li>
                   <li v-if="menuItemVisible(menu.addDocument.PostPrekrDeloAPN)">
                     <Button type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
@@ -98,6 +98,7 @@
 
             <Button v-if="menuVisible(menu.addUchast)"
                     type="text"
+                    @click="addUchastWizard"
                     class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
                     style="box-shadow: none">
               <span>Добавить участника</span>
@@ -679,6 +680,25 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
           let params = {
             scenarioName: 'CreateProtEvac',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioDefinition() {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
+          let params = {
+            scenarioName: 'CreateDefinition',
             node: copyNode
           };
 

@@ -91,36 +91,6 @@
           this.data = data;
         }
       },
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.data.inspSostName.split(' ');
-        this.data.inspSostName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.data.inspSostName += item;
-                break;
-              }
-              case 1:
-              {
-                this.data.inspSostName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.data.inspSostName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspSostKod();
-      },
 
       storeElementData() {
         this.$emit('storeElementData', {
