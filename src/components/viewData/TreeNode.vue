@@ -51,6 +51,9 @@
     },
     created() {
       this.open = this.node.height !== 3 || this.hasSelectedChildren(this.node);
+      if (funcUtils.isNotEmpty(this.node.nodeInfo)) {
+        this.node.nodeInfo = JSON.parse(this.node.nodeInfo);
+      }
     },
     data() {
       return {

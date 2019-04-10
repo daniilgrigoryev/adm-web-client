@@ -160,7 +160,7 @@
   import RequestApi from "../../assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
   import DeloInnerForm from "~/components/delo/DeloInnerForm";
-  import TreeNode from "~/components/shared/TreeNode";
+  import TreeNode from "~/components/viewData/TreeNode";
   import decisEnum from "../../assets/js/utils/decisEnum";
   import docTipEnum from "../../assets/js/utils/docTipEnum";
 
@@ -349,7 +349,7 @@
         let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
         let currentForm = innerFormStack.getCurrent(uid);
         this.deloTree.forEach((item) => {
-          let copyNode = this.getCopyObj(item, 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(item, 'selected', 'children', 'height', 'nodeInfo');
           copyNode = JSON.stringify(copyNode);
           this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === copyNode);
         });
@@ -380,7 +380,7 @@
       },
       async nodeClick(node) {
         await this.clearInnerStack();
-        let copyNode = this.getCopyObj(node, 'selected', 'children', 'height');
+        let copyNode = this.getCopyObj(node, 'selected', 'children', 'height', 'nodeInfo');
 
         if (this.$refs.innerForm) {
           await this.$refs.innerForm.addForm(copyNode);
@@ -658,7 +658,7 @@
       },
       addUchastWizard() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
           let params = {
             scenarioName: 'AddUchast',
             node: copyNode,
@@ -677,7 +677,7 @@
       },
       createWizardScenarioPZTC() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
           let params = {
             scenarioName: 'CreateProtEvac',
             node: copyNode
@@ -696,7 +696,7 @@
       },
       createWizardScenarioDefinition() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
           let params = {
             scenarioName: 'CreateDefinition',
             node: copyNode
@@ -715,7 +715,7 @@
       },
       createWizardScenarioAPN() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
           let params = {
             scenarioName: 'CreateProtAPN',
             node: copyNode
@@ -734,7 +734,7 @@
       },
       createWizardScenarioPost() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
           let params = {
             scenarioName: 'CreatePost',
             node: copyNode
