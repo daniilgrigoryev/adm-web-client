@@ -199,6 +199,7 @@
     data() {
       return {
         sizeInnerStack: 0,
+        firstTreeNode: null,
         menu: {
           createDelo: {
             ProtAPNAnothFace: 'ProtAPNAnothFace',
@@ -348,35 +349,38 @@
         let current = formStack.getCurrent();
         let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
         let currentForm = innerFormStack.getCurrent(uid);
+        let jsonParams = null;
+        if (funcUtils.isNotEmpty(currentForm)) {
+          jsonParams = this.stringifyCircularNode(currentForm.params)
+        }
+        let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeInfo'));
+        this.$set(this.firstTreeNode, 'selected', jsonParams === firstTreeNode);
         this.deloTree.forEach((item) => {
-          let copyNode = this.getCopyObj(item, 'selected', 'children', 'height', 'nodeInfo');
-          copyNode = JSON.stringify(copyNode);
-          this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === copyNode);
+          let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeInfo'));
+          this.$set(item, 'selected', jsonParams === copyNode);
         });
       },
       getCopyObj(node) {
-        let cache = [];
-        let objectJSONreplacer = function (key, value) {
-          if (typeof value === 'object' && funcUtils.isNotEmpty(value)) {
-            if (cache.indexOf(value) !== -1) {
-              try {
-                return JSON.parse(JSON.stringify(value));
-              } catch (error) {
-                return;
-              }
-            }
-            cache.push(value);
-          }
-          return value;
-        };
-        let copyObj = JSON.parse(JSON.stringify(node, objectJSONreplacer));
-        cache = null;
+        let copyObj = JSON.parse(this.stringifyCircularNode(node));
         if (arguments.length > 1) {
           for (let i = 1; i < arguments.length; i++) {
             delete copyObj[arguments[i]];
           }
         }
         return copyObj;
+      },
+      stringifyCircularNode(node) {
+        const seen = new WeakSet();
+        let objectJSONreplacer = (key, value) => {
+          if (typeof value === 'object' && funcUtils.isNotEmpty(value)) {
+            if (seen.has(value)) {
+              return;
+            }
+            seen.add(value);
+          }
+          return value;
+        };
+        return JSON.stringify(node, objectJSONreplacer);
       },
       async nodeClick(node) {
         await this.clearInnerStack();
@@ -572,10 +576,18 @@
         let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
         let currentForm = innerFormStack.getCurrent(uid);
 
-        let copyDelo = this.getCopyObj(arr[0], 'children');
-        tree.push(copyDelo);
+        this.firstTreeNode = this.getCopyObj(arr[0], 'children');
+        tree.push(this.firstTreeNode);
+
+        let jsonParams = null;
+        if (funcUtils.isNotEmpty(currentForm)) {
+          jsonParams = this.stringifyCircularNode(currentForm.params)
+        }
+        let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeInfo'));
+        this.$set(this.firstTreeNode, 'selected', jsonParams === firstTreeNode);
         arr.forEach((item) => {
-          this.$set(item, 'selected', funcUtils.isNotEmpty(currentForm) && JSON.stringify(currentForm.params) === JSON.stringify(item));
+          let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeInfo'));
+          this.$set(item, 'selected', jsonParams === copyNode);
         });
 
         for (let i = 0; i < arr.length; i++) {
