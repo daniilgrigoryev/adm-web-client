@@ -5,7 +5,7 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
         <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
-          <Option class="wmax360 txt-break-word" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          <Option class="wmax360" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </Select>
         </Col>
       </Row>
@@ -15,7 +15,7 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.vid" clearable @on-change="storeElementData">
-            <Option class="wmax360 txt-break-word" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            <Option class="wmax360" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
       </Row>
@@ -25,7 +25,7 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.vehsId" clearable @on-change="storeElementData">
-            <Option class="wmax360 txt-break-word" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            <Option class="wmax360" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
       </Row>
@@ -35,7 +35,7 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tip" clearable @on-change="storeElementData" :disabled="!data.status">
-            <Option class="wmax360 txt-break-word" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            <Option class="wmax360" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
       </Row>

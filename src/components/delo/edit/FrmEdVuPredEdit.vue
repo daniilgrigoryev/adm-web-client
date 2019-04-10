@@ -13,7 +13,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <Select class="adm-input adm-input--regular" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Option class="" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
@@ -129,7 +129,7 @@
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
                           <Select class="adm-input adm-input--regular wmax180" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
-                            <Option class="txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                            <Option class="" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                           </Select>
                         </Col>
                       </Row>

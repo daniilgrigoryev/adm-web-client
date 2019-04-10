@@ -107,7 +107,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="22">
                       <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="dataAdvice.stotvId" clearable filterable  @on-change="store">
-                        <Option class=" txt-break-word" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                        <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>

@@ -27,7 +27,7 @@
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
                     <Select class="adm-input adm-input--regular wmin180" v-model="data.countryCode" filterable clearable @on-change="storeElementData">
-                      <Option class="txt-break-word" v-for="item in countryList" :value="item.value" :key="item.value">{{item.label }}</Option>
+                      <Option class="" v-for="item in countryList" :value="item.value" :key="item.value">{{item.label }}</Option>
                     </Select>
                   </Col>
                 </Row>
@@ -40,7 +40,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <Select class="adm-input adm-input--regular wmin180" v-model="data.regionId" filterable clearable :disabled="!isNotEmptyContryCode()" @on-change="storeElementData">
-                        <Option class="txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
+                        <Option class="" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
@@ -52,7 +52,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <Select class="adm-input adm-input--regular wmin180" ref="rayon" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
-                        <Option class="txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Option class="" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
@@ -64,7 +64,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <Select class="adm-input adm-input--regular wmin180" ref="city" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
-                        <Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Option class="" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
@@ -77,7 +77,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
                       <Select class="adm-input adm-input--regular" ref="street" v-model="data.streetId" @on-query-change="changeStreet" @on-clear="changeStreet"  filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()">
-                        <Option class=" txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Option class=" " v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>

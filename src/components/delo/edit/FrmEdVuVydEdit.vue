@@ -14,7 +14,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <Select class="adm-input adm-input--regular wmax600" placeholder="" v-model="vuVyd.docTip" clearable filterable @on-change="store">
-                        <Option class="txt-break-word" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Option class="" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
@@ -27,7 +27,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuVyd.vuPredId" clearable filterable @on-change="store">
-                        <Option class="wmax360 txt-break-word" v-for="item in vuPredList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Option class="wmax360 " v-for="item in vuPredList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
@@ -156,7 +156,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
                       <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vuVyd.status" clearable filterable @on-change="store">
-                        <Option class="wmax360 txt-break-word" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Option class="wmax360 " v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>

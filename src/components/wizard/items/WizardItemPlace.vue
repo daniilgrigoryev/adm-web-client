@@ -29,7 +29,7 @@
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
 								<Select class="adm-input adm-input--regular wmin180" v-model="data.adr.regionId" filterable clearable @on-change="storeElementData">
-									<Option class="txt-break-word" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
+									<Option class="" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
 								</Select>
 								</Col>
 							</Row>
@@ -41,7 +41,7 @@
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
 								<Select class="adm-input adm-input--regular wmin180" ref="rayon" v-model="data.adr.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
-									<Option class="txt-break-word" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+									<Option class="" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
 								</Col>
 							</Row>
@@ -53,7 +53,7 @@
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
 								<Select class="adm-input adm-input--regular wmin180" ref="city" v-model="data.adr.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
-									<Option class="txt-break-word" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+									<Option class="" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
 								</Col>
 							</Row>
@@ -65,7 +65,7 @@
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
 								<Select class="adm-input adm-input--regular wmin180" ref="street" v-model="data.adr.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-query-change="changeStreet" @on-clear="changeStreet">
-									<Option class="txt-break-word" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+									<Option class="" v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
 								</Col>
 							</Row>
@@ -119,7 +119,7 @@
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
 								<Select class="adm-input adm-input--regular wmin180" v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
-									<Option class="txt-break-word" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+									<Option class="" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
 								</Select>
 								</Col>
 							</Row>
