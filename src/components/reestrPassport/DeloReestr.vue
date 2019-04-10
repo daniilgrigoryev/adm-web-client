@@ -323,7 +323,7 @@
           deloDate: true
         },
         maskRegno: {
-          regex: '[а-яА-Я0-9]+',
+          regex: '[a-zA-Zа-яА-Я0-9]+',
           casing: 'upper', 
           placeholder: '' 
         },
