@@ -28,7 +28,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="protPZTC.dateSost" @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="protPZTC.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -94,7 +94,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="protPZTC.dateNar" @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="protPZTC.dateNar" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -131,7 +131,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.stotvId" clearable filterable :disabled="!protPZTC.dateNar" @on-change="store">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.stotvId" clearable filterable @on-change="store">
                         <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </Select>
                     </Col>
@@ -655,15 +655,6 @@
         } else {
           this.clearOrganSost();
         }
-      },
-      changeDateNar() {
-        this.stotvSearchInfoList = null;
-        this.protPZTC.stotvId = null;
-        if (funcUtils.isNotEmpty(this.protPZTC.dateNar)) {
-          this.fillStotvSearchInfo();
-        }
-
-        this.store();
       },
       changeFIO() {
         let fioLength = 0;
