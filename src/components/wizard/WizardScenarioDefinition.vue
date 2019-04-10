@@ -1,6 +1,6 @@
 <template>
   <!-- Форма возбуждения дела Определением об административном правонарушении -->
-  <aside-template :listSectionNav="listSectionNav" title="Определением об АПН">
+  <aside-template :listSectionNav="listSectionNav" title="Определение об АПН">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
