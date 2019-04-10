@@ -18,7 +18,7 @@
         <Layout ref="Main" class="layout">
           <div class="adm-form">
             <div class="adm-form__container">
-              <h2 class="adm-form__headding" id="uchast">Участник</h2>
+              <h2 class="adm-form__headding" id="uchast">Участник {{mode}}</h2>
               <wizard-item-add-uchast v-if="isVisible('Uchast')" ref="DocProtFirst" :info="getInfo('Uchast')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Individual')">
@@ -59,19 +59,20 @@
     name: "WizardScenarioAddUchast",
     data() {
       return {
+        mode: 0,
         listSectionNav: [
-          // {
-          //   title: "Участник",
-          //   name: "uchast",
-          // },
-          // {
-          //   title: "Физическое лицо",
-          //   name: "individual",
-          // },
-          // {
-          //   title: "Организация",
-          //   name: "organization",
-          // },
+          {
+            title: "Участник",
+            name: "uchast",
+          },
+          {
+            title: "Физическое лицо",
+            name: "individual",
+          },
+          {
+            title: "Организация",
+            name: "organization",
+          },
         ]
       }
     },
