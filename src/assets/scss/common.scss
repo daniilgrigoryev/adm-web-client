@@ -725,19 +725,20 @@ html, body, #app {
       line-height: 22px;
       white-space: pre-line;
       word-wrap: break-word;
-      padding-left: 50px;
+      // padding-left: 50px;
+      padding-left: 10px;
       padding-top: 10px;
       padding-bottom: 10px;
       &.ivu-select-item-focus, &:hover{
         background-color: $gray-light;
       }
-      &.ivu-select-item-selected{
-        background-image: url(../images/select.svg);
-        background-repeat: no-repeat;
-        background-position: 15px center;
-        transition: none;
-        background-color: $gray-light; // #f3f3f3
-      }
+      // &.ivu-select-item-selected{
+      //   background-image: url(../images/select.svg);
+      //   background-repeat: no-repeat;
+      //   background-position: 15px center;
+      //   transition: none;
+      //   background-color: $gray-light; // #f3f3f3
+      // }
     }
   }
 }
