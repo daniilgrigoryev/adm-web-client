@@ -2,7 +2,7 @@
   <div v-if="data">
     <wizard-modal v-if="ulModal.visible" :columnsOptions="ulModal.columnsOptions" :data="ulModal.ulList" @showModal="showUlModal" @onRowDbClick="onUlClick"></wizard-modal>
     <div class="adm-form__item">
-      <small class="adm-form__label">Название организации</small>
+      <small class="adm-form__label">Наименование</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Input class="adm-input adm-input--regular" v-model="data.name" @on-input-change="storeElementData" ></Input>
@@ -23,11 +23,27 @@
         </Col>
       </Row>
     </div>
-    <div class="adm-form__item">
+    <!-- <div class="adm-form__item">
       <small class="adm-form__label">ИНН кем выдан</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Input class="adm-input adm-input--regular" v-model="data.innKemVydan" @on-input-change="storeElementData" ></Input>
+        </Col>
+      </Row>
+    </div> -->
+    <div class="adm-form__item">
+      <small class="adm-form__label">КПП</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.kpp" @on-input-change="storeElementData" ></Input>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Дата регистрации</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.dateReg" @on-input-change="storeElementData" ></Input>
         </Col>
       </Row>
     </div>
@@ -39,31 +55,27 @@
         </Col>
       </Row>
     </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">КПП</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <Input class="adm-input adm-input--regular" v-model="data.kpp" @on-input-change="storeElementData" ></Input>
-        </Col>
-      </Row>
-    </div>
-    <div class="adm-form__item">
+    
+    <!-- <div class="adm-form__item">
       <small class="adm-form__label">ОКПО</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Input class="adm-input adm-input--regular" v-model="data.okpo" @on-input-change="storeElementData" ></Input>
         </Col>
       </Row>
-    </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Дата регистрации Юр. лица</small>
+    </div> -->
+    <!-- TODO -->
+    <!-- <div class="adm-form__item">
+      <small class="adm-form__label">Доп.сведения</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Input class="adm-input adm-input--regular" v-model="data.dateReg" @on-input-change="storeElementData" ></Input>
+          <Input class="adm-input adm-input--regular" v-model="data.okpo" @on-input-change="storeElementData" ></Input>
         </Col>
       </Row>
-    </div>
-    <div class="adm-form__item">
+    </div> -->
+    <!-- ENDTODO -->
+    
+    <!-- <div class="adm-form__item">
       <small class="adm-form__label">Тип ЮЛ</small>
       <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -102,7 +114,7 @@
           </Select>
         </Col>
       </Row>
-    </div>
+    </div> -->
   </div>
 </template>
 

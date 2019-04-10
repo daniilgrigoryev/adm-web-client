@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Протокол №</small>
+      <small class="adm-form__label">Определение №</small>
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">
           <Col span="10">

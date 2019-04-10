@@ -87,7 +87,7 @@
 
 
         <div class="adm-form__item">
-          <small class="adm-form__label">Категория ТС</small>
+          <small class="adm-form__label">Категория</small>
           <div class="adm-form__item_content">
             <Row type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="24">
@@ -113,7 +113,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
+        <!-- <div class="adm-form__item">
           <small class="adm-form__label">Тип кузова ТС</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -126,7 +126,7 @@
               </Col>
             </Row>
           </div>
-        </div>
+        </div> -->
 
         <div class="adm-form__item">
           <small class="adm-form__label">Владелец</small>

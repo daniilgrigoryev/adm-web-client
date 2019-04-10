@@ -20,7 +20,7 @@
       <small class="adm-form__label">Место рождения</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <Select class="wmin180 adm-input adm-input--regular" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData" >
+          <Select class="wmin180 adm-input adm-input--regular wmax360" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData" >
             <Option class="" v-for="item in birthList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
           </Select>
         </Col>
@@ -30,7 +30,7 @@
       <small class="adm-form__label">Пол:</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
-          <Select class="adm-input adm-input--regular wmin180" v-model="data.sex" filterable @on-change="storeElementData" placeholder="">
+          <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.sex" filterable @on-change="storeElementData" placeholder="">
             <Option value="М">Мужской</Option>
             <Option value="Ж">Женский</Option>
           </Select>
@@ -41,7 +41,7 @@
       <small class="adm-form__label">Гражданство:</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
-          <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
+          <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
             <Option class="" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
           </Select>
         </Col>
@@ -51,19 +51,19 @@
       <small class="adm-form__label">Телефон:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
-          <Input class="adm-input adm-input--regular" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон:"></Input>
+          <Input class="adm-input adm-input--regular wmax360" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон:"></Input>
         </Col>
       </Row>
     </div>
 
-    <!-- <div class="adm-form__item">
+    <div class="adm-form__item">
       <small class="adm-form__label">Место работы:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <Input class="adm-input adm-input--regular" v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Место работы:"></Input>
+          <Input class="adm-input adm-input--regular wmax360" v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Место работы:"></Input>
         </Col>
       </Row>
-    </div> -->
+    </div>
     
   </div>
 </template>

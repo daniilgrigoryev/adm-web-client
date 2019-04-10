@@ -7,7 +7,7 @@
       </Select>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Тип ЛВОКа:</small>
+      <small class="adm-form__label">Тип участника:</small>
       <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.tip" clearable @on-change="storeElementData">
         <Option class="wmax360" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
       </Select>
