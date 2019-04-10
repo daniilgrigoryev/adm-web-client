@@ -11,7 +11,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" v-model="data.countryCode" filterable clearable @on-change="store">
+                      <Select class="adm-input adm-input--regular wmin180" placeholder="Ввод страны" v-model="data.countryCode" filterable clearable @on-change="store">
                         <Option class="" v-for="item in countryList" :value="item.value" :key="item.value">{{item.label }}</Option>
                       </Select>
                     </Col>
@@ -24,7 +24,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular wmin180" v-model="data.regionId" filterable clearable @on-change="store">
+                        <Select class="adm-input adm-input--regular wmin180" placeholder="Ввод региона" v-model="data.regionId" filterable clearable @on-change="store">
                           <Option class="" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
                         </Select>
                       </Col>
@@ -36,7 +36,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular wmin180" ref="rayon" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                        <Select class="adm-input adm-input--regular wmin180" placeholder="Ввод района"  ref="rayon" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
                           <Option class="" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -48,7 +48,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular wmin180" ref="city" v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
+                        <Select class="adm-input adm-input--regular wmin180" ref="city" placeholder="Ввод населенного пункта"  v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
                           <Option class="" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -61,7 +61,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular" ref="street" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-query-change="changeStreet" @on-clear="changeStreet">
+                        <Select class="adm-input adm-input--regular" ref="street" placeholder="Ввод улицы" v-model="data.streetId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()" @on-query-change="changeStreet" @on-clear="changeStreet">
                           <Option class=" " v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </Select>
                       </Col>
@@ -75,7 +75,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular" v-model="data.npunktName" @on-input-change="store" ></Input>
+                        <Input class="adm-input adm-input--regular" placeholder="Ввод населенного пункта"  v-model="data.npunktName" @on-input-change="store" ></Input>
                       </Col>
                     </Row>
                   </div>
@@ -85,7 +85,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular" v-model="data.streetName" @on-input-change="store" ></Input>
+                        <Input class="adm-input adm-input--regular" placeholder="Ввод улицы" v-model="data.streetName" @on-input-change="store" ></Input>
                       </Col>
                     </Row>
                   </div>
@@ -97,7 +97,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular" v-model="data.ndom" @on-input-change="store" :maxlength="5"></Input>
+                        <Input class="adm-input adm-input--regular"  v-model="data.ndom" @on-input-change="store" :maxlength="5"></Input>
                       </Col>
                     </Row>
                   </div>
