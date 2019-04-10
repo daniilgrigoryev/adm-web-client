@@ -18,18 +18,18 @@
         <Layout ref="Main" class="layout">
           <div class="adm-form">
             <div class="adm-form__container">
-              <h2 class="adm-form__headding">Участник</h2>
+              <h2 class="adm-form__headding" id="uchast">Участник</h2>
               <wizard-item-add-uchast v-if="isVisible('Uchast')" ref="DocProtFirst" :info="getInfo('Uchast')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Individual')">
-              <h2 class="adm-form__headding">Физическое лицо</h2>
+              <h2 class="adm-form__headding" id="individual">Физическое лицо</h2>
               <wizard-item-individual v-if="isVisible('Uchast.Individual')" ref="Uchast.Individual" :info="getInfo('Uchast.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Individual.regAddr')">
               <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Individual.regAddr')" ref="Uchast.Individual.regAddr" :info="getInfo('Uchast.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization')">
-              <h2 class="adm-form__headding">Организация</h2>
+              <h2 class="adm-form__headding" id="organization">Организация</h2>
               <wizard-item-organization v-if="isVisible('Uchast.Organization')" ref="Uchast.Organization" :info="getInfo('Uchast.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization.regAddr')">
@@ -39,8 +39,8 @@
         </Layout>
       </div>
       <div class="bot-wrap">
-        <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-        <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+        <Button @click="getPrev" type="text">Отменить добавление участника</Button>
+        <Button @click="save" type="primary" class="ml12">Добавить</Button>
       </div>
     </main>
   </div>
@@ -59,6 +59,20 @@
     name: "WizardScenarioAddUchast",
     data() {
       return {
+        listSectionNav: [
+          // {
+          //   title: "Участник",
+          //   name: "uchast",
+          // },
+          // {
+          //   title: "Физическое лицо",
+          //   name: "individual",
+          // },
+          // {
+          //   title: "Организация",
+          //   name: "organization",
+          // },
+        ]
       }
     },
     props: {
