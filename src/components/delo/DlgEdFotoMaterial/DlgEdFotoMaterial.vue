@@ -244,7 +244,6 @@
     align-items: flex-start;
     align-content: flex-start;
     padding-bottom: 40px;
-    
     #dc-object-map {
       height: 300px;
       width: 100%;
@@ -270,7 +269,6 @@
     width: 20px;
     height: 20px;
     z-index: 3;
-
     &.iconCamera {
       background: url('../../../assets/images/map-cam-b.svg') no-repeat center;
       background-size: contain;

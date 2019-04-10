@@ -5,7 +5,10 @@
 		</div>
 		<div class="slider">
 			<button v-if="photos.length > slideShow" class="arrow prev" @click="prev()"><</button>
-			<div class="gallery__items" :style="'transform: translateX(-' + (110 * leftSlideIndex) +  'px)'">
+			<div class="gallery__items" :style="'transform: translateX(-' + (117 * leftSlideIndex) +  'px)'">
+				<div v-for="image in photos" :key="image.id" @click="acitveGalleryItem = image" class="gallery__item">
+					<img alt="img" @load="checkPic($event.target)" :src="image"/>
+				</div>
 				<div v-for="image in photos" :key="image.id" @click="acitveGalleryItem = image" class="gallery__item">
 					<img alt="img" @load="checkPic($event.target)" :src="image"/>
 				</div>
@@ -72,7 +75,7 @@ export default {
 			}
 		},
 		next() {
-			if ((this.leftSlideIndex + this.slideShow) < photos.length) {
+			if ((this.leftSlideIndex + this.slideShow) < this.photos.length) {
 				this.leftSlideIndex += 1;
 			}
 		},
@@ -95,10 +98,12 @@ export default {
 			}
 		}
 		.slider {
-			padding: 0 20px;
+			padding: 0 12px;
 			position: relative;
 			width: 365px;
 			overflow: hidden;
+			display: flex;
+			justify-content: center;
 			.arrow {
 				position: absolute;
 				top: 0;
@@ -117,18 +122,17 @@ export default {
 				font-weight: 700;
 				z-index: 3;
 				&.next {
-					transform:  translateX();
 					left: auto;
 					right: 0;
 				}
 			}
 			.gallery__items {
 				display: grid;
-				grid-auto-columns: 100px;
+				grid-auto-columns: 105px;
 				grid-auto-flow: column;
-				grid-gap: 10px;
+				grid-gap: 12px;
 				transition: .3s ease;
-				width: 100%;
+				width: 330px;
 				.gallery__item {
 					width: 100%;
 					display: flex;
