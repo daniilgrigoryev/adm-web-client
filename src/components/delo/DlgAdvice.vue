@@ -35,8 +35,8 @@
           <div class="my12">
             <div class="grid">
               <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Дата составления</p>
-                <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                <p class="adm-14 color-dark-lighter mb6">Дата и время составления</p>
+                <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">дата рассмотрения</p>
+                  <p class="adm-14 color-dark-lighter mb6">Дата и время рассмотрения</p>
                   <p class="adm-text-big color-dark-base">{{body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
                 </div>
               </div>
@@ -57,7 +57,7 @@
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
+                  <p class="adm-14 color-dark-lighter mb6">Дата и время вручения</p>
                   <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
                 </div>
               </div>
