@@ -1,23 +1,71 @@
 <template>
 
   <div v-if="body" class="ml18 mb18">
-
     <div class="amd-title amd-title--sticky px36 py24"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../assets/images/pen.svg' class="wmax-none">
-          </Button> -->
           <b class="adm-text-big color-dark-lighter">Фотофиксация нарушения</b>
         </div>
-        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../assets/images/wiki.svg' class="wmax-none">
-        </Button> -->
       </div>
     </div>
 
+    <div class="view-data">
+      <div class="view-data__container">
+        <div class="items-wrap">
+          <article class="gallery">
+            <div class="gallery__wrap">
+              <div class="gallery__active-item">
+                <img :src="acitveGalleryItem" alt="">
+              </div>
+              <div class="gallery__items">
+                <button class="arrow arrow-prev"></button>
+                <div v-for="image in photos" :key="image" @click="acitveGalleryItem = image" class="gallery__item">
+                  <img alt="img" @load="checkPic($event.target)" :src="image"/>
+                </div>
+                <button class="arrow arrow-next"></button>
+              </div>
+            </div>
+            <div class="dc-object-map-wrap">
+              <div id="dc-object-map" />
+              <view-data-item 
+                label="Координаты" 
+                :value="fotofix.violPlaceLatitude, fotofix.violPlaceLongitude | concatByDelimiter(',')" 
+              />
+            </div>
+          </article>
+          <view-data-item 
+            label="Дата и время нарушения" 
+            :value="fotofix.violTime | formatDateTime('DD.MM.YYYY HH:mm')" 
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item 
+            label="Место нарушения" 
+            :value="fotofix.violPlace" 
+            :icon="require('../../assets/images/map.svg')"
+          />
+          <hr>
+          <view-data-item 
+            label="Индефитикатор" 
+            :value="fotofix.cam1CertNumber" 
+          />
+          <view-data-item 
+            label="Модель" 
+            :value="fotofix.cam1Model" 
+          />
+          <view-data-item 
+            label="Сертификат проверки" 
+            :value="fotofix.cam2CertExpirDate" 
+          />
+          <view-data-item 
+            label="Окончание" 
+            :value="fotofix.cam1CertExpirDate | formatDateTime('DD.MM.YYYY HH:mm')" 
+          />
+        
+        </div>
+      </div>
+    </div>
 
-    <div class="adm-form">
+    <!-- <div class="adm-form">
       <div class="adm-form__container mt6">
         <div class="adm-form__content px36">
           <div class="adm-form__item">
@@ -144,7 +192,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
 </template>
@@ -155,6 +203,7 @@
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
+  import ViewDataItem from "~/components/shared/ui/view-data-item.vue";
   import {mapGetters} from 'vuex';
   import $ from "jquery";
   import mapboxgl from 'mapbox-gl';
@@ -162,6 +211,9 @@
 
   export default {
     name: "DlgEdFotoMaterial",
+    components: {
+      ViewDataItem,
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -227,7 +279,7 @@
         let wrap = pic.parent();
 
         if (naturalHeight < wrap.height()) {
-          wrap.css('height', naturalHeight + 20);
+          // wrap.css('height', naturalHeight + 20);
           return;
         }
         let picAspect = naturalHeight / naturalWidth;
@@ -258,6 +310,12 @@
           let eventResponse;
           let photo;
 
+          photos.forEach((element, index) => {
+            if (element.isRegnoFoto === "t") {
+              photos.splice(index , 1);
+              photos.unshift(element);
+            }
+          });
           for (let i = 0; i < photos.length; i++) {
             item = photos[i];
             eventResponse = await RequestApi.prepareData({
@@ -276,8 +334,8 @@
         }
 
         if (vm.fotofix) {
-          this.createMapObjects('dc-object-map', [vm.fotofix.violPlaceLongitude, vm.fotofix.violPlaceLatitude]);
-          this.drawCamera([vm.fotofix.violPlaceLongitude, vm.fotofix.violPlaceLatitude]);
+          vm.createMapObjects('dc-object-map', [vm.fotofix.violPlaceLongitude, vm.fotofix.violPlaceLatitude]);
+          vm.drawCamera([vm.fotofix.violPlaceLongitude, vm.fotofix.violPlaceLatitude]);
         }
       },
       createMapObjects(id, coord) {
@@ -345,17 +403,71 @@
 </script>
 
 <style scoped lang="scss">
-  .active-photo {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 500px;
-    border-radius: 2px;
-    margin: 20px 0;
-    img {
-      max-width: 100%;
-      max-height: 100%;
+  article.gallery {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 12px;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-bottom: 40px;
+    .gallery__wrap {
+      .gallery__active-item {
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        img {
+          max-width: 100%;
+          width: 100%;
+          max-height: 100%;
+        }
+      }
+      .gallery__items {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-gap: 12px;
+        .arrow {
+          position: absolute;
+        }
+        // grid-auto-flow: column;
+        .gallery__item {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100px;
+          cursor: pointer;
+          overflow: hidden;
+          border-radius: 5px;
+          border: 2px solid transparent;
+          transition: .3s ease;
+          &:hover {
+            border-color: #2d8cf0;
+          }
+          img {
+            height: auto !important;
+          }
+        }
+      }
+    }
+    #dc-object-map {
+      height: 300px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  .items-wrap {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-gap: 12px;
+    hr {
+      height: 1px;
+      width: 100%;
+      color: #cccccc;
+      background: #cccccc;
+      grid-column: span 2;
     }
   }
 </style>
