@@ -9,9 +9,6 @@
 				<div v-for="image in photos" :key="image.id" @click="acitveGalleryItem = image" class="gallery__item">
 					<img alt="img" @load="checkPic($event.target)" :src="image"/>
 				</div>
-				<div v-for="image in photos" :key="image.id" @click="acitveGalleryItem = image" class="gallery__item">
-					<img alt="img" @load="checkPic($event.target)" :src="image"/>
-				</div>
 			</div>
 			<button v-if="photos.length > slideShow" class="arrow next" @click="next()">></button>
 		</div>
