@@ -214,32 +214,38 @@
       changeClass(errorPriority) {
         if (funcUtils.isNotEmpty(errorPriority)) {
           switch (errorPriority) {
+            // 0-3 - красный
+            // 4-7 - жёлтый
+            // 8 и выше - зелёный
+            case 0: {
+              return "bg-red";
+            }
             case 1: {
               return "bg-red";
             }
             case 2: {
-              return "bg-orange";
+              return "bg-red";
             }
             case 3: {
-              return "bg-yellow";
+              return "bg-red";
             }
             case 4: {
-              return "bg-green";
+              return "bg-yellow";
             }
             case 5: {
-              return "bg-blue";
+              return "bg-yellow";
             }
             case 6: {
-              return "bg-purple";
+              return "bg-yellow";
             }
             case 7: {
-              return "bg-gray";
+              return "bg-yellow";
             }
             case 8: {
-              return "bg-black";
+              return "bg-green";
             }
             case 9: {
-              return "bg-blue-faint";
+              return "bg-green";
             }
             default: {
               return "";
