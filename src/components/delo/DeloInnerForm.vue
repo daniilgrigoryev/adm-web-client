@@ -39,7 +39,7 @@
   import FrmEdVuVyd from "~/components/delo/FrmEdVuVyd";
   import FrmEdIspolnPostUvedom from "~/components/delo/FrmEdIspolnPostUvedom";
   import FrmEdDocsProt from "~/components/delo/FrmEdDocsProt";
-  import DlgEdFotoMaterial from "~/components/delo/DlgEdFotoMaterial";
+  import DlgEdFotoMaterial from "~/components/delo/DlgEdFotoMaterial/DlgEdFotoMaterial.vue";
   import DlgAdvice from "~/components/delo/DlgAdvice";
 
   export default {
