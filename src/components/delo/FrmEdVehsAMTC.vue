@@ -121,7 +121,7 @@
               </div>
               <div class="ml18 w-full">
                 <div>
-                  <p class="adm-14 color-dark-lighter mb6">Владелец, дата рождения</p>
+                  <p class="adm-14 color-dark-lighter mb6">Владелец</p>
                   <p class="adm-text-big color-dark-base">{{body.sobstvName || 'нет информации'}}</p>
                 </div>
               </div>
