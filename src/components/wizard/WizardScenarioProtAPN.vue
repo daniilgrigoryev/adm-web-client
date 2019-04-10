@@ -43,6 +43,7 @@
               <div class="adm-form__content">
                 <wizard-item-prot-three id="DocProtApnThree" v-if="isVisible('DocProtApnThree')" ref="DocProtApnThree" :info="getInfo('DocProtApnThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
                 <wizard-item-place v-if="isVisible('DocProtApnThree.PlaceNar')" ref="DocProtApnThree.PlaceNar" :info="getInfo('DocProtApnThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+                <wizard-item-prot-four id="DocProtApnFour" v-if="isVisible('DocProtApnFour')" ref="DocProtApnFour" :info="getInfo('DocProtApnFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
                 <wizard-item-prot-apn-five id="apn" v-if="isVisible('DocProtApnFive')" ref="DocProtApnFive" :info="getInfo('DocProtApnFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-apn-five>
               </div>
             </div>

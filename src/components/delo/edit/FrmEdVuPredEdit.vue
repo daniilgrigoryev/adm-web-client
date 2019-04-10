@@ -208,6 +208,7 @@
         ogaiModal: {
           visible: false,
           ogaiList: null,
+          srcList: null,
           columnsOptions:
             [
               {
@@ -312,7 +313,7 @@
     },
     methods: {
       async showOgaiModal(visible) {
-        if (visible && funcUtils.isEmpty(this.ogaiModal.ogaiList)) {
+        if (funcUtils.isEmpty(this.ogaiModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
@@ -320,9 +321,14 @@
             }
           });
           let ogaiList = JSON.parse(eventResponse.response).data;
-          this.ogaiModal.ogaiList = ogaiList.filter((item) => {
+          this.ogaiModal.srcList = ogaiList.filter((item) => {
             return funcUtils.isNotEmpty(item.OGAI_KOD);
           });
+        }
+        if (visible) {
+          this.ogaiModal.ogaiList = this.ogaiModal.srcList;
+        } else {
+          this.ogaiModal.ogaiList = null;
         }
         this.ogaiModal.visible = visible;
       },

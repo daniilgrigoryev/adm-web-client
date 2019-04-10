@@ -202,6 +202,7 @@
         dolzModal: {
           visible: false,
           sispList: null,
+          srcList: null,
           columnsOptions:
             [
               {
@@ -329,6 +330,7 @@
         sudModal: {
           visible: false,
           sudList: null,
+          srcList: null,
           columnsOptions:
             [
               {
@@ -433,7 +435,8 @@
           visible: false,
           paramKey: 'deloNum',
           paramValue: null,
-          deloList: null
+          deloList: null,
+          srcList: null,
         },
       }
     },
@@ -504,7 +507,7 @@
       },
 
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (funcUtils.isEmpty(this.dolzModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
@@ -515,12 +518,17 @@
               })
             }
           });
-          this.dolzModal.sispList = JSON.parse(JSON.parse(eventResponse.response).data);
+          this.dolzModal.srcList = JSON.parse(JSON.parse(eventResponse.response).data);
+        }
+        if (visible) {
+          this.dolzModal.sispList = this.dolzModal.srcList;
+        } else {
+          this.dolzModal.sispList = null;
         }
         this.dolzModal.visible = visible;
       },
       async showSudModal(visible) {
-        if (visible && funcUtils.isEmpty(this.sudModal.sudList)) {
+        if (visible && funcUtils.isEmpty(this.sudModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
@@ -529,7 +537,12 @@
               data: null
             }
           });
-          this.sudModal.sudList = JSON.parse(JSON.parse(eventResponse.response).data);
+          this.sudModal.srcList = JSON.parse(JSON.parse(eventResponse.response).data);
+        }
+        if (visible) {
+          this.sudModal.sudList = this.sudModal.srcList;
+        } else {
+          this.sudModal.sudList = null;
         }
         this.sudModal.visible = visible;
       },

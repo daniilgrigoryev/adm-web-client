@@ -7,6 +7,7 @@ export default {
       rasmModal: {
         visible: false,
         rasmList: null,
+        srcList: null,
         columnsOptions:
           [
             {
@@ -111,7 +112,7 @@ export default {
   },
   methods: {
     async showRasmModal(visible) {
-      if (visible && funcUtils.isEmpty(this.rasmModal.rasmList)) {
+      if (visible && funcUtils.isEmpty(this.rasmModal.srcList)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
@@ -122,7 +123,12 @@ export default {
             })
           }
         });
-        this.rasmModal.rasmList = JSON.parse(JSON.parse(eventResponse.response).data);
+        this.rasmModal.srcList = JSON.parse(JSON.parse(eventResponse.response).data);
+      }
+      if (visible) {
+        this.rasmModal.rasmList = this.rasmModal.srcList;
+      } else {
+        this.rasmModal.rasmList = null;
       }
       this.rasmModal.visible = visible;
     },

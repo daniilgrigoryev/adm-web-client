@@ -218,7 +218,6 @@ export default {
 	},
 	async created() {
 		await this.initData();
-
 	},
 	data() {
 		return {

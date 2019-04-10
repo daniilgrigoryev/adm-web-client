@@ -134,6 +134,7 @@
         ulModal: {
           visible: false,
           ulList: null,
+          srcList: null,
           columnsOptions:
             [
               {
