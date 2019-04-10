@@ -1,6 +1,5 @@
 <template>
   <div class="adm-form">
-    <div class="adm-form__container">
       <h2 class="adm-form__headding">{{title}}</h2>
       
       <div class="adm-form__item">
@@ -45,7 +44,6 @@
           </Col>
         </Row>
       </div>
-    </div>
   </div>
 </template>
 
