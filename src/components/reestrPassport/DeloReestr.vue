@@ -633,6 +633,8 @@
                       h('p', parsedDate),
                       h('Tooltip', {
                         props: {
+                          disabled: funcUtils.isEmpty(params.row.stadIspolnNameLast) ? true : false,
+                          placement: 'left',
                           content: params.row.stadIspolnNameLast,
                           transfer: true,
                           maxWidth: 120,
@@ -689,8 +691,10 @@
                       h('Tooltip', {
                         props: {
                           content: params.row.decisNameFirst,
+                          disabled: funcUtils.isEmpty(params.row.decisNameFirst) ? true : false,
                           transfer: true,
-                          maxWidth: 120,
+                          maxWidth: 120, 
+                          placement: 'left'
                         },
                       }, [
                         h('p', {
@@ -743,6 +747,8 @@
                       h('p', parsedDate),
                       h('Tooltip', {
                         props: {
+                          disabled: funcUtils.isEmpty(params.row.decisNameLast) ? true : false,
+                          placement: 'left',
                           content: params.row.decisNameLast,
                           transfer: true,
                           maxWidth: 120,
@@ -997,12 +1003,11 @@
                   minWidth: 220,
                   ellipsis: true,
                   visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('opredN'),
-                  tooltip: true,
                   renderHeader: (h, params) => {
                     return h('div', [
                       h('p', {
                         class: {
-                          'ccolor-dark-medium': true,
+                          'color-dark-medium': true,
                           'adm-text-big': true,
                           'txt-normal': true,
                         },
@@ -1018,6 +1023,26 @@
                       }, 'дополнительный протокол'),
                     ])
                   },
+                  render: (h, params) => {
+                   return h('div', {}, [
+                      h('Tooltip', {
+                        props: {
+                          disabled: funcUtils.isEmpty(params.row.opredN) ? true : false,
+                          content: params.row.opredN,
+                          transfer: true,
+                          maxWidth: 250,
+                          placement: 'left'
+                        },
+                      }, [
+                        h('p', {
+                          class: {
+                            'txt-truncate': true,
+                            'txt-uppercase': true,
+                          }
+                        }, params.row.opredN),
+                      ]),
+                    ])
+                  }
                 });
                 break;
               }
