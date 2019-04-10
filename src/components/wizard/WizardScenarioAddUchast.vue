@@ -17,11 +17,24 @@
       <div class="layout-wrap">
         <Layout ref="Main" class="layout">
           <div class="adm-form">
-            <wizard-item-add-uchast title="Участник" v-if="isVisible('Uchast')" ref="DocProtFirst" :info="getInfo('Uchast')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
-            <wizard-item-individual title="Физическое лицо" v-if="isVisible('Uchast.Individual')" ref="Uchast.Individual" :info="getInfo('Uchast.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-            <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Individual.regAddr')" ref="Uchast.Individual.regAddr" :info="getInfo('Uchast.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-            <wizard-item-organization title="Организация" v-if="isVisible('Uchast.Organization')" ref="Uchast.Organization" :info="getInfo('Uchast.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
-            <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Organization.regAddr')" ref="Uchast.Organization.regAddr" :info="getInfo('Uchast.Organization.regAddr')"  @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            <div class="adm-form__container">
+              <h2 class="adm-form__headding">Участник</h2>
+              <wizard-item-add-uchast v-if="isVisible('Uchast')" ref="DocProtFirst" :info="getInfo('Uchast')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
+            </div>
+            <div class="adm-form__container" v-if="isVisible('Uchast.Individual')">
+              <h2 class="adm-form__headding">Физическое лицо</h2>
+              <wizard-item-individual v-if="isVisible('Uchast.Individual')" ref="Uchast.Individual" :info="getInfo('Uchast.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+            </div>
+            <div class="adm-form__container" v-if="isVisible('Uchast.Individual.regAddr')">
+              <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Individual.regAddr')" ref="Uchast.Individual.regAddr" :info="getInfo('Uchast.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            </div>
+            <div class="adm-form__container" v-if="isVisible('Uchast.Organization')">
+              <h2 class="adm-form__headding">Организация</h2>
+              <wizard-item-organization v-if="isVisible('Uchast.Organization')" ref="Uchast.Organization" :info="getInfo('Uchast.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
+            </div>
+            <div class="adm-form__container" v-if="isVisible('Uchast.Organization.regAddr')">
+              <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Organization.regAddr')" ref="Uchast.Organization.regAddr" :info="getInfo('Uchast.Organization.regAddr')"  @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            </div>
           </div>
         </Layout>
       </div>
