@@ -77,7 +77,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Дата и время рассмотрения</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateRasm || 'нет информации'}}</p>
+                  <p class="adm-text-big color-dark-base">{{body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>

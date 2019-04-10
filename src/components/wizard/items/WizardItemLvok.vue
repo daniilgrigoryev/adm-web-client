@@ -8,8 +8,8 @@
     </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Тип ЛВОКа:</small>
-      <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.tip" clearable @on-change="changeTip" :disabled="!data.status">
-        <Option class="wmax360 " v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+      <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.tip" clearable @on-change="storeElementData">
+        <Option class="wmax360" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
       </Select>
     </div>
   </div>
@@ -46,10 +46,7 @@
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
 
         await this.fillStatusList();
-
-        if (this.data.status) {
-          await this.fillTipList();
-        }
+        await this.fillTipList();
       },
       async fillStatusList() {
         let eventResponse = await RequestApi.prepareData({
@@ -92,10 +89,7 @@
         this.tipList = tipList;
       },
       async changeStatus() {
-        this.fillTipList();
-        this.storeElementData();
-      },
-      changeTip() {
+        await this.fillTipList();
         this.storeElementData();
       },
       storeElementData() {
