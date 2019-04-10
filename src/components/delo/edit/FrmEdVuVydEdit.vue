@@ -249,6 +249,7 @@
         dolzModal: {
           visible: false,
           sispList: null,
+          srcList: null,
           columnsOptions:
             [
               {
@@ -376,6 +377,7 @@
         ogaiModal: {
           visible: false,
           ogaiList: null,
+          srcList: null,
           columnsOptions:
             [
               {
@@ -480,19 +482,24 @@
     },
     methods: {
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (funcUtils.isEmpty(this.dolzModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
               inspKod: null
             }
           });
-          this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
+          this.dolzModal.srcList = JSON.parse(eventResponse.response).data;
+        }
+        if (visible) {
+          this.dolzModal.sispList = this.dolzModal.srcList;
+        } else {
+          this.dolzModal.sispList = null;
         }
         this.dolzModal.visible = visible;
       },
       async showOgaiModal(visible) {
-        if (visible && funcUtils.isEmpty(this.ogaiModal.ogaiList)) {
+        if (funcUtils.isEmpty(this.ogaiModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
@@ -500,9 +507,14 @@
             }
           });
           let ogaiList = JSON.parse(eventResponse.response).data;
-          this.ogaiModal.ogaiList = ogaiList.filter((item) => {
+          this.ogaiModal.srcList = ogaiList.filter((item) => {
             return funcUtils.isNotEmpty(item.OGAI_KOD);
           });
+        }
+        if (visible) {
+          this.ogaiModal.ogaiList = this.ogaiModal.srcList;
+        } else {
+          this.ogaiModal.ogaiList = null;
         }
         this.ogaiModal.visible = visible;
       },

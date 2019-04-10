@@ -7,6 +7,7 @@ export default {
       dolzModal: {
         visible: false,
         sispList: null,
+        srcList: null,
         columnsOptions:
           [
             {
@@ -124,6 +125,7 @@ export default {
       organModal: {
         visible: false,
         gibddList: null,
+        srcList: null,
         columnsOptions:
           [
             {
@@ -302,7 +304,7 @@ export default {
       this.clearInspSostKod();
     },
     async showDolzModal(visible) {
-      if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+      if (funcUtils.isEmpty(this.dolzModal.srcList)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
@@ -313,12 +315,17 @@ export default {
             })
           }
         });
-        this.dolzModal.sispList = JSON.parse(JSON.parse(eventResponse.response).data);
+        this.dolzModal.srcList = JSON.parse(JSON.parse(eventResponse.response).data);
+      }
+      if (visible) {
+        this.dolzModal.sispList = this.dolzModal.srcList;
+      } else {
+        this.dolzModal.sispList = null;
       }
       this.dolzModal.visible = visible;
     },
     async showOrganModal(visible) {
-      if (visible && funcUtils.isEmpty(this.organModal.gibddList)) {
+      if (visible && funcUtils.isEmpty(this.organModal.srcList)) {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
@@ -329,7 +336,12 @@ export default {
             })
           }
         });
-        this.organModal.gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
+        this.organModal.srcList = JSON.parse(JSON.parse(eventResponse.response).data);
+      }
+      if (visible) {
+        this.organModal.gibddList = this.organModal.srcList;
+      } else {
+        this.organModal.gibddList = null;
       }
       this.organModal.visible = visible;
     },

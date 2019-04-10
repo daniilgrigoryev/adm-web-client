@@ -122,6 +122,7 @@
         dolzModal: {
           visible: false,
           sispList: null,
+          srcList: null,
           columnsOptions:
             [
               {
@@ -249,6 +250,7 @@
         organModal: {
           visible: false,
           gibddList: null,
+          srcList: null,
           columnsOptions:
             [
               {
@@ -352,6 +354,7 @@
         organNapravModal: {
           visible: false,
           gibddList: null,
+          srcList: null,
           columnsOptions:
             [
               {
@@ -515,38 +518,53 @@
         this.store();
       },
       async showDolzModal(visible) {
-        if (visible && funcUtils.isEmpty(this.dolzModal.sispList)) {
+        if (funcUtils.isEmpty(this.dolzModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
               inspKod: null
             }
           });
-          this.dolzModal.sispList = JSON.parse(eventResponse.response).data;
+          this.dolzModal.srcList = JSON.parse(eventResponse.response).data;
+        }
+        if (visible) {
+          this.dolzModal.sispList = this.dolzModal.srcList;
+        } else {
+          this.dolzModal.sispList = null;
         }
         this.dolzModal.visible = visible;
       },
       async showOrganModal(visible) {
-        if (visible && funcUtils.isEmpty(this.organModal.gibddList)) {
+        if (visible && funcUtils.isEmpty(this.organModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
               organKod: null
             }
           });
-          this.organModal.gibddList = JSON.parse(eventResponse.response).data;
+          this.organModal.srcList = JSON.parse(eventResponse.response).data;
+        }
+        if (visible) {
+          this.organModal.gibddList = this.organModal.srcList;
+        } else {
+          this.organModal.gibddList = null;
         }
         this.organModal.visible = visible;
       },
       async showOrganNapravModal(visible) {
-        if (visible && funcUtils.isEmpty(this.organNapravModal.gibddList)) {
+        if (funcUtils.isEmpty(this.organNapravModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
             params: {
               organKod: null
             }
           });
-          this.organNapravModal.gibddList = JSON.parse(eventResponse.response).data;
+          this.organNapravModal.srcList = JSON.parse(eventResponse.response).data;
+        }
+        if (visible) {
+          this.organNapravModal.gibddList = this.organNapravModal.srcList;
+        } else {
+          this.organNapravModal.gibddList = null;
         }
         this.organNapravModal.visible = visible;
       },
