@@ -90,7 +90,7 @@
                     <Button type="text" class="adm-btn-regular">Заключение по жалобе</Button>
                   </li>
                   <li v-if="menuItemVisible(menu.addDocument.DocumentUchast)">
-                    <Button type="text" class="adm-btn-regular">Документ участника</Button>
+                    <Button type="text" @click="addPredDocWizard" class="adm-btn-regular">Документ участника</Button>
                   </li>
                 </ul>
               </div>
@@ -106,6 +106,7 @@
 
             <Button v-if="menuVisible(menu.addIspoln)"
                     type="text"
+                    @click="addIspolnWizard"
                     class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
                     style="box-shadow: none">
               <span>Добавить исполнение</span>
@@ -543,7 +544,7 @@
             return currentForm.params.recType === 'DOCS_GALOB';
           }
           case 'DocumentUchast': {
-            return currentForm.params.recType === 'UCHASTFL' || currentForm.params.recType === 'UCHASTUL' || currentForm.params.recType === 'UCHASTOTHER';
+            return currentForm.params.recType === 'UCHASTFL';
           }
           case 'AddIspoln': {
             return currentForm.params.recType === 'DECIS' && this.deloContext.stadKod !== 7;
@@ -673,6 +674,44 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
           let params = {
             scenarioName: 'AddUchast',
+            node: copyNode,
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      addPredDocWizard() {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let params = {
+            scenarioName: 'AddPredDoc',
+            node: copyNode,
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      addIspolnWizard() {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let params = {
+            scenarioName: 'AddIspoln',
             node: copyNode,
           };
 

@@ -6,6 +6,8 @@
     <wizard-scenario-prot-a-p-n v-if="isVisible('CreateProtAPN')" ref="CreateProtAPN" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-a-p-n>
     <wizard-scenario-add-uchast v-if="isVisible('AddUchast')" ref="AddUchast" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-uchast>
     <wizard-scenario-definition v-if="isVisible('CreateDefinition')" ref="CreateDefinition" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-definition>
+    <wizard-scenario-add-pred-doc v-if="isVisible('AddPredDoc')" ref="AddPredDoc" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-pred-doc>
+    <wizard-scenario-add-ispoln v-if="isVisible('AddIspoln')" ref="AddIspoln" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-ispoln>
   </div>
 </template>
 
@@ -18,6 +20,8 @@
   import WizardScenarioProtAPN from "~/components/wizard/WizardScenarioProtAPN";
   import WizardScenarioDefinition from "~/components/wizard/WizardScenarioDefinition";
   import WizardScenarioAddUchast from "~/components/wizard/WizardScenarioAddUchast";
+  import WizardScenarioAddPredDoc from "~/components/wizard/WizardScenarioAddPredDoc";
+  import WizardScenarioAddIspoln from "~/components/wizard/WizardScenarioAddIspoln";
 
   export default {
     name: "WizardExecuter",
@@ -27,6 +31,8 @@
       WizardScenarioProtAPN,
       WizardScenarioProtEvac,
       WizardScenarioDefinition,
+      WizardScenarioAddPredDoc,
+      WizardScenarioAddIspoln,
       WizardScenarioAddUchast
     },
     async created() {
@@ -112,6 +118,9 @@
           cids = JSON.parse(eventResponse.response).data;
         }
         await this.updateComponents(cids);
+        if (params.resolve) {
+          params.resolve();
+        }
       },
       async updateComponents(cids) {
         let cidsKeySet = Object.keys(cids);

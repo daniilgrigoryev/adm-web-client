@@ -74,7 +74,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.birthMestoKod" clearable filterable @on-change="store">
+                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.birthMestoKod" clearable filterable @on-change="changeBirthMesto">
                         <Option class="" v-for="item in birthMestoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -276,6 +276,17 @@
         } else {
           this.uchastIndivid.individ.birthdayDay = null;
           this.uchastIndivid.individ.birthdayYear = null;
+        }
+        this.store();
+      },
+      changeBirthMesto(e) {
+        if (e) {
+          let item = this.birthMestoList.filter((item) => {
+            return item.value === e;
+          })[0];
+          this.uchastIndivid.individ.birthMesto = item.label;
+        } else {
+          this.uchastIndivid.individ.birthMesto = null;
         }
         this.store();
       },

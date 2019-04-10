@@ -120,6 +120,7 @@
       onInput(e) {
         if (e.length === 0) {
           this.$emit('onClear');
+          this.$emit('input', null);
         } else {
           this.$emit('input', e);
         }

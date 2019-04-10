@@ -79,7 +79,6 @@
         }
       },
 
-
       storeElementData() {
         this.$emit('storeElementData', {
           eCID: this.info.eCID,

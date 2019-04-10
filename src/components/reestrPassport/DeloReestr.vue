@@ -47,7 +47,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">ГРЗ</div>
-                          <masked-input v-model="filter.regno" placeholder="" :maskProps="maskRegno" inputClass="adm-input adm-input--big" clearable></masked-input> 
+                          <masked-input v-model="filter.regno" placeholder="" :maskProps="maskRegno" inputClass="adm-input adm-input--big" clearable></masked-input>
                         </div>
                       </div>
                     </Col>
@@ -324,8 +324,8 @@
         },
         maskRegno: {
           regex: '[a-zA-Zа-яА-Я0-9]+',
-          casing: 'upper', 
-          placeholder: '' 
+          casing: 'upper',
+          placeholder: ''
         },
         maskInputFIO: {
           regex: '[а-яА-ЯёЁ]+',
