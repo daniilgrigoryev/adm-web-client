@@ -224,7 +224,7 @@
               "vu_pred_dat_vyd": "",
               "vu_pred_status": "Задержан"
             }*/
-            return predDoc;
+            return '';
           }
           case 'DOCS_GALOB': {
             /*{
