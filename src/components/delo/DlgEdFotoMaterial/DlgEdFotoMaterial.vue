@@ -42,7 +42,7 @@
             :value="fotofix.cam1Model" 
           />
           <view-data-item 
-            label="Сертификат проверки" 
+            label="Идентификатор поверки" 
             :value="fotofix.cam2CertExpirDate" 
           />
           <view-data-item 
