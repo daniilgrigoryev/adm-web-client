@@ -1,6 +1,26 @@
 <template>
   <div>
-    <div id="indicator"></div>
+    <div id="indicator" class='loader loaderR'>
+      <div>
+        <div>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <div>
+                      <div>
+                        <div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -10,9 +30,9 @@
     }
 </script>
 
-<style>
+<style lang="scss">
   #indicator {
-    /*display: none;*/
+    display: none;
     /*width: 100vw;*/
     /*height: 100vh;*/
     /*position: fixed;*/
@@ -21,30 +41,84 @@
     /*background: grey;*/
   }
 
-  @keyframes spinner-line-fade-more {
-    0%, 100% {
-      opacity: 0; /* minimum opacity */
+  $grey: #CCCCCC;
+  $blue: #1888CC;
+
+  @keyframes rotate {
+    0% {
+     transform: rotate(50deg);
     }
-    1% {
-      opacity: 1;
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 
-  @keyframes spinner-line-fade-quick {
-    0%, 39%, 100% {
-      opacity: 0.25; /* minimum opacity */
+  @keyframes rotate2 {
+    0% {
+      transform: rotate(50deg);
+      border-top-color: $grey;
     }
-    40% {
-      opacity: 1;
+    50% {
+      transform: rotate(180deg);
+      border-top-color: $blue;
+    }
+    100% {
+      transform: rotate(360deg);
+      border-top-color: $grey;
     }
   }
 
-  @keyframes spinner-line-fade-default {
-    0%, 100% {
-      opacity: 0.22; /* minimum opacity */
+  @mixin loaderDivMixin {
+    border-radius: 50%;
+    padding: 8px;
+    border: 2px solid transparent;
+    animation: rotate linear 3.5s infinite;
+  }
+
+  .loader {
+    // position: relative;
+    // margin: 75px auto;
+    // width: 150px;
+    // height: 150px;
+    // display: block;
+    // overflow: hidden;
+    position: fixed;
+    /* margin: 75px auto; */
+    width: 150px;
+    height: 150px;
+    display: block;
+    overflow: hidden;
+    z-index: 999;
+    bottom: 0;
+    right: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 0;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    div {
+      height: 100%;
     }
-    1% {
-      opacity: 1;
-    }
+  }
+
+
+  .loaderR, .loaderR div {
+    @include loaderDivMixin;
+    border-radius: 50%;
+    padding: 4px;
+    animation: rotate2 1.2s infinite linear;
+  }
+
+  div:hover {
+    animation-play-state: paused;
+  }
+
+  .loader, .loader * {
+    will-change: transform;
   }
 </style>

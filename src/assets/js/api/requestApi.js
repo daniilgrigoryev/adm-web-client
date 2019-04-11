@@ -134,11 +134,24 @@ export default class RequestApi {
       };
       let target = document.getElementById('indicator');
       if (funcUtils.isNotEmpty(target)) {
-        for (let i = 0; i < target.childNodes.length; i++) {
-          target.childNodes[i].remove();
-        }
+        // for (let i = 0; i < target.childNodes.length; i++) {
+        //   target.childNodes[i].remove();
+        // }
+
+
+        target.appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'))
+        .appendChild(document.createElement('div'));
+
         target.style.display = 'block';
-        spinner = new Spinner(opts).spin(target);
+        // spinner = new Spinner(opts).spin(target);
       }
     }
     let xhr = new XMLHttpRequest();
