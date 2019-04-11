@@ -2,17 +2,12 @@
   <div>
     <ul class="tree">
       <li @click="parentNodeClick">
-        <a href="javascript:void(0)" class="flex-parent flex-parent--center-cross flex-parent--wrap tree__link py18" :class='{"tree__link--selected" : node.selected }'>
-          <div class="ml18" style="width: 30px; height: 30px;">
+        <a href="javascript:void(0)" class="tree__link " :class='{"tree__link--selected" : node.selected }'>
+          <div class="tree__icon">
             <img :src="iconNode" alt="">
           </div>
-          <div class="col mx18 formatter">
-            <p v-html="format" class="adm-text-big color-dark-base"></p>
-          </div>
-          <span v-if="isParent && isFolder">
-            <img v-if='open' src='../../assets/images/controls-switch-chevron-up.svg'>
-            <img v-else src='../../assets/images/controls-switch-chevron-down.svg'>
-          </span>
+          <div v-html="dataNode" class="tree__text-wrap"/>
+          <img v-if="isParent && isFolder" class="tree__arrow" :class="{open: open}" src="../../assets/images/controls-switch-chevron-down.svg" />
         </a>
       </li>
     </ul>
@@ -55,6 +50,13 @@
     data() {
       return {
         open: false
+      }
+    },
+    created() {
+      for (const key in this.node.nodeParams) {
+        if (funcUtils.isEmpty(this.node.nodeParams[key])) {
+          this.node.nodeParams[key] = "";
+        }
       }
     },
     computed: {
@@ -181,6 +183,8 @@
       },
       dataNode() {
         let node = this.node;
+        let params = node.nodeParams;
+        
         switch (node.recType) {
           case "DELO": {
             /*
@@ -193,7 +197,14 @@
               "delo_apn_viol_name": null,
               "delo_apn_block_isp": null
             }*/
-            return `<p class="adm-text-big color-dark-base">Дело №${node.nodeParams.delo_apn_n} от ${node.nodeParams.delo_apn_dat} по ${node.nodeParams.delo_apn_stotv}</p>`;
+            return `
+              <h4>
+                Дело
+                <span class="date">${params.delo_apn_dat}</span>
+              </h4>
+              <p>${params.delo_apn_n}</p>
+              <p class="other-info">по ${params.delo_apn_stotv}</p>
+            `;
           }
           case "UCHASTFL":
           case "UCHASTUL":
@@ -206,7 +217,11 @@
               "uchast_name_short": "И.В.ПАВЛОВА",
               "uchast_birthday": "05.08.1989"
             }*/
-            return '';
+            return `
+              <h4>${params.uchast_vid_name_short}</h4>
+              <p>${params.uchast_name_short} <small>${params.uchast_tip_name}</small></p>
+              <p class="other-info">${params.uchast_birthday} г.р.</p>
+            `;
           }
           case "VEHS":
           case "VEHSOTHER": {
@@ -216,7 +231,11 @@
               "vehs_marka_avto": "АВТОЛАЙН",
               "vehs_modavto_name": "32361"
             }*/
-            return amtc;
+            return `
+              <h4>Транспортное средство</h4>
+              <p>${params.vehs_nspec}</p>
+              <p class="other-info">${params.vehs_marka_avto}</p>
+            `;
           }
           case "VU_PRED":
           case "VU_VYD": {
@@ -226,7 +245,11 @@
               "vu_pred_dat_vyd": "",
               "vu_pred_status": "Задержан"
             }*/
-            return '';
+            return `
+              <h4>${params.vu_pred_doc_tip}</h4>
+              <p>${params.vu_pred_n}</p>
+              <p class="other-info">Выдан ${params.vu_pred_dat_vyd}</p>
+            `;
           }
           case 'DOCS_GALOB': {
             /*{
@@ -238,7 +261,13 @@
               "doc_other_dat": "20.03.2016",
               "docs_other_fotomat_cnt": null
             }*/
-            return '';
+            return `
+              <h4>
+                ${params.doc_other_tip_name}
+                <span class="date">${params.doc_other_dat}</span>
+              </h4>
+              <p>${params.doc_other_uchast_name}</p>
+            `;
           }
           case "DOCS_OTHER": {
             switch (node.docTip) {
@@ -256,7 +285,14 @@
                   "doc_other_dat": "26.06.2018",
                   "docs_other_fotomat_cnt": "(3 шт.)"
                 }*/
-                return '';
+                return `
+                  <h4>
+                    ${params.doc_other_tip_name}
+                    <span class="date">${params.doc_other_dat}</span>
+                  </h4>
+                  <p>${params.doc_other_n}</p>
+                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                `;
               }
               case docTipEnum.ADVICE: {
                 /*{
@@ -268,7 +304,14 @@
                   "doc_other_dat": "26.06.2018",
                   "docs_other_fotomat_cnt": "(3 шт.)"
                 }*/
-                return '';
+                return `
+                  <h4>
+                    ${params.doc_other_tip_name}
+                    <span class="date">${params.doc_other_dat}</span>
+                  </h4>
+                  <p>${params.doc_other_n}</p>
+                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                `;
               }
               case docTipEnum.ZALOB:
               case docTipEnum.APPEAL_CONCLUSION:
@@ -282,7 +325,14 @@
                   "doc_other_dat": "26.06.2018",
                   "docs_other_fotomat_cnt": "(3 шт.)"
                 }*/
-                return '';
+                return `
+                  <h4>
+                    ${params.doc_other_tip_name}
+                    <span class="date">${params.doc_other_dat}</span>
+                  </h4>
+                  <p>${params.doc_other_n}</p>
+                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                `;
               }
               case docTipEnum.OPL_SHTRAF:
               case docTipEnum.OPL_SHTRAF_UFK:
@@ -298,7 +348,14 @@
                   "doc_other_dat": "26.06.2018",
                   "docs_other_fotomat_cnt": "(3 шт.)"
                 }*/
-                return '';
+                return `
+                  <h4>
+                    ${params.doc_other_tip_name}
+                    <span class="date">${params.doc_other_dat}</span>
+                  </h4>
+                  <p>${params.doc_other_n}</p>
+                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                `;
               }
               case docTipEnum.ACT_OCAO:
               case docTipEnum.PROT_MED:
@@ -323,7 +380,14 @@
                   "doc_other_dat": "08.03.2016",
                   "docs_other_fotomat_cnt": null
                 }*/
-                return '';
+                return `
+                  <h4>
+                    ${params.doc_other_tip_name}
+                    <span class="date">${params.doc_other_dat}</span>
+                  </h4>
+                  <p>${params.doc_other_n}</p>
+                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                `;
               }
             }
             break;
@@ -336,7 +400,13 @@
               "decis_mera": "на 500 руб.",
               "decis_dat": "26.06.2018"
             }*/
-            return '';
+            return `
+              <h4>
+                ${params.decis_name}
+                <span class="date">${params.decis_dat}</span>
+              </h4>
+              <p class="red">${params.decis_mera}</p>
+            `;
           }
           case 'DOCS_POST':
           case 'DOCS_POST_UL': {
@@ -345,7 +415,13 @@
               "post_doc_n": "18810150180626000105",
               "post_dat_sost": " от 26.06.2018"
             }*/
-            return '';
+            return `
+              <h4>
+                ${params.post_short_name}
+                <span class="date">${params.post_dat_sost}</span>
+              </h4>
+              <p>${params.post_doc_n}</p>
+            `;
           }
           case 'DECIS_ISPOLN': {
             if (funcUtils.isNotEmpty(node.kod)) {
@@ -376,7 +452,12 @@
                     "std_isp_date": "19.10.2017",
                     "std_isp_sumopl": null
                   }*/
-                  return '';
+                  return `
+                    <h4>
+                      ${params.std_isp_name}
+                      <span class="date">${params.std_isp_date}</span>
+                    </h4>
+                  `;
                 }
                 case decisIspolnEnum.IZMEN_POST_ON_GALOB:
                 case decisIspolnEnum.OTMENA_DECIS_ON_GALOB: {
@@ -387,7 +468,12 @@
                     "std_isp_date": "25.03.2016",
                     "std_isp_sumopl": null
                   }*/
-                  return '';
+                  return `
+                    <h4>
+                      ${params.std_isp_name}
+                      <span class="date">${params.std_isp_date}</span>
+                    </h4>
+                  `;
                 }
               }
             }
@@ -398,7 +484,12 @@
               "std_isp_date": "26.06.2018",
               "std_isp_sumopl": null
             }*/
-            return '';
+            return `
+              <h4>
+                ${params.std_isp_name}
+                <span class="date">${params.std_isp_date}</span>
+              </h4>
+            `;
           }
           case 'DOCS_OPRED': {
             /*{
@@ -410,7 +501,12 @@
               "doc_other_dat": "28.01.2011",
               "docs_other_fotomat_cnt": null
             }*/
-            return '';
+            return `
+              <h4>
+                ${params.doc_other_tip_name}
+                <span class="date">${params.doc_other_dat}</span>
+              </h4>
+            `;
           }
           case 'DOCS_PROT': {
             /*{
@@ -418,7 +514,13 @@
               "prot_doc_n": "1111111",
               "prot_dat_sost": " от 10.04.2019"
             }*/
-            return '';
+            return `
+              <h4>
+                ${params.prot_short_name}
+                <span class="date">${params.prot_dat_sost}</span>
+              </h4>
+              <p>${params.prot_doc_n}</p>
+            `;
           }
         }
         return null;
@@ -451,7 +553,77 @@
   }
 </script>
 
-<style lang='scss'>
-  .bold {
+<style lang="scss">
+  .tree-parent .tree {
+    width: 400px;
+    z-index: 8;
+  }
+  .tree {
+    width: 430px;
+    .tree__link {
+      display: grid;
+      grid-gap: 25px;
+      grid-template-columns: 30px 1fr;
+      width: 100%;
+      align-items: center;
+      padding: 15px;
+      padding-left: 25px;
+      position: relative;
+      .tree__arrow {
+        position: absolute;
+        right: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.open {
+          transform: rotate(180deg);
+        }
+      }
+      .tree__icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .tree__text-wrap {
+        letter-spacing: 0.2px;	
+        width: 100%;
+        h4 {
+          display: flex;
+          justify-content: space-between;
+          color: #373737;	
+          font-size: 16px;	
+          padding-bottom: 4px;
+          .date {
+            flex: none;
+            font-size: 12px;	
+            font-style: italic;	
+            text-align: right;
+            color: #797979;
+          }
+        }
+        p {
+          font-size: 18px;	
+          font-weight: 600;	
+          letter-spacing: 0.2px;
+          line-height: 16px;
+          color: #373737;
+          &.red {
+            color: #de6262;
+          }
+          small {
+            color: #797979;
+            font-size: 12px;
+            font-weight: 400;
+          }
+          &.other-info {
+            color: #373737;	
+            font-weight: 400;
+            font-size: 14px;	
+          }
+        }
+      }
+    }
   }
 </style>
