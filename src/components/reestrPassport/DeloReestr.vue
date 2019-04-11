@@ -56,7 +56,7 @@
 
                 <Col :xs="24" :md="12" :lg="12">
                   <Row type="flex" :gutter="20">
-                    <Col :xs="12" :md="12" :lg="12">
+                    <Col :xs="24" :md="24" :lg="11">
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Документ дела</div>
@@ -65,9 +65,15 @@
                           </Select>
                         </div>
                       </div>
-
                     </Col>
-                    <Col :xs="12" :md="12" :lg="12">
+                    <Col :xs="24" :md="24" :lg="2">
+                      <div class="flex-parent flex-parent--center-main flex-parent--end-cross h-full">
+                        <div class="adm-form__item">
+                          <Icon type="ios-link" size="30" color="#CCCCCC" title="связанные поля" />
+                        </div>
+                      </div>
+                    </Col>
+                    <Col :xs="24" :md="24" :lg="11">
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">№ документа</div>
@@ -118,7 +124,7 @@
 
                 <Col :xs="24" :md="12" :lg="12">
                   <Row type="flex" :gutter="20">
-                    <Col :xs="24" :md="12" :lg="12">
+                    <Col :xs="24" :md="12" :lg="11">
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Стадия дела</div>
@@ -128,7 +134,14 @@
                           </div>
                         </div>
                     </Col>
-                    <Col :xs="24" :md="12" :lg="12">
+                    <Col :xs="12" :md="12" :lg="2">
+                      <div class="flex-parent flex-parent--center-main flex-parent--end-cross h-full">
+                        <div class="adm-form__item">
+                          
+                        </div>
+                      </div>
+                    </Col>
+                    <Col :xs="24" :md="12" :lg="11">
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Статья КРФоАП</div>
