@@ -9,7 +9,7 @@
               Ввод данных по протоколу об административном правонарушении
             </h2>
             <div class="adm-form__content">
-              <wizard-item-prot-one id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-one>
+              <wizard-item-prot-one-apn id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-one-apn>
               <wizard-item-place v-if="isVisible('DocProtApnOne.PlaceSost')" ref="DocProtApnOne.PlaceSost" :info="getInfo('DocProtApnOne.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
               <wizard-item-prot-two id="DocProtApnTwo" v-if="isVisible('DocProtApnTwo')" ref="DocProtApnTwo" :info="getInfo('DocProtApnTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-two>
             </div>
@@ -75,7 +75,7 @@
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import WizardItemProtOne from "./items/WizardItemProtOne.vue";
+  import WizardItemProtOneApn from "./items/protApn/WizardItemProtOneApn.vue";
   import WizardItemProtTwo from "./items/WizardItemProtTwo.vue";
   import WizardItemProtThree from "./items/WizardItemProtThree.vue";
   import WizardItemProtFour from "./items/WizardItemProtFour.vue";
@@ -96,7 +96,7 @@
     },
     components: {
       AsideTemplate,
-      WizardItemProtOne,
+      WizardItemProtOneApn,
       WizardItemProtTwo,
       WizardItemProtThree,
       WizardItemProtFour,
