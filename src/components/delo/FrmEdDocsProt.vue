@@ -21,7 +21,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
-                  <p class="adm-text-big color-dark-base">{{body.pnpaName || 'нет информации'}}</p>
+                  <p class="adm-text-big color-dark-base">{{body.pnpaKod, body.pnpaName | concatByDelimiter(', ') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -29,7 +29,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Статья КРФоАП</p>
-                  <p class="adm-text-big color-dark-base">{{body.stotvName || 'нет информации'}}</p>
+                  <p class="adm-text-big color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(', ') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
-                  <p class="adm-text-big color-dark-base">{{body.inspSostName, body.inspSostDolz | concatByDelimiter(' ') || 'нет информации'}}</p>
+                  <p class="adm-text-big color-dark-base">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>

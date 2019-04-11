@@ -27,7 +27,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">ФИО, дата рождения</p>
-                  <p class="adm-text-big color-dark-base">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'/') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('/') || 'нет информации'}}</p>
+                  <p class="adm-text-big color-dark-base">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'.') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>

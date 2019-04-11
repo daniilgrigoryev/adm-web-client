@@ -64,8 +64,6 @@
                 </div>
               </div>
             </div>
-
-
             <div class="py12" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
               <div class="flex-parent">
                 <div class="s40 mt12">
@@ -114,7 +112,6 @@
                 </div>
               </div>
             </div>
-           
             <div class="pt12 flex-parent flex-parent--center-cross">
               <div class="s40">
                   <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
