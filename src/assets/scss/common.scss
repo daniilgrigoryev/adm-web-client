@@ -244,12 +244,6 @@ html, body, #app {
     // margin-left: 50px;
   }
 }
-.tree-parent{
-  .tree{
-    z-index: 8;
-    padding-left: 30px;
-  }
-}
 .tree_wrapper{
   position: -webkit-sticky;
   position: sticky;
@@ -261,7 +255,6 @@ html, body, #app {
   height: calc(100vh - 130px);
 }
 .tree {
-  max-width: 430px;
   position: -webkit-sticky;
   position: sticky;
   position: -webkit-sticky;
@@ -270,9 +263,7 @@ html, body, #app {
   z-index: 9;
   direction: ltr;
   margin-right: 20px;
-
-  a.tree__link {
-    // background-color: #F5FAFD;
+  .tree__link {
     &::before {
       content: "";
       position: absolute;

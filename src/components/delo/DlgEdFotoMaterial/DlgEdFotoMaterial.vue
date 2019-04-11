@@ -34,7 +34,7 @@
           />
           <hr>
           <view-data-item 
-            label="Индефитикатор" 
+            label="Идентификатор" 
             :value="fotofix.cam1CertNumber" 
           />
           <view-data-item 
@@ -42,7 +42,7 @@
             :value="fotofix.cam1Model" 
           />
           <view-data-item 
-            label="Идентификатор поверки" 
+            label="Сертификат поверки" 
             :value="fotofix.cam2CertExpirDate" 
           />
           <view-data-item 
