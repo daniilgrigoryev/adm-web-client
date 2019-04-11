@@ -332,8 +332,7 @@
               "decis_name": "Оштрафовать",
               "decis_priz_mera": "+",
               "decis_mera": "на 500 руб.",
-              "decis_dat": "26.06.2018",
-              "decis_dat": "15.03.2016
+              "decis_dat": "26.06.2018"
             }*/
             return '';
           }
