@@ -173,7 +173,7 @@
         this.$store.watch(this.$store.getters.frmEdVehsAMTCGetCommand, async () => {
           try {
             let current = formStack.getCurrent();
-            let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+            let uid = vm.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
             let currentForm = innerFormStack.getCurrent(uid);
             let eventResponse = await RequestApi.prepareData({
               cid: currentForm.cid,
@@ -181,7 +181,7 @@
             });
             await vm.$store.dispatch('fillModule', {'event': eventResponse});
 
-            await this.fillComponent({
+            await vm.fillComponent({
               vm: vm,
               cid: currentForm.cid,
               photos: vm.dataStore ? vm.dataStore.fotoList : null

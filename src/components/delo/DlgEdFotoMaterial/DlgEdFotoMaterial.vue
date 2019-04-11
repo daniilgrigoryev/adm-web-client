@@ -97,25 +97,28 @@
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
 
-        await this.fillComponent({
-          vm: this,
-          cid: currentForm.cid,
-          photos: this.dataStore ? this.dataStore.fotoList : null
-        });
-
         let vm = this;
         this.$store.watch(this.$store.getters.dlgEdFotoMaterialGetCommand, async () => {
           try {
             let current = formStack.getCurrent();
-            let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+            let uid = vm.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
             let currentForm = innerFormStack.getCurrent(uid);
             let eventResponse = await RequestApi.prepareData({
               cid: currentForm.cid,
               withSpinner: false
             });
             await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          } catch (e) {
+            alert(e.message);
+          }
+        });
 
-            await this.fillComponent({
+        this.$store.watch(this.$store.getters.dlgEdFotoMaterialGetDataForMap, async () => {
+          try {
+            let current = formStack.getCurrent();
+            let uid = vm.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+            let currentForm = innerFormStack.getCurrent(uid);
+            await vm.fillComponent({
               vm: vm,
               cid: currentForm.cid,
               photos: vm.dataStore ? vm.dataStore.fotoList : null
@@ -133,7 +136,6 @@
       this.$store.dispatch('dlgEdFotoMaterialSetData', null);
     },
     methods: {
-      
       async fillComponent(params) {
         let cid = params.cid;
         let photos = params.photos;

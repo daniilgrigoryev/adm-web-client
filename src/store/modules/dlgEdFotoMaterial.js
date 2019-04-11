@@ -31,10 +31,13 @@ export default {
   },
   getters: {
     dlgEdFotoMaterialGetCommand: state => () => {
-      return state.command
+      return state.command;
     },
     dlgEdFotoMaterialGetData: state => {
-      return state.data
+      return state.data;
+    },
+    dlgEdFotoMaterialGetDataForMap: state => () => {
+      return state.data;
     }
   }
 };
