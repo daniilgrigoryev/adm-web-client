@@ -697,7 +697,7 @@
           this.clearInspVozb();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
-            data = data[0];
+            data = data.getFirst();
             this.delo.inspVozbId = data.inspId;
             this.delo.inspVozbKod = data.inspKod;
             this.delo.inspVozbName = data.inspName;

@@ -17,12 +17,22 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">
-            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="changeStotvSearchInfo">
               <Option class="" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
         </Row>
       </div>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">КБК</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.kbk" clearable filterable :disabled="!data.stotvId" @on-change="storeElementData">
+            <Option class="wmax360 " v-for="item in KBKSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+          </Select>
+        </Col>
+      </Row>
     </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Фактические сведения</small>
@@ -55,8 +65,6 @@
     data() {
       return {
         data: null,
-        pnpaList: null,
-        stotvSearchInfoList: null,
       }
     },
     methods: {

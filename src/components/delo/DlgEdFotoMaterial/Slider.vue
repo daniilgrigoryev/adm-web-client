@@ -34,7 +34,7 @@ export default {
 	},
 	watch: {
 		photos(newValue) {
-			this.acitveGalleryItem = newValue[0];
+			this.acitveGalleryItem = newValue.getFirst();
 		}
 	},
 	methods: {

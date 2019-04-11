@@ -42,6 +42,10 @@ let vue = new Vue({
       localStorage.removeItem('admWidNew');
     }*/
 
+    Array.prototype.getFirst = function() {
+      return this[0];
+    };
+
     Date.prototype.toJSON = function() {
       return moment(this).format();
     };

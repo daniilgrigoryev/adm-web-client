@@ -251,7 +251,7 @@
       deloInfo() {
         let res = null;
         if (this.dataStore) {
-          res = this.dataStore.tree[0];
+          res = this.dataStore.tree.getFirst();
         }
         return res;
       },
@@ -584,7 +584,7 @@
           }
         }
 
-        this.firstTreeNode = this.getCopyObj(arr[0], 'children');
+        this.firstTreeNode = this.getCopyObj(arr.getFirst(), 'children');
         tree.push(this.firstTreeNode);
 
         let jsonParams = null;
@@ -658,7 +658,7 @@
           if (item.selected) {
             return item;
           }
-        })[0];
+        }).getFirst();
       },
       async getPrev() {
         try {

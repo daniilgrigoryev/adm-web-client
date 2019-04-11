@@ -283,7 +283,7 @@
         if (e) {
           let item = this.birthMestoList.filter((item) => {
             return item.value === e;
-          })[0];
+          }).getFirst();
           this.uchastIndivid.individ.birthMesto = item.label;
         } else {
           this.uchastIndivid.individ.birthMesto = null;

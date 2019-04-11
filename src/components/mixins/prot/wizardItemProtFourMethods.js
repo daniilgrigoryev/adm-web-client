@@ -3,9 +3,21 @@ import RequestApi from "../../../assets/js/api/requestApi";
 
 export default {
   data() {
-    return {}
+    return {
+      KBKSearchInfoList: null,
+      pnpaList: null,
+      stotvSearchInfoList: null,
+    }
   },
   methods: {
+    changeStotvSearchInfo() {
+      this.KBKSearchInfoList = null;
+      if (funcUtils.isNotEmpty(this.data.stotvId)) {
+        this.fillKBKSearchInfo();
+      }
+
+      this.storeElementData();
+    },
     async fillPnpaList() {
       let eventResponse = await RequestApi.prepareData({
         method: 'invokeElementMethod',
@@ -47,6 +59,29 @@ export default {
         });
       }
       this.stotvSearchInfoList = stotvSearchInfoList;
+    },
+    async fillKBKSearchInfo() {
+      let eventResponse = await RequestApi.prepareData({
+        method: 'invokeElementMethod',
+        params: {
+          eCID: this.info.eCID,
+          methodName: 'getKBKSearchInfo',
+          data: JSON.stringify({
+            stotvId: this.data.stotvId
+          })
+        }
+      });
+      let KBKSearchInfoList = [];
+      let KBKSearchInfoDict = JSON.parse(JSON.parse(eventResponse.response).data);
+      for (let i = 0; i < KBKSearchInfoDict.length; i++) {
+        let KBKSearchInfo = KBKSearchInfoDict[i];
+        KBKSearchInfoList.push({
+          label: KBKSearchInfo.kbkName,
+          value: KBKSearchInfo.kbk,
+          id: KBKSearchInfo.id
+        });
+      }
+      this.KBKSearchInfoList = KBKSearchInfoList;
     },
   }
 }

@@ -623,7 +623,7 @@
           this.clearInspSost();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
-            data = data[0];
+            data = data.getFirst();
             this.protPZTC.inspSostId = data.inspId;
             this.protPZTC.inspSostKod = data.inspKod;
             this.protPZTC.inspSostName = data.inspName;

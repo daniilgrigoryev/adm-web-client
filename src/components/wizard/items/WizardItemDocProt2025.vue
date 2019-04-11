@@ -574,7 +574,7 @@
           this.clearInspSost();
           let data = JSON.parse(JSON.parse(eventResponse.response).data);
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
-            data = data[0];
+            data = data.getFirst();
             this.data.inspSostId = data.inspId;
             this.data.inspSostKod = data.inspKod;
             this.data.inspSostName = data.inspName;

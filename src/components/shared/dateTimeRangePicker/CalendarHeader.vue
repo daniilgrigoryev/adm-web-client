@@ -413,7 +413,7 @@
         let time = regExpMax.exec(format) || regExpMed.exec(format) || regExpMin.exec(format);
         for (let i = 0; i < values.length; i++) {
           let formatType = values[i];
-          if (time && time[0].indexOf(formatType) > -1) {
+          if (time && time.getFirst().indexOf(formatType) > -1) {
             res = true;
             break;
           }

@@ -1,6 +1,6 @@
 <template>
   <!-- Предъявленный документ -->
-  <aside-template :listSectionNav="listSectionNav" title="Протокол об АПН">
+  <aside-template :listSectionNav="listSectionNav" title="Предъявленный документ">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">

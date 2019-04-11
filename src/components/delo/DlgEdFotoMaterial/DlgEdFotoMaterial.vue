@@ -180,7 +180,7 @@
         }
       },
       createMapObjects(id, coord) {
-        if (!coord[0]) {
+        if (!coord.getFirst()) {
           coord = [37.632478, 55.749408];
         }
         this.map = new mapboxgl.Map({
@@ -193,7 +193,7 @@
         );
       },
       drawCamera(coord) {
-        if (!coord[0]) {
+        if (!coord.getFirst()) {
           coord = [37.632478, 55.749408];
         }
         document.querySelectorAll('.marker').forEach(function (marker) {

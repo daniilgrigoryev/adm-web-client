@@ -6,7 +6,9 @@
           <div class="ml18" style="width: 30px; height: 30px;">
             <img :src="iconNode" alt="">
           </div>
-          <div v-html="dataNode" class="col mx18 formatter"></div>
+          <div class="col mx18 formatter">
+            <p v-html="format" class="adm-text-big color-dark-base"></p>
+          </div>
           <span v-if="isParent && isFolder">
             <img v-if='open' src='../../assets/images/controls-switch-chevron-up.svg'>
             <img v-else src='../../assets/images/controls-switch-chevron-down.svg'>
@@ -423,9 +425,6 @@
       },
     },
     methods: {
-      getObjectByNode() {
-
-      },
       hasSelectedChildren(node) {
         if (node.selected) {
           return true;

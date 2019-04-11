@@ -606,7 +606,7 @@
           this.clearInspVyd();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
-            data = data[0];
+            data = data.getFirst();
             this.vuVyd.inspVydId = data.inspId;
             this.vuVyd.inspVydKod = data.inspKod;
             this.vuVyd.inspVydName = data.inspName;
