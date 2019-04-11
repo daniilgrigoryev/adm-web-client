@@ -9,7 +9,7 @@
               Ввод данных по протоколу об административном правонарушении
             </h2>
             <div class="adm-form__content">
-              <wizard-item-prot-one  id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-one>
+              <wizard-item-prot-one id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-one>
               <wizard-item-place v-if="isVisible('DocProtApnOne.PlaceSost')" ref="DocProtApnOne.PlaceSost" :info="getInfo('DocProtApnOne.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
               <wizard-item-prot-two id="DocProtApnTwo" v-if="isVisible('DocProtApnTwo')" ref="DocProtApnTwo" :info="getInfo('DocProtApnTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-two>
             </div>
@@ -64,8 +64,8 @@
       </Layout>
     </div>
     <div class="bot-wrap">
-      <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-      <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+      <Button @click="getPrev" type="text">Отменить изменения</Button>
+      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
     </div>
   </aside-template>
 </template>

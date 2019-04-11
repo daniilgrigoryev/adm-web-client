@@ -3,10 +3,10 @@
     <wizard-modal v-if="rasmModal.visible" :columnsOptions="rasmModal.columnsOptions" :data="rasmModal.rasmList" @showModal="showRasmModal" @onRowDbClick="onRasmClick"></wizard-modal>
 
     <div class="adm-form__item">
-      <small class="adm-form__label">Дата рассмотрения</small>
+      <small class="adm-form__label">Дата и время рассмотрения</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateRasm" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateRasm" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:mm"></DatePickerMask>
         </Col>
       </Row>
     </div>
