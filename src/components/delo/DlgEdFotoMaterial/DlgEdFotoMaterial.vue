@@ -112,24 +112,29 @@
             alert(e.message);
           }
         });
-
-        this.$store.watch(this.$store.getters.dlgEdFotoMaterialGetDataForMap, async () => {
-          try {
-            let current = formStack.getCurrent();
-            let uid = vm.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-            let currentForm = innerFormStack.getCurrent(uid);
+      } catch (e) {
+        alert(e.message);
+      }
+    },
+    mounted() {
+      let vm = this;
+      this.$store.watch(this.$store.getters.dlgEdFotoMaterialGetDataForMap, async () => {
+        try {
+          let container = document.querySelector('#dc-object-map');
+          let current = formStack.getCurrent();
+          let uid = vm.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+          let currentForm = innerFormStack.getCurrent(uid);
+          if (container && currentForm) {
             await vm.fillComponent({
               vm: vm,
               cid: currentForm.cid,
               photos: vm.dataStore ? vm.dataStore.fotoList : null
             });
-          } catch (e) {
-            alert(e.message);
           }
-        });
-      } catch (e) {
-        alert(e.message);
-      }
+        } catch (e) {
+          alert(e.message);
+        }
+      });
     },
     destroyed() {
       this.$store.dispatch('dlgEdFotoMaterialSetCid', null);
