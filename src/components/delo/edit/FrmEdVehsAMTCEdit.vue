@@ -11,7 +11,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" @onInputChange="store" v-model="vehsAMTC.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" @onInputChange="store" v-model="vehsAMTC.regno" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -172,7 +172,6 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.color"  @on-input-change="store"></Input> -->
                       <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="vehsAMTC.color" @onInputChange="store" :maskProps="{casing: 'upper', placeholder: ''}" placeholder=""></masked-input>
                     </Col>
                   </Row>
@@ -203,7 +202,6 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <!-- <Input class="adm-input adm-input--regular" v-model="vehsAMTC.yearVyp"  @on-input-change="store"></Input> -->
                       <masked-input v-model="vehsAMTC.yearVyp" :maskProps="maskInputYearVyp" @onInputChange="store" inputClass="adm-input adm-input--regular wmax240 wmin180" clearable :placeholder="maskInputYearVyp.placeholder"></masked-input>
                     </Col>
                   </Row>

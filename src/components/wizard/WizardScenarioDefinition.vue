@@ -44,7 +44,12 @@
                 <wizard-item-prot-three id="DocDefinitionThree" v-if="isVisible('DocDefinitionThree')" ref="DocDefinitionThree" :info="getInfo('DocDefinitionThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
                 <wizard-item-place v-if="isVisible('DocDefinitionThree.PlaceNar')" ref="DocDefinitionThree.PlaceNar" :info="getInfo('DocDefinitionThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
                 <wizard-item-prot-four id="DocDefinitionFour" v-if="isVisible('DocDefinitionFour')" ref="DocDefinitionFour" :info="getInfo('DocDefinitionFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
-                <wizard-item-definition-five id="definition" v-if="isVisible('DocDefinitionFive')" ref="DocDefinitionFive" :info="getInfo('DocDefinitionFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-five>
+              </div>
+            </div>
+            <div class="adm-form__container">
+              <h2 id="definition" class="adm-form__headding">Сведения о рассмотрении</h2>
+              <div class="adm-form__content">
+                <wizard-item-definition-five v-if="isVisible('DocDefinitionFive')" ref="DocDefinitionFive" :info="getInfo('DocDefinitionFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-five>
               </div>
             </div>
           </div>
