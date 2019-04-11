@@ -118,14 +118,14 @@
     },
     mounted() {
       let vm = this;
-      this.$store.watch(this.$store.getters.dlgEdFotoMaterialGetDataForMap, async () => {
+      this.$store.watch(this.$store.getters.dlgEdFotoMaterialGetDataForMap, () => {
         try {
           let container = document.querySelector('#dc-object-map');
           let current = formStack.getCurrent();
           let uid = vm.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
           let currentForm = innerFormStack.getCurrent(uid);
           if (container && currentForm) {
-            await vm.fillComponent({
+            vm.fillComponent({
               vm: vm,
               cid: currentForm.cid,
               photos: vm.dataStore ? vm.dataStore.fotoList : null
