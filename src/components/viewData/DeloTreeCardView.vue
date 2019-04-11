@@ -354,10 +354,10 @@
         if (funcUtils.isNotEmpty(currentForm)) {
           jsonParams = this.stringifyCircularNode(currentForm.params)
         }
-        let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeInfo'));
+        let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeParams'));
         this.$set(this.firstTreeNode, 'selected', jsonParams === firstTreeNode);
         this.deloTree.forEach((item) => {
-          let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeInfo'));
+          let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeParams'));
           this.$set(item, 'selected', jsonParams === copyNode);
         });
       },
@@ -385,7 +385,7 @@
       },
       async nodeClick(node) {
         await this.clearInnerStack();
-        let copyNode = this.getCopyObj(node, 'selected', 'children', 'height', 'nodeInfo');
+        let copyNode = this.getCopyObj(node, 'selected', 'children', 'height', 'nodeParams');
 
         if (this.$refs.innerForm) {
           await this.$refs.innerForm.addForm(copyNode);
@@ -577,17 +577,24 @@
         let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
         let currentForm = innerFormStack.getCurrent(uid);
 
+        for (let i = 0; i < arr.length; i++) {
+          arrElem = arr[i];
+          if (funcUtils.isNotEmpty(arrElem.nodeInfo)) {
+            arrElem.nodeParams = JSON.parse(arrElem.nodeInfo);
+          }
+        }
+
         this.firstTreeNode = this.getCopyObj(arr[0], 'children');
         tree.push(this.firstTreeNode);
 
         let jsonParams = null;
         if (funcUtils.isNotEmpty(currentForm)) {
-          jsonParams = this.stringifyCircularNode(currentForm.params)
+          jsonParams = this.stringifyCircularNode(currentForm.params);
         }
-        let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeInfo'));
+        let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeParams'));
         this.$set(this.firstTreeNode, 'selected', jsonParams === firstTreeNode);
         arr.forEach((item) => {
-          let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeInfo'));
+          let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeParams'));
           this.$set(item, 'selected', jsonParams === copyNode);
         });
 
@@ -671,7 +678,7 @@
       },
       addUchastWizard() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'AddUchast',
             node: copyNode,
@@ -690,7 +697,7 @@
       },
       addPredDocWizard() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'AddPredDoc',
             node: copyNode,
@@ -709,7 +716,7 @@
       },
       addIspolnWizard() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'AddIspoln',
             node: copyNode,
@@ -728,7 +735,7 @@
       },
       createWizardScenarioPZTC() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateProtEvac',
             node: copyNode
@@ -747,7 +754,7 @@
       },
       createWizardScenarioDefinition() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateDefinition',
             node: copyNode
@@ -766,7 +773,7 @@
       },
       createWizardScenarioAPN() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateProtAPN',
             node: copyNode
@@ -785,7 +792,7 @@
       },
       createWizardScenarioPost() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeInfo');
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreatePost',
             node: copyNode
