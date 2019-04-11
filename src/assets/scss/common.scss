@@ -256,7 +256,9 @@ html, body, #app {
   position: -webkit-sticky;
   background: #f5fafd;
   top: 66px;
+  direction: rtl;
   z-index: 9;
+  height: calc(100vh - 130px);
 }
 .tree {
   max-width: 430px;
@@ -266,6 +268,9 @@ html, body, #app {
   background: #f5fafd;
   top: -1px;
   z-index: 9;
+  direction: ltr;
+  margin-right: 20px;
+
   a.tree__link {
     // background-color: #F5FAFD;
     &::before {

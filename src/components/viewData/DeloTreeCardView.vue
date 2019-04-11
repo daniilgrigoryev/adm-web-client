@@ -134,7 +134,7 @@
       <div v-if="deloTree">
         <Row type="flex">
           <Col>
-            <div class="bg-blue-thin tree_wrapper">
+            <div class="bg-blue-thin tree_wrapper scroll-styled scroll-auto">
               <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
             </div>
           </Col>
