@@ -16,8 +16,8 @@
       </Layout>
     </div>
     <div class="bot-wrap">
-      <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-      <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+      <Button @click="getPrev" type="text">Отменить добавление документа</Button>
+      <Button @click="save" type="primary" class="ml12">Добавить</Button>
     </div>
   </aside-template>
 </template>
