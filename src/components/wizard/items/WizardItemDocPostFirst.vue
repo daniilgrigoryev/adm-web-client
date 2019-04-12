@@ -29,7 +29,8 @@
           <small class="adm-form__label">№ дела</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" placeholder="Уникальный номер дела"></Input>
+            <!-- :disabled="data.deloN !== null" -->
+              <Input class="adm-input adm-input--regular" disabled @on-input-change="storeElementData" v-model="data.deloN" placeholder="Уникальный номер дела"></Input>
             </Col>
             <Col :xs="24" :md="14" :lg="8">
               <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>

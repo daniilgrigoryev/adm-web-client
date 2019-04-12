@@ -6,7 +6,7 @@
         <div class="adm-form">
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="head">
-              Форма возбуждения дела Определением об административном правонарушении
+              Форма возбуждения дела Определением об административном расследовании              
             </h2>
             <div class="adm-form__content">
               <wizard-item-definition-one  id="DocDefinitionOne" v-if="isVisible('DocDefinitionOne')" ref="DocDefinitionOne" :info="getInfo('DocDefinitionOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-one>

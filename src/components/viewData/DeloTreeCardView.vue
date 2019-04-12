@@ -172,9 +172,7 @@
       TreeNode
     },
     async created() {
-
       await this.init();
-
       let vm = this;
       this.$store.watch(this.$store.getters.deloTreeCardViewGetCommand, async () => {
         try {
@@ -292,6 +290,9 @@
 
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
+          
+          // console.log(JSON.parse(eventResponse.response));
+
           if (this.sizeInnerStack === 0) {
             if (this.$refs.innerForm) {
               this.nodeClick(this.deloInfo);
