@@ -413,21 +413,31 @@
 </script>
 
 <style lang="scss">
-  .tree-parent .tree {
-    width: 400px;
-    z-index: 8;
+  .tree-parent {
+    .tree {
+      width: 400px;
+      z-index: 8;
+      .tree__link {
+        &:before {
+          width: 350px;
+        }
+      } 
+    }
   }
   .tree {
     width: 430px;
     .tree__link {
       display: grid;
       grid-gap: 25px;
-      grid-template-columns: 30px 1fr;
+      grid-template-columns: 40px 1fr;
       width: 100%;
       align-items: center;
       padding: 15px;
       padding-left: 25px;
       position: relative;
+      &:before {
+        width: 350px;
+      }
       .tree__arrow {
         position: absolute;
         right: 5px;
@@ -439,17 +449,23 @@
         }
       }
       .tree__icon {
-        width: 30px;
-        height: 30px;
+        height: 40px;
+        width: 40px;
+        width: auto;
         display: flex;
         align-items: center;
         justify-content: center;
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
       }
       .tree__text-wrap {
         letter-spacing: 0.2px;	
         width: 100%;
         h4 {
           display: flex;
+          align-items: center;
           justify-content: space-between;
           color: #373737;	
           font-size: 16px;	

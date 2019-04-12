@@ -2,7 +2,7 @@
   <div v-click-outside="hide">
     <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @hide="hide" @onClick="show" @onClear="onClear" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable" :inputClass="inputClass"></calendar-body>
 
-    <calendar-header v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @onClear="onClear" @hide="hide" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond"></calendar-header>
+    <calendar-header ref="dateRangePickerMaskHeader" v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @onClear="onClear" @hide="hide" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond"></calendar-header>
   </div>
 </template>
 
@@ -59,6 +59,16 @@
       valueSecond(newValue, oldValue) {
         this.currentValueSecond = this.formatValue(newValue);
       },
+    },
+    updated() {
+      let dateRangePickerMaskHeader = this.$refs.dateRangePickerMaskHeader;
+      if (dateRangePickerMaskHeader) {
+        let dateRangePickerMaskHeaderOffset = dateRangePickerMaskHeader.$el.getBoundingClientRect();
+
+        if (dateRangePickerMaskHeaderOffset.bottom > window.innerHeight) {
+          dateRangePickerMaskHeaderOffset.$el.style.top = '-277px';
+        }
+      }
     },
     methods: {
       formatValue(value) {
@@ -117,6 +127,7 @@
 <style scoped lang="scss">
   .calendar-header {
     position: absolute;
+    height: 277px;
     background: #fff;
     border-color: rgb(81, 90, 110);
     z-index: 15;

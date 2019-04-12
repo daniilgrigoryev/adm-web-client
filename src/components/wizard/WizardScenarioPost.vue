@@ -137,7 +137,26 @@
         if (resp.error && resp.error.errorMsg) {
           alert(resp.error.errorMsg);
         } else {
-          this.getPrev();
+          eventResponse = await RequestApi.prepareData({
+            method: 'getDeloId'
+          });
+          resp =  JSON.parse(eventResponse.response);
+          if (resp.data) {
+            this.getPrev(false);
+            let params = {
+              deloId: resp.data
+            };
+
+            formStack.toNext({
+              module: this.$store.state.deloTreeCardView,
+              vm: this,
+              notRemoved: false,
+              params: params,
+              withCreate: true
+            });
+          } else {
+            this.getPrev();
+          }
         }
       },
       getPrev() {
