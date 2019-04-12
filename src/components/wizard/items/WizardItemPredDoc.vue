@@ -4,7 +4,7 @@
       <small class="adm-form__label">Предъявленный документ</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-           <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.docNum" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" clearable @onInputChange="storeElementData" :disabled="data.docId"></masked-input>
+           <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" :disabled="data.docId !== null" v-model="data.docNum" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" clearable @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
     </div>
@@ -12,7 +12,7 @@
       <small class="adm-form__label">Тип документа:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId" placeholder="" v-model="data.docTip" filterable clearable @on-change="storeElementData">
+          <Select class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId !== null" placeholder="" v-model="data.docTip" filterable clearable @on-change="storeElementData">
             <Option class="wmax360 " v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -22,7 +22,7 @@
       <small class="adm-form__label">Дата выдачи:</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
-        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.vuDateVyd" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" :disabled="data.docId !== null" v-model="data.vuDateVyd" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </Col>
       </Row>
     </div>
@@ -30,7 +30,7 @@
       <small class="adm-form__label">Кем выдан:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.vuOgaiVydName" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" clearable @onInputChange="storeElementData"></masked-input>
+          <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" :disabled="data.docId !== null" v-model="data.vuOgaiVydName" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" clearable @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
     </div>
@@ -38,7 +38,7 @@
       <small class="adm-form__label">Список документов ЛВОКа из дела:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" filterable clearable @on-change="storeElementData">
+          <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" filterable clearable @on-change="changeDocLVOK">
             <Option class="wmax360 " v-for="item in lvokDeloDocsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -130,6 +130,12 @@
           });
         }
         this.tipDocList = tipDocList;
+      },
+      changeDocLVOK(e) {
+        if (funcUtils.isEmpty(e)) {
+          this.data.docId = null;
+        }
+        this.storeElementData();
       },
       storeElementData() {
         this.$emit('storeElementData', {

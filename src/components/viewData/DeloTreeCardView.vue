@@ -176,11 +176,7 @@
       let vm = this;
       this.$store.watch(this.$store.getters.deloTreeCardViewGetCommand, async () => {
         try {
-          let eventResponse = await RequestApi.prepareData({
-            method: 'restore',
-            withSpinner: false
-          });
-          await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          await vm.init();
         } catch (e) {
           alert(e.message);
         }
@@ -290,8 +286,6 @@
 
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
-          
-          // console.log(JSON.parse(eventResponse.response));
 
           if (this.sizeInnerStack === 0) {
             if (this.$refs.innerForm) {
