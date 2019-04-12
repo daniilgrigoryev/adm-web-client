@@ -5,6 +5,7 @@
         <div class='flex-parent flex-parent--center-cross mx-auto mt30 ml30 wmax360'>
           <div class='login-card-img'>
             <img src="../assets/images/system-logo.png">
+            <img :src="require('~/assets/images/logo_Madi_red.svg')" alt="" class="logo">
           </div>
           <div class="login-card-subtitle adm-text-big txt-bold" style="color: #797979;">
             Информационные ресурсы<br>
@@ -131,10 +132,19 @@
     box-shadow: 0 1px 6px rgba(0,0,0,.2);
   }
   .login-card-img{
-    width: 78px;
-    height: 78px;
+    position: relative;
+    margin-right: 20px;
     img{
-      height: 100%;
+      height: 78px;
+    }
+    .logo {
+      position: absolute;
+      top: 0;
+      bottom: 8px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 55px;
     }
   }
 </style>

@@ -4,7 +4,9 @@
             <div class="flex-parent flex-parent--column h-full">
                 <Icon @click="isCollapsedLocal = true" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
                 <div class="flex-parent flex-parent--column flex-parent--center-cross">
-                    <div style="width: 100px; height: 100px;" class="bg-red-faint"></div>
+                    <div style="width: 100px; height: 100px; background: #ea221d;">
+                        <img :src="require('~/assets/images/logo_Madi_white.svg')" alt="">
+                    </div>
                     <b class="my18 product_header adm-text-big color-gray-medium align-center">
                         Информационная Система<br>
                         Обеспечения Деятельности<br> 
