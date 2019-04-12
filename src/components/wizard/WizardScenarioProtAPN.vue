@@ -27,7 +27,7 @@
               <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
-          <wizard-item-vehs-apn id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs-apn>
+          <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
           <div class="adm-form__container">
             <div class="adm-form__content"  v-if="isVisible('Owner')">
               <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
@@ -87,7 +87,7 @@
   import WizardItemOwner from "./items/WizardItemOwner.vue";
   import WizardItemPlace from "./items/WizardItemPlace.vue";
   import WizardItemPredDoc from "./items/WizardItemPredDoc.vue";
-  import WizardItemVehsApn from "./items/protApn/WizardItemVehsApn.vue";
+  import WizardItemVehs from "./items/WizardItemVehs.vue";
 
   export default {
     name: "WizardScenarioProtAPN",
@@ -108,7 +108,7 @@
       WizardItemOwner,
       WizardItemPlace,
       WizardItemPredDoc,
-      WizardItemVehsApn
+      WizardItemVehs
     },
     data() {
       return {

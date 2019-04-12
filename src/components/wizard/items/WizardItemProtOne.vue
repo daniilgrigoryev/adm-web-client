@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    <div class="adm-form__item">
+    <div v-if="data.deloN === null" class="adm-form__item">
       <small class="adm-form__label">Дело №</small>
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">

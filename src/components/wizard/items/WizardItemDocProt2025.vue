@@ -61,14 +61,14 @@
           </Col>
         </Row>
       </div>
-      <div class="adm-form__item">
+      <div v-if="data.deloN === null" class="adm-form__item">
         <small class="adm-form__label">Уникальный номер дела</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" ></Input>
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.deloN" ></Input>
           </Col>
           <Col :xs="24" :md="14" :lg="8">
-            <a href="#" :disabled="data.deloN !== null" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
+            <a href="#" @click="createNewDeloNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
           </Col>
         </Row>
       </div>
