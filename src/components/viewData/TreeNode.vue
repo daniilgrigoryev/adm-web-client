@@ -6,8 +6,8 @@
           <div class="tree__icon">
             <img :src="iconNode" alt="">
           </div>
-          <div v-html="dataNode" class="tree__text-wrap"/>
-          <img v-if="isParent && isFolder" class="tree__arrow" :class="{open: open}" src="../../assets/images/controls-switch-chevron-down.svg" />
+          <div v-html="dataNode" class="tree__text-wrap"></div>
+<!--          <img v-if="isParent && isFolder" class="tree__arrow" :class="{open: open}" src="../../assets/images/controls-switch-chevron-down.svg" />-->
         </a>
       </li>
     </ul>
