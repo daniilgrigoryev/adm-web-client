@@ -33,6 +33,7 @@
             label="Пункт НПА" 
             :value="body.pnpaKod, body.pnpaName | concatByDelimiter(', ')" 
             style="grid-column: span 2;"
+            :icon="require('../../assets/images/case_decision_gray.svg')"
           />
           <view-data-item 
             label="Статья КРФоАП" 
