@@ -1,77 +1,34 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Редактирование Определения" v-if="docsOpred">
+  <aside-template :listSectionNav="listSectionNav" title="Определение" v-if="docsOpred">
     <div class="layout-wrap">
       <div class="layout">
         <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
         <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
-
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Определение об АПН № {{ docsOpred.docN }} от {{ docsOpred.dateSost | formatDateTime('DD.MM.YYYY HH:mm') }}</h2>
-            <div class="adm-form__content">
-              <Row>
-                <Col span="12">
-                  <div class="adm-form__item">
-                    <small class="adm-form__label">Определение №</small>
-                    <div class="adm-form__item_content">
-                      <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="24" :md="14" :lg="16">
-                          <Input class="adm-input adm-input--regular" readonly :value="docsOpred.docN"></Input>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Col>
-                <Col span="12">
-                  <div class="adm-form__item">
-                    <small class="adm-form__label">Дата и время составления</small>
-                    <div class="adm-form__item_content">
-                      <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="24" :md="14" :lg="16">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-            </div>
-          </div>
-          <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="sost">Составил</h2>
+            <h2 class="adm-form__headding" id="head">Определение</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
-                <small class="adm-form__label">Должностное лицо</small>
+                <small class="adm-form__label">Определение №</small>
                 <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="4" :md="4" :lg="4">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsOpred.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
+                  <Row type="flex" align="middle">
+                    <Col span="10">
+                      <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="docsOpred.docN" @onInputChange="store"></masked-input>
                     </Col>
-                    <Col :xs="18" :md="18" :lg="18">
-                      <Input class="adm-input adm-input--regular" readonly :value="docsOpred.inspSostName, docsOpred.inspSostRang | concatByDelimiter(',')" ></Input>
-                    </Col>
-                    <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
+                    <Col span="6">
+                      <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="md-key" title="Получить уникальный номер" :size="30" />
                       </Button>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Подразделение</small>
+                <small class="adm-form__label">Дата и время составления</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="4" :md="4" :lg="4">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsOpred.organSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
-                    </Col>
-                    <Col :xs="18" :md="18" :lg="18">
-                      <Input class="adm-input adm-input--regular" readonly :value="docsOpred.organSostName" ></Input>
-                    </Col>
-                    <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
-                      </Button>
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -85,7 +42,43 @@
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
                       <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="30" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Должностное лицо</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="4" :md="4" :lg="4">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsOpred.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
+                    </Col>
+                    <Col :xs="18" :md="18" :lg="18">
+                      <Input class="adm-input adm-input--regular" disabled v-model="docsOpred.inspSostName" @on-input-change="changeFIO" ></Input>
+                    </Col>
+                    <Col :xs="2" :md="2" :lg="2">
+                      <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="30" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Подразделение</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="4" :md="4" :lg="4">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsOpred.organSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
+                    </Col>
+                    <Col :xs="18" :md="18" :lg="18">
+                      <Input class="adm-input adm-input--regular" disabled v-model="docsOpred.organSostName" ></Input>
+                    </Col>
+                    <Col :xs="2" :md="2" :lg="2">
+                      <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="30" />
                       </Button>
                     </Col>
                   </Row>
@@ -94,14 +87,14 @@
             </div>
           </div>
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="nar">Сведения о нарушении</h2>
+            <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-form__label">Дата и время нарушения</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.dateNar" @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.dateNar" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -115,32 +108,31 @@
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
                       <Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="30" />
                       </Button>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Пункт НПА нарушения</small>
+                <small class="adm-form__label">Пункт НПА</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.pnpaId" clearable filterable @on-change=
-                        "store">
-                        <Option class=" " v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
+                    <Col :xs="22" :md="22" :lg="22">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.pnpaId" clearable filterable @on-change="store">
+                        <Option class=" " v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Статья КРФоАп</small>
+                <small class="adm-form__label">Статья КРФоАП</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.stotvId" clearable filterable :disabled="!docsOpred.dateNar" @on-change="store">
-                        <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
+                    <Col :xs="22" :md="22" :lg="22">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.stotvId" clearable filterable @on-change="store">
+                        <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
@@ -150,7 +142,7 @@
                 <small class="adm-form__label">Фактические сведения</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
+                    <Col :xs="22" :md="22" :lg="22">
                       <Input class="adm-input adm-input--regular" v-model="docsOpred.factSved" @on-input-change="store"></Input>
                     </Col>
                   </Row>
@@ -158,67 +150,10 @@
               </div>
             </div>
           </div>
-          <!--<div class="adm-form__container">
-              <div class="adm-form__item">
-                <small class="adm-form__label">Место работы</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="docsOpred.workPlace" @on-input-change="store"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            <h2 class="adm-form__headding" id="rasmr">Сведения о рассмотрении</h2>
-            <div class="adm-form__content">
-              <div class="adm-form__item">
-                <small class="adm-form__label">Дата и время</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input&#45;&#45;regular wmin120 wmax180" v-model="docsOpred.dateRasm" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Орган рассмотрения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="docsOpred.organRasmName" ></Input>
-                    </Col>
-                    <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
-                      </Button>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Место рассмотрения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    &lt;!&ndash; TODO &ndash;&gt;
-                    <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input&#45;&#45;regular" disabled ></Input>
-                    </Col>
-                    &lt;!&ndash;<Col :xs="2" :md="2" :lg="2">&ndash;&gt;
-                      &lt;!&ndash;<Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">&ndash;&gt;
-                        &lt;!&ndash;<Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />&ndash;&gt;
-                      &lt;!&ndash;</Button>&ndash;&gt;
-                    &lt;!&ndash;</Col>&ndash;&gt;
-                    &lt;!&ndash; ENDTODO &ndash;&gt;
-                  </Row>
-                </div>
-              </div>
-            </div>
-          </div>-->
         </div>
-     </div>
+      </div>
     </div>
-        
+
     <div class="bot-wrap">
       <Button @click="getPrev" type="text">Отменить изменения</Button>
       <Button @click="save" type="primary" class="ml12">Сохранить</Button>
@@ -231,23 +166,24 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import WizardModal from "~/components/wizard/items/WizardModal";
   import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
+  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import MaskedInput from "~/components/shared/MaskedInput";
 
+
   export default {
-    name: "FrmEdDocsOpredEdit",
+    name: "FrmEdProtPZTCEdit",
     components: {
       AsideTemplate,
       WizardModal,
-      MaskedInput,
-      DatePickerMask
+      DatePickerMask,
+      MaskedInput
     },
     async created() {
       try {
         let current = formStack.getCurrent();
-        await this.$store.dispatch('frmEdDocsOpredEditSetCid', current.cid);
+        await this.$store.dispatch('frmEdProtPZTCEditSetCid', current.cid);
         let prepareParams = {
           method: 'restore'
         };
@@ -277,8 +213,8 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdDocsOpredEditSetCid', null);
-      this.$store.dispatch('frmEdDocsOpredEditSetData', null);
+      this.$store.dispatch('frmEdProtPZTCEditSetCid', null);
+      this.$store.dispatch('frmEdProtPZTCEditSetData', null);
     },
     data() {
       return {
@@ -287,22 +223,19 @@
         stotvSearchInfoList: null,
         listSectionNav: [
           {
-            title: "Определение об АПН",
+            title: "Определение по делу",
             name: "head",
-          },
-          {
-            title: "Составил",
-            name: "sost",
           },
           {
             title: "Сведения о нарушении",
             name: "nar",
-          },
-          /*{
-            title: "Сведения о рассмотрении",
-            name: "rasmr",
-          },*/
+          }
         ],
+        maskInputProt: {
+          regex: '[а-яА-Я0-9]+',
+          casing: 'upper',
+          placeholder: ''
+        },
         dolzModal: {
           visible: false,
           sispList: null,
@@ -653,15 +586,6 @@
           this.clearOrganSost();
         }
       },
-      changeDateNar() {
-        this.stotvSearchInfoList = null;
-        this.docsOpred.stotvId = null;
-        if (funcUtils.isNotEmpty(this.docsOpred.dateNar)) {
-          this.fillStotvSearchInfo();
-        }
-
-        this.store();
-      },
       changeFIO() {
         let fioLength = 0;
         let fioArr = this.docsOpred.inspSostName.split(' ');
@@ -799,5 +723,4 @@
     },
   }
 </script>
-
 

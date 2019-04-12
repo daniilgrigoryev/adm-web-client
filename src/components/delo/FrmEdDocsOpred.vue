@@ -3,10 +3,10 @@
     <div class="amd-title amd-title--sticky px36 pt24 pb18">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <Button disabled @click="getDocsOpredEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+          <Button @click="getDocsOpredEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Определение об АПН</b>
+          <b class="adm-text-big color-dark-lighter">Определение о возбуждении административного расследования</b>
         </div>
       </div>
     </div>
