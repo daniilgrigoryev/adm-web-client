@@ -28,12 +28,18 @@
             <div class="adm-form__container" v-if="isVisible('Uchast.Individual.regAddr')">
               <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Individual.regAddr')" ref="Uchast.Individual.regAddr" :info="getInfo('Uchast.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
+            <div class="adm-form__container" v-if="isVisible('Uchast.Individual.factAddr')">
+              <wizard-item-address title="Фактический адрес" v-if="isVisible('Uchast.Individual.factAddr')" ref="Uchast.Individual.factAddr" :info="getInfo('Uchast.Individual.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization')">
               <h2 class="adm-form__headding" id="organization">Организация</h2>
               <wizard-item-organization v-if="isVisible('Uchast.Organization')" ref="Uchast.Organization" :info="getInfo('Uchast.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization.regAddr')">
               <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Organization.regAddr')" ref="Uchast.Organization.regAddr" :info="getInfo('Uchast.Organization.regAddr')"  @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            </div>
+            <div class="adm-form__container" v-if="isVisible('Uchast.Organization.factAddr')">
+              <wizard-item-address title="Фактический адрес" v-if="isVisible('Uchast.Organization.factAddr')" ref="Uchast.Organization.factAddr" :info="getInfo('Uchast.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
         </Layout>

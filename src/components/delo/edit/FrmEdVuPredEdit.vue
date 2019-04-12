@@ -51,11 +51,11 @@
                     <small class="adm-form__label">Кем выдан</small>
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="4" :md="4" :lg="4">
-                          <masked-input inputClass="adm-input adm-input--regular" v-model="vuPred.ogaiVydKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOgaiVydKod" ></masked-input>
-                        </Col>
+                        <!--<Col :xs="4" :md="4" :lg="4">
+                          <masked-input inputClass="adm-input adm-input&#45;&#45;regular" v-model="vuPred.ogaiVydKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOgaiVydKod" ></masked-input>
+                        </Col>-->
                         <Col :xs="18" :md="18" :lg="18">
-                          <Input class="adm-input adm-input--regular" readonly :value="vuPred.ogaiVydName" ></Input>
+                          <Input class="adm-input adm-input--regular" :value="vuPred.ogaiVydName"></Input>
                         </Col>
                         <Col :xs="2" :md="2" :lg="2">
                           <Button @click="showOgaiModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -384,7 +384,7 @@
       },
 
       onOgaiClick(data) {
-        this.vuPred.ogaiVydKod = data.OGAI_KOD;
+        // this.vuPred.ogaiVydKod = data.OGAI_KOD;
         this.vuPred.ogaiVydName = data.ORGAN_NAME;
         this.ogaiModal.ogaiList = null;
         this.ogaiModal.visible = false;
@@ -392,7 +392,7 @@
       },
 
       clearOgai() {
-        this.vuPred.ogaiVydKod = null;
+        // this.vuPred.ogaiVydKod = null;
         this.vuPred.ogaiVydName = null;
         this.store();
       },

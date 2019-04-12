@@ -157,16 +157,6 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Место работы</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="docsProt.workPlace" @on-input-change="store"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
                 <small class="adm-form__label">Доп. сведения</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
@@ -179,6 +169,16 @@
             </div>
           </div>
           <!--<div class="adm-form__container">
+              <div class="adm-form__item">
+                <small class="adm-form__label">Место работы</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <Input class="adm-input adm-input--regular" v-model="docsProt.workPlace" @on-input-change="store"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
             <h2 class="adm-form__headding" id="rasmr">Сведения о рассмотрении</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
@@ -308,10 +308,10 @@
             title: "Сведения о нарушении",
             name: "nar",
           },
-          {
+          /*{
             title: "Сведения о рассмотрении",
             name: "rasmr",
-          },
+          },*/
         ],
         dolzModal: {
           visible: false,

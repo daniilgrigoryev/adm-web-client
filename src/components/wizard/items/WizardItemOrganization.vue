@@ -43,7 +43,7 @@
       <small class="adm-form__label">Дата регистрации</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Input class="adm-input adm-input--regular" v-model="data.dateReg" @on-input-change="storeElementData" ></Input>
+          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateReg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </Col>
       </Row>
     </div>
@@ -122,12 +122,14 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
+  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
   import WizardModal from "~/components/wizard/items/WizardModal";
 
   export default {
     name: "WizardItemOrganization",
     components: {
-      WizardModal
+      WizardModal,
+      DatePickerMask
     },
     props: {
       info: Object,
