@@ -465,6 +465,7 @@
         width: 100%;
         h4 {
           display: flex;
+          align-items: center;
           justify-content: space-between;
           color: #373737;	
           font-size: 16px;	
