@@ -1,6 +1,75 @@
 <template>
-  <div v-if="data">
-    определение {{data}}
+  <div v-if="body" class="ml18">
+    <div class="amd-title amd-title--sticky px36 pt24 pb18">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button disabled @click="getDocsOpredEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <img src='../../assets/images/pen.svg' class="wmax-none">
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Определение об АПН</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-data">
+      <div class="view-data__container">
+        <div class="items-wrap">
+          <view-data-item 
+            label="Дата и время нарушения" 
+            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item 
+            label="Место нарушения" 
+            :value="body.placeNar.placeFull" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
+          />
+          <view-data-item 
+            label="Пункт НПА" 
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(', ')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/case_decision_gray.svg')"
+          />
+          <view-data-item 
+            label="Статья КРФоАП" 
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(', ')" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Место вынесения" 
+            :value="body.placeSost.placeFull | concatByDelimiter(', ')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
+          />
+          <view-data-item 
+            label="Должностное лицо" 
+            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/police.svg')"
+          />
+          <view-data-item 
+            label="Подразделение" 
+            :value="body.organSostName" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Дата и время рассмотрения" 
+            :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item 
+            label="Орган рассмотрения" 
+            :value="body.organRasmName" 
+            style="grid-column: span 2;"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,10 +78,14 @@
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
+  import ViewDataItem from "~/components/shared/ui/view-data-item.vue";
   import { mapGetters } from 'vuex';
 
   export default {
     name: "FrmEdDocsOpred",
+    components: {
+      ViewDataItem
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -61,7 +134,7 @@
       ...mapGetters({
         dataStore: 'frmEdDocsOpredGetData'
       }),
-      data() {
+      body() {
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
@@ -69,9 +142,42 @@
         return res;
       },
     },
+    methods: {
+      getDocsOpredEdit() {
+        try {
+          let current = formStack.getCurrent();
+          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
+          let currentForm = innerFormStack.getCurrent(uid);
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmEdDocsOpredEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+    }
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .items-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 12px;
+    hr {
+      height: 1px;
+      width: 100%;
+      color: #cccccc;
+      background: #cccccc;
+      grid-column: span 2;
+    }
+  }
 </style>

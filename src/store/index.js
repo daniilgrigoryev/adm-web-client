@@ -9,6 +9,7 @@ import dashBoard from './modules/dashBoard';
 import deloTreeCardView from './modules/deloTreeCardView';
 import frmEdDelo from './modules/frmEdDelo';
 import frmEdDocsOpred from './modules/frmEdDocsOpred';
+import frmEdDocsOpredEdit from './modules/frmEdDocsOpredEdit';
 import frmEdDocsPost from './modules/frmEdDocsPost';
 import frmEdDocsProt from './modules/frmEdDocsProt';
 import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
@@ -106,6 +107,7 @@ const store = new Vuex.Store({
     deloTreeCardView,
     frmEdDelo,
     frmEdDocsOpred,
+    frmEdDocsOpredEdit,
     frmEdDocsPost,
     frmEdDocsProt,
     frmEdDecisShtraf,

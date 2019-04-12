@@ -9,6 +9,7 @@ import FrmEdVuPredEdit from '../components/delo/edit/FrmEdVuPredEdit';
 import FrmEdVuVydEdit from '../components/delo/edit/FrmEdVuVydEdit';
 import FrmEdDocsPostEdit from '../components/delo/edit/FrmEdDocsPostEdit';
 import FrmEdDocsProtEdit from '../components/delo/edit/FrmEdDocsProtEdit';
+import FrmEdDocsOpredEdit from '../components/delo/edit/FrmEdDocsOpredEdit';
 import FrmEdDecisEdit from '../components/delo/edit/FrmEdDecisEdit';
 import DlgAdviceEdit from '../components/delo/edit/DlgAdviceEdit';
 
@@ -89,6 +90,12 @@ const router = new Router({
       path: '/frmEdDocsProtEdit',
       name: 'FrmEdDocsProtEdit',
       component: FrmEdDocsProtEdit,
+      props: true
+    },
+    {
+      path: '/frmEdDocsOpredEdit',
+      name: 'FrmEdDocsOpredEdit',
+      component: FrmEdDocsOpredEdit,
       props: true
     },
     {
