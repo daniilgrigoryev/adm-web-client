@@ -2,7 +2,7 @@
   <div v-click-outside="hide">
     <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @onClick="show" @onClear="onClear" @hide="hide" :value="currentValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable"></calendar-body>
 
-    <calendar-header ref="datePickerMaskHeader" v-show="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @hide="hide" :value="currentValue"></calendar-header>
+    <calendar-header ref="datePickerMaskHeader" v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @hide="hide" :value="currentValue"></calendar-header>
   </div>
 </template>
 
@@ -54,11 +54,13 @@
       },
     },
     updated() {
-      let datePickerMaskHeader = this.$refs.datePickerMaskHeader.$el;
-      let datePickerMaskHeaderOffset = datePickerMaskHeader.getBoundingClientRect();
+      let datePickerMaskHeader = this.$refs.datePickerMaskHeader;
+      if (datePickerMaskHeader) {
+        let datePickerMaskHeaderOffset = datePickerMaskHeader.$el.getBoundingClientRect();
 
-      if (datePickerMaskHeaderOffset.bottom > window.innerHeight) {
-        datePickerMaskHeader.style.top = '-277px';
+        if (datePickerMaskHeaderOffset.bottom > window.innerHeight) {
+          datePickerMaskHeader.$el.style.top = '-277px';
+        }
       }
     },
     methods: {
