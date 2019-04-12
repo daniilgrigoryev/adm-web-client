@@ -580,7 +580,13 @@
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
           if (funcUtils.isNotEmpty(arrElem.nodeInfo)) {
-            arrElem.nodeParams = JSON.parse(arrElem.nodeInfo);
+            let nodeParams = JSON.parse(arrElem.nodeInfo);
+            for (let key in nodeParams) {
+              if (nodeParams.hasOwnProperty(key) && funcUtils.isEmpty(nodeParams[key])) {
+                nodeParams[key] = "";
+              }
+            }
+            arrElem.nodeParams = nodeParams;
           }
         }
 
