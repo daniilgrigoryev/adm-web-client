@@ -4,7 +4,6 @@
       <small class="adm-form__label">Предъявленный документ</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <!-- <Input class="adm-input adm-input--regular" :disabled="data.docId" v-model="data.docNum" @on-input-change="storeElementData" placeholder="Номер документа"></Input> -->
            <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.docNum" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" @onInputChange="storeElementData" :disabled="data.docId"></masked-input>
         </Col>
       </Row>
