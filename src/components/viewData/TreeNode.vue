@@ -188,10 +188,11 @@
           case "UCHASTFL":
           case "UCHASTUL":
           case "UCHASTOTHER": {
+            let uchastBirthday = params.uchast_birthday ? `<p class="other-info">${params.uchast_birthday} г.р.</p>` : '';
             return `
               <h4>${params.uchast_vid_name_short}</h4>
               <p>${params.uchast_name_short} <small>${params.uchast_tip_name}</small></p>
-              <p class="other-info">${params.uchast_birthday} г.р.</p>
+              ${uchastBirthday}
             `;
           }
           case "VEHS":
@@ -400,7 +401,7 @@
       },
       parentNodeClick() {
         this.nodeClick(this.node);
-        this.toggle();
+        // this.toggle();
       },
       toggle() {
         if (this.isFolder && this.isParent) {
