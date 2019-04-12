@@ -16,80 +16,59 @@
 
     <div class="view-data">
       <div class="view-data__container">
-          <div class="ml60">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
-                  <p class="adm-text-big color-dark-base">{{body.pnpaKod, body.pnpaName | concatByDelimiter(', ') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Статья КРФоАП</p>
-                  <p class="adm-text-big color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(', ') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата и время нарушения</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateNar | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Место нарушения</p>
-                  <p class="adm-text-big color-dark-base">{{body.placeNar.placeFull || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
-                  <p class="adm-text-big color-dark-base">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Подразделение</p>
-                  <p class="adm-text-big color-dark-base">{{body.organSostName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Место вынесения</p>
-                  <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата и время рассмотрения</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Орган рассмотрения</p>
-                  <p class="adm-text-big color-dark-base">{{body.organRasmName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="items-wrap">
+          <view-data-item 
+            label="Дата и время нарушения" 
+            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item 
+            label="Место нарушения" 
+            :value="body.placeNar.placeFull" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
+          />
+          <view-data-item 
+            label="Пункт НПА" 
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(', ')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Статья КРФоАП" 
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(', ')" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Место вынесения" 
+            :value="body.placeSost.placeFull | concatByDelimiter(', ')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
+          />
+          <view-data-item 
+            label="Должностное лицо" 
+            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/police.svg')"
+          />
+          <view-data-item 
+            label="Подразделение" 
+            :value="body.organSostName" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Дата и время рассмотрения" 
+            :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item 
+            label="Орган рассмотрения" 
+            :value="body.organRasmName" 
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
@@ -102,9 +81,13 @@
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import { mapGetters } from 'vuex';
+  import ViewDataItem from "~/components/shared/ui/view-data-item.vue";
 
   export default {
     name: "FrmEdDocsProt",
+    components: {
+      ViewDataItem
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -186,9 +169,17 @@
   }
 </script>
 
-
 <style scoped lang="scss"> 
-  .adm-form__label {
-    min-width: 180px;
+  .items-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 12px;
+    hr {
+      height: 1px;
+      width: 100%;
+      color: #cccccc;
+      background: #cccccc;
+      grid-column: span 2;
+    }
   }
 </style>

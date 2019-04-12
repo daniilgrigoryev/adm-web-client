@@ -15,7 +15,7 @@
     <div class="adm-form__item">
       <small class="adm-form__label">ИНН</small>
       <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
+        <Col :xs="24" :md="6" :lg="6">
           <Input class="adm-input adm-input--regular" v-model="data.inn" @on-input-change="storeElementData" ></Input>
         </Col>
         <Col :xs="24" :md="14" :lg="8">
@@ -34,7 +34,7 @@
     <div class="adm-form__item">
       <small class="adm-form__label">КПП</small>
       <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
+        <Col :xs="24" :md="6" :lg="6">
           <Input class="adm-input adm-input--regular" v-model="data.kpp" @on-input-change="storeElementData" ></Input>
         </Col>
       </Row>
@@ -50,7 +50,7 @@
     <div class="adm-form__item">
       <small class="adm-form__label">ОГРН</small>
       <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
+        <Col :xs="24" :md="6" :lg="6">
           <Input class="adm-input adm-input--regular" v-model="data.ogrn" @on-input-change="storeElementData" ></Input>
         </Col>
       </Row>
