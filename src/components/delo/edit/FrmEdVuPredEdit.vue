@@ -11,7 +11,7 @@
                 <small class="adm-form__label">Тип документа</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
+                    <Col :xs="24" :md="24" :lg="22">
                       <Select class="adm-input adm-input--regular" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="store">
                         <Option class="" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
@@ -20,7 +20,7 @@
                 </div>
               </div>
               <Row :gutter="16" type="flex">
-                <Col span="15">
+                <Col span="14">
                   <div class="adm-form__item">
                     <small class="adm-form__label">Номер</small>
                     <div class="adm-form__item_content">
@@ -32,7 +32,7 @@
                     </div>
                   </div>
                 </Col>
-                <Col span="9">
+                <Col span="8">
                   <div class="adm-form__item">
                     <small class="adm-form__label">Дата выдачи</small>
                     <div class="adm-form__item_content">
@@ -68,7 +68,7 @@
                 </Col>
               </Row>
               <Row :gutter="16">
-                <Col span="15">
+                <Col span="14">
                   <div class="adm-form__item">
                     <small class="adm-form__label">Дата задержания</small>
                     <div class="adm-form__item_content">
@@ -80,7 +80,7 @@
                     </div>
                   </div>
                 </Col>
-                <Col span="9">
+                <Col span="8">
                   <div class="adm-form__item">
                     <small class="adm-form__label">Возврата</small>
                     <div class="adm-form__item_content">
@@ -94,7 +94,7 @@
                 </Col>
               </Row>
               <Row :gutter="16">
-                <Col span="15">
+                <Col span="14">
                   <div class="adm-form__item">
                     <small class="adm-form__label">Утилизации</small>
                     <div class="adm-form__item_content">
@@ -106,7 +106,7 @@
                     </div>
                   </div>
                 </Col>
-                <Col span="9">
+                <Col span="8">
                   <div class="adm-form__item">
                     <small class="adm-form__label">Утраты</small>
                     <div class="adm-form__item_content">
@@ -122,7 +122,7 @@
 
 
               <Row :gutter="16">
-                <Col span="12">
+                <Col span="14">
                   <div class="adm-form__item">
                     <small class="adm-form__label">Статус</small>
                     <div class="adm-form__item_content">
@@ -136,7 +136,6 @@
                     </div>
                   </div>
                 </Col>
-
               </Row>
             </div>
           </div>
