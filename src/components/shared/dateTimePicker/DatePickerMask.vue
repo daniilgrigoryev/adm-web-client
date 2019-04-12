@@ -2,7 +2,7 @@
   <div v-click-outside="hide">
     <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @onClick="show" @onClear="onClear" @hide="hide" :value="currentValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable"></calendar-body>
 
-    <calendar-header v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @hide="hide" :value="currentValue"></calendar-header>
+    <calendar-header ref="datePickerMaskHeader" v-show="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @hide="hide" :value="currentValue"></calendar-header>
   </div>
 </template>
 
@@ -53,6 +53,14 @@
         this.formatValue(newValue);
       },
     },
+    updated() {
+      let datePickerMaskHeader = this.$refs.datePickerMaskHeader.$el;
+      let datePickerMaskHeaderOffset = datePickerMaskHeader.getBoundingClientRect();
+
+      if (datePickerMaskHeaderOffset.bottom > window.innerHeight) {
+        datePickerMaskHeader.style.top = '-277px';
+      }
+    },
     methods: {
       formatValue(value) {
         if (this.validType(value)) {
@@ -101,6 +109,7 @@
 <style scoped lang="scss">
   .calendar-header {
     position: absolute;
+    height: 277px;
     background: #fff;
     border-color: rgb(81, 90, 110);
     z-index: 15;
