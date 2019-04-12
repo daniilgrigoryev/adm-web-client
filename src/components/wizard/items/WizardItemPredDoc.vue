@@ -4,7 +4,7 @@
       <small class="adm-form__label">Предъявленный документ</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-           <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.docNum" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" @onInputChange="storeElementData" :disabled="data.docId"></masked-input>
+           <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.docNum" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" clearable @onInputChange="storeElementData" :disabled="data.docId"></masked-input>
         </Col>
       </Row>
     </div>
@@ -12,7 +12,7 @@
       <small class="adm-form__label">Тип документа:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId" placeholder="" v-model="data.docTip" clearable @on-change="storeElementData">
+          <Select class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId" placeholder="" v-model="data.docTip" filterable clearable @on-change="storeElementData">
             <Option class="wmax360 " v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -30,15 +30,15 @@
       <small class="adm-form__label">Кем выдан:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <Input class="adm-input adm-input--regular wmax360" v-model="data.vuOgaiVydName" @on-input-change="storeElementData"></Input>
+          <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.vuOgaiVydName" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" clearable @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
     </div>
-    <div class="adm-form__item">
+    <div v-if="isNotEmptyParentNode" class="adm-form__item">
       <small class="adm-form__label">Список документов ЛВОКа из дела:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" clearable @on-change="storeElementData">
+          <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" filterable clearable @on-change="storeElementData">
             <Option class="wmax360 " v-for="item in lvokDeloDocsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -72,6 +72,11 @@
         lvokDeloDocsList: null,
         tipDocList: null
       }
+    },
+    computed: {
+      isNotEmptyParentNode() {
+        return funcUtils.isNotEmpty(this.info.parentNode);
+      },
     },
     methods: {
       async initData() {
