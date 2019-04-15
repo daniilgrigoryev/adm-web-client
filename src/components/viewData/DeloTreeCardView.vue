@@ -22,81 +22,83 @@
             </p>
           </div>
           <div>
-            <Poptip v-if="menuVisible(menu.createDelo)" width="350" placement="bottom-start" class="amd-poptip-sub">
+            <Poptip @click.native="menuVisibleContent('menuCreateDelo', menu.createDelo)" ref="menuCreateDelo" width="350" placement="bottom-start" class="amd-poptip-sub">
               <Button type="text"
+                      :disabled="!menuVisible(menu.createDelo)"
                       class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
                       style="box-shadow: none">
-                <span>Создать дело  <Icon type="md-arrow-dropdown" :size="16"/></span>
+                <span>Создать дело  <Icon v-if="menuVisible(menu.createDelo)" type="md-arrow-dropdown" :size="16"/></span>
               </Button>
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
-                  <li v-if="menuItemVisible(menu.createDelo.ProtAPNAnothFace)">
-                    <Button type="text" class="adm-btn-regular">Протокол об АПН на другое лицо</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.createDelo.ProtAPNAnothFace)" type="text" class="adm-btn-regular">Протокол об АПН на другое лицо</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.createDelo.OpredAPNAnothFace)">
-                    <Button type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.createDelo.OpredAPNAnothFace)" type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.createDelo.PostAPNAnothFace)">
-                    <Button type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.createDelo.PostAPNAnothFace)" type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
                   </li>
                 </ul>
               </div>
             </Poptip>
 
-            <Poptip v-if="menuVisible(menu.addDocument)" placement="bottom-end" class="amd-poptip-sub"><!--  width="700" -->
+            <Poptip @click.native="menuVisibleContent('menuAddDocument', menu.addDocument)" ref="menuAddDocument" placement="bottom-end" class="amd-poptip-sub"><!--  width="700" -->
               <Button type="text"
+                      :disabled="!menuVisible(menu.addDocument)"
                       class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
                       style="box-shadow: none">
                 <span>Добавить документ
-                  <Icon type="md-arrow-dropdown" :size="16"/>
+                  <Icon v-if="menuVisible(menu.addDocument)" type="md-arrow-dropdown" :size="16"/>
                 </span>
               </Button>
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
-                  <li v-if="menuItemVisible(menu.addDocument.ApplyDocOnDelo)">
-                    <Button type="text" class="adm-btn-regular">Приложить документ к делу</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.ApplyDocOnDelo)" type="text" class="adm-btn-regular">Приложить документ к делу</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.AddFotoVideo)">
-                    <Button type="text" class="adm-btn-regular">Добавить фото и видеоматериалы</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.AddFotoVideo)" type="text" class="adm-btn-regular">Добавить фото и видеоматериалы</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.Explanation)">
-                    <Button type="text" class="adm-btn-regular">Объяснение</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.Explanation)" type="text" class="adm-btn-regular">Объяснение</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.ProtAPN)">
-                    <Button @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол об АПН</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.ProtAPN)" @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол об АПН</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.OpredProvedAP)">
-                    <Button @click="createWizardScenarioDefinition" type="text" class="adm-btn-regular">Опредение о проведении АР</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.OpredProvedAP)" @click="createWizardScenarioDefinition" type="text" class="adm-btn-regular">Опредение о проведении АР</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.PostDeloAPN)">
-                    <Button @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.PostDeloAPN)" @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.PostPrekrDeloAPN)">
-                    <Button type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.PostPrekrDeloAPN)" type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.Izvesh)">
-                    <Button type="text" class="adm-btn-regular">Извещение</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.Izvesh)" type="text" class="adm-btn-regular">Извещение</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.ChangeDateRasmDelo)">
-                    <Button type="text" class="adm-btn-regular">Перенос даты рассмотрения дела</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.ChangeDateRasmDelo)" type="text" class="adm-btn-regular">Перенос даты рассмотрения дела</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.HodatayProdlSrok)">
-                    <Button type="text" class="adm-btn-regular">Ходатайство о продлении сроков административного расследования</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.HodatayProdlSrok)" type="text" class="adm-btn-regular">Ходатайство о продлении сроков административного расследования</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.DecicAppeal)">
-                    <Button type="text" class="adm-btn-regular">Решение по жалобе</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.DecicAppeal)" type="text" class="adm-btn-regular">Решение по жалобе</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.ConclusAppeal)">
-                    <Button type="text" class="adm-btn-regular">Заключение по жалобе</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.ConclusAppeal)" type="text" class="adm-btn-regular">Заключение по жалобе</Button>
                   </li>
-                  <li v-if="menuItemVisible(menu.addDocument.DocumentUchast)">
-                    <Button type="text" @click="addPredDocWizard" class="adm-btn-regular">Документ участника</Button>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.DocumentUchast)" type="text" @click="addPredDocWizard" class="adm-btn-regular">Документ участника</Button>
                   </li>
                 </ul>
               </div>
             </Poptip>
 
-            <Button v-if="menuVisible(menu.addUchast)"
+            <Button :disabled="!menuVisible(menu.addUchast)"
                     type="text"
                     @click="addUchastWizard"
                     class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
@@ -104,7 +106,7 @@
               <span>Добавить участника</span>
             </Button>
 
-            <Button v-if="menuVisible(menu.addIspoln)"
+            <Button :disabled="!menuVisible(menu.addIspoln)"
                     type="text"
                     @click="addIspolnWizard"
                     class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
@@ -551,17 +553,19 @@
         return false;
       },
       menuVisible(menuItem) {
-        let res = false;
+        let res = [];
         let items = Object.values(menuItem);
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
           let itemVisible = this.menuItemVisible(item);
-          if (itemVisible) {
-            res = true;
-            break;
-          }
+          res.push(itemVisible);
         }
-        return res;
+        return res.includes(true);
+      },
+      menuVisibleContent(poptip, elements) {
+        if (!this.menuVisible(elements)) {
+          this.$refs[poptip].visible = false;
+        }
       },
       arrayToTree(arr) {
         let tree = [];

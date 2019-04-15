@@ -26,8 +26,6 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import WizardItemPredDoc from "./items/WizardItemPredDoc.vue";
 
   export default {
     name: "WizardScenarioAddPredDoc",
@@ -35,8 +33,8 @@
       pathes: Object
     },
     components: {
-      AsideTemplate,
-      WizardItemPredDoc
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
     },
     data() {
       return {

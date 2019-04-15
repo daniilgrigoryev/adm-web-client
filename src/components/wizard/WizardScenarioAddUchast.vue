@@ -56,13 +56,15 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import WizardItemAddUchast from "~/components/wizard/items/WizardItemAddUchast";
-  import WizardItemAddress from "~/components/wizard/items/WizardItemAddress";
-  import WizardItemIndividual from "~/components/wizard/items/WizardItemIndividual";
-  import WizardItemOrganizationUchast from "~/components/wizard/items/addUchast/WizardItemOrganizationUchast";
 
   export default {
     name: "WizardScenarioAddUchast",
+    components: {
+      WizardItemAddUchast: () => import('~/components/wizard/items/WizardItemAddUchast'),
+      WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
+      WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
+      WizardItemOrganizationUchast: () => import('~/components/wizard/items/addUchast/WizardItemOrganizationUchast'),
+    },
     data() {
       return {
         mode: 0,
@@ -84,12 +86,6 @@
     },
     props: {
       pathes: Object
-    },
-    components: {
-      WizardItemAddUchast,
-      WizardItemAddress,
-      WizardItemIndividual,
-      WizardItemOrganizationUchast
     },
     methods: {
       isVisible(path) {

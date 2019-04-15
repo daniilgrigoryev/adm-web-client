@@ -27,20 +27,6 @@
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import FrmEdDelo from "~/components/delo/FrmEdDelo";
-  import FrmEdDocsPost from "~/components/delo/FrmEdDocsPost";
-  import FrmEdDocsOpred from "~/components/delo/FrmEdDocsOpred";
-  import FrmEdDecisShtraf from "~/components/delo/FrmEdDecisShtraf";
-  import FrmEdIspolnShtraf from "~/components/delo/FrmEdIspolnShtraf";
-  import FrmEdVehsAMTC from "~/components/delo/FrmEdVehsAMTC";
-  import FrmEdProtPZTC from "~/components/delo/FrmEdProtPZTC";
-  import FrmEdUchastFL from "~/components/delo/FrmEdUchastFL";
-  import FrmEdVuPred from "~/components/delo/FrmEdVuPred";
-  import FrmEdVuVyd from "~/components/delo/FrmEdVuVyd";
-  import FrmEdIspolnPostUvedom from "~/components/delo/FrmEdIspolnPostUvedom";
-  import FrmEdDocsProt from "~/components/delo/FrmEdDocsProt";
-  import DlgEdFotoMaterial from "~/components/delo/DlgEdFotoMaterial/DlgEdFotoMaterial.vue";
-  import DlgAdvice from "~/components/delo/DlgAdvice";
 
   export default {
     name: "DeloInnerForm",
@@ -48,20 +34,20 @@
       sizeInnerStack: Number
     },
     components: {
-      DlgAdvice,
-      DlgEdFotoMaterial,
-      FrmEdIspolnPostUvedom,
-      FrmEdVuPred,
-      FrmEdVuVyd,
-      FrmEdDocsOpred,
-      FrmEdDocsPost,
-      FrmEdDecisShtraf,
-      FrmEdIspolnShtraf,
-      FrmEdVehsAMTC,
-      FrmEdProtPZTC,
-      FrmEdUchastFL,
-      FrmEdDocsProt,
-      FrmEdDelo
+      DlgAdvice: () => import('~/components/delo/DlgAdvice'),
+      DlgEdFotoMaterial: () => import('~/components/delo/DlgEdFotoMaterial/DlgEdFotoMaterial'),
+      FrmEdIspolnPostUvedom: () => import('~/components/delo/FrmEdIspolnPostUvedom'),
+      FrmEdVuPred: () => import('~/components/delo/FrmEdVuPred'),
+      FrmEdVuVyd: () => import('~/components/delo/FrmEdVuVyd'),
+      FrmEdDocsOpred: () => import('~/components/delo/FrmEdDocsOpred'),
+      FrmEdDocsPost: () => import('~/components/delo/FrmEdDocsPost'),
+      FrmEdDecisShtraf: () => import('~/components/delo/FrmEdDecisShtraf'),
+      FrmEdIspolnShtraf: () => import('~/components/delo/FrmEdIspolnShtraf'),
+      FrmEdVehsAMTC: () => import('~/components/delo/FrmEdVehsAMTC'),
+      FrmEdProtPZTC: () => import('~/components/delo/FrmEdProtPZTC'),
+      FrmEdUchastFL: () => import('~/components/delo/FrmEdUchastFL'),
+      FrmEdDocsProt: () => import('~/components/delo/FrmEdDocsProt'),
+      FrmEdDelo: () => import('~/components/delo/FrmEdDelo'),
     },
     async created() {
       try {

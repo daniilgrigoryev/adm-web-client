@@ -19,23 +19,18 @@
 </template>
 
 <script>
-  import Indicator from './components/shared/Indicator.vue';
-  import MainMenu from './components/shared/MainMenu.vue';
-  import SiderMenu from './components/shared/SiderMenu.vue';
   import * as funcUtils from "./assets/js/utils/funcUtils";
   import * as formStack from './assets/js/api/formStack';
-  import Authorization from './../src/components/Authorization'
-  import Auth from './../src/components/Auth';
   import {mapGetters} from 'vuex';
 
   export default {
     name: 'app',
     components: {
-      Indicator,
-      MainMenu,
-      SiderMenu,
-      Authorization,
-      Auth
+      Indicator: () => import('~/components/shared/Indicator'),
+      MainMenu: () => import('~/components/shared/MainMenu'),
+      SiderMenu: () => import('~/components/shared/SiderMenu'),
+      Authorization: () => import('~/components/Authorization'),
+      Auth: () => import('~/components/Auth')
     },
     data() {
       return {
