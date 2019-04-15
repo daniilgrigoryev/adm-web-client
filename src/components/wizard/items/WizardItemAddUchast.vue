@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="data">
     <div class="adm-form__item">
       <small class="adm-form__label">Статус участника</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -44,8 +44,6 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
 
   export default {

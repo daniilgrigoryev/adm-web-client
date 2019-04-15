@@ -24,13 +24,6 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import WizardItemDocProt2025 from "./items/WizardItemDocProt2025.vue";
-  import WizardItemLvok2025 from "./items/WizardItemLvok2025.vue";
-  import WizardItemPlace from "./items/WizardItemPlace.vue";
-  import WizardItemPredDoc from "./items/WizardItemPredDoc.vue";
-  import WizardItemAddress from "./items/WizardItemAddress.vue";
-  import WizardItemIndividual from "./items/WizardItemIndividual.vue";
 
   export default {
     name: "WizardScenario2025",
@@ -38,13 +31,13 @@
       pathes: Object
     },
     components: {
-      AsideTemplate,
-      WizardItemDocProt2025,
-      WizardItemLvok2025,
-      WizardItemAddress,
-      WizardItemIndividual,
-      WizardItemPlace,
-      WizardItemPredDoc
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      WizardItemDocProt2025: () => import('~/components/wizard/items/WizardItemDocProt2025'),
+      WizardItemLvok2025: () => import('~/components/wizard/items/WizardItemLvok2025'),
+      WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
+      WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
+      WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
+      WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
     },
     data() {
       return {

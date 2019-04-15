@@ -159,15 +159,13 @@
 <script>
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import RequestApi from "../../../assets/js/api/requestApi";
-  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "AddressViewEdit",
     components: {
-      AsideTemplate,
-      MaskedInput,
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     async created() {
       try {

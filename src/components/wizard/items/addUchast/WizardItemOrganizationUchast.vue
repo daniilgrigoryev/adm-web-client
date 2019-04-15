@@ -131,12 +131,11 @@
 
 <script>
   import WizardItemOrganization from "~/components/wizard/items/WizardItemOrganization";
-  import MaskedInput from "../../../shared/MaskedInput";
 
   export default {
     name: "WizardItemOrganizationUchast",
     components: {
-        MaskedInput,
+      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     extends: WizardItemOrganization
   }

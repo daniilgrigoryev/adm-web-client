@@ -33,20 +33,16 @@
 
 <script>
   import * as funcUtils from "../../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../../assets/js/api/formStack';
   import RequestApi from "../../../../assets/js/api/requestApi";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
-  import WizardModal from "~/components/wizard/items/WizardModal";
-  import MaskedInput from "~/components/shared/MaskedInput";
   import wizardItemProtApnFiveMethods from "~/components/mixins/prot/wizardItemProtApnFiveMethods";
 
   export default {
     name: "WizardItemProtApnFive",
     mixins: [wizardItemProtApnFiveMethods],
     components: {
-      WizardModal,
-      DatePickerMask,
-      MaskedInput
+      WizardModal: () => import('~/components/wizard/items/WizardModal'),
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+      MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     props: {
       info: Object

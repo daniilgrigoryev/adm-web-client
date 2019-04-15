@@ -205,13 +205,13 @@
 
 <script>
 import * as funcUtils from "../../../assets/js/utils/funcUtils";
-import * as formStack from '../../../assets/js/api/formStack';
 import RequestApi from "../../../assets/js/api/requestApi";
-import MaskedInput from "~/components/shared/MaskedInput";
 
 export default {
 	name: "WizardItemPlace",
-	components: {MaskedInput},
+	components: {
+    MaskedInput: () => import('~/components/shared/MaskedInput')
+  },
 	props: {
 		info: Object,
 		title: String

@@ -23,16 +23,14 @@
 
 <script>
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
   import wizardItemDocPostFinalMethods from "~/components/mixins/post/wizardItemDocPostFinalMethods.js";
 
   export default {
     name: "WizardItemDocPostFinal",
     mixins: [wizardItemDocPostFinalMethods],
     components: {
-      DatePickerMask
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     props: {
       info: Object

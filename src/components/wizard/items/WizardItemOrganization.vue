@@ -120,16 +120,13 @@
 
 <script>
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
-  import WizardModal from "~/components/wizard/items/WizardModal";
 
   export default {
     name: "WizardItemOrganization",
     components: {
-      WizardModal,
-      DatePickerMask
+      WizardModal: () => import('~/components/wizard/items/WizardModal'),
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     props: {
       info: Object,

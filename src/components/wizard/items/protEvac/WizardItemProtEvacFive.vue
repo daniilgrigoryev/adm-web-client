@@ -73,16 +73,16 @@
 
 <script>
   import * as funcUtils from "../../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../../assets/js/api/formStack';
   import RequestApi from "../../../../assets/js/api/requestApi";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
-  import MaskedInput from "~/components/shared/MaskedInput";
   import wizardItemProtEvacFiveMethods from "~/components/mixins/prot/wizardItemProtEvacFiveMethods";
 
   export default {
     name: "WizardItemProtEvacFive",
     mixins: [wizardItemProtEvacFiveMethods],
-    components: {DatePickerMask, MaskedInput},
+    components: {
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+      MaskedInput: () => import('~/components/shared/MaskedInput')
+    },
     props: {
       info: Object
     },

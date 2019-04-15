@@ -15,16 +15,16 @@
 
 <script>
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
-  import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
-  import MaskedInput from "~/components/shared/MaskedInput";
   import wizardItemProtThreeMethods from "~/components/mixins/prot/wizardItemProtThreeMethods";
 
   export default {
     name: "WizardItemProtThree",
     mixins: [wizardItemProtThreeMethods],
-    components: {DatePickerMask, MaskedInput},
+    components: {
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+      MaskedInput: () => import('~/components/shared/MaskedInput')
+    },
     props: {
       info: Object
     },

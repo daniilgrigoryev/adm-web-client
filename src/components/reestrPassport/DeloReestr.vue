@@ -237,15 +237,13 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import MaskedInput from "../shared/MaskedInput";
   import {mapGetters} from 'vuex';
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
 
   export default {
     name: "DeloReestr",
     components: {
-      MaskedInput,
-      DatePickerMask
+      MaskedInput: () => import('~/components/shared/MaskedInput'),
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {

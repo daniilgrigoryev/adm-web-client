@@ -114,17 +114,17 @@
 
 <script>
 import * as funcUtils from "../../../assets/js/utils/funcUtils";
-import * as formStack from '../../../assets/js/api/formStack';
 import RequestApi from "../../../assets/js/api/requestApi";
-import WizardModal from "~/components/wizard/items/WizardModal";
-import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
-import MaskedInput from "~/components/shared/MaskedInput";
 import wizardItemDocPostFirstMethods from "~/components/mixins/post/wizardItemDocPostFirstMethods.js";
 
 export default {
 	name: "WizardItemDocPostFirst",
   mixins: [wizardItemDocPostFirstMethods],
-  components: {WizardModal, MaskedInput, DatePickerMask},
+  components: {
+    WizardModal: () => import('~/components/wizard/items/WizardModal'),
+    MaskedInput: () => import('~/components/shared/MaskedInput'),
+    DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
+  },
   props: {
 		info: Object
 	},

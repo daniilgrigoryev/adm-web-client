@@ -185,18 +185,14 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import WizardModal from "~/components/wizard/items/WizardModal";
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
-  import MaskedInput from "~/components/shared/MaskedInput";
 
   export default {
     name: "FrmEdDeloEdit",
     components: {
-      AsideTemplate,
-      WizardModal,
-      MaskedInput,
-      DatePickerMask
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      WizardModal: () => import('~/components/wizard/items/WizardModal'),
+      MaskedInput: () => import('~/components/shared/MaskedInput'),
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {

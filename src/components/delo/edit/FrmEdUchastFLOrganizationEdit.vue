@@ -170,17 +170,14 @@
 <script>
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
   import RequestApi from "../../../assets/js/api/requestApi";
-  import MaskedInput from "../../shared/MaskedInput";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
 
   export default {
     name: "FrmEdUchastFLOrganizationEdit",
     components: {
-      AsideTemplate,
-      DatePickerMask,
-      MaskedInput
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+      MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     async created() {
       try {

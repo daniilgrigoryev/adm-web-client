@@ -145,18 +145,14 @@
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
   import * as formStack from '../../../assets/js/api/formStack';
   import RequestApi from "../../../assets/js/api/requestApi";
-  import WizardModal from "~/components/wizard/items/WizardModal";
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import MaskedInput from "../../shared/MaskedInput";
-  import DatePickerMask from "~/components/shared/dateTimePicker/DatePickerMask";
 
   export default {
     name: "DlgAdviceEdit",
     components: {
-      AsideTemplate,
-      WizardModal,
-      MaskedInput,
-      DatePickerMask
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      MaskedInput: () => import('~/components/shared/MaskedInput'),
+      WizardModal: () => import('~/components/wizard/items/WizardModal'),
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {

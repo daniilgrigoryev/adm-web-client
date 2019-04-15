@@ -7,13 +7,12 @@
 </template>
 
 <script>
-  import MaskedInput from "../MaskedInput";
   import * as funcUtils from "../../../assets/js/utils/funcUtils";
 
   export default {
     name: "CalendarBody",
     components: {
-      MaskedInput
+      MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     props: {
       valueFirst: Date,
