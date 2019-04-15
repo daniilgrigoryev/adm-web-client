@@ -467,7 +467,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          color: #373737;	
+          color: #000;	
           font-size: 16px;	
           padding-bottom: 4px;
           .date {
