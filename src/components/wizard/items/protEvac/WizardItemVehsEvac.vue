@@ -78,9 +78,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="data.color"
-                                :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: '', casing: 'upper'}"
-                                @onInputChange="storeElementData"></masked-input>
+                  <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="data.color" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9 ]+', placeholder: '', casing: 'upper'}" @onInputChange="storeElementData"></masked-input>
                 </Col>
               </Row>
             </div>
