@@ -7,7 +7,7 @@
             <img :src="iconNode" alt="">
           </div>
           <div v-html="dataNode" class="tree__text-wrap"></div>
-<!--          <img v-if="isParent && isFolder" class="tree__arrow" :class="{open: open}" src="../../assets/images/controls-switch-chevron-down.svg" />-->
+          <img v-if="isParent && isFolder" class="tree__arrow" :class="{open: open}" src="../../assets/images/controls-switch-chevron-down.svg" />
         </a>
       </li>
     </ul>
@@ -44,12 +44,12 @@
       node: Object,
       nodeClick: Function
     },
-    /*created() {
+    created() {
        this.open = this.node.height !== 3 || this.hasSelectedChildren(this.node);
-    },*/
+    },
     data() {
       return {
-        open: true // false
+        open: false
       }
     },
     computed: {
@@ -401,7 +401,7 @@
       },
       parentNodeClick() {
         this.nodeClick(this.node);
-        // this.toggle();
+        this.toggle();
       },
       toggle() {
         if (this.isFolder && this.isParent) {
