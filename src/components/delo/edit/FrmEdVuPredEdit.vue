@@ -55,7 +55,7 @@
                           <masked-input inputClass="adm-input adm-input&#45;&#45;regular" v-model="vuPred.ogaiVydKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOgaiVydKod" ></masked-input>
                         </Col>-->
                         <Col :xs="18" :md="18" :lg="22">
-                          <Input class="adm-input adm-input--regular" :value="vuPred.ogaiVydName"></Input>
+                          <Input class="adm-input adm-input--regular" @on-input-change="store"  v-model="vuPred.ogaiVydName" :value="vuPred.ogaiVydName"></Input>
                         </Col>
                         <Col :xs="2" :md="2" :lg="2">
                           <Button @click="showOgaiModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
