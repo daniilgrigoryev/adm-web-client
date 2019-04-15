@@ -172,7 +172,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="vehsAMTC.color" @onInputChange="store" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9 ]+', placeholder: ''}" placeholder=""></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="vehsAMTC.color" @onInputChange="store" :maskProps="{casing: 'upper', regex: '[а-яА-Я0-9 .-]+', placeholder: ''}" placeholder=""></masked-input>
                     </Col>
                   </Row>
                 </div>
