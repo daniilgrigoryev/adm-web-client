@@ -27,9 +27,6 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import WizardItemIspoln from "./items/WizardItemIspoln.vue";
-  import WizardItemPlace from "./items/WizardItemPlace.vue";
 
   export default {
     name: "WizardScenarioAddIspoln",
@@ -37,9 +34,9 @@
       pathes: Object
     },
     components: {
-      AsideTemplate,
-      WizardItemPlace,
-      WizardItemIspoln
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      WizardItemIspoln: () => import('~/components/wizard/items/WizardItemIspoln'),
+      WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace')
     },
     data() {
       return {

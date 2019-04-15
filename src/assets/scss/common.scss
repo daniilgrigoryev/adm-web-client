@@ -819,6 +819,9 @@ html, body, #app {
         background-color: $white-light;
         color: $dark-base;
       }
+      &:disabled {
+        color: #c5c8ce;
+      }
     }
   }
 }

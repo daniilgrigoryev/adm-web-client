@@ -67,20 +67,6 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import WizardItemDefinitionOne from "./items/definition/WizardItemDefinitionOne.vue";
-  import WizardItemProtTwo from "./items/WizardItemProtTwo.vue";
-  import WizardItemProtThree from "./items/WizardItemProtThree.vue";
-  import WizardItemProtFour from "./items/WizardItemProtFour.vue";
-  import WizardItemDefinitionFive from "./items/definition/WizardItemDefinitionFive.vue";
-  import WizardItemAddress from "./items/WizardItemAddress.vue";
-  import WizardItemIndividual from "./items/WizardItemIndividual.vue";
-  import WizardItemLvok from "./items/WizardItemLvok.vue";
-  import WizardItemOrganization from "./items/WizardItemOrganization.vue";
-  import WizardItemOwner from "./items/WizardItemOwner.vue";
-  import WizardItemPlace from "./items/WizardItemPlace.vue";
-  import WizardItemPredDoc from "./items/WizardItemPredDoc.vue";
-  import WizardItemVehs from "./items/WizardItemVehs.vue";
 
   export default {
     name: "WizardScenarioDefinition",
@@ -88,20 +74,20 @@
       pathes: Object
     },
     components: {
-      AsideTemplate,
-      WizardItemDefinitionOne,
-      WizardItemProtTwo,
-      WizardItemProtThree,
-      WizardItemProtFour,
-      WizardItemDefinitionFive,
-      WizardItemAddress,
-      WizardItemIndividual,
-      WizardItemLvok,
-      WizardItemOrganization,
-      WizardItemOwner,
-      WizardItemPlace,
-      WizardItemPredDoc,
-      WizardItemVehs
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      WizardItemDefinitionOne: () => import('~/components/wizard/items/definition/WizardItemDefinitionOne'),
+      WizardItemProtTwo: () => import('~/components/wizard/items/WizardItemProtTwo'),
+      WizardItemProtThree: () => import('~/components/wizard/items/WizardItemProtThree'),
+      WizardItemProtFour: () => import('~/components/wizard/items/WizardItemProtFour'),
+      WizardItemDefinitionFive: () => import('~/components/wizard/items/definition/WizardItemDefinitionFive'),
+      WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
+      WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
+      WizardItemLvok: () => import('~/components/wizard/items/WizardItemLvok'),
+      WizardItemOrganization: () => import('~/components/wizard/items/WizardItemOrganization'),
+      WizardItemOwner: () => import('~/components/wizard/items/WizardItemOwner'),
+      WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
+      WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
+      WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
     },
     data() {
       return {
@@ -158,7 +144,29 @@
         if (resp.error && resp.error.errorMsg) {
           alert(resp.error.errorMsg);
         } else {
-          this.getPrev();
+          eventResponse = await RequestApi.prepareData({
+            method: 'getDeloId'
+          });
+          resp = null;
+          if (eventResponse.response) {
+            resp = JSON.parse(eventResponse.response);
+          }
+          if (resp && resp.data) {
+            this.getPrev(false);
+            let params = {
+              deloId: resp.data
+            };
+
+            formStack.toNext({
+              module: this.$store.state.deloTreeCardView,
+              vm: this,
+              notRemoved: false,
+              params: params,
+              withCreate: true
+            });
+          } else {
+            this.getPrev();
+          }
         }
       },
       getPrev() {

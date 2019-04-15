@@ -1,27 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import DeloReestr from '../components/reestrPassport/DeloReestr';
-import DashBoard from '../components/reestrPassport/DashBoard';
-
-import DeloTreeCardView from '../components/viewData/DeloTreeCardView';
-import FrmEdDeloEdit from '../components/delo/edit/FrmEdDeloEdit';
-import FrmEdVuPredEdit from '../components/delo/edit/FrmEdVuPredEdit';
-import FrmEdVuVydEdit from '../components/delo/edit/FrmEdVuVydEdit';
-import FrmEdDocsPostEdit from '../components/delo/edit/FrmEdDocsPostEdit';
-import FrmEdDocsProtEdit from '../components/delo/edit/FrmEdDocsProtEdit';
-import FrmEdDocsOpredEdit from '../components/delo/edit/FrmEdDocsOpredEdit';
-import FrmEdDecisEdit from '../components/delo/edit/FrmEdDecisEdit';
-import DlgAdviceEdit from '../components/delo/edit/DlgAdviceEdit';
-
-import FrmEdVehsAMTCEdit from '../components/delo/edit/FrmEdVehsAMTCEdit';
-import FrmEdProtPZTCEdit from '../components/delo/edit/FrmEdProtPZTCEdit';
-import FrmEdUchastFLIndividEdit from '../components/delo/edit/FrmEdUchastFLIndividEdit';
-import FrmEdUchastFLOrganizationEdit from '../components/delo/edit/FrmEdUchastFLOrganizationEdit';
-import PlaceViewEdit from '../components/delo/edit/PlaceViewEdit';
-import AddressViewEdit from '../components/delo/edit/AddressViewEdit';
-
-
-import WizardExecuter from '../components/wizard/WizardExecuter';
 
 import * as funcUtils from "./../assets/js/utils/funcUtils";
 import * as ConstantUtils from "./../assets/js/utils/constantUtils";
@@ -37,107 +15,107 @@ const router = new Router({
     {
       path: '/deloReestr',
       name: 'DeloReestr',
-      component: DeloReestr,
+      component: () => import('../components/reestrPassport/DeloReestr'),
     },
     {
       path: '/dashBoard',
       name: 'DashBoard',
-      component: DashBoard,
+      component: () => import('../components/reestrPassport/DashBoard'),
     },
     {
       path: '/deloTreeCardView',
       name: 'DeloTreeCardView',
-      component: DeloTreeCardView,
+      component: () => import('../components/viewData/DeloTreeCardView'),
       props: true
     },
     {
       path: '/frmEdDeloEdit',
       name: 'FrmEdDeloEdit',
-      component: FrmEdDeloEdit,
+      component: () => import('../components/delo/edit/FrmEdDeloEdit'),
       props: true
     },
     {
       path: '/frmEdDecisEdit',
       name: 'FrmEdDecisEdit',
-      component: FrmEdDecisEdit,
+      component: () => import('../components/delo/edit/FrmEdDecisEdit'),
       props: true
     },
     {
       path: '/frmEdVuPredEdit',
       name: 'FrmEdVuPredEdit',
-      component: FrmEdVuPredEdit,
+      component: () => import('../components/delo/edit/FrmEdVuPredEdit'),
       props: true
     },
     {
       path: '/frmEdVuVydEdit',
       name: 'FrmEdVuVydEdit',
-      component: FrmEdVuVydEdit,
+      component: () => import('../components/delo/edit/FrmEdVuVydEdit'),
       props: true
     },
     {
       path: '/frmEdDocsPostEdit',
       name: 'FrmEdDocsPostEdit',
-      component: FrmEdDocsPostEdit,
+      component: () => import('../components/delo/edit/FrmEdDocsPostEdit'),
       props: true
     },
     {
       path: '/frmEdVehsAMTCEdit',
       name: 'FrmEdVehsAMTCEdit',
-      component: FrmEdVehsAMTCEdit,
+      component: () => import('../components/delo/edit/FrmEdVehsAMTCEdit'),
       props: true
     },
     {
       path: '/frmEdDocsProtEdit',
       name: 'FrmEdDocsProtEdit',
-      component: FrmEdDocsProtEdit,
+      component: () => import('../components/delo/edit/FrmEdDocsProtEdit'),
       props: true
     },
     {
       path: '/frmEdDocsOpredEdit',
       name: 'FrmEdDocsOpredEdit',
-      component: FrmEdDocsOpredEdit,
+      component: () => import('../components/delo/edit/FrmEdDocsOpredEdit'),
       props: true
     },
     {
       path: '/frmEdProtPZTCEdit',
       name: 'FrmEdProtPZTCEdit',
-      component: FrmEdProtPZTCEdit,
+      component: () => import('../components/delo/edit/FrmEdProtPZTCEdit'),
       props: true
     },
     {
       path: '/frmEdUchastFLIndividEdit',
       name: 'FrmEdUchastFLIndividEdit',
-      component: FrmEdUchastFLIndividEdit,
+      component: () => import('../components/delo/edit/FrmEdUchastFLIndividEdit'),
       props: true
     },
     {
       path: '/frmEdUchastFLOrganizationEdit',
       name: 'FrmEdUchastFLOrganizationEdit',
-      component: FrmEdUchastFLOrganizationEdit,
+      component: () => import('../components/delo/edit/FrmEdUchastFLOrganizationEdit'),
       props: true
     },
     {
       path: '/placeViewEdit',
       name: 'PlaceViewEdit',
-      component: PlaceViewEdit,
+      component: () => import('../components/delo/edit/PlaceViewEdit'),
       props: true
     },
     {
       path: '/addressViewEdit',
       name: 'AddressViewEdit',
-      component: AddressViewEdit,
+      component: () => import('../components/delo/edit/AddressViewEdit'),
       props: true
     },
     {
       path: '/dlgAdviceEdit',
       name: 'DlgAdviceEdit',
-      component: DlgAdviceEdit,
+      component: () => import('../components/delo/edit/DlgAdviceEdit'),
       props: true
     },
     {
       path: '/wizardExecuter',
       name: 'WizardExecuter',
-      component: WizardExecuter,
+      component: () => import('../components/wizard/WizardExecuter'),
       props: true
     },
   ]

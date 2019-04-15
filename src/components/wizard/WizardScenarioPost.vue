@@ -40,19 +40,6 @@
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import RequestApi from "../../assets/js/api/requestApi";
-  import AsideTemplate from "~/components/templates/AsideTemplate.vue";
-  import WizardItemAddress from "./items/WizardItemAddress.vue";
-  import WizardItemDecis from "./items/WizardItemDecis.vue";
-  import WizardItemDocPostFinal from "./items/WizardItemDocPostFinal.vue";
-  import WizardItemDocPostFirst from "./items/WizardItemDocPostFirst.vue";
-  import WizardItemDocPostSecond from "./items/WizardItemDocPostSecond.vue";
-  import WizardItemIndividual from "./items/WizardItemIndividual.vue";
-  import WizardItemLvok from "./items/WizardItemLvok.vue";
-  import WizardItemOrganization from "./items/WizardItemOrganization.vue";
-  import WizardItemOwner from "./items/WizardItemOwner.vue";
-  import WizardItemPlace from "./items/WizardItemPlace.vue";
-  import WizardItemPredDoc from "./items/WizardItemPredDoc.vue";
-  import WizardItemVehs from "./items/WizardItemVehs.vue";
 
   export default {
     name: "WizardScenarioPost",
@@ -60,19 +47,19 @@
       pathes: Object
     },
     components: {
-      AsideTemplate,
-      WizardItemAddress,
-      WizardItemDecis,
-      WizardItemDocPostFinal,
-      WizardItemDocPostFirst,
-      WizardItemDocPostSecond,
-      WizardItemIndividual,
-      WizardItemLvok,
-      WizardItemOrganization,
-      WizardItemOwner,
-      WizardItemPlace,
-      WizardItemPredDoc,
-      WizardItemVehs
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
+      WizardItemDecis: () => import('~/components/wizard/items/WizardItemDecis'),
+      WizardItemDocPostFinal: () => import('~/components/wizard/items/WizardItemDocPostFinal'),
+      WizardItemDocPostFirst: () => import('~/components/wizard/items/WizardItemDocPostFirst'),
+      WizardItemDocPostSecond: () => import('~/components/wizard/items/WizardItemDocPostSecond'),
+      WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
+      WizardItemLvok: () => import('~/components/wizard/items/WizardItemLvok'),
+      WizardItemOrganization: () => import('~/components/wizard/items/WizardItemOrganization'),
+      WizardItemOwner: () => import('~/components/wizard/items/WizardItemOwner'),
+      WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
+      WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
+      WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
     },
     data() {
       return {
@@ -140,8 +127,11 @@
           eventResponse = await RequestApi.prepareData({
             method: 'getDeloId'
           });
-          resp =  JSON.parse(eventResponse.response);
-          if (resp.data) {
+          resp = null;
+          if (eventResponse.response) {
+            resp = JSON.parse(eventResponse.response);
+          }
+          if (resp && resp.data) {
             this.getPrev(false);
             let params = {
               deloId: resp.data

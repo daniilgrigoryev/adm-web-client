@@ -14,26 +14,18 @@
 <script>
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import RequestApi from "../../assets/js/api/requestApi";
-  import WizardScenario2025 from "~/components/wizard/WizardScenario2025";
-  import WizardScenarioPost from "~/components/wizard/WizardScenarioPost";
-  import WizardScenarioProtEvac from "~/components/wizard/WizardScenarioProtEvac";
-  import WizardScenarioProtAPN from "~/components/wizard/WizardScenarioProtAPN";
-  import WizardScenarioDefinition from "~/components/wizard/WizardScenarioDefinition";
-  import WizardScenarioAddUchast from "~/components/wizard/WizardScenarioAddUchast";
-  import WizardScenarioAddPredDoc from "~/components/wizard/WizardScenarioAddPredDoc";
-  import WizardScenarioAddIspoln from "~/components/wizard/WizardScenarioAddIspoln";
 
   export default {
     name: "WizardExecuter",
     components: {
-      WizardScenario2025,
-      WizardScenarioPost,
-      WizardScenarioProtAPN,
-      WizardScenarioProtEvac,
-      WizardScenarioDefinition,
-      WizardScenarioAddPredDoc,
-      WizardScenarioAddIspoln,
-      WizardScenarioAddUchast
+      WizardScenario2025: () => import('~/components/wizard/WizardScenario2025'),
+      WizardScenarioPost: () => import('~/components/wizard/WizardScenarioPost'),
+      WizardScenarioProtAPN: () => import('~/components/wizard/WizardScenarioProtAPN'),
+      WizardScenarioProtEvac: () => import('~/components/wizard/WizardScenarioProtEvac'),
+      WizardScenarioDefinition: () => import('~/components/wizard/WizardScenarioDefinition'),
+      WizardScenarioAddPredDoc: () => import('~/components/wizard/WizardScenarioAddPredDoc'),
+      WizardScenarioAddIspoln: () => import('~/components/wizard/WizardScenarioAddIspoln'),
+      WizardScenarioAddUchast: () => import('~/components/wizard/WizardScenarioAddUchast')
     },
     async created() {
       try {

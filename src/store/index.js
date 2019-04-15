@@ -23,8 +23,6 @@ import frmEdIspolnPostUvedom from './modules/frmEdIspolnPostUvedom';
 import dlgEdFotoMaterial from './modules/dlgEdFotoMaterial';
 import dlgAdvice from './modules/dlgAdvice';
 
-
-
 import frmEdDeloEdit from './modules/frmEdDeloEdit';
 import frmEdDecisEdit from './modules/frmEdDecisEdit';
 import frmEdVuPredEdit from './modules/frmEdVuPredEdit';

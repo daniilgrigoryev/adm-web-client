@@ -16,7 +16,9 @@
       {
         "libraryName": "element-ui",
         "styleLibraryName": "theme-chalk"
-      }
+      },
+      "transform-vue-jsx",
+      "syntax-dynamic-import"
     ]
   ]
 }
