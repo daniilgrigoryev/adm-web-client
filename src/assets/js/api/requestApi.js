@@ -1,4 +1,3 @@
-import {Spinner} from 'spin.js';
 import * as ConstantUtils from './../utils/constantUtils';
 import * as funcUtils from "./../utils/funcUtils";
 import * as RequestEntity from "./requestEntity";

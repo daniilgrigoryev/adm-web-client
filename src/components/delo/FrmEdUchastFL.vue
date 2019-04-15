@@ -6,8 +6,6 @@
 </template>
 
 <script>
-  import FrmEdUchastFLIndivid from './FrmEdUchastFLIndivid';
-  import FrmEdUchastFLOrganization from './FrmEdUchastFLOrganization';
   import * as funcUtils from "../../assets/js/utils/funcUtils";
   import * as formStack from '../../assets/js/api/formStack';
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
@@ -17,8 +15,8 @@
   export default {
     name: "FrmEdUchastFL",
     components: {
-      FrmEdUchastFLIndivid,
-      FrmEdUchastFLOrganization
+      FrmEdUchastFLIndivid: () => import('~/components/delo/FrmEdUchastFLIndivid'),
+      FrmEdUchastFLOrganization: () => import('~/components/delo/FrmEdUchastFLOrganization')
     },
     async created() {
       try {

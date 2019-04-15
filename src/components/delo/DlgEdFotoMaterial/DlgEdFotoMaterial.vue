@@ -63,18 +63,15 @@
   import * as formStack from '~/assets/js/api/formStack';
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
-  import ViewDataItem from "~/components/shared/ui/view-data-item.vue";
   import {mapGetters} from 'vuex';
-  import $ from "jquery";
   import mapboxgl from 'mapbox-gl';
   import '~/assets/mapbox/mapbox-gl.css';
-  import Slider from './Slider.vue';
 
   export default {
     name: "DlgEdFotoMaterial",
     components: {
-      Slider,
-      ViewDataItem,
+      Slider: () => import('~/components/delo/DlgEdFotoMaterial/Slider'),
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

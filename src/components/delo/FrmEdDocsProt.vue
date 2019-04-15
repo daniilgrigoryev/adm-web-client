@@ -82,12 +82,11 @@
   import * as innerFormStack from '../../assets/js/api/innerFormStack';
   import RequestApi from "../../assets/js/api/requestApi";
   import { mapGetters } from 'vuex';
-  import ViewDataItem from "~/components/shared/ui/view-data-item.vue";
 
   export default {
     name: "FrmEdDocsProt",
     components: {
-      ViewDataItem
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item')
     },
     async created() {
       try {

@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import * as funcUtils from "./../assets/js/utils/funcUtils";
-import * as ConstantUtils from "./../assets/js/utils/constantUtils";
 import * as formStack from './../assets/js/api/formStack';
 
 Vue.use(Router);
