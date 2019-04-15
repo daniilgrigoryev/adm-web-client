@@ -34,7 +34,7 @@
                           <div class="flex-parent flex-parent--column flex-parent--end-cross h-full">
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label w-full">В текущем году</div>
-                              <Select class="adm-input adm-input--big" v-model="filter.flagYear" clearable>
+                              <Select class="adm-input adm-input--big" v-model="filter.flagYear">
                                 <Option value="true">Да</Option>
                                 <Option value="false">Нет</Option>
                               </Select>
@@ -1420,6 +1420,11 @@
         return filterObj;
       },
       async clearFilterSort() {
+        this.from = 0;
+        this.to =  40;
+        this.limit =  40;
+        this.delta =  40;
+        this.currentPage =  1;
         this.setFields(null);
         this.hideMore = false;
         this.columnsOptionsVisible = false;
@@ -1563,6 +1568,11 @@
         this.articleProcDict = articleProcDict;
       },
       async filterClick() {
+        this.from = 0;
+        this.to =  40;
+        this.limit =  40;
+        this.delta =  40;
+        this.currentPage =  1;
         this.hideMore = false;
         this.columnsOptionsVisible = false;
         let filter = this.getFilterFields();
