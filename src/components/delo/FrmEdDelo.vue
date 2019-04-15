@@ -147,11 +147,9 @@
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
   import { mapGetters } from 'vuex';
-  import DateRangePickerMask from "~/components/shared/dateTimeRangePicker/DateRangePickerMask";
 
   export default {
     name: "FrmEdDelo",
-    components: {DateRangePickerMask},
     data() {
       return {
         hideMore: false,

@@ -162,16 +162,15 @@
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
-  import DeloInnerForm from "~/components/delo/DeloInnerForm";
-  import TreeNode from "~/components/viewData/TreeNode";
   import decisEnum from "~/assets/js/utils/decisEnum";
   import docTipEnum from "~/assets/js/utils/docTipEnum";
+  import DeloInnerForm from "~/components/delo/DeloInnerForm";
 
   export default {
     name: "DeloTreeCardView",
     components: {
       DeloInnerForm,
-      TreeNode
+      TreeNode: () => import('~/components/viewData/TreeNode')
     },
     async created() {
       await this.init();

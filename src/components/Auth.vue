@@ -9,7 +9,6 @@
 
   export default {
     name: 'Authorization',
-    components: {},
     async created() {
       try {
         let eventResponse;

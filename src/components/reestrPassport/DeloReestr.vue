@@ -1581,7 +1581,7 @@
         try {
           /*if (e && e.ctrlKey) {
             this.getDeloNewTab(delo);
-          } */
+          }*/
           let params = {
             deloId: delo.deloId
           };
@@ -1608,7 +1608,8 @@
             vm: this,
             notRemoved: false,
             params: params,
-            withCreate: true
+            withCreate: true,
+            withTransition: false
           });
         } catch (e) {
           alert(e.message);

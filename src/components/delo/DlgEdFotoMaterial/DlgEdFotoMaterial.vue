@@ -15,7 +15,7 @@
           <article class="gallery">
             <Slider :photos="photos"/>
             <div class="dc-object-map-wrap">
-              <div id="dc-object-map" />
+              <div id="dc-object-map"></div>
               <view-data-item 
                 label="Координаты" 
                 :value="fotofix.violPlaceLatitude, fotofix.violPlaceLongitude | concatByDelimiter(',')" 

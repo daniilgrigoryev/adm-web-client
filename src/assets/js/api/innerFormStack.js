@@ -1,6 +1,6 @@
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import RequestApi from "~/assets/js/api/requestApi";
-import Stack from "./stack";
+import Stack from "~/assets/js/api/stack";
 
 export async function toNext(payload) {
   let moduleName = payload.moduleName;

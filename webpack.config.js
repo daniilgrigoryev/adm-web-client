@@ -14,6 +14,7 @@ module.exports = (options = {}) => ({
     publicPath: options.dev ? '/assets/' : publicPath
   },
   module: {
+    noParse: /(mapbox-gl)\.js$/,
     rules: [
       {
         test: /\.css$/,
@@ -85,9 +86,6 @@ module.exports = (options = {}) => ({
     },
     extensions: ['.js', '.vue', '.json', '.css']
   },
-  performance: {
-    hints: false
-  },
   devServer: {
     host: '0.0.0.0',
     disableHostCheck: true,
@@ -103,6 +101,9 @@ module.exports = (options = {}) => ({
     }
   },
   devtool: options.dev ? '#eval-source-map' : '#source-map',
+  performance: {
+    hints: false
+  },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']

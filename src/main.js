@@ -13,12 +13,12 @@ import 'iview/dist/styles/iview.css';
 import './assets/scss/common.scss';
 
 import * as funcUtils from "~/assets/js/utils/funcUtils";
-import * as constantUtils from "./assets/js/utils/constantUtils";
+import * as constantUtils from "~/assets/js/utils/constantUtils";
 import RequestApi from "~/assets/js/api/requestApi";
 import * as formStack from '~/assets/js/api/formStack';
-import * as RequestEntity from "./assets/js/api/requestEntity";
-import Fingerprint from "./assets/js/vendor/fingerprint";
-import Stack from './assets/js/api/stack';
+import * as RequestEntity from "~/assets/js/api/requestEntity";
+import Fingerprint from "~/assets/js/vendor/fingerprint";
+import Stack from '~/assets/js/api/stack';
 
 import moment from 'moment';
 moment.locale('ru');

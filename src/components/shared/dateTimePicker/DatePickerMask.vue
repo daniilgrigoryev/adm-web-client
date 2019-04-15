@@ -8,8 +8,6 @@
 
 <script>
   import * as funcUtils from "~/assets/js/utils/funcUtils";
-  import CalendarHeader from "~/components/shared/dateTimePicker/CalendarHeader";
-  import CalendarBody from "~/components/shared/dateTimePicker/CalendarBody";
   import ClickOutside from 'vue-click-outside';
 
   /*
@@ -20,7 +18,10 @@
 
   export default {
     name: "DatePickerMask",
-    components: {CalendarBody, CalendarHeader},
+    components: {
+      CalendarBody: () => import('~/components/shared/dateTimePicker/CalendarBody'),
+      CalendarHeader: () => import('~/components/shared/dateTimePicker/CalendarHeader')
+    },
     directives: {
       ClickOutside
     },

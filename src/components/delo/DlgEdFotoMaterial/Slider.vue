@@ -7,7 +7,7 @@
 			<button v-if="photos.length > slideShow" class="arrow prev" @click="prev()"><</button>
 			<div class="gallery__items" :style="'transform: translateX(-' + (117 * leftSlideIndex) +  'px)'">
 				<div v-for="image in photos" :key="image.id" @click="acitveGalleryItem = image" class="gallery__item">
-					<img alt="img" @load="checkPic($event.target)" :src="image"/>
+					<img alt="img" @load="checkPic" :src="image"/>
 				</div>
 			</div>
 			<button v-if="photos.length > slideShow" class="arrow next" @click="next()">></button>
@@ -17,7 +17,6 @@
 
 <script>
 import $ from "jquery";
-
 
 export default {
 	props: {
@@ -38,33 +37,36 @@ export default {
 		}
 	},
 	methods: {
-		checkPic(imageDomEl) {
-			let setAttr;
-			let naturalWidth = imageDomEl.naturalWidth;
-			let naturalHeight = imageDomEl.naturalHeight;
-			let pic = $(imageDomEl).css({'height': 'auto', 'width': 'auto'});
-			let wrap = pic.parent();
+		checkPic(event) {
+		  if (event) {
+		    let imageDomEl = event.target;
+        let setAttr;
+        let naturalWidth = imageDomEl.naturalWidth;
+        let naturalHeight = imageDomEl.naturalHeight;
+        let pic = $(imageDomEl).css({'height': 'auto', 'width': 'auto'});
+        let wrap = pic.parent();
 
-			if (naturalHeight < wrap.height()) {
-				// wrap.css('height', naturalHeight + 20);
-				return;
-			}
-			let picAspect = naturalHeight / naturalWidth;
-			let wrapAspect = wrap.height() / wrap.width();
+        if (naturalHeight < wrap.height()) {
+          // wrap.css('height', naturalHeight + 20);
+          return;
+        }
+        let picAspect = naturalHeight / naturalWidth;
+        let wrapAspect = wrap.height() / wrap.width();
 
-			pic.css({'max-width': '100%', 'max-height': '100%'});
-			if (picAspect < 1) {
-				setAttr = (wrapAspect <= picAspect) ? 'height' : 'width';
-			} else { // portrait + square
-				setAttr = (wrapAspect >= picAspect) ? 'height' : 'width';
-			}
-			pic.css(setAttr, '100%');
-			if (pic.width() > naturalWidth) {
-				pic.css('width', naturalWidth);
-			}
-			if (pic.height() > naturalHeight) {
-				pic.css('height', naturalHeight);
-			}
+        pic.css({'max-width': '100%', 'max-height': '100%'});
+        if (picAspect < 1) {
+          setAttr = (wrapAspect <= picAspect) ? 'height' : 'width';
+        } else { // portrait + square
+          setAttr = (wrapAspect >= picAspect) ? 'height' : 'width';
+        }
+        pic.css(setAttr, '100%');
+        if (pic.width() > naturalWidth) {
+          pic.css('width', naturalWidth);
+        }
+        if (pic.height() > naturalHeight) {
+          pic.css('height', naturalHeight);
+        }
+      }
 		},
 		prev() {
 			if (this.leftSlideIndex) {

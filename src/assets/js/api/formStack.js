@@ -1,6 +1,6 @@
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import RequestApi from "~/assets/js/api/requestApi";
-import Stack from "./stack";
+import Stack from "~/assets/js/api/stack";
 import * as constantUtils from "~/assets/js/utils/constantUtils";
 
 export async function toNext(payload) {
