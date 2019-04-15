@@ -37,7 +37,7 @@
 
 
 <script>
-  import * as funcUtils from "../../assets/js/utils/funcUtils";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
 
   export default {
     name: 'MainMenu',

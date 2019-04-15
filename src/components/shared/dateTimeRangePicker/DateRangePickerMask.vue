@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../../assets/js/utils/funcUtils";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
   import CalendarHeader from "~/components/shared/dateTimeRangePicker/CalendarHeader";
   import CalendarBody from "~/components/shared/dateTimeRangePicker/CalendarBody";
   import ClickOutside from 'vue-click-outside';

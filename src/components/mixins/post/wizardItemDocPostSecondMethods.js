@@ -1,4 +1,4 @@
-import RequestApi from "../../../assets/js/api/requestApi";
+import RequestApi from "~/assets/js/api/requestApi";
 
 export default {
   data() {

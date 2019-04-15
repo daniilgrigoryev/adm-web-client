@@ -47,8 +47,8 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../../assets/js/utils/funcUtils";
-  import RequestApi from "../../../assets/js/api/requestApi";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import RequestApi from "~/assets/js/api/requestApi";
   import wizardItemDocPostSecondMethods from "~/components/mixins/post/wizardItemDocPostSecondMethods.js";
 
   export default {

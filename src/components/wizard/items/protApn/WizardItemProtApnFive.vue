@@ -32,8 +32,8 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../../../assets/js/utils/funcUtils";
-  import RequestApi from "../../../../assets/js/api/requestApi";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import RequestApi from "~/assets/js/api/requestApi";
   import wizardItemProtApnFiveMethods from "~/components/mixins/prot/wizardItemProtApnFiveMethods";
 
   export default {

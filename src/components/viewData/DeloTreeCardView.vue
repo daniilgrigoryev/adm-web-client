@@ -156,16 +156,16 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../assets/js/utils/funcUtils";
-  import * as formStack from '../../assets/js/api/formStack';
-  import Stack from '../../assets/js/api/stack';
-  import * as innerFormStack from '../../assets/js/api/innerFormStack';
-  import RequestApi from "../../assets/js/api/requestApi";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import * as formStack from '~/assets/js/api/formStack';
+  import Stack from '~/assets/js/api/stack';
+  import * as innerFormStack from '~/assets/js/api/innerFormStack';
+  import RequestApi from "~/assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
   import DeloInnerForm from "~/components/delo/DeloInnerForm";
   import TreeNode from "~/components/viewData/TreeNode";
-  import decisEnum from "../../assets/js/utils/decisEnum";
-  import docTipEnum from "../../assets/js/utils/docTipEnum";
+  import decisEnum from "~/assets/js/utils/decisEnum";
+  import docTipEnum from "~/assets/js/utils/docTipEnum";
 
   export default {
     name: "DeloTreeCardView",

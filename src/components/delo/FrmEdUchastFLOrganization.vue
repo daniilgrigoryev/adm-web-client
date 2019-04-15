@@ -83,9 +83,9 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../assets/js/utils/funcUtils";
-  import * as formStack from '../../assets/js/api/formStack';
-  import * as innerFormStack from '../../assets/js/api/innerFormStack';
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import * as formStack from '~/assets/js/api/formStack';
+  import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import { mapGetters } from 'vuex';
 
   export default {

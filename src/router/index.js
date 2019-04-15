@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import * as funcUtils from "./../assets/js/utils/funcUtils";
-import * as formStack from './../assets/js/api/formStack';
+import * as funcUtils from "~/assets/js/utils/funcUtils";
+import * as formStack from '~/assets/js/api/formStack';
 
 Vue.use(Router);
 
@@ -14,107 +14,107 @@ const router = new Router({
     {
       path: '/deloReestr',
       name: 'DeloReestr',
-      component: () => import('../components/reestrPassport/DeloReestr'),
+      component: () => import('~/components/reestrPassport/DeloReestr'),
     },
     {
       path: '/dashBoard',
       name: 'DashBoard',
-      component: () => import('../components/reestrPassport/DashBoard'),
+      component: () => import('~/components/reestrPassport/DashBoard'),
     },
     {
       path: '/deloTreeCardView',
       name: 'DeloTreeCardView',
-      component: () => import('../components/viewData/DeloTreeCardView'),
+      component: () => import('~/components/viewData/DeloTreeCardView'),
       props: true
     },
     {
       path: '/frmEdDeloEdit',
       name: 'FrmEdDeloEdit',
-      component: () => import('../components/delo/edit/FrmEdDeloEdit'),
+      component: () => import('~/components/delo/edit/FrmEdDeloEdit'),
       props: true
     },
     {
       path: '/frmEdDecisEdit',
       name: 'FrmEdDecisEdit',
-      component: () => import('../components/delo/edit/FrmEdDecisEdit'),
+      component: () => import('~/components/delo/edit/FrmEdDecisEdit'),
       props: true
     },
     {
       path: '/frmEdVuPredEdit',
       name: 'FrmEdVuPredEdit',
-      component: () => import('../components/delo/edit/FrmEdVuPredEdit'),
+      component: () => import('~/components/delo/edit/FrmEdVuPredEdit'),
       props: true
     },
     {
       path: '/frmEdVuVydEdit',
       name: 'FrmEdVuVydEdit',
-      component: () => import('../components/delo/edit/FrmEdVuVydEdit'),
+      component: () => import('~/components/delo/edit/FrmEdVuVydEdit'),
       props: true
     },
     {
       path: '/frmEdDocsPostEdit',
       name: 'FrmEdDocsPostEdit',
-      component: () => import('../components/delo/edit/FrmEdDocsPostEdit'),
+      component: () => import('~/components/delo/edit/FrmEdDocsPostEdit'),
       props: true
     },
     {
       path: '/frmEdVehsAMTCEdit',
       name: 'FrmEdVehsAMTCEdit',
-      component: () => import('../components/delo/edit/FrmEdVehsAMTCEdit'),
+      component: () => import('~/components/delo/edit/FrmEdVehsAMTCEdit'),
       props: true
     },
     {
       path: '/frmEdDocsProtEdit',
       name: 'FrmEdDocsProtEdit',
-      component: () => import('../components/delo/edit/FrmEdDocsProtEdit'),
+      component: () => import('~/components/delo/edit/FrmEdDocsProtEdit'),
       props: true
     },
     {
       path: '/frmEdDocsOpredEdit',
       name: 'FrmEdDocsOpredEdit',
-      component: () => import('../components/delo/edit/FrmEdDocsOpredEdit'),
+      component: () => import('~/components/delo/edit/FrmEdDocsOpredEdit'),
       props: true
     },
     {
       path: '/frmEdProtPZTCEdit',
       name: 'FrmEdProtPZTCEdit',
-      component: () => import('../components/delo/edit/FrmEdProtPZTCEdit'),
+      component: () => import('~/components/delo/edit/FrmEdProtPZTCEdit'),
       props: true
     },
     {
       path: '/frmEdUchastFLIndividEdit',
       name: 'FrmEdUchastFLIndividEdit',
-      component: () => import('../components/delo/edit/FrmEdUchastFLIndividEdit'),
+      component: () => import('~/components/delo/edit/FrmEdUchastFLIndividEdit'),
       props: true
     },
     {
       path: '/frmEdUchastFLOrganizationEdit',
       name: 'FrmEdUchastFLOrganizationEdit',
-      component: () => import('../components/delo/edit/FrmEdUchastFLOrganizationEdit'),
+      component: () => import('~/components/delo/edit/FrmEdUchastFLOrganizationEdit'),
       props: true
     },
     {
       path: '/placeViewEdit',
       name: 'PlaceViewEdit',
-      component: () => import('../components/delo/edit/PlaceViewEdit'),
+      component: () => import('~/components/delo/edit/PlaceViewEdit'),
       props: true
     },
     {
       path: '/addressViewEdit',
       name: 'AddressViewEdit',
-      component: () => import('../components/delo/edit/AddressViewEdit'),
+      component: () => import('~/components/delo/edit/AddressViewEdit'),
       props: true
     },
     {
       path: '/dlgAdviceEdit',
       name: 'DlgAdviceEdit',
-      component: () => import('../components/delo/edit/DlgAdviceEdit'),
+      component: () => import('~/components/delo/edit/DlgAdviceEdit'),
       props: true
     },
     {
       path: '/wizardExecuter',
       name: 'WizardExecuter',
-      component: () => import('../components/wizard/WizardExecuter'),
+      component: () => import('~/components/wizard/WizardExecuter'),
       props: true
     },
   ]

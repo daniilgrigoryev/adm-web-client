@@ -1,7 +1,7 @@
-import * as ConstantUtils from './../utils/constantUtils';
-import * as funcUtils from "./../utils/funcUtils";
-import * as RequestEntity from "./requestEntity";
-import * as formStack from "./formStack";
+import * as ConstantUtils from '~/assets/js/utils/constantUtils';
+import * as funcUtils from "~/assets/js/utils/funcUtils";
+import * as RequestEntity from "~/assets/js/api/requestEntity";
+import * as formStack from "~/assets/js/api/formStack";
 
 export default class RequestApi {
   static sendSocketRequest(payload) {

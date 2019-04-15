@@ -39,10 +39,10 @@
 </template>
 
 <script>
-  import Fingerprint from "../assets/js/vendor/fingerprint";
-  import RequestApi from "../assets/js/api/requestApi";
-  import * as RequestEntity from "../assets/js/api/requestEntity";
-  import * as funcUtils from "../assets/js/utils/funcUtils";
+  import Fingerprint from "~/assets/js/vendor/fingerprint";
+  import RequestApi from "~/assets/js/api/requestApi";
+  import * as RequestEntity from "~/assets/js/api/requestEntity";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
 
   export default {
     name: 'Authorization',

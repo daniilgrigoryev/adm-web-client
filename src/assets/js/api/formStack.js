@@ -1,5 +1,5 @@
-import * as funcUtils from "../utils/funcUtils";
-import RequestApi from "./requestApi";
+import * as funcUtils from "~/assets/js/utils/funcUtils";
+import RequestApi from "~/assets/js/api/requestApi";
 import Stack from "./stack";
 import * as constantUtils from "~/assets/js/utils/constantUtils";
 

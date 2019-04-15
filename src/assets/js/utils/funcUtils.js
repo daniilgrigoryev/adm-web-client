@@ -1,4 +1,4 @@
-import * as ConstantUtils from './../utils/constantUtils';
+import * as ConstantUtils from '~/assets/js/utils/constantUtils';
 import $ from "jquery";
 import moment from 'moment';
 import Stack from "~/assets/js/api/stack";

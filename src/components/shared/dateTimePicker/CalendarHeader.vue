@@ -69,7 +69,7 @@
 
 <script>
   import moment from 'moment';
-  import * as funcUtils from "../../../assets/js/utils/funcUtils";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
 
   const CONFIG = {
     HOUR_TOKENS: ['HH', 'H', 'hh', 'h'],

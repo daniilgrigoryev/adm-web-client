@@ -130,10 +130,10 @@
 </template>
 
 <script>
-  import * as funcUtils from "../../assets/js/utils/funcUtils";
-  import * as formStack from '../../assets/js/api/formStack';
-  import * as innerFormStack from '../../assets/js/api/innerFormStack';
-  import RequestApi from "../../assets/js/api/requestApi";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import * as formStack from '~/assets/js/api/formStack';
+  import * as innerFormStack from '~/assets/js/api/innerFormStack';
+  import RequestApi from "~/assets/js/api/requestApi";
   import { mapGetters } from 'vuex';
 
   export default {

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import * as funcUtils from "../../assets/js/utils/funcUtils";
+import * as funcUtils from "~/assets/js/utils/funcUtils";
 
 // Кастомный фильтр форматирования дат
 Vue.filter('formatDateTime', function (dateTime, format) {

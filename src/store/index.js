@@ -39,7 +39,7 @@ import dlgAdviceEdit  from './modules/dlgAdviceEdit';
 
 
 import wizardExecuter from './modules/wizardExecuter';
-import * as funcUtils from "./../assets/js/utils/funcUtils";
+import * as funcUtils from "~/assets/js/utils/funcUtils";
 
 Vue.use(Vuex);
 Vue.use(VueResource);

@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import RequestApi from "../../../assets/js/api/requestApi";
+  import RequestApi from "~/assets/js/api/requestApi";
 
   export default {
     name: "WizardItemLvok2025",

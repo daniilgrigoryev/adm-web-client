@@ -94,7 +94,7 @@
 </template>
 
 <script>
-  import * as formStack from '../../assets/js/api/formStack';
+  import * as formStack from '~/assets/js/api/formStack';
 
   export default {
     name: "DashBoard",
