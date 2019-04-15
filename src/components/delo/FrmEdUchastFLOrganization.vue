@@ -46,7 +46,8 @@
                 </div>
                 <div class="col col--6">
                   <p class="adm-14 color-dark-lighter mb6">Дата регистрации</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.dateReg || 'нет информации'}}</p>
+                  <!-- <p class="adm-text-big color-dark-base">{{body.organization.dateReg || 'нет информации'}}</p> -->
+                  <p class="adm-text-big color-dark-base">{{stringToDateFormat(body.organization.dateReg) | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -94,6 +95,7 @@
       return {}
     },
     methods: {
+
       isNotEmptyField(field) {
         if (typeof field === 'string') {
           return funcUtils.isNotEmpty(field) && field.length > 0;
@@ -118,6 +120,13 @@
           });
         } catch (e) {
           alert(e.message);
+        }
+      },
+      stringToDateFormat(stringDate){
+        if(funcUtils.isNotEmpty(stringDate)){
+          let parts = stringDate.split('-');
+          let dateFormat = new Date(parts[0], parts[1] - 1, parts[2]); 
+          return dateFormat;
         }
       },
     },

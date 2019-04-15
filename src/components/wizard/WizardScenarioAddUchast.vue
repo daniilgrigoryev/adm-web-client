@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="aside-template">
     <aside>
       <h3>
@@ -33,7 +33,7 @@
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization')">
               <h2 class="adm-form__headding" id="organization">Организация</h2>
-              <wizard-item-organization v-if="isVisible('Uchast.Organization')" ref="Uchast.Organization" :info="getInfo('Uchast.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
+              <wizard-item-organization-uchast v-if="isVisible('Uchast.Organization')" ref="Uchast.Organization" :info="getInfo('Uchast.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization-uchast>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization.regAddr')">
               <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Organization.regAddr')" ref="Uchast.Organization.regAddr" :info="getInfo('Uchast.Organization.regAddr')"  @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
@@ -59,7 +59,7 @@
   import WizardItemAddUchast from "~/components/wizard/items/WizardItemAddUchast";
   import WizardItemAddress from "~/components/wizard/items/WizardItemAddress";
   import WizardItemIndividual from "~/components/wizard/items/WizardItemIndividual";
-  import WizardItemOrganization from "~/components/wizard/items/WizardItemOrganization";
+  import WizardItemOrganizationUchast from "~/components/wizard/items/addUchast/WizardItemOrganizationUchast";
 
   export default {
     name: "WizardScenarioAddUchast",
@@ -89,7 +89,7 @@
       WizardItemAddUchast,
       WizardItemAddress,
       WizardItemIndividual,
-      WizardItemOrganization
+      WizardItemOrganizationUchast
     },
     methods: {
       isVisible(path) {
