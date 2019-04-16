@@ -266,11 +266,13 @@
           let prepareParams = {
             method: 'restore'
           };
-          if (funcUtils.isNotEmpty(this.$route.params.deloId) && funcUtils.isEmpty(mainDeloId)) {
+          if (funcUtils.isNotEmpty(current.params.deloId) && funcUtils.isEmpty(mainDeloId)) {
             this.clearIfExist();
           }
-          let deloId = mainDeloId || this.$route.params.deloId;
+          let deloId = mainDeloId || current.params.deloId;
           if (funcUtils.isNotEmpty(deloId)) {
+            delete current.params.deloId;
+            formStack.updateCurrent(current);
             prepareParams.method = 'getData';
             prepareParams.params = {
               'deloId': deloId
@@ -540,7 +542,7 @@
             return currentForm.params.recType === 'DOCS_GALOB';
           }
           case 'DocumentUchast': {
-            return currentForm.params.recType === 'UCHASTFL';
+            return currentForm.params.recType === 'UCHASTFL' || currentForm.params.recType === 'UCHASTOTHER';
           }
           case 'AddIspoln': {
             return currentForm.params.recType === 'DECIS' && this.deloContext.stadKod !== 7;

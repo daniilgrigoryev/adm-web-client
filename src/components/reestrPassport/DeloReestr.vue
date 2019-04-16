@@ -1589,9 +1589,10 @@
       },
       getDelo(delo, e) {
         try {
-          /*if (e && e.ctrlKey) {
+          if (e && e.ctrlKey) {
             this.getDeloNewTab(delo);
-          }*/
+            return;
+          }
           let params = {
             deloId: delo.deloId
           };
@@ -1607,7 +1608,7 @@
           alert(e.message);
         }
       },
-      /*getDeloNewTab(delo) {
+      getDeloNewTab(delo) {
         try {
           let params = {
             deloId: delo.deloId
@@ -1624,7 +1625,7 @@
         } catch (e) {
           alert(e.message);
         }
-      },*/
+      },
     }
   }
 </script>
