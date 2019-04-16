@@ -283,6 +283,16 @@
     updated() {
       try {
         this.$nextTick(() => {
+          let tableBodyTr = document.querySelectorAll('.ivu-table-body tr');
+          if (tableBodyTr) {
+            tableBodyTr.forEach((item) => {
+              item.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                let deloId = item.querySelector('ul[id]').id;
+                this.onContextMenuClick(e, deloId);
+              });
+            });
+          }
           this.changeTableHeight();
         });
         window.addEventListener('resize', () => {
@@ -888,16 +898,21 @@
                   },
                   render: (h, params) => {
                     let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(new Date(params.row.deloDate), 'DD.MM.YYYY') : '';
-                    return h('div', {
-                      on: {
-                        click: (e) => {
-                          this.getDelo(params.row, e);
+                    let items = [
+                      {
+                        name: 'Открыть дело в новой вкладке'
+                      }
+                    ];
+                    return h('div', [
+                      h('a', {
+                        domProps: {
+                          href: 'javascript:void(0)',
+                        },
+                        on: {
+                          click: (e) => {
+                            this.getDelo(params.row, e);
+                          }
                         }
-                      },
-                      class: ['cursor-pointer']
-                    }, [
-                      h('p', {
-                        class: ['txt-underline', 'color-blue']
                       }, params.row.deloN),
                       h('p', {
                           class: {
@@ -909,6 +924,29 @@
                           },
                         },
                         parsedDate),
+                      h('ul', {
+                        domProps: {
+                          id: params.row.deloId,
+                        },
+                        class: {
+                          'context-menu': true
+                        },
+                        on: {
+                          mouseleave: this.outsideContextMenuClick
+                        }
+                      }, [
+                        items.map((item) => {
+                          return h('li', [
+                            h('span', {
+                              on: {
+                                click: (e) => {
+                                  this.getDeloNewTab(params.row);
+                                }
+                              }
+                            }, item.name)
+                          ]);
+                        })
+                      ])
                     ])
                   }
                 });
@@ -1608,6 +1646,31 @@
           alert(e.message);
         }
       },
+      preventDefault(e) {
+        e = e || window.event;
+        if (e.preventDefault)
+          e.preventDefault();
+        e.returnValue = false;
+      },
+      outsideContextMenuClick(e) {
+        let menus = document.querySelectorAll('.context-menu');
+        menus.forEach((item) => {
+          item.style.display = 'none';
+        });
+      },
+      onContextMenuClick(e, id) {
+        let menus = document.querySelectorAll('.context-menu');
+        menus.forEach((item) => {
+          item.style.display = 'none';
+        });
+
+        if (id) {
+          let contextMenu = document.getElementById(id);
+          contextMenu.style.display = 'block';
+          contextMenu.style.top = e.y + 'px';
+          contextMenu.style.left = e.x + 'px';
+        }
+      },
       getDeloNewTab(delo) {
         try {
           let params = {
@@ -1629,7 +1692,6 @@
     }
   }
 </script>
-
 <style lang='scss' scoped>
   .select-state .ivu-select-dropdown .ivu-select-dropdown-list .ivu-select-item{
     padding-left: 16px;
@@ -1646,5 +1708,22 @@
   .adm-form__item {
     display: block;
   }
+</style>
 
+<style lang='scss'>
+  .context-menu {
+    background: white;
+    position: fixed;
+    z-index: 1;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 6px;
+    border-color: #515a6e;
+    cursor: pointer;
+    display: none;
+
+    li {
+      padding: 10px;
+    }
+  }
 </style>
