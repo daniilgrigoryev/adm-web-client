@@ -156,7 +156,6 @@
   import {mapGetters} from 'vuex';
   import decisEnum from "~/assets/js/utils/decisEnum";
   import docTipEnum from "~/assets/js/utils/docTipEnum";
-  import decisIspolnEnum from "~/assets/js/utils/decisIspolnEnum";
 
   export default {
     name: "DeloTreeCardView",
