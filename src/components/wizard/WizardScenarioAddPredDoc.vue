@@ -9,7 +9,7 @@
               Предъявленный документ
             </h2>
             <div class="adm-form__content">
-              <wizard-item-pred-doc v-if="isVisible('PredDoc')" ref="PredDoc" :info="getInfo('PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
+              <wizard-item-add-pred-doc v-if="isVisible('PredDoc')" ref="PredDoc" :info="getInfo('PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-pred-doc>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
     },
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
+      WizardItemAddPredDoc: () => import('~/components/wizard/items/addPredDoc/WizardItemAddPredDoc'),
     },
     data() {
       return {
