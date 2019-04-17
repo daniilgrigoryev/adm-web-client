@@ -900,7 +900,7 @@
                     let parsedDate = funcUtils.isNotEmpty(params.row.deloDate) ? funcUtils.parseDateTime(new Date(params.row.deloDate), 'DD.MM.YYYY') : '';
                     let items = [
                       {
-                        name: 'Открыть дело в новой вкладке'
+                        name: `Открыть дело №${params.row.deloN} в новой вкладке`
                       }
                     ];
                     return h('div', [
