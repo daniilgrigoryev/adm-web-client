@@ -32,9 +32,11 @@ export default {
 	@import "scss/variables.scss";
 	.item {
 		display: grid;
-		grid-gap: 4px;
+		grid-gap: 0px;
+		// border: 1px solid #000;
 		position: relative;
 		padding-left: 60px;
+		margin-bottom: 10px;
 		.item__icon {
 			// filter: grayscale(90%);
 			position: absolute;
