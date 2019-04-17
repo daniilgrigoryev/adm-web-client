@@ -1,5 +1,9 @@
 <template>
   <div v-if="dataStore" class="layout">
+    <div v-if="pdfData" class="pdf-viewer">
+      <Icon @click="clearDocument" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
+      <embed class="pdf-data" :src="pdfData" />
+    </div>
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
       <div v-if="deloContext" class="bg-white">
         <!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
@@ -182,6 +186,7 @@
       return {
         currentInnerBeanName: null,
         firstTreeNode: null,
+        pdfData: null,
         menu: {
           createDelo: {
             ProtAPNAnothFace: 'ProtAPNAnothFace',
@@ -625,6 +630,13 @@
           method: 'getPdfReport',
           cid: current.cid
         });
+        if (eventResponse.response) {
+          let data = JSON.parse(eventResponse.response).data;
+          this.pdfData = 'data:application/pdf;base64,' + data;
+        }
+      },
+      clearDocument() {
+        this.pdfData = null;
       },
       addUchastWizard() {
         try {
@@ -764,6 +776,30 @@
 </script>
 
 <style lang="scss" scoped>
+  .pdf-viewer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 99;
+    background: rgb(82, 86, 89);
+
+    i {
+      top: 10px;
+      color: #fff;
+    }
+
+    .pdf-data {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 40px;
+    }
+  }
+
   .delo__headding {
     border-bottom: 2px solid transparent;
   }

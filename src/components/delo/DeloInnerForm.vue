@@ -43,11 +43,6 @@
       FrmEdDocsProt: () => import('~/components/delo/FrmEdDocsProt'),
       FrmEdDelo: () => import('~/components/delo/FrmEdDelo'),
     },
-    data() {
-      return {
-        current: null
-      }
-    },
     computed: {},
     methods: {
       isVisible(beanName) {

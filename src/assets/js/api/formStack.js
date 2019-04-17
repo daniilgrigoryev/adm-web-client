@@ -131,7 +131,7 @@ export function getCurrent() {
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
   let current = stack.peek();
-  if (current.innerStack) {
+  if (funcUtils.isNotEmpty(current) && current.innerStack) {
     current.innerStack = new Stack(current.innerStack);
   }
   return current;
@@ -147,7 +147,7 @@ export function getPrev() {
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
   let prev = stackIndexOf(stack.size() - 2);
-  if (prev.innerStack) {
+  if (funcUtils.isNotEmpty(prev) && prev.innerStack) {
     prev.innerStack = new Stack(prev.innerStack);
   }
   return prev;
