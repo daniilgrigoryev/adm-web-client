@@ -25,7 +25,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Сумма оплаты штрафа</p>
-                <p class="adm-text-big color-dark-base">{{body.sumOpl || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : dopData.sumOpl != null, 'color-gray-medium' : dopData.sumOpl == null}">{{body.sumOpl || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Дата оплаты штрафа</p>
-                <p class="adm-text-big color-dark-base">{{body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : dopData.dateStadIspoln != null, 'color-gray-medium' : dopData.dateStadIspoln == null}">{{body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">УИП</p>
-                <p class="adm-text-big color-dark-base">{{body.uip || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : dopData.uip != null, 'color-gray-medium' : dopData.uip == null}">{{body.uip || 'нет информации'}}</p>
               </div>
             </div>
           </div>

@@ -32,7 +32,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
-                <p class="adm-text-big color-dark-base">{{body.pnpaKod, body.pnpaName | concatByDelimiter(',') || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.pnpaKod != null, 'color-gray-medium' : body.pnpaKod == null}">{{body.pnpaKod, body.pnpaName | concatByDelimiter(',') || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Статья КРФоАП</p>
-                <p class="adm-text-big color-dark-base">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.stotvKod != null, 'color-gray-medium' : body.stotvKod == null}">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
-                  <p class="adm-text-big color-dark-base">{{body.datUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.datUved != null, 'color-gray-medium' : body.datUved == null}">{{body.datUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
-                  <p class="adm-text-big color-dark-base">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.dateSost != null, 'color-gray-medium' : body.dateSost == null}">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -83,7 +83,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
-                  <p class="adm-text-big color-dark-base">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',') || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.inspSostName != null, 'color-gray-medium' : body.inspSostName == null}">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -96,7 +96,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Подразделение</p>
-                <p class="adm-text-big color-dark-base">{{body.organSostName || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.organSostName != null, 'color-gray-medium' : body.organSostName == null}">{{body.organSostName || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -104,7 +104,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Место вынесения</p>
-                <p class="adm-text-big color-dark-base">{{body.placeSost.placeFull || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.placeSost.placeFull != null, 'color-gray-medium' : body.placeSost.placeFull == null}">{{body.placeSost.placeFull || 'нет информации'}}</p>
               </div>
             </div>
           </div>

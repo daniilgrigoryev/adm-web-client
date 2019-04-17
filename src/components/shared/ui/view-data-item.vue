@@ -4,7 +4,7 @@
 			<img :src="icon" alt="">
 		</div>
 		<small class="item__label">{{label}}</small>
-		<p class="item__value">{{value ? value: "Нет информации"}}</p>
+		<p class="item__value" :class="{'color-dark-base' : value, 'color-gray-medium' : !value}">{{value ? value: "Нет информации"}}</p>
 	</div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
 			letter-spacing: 0.1px;
 			line-height: 26px;
 			font-weight: 600;
-			color: $dark-base;
+			// color: $dark-base;
 		}
 	}
 </style>

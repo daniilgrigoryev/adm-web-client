@@ -27,7 +27,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">ФИО, дата рождения</p>
-                  <p class="adm-text-big color-dark-base">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'.') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.') || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.individ.firstName != null, 'color-gray-medium' : body.individ.firstName == null}">{{body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'.') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -41,7 +41,7 @@
                 <div class="grid">
                   <div class="col col--12">
                     <p class="adm-14 color-dark-lighter mb6">Место рождения</p>
-                    <p class="adm-text-big color-dark-base">{{body.individ.birthMesto || 'нет информации'}}</p>
+                    <p class="adm-text-big" :class="{'color-dark-base' : body.individ.birthMesto != null, 'color-gray-medium' : body.individ.birthMesto == null}">{{body.individ.birthMesto || 'нет информации'}}</p>
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                 <div class="grid">
                   <div class="col col--12">
                     <p class="adm-14 color-dark-lighter mb6">Гражданство</p>
-                    <p class="adm-text-big color-dark-base">{{body.individ.gragdName || 'нет информации'}}</p>
+                    <p class="adm-text-big" :class="{'color-dark-base' : body.individ.gragdName != null, 'color-gray-medium' : body.individ.gragdName == null}">{{body.individ.gragdName || 'нет информации'}}</p>
                   </div>
                 </div>
               </div>
@@ -58,7 +58,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Адрес регистрации</p>
-                  <p class="adm-text-big color-dark-base">{{body.individ.address.adrFull || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.individ.address.adrFull != null, 'color-gray-medium' : body.individ.address.adrFull == null}">{{body.individ.address.adrFull || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Фактический адрес</p>
-                  <p class="adm-text-big color-dark-base">{{body.factAddr.adrFull || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.factAddr.adrFull != null, 'color-gray-medium' : body.factAddr.adrFull == null}">{{body.factAddr.adrFull || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@
               <div class="grid">
                 <div class="col col--12">
                   <p class="adm-14 color-dark-lighter mb6">Телефон</p>
-                  <p class="adm-text-big color-dark-base">{{body.individ.phone || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.individ.phone != null, 'color-gray-medium' : body.individ.phone == null}">{{body.individ.phone || 'нет информации'}}</p>
                 </div>
               </div>
             </div>

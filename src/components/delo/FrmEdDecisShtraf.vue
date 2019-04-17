@@ -25,7 +25,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Сумма штрафа</p>
-                <p class="adm-text-big color-dark-base">{{body.sumShtraf || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.sumShtraf != null, 'color-gray-medium' : body.sumShtraf == null}">{{body.sumShtraf || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Дата решения</p>
-                <p class="adm-text-big color-dark-base">{{body.decisDate | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.decisDate != null, 'color-gray-medium' : body.decisDate == null}">{{body.decisDate | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
-                <p class="adm-text-big color-dark-base">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.dateUved != null, 'color-gray-medium' : body.dateUved == null}">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
-                <p class="adm-text-big color-dark-base">{{body.dateVstup | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.dateVstup != null, 'color-gray-medium' : body.dateVstup == null}">{{body.dateVstup | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
               </div>
             </div>
           </div>

@@ -21,7 +21,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Наименование организации</p>
-                <p class="adm-text-big color-dark-base">{{body.organization.name || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.organization.name != null, 'color-gray-medium' : body.organization.name == null}">{{body.organization.name || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -30,11 +30,11 @@
               <div class="grid">
                 <div class="col col--6">
                   <p class="adm-14 color-dark-lighter mb6">ИНН</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.inn || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.organization.inn != null, 'color-gray-medium' : body.organization.inn == null}">{{body.organization.inn || 'нет информации'}}</p>
                 </div>
                 <div class="col col--6">
                   <p class="adm-14 color-dark-lighter mb6">КПП</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.kpp || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.organization.kpp != null, 'color-gray-medium' : body.organization.kpp == null}">{{body.organization.kpp || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -42,12 +42,12 @@
               <div class="grid">
                 <div class="col col--6">
                   <p class="adm-14 color-dark-lighter mb6">ОГРН</p>
-                  <p class="adm-text-big color-dark-base">{{body.organization.ogrn || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.organization.ogrn != null, 'color-gray-medium' : body.organization.ogrn == null}">{{body.organization.ogrn || 'нет информации'}}</p>
                 </div>
                 <div class="col col--6">
                   <p class="adm-14 color-dark-lighter mb6">Дата регистрации</p>
                   <!-- <p class="adm-text-big color-dark-base">{{body.organization.dateReg || 'нет информации'}}</p> -->
-                  <p class="adm-text-big color-dark-base">{{stringToDateFormat(body.organization.dateReg) | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
+                  <p class="adm-text-big" :class="{'color-dark-base' : body.organization.dateReg != null, 'color-gray-medium' : body.organization.dateReg == null}">{{stringToDateFormat(body.organization.dateReg) | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Адрес регистрации</p>
-                <p class="adm-text-big color-dark-base">{{body.organization.address.adrFull || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.organization.address.adrFull != null, 'color-gray-medium' : body.organization.address.adrFull == null}">{{body.organization.address.adrFull || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Фактический адрес</p>
-                <p class="adm-text-big color-dark-base">{{body.factAddr.adrFull || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.factAddr.adrFull != null, 'color-gray-medium' : body.factAddr.adrFull == null}">{{body.factAddr.adrFull || 'нет информации'}}</p>
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@
             <div class="grid">
               <div class="col col--12">
                 <p class="adm-14 color-dark-lighter mb6">Телефон</p>
-                <p class="adm-text-big color-dark-base">{{body.organization.phone || 'нет информации'}}</p>
+                <p class="adm-text-big" :class="{'color-dark-base' : body.organization.phone != null, 'color-gray-medium' : body.organization.phone == null}">{{body.organization.phone || 'нет информации'}}</p>
               </div>
             </div>
           </div>
