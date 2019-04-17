@@ -1,6 +1,5 @@
 <template>
-  <div v-if="sizeInnerStack > 0 && current" class="">
-
+  <div v-if="currentInnerBeanName">
     <div class="hmin360">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')" @getMainDelo="getMainDelo"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
@@ -23,15 +22,10 @@
 </template>
 
 <script>
-  import * as funcUtils from "~/assets/js/utils/funcUtils";
-  import * as formStack from '~/assets/js/api/formStack';
-  import * as innerFormStack from '~/assets/js/api/innerFormStack';
-  import RequestApi from "~/assets/js/api/requestApi";
-
   export default {
     name: "DeloInnerForm",
     props: {
-      sizeInnerStack: Number
+      currentInnerBeanName: String
     },
     components: {
       DlgAdvice: () => import('~/components/delo/DlgAdvice'),
@@ -49,13 +43,6 @@
       FrmEdDocsProt: () => import('~/components/delo/FrmEdDocsProt'),
       FrmEdDelo: () => import('~/components/delo/FrmEdDelo'),
     },
-    async created() {
-      try {
-        this.init();
-      } catch (e) {
-        alert(e.message);
-      }
-    },
     data() {
       return {
         current: null
@@ -63,49 +50,8 @@
     },
     computed: {},
     methods: {
-      init() {
-        if (this.sizeInnerStack > 0) {
-          let current = formStack.getCurrent();
-          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-          this.current = innerFormStack.getCurrent(uid);
-          this.current.restore = true;
-        }
-      },
-      async addForm(node) {
-        let currentModule = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + currentModule.cid;
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getBeanNameByNode',
-          params: {
-            node: node
-          }
-        });
-        let beanName = JSON.parse(eventResponse.response).data.beanName;
-        let current = await innerFormStack.toNext({
-          beanName: beanName,
-          params: node,
-          uid: uid
-        });
-        await this.updateSizeStack();
-        this.current = current;
-      },
-      async removeForm() {
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        await innerFormStack.toPrev({
-          uid: uid
-        });
-        await this.updateSizeStack();
-        this.current = innerFormStack.getCurrent(uid);
-      },
-      async updateSizeStack() {
-        await this.$emit('updateSizeStack');
-      },
-      clearCurrent() {
-        this.current = null;
-      },
       isVisible(beanName) {
-        return funcUtils.isNotEmpty(this.current) && this.current.beanName === beanName;
+        return this.currentInnerBeanName === beanName;
       },
       getMainDelo(mainDeloId) {
         this.$emit('getMainDelo', mainDeloId);

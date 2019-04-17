@@ -1640,7 +1640,8 @@
             vm: this,
             notRemoved: false,
             params: params,
-            withCreate: true
+            withCreate: true,
+            withInnerStack: true
           });
         } catch (e) {
           alert(e.message);

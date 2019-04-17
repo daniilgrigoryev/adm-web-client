@@ -98,32 +98,18 @@ export function lookupValue(dictName, key) {
   return res;
 }
 
-function clearDeloTreeCardView() {
-  let toRemove = [];
-  let searchKey = 'deloTreeCardView';
-  for (let i = 0; i < sessionStorage.length; i++) {
-    let key = sessionStorage.key(i);
-    if (isString(key) && key.indexOf(searchKey) !== -1) {
-      toRemove.push(key);
-    }
-  }
-  for (let i = 0; i < toRemove.length; i++) {
-    let key = toRemove[i];
-    sessionStorage.removeItem(key);
-  }
-}
-
 export function newExternalSessionStorage() {
   let sessionStorageCopy = JSON.parse(JSON.stringify(sessionStorage));
-  let copyStack = sessionStorageCopy[sessionStorageCopy['admWid']];
-  delete sessionStorageCopy[sessionStorageCopy['admWid']];
-  sessionStorageCopy['admWid'] = guid();
-  sessionStorageCopy[sessionStorageCopy['admWid']] = new Stack(JSON.parse(copyStack));
+  let copyWid = sessionStorageCopy['admWid'];
+  let copyStack = sessionStorageCopy[copyWid];
+  delete sessionStorageCopy[copyWid];
+  copyWid = guid();
+  sessionStorageCopy['admWid'] = copyWid;
+  sessionStorageCopy[copyWid] = new Stack(JSON.parse(copyStack));
   return sessionStorageCopy;
 }
 
 export function clearAll() {
-  clearDeloTreeCardView();
   localStorage.removeItem('admSid');
   localStorage.removeItem('admLastActive');
   localStorage.removeItem('admDeloReestr');

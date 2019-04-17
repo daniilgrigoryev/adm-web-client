@@ -14,6 +14,7 @@ export async function toNext(payload) {
   let withCreate = payload.withCreate;
   let params = payload.params;
   let withTransition = payload.withTransition || true;
+  let withInnerStack = payload.withInnerStack || false;
   let externalSessionStorage = payload.externalSessionStorage;
   let externalStack;
   if (funcUtils.isNotEmpty(externalSessionStorage)) {
@@ -35,6 +36,9 @@ export async function toNext(payload) {
     cid: cid,
     current: true
   };
+  if (withInnerStack) {
+    next.innerStack = new Stack();
+  }
   if (withCreate) {
     let eventResponse = await RequestApi.prepareData({
       beanName: beanName,
@@ -92,6 +96,19 @@ export function toPrev(payload) {
       cid: current.cid,
       withSpinner: false
     });
+    let innerStack = current.innerStack;
+    if (innerStack) {
+      innerStack = new Stack(innerStack);
+      while (innerStack.size() !== 0) {
+        let innerCurrent = innerStack.pop();
+        RequestApi.prepareData({
+          beanName: null,
+          method: 'removeCID',
+          cid: innerCurrent.cid,
+          withSpinner: false
+        });
+      }
+    }
   }
 
   funcUtils.addToSessionStorage(wid, stack);
@@ -113,7 +130,11 @@ export function updateCurrent(current) {
 export function getCurrent() {
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
-  return stack.peek();
+  let current = stack.peek();
+  if (current.innerStack) {
+    current.innerStack = new Stack(current.innerStack);
+  }
+  return current;
 }
 
 export function stackSize() {
@@ -125,7 +146,11 @@ export function stackSize() {
 export function getPrev() {
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
-  return stackIndexOf(stack.size() - 2);
+  let prev = stackIndexOf(stack.size() - 2);
+  if (prev.innerStack) {
+    prev.innerStack = new Stack(prev.innerStack);
+  }
+  return prev;
 }
 
 export function clearStack(isLogout) {
@@ -140,6 +165,19 @@ export function clearStack(isLogout) {
         method: 'removeCID',
         cid: current.cid
       });
+      let innerStack = current.innerStack;
+      if (innerStack) {
+        innerStack = new Stack(innerStack);
+        while (innerStack.size() !== 0) {
+          let innerCurrent = innerStack.pop();
+          RequestApi.prepareData({
+            beanName: null,
+            method: 'removeCID',
+            cid: innerCurrent.cid,
+            withSpinner: false
+          });
+        }
+      }
     }
   }
 
@@ -156,6 +194,9 @@ export function stackIndexOf(index) {
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
   if (index <= stack.size()) {
     res = stack.indexOf(index);
+    if (res.innerStack) {
+      res.innerStack = new Stack(res.innerStack);
+    }
   }
   return res;
 }
@@ -169,6 +210,9 @@ export function searchByCid(cid) {
     let item = stack.indexOf(i);
     if (item.cid === cid) {
       res = item;
+      if (res.innerStack) {
+        res.innerStack = new Stack(res.innerStack);
+      }
       break;
     }
     i--;
