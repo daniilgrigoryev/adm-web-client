@@ -31,12 +31,15 @@ export default {
 <style lang="scss" scoped>
 	@import "scss/variables.scss";
 	.item {
+		&:not(:last-child){
+			margin-bottom: 10px;
+		}
 		display: grid;
 		grid-gap: 0px;
 		// border: 1px solid #000;
 		position: relative;
 		padding-left: 60px;
-		margin-bottom: 10px;
+
 		.item__icon {
 			// filter: grayscale(90%);
 			position: absolute;
