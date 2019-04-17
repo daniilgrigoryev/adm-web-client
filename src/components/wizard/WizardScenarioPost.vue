@@ -38,7 +38,7 @@
               </wizard-item-doc-post-second>
             </div>
           </div>
-          <div class="adm-form__container" id="decis" v-if="isVisible('DecisMain') || isVisible('DecisAdd') || isVisible('DocPostFinal')">
+          <div class="adm-form__container" id="decis" v-if="isVisible('DecisMain')">
             <h2 id="decis" class="adm-form__headding">Решение по делу</h2>
             <div class="adm-form__content">
               <wizard-item-decis id="DecisMain" v-if="isVisible('DecisMain')" ref="DecisMain" :info="getInfo('DecisMain')" @storeElementData="storeElementData" title="Решение по делу" @updateComponents="updateComponents"></wizard-item-decis>
@@ -89,8 +89,13 @@
             name: "head",
           },
           {
+            title: "ЛВОК",
+            name: "lvok",
+          },
+          {
             title: "Транспортное средство",
             name: "Vehs",
+            hide: !this.isVisible('Vehs')
           },
           {
             title: "Сведения о нарушении",
@@ -99,8 +104,9 @@
           {
             title: "Решение по делу",
             name: "decis",
-          },
-        ],
+            hide: !this.isVisible('DecisMain')
+          }
+        ]
       }
     },
     methods: {

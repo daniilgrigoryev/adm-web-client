@@ -9,8 +9,8 @@
       </h3>
       <h3 v-if="listSectionNav">Список подразделов</h3>
       <ul v-if="listSectionNav">
-        <li v-for="item in listSectionNav" :key="item.id">
-          <a :href="'#' + item.name">{{ item.title }}</a>
+        <li v-for="item in listSectionNav" :key="item.id" v-if="!item.hide">
+          <a :href="'#' + item.name" >{{ item.title }}</a>
         </li>
       </ul>
     </aside>
@@ -84,6 +84,10 @@ aside {
         transition: 0.3s ease;
         padding: 3px 20px 3px 20px;
         font-weight: 500;
+        &:disabled {
+          opacity: .5;
+          pointer-events: none;
+        }
         &:hover {
           border-color: #1888cc;
           color: #1888cc;
