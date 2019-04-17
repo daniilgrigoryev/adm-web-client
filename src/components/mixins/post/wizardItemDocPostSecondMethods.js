@@ -35,10 +35,7 @@ export default {
         method: 'invokeElementMethod',
         params: {
           eCID: this.info.eCID,
-          methodName: 'getStotvSearchInfo',
-          data: JSON.stringify({
-            date: this.data.dateNar
-          })
+          methodName: 'getStotvSearchInfo'
         }
       });
       let stotvSearchInfoList = [];
