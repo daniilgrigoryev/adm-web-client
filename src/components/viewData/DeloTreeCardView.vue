@@ -607,14 +607,17 @@
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
           arrElem.height = 0;
-          mappedArr[arrElem.category] = arrElem;
-          mappedArr[arrElem.category].children = [];
+          let key = arrElem.category + '-' + arrElem.docId;
+          mappedArr[key] = arrElem;
+          mappedArr[key].children = [];
         }
 
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
           if (arrElem.parentCategory) {
-            mappedArr[arrElem.parentCategory].children.push(arrElem);
+            let key = arrElem.parentCategory + '-' + arrElem.parentDocId;
+            let parentElem = mappedArr[key];
+            parentElem.children.push(arrElem);
           }
         }
 
