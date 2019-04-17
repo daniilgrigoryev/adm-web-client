@@ -1,6 +1,6 @@
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import RequestApi from "~/assets/js/api/requestApi";
-import Stack from "~/assets/js/api/stack";
+import * as formStack from '~/assets/js/api/formStack';
 
 export async function toNext(payload) {
   let moduleName = payload.moduleName;
@@ -8,8 +8,8 @@ export async function toNext(payload) {
   let routeName = payload.routeName;
   let params = payload.params;
 
-  let uid = payload.uid;
-  let stack = new Stack(funcUtils.getFromSessionStorage(uid));
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
   let prev = stack.peek();
   if (prev) {
     prev.current = false;
@@ -40,14 +40,14 @@ export async function toNext(payload) {
     }
   }
   stack.push(next);
-  funcUtils.addToSessionStorage(uid, stack);
+  formStack.updateCurrent(currentForm);
 
   return next;
 }
 
-export async function toPrev(payload) {
-  let uid = payload.uid;
-  let stack = new Stack(funcUtils.getFromSessionStorage(uid));
+export async function toPrev() {
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
   let current = stack.pop();
   let prev = stack.peek();
   prev.current = true;
@@ -59,32 +59,32 @@ export async function toPrev(payload) {
     withSpinner: false
   });
 
-  funcUtils.addToSessionStorage(uid, stack);
+  formStack.updateCurrent(currentForm);
 
   return current;
 }
 
-export function getCurrent(uid) {
-  let stack = new Stack(funcUtils.getFromSessionStorage(uid));
+export function getCurrent() {
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
   return stack.peek();
 }
 
-export function stackSize(uid) {
-  let stack = new Stack(funcUtils.getFromSessionStorage(uid));
+export function stackSize() {
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
   return stack.size();
 }
 
-export function getPrev(uid) {
-  let stack = new Stack(funcUtils.getFromSessionStorage(uid));
-  let params = {
-    index: stack.size() - 2,
-    uid: uid
-  };
-  return stackIndexOf(params);
+export function getPrev() {
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
+  return stackIndexOf(stack.size() - 2);
 }
 
-export async function clearStack(uid) {
-  let stack = new Stack(funcUtils.getFromSessionStorage(uid));
+export async function clearStack() {
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
 
   while (stack.size() !== 0) {
     let current = stack.pop();
@@ -95,24 +95,23 @@ export async function clearStack(uid) {
     });
   }
 
-  funcUtils.addToSessionStorage(uid, stack);
+  formStack.updateCurrent(currentForm);
 }
 
-export function stackIndexOf(payload) {
+export function stackIndexOf(index) {
   let res = null;
-  let uid = payload.uid;
-  let stack = new Stack(funcUtils.getFromSessionStorage(uid));
-  if (payload.index <= stack.size()) {
-    res = stack.indexOf(payload.index);
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
+  if (index <= stack.size()) {
+    res = stack.indexOf(index);
   }
   return res;
 }
 
-export function searchByCid(payload) {
+export function searchByCid(cid) {
   let res = null;
-  let uid = payload.uid;
-  let stack = new Stack(funcUtils.getFromSessionStorage(uid));
-  let cid = payload.cid;
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
   let i = stack.size() - 1;
   while (i !== 0) {
     let item = stack.indexOf(i);

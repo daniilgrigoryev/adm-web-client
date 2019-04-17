@@ -115,16 +115,12 @@
             </Button>
 
             <Button type="text"
+                    @click="printDocument"
                     class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
               <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
               <span
                 style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
             </Button>
-            <!--
-                        <ButtonGroup>
-                          <Button type="default" @click="clearInnerStack">Очистить стэк</Button>
-                          <Button type="default" @click="addUchastWizard">Добавить участника</Button>
-                        </ButtonGroup> -->
           </div>
         </div>
 
@@ -142,11 +138,8 @@
           </Col>
           <Col class="col"> <!-- :xs="24" :sm="16" :md="16" :lg="16" -->
             <div class="wmax940"><!-- mx-auto -->
-              <delo-inner-form ref="innerForm"
-                               :sizeInnerStack="sizeInnerStack"
-                               @updateSizeStack="updateSizeStack"
-                               @getMainDelo="getMainDelo"
-                               @updateSelected="updateSelected"></delo-inner-form>
+              <delo-inner-form :currentInnerBeanName="currentInnerBeanName"
+                               @getMainDelo="getMainDelo"></delo-inner-form>
             </div>
           </Col>
         </Row>
@@ -158,18 +151,16 @@
 <script>
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as formStack from '~/assets/js/api/formStack';
-  import Stack from '~/assets/js/api/stack';
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
   import decisEnum from "~/assets/js/utils/decisEnum";
   import docTipEnum from "~/assets/js/utils/docTipEnum";
-  import DeloInnerForm from "~/components/delo/DeloInnerForm";
 
   export default {
     name: "DeloTreeCardView",
     components: {
-      DeloInnerForm,
+      DeloInnerForm: () => import('~/components/delo/DeloInnerForm'),
       TreeNode: () => import('~/components/viewData/TreeNode')
     },
     async created() {
@@ -184,17 +175,12 @@
       });
     },
     async destroyed() {
-      let current = formStack.getCurrent();
-      let prev = formStack.getPrev();
-      if ((funcUtils.isEmpty(prev) || prev.routeName !== this.$store.state.deloTreeCardView.routeName) && (funcUtils.isNotEmpty(current) && current.routeName !== this.$store.state.deloTreeCardView.routeName)) {
-        this.clearIfExist();
-      }
       this.$store.dispatch('deloTreeCardViewSetCid', null);
       this.$store.dispatch('deloTreeCardViewSetData', null);
     },
     data() {
       return {
-        sizeInnerStack: 0,
+        currentInnerBeanName: null,
         firstTreeNode: null,
         menu: {
           createDelo: {
@@ -266,9 +252,6 @@
           let prepareParams = {
             method: 'restore'
           };
-          if (funcUtils.isNotEmpty(current.params.deloId) && funcUtils.isEmpty(mainDeloId)) {
-            this.clearIfExist();
-          }
           let deloId = mainDeloId || current.params.deloId;
           if (funcUtils.isNotEmpty(deloId)) {
             delete current.params.deloId;
@@ -277,24 +260,15 @@
             prepareParams.params = {
               'deloId': deloId
             };
-            let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-            let innerStack = funcUtils.getFromSessionStorage(uid);
-            if (funcUtils.isNotEmpty(innerStack)) {
-              await this.clearInnerStack();
-            } else {
-              funcUtils.addToSessionStorage(uid, new Stack());
-            }
           }
-          this.updateSizeStack();
 
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
 
-          if (this.sizeInnerStack === 0) {
-            if (this.$refs.innerForm) {
-              this.nodeClick(this.deloInfo);
-            }
+          if (innerFormStack.stackSize() === 0) {
+            this.getDelo();
           } else {
+            this.currentInnerBeanName = innerFormStack.getCurrent().beanName;
             this.updateSelected();
           }
         } catch (e) {
@@ -312,45 +286,22 @@
             vm: this,
             notRemoved: false,
             params: params,
-            withCreate: true
+            withCreate: true,
+            withInnerStack: true
           });
           await this.init(mainDeloId);
         } catch (e) {
           alert(e.message);
         }
       },
-      async clearIfExist() {
-        let toRemove = [];
-        for (let i = 0; i < sessionStorage.length; i++) {
-          let key = sessionStorage.key(i);
-          if (funcUtils.isString(key) && key.indexOf(this.$store.state.deloTreeCardView.moduleName) !== -1) {
-            if (formStack.stackSize() > 0) {
-              await innerFormStack.clearStack(key);
-            }
-            toRemove.push(key);
-          }
-        }
-        for (let i = 0; i < toRemove.length; i++) {
-          let key = toRemove[i];
-          sessionStorage.removeItem(key);
-        }
-      },
-      async clearComponent() {
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        await innerFormStack.clearStack(uid);
-        sessionStorage.removeItem(uid);
-      },
       async getDelo() {
         await this.nodeClick(this.deloInfo);
       },
       updateSelected() {
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        let currentForm = innerFormStack.getCurrent(uid);
+        let current = innerFormStack.getCurrent();
         let jsonParams = null;
-        if (funcUtils.isNotEmpty(currentForm)) {
-          jsonParams = this.stringifyCircularNode(currentForm.params)
+        if (funcUtils.isNotEmpty(current)) {
+          jsonParams = this.stringifyCircularNode(current.params);
         }
         let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeParams'));
         this.$set(this.firstTreeNode, 'selected', jsonParams === firstTreeNode);
@@ -358,6 +309,24 @@
           let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeParams'));
           this.$set(item, 'selected', jsonParams === copyNode);
         });
+      },
+      async addForm(node) {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getBeanNameByNode',
+          params: {
+            node: node
+          }
+        });
+        let beanName = JSON.parse(eventResponse.response).data.beanName;
+        await innerFormStack.toNext({
+          beanName: beanName,
+          params: node
+        });
+        this.currentInnerBeanName = beanName;
+      },
+      async removeForm() {
+        await innerFormStack.toPrev();
+        this.currentInnerBeanName = innerFormStack.getCurrent().beanName;
       },
       getCopyObj(node) {
         let copyObj = JSON.parse(this.stringifyCircularNode(node));
@@ -382,13 +351,11 @@
         return JSON.stringify(node, objectJSONreplacer);
       },
       async nodeClick(node) {
-        await this.clearInnerStack();
+        await innerFormStack.clearStack();
         let copyNode = this.getCopyObj(node, 'selected', 'children', 'height', 'nodeParams');
 
-        if (this.$refs.innerForm) {
-          await this.$refs.innerForm.addForm(copyNode);
-          this.updateSelected();
-        }
+        await this.addForm(copyNode);
+        this.updateSelected();
       },
       changeClass(stadKod) {
         if (funcUtils.isNotEmpty(stadKod)) {
@@ -428,19 +395,17 @@
         }
       },
       menuItemVisible(item) {
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        let currentForm = innerFormStack.getCurrent(uid);
-        if (funcUtils.isEmpty(currentForm)) {
+        let current = innerFormStack.getCurrent();
+        if (funcUtils.isEmpty(current)) {
           return false;
         }
 
         switch (item) {
           case 'ProtAPNAnothFace': {
-            return currentForm.params.recType === 'DELO';
+            return current.params.recType === 'DELO';
           }
           case 'OpredAPNAnothFace': {
-            return currentForm.params.recType === 'DELO';
+            return current.params.recType === 'DELO';
           }
           case 'PostAPNAnothFace': {
             let galobs = {};
@@ -461,16 +426,16 @@
                 decisGalobs.push(arrElem);
               }
             }
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 6 || this.deloContext.stadKod === 7) && decisGalobs.length > 0;
+            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 6 || this.deloContext.stadKod === 7) && decisGalobs.length > 0;
           }
           case 'ApplyDocOnDelo': {
-            return currentForm.params.recType === 'DELO';
+            return current.params.recType === 'DELO';
           }
           case 'AddFotoVideo': {
-            return currentForm.params.recType === 'DELO';
+            return current.params.recType === 'DELO';
           }
           case 'Explanation': {
-            return currentForm.params.recType === 'DELO';
+            return current.params.recType === 'DELO';
           }
           case 'ProtAPN': {
             let apnDocs = this.dataStore.tree.filter((item) => {
@@ -480,7 +445,7 @@
               return (item.recType === 'DOCS_OTHER' && item.kod === docTipEnum.PROT_ZADER_TC) || item.recType === 'DOCS_OPRED';
             });
 
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && (apnDocs.length === 0 || pztcDocs.length > 0);
+            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && (apnDocs.length === 0 || pztcDocs.length > 0);
           }
           case 'OpredProvedAP': {
             let apnDocs = this.dataStore.tree.filter((item) => {
@@ -509,7 +474,7 @@
                 decisVozbAPN.push(arrElem);
               }
             }
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && (decisVozbAPN.length === 0 && apnDocs.length === 0) || (pztcDocs.length > 0 && currentDate > (this.deloContext.deloDate + twoDays));
+            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && (decisVozbAPN.length === 0 && apnDocs.length === 0) || (pztcDocs.length > 0 && currentDate > (this.deloContext.deloDate + twoDays));
           }
           case 'PostDeloAPN': {
             let apnPost = this.dataStore.tree.filter((item) => {
@@ -518,37 +483,37 @@
             let apnProt = this.dataStore.tree.filter((item) => {
               return item.recType === 'DOCS_PROT';
             });
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && apnProt.length > 0 && apnPost.length === 0;
+            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && apnProt.length > 0 && apnPost.length === 0;
           }
           case 'PostPrekrDeloAPN': {
-            return currentForm.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
           }
           case 'Izvesh': {
             let apnPost = this.dataStore.tree.filter((item) => {
               return item.recType === 'DOCS_POST';
             });
-            return (currentForm.params.recType === 'DOCS_OPRED' || currentForm.params.recType === 'DOCS_PROT') && apnPost.length === 0;
+            return (current.params.recType === 'DOCS_OPRED' || current.params.recType === 'DOCS_PROT') && apnPost.length === 0;
           }
           case 'ChangeDateRasmDelo': {
-            return currentForm.params.recType === 'DOCS_OPRED' || currentForm.params.recType === 'DOCS_PROT';
+            return current.params.recType === 'DOCS_OPRED' || current.params.recType === 'DOCS_PROT';
           }
           case 'HodatayProdlSrok': {
-            return currentForm.params.recType === 'DOCS_OPRED' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+            return current.params.recType === 'DOCS_OPRED' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
           }
           case 'DecicAppeal': {
-            return currentForm.params.recType === 'DOCS_GALOB';
+            return current.params.recType === 'DOCS_GALOB';
           }
           case 'ConclusAppeal': {
-            return currentForm.params.recType === 'DOCS_GALOB';
+            return current.params.recType === 'DOCS_GALOB';
           }
           case 'DocumentUchast': {
-            return currentForm.params.recType === 'UCHASTFL' || currentForm.params.recType === 'UCHASTOTHER';
+            return current.params.recType === 'UCHASTFL' || current.params.recType === 'UCHASTOTHER';
           }
           case 'AddIspoln': {
-            return currentForm.params.recType === 'DECIS' && this.deloContext.stadKod !== 7;
+            return current.params.recType === 'DECIS' && this.deloContext.stadKod !== 7;
           }
           case 'AddUchast': {
-            return currentForm.params.recType === 'DELO';
+            return current.params.recType === 'DELO';
           }
         }
         return false;
@@ -573,9 +538,6 @@
         let mappedArr = {};
         let arrElem;
         let mappedElem;
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        let currentForm = innerFormStack.getCurrent(uid);
 
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
@@ -592,17 +554,6 @@
 
         this.firstTreeNode = this.getCopyObj(arr.getFirst(), 'children');
         tree.push(this.firstTreeNode);
-
-        let jsonParams = null;
-        if (funcUtils.isNotEmpty(currentForm)) {
-          jsonParams = this.stringifyCircularNode(currentForm.params);
-        }
-        let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeParams'));
-        this.$set(this.firstTreeNode, 'selected', jsonParams === firstTreeNode);
-        arr.forEach((item) => {
-          let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeParams'));
-          this.$set(item, 'selected', jsonParams === copyNode);
-        });
 
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
@@ -647,21 +598,6 @@
       isParent(node) {
         return node.height === 3;
       },
-      async clearInnerStack() {
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        await innerFormStack.clearStack(uid);
-        if (this.$refs.innerForm) {
-          this.$refs.innerForm.clearCurrent();
-        }
-        this.sizeInnerStack = 0;
-        // this.updateSelected();
-      },
-      updateSizeStack() {
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        this.sizeInnerStack = innerFormStack.stackSize(uid);
-      },
       getSelectedNode() {
         return this.deloTree.filter((item) => {
           if (item.selected) {
@@ -671,7 +607,6 @@
       },
       async getPrev() {
         try {
-          await this.clearComponent();
           formStack.toPrev({
             vm: this
           });
@@ -679,11 +614,17 @@
           let current = formStack.getCurrent();
           if (current.routeName === this.$store.state.deloTreeCardView.routeName) {
             await this.init(current.params.deloId);
-            this.$refs.innerForm.init();
           }
         } catch (e) {
           alert(e.message);
         }
+      },
+      async printDocument() {
+        let current = innerFormStack.getCurrent();
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getPdfReport',
+          cid: current.cid
+        });
       },
       addUchastWizard() {
         try {
