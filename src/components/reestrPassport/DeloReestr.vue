@@ -1646,12 +1646,6 @@
           alert(e.message);
         }
       },
-      preventDefault(e) {
-        e = e || window.event;
-        if (e.preventDefault)
-          e.preventDefault();
-        e.returnValue = false;
-      },
       outsideContextMenuClick(e) {
         let menus = document.querySelectorAll('.context-menu');
         menus.forEach((item) => {
@@ -1667,8 +1661,8 @@
         if (id) {
           let contextMenu = document.getElementById(id);
           contextMenu.style.display = 'block';
-          contextMenu.style.top = e.y + 'px';
-          contextMenu.style.left = e.x + 'px';
+          contextMenu.style.top = (e.y - 15) + 'px';
+          contextMenu.style.left = (e.x - 15) + 'px';
         }
       },
       getDeloNewTab(delo) {
