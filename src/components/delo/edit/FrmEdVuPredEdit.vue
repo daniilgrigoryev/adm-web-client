@@ -1,5 +1,5 @@
 <template>
-  <aside-template title="Редактирование документа" v-if="vuPred">
+  <aside-template :listSectionNav="[]" title="Редактирование документа" v-if="vuPred">
     <div class="layout-wrap">
       <div class="layout">
         <wizard-modal v-if="ogaiModal.visible" :columnsOptions="ogaiModal.columnsOptions" :data="ogaiModal.ogaiList" @showModal="showOgaiModal" @onRowDbClick="onOgaiClick"></wizard-modal>

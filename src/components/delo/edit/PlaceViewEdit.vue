@@ -1,5 +1,5 @@
 <template>
-  <aside-template title="Редактирование адреса" v-if="data">
+  <aside-template :listSectionNav="[]" title="Редактирование адреса" v-if="data">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form">

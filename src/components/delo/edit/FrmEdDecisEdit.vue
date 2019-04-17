@@ -1,5 +1,5 @@
 <template>
-  <aside-template title="Оштрафовать" v-if="decis">
+  <aside-template :listSectionNav="[]" title="Оштрафовать" v-if="decis">
     <div class="layout-wrap">
       <div class="layout">
         <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>

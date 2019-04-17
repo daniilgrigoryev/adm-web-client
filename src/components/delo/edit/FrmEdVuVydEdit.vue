@@ -1,5 +1,5 @@
 <template>
-  <aside-template title="Вид предъявленного документа" v-if="vuVyd">
+  <aside-template :listSectionNav="[]" title="Вид предъявленного документа" v-if="vuVyd">
     <div class="layout-wrap">
       <div class="layout">
         <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>

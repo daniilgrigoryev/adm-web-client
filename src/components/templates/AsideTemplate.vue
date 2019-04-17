@@ -7,7 +7,7 @@
         </Button>
         {{ title }}
       </h3>
-      <h3 v-if="listSectionNav">Список подразделов</h3>
+      <h3 v-if="listSectionNav && listSectionNav.length">Список подразделов</h3>
       <ul v-if="listSectionNav">
         <li v-for="item in listSectionNav" :key="item.id" v-if="!item.hide">
           <a :href="'#' + item.name" >{{ item.title }}</a>

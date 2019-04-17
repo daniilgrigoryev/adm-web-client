@@ -1,6 +1,6 @@
 
 <template>
-  <aside-template title="Редактирование Участника" v-if="uchastIndivid">
+  <aside-template :listSectionNav="[]" title="Редактирование Участника" v-if="uchastIndivid">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form">

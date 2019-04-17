@@ -1,5 +1,5 @@
 <template>
-  <aside-template title="Редактирование Извещения" v-if="dataAdvice">
+  <aside-template :listSectionNav="[]" title="Редактирование Извещения" v-if="dataAdvice">
     <div class="layout-wrap">
       <div class="layout">
         <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
