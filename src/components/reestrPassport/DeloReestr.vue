@@ -1678,7 +1678,8 @@
             notRemoved: false,
             params: params,
             withCreate: true,
-            withTransition: false
+            withTransition: false,
+            withInnerStack: true
           });
         } catch (e) {
           alert(e.message);
