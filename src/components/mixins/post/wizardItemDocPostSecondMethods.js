@@ -61,17 +61,16 @@ export default {
           })
         }
       });
-      let KBKSearchInfoList = [];
-      let KBKSearchInfoDict = JSON.parse(JSON.parse(eventResponse.response).data);
-      for (let i = 0; i < KBKSearchInfoDict.length; i++) {
-        let KBKSearchInfo = KBKSearchInfoDict[i];
-        KBKSearchInfoList.push({
-          label: KBKSearchInfo.kbkName,
-          value: KBKSearchInfo.kbk,
-          id: KBKSearchInfo.id
+      let KBKSearchInfoAnswer = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (KBKSearchInfoAnswer) {
+        this.KBKSearchInfoList = KBKSearchInfoAnswer.map(element => {
+          return {
+            label: element.kbkName,
+            value: element.kbk,
+            id: element.id
+          }
         });
       }
-      this.KBKSearchInfoList = KBKSearchInfoList;
     },
   }
 }

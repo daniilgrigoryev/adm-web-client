@@ -24,7 +24,7 @@
         </Row>
       </div>
     </div>
-    <div class="adm-form__item">
+    <div class="adm-form__item" v-if="KBKSearchInfoList">
       <small class="adm-form__label">КБК</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
