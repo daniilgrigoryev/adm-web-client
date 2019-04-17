@@ -30,7 +30,7 @@
             <div class="my12">
               <div class="grid">
                 <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Номер</p>
+                  <p class="adm-14 color-dark-lighter mb6">Серия номер</p>
                   <p class="adm-text-big" :class="{'color-dark-base' : body.vuN != null, 'color-gray-medium' : body.vuN == null}">{{body.vuN || 'нет информации'}}</p>
                 </div>
               </div>

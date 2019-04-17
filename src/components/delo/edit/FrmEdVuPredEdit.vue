@@ -22,11 +22,11 @@
               <Row :gutter="16" type="flex">
                 <Col span="14">
                   <div class="adm-form__item">
-                    <small class="adm-form__label">Номер</small>
+                    <small class="adm-form__label">Серия номер</small>
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <masked-input inputClass="adm-input adm-input--regular wmin120 wmax180" @onInputChange="store" v-model="vuPred.vuN" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"></masked-input>
+                          <masked-input inputClass="adm-input adm-input--regular wmin120 wmax180" @onInputChange="store" v-model="vuPred.vuN" :maskProps="{mask: '99-99 999999', casing: 'upper', placeholder: ''}"></masked-input>
                         </Col>
                       </Row>
                     </div>
