@@ -1,5 +1,5 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Постановлению об АПН">
+  <aside-template :listSectionNav="listSectionNav" title="Постановление об АПН">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
