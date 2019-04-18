@@ -1640,8 +1640,7 @@
             vm: this,
             notRemoved: false,
             params: params,
-            withCreate: true,
-            withInnerStack: true
+            withCreate: true
           });
         } catch (e) {
           alert(e.message);
@@ -1678,8 +1677,7 @@
             notRemoved: false,
             params: params,
             withCreate: true,
-            withTransition: false,
-            withInnerStack: true
+            withTransition: false
           });
         } catch (e) {
           alert(e.message);

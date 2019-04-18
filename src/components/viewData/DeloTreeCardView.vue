@@ -291,8 +291,7 @@
             vm: this,
             notRemoved: false,
             params: params,
-            withCreate: true,
-            withInnerStack: true
+            withCreate: true
           });
           await this.init(mainDeloId);
         } catch (e) {
