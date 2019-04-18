@@ -1,14 +1,23 @@
+import * as funcUtils from "~/assets/js/utils/funcUtils";
 import RequestApi from "~/assets/js/api/requestApi";
 
 export default {
   data() {
     return {
+      KBKSearchInfoList: null,
       pnpaList: null,
       stotvSearchInfoList: null,
-      KBKSearchInfoList: null,
     }
   },
   methods: {
+    changeStotvSearchInfo() {
+      this.KBKSearchInfoList = null;
+      if (funcUtils.isNotEmpty(this.data.stotvId)) {
+        this.fillKBKSearchInfo();
+      }
+
+      this.storeElementData();
+    },
     async fillPnpaList() {
       let eventResponse = await RequestApi.prepareData({
         method: 'invokeElementMethod',
@@ -35,7 +44,8 @@ export default {
         method: 'invokeElementMethod',
         params: {
           eCID: this.info.eCID,
-          methodName: 'getStotvSearchInfo'
+          methodName: 'getStotvSearchInfo',
+          data: null
         }
       });
       let stotvSearchInfoList = [];
