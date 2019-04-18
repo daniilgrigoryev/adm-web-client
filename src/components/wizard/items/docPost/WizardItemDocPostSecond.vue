@@ -78,9 +78,6 @@
     data() {
       return {
         data: null,
-        pnpaList: null,
-        stotvSearchInfoList: null,
-        KBKSearchInfoList: null,
       }
     },
     methods: {
@@ -97,35 +94,14 @@
           alert(error);
         } else {
           await this.fillPnpaList();
-
+          await this.fillStotvSearchInfo();
+          
           this.data = data;
-
-          if (funcUtils.isNotEmpty(data.dateNar)) {
-            this.fillStotvSearchInfo();
-          }
         }
 
         if (funcUtils.isNotEmpty(this.data.stotvId)) {
           this.fillKBKSearchInfo();
         }
-      },
-
-      changeDateNar() {
-        this.stotvSearchInfoList = null;
-        this.data.stotvId = null;
-        if (funcUtils.isNotEmpty(this.data.dateNar)) {
-          this.fillStotvSearchInfo();
-        }
-
-        this.storeElementData();
-      },
-      changeStotvSearchInfo() {
-        this.KBKSearchInfoList = null;
-        if (funcUtils.isNotEmpty(this.data.stotvId)) {
-          this.fillKBKSearchInfo();
-        }
-
-        this.storeElementData();
       },
       storeElementData() {
         this.$emit('storeElementData', {
