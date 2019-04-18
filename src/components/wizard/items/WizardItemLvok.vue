@@ -2,9 +2,20 @@
   <div v-if="data">
     <div class="adm-form__item">
       <small class="adm-form__label">Статус</small>
-      <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
-        <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
+      <div class="adm-form__item_content">
+        <Row type="flex" align="middle">
+          <Col span="10">
+            <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+              <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </Col>
+          <Col span="6">
+            <Button @click="copyOwner" :disabled="data.status !== 1 && data.status !== 3" type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+              <Icon type="md-key" title="Скопировать данные владельца" :size="30" />
+            </Button>
+          </Col>
+        </Row>
+      </div>
     </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Тип участника:</small>
@@ -85,6 +96,20 @@
           });
         }
         this.tipList = tipList;
+      },
+      async copyOwner() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'copyOwner',
+            data: null
+          }
+        });
+        let cids = JSON.parse(JSON.parse(eventResponse.response).data);
+        if (cids) {
+          this.$emit('updateComponents', cids);
+        }
       },
       async changeStatus() {
         await this.fillTipList();

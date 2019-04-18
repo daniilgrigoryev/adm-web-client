@@ -109,9 +109,7 @@
     },
     async created() {
       try {
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        let currentForm = innerFormStack.getCurrent(uid);
+        let currentForm = innerFormStack.getCurrent();
         await this.$store.dispatch('frmEdProtPZTCSetCid', currentForm.cid);
 
         let prepareParams = {
@@ -123,17 +121,18 @@
           prepareParams.params = {
             'node': currentForm.params
           };
+          currentForm.restore = true;
+        } else {
+          delete currentForm['restore'];
         }
-        delete currentForm['restore'];
+        innerFormStack.updateCurrent(currentForm);
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
 
         let vm = this;
         this.$store.watch(this.$store.getters.frmEdProtPZTCGetCommand, async () => {
           try {
-            let current = formStack.getCurrent();
-            let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-            let currentForm = innerFormStack.getCurrent(uid);
+            let currentForm = innerFormStack.getCurrent();
             let eventResponse = await RequestApi.prepareData({
               cid: currentForm.cid,
               withSpinner: false
@@ -166,9 +165,7 @@
     methods: {
       getProtPZTCEdit() {
         try {
-          let current = formStack.getCurrent();
-          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-          let currentForm = innerFormStack.getCurrent(uid);
+          let currentForm = innerFormStack.getCurrent();
           let params = {
             node: currentForm.params
           };

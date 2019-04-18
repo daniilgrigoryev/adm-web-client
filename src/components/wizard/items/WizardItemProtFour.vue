@@ -84,6 +84,10 @@
 
           this.data = data;
         }
+
+        if (funcUtils.isNotEmpty(this.data.stotvId)) {
+          this.fillKBKSearchInfo();
+        }
       },
 
       storeElementData() {

@@ -43,7 +43,6 @@
       FrmEdDocsProt: () => import('~/components/delo/FrmEdDocsProt'),
       FrmEdDelo: () => import('~/components/delo/FrmEdDelo'),
     },
-    computed: {},
     methods: {
       isVisible(beanName) {
         return this.currentInnerBeanName === beanName;

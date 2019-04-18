@@ -1,6 +1,7 @@
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import RequestApi from "~/assets/js/api/requestApi";
 import * as formStack from '~/assets/js/api/formStack';
+import Stack from "~/assets/js/api/stack";
 
 export async function toNext(payload) {
   let moduleName = payload.moduleName;
@@ -63,6 +64,15 @@ export async function toPrev() {
 
   return current;
 }
+
+export function updateCurrent(current) {
+  let currentForm = formStack.getCurrent();
+  let stack = currentForm.innerStack;
+  stack.pop();
+  stack.push(current);
+  formStack.updateCurrent(currentForm);
+}
+
 
 export function getCurrent() {
   let currentForm = formStack.getCurrent();

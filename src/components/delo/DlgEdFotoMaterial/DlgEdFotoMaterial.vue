@@ -75,9 +75,7 @@
     },
     async created() {
       try {
-        let current = formStack.getCurrent();
-        let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-        let currentForm = innerFormStack.getCurrent(uid);
+        let currentForm = innerFormStack.getCurrent();
         await this.$store.dispatch('dlgEdFotoMaterialSetCid', currentForm.cid);
 
         let prepareParams = {
@@ -89,17 +87,18 @@
           prepareParams.params = {
             'node': currentForm.params
           };
+          currentForm.restore = true;
+        } else {
+          delete currentForm['restore'];
         }
-        delete currentForm['restore'];
+        innerFormStack.updateCurrent(currentForm);
         let eventResponse = await RequestApi.prepareData(prepareParams);
         await this.$store.dispatch('fillModule', {'event': eventResponse});
 
         let vm = this;
         this.$store.watch(this.$store.getters.dlgEdFotoMaterialGetCommand, async () => {
           try {
-            let current = formStack.getCurrent();
-            let uid = vm.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-            let currentForm = innerFormStack.getCurrent(uid);
+            let currentForm = innerFormStack.getCurrent();
             let eventResponse = await RequestApi.prepareData({
               cid: currentForm.cid,
               withSpinner: false
@@ -118,9 +117,7 @@
       this.$store.watch(this.$store.getters.dlgEdFotoMaterialGetDataForMap, () => {
         try {
           let container = document.querySelector('#dc-object-map');
-          let current = formStack.getCurrent();
-          let uid = vm.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-          let currentForm = innerFormStack.getCurrent(uid);
+          let currentForm = innerFormStack.getCurrent();
           if (container && currentForm) {
             vm.fillComponent({
               vm: vm,
