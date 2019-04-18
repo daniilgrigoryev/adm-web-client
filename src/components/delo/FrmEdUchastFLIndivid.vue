@@ -106,9 +106,7 @@
       },
       getUchastFLIndividEdit() {
         try {
-          let current = formStack.getCurrent();
-          let uid = this.$store.state.deloTreeCardView.moduleName + '-' + current.cid;
-          let currentForm = innerFormStack.getCurrent(uid);
+          let currentForm = innerFormStack.getCurrent();
           let params = {
             node: currentForm.params
           };
