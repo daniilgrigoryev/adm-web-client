@@ -93,10 +93,10 @@
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
+          this.data = data;
           await this.fillPnpaList();
           await this.fillStotvSearchInfo();
           
-          this.data = data;
         }
 
         if (funcUtils.isNotEmpty(this.data.stotvId)) {

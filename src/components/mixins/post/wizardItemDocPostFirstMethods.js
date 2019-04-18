@@ -239,23 +239,6 @@ export default {
     }
   },
   methods: {
-    async createProtNum() {
-      let eventResponse = await RequestApi.prepareData({
-        method: 'invokeElementMethod',
-        params: {
-          eCID: this.info.eCID,
-          methodName: 'createProtNum',
-          data: null
-        }
-      });
-      let data = JSON.parse(JSON.parse(eventResponse.response).data);
-      if (funcUtils.isEmpty(data)) {
-        let error = JSON.parse(eventResponse.response).error.errorMsg;
-        alert(error);
-      } else {
-        this.data = data;
-      }
-    },
     async createNewUIN() {
       let eventResponse = await RequestApi.prepareData({
         method: 'invokeElementMethod',
