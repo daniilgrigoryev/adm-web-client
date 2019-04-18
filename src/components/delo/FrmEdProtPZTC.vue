@@ -26,10 +26,14 @@
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
+
+          <hr>
+          
           <view-data-item 
             label="Пункт НПА" 
             :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" 
             style="grid-column: span 2;"
+            :icon="require('../../assets/images/case_decision_gray.svg')"
           />
           <view-data-item 
             label="Статья КРФоАП" 
@@ -41,6 +45,7 @@
             label="Место составления" 
             :value="body.placeSost.placeFull" 
             style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
           />
           <view-data-item 
             label="Должностное лицо" 
@@ -57,7 +62,8 @@
 
           <view-data-item 
             label="Дата составления акта" 
-            :value="body.evacActTime | formatDateTime('DD.MM.YYYY')" 
+            :value="body.evacActTime | formatDateTime('DD.MM.YYYY')"
+            :icon="require('../../assets/images/time.svg')" 
           />
           <view-data-item 
             label="№ акта эвакуации" 
@@ -181,19 +187,3 @@
     }
   }
 </script>
-
-
-<style scoped lang="scss"> 
-  .items-wrap {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 12px;
-    hr {
-      height: 1px;
-      width: 100%;
-      color: #cccccc;
-      background: #cccccc;
-      grid-column: span 2;
-    }
-  }
-</style>

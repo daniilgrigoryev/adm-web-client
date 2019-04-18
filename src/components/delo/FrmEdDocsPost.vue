@@ -1,7 +1,6 @@
 <template>
   <div v-if="body" class="ml18"><!-- wmax1280 mx-auto -->
     <!-- постановление по делу -->
-
     <div class="amd-title amd-title--sticky px36 pt24 pb18"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
@@ -21,93 +20,54 @@
       </div> -->
     </div>
 
-
     <div class="view-data">
       <div class="view-data__container">
-        <div class="flex-parent flex-parent--center-cross">
-          <div class="s40 mt12">
-            <img src="../../assets/images/case_decision.svg" class="mx-auto block" style="filter: grayscale(100%);" alt="">
-          </div>
-          <div class="ml18 w-full">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.pnpaKod != null, 'color-gray-medium' : body.pnpaKod == null}">{{body.pnpaKod, body.pnpaName | concatByDelimiter(',') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="items-wrap">
+          <view-data-item 
+            label="Пункт НПА" 
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/case_decision_gray.svg')"
+          />
+          <view-data-item 
+            label="Статья КРФоАП" 
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+          />
 
-        <div class="ml60">
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Статья КРФоАП</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.stotvKod != null, 'color-gray-medium' : body.stotvKod == null}">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+          <hr>
 
-        <div class="flex-parent">
-          <div class="s40 mt18">
-            <img src="../../assets/images/ispolnUved.png" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
-          </div>
-          <div class="ml18 w-full" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.datUved != null, 'color-gray-medium' : body.datUved == null}">{{body.datUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.dateSost != null, 'color-gray-medium' : body.dateSost == null}">{{body.dateSost | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <view-data-item 
+            label="Дата вручения" 
+            :value="body.datUved | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/letter.svg')"
+          />
+          <view-data-item 
+            label="Дата вступления" 
+            :value="body.dateSost | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+          />
 
+          <hr>
 
-        <div class="flex-parent">
-          <div class="s40 mt18">
-            <img src="../../assets/images/police.svg" class="mx-auto block" style="filter: grayscale(100%); width: 30px;" alt="">
-          </div>
-          <div class="ml18 w-full">
-            <div class="mt12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Должностное лицо</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.inspSostName != null, 'color-gray-medium' : body.inspSostName == null}">{{body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="ml60">
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Подразделение</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.organSostName != null, 'color-gray-medium' : body.organSostName == null}">{{body.organSostName || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Место вынесения</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.placeSost.placeFull != null, 'color-gray-medium' : body.placeSost.placeFull == null}">{{body.placeSost.placeFull || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
+          <view-data-item 
+            label="Должностное лицо" 
+            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/police.svg')"
+          />
+          <view-data-item 
+            label="Подразделение" 
+            :value="body.organSostName || 'нет информации'" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Место вынесения" 
+            :value="body.placeSost.placeFull || 'нет информации'" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
+          />
         </div>
       </div>
     </div>
@@ -123,6 +83,9 @@
 
   export default {
     name: "FrmEdDocsPost",
+    components: {
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
@@ -203,26 +166,3 @@
     }
   }
 </script>
-
-<style scoped lang="scss">
-  .adm-form-content{
-    // border: 1px solid #000;
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    min-height: 80px;
-    // outline: 1px solid;
-  }
-  .adm-form__label{
-    padding: 0;
-    min-width: 130px;
-    padding-right: 12px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
-</style>

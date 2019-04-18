@@ -18,43 +18,31 @@
 
     <div class="view-data">
       <div class="view-data__container">
-          <div class="ml60">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Тип документа</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.docTipName != null, 'color-gray-medium' : body.docTipName == null}">{{body.docTipName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Серия номер</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.vuN != null, 'color-gray-medium' : body.vuN == null}">{{body.vuN || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата выдачи</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.dateVyd != null, 'color-gray-medium' : body.dateVyd == null}">{{body.dateVyd | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Кем выдан</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.ogaiVydName != null, 'color-gray-medium' : body.ogaiVydName == null}">{{body.ogaiVydName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="items-wrap">
+          <view-data-item 
+            label="Тип документа" 
+            :value="body.docTipName" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Серия номер" 
+            :value="body.vuN" 
+          />
+          <view-data-item 
+            label="Дата выдачи" 
+            :value="body.dateVyd | formatDateTime('DD.MM.YYYY')" 
+          />
+          <hr>
+          <view-data-item 
+            label="Кем выдан" 
+            :value="body.ogaiVydName" 
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -67,6 +55,9 @@
 
   export default {
     name: "FrmEdVuPred",
+    components: {
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

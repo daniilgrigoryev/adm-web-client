@@ -17,44 +17,29 @@
 
     <div class="view-data">
       <div class="view-data__container">
-        <div class="flex-parent flex-parent--center-cross">
-          <div class="s40 mt12">
-            <img src="../../assets/images/penalty.svg" class="mx-auto block" style="filter: grayscale(100%);" alt="">
-          </div>
-          <div class="ml18 w-full">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Сумма штрафа</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.sumShtraf != null, 'color-gray-medium' : body.sumShtraf == null}">{{body.sumShtraf || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="ml60 mt12" style="border-top: 1px solid #CCCCCC;">
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Дата решения</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.decisDate != null, 'color-gray-medium' : body.decisDate == null}">{{body.decisDate | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Дата вручения</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.dateUved != null, 'color-gray-medium' : body.dateUved == null}">{{body.dateUved | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Дата вступления</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.dateVstup != null, 'color-gray-medium' : body.dateVstup == null}">{{body.dateVstup | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
+        <div class="items-wrap">
+          <view-data-item 
+            label="Сумма штрафа" 
+            :value="body.sumShtraf" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/penalty_gray.svg')"
+          />
+          <hr>
+          <view-data-item 
+            label="Дата решения" 
+            :value="body.decisDate | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Дата вручения" 
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Дата вступления" 
+            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
@@ -71,6 +56,9 @@
 
   export default {
     name: "FrmEdDecisShtraf",
+    components: {
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

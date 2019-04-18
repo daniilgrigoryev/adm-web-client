@@ -13,117 +13,71 @@
           </Button> -->
         </div>
     </div>
-    <div>
-      <div class="view-data">
-        <div class="view-data__container">
-          <div class="">
-            <div class="flex-parent flex-parent--center-cross">
-                <div class="s40 mt12">
-                  <img src="../../assets/images/vehicle_passport.svg" width="30px" class="mx-auto block" alt="">
-                </div>
-                <div class="ml18 w-full">
-                <div class="grid">
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">ГРЗ</p>
-                    <p class="adm-text-big" :class="{'color-dark-base' : body.regno != null, 'color-gray-medium' : body.regno == null}">{{body.regno || 'нет информации'}}</p>
-                  </div>
-                  <div class="col col--6">
-                    <p class="adm-14 color-dark-lighter mb6">VIN</p>
-                    <p class="adm-text-big" :class="{'color-dark-base' : body.vin != null, 'color-gray-medium' : body.vin == null}">{{body.vin || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ml60">
-              <div class="my12">
-                <div class="w-full">
-                  <div class="grid">
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Марка, модель, год выпуска</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' :body.markaAvto != null, 'color-gray-medium' : body.markaAvto == null}">{{body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',') || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">СТС</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.ctc != null, 'color-gray-medium' : body.ctc == null}">{{body.ctc || 'нет информации'}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="my12">
-                <div class="w-full">
-                  <div class="grid">
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Цвет ТС</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.color != null, 'color-gray-medium' : body.color == null}">{{body.color || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">ПТС</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.ptcN != null, 'color-gray-medium' : body.ptcN == null}">{{body.ptcN || 'нет информации'}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="py12" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
-              <div class="flex-parent">
-                <div class="s40 mt12">
-                    <img src="../../assets/images/eng.svg" class="mx-auto block" alt="">
-                </div>
-                <div class="ml18 w-full">
-                  <div class="grid">
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Тип двигателя</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.motorTip != null, 'color-gray-medium' : body.motorTip == null}">{{body.motorTip || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Экологический класс</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.motorEcologClass != null, 'color-gray-medium' : body.motorEcologClass == null}">{{body.motorEcologClass || 'нет информации'}}</p>
-                    </div>
-                  </div>
-                  <div class="grid mt12">
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Тип ТС</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.tiptcName != null, 'color-gray-medium' : body.tiptcName == null}">{{body.tiptcName || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Категория ТС</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.katcKod != null, 'color-gray-medium' : body.katcKod == null}">{{body.katcKod || 'нет информации'}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="py12" style="border-bottom: 1px solid #CCCCCC;">
-              <div class="flex-parent flex-parent--center-cross">
-                <div class="s40 mt12">
-                  <img src="../../assets/images/car_weight.svg" class="mx-auto block" width="20px" alt="">
-                </div>
-                <div class="ml18 w-full">
-                  <div class="grid">
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Масса без нагрузки</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.massa != null, 'color-gray-medium' : body.massa == null}">{{body.massa || 'нет информации'}}</p>
-                    </div>
-                    <div class="col col--6">
-                      <p class="adm-14 color-dark-lighter mb6">Максимальная масса</p>
-                      <p class="adm-text-big" :class="{'color-dark-base' : body.massaMax != null, 'color-gray-medium' : body.massaMax == null}">{{body.massaMax || 'нет информации'}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="pt12 flex-parent flex-parent--center-cross">
-              <div class="s40">
-                  <img src="../../assets/images/owner.svg" class="mx-auto block" alt="">
-              </div>
-              <div class="ml18 w-full">
-                <div>
-                  <p class="adm-14 color-dark-lighter mb6">Владелец</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.sobstvName != null, 'color-gray-medium' : body.sobstvName == null}">{{body.sobstvName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+
+    <div class="view-data">
+      <div class="view-data__container">
+        <div class="items-wrap">
+          <view-data-item 
+            label="ГРЗ" 
+            :value="body.regno" 
+            :icon="require('../../assets/images/vehicle_passport.svg')"
+          />
+          <view-data-item 
+            label="VIN" 
+            :value="body.vin" 
+          />
+          <view-data-item 
+            label="Марка, модель, год выпуска" 
+            :value="body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',')" 
+          />
+          <view-data-item 
+            label="СТС" 
+            :value="body.ctc" 
+          />
+          <view-data-item 
+            label="Цвет ТС" 
+            :value="body.color" 
+          />
+          <view-data-item 
+            label="ПТС" 
+            :value="body.ptcN" 
+          />
+          <hr>
+          <view-data-item 
+            label="Тип двигателя" 
+            :value="body.motorTip" 
+            :icon="require('../../assets/images/eng.svg')"
+          />
+          <view-data-item 
+            label="Экологический класс" 
+            :value="body.motorEcologClass" 
+          />
+          <view-data-item 
+            label="Тип ТС" 
+            :value="body.tiptcName" 
+          />
+          <view-data-item 
+            label="Категория ТС" 
+            :value="body.katcKod" 
+          />
+          <hr>
+          <view-data-item 
+            label="Масса без нагрузки" 
+            :value="body.massa"
+            :icon="require('../../assets/images/car_weight.svg')"
+          />
+          <view-data-item 
+            label="Максимальная масса" 
+            :value="body.massaMax" 
+          />
+          <hr>
+          <view-data-item 
+            label="Владелец" 
+            :value="body.sobstvName"
+            :icon="require('../../assets/images/owner.svg')"
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
@@ -139,6 +93,9 @@
 
   export default {
     name: "FrmEdVehsAMTC",
+    components:{
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

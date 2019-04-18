@@ -14,98 +14,53 @@
         </div>
     </div>
 
-
-
     <div class="view-data">
       <div class="view-data__container">
-        <div class="flex-parent">
-          <div class="s40 mt18">
-            <img src="../../assets/images/ispolnUved.png" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
-          </div>
-          <div class="ml18">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Номер извещения</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.docN != null, 'color-gray-medium' : body.docN == null}">{{body.docN || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="ml60">
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Дата и время составления</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.dateSost != null, 'color-gray-medium' : body.dateSost == null}">{{body.dateSost | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex-parent" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;">
-          <div class="s40 mt18">
-            <img src="../../assets/images/time.svg" class="mx-auto block" style="width: 30px;" alt="">
-          </div>
-          <div class="ml18 w-full">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата и время рассмотрения</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.dateRasm != null, 'color-gray-medium' : body.dateRasm == null}">{{body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата и время вручения</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.dateUved != null, 'color-gray-medium' : body.dateUved == null}">{{body.dateUved | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="py12 flex-parent" style=" border-bottom: 1px solid #CCCCCC;">
-          <div class="s40 mt6">
-              <img src="../../assets/images/police.svg" class="mx-auto block" width="30px" alt="">
-          </div>
-          <div class="ml18 w-full">
-            <div class="">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Код сотрудника - Ф.И.О.</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.inspSostKod != null, 'color-gray-medium' : body.inspSostKod == null}">{{body.inspSostKod, body.inspSostName  | concatByDelimiter('-') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="mt12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Звание, Должность</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.inspSostRang != null, 'color-gray-medium' : body.inspSostRang == null}">{{body.inspSostRang, body.inspSostDolz | concatByDelimiter(',') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ml60">
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Место составления извещения</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.placeSost.placeFull != null, 'color-gray-medium' : body.placeSost.placeFull == null}">{{body.placeSost.placeFull || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Статья-основание</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : body.stotvKod != null, 'color-gray-medium' : body.stotvKod == null}">{{body.stotvKod, body.stotvName | concatByDelimiter(',') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
+        <div class="items-wrap">
+          <view-data-item 
+            label="Номер извещения" 
+            :value="body.docN" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/letter.svg')"
+          />
+          <view-data-item 
+            label="Дата и время составления" 
+            :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')" 
+          />
+          <hr>
+          <view-data-item 
+            label="Дата и время рассмотрения" 
+            :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')"
+            :icon="require('../../assets/images/map.svg')"
+          />
+          <view-data-item 
+            label="Дата и время вручения" 
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Код сотрудника - Ф.И.О" 
+            :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/police.svg')"
+          />
+          <view-data-item 
+            label="Звание, Должность" 
+            :value="body.inspSostRang, body.inspSostDolz | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Место составления извещения" 
+            :value="body.placeSost.placeFull" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Статья-основание" 
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
@@ -121,6 +76,9 @@
 
   export default {
     name: "DlgAdvice",
+    components: {
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

@@ -17,112 +17,70 @@
 
     <div class="view-data">
       <div class="view-data__container">
-          <div class="ml60">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Вид предъявленного документа</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.docTipName != null, 'color-gray-medium' : body.docTipName == null}">{{body.docTipName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Номер документа</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.vuN != null, 'color-gray-medium' : body.vuN == null}">{{body.vuN || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата выдачи</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.dateVyd != null, 'color-gray-medium' : body.dateVyd == null}">{{body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Срок действия</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.dateSrok != null, 'color-gray-medium' : body.dateSrok == null}">{{body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Личный номер сотрудника</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.inspVydKod != null, 'color-gray-medium' : body.inspVydKod == null}">{{body.inspVydKod || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">ФИО сотрудника</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.inspVydName != null, 'color-gray-medium' : body.inspVydName == null}">{{body.inspVydName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Должность сотрудника</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.inspVydDolz != null, 'color-gray-medium' : body.inspVydDolz == null}">{{body.inspVydDolz || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Звание</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.inspVydRang != null, 'color-gray-medium' : body.inspVydRang == null}">{{body.inspVydRang || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Кем выдан документ. Код - Название организации</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.ogaiVydKod != null, 'color-gray-medium' : body.ogaiVydKod == null}">{{body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дополнительные сведения</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.remarks != null, 'color-gray-medium' : body.remarks == null}">{{body.remarks || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Предъявленный документ</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.vuPred != null, 'color-gray-medium' : body.vuPred == null}">{{body.vuPred || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Статус документа</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.statusName != null, 'color-gray-medium' : body.statusName == null}">{{body.statusName || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Дата утилизации документа</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.dateUtil != null, 'color-gray-medium' : body.dateUtil == null}">{{body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="items-wrap">
+          <view-data-item 
+            label="Вид предъявленного документа" 
+            :value="body.docTipName" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Номер документа" 
+            :value="body.vuN" 
+          />
+          <view-data-item 
+            label="Дата выдачи" 
+            :value="body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm')" 
+          />
+          <view-data-item 
+            label="Срок действия" 
+            :value="body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Личный номер сотрудника" 
+            :value="body.inspVydKod" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="ФИО сотрудника" 
+            :value="body.inspVydName" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Должность сотрудника" 
+            :value="body.inspVydDolz" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Звание" 
+            :value="body.inspVydRang" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Кем выдан документ. Код - Название организации" 
+            :value="body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Дополнительные сведения" 
+            :value="body.remarks" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Предъявленный документ" 
+            :value="body.vuPred" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Статус документа" 
+            :value="body.statusName" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Дата утилизации документа" 
+            :value="body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
@@ -138,6 +96,9 @@
 
   export default {
     name: "FrmEdVuVyd",
+    components: {
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

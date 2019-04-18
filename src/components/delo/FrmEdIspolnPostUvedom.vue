@@ -14,74 +14,41 @@
 
     <div class="view-data">
       <div class="view-data__container">
-        <div class="adm-form__content">
-          <div class="flex-parent flex-parent--center-cross">
-            <div class="s40">
-              <img src="../../assets/images/ispolnUved.png" class="mx-auto block" style="filter: grayscale(100%); width: 35px;" alt="">
-            </div>
-            <div class="ml18">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Уникальный почтовый идентификатор</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.upi != null, 'color-gray-medium' : body.upi == null}">{{body.upi || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="ml60">
-            <div class="my12">
-              <div class="grid">
-                <div class="col col--12">
-                  <p class="adm-14 color-dark-lighter mb6">Номер реестра</p>
-                  <p class="adm-text-big" :class="{'color-dark-base' : body.reestrN != null, 'color-gray-medium' : body.reestrN == null}">{{body.reestrN || 'нет информации'}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="flex-parent" style="border-top: 1px solid #CCCCCC;">
-            <div class="s40 mt18">
-              <img src="../../assets/images/time.svg" class="mx-auto block" style="width: 30px;" alt="">
-            </div>
-            <div class="ml18 w-full">
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Дата отправки</p>
-                    <p class="adm-text-big" :class="{'color-dark-base' : body.dateOtpravVu != null, 'color-gray-medium' : body.dateOtpravVu == null}">{{body.dateOtpravVu | formatDateTime('DD.MM.YYYY') || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="mb18" style="border-top: 1px solid #CCCCCC;">
-            <div class="ml60">
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Участник дела</p>
-                    <p class="adm-text-big" :class="{'color-dark-base' : body.uchastName != null, 'color-gray-medium' : body.uchastName == null}">{{body.uchastName || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Место исполнения</p>
-                    <p class="adm-text-big" :class="{'color-dark-base' : body.placeIspoln.placeFull != null, 'color-gray-medium' : body.placeIspoln.placeFull == null}">{{body.placeIspoln.placeFull || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="my12">
-                <div class="grid">
-                  <div class="col col--12">
-                    <p class="adm-14 color-dark-lighter mb6">Уведомление направлено по адресу</p>
-                    <p class="adm-text-big" :class="{'color-dark-base' : dopData.sendingAddress != null, 'color-gray-medium' : dopData.sendingAddress == null}">{{dopData.sendingAddress || 'нет информации'}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="items-wrap">
+          <view-data-item 
+            label="Уникальный почтовый идентификатор" 
+            :value="body.upi" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/letter.svg')"
+          />
+          <view-data-item 
+            label="Номер реестра" 
+            :value="body.reestrN" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Дата отправки" 
+            :value="body.dateOtpravVu | formatDateTime('DD.MM.YYYY')"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item 
+            label="Участник дела" 
+            :value="body.uchastName" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Место исполнения" 
+            :value="body.placeIspoln.placeFull" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
+          />
+          <view-data-item 
+            label="Уведомление направлено по адресу" 
+            :value="dopData.sendingAddress" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/map.svg')"
+          />
         </div>
       </div>
     </div>
@@ -97,6 +64,9 @@
 
   export default {
     name: "FrmEdIspolnPostUvedom",
+    components: {
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
     async created() {
       try {
         let current = formStack.getCurrent();

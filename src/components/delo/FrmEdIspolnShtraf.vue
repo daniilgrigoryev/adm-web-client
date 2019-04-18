@@ -14,48 +14,31 @@
       </div>
     </div>
 
+
     <div class="view-data">
       <div class="view-data__container">
-
-        <div class="flex-parent flex-parent--center-cross">
-          <div class="s40 mt12">
-            <img src="../../assets/images/rub.svg" class="mx-auto block" style="filter: grayscale(100%);" alt="">
-          </div>
-          <div class="ml18 w-full">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Сумма оплаты штрафа</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : dopData.sumOpl != null, 'color-gray-medium' : dopData.sumOpl == null}">{{body.sumOpl || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        
-        <div class="ml60 mt12" style="border-top: 1px solid #CCCCCC;">
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">Дата оплаты штрафа</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : dopData.dateStadIspoln != null, 'color-gray-medium' : dopData.dateStadIspoln == null}">{{body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm') || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="my12">
-            <div class="grid">
-              <div class="col col--12">
-                <p class="adm-14 color-dark-lighter mb6">УИП</p>
-                <p class="adm-text-big" :class="{'color-dark-base' : dopData.uip != null, 'color-gray-medium' : dopData.uip == null}">{{body.uip || 'нет информации'}}</p>
-              </div>
-            </div>
-          </div>
+        <div class="items-wrap">
+          <view-data-item 
+            label="Сумма оплаты штрафа" 
+            :value="body.sumOpl" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/rub_gray.svg')"
+          />
+          <hr>
+          <view-data-item 
+            label="Дата оплаты штрафа" 
+            :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item 
+            label="УИП" 
+            :value="body.uip" 
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
- 
-
   </div>
 </template>
 
@@ -68,6 +51,9 @@
 
   export default {
     name: "FrmEdIspolnShtraf",
+    components: {
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
     async created() {
       try {
         let current = formStack.getCurrent();
