@@ -49,7 +49,10 @@
       },
       getMainDelo(mainDeloId) {
         this.$emit('getMainDelo', mainDeloId);
-      }
+      },
+      addForm(form) {
+        this.$emit('addForm', form);
+      },
     }
   }
 </script>

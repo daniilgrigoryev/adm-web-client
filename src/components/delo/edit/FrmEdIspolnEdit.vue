@@ -1,47 +1,37 @@
 <template>
-  <aside-template :listSectionNav="[]" title="Оштрафовать" v-if="decis">
+  <aside-template :listSectionNav="[]" title="Оплата штрафа" v-if="ispoln">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding">Оштрафовать</h2>
+            <h2 class="adm-form__headding">Оплата штрафа</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
-                <small class="adm-form__label">Сумма штрафа</small>
+                <small class="adm-form__label">Дата оплаты штрафа</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax240" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
+                      <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="ispoln.dateStadIspoln" readonly @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Дата решения</small>
+                <small class="adm-form__label">Сумма оплаты штрафа</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.decisDate" readonly @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="ispoln.sumOpl" @onInputChange="store" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" clearable></masked-input>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Дата вручения</small><!-- Дата уведомления -->
+                <small class="adm-form__label">УИП</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.dateUved" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Дата вступления</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <Input class="adm-input adm-input--regular wmax240" v-model="ispoln.uip" @on-input-change="store" placeholder=""></Input>
                     </Col>
                   </Row>
                 </div>
@@ -64,15 +54,16 @@
   import RequestApi from "~/assets/js/api/requestApi";
 
   export default {
-    name: "FrmEdDecisEdit",
+    name: "FrmEdIspolnEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      MaskedInput: () => import('~/components/shared/MaskedInput'),
       DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {
         let current = formStack.getCurrent();
-        await this.$store.dispatch('frmEdDecisEditSetCid', current.cid);
+        await this.$store.dispatch('frmEdIspolnEditSetCid', current.cid);
         let prepareParams = {
           method: 'restore'
         };
@@ -83,26 +74,25 @@
           };
         }
         let eventResponse = await RequestApi.prepareData(prepareParams);
-        let decis = JSON.parse(eventResponse.response).data;
+        let ispoln = JSON.parse(eventResponse.response).data;
 
-        if (funcUtils.isEmpty(decis)) {
+        if (funcUtils.isEmpty(ispoln)) {
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);
         } else {
-
-          this.decis = decis;
+          this.ispoln = ispoln;
         }
       } catch (e) {
         alert(e.message);
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdDecisEditSetCid', null);
-      this.$store.dispatch('frmEdDecisEditSetData', null);
+      this.$store.dispatch('frmEdIspolnEditSetCid', null);
+      this.$store.dispatch('frmEdIspolnEditSetData', null);
     },
     data() {
       return {
-        decis: null,
+        ispoln: null,
       }
     },
     methods: {
@@ -110,7 +100,7 @@
         RequestApi.prepareData({
           method: 'store',
           params: {
-            data: this.decis
+            data: this.ispoln
           }
         });
       },
