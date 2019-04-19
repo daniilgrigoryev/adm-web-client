@@ -1,24 +1,23 @@
 <template>
-  <!-- Исполнение -->
-  <aside-template :listSectionNav="listSectionNav" title="Протокол об АПН">
+  <!-- Медиа документы -->
+  <aside-template :listSectionNav="listSectionNav" title="Медиа документы">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="head">
-              Исполнение
+              Медиа документы
             </h2>
             <div class="adm-form__content">
-              <wizard-item-ispoln v-if="isVisible('DocIspoln')" ref="DocIspoln" :info="getInfo('DocIspoln')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-ispoln>
-              <wizard-item-place v-if="isVisible('DocIspoln.PlaceSost')" ref="DocIspoln.PlaceSost" :info="getInfo('DocIspoln.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+              <wizard-item-doc-photo v-if="isVisible('DocPhoto')" ref="DocPhoto" :info="getInfo('DocPhoto')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-photo>
             </div>
           </div>
         </div>
       </Layout>
     </div>
     <div class="bot-wrap">
-      <Button @click="getPrev" type="text">Отменить возбуждение дела</Button>
-      <Button @click="save" type="primary" class="ml12">Возбудить</Button>
+      <Button @click="getPrev" type="text">Отменить добавление документа</Button>
+      <Button @click="save" type="primary" class="ml12">Добавить</Button>
     </div>
   </aside-template>
 </template>
@@ -29,14 +28,13 @@
   import RequestApi from "~/assets/js/api/requestApi";
 
   export default {
-    name: "WizardScenarioAddIspoln",
+    name: "WizardScenarioAddDocPhoto",
     props: {
       pathes: Object
     },
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      WizardItemIspoln: () => import('~/components/wizard/items/WizardItemIspoln'),
-      WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace')
+      WizardItemDocPhoto: () => import('~/components/wizard/items/WizardItemDocPhoto'),
     },
     data() {
       return {

@@ -67,8 +67,11 @@
           method: 'make'
         });
         let resp =  JSON.parse(eventResponse.response);
-        if (resp.error && resp.error.errorMsg) {
-          alert(resp.error.errorMsg);
+        if (resp.error && resp.error.errorId) {
+          let error = '';
+          funcUtils.isNotEmpty(resp.error.errorMsg) ? error += `ErrorMsg: ${resp.error.errorMsg}\n` : null;
+          funcUtils.isNotEmpty(resp.error.errorDesc) ? error += `ErrorDesc: ${resp.error.errorDesc}\n` : null;
+          alert(error);
         } else {
           this.getPrev();
         }

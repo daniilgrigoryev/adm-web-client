@@ -63,7 +63,7 @@
                     <Button :disabled="!menuItemVisible(menu.addDocument.ApplyDocOnDelo)" type="text" class="adm-btn-regular">Приложить документ к делу</Button>
                   </li>
                   <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.AddFotoVideo)" type="text" class="adm-btn-regular">Добавить фото и видеоматериалы</Button>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.AddFotoVideo)" @click="addDocPhotoWizard" type="text" class="adm-btn-regular">Добавить фото и видеоматериалы</Button>
                   </li>
                   <li>
                     <Button :disabled="!menuItemVisible(menu.addDocument.Explanation)" type="text" class="adm-btn-regular">Объяснение</Button>
@@ -661,6 +661,25 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'AddPredDoc',
+            node: copyNode,
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      addDocPhotoWizard() {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            scenarioName: 'AddDocPhoto',
             node: copyNode,
           };
 

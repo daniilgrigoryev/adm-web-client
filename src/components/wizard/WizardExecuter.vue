@@ -7,7 +7,9 @@
     <wizard-scenario-add-uchast v-if="isVisible('AddUchast')" ref="AddUchast" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-uchast>
     <wizard-scenario-definition v-if="isVisible('CreateDefinition')" ref="CreateDefinition" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-definition>
     <wizard-scenario-add-pred-doc v-if="isVisible('AddPredDoc')" ref="AddPredDoc" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-pred-doc>
+    <wizard-scenario-add-doc-photo v-if="isVisible('AddDocPhoto')" ref="AddDocPhoto" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-doc-photo>
     <wizard-scenario-add-ispoln v-if="isVisible('AddIspoln')" ref="AddIspoln" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-ispoln>
+    <wizard-scenario-prot-izyat v-if="isVisible('CreateProtIzyat')" ref="CreateProtIzyat" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-izyat>
   </div>
 </template>
 
@@ -25,6 +27,8 @@
       WizardScenarioDefinition: () => import('~/components/wizard/WizardScenarioDefinition'),
       WizardScenarioAddPredDoc: () => import('~/components/wizard/WizardScenarioAddPredDoc'),
       WizardScenarioAddIspoln: () => import('~/components/wizard/WizardScenarioAddIspoln'),
+      WizardScenarioAddDocPhoto: () => import('~/components/wizard/WizardScenarioAddDocPhoto'),
+      WizardScenarioProtIzyat: () => import('~/components/wizard/WizardScenarioProtIzyat'),
       WizardScenarioAddUchast: () => import('~/components/wizard/WizardScenarioAddUchast')
     },
     async created() {

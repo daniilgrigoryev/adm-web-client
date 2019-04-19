@@ -60,7 +60,7 @@
 											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об административном правонарушении</a>
 										</li>
 										<li class="my18">
-											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об изъятии вещей и документов</a>
+											<a href="#" @click="createWizardScenarioProtIzyat" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об изъятии вещей и документов</a>
 										</li>
 										<li class="my18">
 											<a href="#" class="adm-text-big link color-blue-base txt-underline-on-hover">Определение о возбуждении дела об <br/> административном правонарушении</a>
@@ -140,6 +140,23 @@
         try {
           let params = {
             scenarioName: 'CreatePost'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioProtIzyat() {
+        try {
+          let params = {
+            scenarioName: 'CreateProtIzyat'
           };
 
           formStack.toNext({

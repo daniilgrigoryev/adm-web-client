@@ -24,9 +24,9 @@
                           <div class="flex-parent flex-parent--end-cross h-full">
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label">Дата заведения дела</div>
-                              <DatePickerMask class="adm-input adm-input--big adm-input-data" v-model="filter.deloDat"
-                                              clearable type="date" placeholder="дд/мм/гггг"
-                                              momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                              <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.deloDatStart" :valueSecond="filter.deloDatEnd"
+                                              clearable type="date" placeholder="дд/мм/гггг" @change="changeDateRange"
+                                              momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
                             </div>
                           </div>
                         </Col>
@@ -243,7 +243,7 @@
     name: "DeloReestr",
     components: {
       MaskedInput: () => import('~/components/shared/MaskedInput'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
+      DateRangePickerMask: () => import('~/components/shared/dateTimeRangePicker/DateRangePickerMask')
     },
     async created() {
       try {
@@ -326,7 +326,8 @@
         filter: {
           flagYear: 'true',
           deloN: null,
-          deloDat: null,
+          deloDatStart: null,
+          deloDatEnd: null,
           docVid: null,
           stadDeloKod: null,
           stotvId: null,
@@ -422,7 +423,8 @@
               let item = filter[prop];
               if (funcUtils.isNotEmpty(item)) {
                 switch (prop) {
-                  case 'deloDat': {
+                  case 'deloDatStart':
+                  case 'deloDatEnd': {
                     this.filter[prop] = new Date(item);
                     break;
                   }
@@ -471,6 +473,10 @@
         this.filter.firstName = null;
         this.filter.secondName = null;
         this.filter.thirdName = null;
+      },
+      changeDateRange(e) {
+        this.filter.deloDatStart = e.valueFirst;
+        this.filter.deloDatEnd = e.valueSecond;
       },
       fillColumnsOptions() {
         this.columnsOptions = [];

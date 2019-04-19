@@ -121,6 +121,7 @@
         if (e.length === 0) {
           this.$emit('onClear');
           this.$emit('input', null);
+          this.$emit('onInputChange', null);
         } else {
           this.$emit('input', e);
         }
