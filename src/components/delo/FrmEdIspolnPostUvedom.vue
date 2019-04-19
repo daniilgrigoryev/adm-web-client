@@ -131,26 +131,3 @@
     },
   }
 </script>
-
-<style scoped lang="scss">
-  .adm-form-content{
-    // border: 1px solid #000;
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    // min-height: 90px;
-    // outline: 1px solid;
-  }
-  .adm-form__label{
-    padding: 0;
-    min-width: 210px;
-    padding-right: 12px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
-</style>

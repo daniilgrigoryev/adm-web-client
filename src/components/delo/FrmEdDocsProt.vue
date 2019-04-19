@@ -166,17 +166,3 @@
   }
 </script>
 
-<style scoped lang="scss"> 
-  .items-wrap {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 12px;
-    hr {
-      height: 1px;
-      width: 100%;
-      color: #cccccc;
-      background: #cccccc;
-      grid-column: span 2;
-    }
-  }
-</style>

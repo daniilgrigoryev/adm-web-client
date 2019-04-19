@@ -257,32 +257,3 @@
     },
   }
 </script>
-
-<style scoped lang="scss">
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 130px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
-  // .err:after{
-  //   content: "";
-  //   position: absolute;
-  //   width: 12px;
-  //   height: 12px;
-  //   top: 10px;
-  //   right: 10px;
-  //   border-radius: 100%;
-  //   display: inline-block;
-  //   background-color: #6FB81E;
-  // }
-</style>

@@ -26,11 +26,13 @@
             label="Дата и время нарушения" 
             :value="fotofix.violTime | formatDateTime('DD.MM.YYYY HH:mm')" 
             :icon="require('../../../assets/images/time.svg')"
+
           />
           <view-data-item 
             label="Место нарушения" 
             :value="fotofix.violPlace" 
             :icon="require('../../../assets/images/map.svg')"
+
           />
           <hr>
           <view-data-item 
@@ -253,14 +255,8 @@
   }
   .items-wrap {
     display: grid;
-    grid-template-columns: 250px 1fr;
-    grid-gap: 12px;
-    hr {
-      height: 1px;
-      width: 100%;
-      color: #cccccc;
-      background: #cccccc;
-      grid-column: span 2;
+    .item{
+      display: block;
     }
   }
 </style>

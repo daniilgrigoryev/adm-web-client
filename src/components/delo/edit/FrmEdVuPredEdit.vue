@@ -7,8 +7,9 @@
           <div class="adm-form__container">
             <h2 class="adm-form__headding">Редактирование документа участника</h2>
             <div class="adm-form__content py24 px36">
+              <div>{{maskDocNum}}</div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Тип документа</small>
+                <small class="adm-form__label">Тип документа {{vuPred.docTip}}</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="22">
@@ -26,7 +27,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <masked-input inputClass="adm-input adm-input--regular wmin120 wmax180" @onInputChange="store" v-model="vuPred.vuN" :maskProps="{mask: '99-99 999999', casing: 'upper', placeholder: ''}"></masked-input>
+                          <masked-input inputClass="adm-input adm-input--regular wmin120 wmax180" @onInputChange="store" v-model="vuPred.vuN" :maskProps="maskDocNum"></masked-input>
                         </Col>
                       </Row>
                     </div>
@@ -44,7 +45,7 @@
                     </div>
                   </div>
                 </Col>
-              </Row>          
+              </Row>
               <Row :gutter="16">
                 <Col span="24">
                   <div class="adm-form__item">
@@ -119,8 +120,6 @@
                   </div>
                 </Col>
               </Row>
-
-
               <Row :gutter="16">
                 <Col span="14">
                   <div class="adm-form__item">
@@ -305,6 +304,24 @@
             ]
         }
       }
+    },
+    computed: {
+      maskDocNum(){
+        let typeDoc = parseInt(this.vuPred.docTip);
+        if(typeDoc == 8 || typeDoc == 2 || typeDoc == 7){
+          return {
+            regex: '[0-9]+', 
+            mask: '99 9999999',
+            placeholder: ''
+          }
+        }else{
+           return {
+            regex: '[0-9]+', 
+            mask: '99 99 999999',
+            placeholder: ''
+          }
+        }
+      },
     },
     methods: {
       async showOgaiModal(visible) {

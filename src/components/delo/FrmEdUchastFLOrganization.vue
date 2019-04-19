@@ -125,25 +125,3 @@
   }
 </script>
 
-<style scoped lang="scss">
-  .adm-form-content{
-
-  }
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 20px;
-    // outline: 1px solid red;
-    padding-bottom: 20px;
-    // min-height: 90px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 210px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
-</style>
