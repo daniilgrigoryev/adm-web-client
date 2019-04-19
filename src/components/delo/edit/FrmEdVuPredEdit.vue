@@ -7,9 +7,8 @@
           <div class="adm-form__container">
             <h2 class="adm-form__headding">Редактирование документа участника</h2>
             <div class="adm-form__content py24 px36">
-              <div>{{maskDocNum}}</div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Тип документа {{vuPred.docTip}}</small>
+                <small class="adm-form__label">Тип документа</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="22">
