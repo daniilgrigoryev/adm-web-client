@@ -102,11 +102,7 @@
       },
     },
     mounted () {
-      let input = this.$refs.maskedField.$refs.input;
-      let im = new Inputmask(this.maskProps);
-      im.mask(input);
-      input.addEventListener('click', this.onClick);
-      input.addEventListener('blur', this.onBlur);
+      this.init();
     },
     data() {
       return {}
@@ -117,6 +113,13 @@
       },
     },
     methods: {
+      init() {
+        let input = this.$refs.maskedField.$refs.input;
+        let im = new Inputmask(this.maskProps);
+        im.mask(input);
+        input.addEventListener('click', this.onClick);
+        input.addEventListener('blur', this.onBlur);
+      },
       onInput(e) {
         if (e.length === 0) {
           this.$emit('onClear');

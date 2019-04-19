@@ -12,7 +12,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="22">
-                      <Select class="adm-input adm-input--regular" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="store">
+                      <Select class="adm-input adm-input--regular" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="changeDocTip">
                         <Option class="" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -26,7 +26,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <masked-input inputClass="adm-input adm-input--regular wmin120 wmax180" @onInputChange="store" v-model="vuPred.vuN" :maskProps="maskDocNum"></masked-input>
+                          <masked-input ref="vuN" inputClass="adm-input adm-input--regular wmin120 wmax180" @onInputChange="store" v-model="vuPred.vuN" clearable :maskProps="maskDocNum"></masked-input>
                         </Col>
                       </Row>
                     </div>
@@ -309,13 +309,13 @@
         let typeDoc = parseInt(this.vuPred.docTip);
         if(typeDoc == 8 || typeDoc == 2 || typeDoc == 7){
           return {
-            regex: '[0-9]+', 
+            regex: '[0-9]+',
             mask: '99 9999999',
             placeholder: ''
           }
         }else{
            return {
-            regex: '[0-9]+', 
+            regex: '[0-9]+',
             mask: '99 99 999999',
             placeholder: ''
           }
@@ -405,6 +405,13 @@
       clearOgai() {
         // this.vuPred.ogaiVydKod = null;
         this.vuPred.ogaiVydName = null;
+        this.store();
+      },
+      changeDocTip() {
+        if (this.$refs.vuN) {
+          this.$refs.vuN.init();
+          this.$refs.vuN.$forceUpdate();
+        }
         this.store();
       },
       store() {
