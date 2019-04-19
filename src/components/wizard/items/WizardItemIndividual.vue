@@ -64,7 +64,6 @@
         </Col>
       </Row>
     </div>
-    
   </div>
 </template>
 
