@@ -1,5 +1,5 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Постановление об АПН">
+  <aside-template :listSectionNav="listSectionNav()" title="Постановление об АПН">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
@@ -81,9 +81,9 @@
       WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
     },
-    data() {
-      return {
-        listSectionNav: [
+    methods: {
+      listSectionNav() {
+        return [
           {
             title: "Ввод данных по постановлению об АПН",
             name: "head",
@@ -103,13 +103,11 @@
           },
           {
             title: "Решение по делу",
-            name: "decis",
+            name: "DecisMain",
             hide: !this.isVisible('DecisMain')
           }
         ]
-      }
-    },
-    methods: {
+      },
       isNotEmptyParentNode(path) {
         if (funcUtils.isEmpty(this.pathes)) {
           return false;

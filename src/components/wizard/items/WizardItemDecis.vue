@@ -18,32 +18,56 @@
         </Col>
       </Row>
     </div>
-    <div v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="adm-form__item">
-      <small class="adm-form__label">Срок лишения (мес.)</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <Input class="adm-input adm-input--regular" v-model="data.lishMes" @on-input-change="storeElementData" ></Input>
-        </Col>
-      </Row>
+
+
+    <div v-if="data.decisKod && showByDecisKod(decisKods.lish)">
+      <div class="adm-form__item">
+        <small class="adm-form__label">Количество месяцев</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="data.lishMes" @on-input-change="storeElementData" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="adm-form__item">
+        <small class="adm-form__label">Количество дней</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="data.lishDay" @on-input-change="storeElementData" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="adm-form__item">
+        <small class="adm-form__label">Дата начала срока лишения</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateLishBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+          </Col>
+        </Row>
+      </div>
     </div>
-    <div v-if="data.decisKod && showByDecisKod(decisKods.lish)" class="adm-form__item">
-      <small class="adm-form__label">Дата изъятия ВУ</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateLishBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-        </Col>
-      </Row>
-    </div>
-    <div v-if="data.decisKod && showByDecisKod(decisKods.discval)" class="adm-form__item">
-      <small class="adm-form__label">Срок дисквалификации (мес.)</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <Input class="adm-input adm-input--regular" v-model="data.diskvMes" @on-input-change="storeElementData" ></Input>
-        </Col>
-      </Row>
+
+    <div v-if="data.decisKod && showByDecisKod(decisKods.discval)">
+      <div class="adm-form__item">
+        <small class="adm-form__label">Количество дней</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="data.diskvDay" @on-input-change="storeElementData" ></Input>
+          </Col>
+        </Row>
+      </div>
+      <div class="adm-form__item">
+        <small class="adm-form__label">Дата начала дисквалификации</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <Input class="adm-input adm-input--regular" v-model="data.dateDiskvBeg" @on-input-change="storeElementData" ></Input>
+          </Col>
+        </Row>
+      </div>
+
     </div>
     <div v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="adm-form__item">
-      <small class="adm-form__label">Срок ареста (дни)</small>
+      <small class="adm-form__label">Количество дней</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Input class="adm-input adm-input--regular" v-model="data.arestDay" @on-input-change="storeElementData" ></Input>
@@ -51,15 +75,15 @@
       </Row>
     </div>
     <div v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="adm-form__item">
-      <small class="adm-form__label">Время начала ареста</small>
+      <small class="adm-form__label">Дата и время начала ареста</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.arestTimeBeg" @change="storeElementData" clearable type="time" placeholder="чч:мм" momentFormat="HH:mm" maskFormat="HH:MM"></DatePickerMask>
+          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.arestTimeBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </Col>
       </Row>
     </div>
     <div v-if="data.decisKod && showByDecisKod(decisKods.hoursToWork)" class="adm-form__item">
-      <small class="adm-form__label">Кол-во часов обяз-х работ</small>
+      <small class="adm-form__label">Количество часов</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Input class="adm-input adm-input--regular" v-model="data.hoursToWork" @on-input-change="storeElementData" ></Input>
@@ -75,7 +99,7 @@
       </Row>
     </div>
     <div v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)" class="adm-form__item">
-      <small class="adm-form__label">Дата начала</small>
+      <small class="adm-form__label">Дата начала приостановления</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.stopWorkBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
@@ -95,6 +119,22 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Input class="adm-input adm-input--regular" v-model="data.decisDay" @on-input-change="storeElementData" ></Input>
+        </Col>
+      </Row>
+    </div>
+    <div v-if="data.decisKod && showByDecisKod(decisKods.decis.decis1)" class="adm-form__item">
+      <small class="adm-form__label">Дата начала работ</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.periodStart" @on-input-change="storeElementData" ></Input>
+        </Col>
+      </Row>
+    </div>
+    <div v-if="data.decisKod && showByDecisKod(decisKods.decis.decis2)" class="adm-form__item">
+      <small class="adm-form__label">Дата начала лишения свободы</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.arestTimeBeg" @on-input-change="storeElementData" ></Input>
         </Col>
       </Row>
     </div>
