@@ -320,7 +320,6 @@
             placeholder: ''
           }
         }
-        this.$forceUpdate();
       },
     },
     methods: {
