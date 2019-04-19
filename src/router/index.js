@@ -40,6 +40,12 @@ const router = new Router({
       props: true
     },
     {
+      path: '/frmEdIspolnEdit',
+      name: 'FrmEdIspolnEdit',
+      component: () => import('~/components/delo/edit/FrmEdIspolnEdit'),
+      props: true
+    },
+    {
       path: '/frmEdVuPredEdit',
       name: 'FrmEdVuPredEdit',
       component: () => import('~/components/delo/edit/FrmEdVuPredEdit'),

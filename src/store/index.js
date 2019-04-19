@@ -25,6 +25,7 @@ import dlgAdvice from './modules/dlgAdvice';
 
 import frmEdDeloEdit from './modules/frmEdDeloEdit';
 import frmEdDecisEdit from './modules/frmEdDecisEdit';
+import frmEdIspolnEdit from './modules/frmEdIspolnEdit';
 import frmEdVuPredEdit from './modules/frmEdVuPredEdit';
 import frmEdVuVydEdit from './modules/frmEdVuVydEdit';
 import frmEdDocsPostEdit from './modules/frmEdDocsPostEdit';
@@ -55,6 +56,7 @@ const store = new Vuex.Store({
         let dataJson = JSON.parse(data);
         if (dataJson.method === 'logout' && funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
           let vm = payload.vm.$root;
+          alert('socket -- logout');
           vm.logout();
           return;
         } else if (dataJson.method === 'ping' && funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
@@ -129,6 +131,7 @@ const store = new Vuex.Store({
     frmEdProtPZTCEdit,
     frmEdDocsProtEdit,
     frmEdDecisEdit,
+    frmEdIspolnEdit,
     frmEdUchastFLIndividEdit,
     frmEdUchastFLOrganizationEdit,
     dlgAdviceEdit,

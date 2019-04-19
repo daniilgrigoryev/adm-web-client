@@ -3,14 +3,11 @@
     <div class="amd-title amd-title--sticky px36 pt24 pb18"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+          <Button @click="getIspolnEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Исполнение по решению - Оплата штрафа</b>
         </div>
-        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../assets/images/wiki.svg' class="wmax-none">
-        </Button> -->
       </div>
     </div>
 
@@ -32,7 +29,7 @@
             :icon="require('../../assets/images/time.svg')"
           />
           <view-data-item 
-            label="УИП" 
+            label="УИП"
             :value="body.uip" 
             style="grid-column: span 2;"
           />
@@ -109,5 +106,25 @@
         return res;
       },
     },
+    methods: {
+      getIspolnEdit() {
+        try {
+          let currentForm = innerFormStack.getCurrent();
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmEdIspolnEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+    }
   }
 </script>

@@ -143,6 +143,7 @@
           <Col class="col"> <!-- :xs="24" :sm="16" :md="16" :lg="16" -->
             <div class="wmax940"><!-- mx-auto -->
               <delo-inner-form :currentInnerBeanName="currentInnerBeanName"
+                               @addForm="addForm"
                                @getMainDelo="getMainDelo"></delo-inner-form>
             </div>
           </Col>
