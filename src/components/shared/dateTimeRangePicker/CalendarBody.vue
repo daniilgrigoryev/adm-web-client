@@ -96,7 +96,7 @@
           let dates = value.split(' - ');
           let valueFirst = funcUtils.formatDateTime(dates[0], this.momentFormat);
           let valueSecond = funcUtils.formatDateTime(dates[1], this.momentFormat);
-          if (valueSecond.toDate().getTime() < valueFirst.toDate().getTime()) {
+          if (valueFirst.isValid() && valueSecond.isValid()) {
             if (valueSecond.toDate().getTime() < valueFirst.toDate().getTime()) {
               let tmp = valueSecond;
               valueSecond = valueFirst;
@@ -106,6 +106,13 @@
             res.valueSecond = valueSecond.toDate();
             this.$emit('change', res);
             this.$emit('hide');
+          }
+        } else {
+          let dates = value.split(' - ');
+          let valueFirst = funcUtils.formatDateTime(dates[0], this.momentFormat);
+          let valueSecond = funcUtils.formatDateTime(dates[1], this.momentFormat);
+          if (!valueFirst.isValid() || !valueSecond.isValid()) {
+            this.onClear();
           }
         }
       },
