@@ -1,22 +1,22 @@
 <template>
   <div v-if="currentInnerBeanName">
     <div class="hmin360">
-      <frm-ed-delo v-if="isVisible('FrmEdDelo')" @getMainDelo="getMainDelo"></frm-ed-delo>
-      <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')"></frm-ed-docs-post>
-      <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')"></frm-ed-docs-opred>
-      <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')"></frm-ed-decis-shtraf>
-      <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')"></frm-ed-ispoln-shtraf>
-      <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')"></frm-ed-vehs-a-m-t-c>
-      <frm-ed-prot-p-z-t-c v-if="isVisible('FrmEdDocsOtherPZTC')"></frm-ed-prot-p-z-t-c>
-      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastFL')"></frm-ed-uchast-f-l>
-      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastUL')"></frm-ed-uchast-f-l>
-      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastOther')"></frm-ed-uchast-f-l>
-      <frm-ed-vu-pred v-if="isVisible('FrmEdVuPred')"></frm-ed-vu-pred>
-      <frm-ed-vu-vyd v-if="isVisible('FrmEdVuVyd')"></frm-ed-vu-vyd>
-      <frm-ed-ispoln-post-uvedom v-if="isVisible('FrmEdIspolnPostUvedom')"></frm-ed-ispoln-post-uvedom>
-      <dlg-ed-foto-material v-if="isVisible('DlgEdFotoMaterial')"></dlg-ed-foto-material>
-      <frm-ed-docs-prot v-if="isVisible('FrmEdDocsProt')"></frm-ed-docs-prot>
-      <dlg-advice v-if="isVisible('DlgAdvice')"></dlg-advice>
+      <frm-ed-delo v-if="isVisible('FrmEdDelo')" @getMainDelo="getMainDelo" ref="FrmEdDelo"></frm-ed-delo>
+      <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')" ref="FrmEdDocsPost"></frm-ed-docs-post>
+      <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')" ref="FrmEdDocsOpred"></frm-ed-docs-opred>
+      <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')" ref="FrmEdDecisShtraf"></frm-ed-decis-shtraf>
+      <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')" ref="FrmEdIspolnShtraf"></frm-ed-ispoln-shtraf>
+      <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')" ref="FrmEdVehsAMTC"></frm-ed-vehs-a-m-t-c>
+      <frm-ed-prot-p-z-t-c v-if="isVisible('FrmEdDocsOtherPZTC')" ref="FrmEdDocsOtherPZTC"></frm-ed-prot-p-z-t-c>
+      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastFL')" ref="FrmEdUchastFL"></frm-ed-uchast-f-l>
+      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastUL')" ref="FrmEdUchastUL"></frm-ed-uchast-f-l>
+      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastOther')" ref="FrmEdUchastOther"></frm-ed-uchast-f-l>
+      <frm-ed-vu-pred v-if="isVisible('FrmEdVuPred')" ref="FrmEdVuPred"></frm-ed-vu-pred>
+      <frm-ed-vu-vyd v-if="isVisible('FrmEdVuVyd')" ref="FrmEdVuVyd"></frm-ed-vu-vyd>
+      <frm-ed-ispoln-post-uvedom v-if="isVisible('FrmEdIspolnPostUvedom')" ref="FrmEdIspolnPostUvedom"></frm-ed-ispoln-post-uvedom>
+      <dlg-ed-foto-material v-if="isVisible('DlgEdFotoMaterial')" ref="DlgEdFotoMaterial"></dlg-ed-foto-material>
+      <frm-ed-docs-prot v-if="isVisible('FrmEdDocsProt')" ref="FrmEdDocsProt"></frm-ed-docs-prot>
+      <dlg-advice v-if="isVisible('DlgAdvice')" ref="DlgAdvice"></dlg-advice>
     </div>
   </div>
 </template>
@@ -46,6 +46,12 @@
     methods: {
       isVisible(beanName) {
         return this.currentInnerBeanName === beanName;
+      },
+      initInnerForm(beanName) {
+        let innerForm = this.$refs[beanName];
+        if (innerForm) {
+          innerForm.init();
+        }
       },
       getMainDelo(mainDeloId) {
         this.$emit('getMainDelo', mainDeloId);

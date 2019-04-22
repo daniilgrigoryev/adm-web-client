@@ -1,5 +1,23 @@
 <template>
   <div v-if="data">
+
+    <div v-if="individualStatus == 3" class="adm-form__item">
+      <small class="adm-form__label">ИНН</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="22" :lg="22">
+          <masked-input inputClass="adm-input adm-input--regular wmax360" :maxlength="12" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="data.inn" @onInputChange="storeElementData"></masked-input>
+        </Col>
+      </Row>  
+    </div>
+    <div v-if="individualStatus == 3" class="adm-form__item">
+      <small class="adm-form__label">ОГРНИП:</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="22" :lg="22">
+          <masked-input inputClass="adm-input adm-input--regular wmax360" :maxlength="15" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="data.ogrn" @onInputChange="storeElementData"></masked-input>
+        </Col>
+      </Row>  
+    </div>
+
     <div class="adm-form__item">
       <small class="adm-form__label">ФИО:</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -53,7 +71,7 @@
         <Col :xs="24" :md="22" :lg="22">
           <Input class="adm-input adm-input--regular wmax360" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон:"></Input>
         </Col>
-      </Row>
+      </Row>  
     </div>
 
     <div class="adm-form__item">
@@ -89,6 +107,7 @@
         data: null,
         birthList: null,
         gragdanstvoList: null,
+        individualStatus: null, // 3 - ип
         fio: null,
         maskInputProt: {
           regex: '[а-яА-Я\ ]+',
@@ -115,6 +134,7 @@
 
         await this.fillBirthList();
         await this.fillGragdanstvoList();
+        await this.fillIndividualStatus();
       },
       async fillBirthList() {
         let eventResponse = await RequestApi.prepareData({
@@ -155,6 +175,19 @@
           });
         }
         this.gragdanstvoList = gragdanstvoList;
+      },
+      async fillIndividualStatus() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getStatus',
+            data: null
+          }
+        });
+        if (eventResponse.response) {
+          this.individualStatus = JSON.parse(JSON.parse(eventResponse.response).data);
+        }
       },
       changeFIO() {
         let fio = '';

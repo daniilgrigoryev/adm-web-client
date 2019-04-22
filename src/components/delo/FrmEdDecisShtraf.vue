@@ -18,9 +18,9 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Сумма штрафа" 
-            :value="body.sumShtraf" 
+          <view-data-item
+            label="Сумма штрафа"
+            :value="body.sumShtraf"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/penalty_gray.svg')"
           />
@@ -61,25 +61,7 @@
     },
     async created() {
       try {
-        let currentForm = innerFormStack.getCurrent();
-        await this.$store.dispatch('frmEdDecisShtrafSetCid', currentForm.cid);
-
-        let prepareParams = {
-          method: 'restore',
-          cid: currentForm.cid
-        };
-        if (funcUtils.isEmpty(currentForm.restore)) {
-          prepareParams.method = 'getData';
-          prepareParams.params = {
-            'node': currentForm.params
-          };
-          currentForm.restore = true;
-        } else {
-          delete currentForm['restore'];
-        }
-        innerFormStack.updateCurrent(currentForm);
-        let eventResponse = await RequestApi.prepareData(prepareParams);
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
+        await this.init();
 
         let vm = this;
         this.$store.watch(this.$store.getters.frmEdDecisShtrafGetCommand, async () => {
@@ -115,6 +97,31 @@
       },
     },
     methods: {
+      async init() {
+        try {
+          let currentForm = innerFormStack.getCurrent();
+          await this.$store.dispatch('frmEdDecisShtrafSetCid', currentForm.cid);
+
+          let prepareParams = {
+            method: 'restore',
+            cid: currentForm.cid
+          };
+          if (funcUtils.isEmpty(currentForm.restore)) {
+            prepareParams.method = 'getData';
+            prepareParams.params = {
+              'node': currentForm.params
+            };
+            currentForm.restore = true;
+          } else {
+            delete currentForm['restore'];
+          }
+          innerFormStack.updateCurrent(currentForm);
+          let eventResponse = await RequestApi.prepareData(prepareParams);
+          await this.$store.dispatch('fillModule', {'event': eventResponse});
+        } catch (e) {
+          alert(e.message);
+        }
+      },
       getDecisEdit() {
         try {
           let currentForm = innerFormStack.getCurrent();
