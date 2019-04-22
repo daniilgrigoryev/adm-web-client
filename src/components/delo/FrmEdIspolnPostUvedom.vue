@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div class="errors-table errors-table--v2">
+    <div class="errors-table errors-table--v2" v-if="dopData.postOpers[1]">
       <div class="errors-table__container">
         <h2  @click="hideMore = !hideMore" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
           <span class="adm-h4 color-dark-lighter" style="line-height: inherit;">Сведения о прохождении почтового отправления</span>
@@ -66,7 +66,7 @@
           <div class="view-data__container border--0">
             <div class="items-wrap">
               <view-data-item v-for="(item, index) in dopData.postOpers" v-if="item.postOperName"
-                :label="item.operTime | concatByDelimiter('-')" 
+                :label="item.operTime, item.organIspolnName | concatByDelimiter('-')" 
                 :value="item.postAttrName || item.postOperName"
                 style="grid-column: span 2;"
                 :icon="require('../../assets/images/letter.svg')"
