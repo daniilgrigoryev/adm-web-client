@@ -20,25 +20,7 @@
     },
     async created() {
       try {
-        let currentForm = innerFormStack.getCurrent();
-        await this.$store.dispatch('frmEdUchastFLSetCid', currentForm.cid);
-
-        let prepareParams = {
-          method: 'restore',
-          cid: currentForm.cid
-        };
-        if (funcUtils.isEmpty(currentForm.restore)) {
-          prepareParams.method = 'getData';
-          prepareParams.params = {
-            'node': currentForm.params
-          };
-          currentForm.restore = true;
-        } else {
-          delete currentForm['restore'];
-        }
-        innerFormStack.updateCurrent(currentForm);
-        let eventResponse = await RequestApi.prepareData(prepareParams);
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
+        await this.init();
 
         let vm = this;
         this.$store.watch(this.$store.getters.frmEdUchastFLGetCommand, async () => {
@@ -64,7 +46,33 @@
     data() {
       return {}
     },
-    methods: {},
+    methods: {
+      async init() {
+        try {
+          let currentForm = innerFormStack.getCurrent();
+          await this.$store.dispatch('frmEdUchastFLSetCid', currentForm.cid);
+
+          let prepareParams = {
+            method: 'restore',
+            cid: currentForm.cid
+          };
+          if (funcUtils.isEmpty(currentForm.restore)) {
+            prepareParams.method = 'getData';
+            prepareParams.params = {
+              'node': currentForm.params
+            };
+            currentForm.restore = true;
+          } else {
+            delete currentForm['restore'];
+          }
+          innerFormStack.updateCurrent(currentForm);
+          let eventResponse = await RequestApi.prepareData(prepareParams);
+          await this.$store.dispatch('fillModule', {'event': eventResponse});
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+    },
     computed: {
       ...mapGetters({
         dataStore: 'frmEdUchastFLGetData'

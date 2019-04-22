@@ -57,14 +57,29 @@
         </Row>
       </div>
       <div class="adm-form__item">
-        <small class="adm-form__label">Дата начала дисквалификации</small>
+        <small class="adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.dateDiskvBeg" @on-input-change="storeElementData" ></Input>
+            <Input class="adm-input adm-input--regular" v-model="data.diskvMes" @on-input-change="storeElementData" ></Input>
           </Col>
         </Row>
       </div>
-
+      <div class="adm-form__item">
+        <small class="adm-form__label">Дата начала дисквалификации</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.datDiskvBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+          </Col>
+        </Row>
+      </div>
+      <div class="adm-form__item">
+        <small class="adm-form__label">Дата окончания дисквалификации</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.datDiskvEnd" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+          </Col>
+        </Row>
+      </div>
     </div>
     <div v-if="data.decisKod && showByDecisKod(decisKods.arest)" class="adm-form__item">
       <small class="adm-form__label">Количество дней</small>

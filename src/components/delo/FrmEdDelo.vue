@@ -157,25 +157,7 @@
     },
     async created() {
       try {
-        let currentForm = innerFormStack.getCurrent();
-        await this.$store.dispatch('frmEdDeloSetCid', currentForm.cid);
-
-        let prepareParams = {
-          method: 'restore',
-          cid: currentForm.cid
-        };
-        if (funcUtils.isEmpty(currentForm.restore)) {
-          prepareParams.method = 'getData';
-          prepareParams.params = {
-            'node': currentForm.params
-          };
-          currentForm.restore = true;
-        } else {
-          delete currentForm['restore'];
-        }
-        innerFormStack.updateCurrent(currentForm);
-        let eventResponse = await RequestApi.prepareData(prepareParams);
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
+        await this.init();
 
         let vm = this;
         this.$store.watch(this.$store.getters.frmEdDeloGetCommand, async () => {
@@ -204,6 +186,31 @@
           return funcUtils.isNotEmpty(field) && field.length > 0;
         }
         return funcUtils.isNotEmpty(field);
+      },
+      async init() {
+        try {
+          let currentForm = innerFormStack.getCurrent();
+          await this.$store.dispatch('frmEdDeloSetCid', currentForm.cid);
+
+          let prepareParams = {
+            method: 'restore',
+            cid: currentForm.cid
+          };
+          if (funcUtils.isEmpty(currentForm.restore)) {
+            prepareParams.method = 'getData';
+            prepareParams.params = {
+              'node': currentForm.params
+            };
+            currentForm.restore = true;
+          } else {
+            delete currentForm['restore'];
+          }
+          innerFormStack.updateCurrent(currentForm);
+          let eventResponse = await RequestApi.prepareData(prepareParams);
+          await this.$store.dispatch('fillModule', {'event': eventResponse});
+        } catch (e) {
+          alert(e.message);
+        }
       },
       getMainDelo() {
         this.$emit('getMainDelo', this.body.deloMainId);

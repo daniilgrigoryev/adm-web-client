@@ -60,39 +60,7 @@
     },
     async created() {
       try {
-        let currentForm = innerFormStack.getCurrent();
-        await this.$store.dispatch('frmEdVuPredSetCid', currentForm.cid);
-
-        let prepareParams = {
-          method: 'restore',
-          cid: currentForm.cid
-        };
-        if (funcUtils.isEmpty(currentForm.restore)) {
-          prepareParams.method = 'getData';
-          prepareParams.params = {
-            'node': currentForm.params
-          };
-          currentForm.restore = true;
-        } else {
-          delete currentForm['restore'];
-        }
-        innerFormStack.updateCurrent(currentForm);
-        let eventResponse = await RequestApi.prepareData(prepareParams);
-        await this.$store.dispatch('fillModule', {'event': eventResponse});
-
-        let vm = this;
-        this.$store.watch(this.$store.getters.frmEdVuPredGetCommand, async () => {
-          try {
-            let currentForm = innerFormStack.getCurrent();
-            let eventResponse = await RequestApi.prepareData({
-              cid: currentForm.cid,
-              withSpinner: false
-            });
-            await vm.$store.dispatch('fillModule', {'event': eventResponse});
-          } catch (e) {
-            alert(e.message);
-          }
-        });
+        await this.init();
       } catch (e) {
         alert(e.message);
       }
@@ -114,6 +82,45 @@
       },
     },
     methods: {
+      async init() {
+        try {
+          let currentForm = innerFormStack.getCurrent();
+          await this.$store.dispatch('frmEdVuPredSetCid', currentForm.cid);
+
+          let prepareParams = {
+            method: 'restore',
+            cid: currentForm.cid
+          };
+          if (funcUtils.isEmpty(currentForm.restore)) {
+            prepareParams.method = 'getData';
+            prepareParams.params = {
+              'node': currentForm.params
+            };
+            currentForm.restore = true;
+          } else {
+            delete currentForm['restore'];
+          }
+          innerFormStack.updateCurrent(currentForm);
+          let eventResponse = await RequestApi.prepareData(prepareParams);
+          await this.$store.dispatch('fillModule', {'event': eventResponse});
+
+          let vm = this;
+          this.$store.watch(this.$store.getters.frmEdVuPredGetCommand, async () => {
+            try {
+              let currentForm = innerFormStack.getCurrent();
+              let eventResponse = await RequestApi.prepareData({
+                cid: currentForm.cid,
+                withSpinner: false
+              });
+              await vm.$store.dispatch('fillModule', {'event': eventResponse});
+            } catch (e) {
+              alert(e.message);
+            }
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
       getVuPredEdit() {
         try {
           let currentForm = innerFormStack.getCurrent();
