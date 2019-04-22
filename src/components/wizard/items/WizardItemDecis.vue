@@ -26,7 +26,7 @@
         <small class="adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.lishMes" @on-input-change="storeElementData"></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.lishMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -34,7 +34,7 @@
         <small class="adm-form__label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.lishDay" @on-input-change="storeElementData"></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.lishDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -55,7 +55,7 @@
         <small class="adm-form__label">Сумма штрафа</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.sumShtraf" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.sumShtraf" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -66,7 +66,7 @@
         <small class="adm-form__label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.arestDay" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.arestDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -85,7 +85,7 @@
         <small class="adm-form__label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.diskvDay" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.diskvDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -93,7 +93,7 @@
         <small class="adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.diskvMes" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.diskvMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -122,7 +122,7 @@
         <small class="adm-form__label">Количество часов обязательных работ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.hoursToWork" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.hoursToWork" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -141,7 +141,7 @@
         <small class="adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.period" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -149,7 +149,7 @@
         <small class="adm-form__label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.period2" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -168,7 +168,7 @@
         <small class="adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.period" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -176,7 +176,7 @@
         <small class="adm-form__label">Количество дней</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.period2" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -201,7 +201,7 @@
         <small class="adm-form__label">Количество суток</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.period2" @on-input-change="storeElementData" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -216,7 +216,8 @@
   export default {
     name: "WizardItemDecis",
     components: {
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     props: {
       info: Object,
