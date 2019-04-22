@@ -113,6 +113,11 @@
           let valueSecond = funcUtils.formatDateTime(dates[1], this.momentFormat);
           if (!valueFirst.isValid() || !valueSecond.isValid()) {
             this.onClear();
+          } else {
+            this.$emit('change', {
+              valueFirst: valueFirst.toDate(),
+              valueSecond: valueSecond.toDate()
+            });
           }
         }
       },
