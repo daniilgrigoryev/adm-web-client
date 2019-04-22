@@ -61,6 +61,18 @@
         </Row>
       </div>
     </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Стадия исполнения</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="24" :lg="24">
+            <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="storeElementData">
+              <Option class=" " v-for="item in ispolnList" :value="item.id" :key="item.id">{{ item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </div>
+    </div>
   </div>
 </template>
 
