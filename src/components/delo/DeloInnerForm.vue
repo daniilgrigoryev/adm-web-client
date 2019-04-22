@@ -4,7 +4,10 @@
       <frm-ed-delo v-if="isVisible('FrmEdDelo')" @getMainDelo="getMainDelo" ref="FrmEdDelo"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')" ref="FrmEdDocsPost"></frm-ed-docs-post>
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')" ref="FrmEdDocsOpred"></frm-ed-docs-opred>
+
       <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')" ref="FrmEdDecisShtraf"></frm-ed-decis-shtraf>
+      <frm-ed-decis-lish v-if="isVisible('FrmEdDecisLish')" ref="FrmEdDecisLish"></frm-ed-decis-lish>
+
       <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')" ref="FrmEdIspolnShtraf"></frm-ed-ispoln-shtraf>
       <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')" ref="FrmEdVehsAMTC"></frm-ed-vehs-a-m-t-c>
       <frm-ed-prot-p-z-t-c v-if="isVisible('FrmEdDocsOtherPZTC')" ref="FrmEdDocsOtherPZTC"></frm-ed-prot-p-z-t-c>
@@ -35,7 +38,10 @@
       FrmEdVuVyd: () => import('~/components/delo/FrmEdVuVyd'),
       FrmEdDocsOpred: () => import('~/components/delo/FrmEdDocsOpred'),
       FrmEdDocsPost: () => import('~/components/delo/FrmEdDocsPost'),
-      FrmEdDecisShtraf: () => import('~/components/delo/FrmEdDecisShtraf'),
+
+      FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
+      FrmEdDecisLish: () => import('~/components/delo/decis/FrmEdDecisLish'),
+
       FrmEdIspolnShtraf: () => import('~/components/delo/FrmEdIspolnShtraf'),
       FrmEdVehsAMTC: () => import('~/components/delo/FrmEdVehsAMTC'),
       FrmEdProtPZTC: () => import('~/components/delo/FrmEdProtPZTC'),

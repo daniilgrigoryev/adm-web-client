@@ -1,27 +1,193 @@
 <template>
-  <aside-template :listSectionNav="[]" title="Оштрафовать" v-if="decis">
+  <aside-template :listSectionNav="[]" title="Решение по делу" v-if="decis">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding">Оштрафовать</h2>
+            <h2 class="adm-form__headding">{{decis.decisName}}</h2>
             <div class="adm-form__content">
-              <div class="adm-form__item">
-                <small class="adm-form__label">Сумма штрафа</small>
-                <div class="adm-form__item_content">
+              
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.lish)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество месяцев</small>
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax240" v-model="decis.sumShtraf" @on-input-change="store" placeholder=""></Input>
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.lishMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество дней</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.lishDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата начала срока лишения</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
               </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Дата решения</small>
-                <div class="adm-form__item_content">
+
+              <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.warning)"></div>-->
+
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.shtraf)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Сумма штрафа</small>
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.decisDate" readonly @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.sumShtraf" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.arest)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество дней</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.arestDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата и время начала ареста</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.arestTimeBeg" @change="save" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.discval)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество дней</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.diskvDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество месяцев</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.diskvMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата начала дисквалификации</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datDiskvBeg" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата окончания дисквалификации</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datDiskvEnd" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+
+              <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.observ)"></div>-->
+
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.hoursToWork)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество часов обязательных работ</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.hoursToWork" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.forced)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата начала работ</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество месяцев</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество дней</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.imprisonment)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата начала лишения свободы</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество месяцев</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество дней</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+
+              <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.withdrawal)"></div>-->
+
+              <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.confiscation)"></div>-->
+
+              <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.exclusion)"></div>-->
+
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.stopWorkDay)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата начала приостановления</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Количество суток</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -67,7 +233,8 @@
     name: "FrmEdDecisEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     async created() {
       try {
@@ -103,6 +270,21 @@
     data() {
       return {
         decis: null,
+        decisKods: {
+          lish: 29, // Лишить права управления ТС
+          warning: 51, // Предупредить
+          shtraf: 65, // Оштрафовать
+          arest: 90, // Арестовать
+          discval: 91, // Дисквалифицировать
+          observ: 99, // Устное замечание
+          hoursToWork: 71, // Обязательные работы
+          forced: 73, // Принудительные работы
+          imprisonment: 74, // Лишение свободы
+          withdrawal: 75, // Возмездное изъятие
+          confiscation: 76, // Конфискация
+          exclusion: 77, // Выдворение за пределы РФ
+          stopWorkDay: 78, // Приостановление деятельности
+        }
       }
     },
     methods: {
@@ -113,6 +295,9 @@
             data: this.decis
           }
         });
+      },
+      showByDecisKod(decisKod) {
+        return this.decis.decisKod == decisKod;
       },
       async save() {
         let eventResponse = await RequestApi.prepareData({

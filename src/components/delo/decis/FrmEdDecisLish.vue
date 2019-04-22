@@ -1,17 +1,14 @@
 <template>
   <div v-if="body" class="ml18">
 
-    <div class="amd-title amd-title--sticky px36 pt24 pb18"><!-- wmax940 mx-auto -->
+    <div class="amd-title amd-title--sticky px36 pt24 pb18">
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../assets/images/pen.svg' class="wmax-none">
+            <img src='../../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Решение по делу - Штраф</b>
+          <b class="adm-text-big color-dark-lighter">Решение по делу - {{body.decisName }}</b>
         </div>
-        <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../assets/images/wiki.svg' class="wmax-none">
-        </Button> -->
       </div>
     </div>
 
@@ -19,17 +16,12 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
-            label="Сумма штрафа"
-            :value="body.sumShtraf"
+            label="Срок лишения"
+            :value="lishTime"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/penalty_gray.svg')"
+            :icon="require('../../../assets/images/penalty_gray.svg')"
           />
           <hr>
-          <view-data-item 
-            label="Дата решения" 
-            :value="body.decisDate | formatDateTime('DD.MM.YYYY')" 
-            style="grid-column: span 2;"
-          />
           <view-data-item 
             label="Дата вручения" 
             :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
@@ -38,6 +30,11 @@
           <view-data-item 
             label="Дата вступления" 
             :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Дата начала срока лишения" 
+            :value="body.dateLishBeg | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
           />
         </div>
@@ -64,7 +61,7 @@
         await this.init();
 
         let vm = this;
-        this.$store.watch(this.$store.getters.frmEdDecisShtrafGetCommand, async () => {
+        this.$store.watch(this.$store.getters.frmEdDecisLishGetCommand, async () => {
           try {
             let currentForm = innerFormStack.getCurrent();
             let eventResponse = await RequestApi.prepareData({
@@ -81,13 +78,18 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdDecisShtrafSetCid', null);
-      this.$store.dispatch('frmEdDecisShtrafSetData', null);
+      this.$store.dispatch('frmEdDecisLishSetCid', null);
+      this.$store.dispatch('frmEdDecisLishSetData', null);
     },
     computed: {
       ...mapGetters({
-        dataStore: 'frmEdDecisShtrafGetData'
+        dataStore: 'frmEdDecisLishGetData'
       }),
+      lishTime() {
+          let months = this.body.lishMes;
+          let days = this.body.lishDay;
+          return months? months + " Месяца" : "" + days? ", " + days + " Дня" : ""
+      },
       body() {
         let res = null;
         if (this.dataStore) {
@@ -100,7 +102,7 @@
       async init() {
         try {
           let currentForm = innerFormStack.getCurrent();
-          await this.$store.dispatch('frmEdDecisShtrafSetCid', currentForm.cid);
+          await this.$store.dispatch('frmEdDecisLishSetCid', currentForm.cid);
 
           let prepareParams = {
             method: 'restore',

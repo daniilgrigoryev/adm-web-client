@@ -13,6 +13,7 @@ import frmEdDocsOpredEdit from './modules/frmEdDocsOpredEdit';
 import frmEdDocsPost from './modules/frmEdDocsPost';
 import frmEdDocsProt from './modules/frmEdDocsProt';
 import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
+import frmEdDecisLish from './modules/frmEdDecisLish';
 import frmEdIspolnShtraf from './modules/frmEdIspolnShtraf';
 import frmEdVehsAMTC from './modules/frmEdVehsAMTC';
 import frmEdProtPZTC from './modules/frmEdProtPZTC';
@@ -110,6 +111,7 @@ const store = new Vuex.Store({
     frmEdDocsPost,
     frmEdDocsProt,
     frmEdDecisShtraf,
+    frmEdDecisLish,
     frmEdIspolnShtraf,
     frmEdVehsAMTC,
     frmEdUchastFL,
