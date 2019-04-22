@@ -67,7 +67,7 @@
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
             <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="storeElementData">
-              <Option class=" " v-for="item in ispolnList" :value="item.id" :key="item.id">{{ item.label }}</Option>
+              <Option class=" " v-for="item in ispolnList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
         </Row>
@@ -347,8 +347,8 @@
         for (let i = 0; i < ispolnDict.length; i++) {
           let ispoln = ispolnDict[i];
           ispolnList.push({
-            label: ispoln.stotvName,
-            value: ispoln.stotvKod
+            label: ispoln.name,
+            value: ispoln.id
           });
         }
         this.ispolnList = ispolnList;

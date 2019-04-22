@@ -92,16 +92,6 @@
                   </div>
                 </div>
                 <div class="adm-form__item">
-                  <small class="adm-form__label wmin60">Квартира</small>
-                  <div class="adm-form__item_content">
-                    <Row :gutter="16" type="flex" align="middle">
-                      <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular" v-model="data.adr.nkvart" @on-input-change="store" :maxlength="5"></Input>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-                <div class="adm-form__item">
                   <small class="adm-form__label wmin60">Индекс</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
@@ -510,6 +500,7 @@
       },
 
       async save() {
+        await this.store();
         let eventResponse = await RequestApi.prepareData({
           method: 'save'
         });

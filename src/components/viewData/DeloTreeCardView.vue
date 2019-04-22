@@ -160,6 +160,7 @@
   import RequestApi from "~/assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
   import decisEnum from "~/assets/js/utils/decisEnum";
+  import decisIspolnEnum from "~/assets/js/utils/decisIspolnEnum";
   import docTipEnum from "~/assets/js/utils/docTipEnum";
 
   export default {
@@ -571,7 +572,7 @@
 
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
-          if (arrElem.parentCategory) {
+          if (arrElem.parentCategory && this.checkPostUvedom(arrElem)) {
             let key = arrElem.parentCategory + '-' + arrElem.parentDocId;
             let parentElem = mappedArr[key];
             parentElem.children.push(arrElem);
@@ -600,6 +601,39 @@
             this.fillTree(tree, nodeChild, node);
           }
         }
+      },
+      checkPostUvedom(node) {
+        if (node.recType === 'DECIS_ISPOLN' && funcUtils.isNotEmpty(node.kod)) {
+          switch (node.kod) {
+            case decisIspolnEnum.POST_UVEDOM: {
+              return true;
+            }
+            case decisIspolnEnum.POST_PRIEM:
+            case decisIspolnEnum.POST_VRUCH:
+            case decisIspolnEnum.POST_VOZVRAT:
+            case decisIspolnEnum.POST_DOSYL:
+            case decisIspolnEnum.POST_NEVRUCH:
+            case decisIspolnEnum.POST_CHRAN:
+            case decisIspolnEnum.POST_TEMP_CHRAN:
+            case decisIspolnEnum.POST_PROCESSING:
+            case decisIspolnEnum.POST_IMPORT:
+            case decisIspolnEnum.POST_EXPORT:
+            case decisIspolnEnum.POST_TAMOZHN:
+            case decisIspolnEnum.POST_NEUD_VRUCH:
+            case decisIspolnEnum.POST_REG_OTPR:
+            case decisIspolnEnum.POST_TAMOZHN_FIN:
+            case decisIspolnEnum.POST_PERED_TEMP_CHRAN:
+            case decisIspolnEnum.POST_REMOVING:
+            case decisIspolnEnum.POST_OPERATION:
+            case decisIspolnEnum.POST_UNDEF: {
+              return false;
+            }
+            default: {
+              return true;
+            }
+          }
+        }
+        return true;
       },
       isParent(node) {
         return node.height === 3;
