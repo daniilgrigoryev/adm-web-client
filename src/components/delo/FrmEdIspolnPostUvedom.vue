@@ -52,6 +52,31 @@
         </div>
       </div>
     </div>
+
+    <div class="errors-table errors-table--v2">
+      <div class="errors-table__container">
+        <h2  @click="hideMore = !hideMore" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
+          <span class="adm-h4 color-dark-lighter" style="line-height: inherit;">Сведения о прохождении почтового отправления</span>
+          <Button type="text" class="bg-transparent" style="box-shadow: none;">
+            <Icon v-if="hideMore" type="md-remove" class="color-gray" :size="25" title="свернуть" />
+            <Icon v-else type="md-add" class="color-gray" :size="25" title="развернуть"/>
+          </Button>
+        </h2>
+        <div class="errors-table__content" v-show="hideMore">
+          <div class="view-data__container border--0">
+            <div class="items-wrap">
+              <view-data-item v-for="(item, index) in dopData.postOpers" v-if="item.postOperName"
+                :label="item.operTime | concatByDelimiter('-')" 
+                :value="item.postAttrName || item.postOperName"
+                style="grid-column: span 2;"
+                :icon="require('../../assets/images/letter.svg')"
+              />
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -64,6 +89,11 @@
 
   export default {
     name: "FrmEdIspolnPostUvedom",
+    data() {
+      return {
+        hideMore: false,
+      }
+    },
     components: {
       ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
@@ -140,3 +170,30 @@
     },
   }
 </script>
+
+<style lang="scss" scoped>
+
+  .errors-table{
+    .table td{
+      border-bottom: 0;
+    }
+    margin-top: 30px;
+    .error-th{
+      width: 60px;
+    }
+    .adm-table-simple thead tr th{
+      padding: 8px 12px;
+    }
+    .adm-form__headding{
+      height: 40px;
+      line-height: 40px;
+      padding-left: 40px;
+    }
+  }
+  .errors-table--v2 .errors-table__container{
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 1px 0 rgba(0,0,0,0.26), 0 0 4px 0 rgba(0,0,0,0.16);
+    background: #fff;
+  }
+</style>
