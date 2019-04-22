@@ -67,7 +67,7 @@
             <div class="items-wrap">
               <view-data-item v-for="(item, index) in dopData.postOpers" v-if="item.postOperName"
                 :label="item.operTime, item.organIspolnName | concatByDelimiter('-')" 
-                :value="item.postAttrName || item.postOperName"
+                :value="item.postOperName"
                 style="grid-column: span 2;"
                 :icon="require('../../assets/images/letter.svg')"
               />
