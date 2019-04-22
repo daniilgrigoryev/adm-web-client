@@ -167,6 +167,7 @@
       },
       async changeStatus() {
         this.storeElementData();
+        this.data.tip = null;
         await this.fillTipList();
       },
       storeElementData() {
