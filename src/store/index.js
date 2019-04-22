@@ -56,7 +56,6 @@ const store = new Vuex.Store({
         let dataJson = JSON.parse(data);
         if (dataJson.method === 'logout' && funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
           let vm = payload.vm.$root;
-          alert('socket -- logout');
           vm.logout();
           return;
         } else if (dataJson.method === 'ping' && funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
