@@ -89,6 +89,7 @@
         data: null,
         birthList: null,
         gragdanstvoList: null,
+        individualStatus: null,
         fio: null,
         maskInputProt: {
           regex: '[а-яА-Я\ ]+',
@@ -115,6 +116,7 @@
 
         await this.fillBirthList();
         await this.fillGragdanstvoList();
+        await this.fillIndividualStatus();
       },
       async fillBirthList() {
         let eventResponse = await RequestApi.prepareData({
@@ -155,6 +157,19 @@
           });
         }
         this.gragdanstvoList = gragdanstvoList;
+      },
+      async fillIndividualStatus() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getStatus',
+            data: null
+          }
+        });
+        if (eventResponse.response) {
+          this.individualStatus = JSON.parse(JSON.parse(eventResponse.response).data);
+        }
       },
       changeFIO() {
         let fio = '';
