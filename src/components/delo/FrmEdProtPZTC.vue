@@ -61,8 +61,8 @@
           <hr>
 
           <view-data-item 
-            label="Дата составления акта" 
-            :value="body.evacActTime | formatDateTime('DD.MM.YYYY')"
+            label="Дата и время составления акта эвакуации" 
+            :value="body.evacActTime | formatDateTime('DD.MM.YYYY HH:mm')"
             :icon="require('../../assets/images/time.svg')" 
           />
           <view-data-item 
