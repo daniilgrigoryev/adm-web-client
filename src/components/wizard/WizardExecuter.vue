@@ -1,15 +1,6 @@
 <template>
   <div>
-    <wizard-scenario-post v-if="isVisible('CreatePost')" ref="CreatePost" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-post>
-    <wizard-scenario2025 v-if="isVisible('CreateProt2025')" ref="CreateProt2025" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario2025>
-    <wizard-scenario-prot-evac v-if="isVisible('CreateProtEvac')" ref="CreateProtEvac" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-evac>
-    <wizard-scenario-prot-a-p-n v-if="isVisible('CreateProtAPN')" ref="CreateProtAPN" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-a-p-n>
-    <wizard-scenario-add-uchast v-if="isVisible('AddUchast')" ref="AddUchast" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-uchast>
-    <wizard-scenario-definition v-if="isVisible('CreateDefinition')" ref="CreateDefinition" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-definition>
-    <wizard-scenario-add-pred-doc v-if="isVisible('AddPredDoc')" ref="AddPredDoc" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-pred-doc>
-    <wizard-scenario-add-doc-photo v-if="isVisible('AddDocPhoto')" ref="AddDocPhoto" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-doc-photo>
-    <wizard-scenario-add-ispoln v-if="isVisible('AddIspoln')" ref="AddIspoln" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-add-ispoln>
-    <wizard-scenario-prot-izyat v-if="isVisible('CreateProtIzyat')" ref="CreateProtIzyat" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-scenario-prot-izyat>
+    <component v-if="scenario" :is="currentTabComponent.name" :ref="currentTabComponent.ref" :pathes="pathes" @storeElementData="storeElementData" @updateComponents="updateComponents"></component>
   </div>
 </template>
 
@@ -92,10 +83,77 @@
         scenario: null
       }
     },
+    computed: {
+      currentTabComponent() {
+        let res = null;
+        switch (this.scenario) {
+          case 'CreatePost': {
+            res = {
+              name: 'WizardScenarioPost'
+            };
+            break;
+          }
+          case 'CreateProt2025': {
+            res = {
+              name: 'WizardScenario2025'
+            };
+            break;
+          }
+          case 'CreateProtEvac': {
+            res = {
+              name: 'WizardScenarioProtEvac',
+              ref: 'CreateProtEvac'
+            };
+            break;
+          }
+          case 'CreateProtAPN': {
+            res = {
+              name: 'WizardScenarioProtAPN'
+            };
+            break;
+          }
+          case 'AddUchast': {
+            res = {
+              name: 'WizardScenarioAddUchast'
+            };
+            break;
+          }
+          case 'CreateDefinition': {
+            res = {
+              name: 'WizardScenarioDefinition'
+            };
+            break;
+          }
+          case 'AddPredDoc': {
+            res = {
+              name: 'WizardScenarioAddPredDoc'
+            };
+            break;
+          }
+          case 'AddDocPhoto': {
+            res = {
+              name: 'WizardScenarioAddDocPhoto'
+            };
+            break;
+          }
+          case 'AddIspoln': {
+            res = {
+              name: 'WizardScenarioAddIspoln'
+            };
+            break;
+          }
+          case 'CreateProtIzyat': {
+            res = {
+              name: 'WizardScenarioProtIzyat'
+            };
+            break;
+          }
+        }
+        res.ref = this.scenario;
+        return res;
+      }
+    },
     methods: {
-      isVisible(scenario) {
-        return this.scenario === scenario;
-      },
       async storeElementData(params) {
         let eventResponse = await RequestApi.prepareData({
           method: 'storeElementData',
