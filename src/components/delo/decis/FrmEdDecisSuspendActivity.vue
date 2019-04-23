@@ -37,12 +37,13 @@
             :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
           />
-          <hr>
+          <!-- TODO -->
+          <!-- <hr>
           <view-data-item 
             label="Дата окончания приостановления" 
             :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
-          />
+          /> -->
         </div>
       </div>
     </div>

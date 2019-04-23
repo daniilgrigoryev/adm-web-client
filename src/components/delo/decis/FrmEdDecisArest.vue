@@ -17,7 +17,7 @@
         <div class="items-wrap">
           <view-data-item
             label="Срок ареста"
-            :value="duration"
+            :value="body.arestMes, body.arestDay | concatByDelimiter(',')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
@@ -85,15 +85,12 @@
       ...mapGetters({
         dataStore: 'frmEdDecisArestGetData'
       }),
-      duration() {
-        let months = this.body.arestMes? this.body.arestMes + " Месяца" : "";
-        let days = this.body.arestDay? this.body.arestDay + " Дня" : "";
-        return months + ", " + days
-      },
       body() {
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
+          res.arestMes? res.arestMes += " Месяца" : "";
+          res.arestDay? res.arestDay += " Дня" : "";
         }
         return res;
       },

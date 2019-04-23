@@ -17,7 +17,7 @@
         <div class="items-wrap">
           <view-data-item
             label="Срок лишения"
-            :value="duration"
+            :value="body.lishMes, body.lishDay | concatByDelimiter(',')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
@@ -85,15 +85,12 @@
       ...mapGetters({
         dataStore: 'frmEdDecisLishGetData'
       }),
-      duration() {
-          let months = this.body.lishMes? this.body.lishMes + " Месяца" : "";
-          let days = this.body.lishDay? this.body.lishDay + " Дня" : "";
-          return months + ", " + days
-      },
       body() {
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
+          res.lishMes? res.lishMes += " Месяца" : "";
+          res.lishDay? res.lishDay += " Дня" : "";
         }
         return res;
       },

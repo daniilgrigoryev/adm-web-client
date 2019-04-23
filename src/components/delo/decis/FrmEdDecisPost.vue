@@ -17,7 +17,7 @@
         <div class="items-wrap">
           <view-data-item
             label="Срок"
-            :value="duration"
+            :value="body.diskvMes, body.diskvDay | concatByDelimiter(',')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
@@ -81,45 +81,16 @@
       this.$store.dispatch('frmEdDecisPostSetCid', null);
       this.$store.dispatch('frmEdDecisPostSetData', null);
 		},
-		data() {
-			return {
-				decisKods: {
-          lish: 29, // Лишить права управления ТС
-          warning: 51, // Предупредить
-          shtraf: 65, // Оштрафовать
-          arest: 90, // Арестовать
-          discval: 91, // Дисквалифицировать
-          observ: 99, // Устное замечание
-          hoursToWork: 71, // Обязательные работы
-          forced: 73, // Принудительные работы
-          imprisonment: 74, // Лишение свободы
-          withdrawal: 75, // Возмездное изъятие
-          confiscation: 76, // Конфискация
-          exclusion: 77, // Выдворение за пределы РФ
-          stopWorkDay: 78, // Приостановление деятельности
-        }
-			}
-		},
     computed: {
       ...mapGetters({
         dataStore: 'frmEdDecisPostGetData'
       }),
-      duration() {
-				let months, days;
-				switch (this.body.decisKod) {
-					case decisKods.discval:
-						months = this.body.diskvMes? this.body.diskvMes + " Месяца" : "";
-						days = this.body.diskvDay?  ", " + this.body.diskvDay + " Дня" : "";
-						break;
-					default:
-						break;
-				}
-				return months + days
-      },
       body() {
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
+          res.diskvMes? res.diskvMes += " Месяца" : "";
+          res.diskvDay? res.diskvDay += " Дня" : "";
         }
         return res;
       },
