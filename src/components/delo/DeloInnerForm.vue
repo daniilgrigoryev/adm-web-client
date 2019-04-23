@@ -1,13 +1,11 @@
 <template>
-  <div v-if="currentInnerBeanName">
+  <div v-if="currentInnerBean">
     <div class="hmin360">
       <frm-ed-delo v-if="isVisible('FrmEdDelo')" @getMainDelo="getMainDelo" ref="FrmEdDelo"></frm-ed-delo>
       <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')" ref="FrmEdDocsPost"></frm-ed-docs-post>
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')" ref="FrmEdDocsOpred"></frm-ed-docs-opred>
-
       <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')" ref="FrmEdDecisShtraf"></frm-ed-decis-shtraf>
       <frm-ed-decis-lish v-if="isVisible('FrmEdDecisLish')" ref="FrmEdDecisLish"></frm-ed-decis-lish>
-
       <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')" ref="FrmEdIspolnShtraf"></frm-ed-ispoln-shtraf>
       <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')" ref="FrmEdVehsAMTC"></frm-ed-vehs-a-m-t-c>
       <frm-ed-prot-p-z-t-c v-if="isVisible('FrmEdDocsOtherPZTC')" ref="FrmEdDocsOtherPZTC"></frm-ed-prot-p-z-t-c>
@@ -28,7 +26,7 @@
   export default {
     name: "DeloInnerForm",
     props: {
-      currentInnerBeanName: String
+      currentInnerBean: Object
     },
     components: {
       DlgAdvice: () => import('~/components/delo/DlgAdvice'),
@@ -38,10 +36,8 @@
       FrmEdVuVyd: () => import('~/components/delo/FrmEdVuVyd'),
       FrmEdDocsOpred: () => import('~/components/delo/FrmEdDocsOpred'),
       FrmEdDocsPost: () => import('~/components/delo/FrmEdDocsPost'),
-
       FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
       FrmEdDecisLish: () => import('~/components/delo/decis/FrmEdDecisLish'),
-
       FrmEdIspolnShtraf: () => import('~/components/delo/FrmEdIspolnShtraf'),
       FrmEdVehsAMTC: () => import('~/components/delo/FrmEdVehsAMTC'),
       FrmEdProtPZTC: () => import('~/components/delo/FrmEdProtPZTC'),
@@ -49,15 +45,28 @@
       FrmEdDocsProt: () => import('~/components/delo/FrmEdDocsProt'),
       FrmEdDelo: () => import('~/components/delo/FrmEdDelo'),
     },
+    updated() {
+      if (this.currentInnerBean) {
+        let currentForm = this.$refs[this.currentInnerBean.beanName];
+        if (currentForm) {
+          this.currentInnerBean.tag = currentForm.$vnode.componentOptions.tag;
+        }
+
+        let currentBean = this.currentBean;
+        if (currentForm && currentBean && currentBean.tag === this.currentInnerBean.tag && currentBean.cid !== this.currentInnerBean.cid) {
+          currentForm.init();
+        }
+        this.currentBean = this.currentInnerBean;
+      }
+    },
+    data() {
+      return {
+        currentBean: null
+      }
+    },
     methods: {
       isVisible(beanName) {
-        return this.currentInnerBeanName === beanName;
-      },
-      initInnerForm(beanName) {
-        let innerForm = this.$refs[beanName];
-        if (innerForm) {
-          innerForm.init();
-        }
+        return this.currentInnerBean.beanName === beanName;
       },
       getMainDelo(mainDeloId) {
         this.$emit('getMainDelo', mainDeloId);
