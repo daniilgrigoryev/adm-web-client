@@ -86,7 +86,7 @@
             res = 'FrmEdVehsAMTC';
             break;
           }
-          case 'FrmEdProtPZTC': {
+          case 'FrmEdDocsOtherPZTC': {
             res = 'FrmEdProtPZTC';
             break;
           }
