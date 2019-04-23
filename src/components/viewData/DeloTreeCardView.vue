@@ -78,7 +78,7 @@
                     <Button :disabled="!menuItemVisible(menu.addDocument.PostDeloAPN)" @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
                   </li>
                   <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.PostPrekrDeloAPN)" type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.PostPrekrDeloAPN)" @click="createWizardProtStopDelo" type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
                   </li>
                   <li>
                     <Button :disabled="!menuItemVisible(menu.addDocument.Izvesh)" type="text" class="adm-btn-regular">Извещение</Button>
@@ -797,6 +797,25 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateProtAPN',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardProtStopDelo(){
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            scenarioName: 'CreateProtStopDelo',
             node: copyNode
           };
 

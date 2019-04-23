@@ -20,7 +20,8 @@
       WizardScenarioAddIspoln: () => import('~/components/wizard/WizardScenarioAddIspoln'),
       WizardScenarioAddDocPhoto: () => import('~/components/wizard/WizardScenarioAddDocPhoto'),
       WizardScenarioProtIzyat: () => import('~/components/wizard/WizardScenarioProtIzyat'),
-      WizardScenarioAddUchast: () => import('~/components/wizard/WizardScenarioAddUchast')
+      WizardScenarioAddUchast: () => import('~/components/wizard/WizardScenarioAddUchast'),
+      WizardScenarioPostStopDelo: () => import('~/components/wizard/WizardScenarioPostStopDelo')
     },
     async created() {
       try {
@@ -87,6 +88,12 @@
       currentTabComponent() {
         let res = null;
         switch (this.scenario) {
+          case 'CreateProtStopDelo': {
+            res = {
+              name: 'WizardScenarioPostStopDelo'
+            };
+            break;
+          }
           case 'CreatePost': {
             res = {
               name: 'WizardScenarioPost'
