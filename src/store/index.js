@@ -120,7 +120,6 @@ const store = new Vuex.Store({
     frmEdDocsProt,
 
     frmEdDecisShtraf,
-    frmEdDecisShtraf,
     frmEdDecisLish,
     frmEdDecisVozbDelo,
     frmEdDecisPredup,
