@@ -300,6 +300,7 @@
         return this.decis.decisKod == decisKod;
       },
       async save() {
+        await this.store();
         let eventResponse = await RequestApi.prepareData({
           method: 'update'
         });
