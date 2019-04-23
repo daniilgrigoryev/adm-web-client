@@ -34,7 +34,7 @@
           />
           <view-data-item 
             label="Дата начала срока лишения" 
-            :value="body.dateLishBeg | formatDateTime('DD.MM.YYYY')" 
+            :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
           />
         </div>
