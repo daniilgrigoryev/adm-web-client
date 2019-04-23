@@ -45,12 +45,34 @@
 .bg-white-medium     {background-color: $white-medium;}
 .bg-white-light      {background-color: $white-light;}
 
+.bg-pink-thin{
+  background-color: #f6e9f3!important;
+}
+.bg-pink-thin.tree__link::after{
+  filter: hue-rotate(100deg);
+}
+.bg-pink-thin.tree__link:hover{
+  background-color: #fff3f8!important;
+}
+.bg-pink-thin.tree__link:hover::after{
+  filter: hue-rotate(130deg) contrast(110%);
+}
 
 
+.bg-yellow-thin{
+  background-color: #f5ebe4!important;
+}
 
-// html{
-//   overflow-y: auto;
-// }
+.bg-yellow-thin.tree__link::after{
+  filter: hue-rotate(180deg);
+}
+
+.bg-yellow-thin.tree__link:hover{
+  background-color: #fff5ee!important;
+}
+.bg-yellow-thin.tree__link:hover::after{
+  filter: hue-rotate(180deg) contrast(110%);
+}
 body {
   font-family: 'Open Sans', sans-serif;
 }

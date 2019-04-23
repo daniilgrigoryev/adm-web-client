@@ -2,7 +2,7 @@
   <div>
     <ul class="tree">
       <li @click="parentNodeClick">
-        <a href="javascript:void(0)" class="tree__link " :class='{"tree__link--selected" : node.selected }'>
+        <a href="javascript:void(0)" class="tree__link " :class='[{"tree__link--selected" : node.selected}, deloBgCorrection]'>
           <div class="tree__icon">
             <img :src="iconNode" alt="">
           </div>
@@ -49,7 +49,8 @@
     },
     data() {
       return {
-        open: false
+        open: false,
+        colorClass: null,
       }
     },
     computed: {
@@ -170,6 +171,33 @@
         }
         return '';
       },
+      deloBgCorrection(){
+        let node = this.node;
+        let params = node.nodeParams;
+        
+        if(node.recType == "DELO"){
+          switch (params.delo_apn_check_priority) {
+            // 0-3 - красный
+            // 4-7 - жёлтый
+            // 8 и выше - зелёный
+            case 0:
+            case 1:
+            case 2:
+            case 3: {
+              return "bg-pink-thin";
+            }
+            case 4:
+            case 5:
+            case 6:
+            case 7:{
+              return "bg-yellow-thin";
+            }
+            default: {
+              return "";
+            }
+          }
+        }
+      },
       dataNode() {
         let node = this.node;
         let params = node.nodeParams;
@@ -183,6 +211,7 @@
               </h4>
               <p>${params.delo_apn_n}</p>
               <p class="other-info">по ${params.delo_apn_stotv}</p>
+              <span>${params.delo_apn_check_priority}</span>
             `;
           }
           case "UCHASTFL":
