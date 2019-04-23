@@ -51,10 +51,14 @@
 .bg-pink-thin.tree__link::after{
   filter: hue-rotate(100deg);
 }
-.bg-pink-thin.tree__link:hover{
+.bg-pink-thin.tree__link:hover,
+.bg-pink-thin.tree__link.tree__link--selected{
   background-color: #fff3f8!important;
 }
 .bg-pink-thin.tree__link:hover::after{
+  filter: hue-rotate(130deg) contrast(110%);
+}
+.bg-pink-thin.tree__link.tree__link--selected::after{
   filter: hue-rotate(130deg) contrast(110%);
 }
 
@@ -67,12 +71,20 @@
   filter: hue-rotate(180deg);
 }
 
-.bg-yellow-thin.tree__link:hover{
+.bg-yellow-thin.tree__link:hover,
+.bg-yellow-thin.tree__link.tree__link--selected{
   background-color: #fff5ee!important;
 }
 .bg-yellow-thin.tree__link:hover::after{
   filter: hue-rotate(180deg) contrast(110%);
 }
+.bg-yellow-thin.tree__link.tree__link--selected::after{
+  filter: hue-rotate(180deg) contrast(110%);
+}
+
+
+
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
