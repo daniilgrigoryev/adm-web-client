@@ -200,7 +200,7 @@
             return `
               <h4>Транспортное средство</h4>
               <p>${params.vehs_nspec}</p>
-              <p class="other-info">${params.vehs_marka_avto}</p>
+              <p class="other-info">${params.vehs_marka_avto} ${params.vehs_modavto_name}</p>
             `;
           }
           case "VU_PRED":

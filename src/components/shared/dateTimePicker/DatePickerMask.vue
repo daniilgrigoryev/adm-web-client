@@ -112,9 +112,13 @@
 <style scoped lang="scss">
   .calendar-header {
     position: absolute;
-    height: 277px;
+    // height: 277px;
     background: #fff;
     border-color: rgb(81, 90, 110);
     z-index: 15;
+    .calendar .time .time-list{
+      max-width: none;
+    }
   }
+
 </style>
