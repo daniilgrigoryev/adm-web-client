@@ -50,7 +50,6 @@
     data() {
       return {
         open: false,
-        colorClass: null,
       }
     },
     computed: {
@@ -211,7 +210,6 @@
               </h4>
               <p>${params.delo_apn_n}</p>
               <p class="other-info">по ${params.delo_apn_stotv}</p>
-              <span>${params.delo_apn_check_priority}</span>
             `;
           }
           case "UCHASTFL":

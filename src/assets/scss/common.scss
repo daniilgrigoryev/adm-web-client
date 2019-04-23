@@ -275,6 +275,7 @@ html, body, #app {
   direction: rtl;
   z-index: 9;
   height: calc(100vh - 130px);
+  background: linear-gradient(to right, #f5fafd 95.6%, #fafafa 0%);
 }
 .tree {
   position: -webkit-sticky;
