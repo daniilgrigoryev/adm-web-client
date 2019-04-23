@@ -12,9 +12,16 @@ import frmEdDocsOpred from './modules/frmEdDocsOpred';
 import frmEdDocsOpredEdit from './modules/frmEdDocsOpredEdit';
 import frmEdDocsPost from './modules/frmEdDocsPost';
 import frmEdDocsProt from './modules/frmEdDocsProt';
+
 import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
 import frmEdDecisLish from './modules/frmEdDecisLish';
 import frmEdDecisVozbDelo from './modules/frmEdDecisVozbDelo';
+import frmEdDecisPredup from './modules/frmEdDecisPredup';
+import frmEdDecisArest from './modules/frmEdDecisArest';
+import frmEdDecisPost from './modules/frmEdDecisPost';
+import frmEdDecisMandWork from './modules/frmEdDecisMandWork';
+import frmEdDecisSuspendActivity from './modules/frmEdDecisSuspendActivity';
+
 import frmEdIspolnShtraf from './modules/frmEdIspolnShtraf';
 import frmEdVehsAMTC from './modules/frmEdVehsAMTC';
 import frmEdProtPZTC from './modules/frmEdProtPZTC';
@@ -113,8 +120,14 @@ const store = new Vuex.Store({
     frmEdDocsProt,
 
     frmEdDecisShtraf,
+    frmEdDecisShtraf,
     frmEdDecisLish,
     frmEdDecisVozbDelo,
+    frmEdDecisPredup,
+    frmEdDecisArest,
+    frmEdDecisPost,
+    frmEdDecisMandWork,
+    frmEdDecisSuspendActivity,
     
     frmEdIspolnShtraf,
     frmEdVehsAMTC,

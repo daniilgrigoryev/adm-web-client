@@ -16,14 +16,14 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
-            label="Срок лишения"
-            :value="duration"
+            label="Срок ареста"
+            :value="body.period2"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
           <hr>
           <view-data-item 
-            label="Дата начала срока лишения" 
+            label="Дата начала приостановления" 
             :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
           />
@@ -35,6 +35,12 @@
           <view-data-item 
             label="Дата вступления" 
             :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item 
+            label="Дата окончания приостановления" 
+            :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
           />
         </div>
@@ -52,7 +58,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: "FrmEdDecisLish",
+    name: "FrmEdDecisSuspendActivity",
     components: {
       ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
@@ -61,7 +67,7 @@
         await this.init();
 
         let vm = this;
-        this.$store.watch(this.$store.getters.frmEdDecisLishGetCommand, async () => {
+        this.$store.watch(this.$store.getters.frmEdDecisSuspendActivityGetCommand, async () => {
           try {
             let currentForm = innerFormStack.getCurrent();
             let eventResponse = await RequestApi.prepareData({
@@ -78,17 +84,17 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdDecisLishSetCid', null);
-      this.$store.dispatch('frmEdDecisLishSetData', null);
+      this.$store.dispatch('frmEdDecisSuspendActivitySetCid', null);
+      this.$store.dispatch('frmEdDecisSuspendActivitySetData', null);
     },
     computed: {
       ...mapGetters({
-        dataStore: 'frmEdDecisLishGetData'
+        dataStore: 'frmEdDecisSuspendActivityGetData'
       }),
       duration() {
-          let months = this.body.lishMes? this.body.lishMes + " Месяца" : "";
-          let days = this.body.lishDay? this.body.lishDay + " Дня" : "";
-          return months + ", " + days
+        let months = this.body.arestMes? this.body.arestMes + " Месяца" : "";
+        let days = this.body.arestDay? this.body.arestDay + " Дня" : "";
+        return months + ", " + days
       },
       body() {
         let res = null;
@@ -102,7 +108,7 @@
       async init() {
         try {
           let currentForm = innerFormStack.getCurrent();
-          await this.$store.dispatch('frmEdDecisLishSetCid', currentForm.cid);
+          await this.$store.dispatch('frmEdDecisSuspendActivitySetCid', currentForm.cid);
 
           let prepareParams = {
             method: 'restore',

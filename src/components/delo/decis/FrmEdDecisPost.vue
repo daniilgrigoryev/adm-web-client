@@ -16,14 +16,14 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
-            label="Срок лишения"
+            label="Срок"
             :value="duration"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
           <hr>
           <view-data-item 
-            label="Дата начала срока лишения" 
+            label="Дата начала" 
             :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
           />
@@ -52,7 +52,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: "FrmEdDecisLish",
+    name: "FrmEdDecisPost",
     components: {
       ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
@@ -61,7 +61,7 @@
         await this.init();
 
         let vm = this;
-        this.$store.watch(this.$store.getters.frmEdDecisLishGetCommand, async () => {
+        this.$store.watch(this.$store.getters.frmEdDecisPostGetCommand, async () => {
           try {
             let currentForm = innerFormStack.getCurrent();
             let eventResponse = await RequestApi.prepareData({
@@ -78,17 +78,43 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdDecisLishSetCid', null);
-      this.$store.dispatch('frmEdDecisLishSetData', null);
-    },
+      this.$store.dispatch('frmEdDecisPostSetCid', null);
+      this.$store.dispatch('frmEdDecisPostSetData', null);
+		},
+		data() {
+			return {
+				decisKods: {
+          lish: 29, // Лишить права управления ТС
+          warning: 51, // Предупредить
+          shtraf: 65, // Оштрафовать
+          arest: 90, // Арестовать
+          discval: 91, // Дисквалифицировать
+          observ: 99, // Устное замечание
+          hoursToWork: 71, // Обязательные работы
+          forced: 73, // Принудительные работы
+          imprisonment: 74, // Лишение свободы
+          withdrawal: 75, // Возмездное изъятие
+          confiscation: 76, // Конфискация
+          exclusion: 77, // Выдворение за пределы РФ
+          stopWorkDay: 78, // Приостановление деятельности
+        }
+			}
+		},
     computed: {
       ...mapGetters({
-        dataStore: 'frmEdDecisLishGetData'
+        dataStore: 'frmEdDecisPostGetData'
       }),
       duration() {
-          let months = this.body.lishMes? this.body.lishMes + " Месяца" : "";
-          let days = this.body.lishDay? this.body.lishDay + " Дня" : "";
-          return months + ", " + days
+				let months, days;
+				switch (this.body.decisKod) {
+					case decisKods.discval:
+						months = this.body.diskvMes? this.body.diskvMes + " Месяца" : "";
+						days = this.body.diskvDay?  ", " + this.body.diskvDay + " Дня" : "";
+						break;
+					default:
+						break;
+				}
+				return months + days
       },
       body() {
         let res = null;
@@ -102,7 +128,7 @@
       async init() {
         try {
           let currentForm = innerFormStack.getCurrent();
-          await this.$store.dispatch('frmEdDecisLishSetCid', currentForm.cid);
+          await this.$store.dispatch('frmEdDecisPostSetCid', currentForm.cid);
 
           let prepareParams = {
             method: 'restore',
