@@ -86,9 +86,9 @@
         dataStore: 'frmEdDecisLishGetData'
       }),
       lishTime() {
-          let months = this.body.lishMes;
-          let days = this.body.lishDay;
-          return months? months + " Месяца" : "" + days? ", " + days + " Дня" : ""
+          let months = this.body.lishMes? this.body.lishMes + "Месяца" : "";
+          let days = this.body.lishDay? this.body.lishDay + "Дня" : "";
+          return []
       },
       body() {
         let res = null;

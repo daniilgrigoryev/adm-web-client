@@ -20,6 +20,7 @@
       FrmEdVuVyd: () => import('~/components/delo/FrmEdVuVyd'),
       FrmEdDocsOpred: () => import('~/components/delo/FrmEdDocsOpred'),
       FrmEdDocsPost: () => import('~/components/delo/FrmEdDocsPost'),
+
       FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
       FrmEdDecisLish: () => import('~/components/delo/decis/FrmEdDecisLish'),
       FrmEdDecisVozbDelo: () => import('~/components/delo/decis/FrmEdDecisVozbDelo'),
