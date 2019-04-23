@@ -6,11 +6,8 @@
       <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')" ref="FrmEdDocsOpred"></frm-ed-docs-opred>
       <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')" ref="FrmEdDecisShtraf"></frm-ed-decis-shtraf>
       <frm-ed-decis-lish v-if="isVisible('FrmEdDecisLish')" ref="FrmEdDecisLish"></frm-ed-decis-lish>
-<<<<<<< Updated upstream
-=======
       <frm-ed-decis-vozb-delo v-if="isVisible('FrmEdDecisVozbDelo')" ref="FrmEdDecisVozbDelo"></frm-ed-decis-vozb-delo>
 
->>>>>>> Stashed changes
       <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')" ref="FrmEdIspolnShtraf"></frm-ed-ispoln-shtraf>
       <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')" ref="FrmEdVehsAMTC"></frm-ed-vehs-a-m-t-c>
       <frm-ed-prot-p-z-t-c v-if="isVisible('FrmEdDocsOtherPZTC')" ref="FrmEdDocsOtherPZTC"></frm-ed-prot-p-z-t-c>
@@ -43,11 +40,8 @@
       FrmEdDocsPost: () => import('~/components/delo/FrmEdDocsPost'),
       FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
       FrmEdDecisLish: () => import('~/components/delo/decis/FrmEdDecisLish'),
-<<<<<<< Updated upstream
-=======
       FrmEdDecisVozbDelo: () => import('~/components/delo/decis/FrmEdDecisVozbDelo'),
 
->>>>>>> Stashed changes
       FrmEdIspolnShtraf: () => import('~/components/delo/FrmEdIspolnShtraf'),
       FrmEdVehsAMTC: () => import('~/components/delo/FrmEdVehsAMTC'),
       FrmEdProtPZTC: () => import('~/components/delo/FrmEdProtPZTC'),
