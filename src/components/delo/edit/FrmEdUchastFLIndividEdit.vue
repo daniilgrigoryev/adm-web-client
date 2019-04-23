@@ -74,9 +74,15 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.individ.birthMestoKod" clearable filterable @on-change="changeBirthMesto">
-                        <Option class="" v-for="item in birthMestoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      <AutoComplete
+                        v-model="uchastIndivid.individ.birthMesto"
+                        :data="birthMestoList"
+                        class="wmin180 adm-input adm-input--regular wmin180"
+                        :filter-method="filterBirthMesto"
+                        @on-change="store"
+                        placeholder=""
+                        clearable>
+                      </AutoComplete>
                     </Col>
                   </Row>
                 </div>
@@ -203,6 +209,10 @@
         } else {
           this.uchastIndivid = uchastIndivid;
           this.parseBirthday(uchastIndivid);
+
+          if (funcUtils.isEmpty(this.uchastIndivid.individ.birthMesto)) {
+            this.uchastIndivid.individ.birthMesto = '';
+          }
           
           await this.fillVehsList();
           await this.fillTipVidList();
@@ -276,16 +286,11 @@
         }
         this.store();
       },
-      changeBirthMesto(e) {
-        if (e) {
-          let item = this.birthMestoList.filter((item) => {
-            return item.value === e;
-          }).getFirst();
-          this.uchastIndivid.individ.birthMesto = item.label;
-        } else {
-          this.uchastIndivid.individ.birthMesto = null;
+      filterBirthMesto(value, option) {
+        if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+          return false;
         }
-        this.store();
+        return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
       async readDelo() {
         let eventResponse = await RequestApi.prepareData({
@@ -347,10 +352,7 @@
         let birthMestoDict = JSON.parse(eventResponse.response).data;
         for (let i = 0; i < birthMestoDict.length; i++) {
           let birthMesto = birthMestoDict[i];
-          birthMestoList.push({
-            label: birthMesto.BIRTH_MESTO,
-            value: birthMesto.BIRTH_MESTO_KOD
-          });
+          birthMestoList.push(birthMesto.BIRTH_MESTO);
         }
         this.birthMestoList = birthMestoList;
       },

@@ -24,6 +24,7 @@
       FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
       FrmEdDecisLish: () => import('~/components/delo/decis/FrmEdDecisLish'),
       FrmEdDecisVozbDelo: () => import('~/components/delo/decis/FrmEdDecisVozbDelo'),
+      FrmEdDecisPredup: () => import('~/components/delo/decis/FrmEdDecisPredup'),
 
       FrmEdIspolnShtraf: () => import('~/components/delo/FrmEdIspolnShtraf'),
       FrmEdVehsAMTC: () => import('~/components/delo/FrmEdVehsAMTC'),
@@ -76,6 +77,18 @@
           }
           case 'FrmEdDecisLish': {
             res = 'FrmEdDecisLish';
+            break;
+          }
+          case 'FrmEdDecisPredup': {
+            res = 'FrmEdDecisPredup';
+            break;
+          }
+          case 'FrmEdDecisArest': {
+            res = 'FrmEdDecisArest';
+            break;
+          }
+          case 'FrmEdDecisMandWork': {
+            res = 'FrmEdDecisMandWork';
             break;
           }
           case 'FrmEdIspolnShtraf': {

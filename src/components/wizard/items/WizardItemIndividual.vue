@@ -38,9 +38,15 @@
       <small class="adm-form__label">Место рождения</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <Select class="wmin180 adm-input adm-input--regular wmax360" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData" >
-            <Option class="" v-for="item in birthList" :value="item.value" :key="item.value">{{item.label}}</Option>
-          </Select>
+          <AutoComplete
+            v-model="data.birthMesto"
+            :data="birthList"
+            class="wmin180 adm-input adm-input--regular wmax360"
+            :filter-method="filterBirthMesto"
+            @on-change="storeElementData"
+            placeholder=""
+            clearable>
+          </AutoComplete>
         </Col>
       </Row>
     </div>
@@ -105,7 +111,7 @@
     data() {
       return {
         data: null,
-        birthList: null,
+        birthList: [],
         gragdanstvoList: null,
         individualStatus: null, // 3 - ип
         fio: null,
@@ -130,6 +136,10 @@
           this.data.birthdayDay = new Date(this.data.birthdayDay);
         }
 
+        if (funcUtils.isEmpty(this.data.birthMesto)) {
+          this.data.birthMesto = '';
+        }
+
         this.parseFIO();
 
         await this.fillBirthList();
@@ -149,10 +159,7 @@
         let birthDict = JSON.parse(JSON.parse(eventResponse.response).data);
         for (let i = 0; i < birthDict.length; i++) {
           let birth = birthDict[i];
-          birthList.push({
-            label: birth.BIRTH_MESTO,
-            value: birth.BIRTH_MESTO_KOD
-          });
+          birthList.push(birth.BIRTH_MESTO);
         }
         this.birthList = birthList;
       },
@@ -235,6 +242,12 @@
           this.fio += this.data.thirdName;
         }
         this.fio = this.fio.trim();
+      },
+      filterBirthMesto(value, option) {
+        if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+          return false;
+        }
+        return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
       storeElementData() {
         this.$emit('storeElementData', {

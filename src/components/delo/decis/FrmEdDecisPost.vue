@@ -16,14 +16,14 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
-            label="Срок лишения"
-            :value="body.lishMes, body.lishDay | concatByDelimiter(',')"
+            label="Срок"
+            :value="body.diskvMes, body.diskvDay | concatByDelimiter(',')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
           <hr>
           <view-data-item 
-            label="Дата начала срока лишения" 
+            label="Дата начала" 
             :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
           />
@@ -52,7 +52,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: "FrmEdDecisLish",
+    name: "FrmEdDecisPost",
     components: {
       ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
@@ -61,7 +61,7 @@
         await this.init();
 
         let vm = this;
-        this.$store.watch(this.$store.getters.frmEdDecisLishGetCommand, async () => {
+        this.$store.watch(this.$store.getters.frmEdDecisPostGetCommand, async () => {
           try {
             let currentForm = innerFormStack.getCurrent();
             let eventResponse = await RequestApi.prepareData({
@@ -78,19 +78,19 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdDecisLishSetCid', null);
-      this.$store.dispatch('frmEdDecisLishSetData', null);
-    },
+      this.$store.dispatch('frmEdDecisPostSetCid', null);
+      this.$store.dispatch('frmEdDecisPostSetData', null);
+		},
     computed: {
       ...mapGetters({
-        dataStore: 'frmEdDecisLishGetData'
+        dataStore: 'frmEdDecisPostGetData'
       }),
       body() {
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
-          res.lishMes? res.lishMes += " Месяца" : "";
-          res.lishDay? res.lishDay += " Дня" : "";
+          res.diskvMes? res.diskvMes += " Месяца" : "";
+          res.diskvDay? res.diskvDay += " Дня" : "";
         }
         return res;
       },
@@ -99,7 +99,7 @@
       async init() {
         try {
           let currentForm = innerFormStack.getCurrent();
-          await this.$store.dispatch('frmEdDecisLishSetCid', currentForm.cid);
+          await this.$store.dispatch('frmEdDecisPostSetCid', currentForm.cid);
 
           let prepareParams = {
             method: 'restore',

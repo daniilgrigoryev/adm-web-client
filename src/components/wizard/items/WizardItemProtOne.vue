@@ -56,7 +56,6 @@
     },
     async created() {
       await this.initData();
-      document.querySelector("input").focus();
     },
     data() {
       return {
