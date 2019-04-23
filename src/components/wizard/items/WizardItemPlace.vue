@@ -118,9 +118,15 @@
 							<div class="adm-form__item_content">
 							<Row :gutter="16" type="flex" align="middle">
 								<Col :xs="24" :md="24" :lg="24">
-								<Select class="adm-input adm-input--regular wmin180" placeholder="Ввод места"  v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
-									<Option class="" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-								</Select>
+                  <AutoComplete
+                    v-model="data.placeName"
+                    :data="placesList"
+                    class="wmin180 adm-input adm-input--regular wmax360"
+                    :filter-method="filterPlace"
+                    @on-change="storeElementData"
+                    placeholder=""
+                    clearable>
+                  </AutoComplete>
 								</Col>
 							</Row>
 							</div>
@@ -230,8 +236,7 @@ export default {
 			rayonsList: null,
 			citiesList: null,
 			streetsList: null,
-			roadsList: null,
-			placesList: null,
+			placesList: [],
 		}
 	},
 	methods: {
@@ -259,8 +264,11 @@ export default {
         this.citiesList = null;
         this.streetsList = null;
 
+        if (funcUtils.isEmpty(this.data.placeName)) {
+          this.data.placeName = '';
+        }
+
         await this.fillRegionList();
-        await this.fillRoadList();
         await this.fillPlaceList();
         if (this.isNotEmptyRegionId()) {
           await this.fillRayonList();
@@ -324,17 +332,11 @@ export default {
 
       this.storeElementData();
 		},
-		changePlace(query) {
-			if ((funcUtils.isEmpty(query) || query.length === 0)) {
-				this.data.placeId = null;
-			}
-			this.storeElementData();
-		},
-		changeRoad(query) {
-			if ((funcUtils.isEmpty(query) || query.length === 0)) {
-				this.data.roadId = null;
-			}
-			this.storeElementData();
+    filterPlace(value, option) {
+      if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+        return false;
+      }
+      return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
 		},
 		async fillRegionList() {
 			let eventResponse = await RequestApi.prepareData({
@@ -427,26 +429,6 @@ export default {
 				this.citiesList = citiesList;
 			}
 		},
-		async fillRoadList() {
-			let eventResponse = await RequestApi.prepareData({
-				method: 'invokeElementMethod',
-				params: {
-					eCID: this.info.eCID,
-					methodName: 'getRoads',
-					data: null
-				}
-			});
-			let roadsList = [];
-			let roadsDict = JSON.parse(JSON.parse(eventResponse.response).data);
-			for (let i = 0; i < roadsDict.length; i++) {
-				let road = roadsDict[i];
-				roadsList.push({
-					label: road.NAME,
-					value: road.ID
-				});
-			}
-			this.roadsList = roadsList;
-		},
 		async fillPlaceList() {
 			let eventResponse = await RequestApi.prepareData({
 				method: 'invokeElementMethod',
@@ -456,7 +438,7 @@ export default {
 					data: null
 				}
 			});
-			let placesList = [];
+			let placesList = new Set();
 			let placesDict = JSON.parse(JSON.parse(eventResponse.response).data);
 			for (let i = 0; i < placesDict.length; i++) {
 				let place = placesDict[i];
@@ -466,12 +448,9 @@ export default {
 				} else {
 					label = place.PLACE_NAME;
 				}
-				placesList.push({
-					label: label,
-					value: place.PLACE_ID
-				});
+				placesList.add(label);
 			}
-			this.placesList = placesList;
+			this.placesList = placesList.toJSON();
 		},
 		async fillStreetList(query = '') {
 			let eventResponse;
@@ -573,8 +552,7 @@ export default {
 			this.regionsList = null;
 			this.rayonsList = null;
 			this.citiesList = null;
-			this.roadsList = null;
-			this.placesList = null;
+			this.placesList = [];
 		},
 
 		isNotEmptyRegionId() {

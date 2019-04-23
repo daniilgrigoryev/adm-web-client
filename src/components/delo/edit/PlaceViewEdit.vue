@@ -110,9 +110,15 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="Ввод места"  v-model="data.placeId" filterable clearable @on-query-change="changePlace" @on-clear="changePlace">
-                        <Option class="" v-for="item in placesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      <AutoComplete
+                        v-model="data.placeName"
+                        :data="placesList"
+                        class="wmin180 adm-input adm-input--regular wmin180"
+                        :filter-method="filterPlace"
+                        @on-change="store"
+                        placeholder=""
+                        clearable>
+                      </AutoComplete>
                     </Col>
                   </Row>
                 </div>
@@ -253,8 +259,7 @@
         rayonsList: null,
         citiesList: null,
         streetsList: null,
-        roadsList: null,
-        placesList: null,
+        placesList: [],
         title: 'Редактирование адреса места нарушения / места составления'
       }
     },
@@ -266,8 +271,11 @@
         this.citiesList = null;
         this.streetsList = null;
 
+        if (funcUtils.isEmpty(this.data.placeName)) {
+          this.data.placeName = '';
+        }
+
         await this.fillRegionList();
-        await this.fillRoadList();
         await this.fillPlaceList();
         if (this.isNotEmptyRegionId()) {
           await this.fillRayonList();
@@ -328,17 +336,11 @@
 
         this.store();
       },
-      changePlace(query) {
-        if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.data.placeId = null;
+      filterPlace(value, option) {
+        if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+          return false;
         }
-        this.store();
-      },
-      changeRoad(query) {
-        if ((funcUtils.isEmpty(query) || query.length === 0)) {
-          this.data.roadId = null;
-        }
-        this.store();
+        return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
 
       async fillRegionList() {
@@ -415,26 +417,11 @@
           this.citiesList = citiesList;
         }
       },
-      async fillRoadList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getRoads'
-        });
-        let roadsList = [];
-        let roadsDict = JSON.parse(eventResponse.response).data;
-        for (let i = 0; i < roadsDict.length; i++) {
-          let road = roadsDict[i];
-          roadsList.push({
-            label: road.NAME,
-            value: road.ID
-          });
-        }
-        this.roadsList = roadsList;
-      },
       async fillPlaceList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getPlaces'
         });
-        let placesList = [];
+        let placesList = new Set();
         let placesDict = JSON.parse(eventResponse.response).data;
         for (let i = 0; i < placesDict.length; i++) {
           let place = placesDict[i];
@@ -444,12 +431,9 @@
           } else {
             label = place.PLACE_NAME;
           }
-          placesList.push({
-            label: label,
-            value: place.PLACE_ID
-          });
+          placesList.add(label);
         }
-        this.placesList = placesList;
+        this.placesList = placesList.toJSON();
       },
       async fillStreetList(query = '') {
         let eventResponse;
