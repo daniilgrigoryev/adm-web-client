@@ -877,7 +877,7 @@
                   key: 'deloN',
                   minWidth: 145,
                   position: 2,
-                  referenceName: "deloDate",
+                  referenceName: "deloDate,deloN",
                   sortable: 'custom',
                   ellipsis: true,
                   visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('deloN'),

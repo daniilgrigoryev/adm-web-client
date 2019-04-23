@@ -12,7 +12,7 @@
                   <small class="adm-form__label">Количество месяцев</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.lishMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.lishMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -20,7 +20,7 @@
                   <small class="adm-form__label">Количество дней</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.lishDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.lishDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -28,7 +28,7 @@
                   <small class="adm-form__label">Дата начала срока лишения</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -41,7 +41,7 @@
                   <small class="adm-form__label">Сумма штрафа</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.sumShtraf" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.sumShtraf" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -52,7 +52,7 @@
                   <small class="adm-form__label">Количество дней</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.arestDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.arestDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -60,7 +60,7 @@
                   <small class="adm-form__label">Дата и время начала ареста</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.arestTimeBeg" @change="save" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.arestTimeBeg" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -71,7 +71,7 @@
                   <small class="adm-form__label">Количество дней</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.diskvDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.diskvDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -79,7 +79,7 @@
                   <small class="adm-form__label">Количество месяцев</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.diskvMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.diskvMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -87,7 +87,7 @@
                   <small class="adm-form__label">Дата начала дисквалификации</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datDiskvBeg" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datDiskvBeg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -95,7 +95,7 @@
                   <small class="adm-form__label">Дата окончания дисквалификации</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datDiskvEnd" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.datDiskvEnd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -108,7 +108,7 @@
                   <small class="adm-form__label">Количество часов обязательных работ</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.hoursToWork" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.hoursToWork" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -119,7 +119,7 @@
                   <small class="adm-form__label">Дата начала работ</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -127,7 +127,7 @@
                   <small class="adm-form__label">Количество месяцев</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -135,7 +135,7 @@
                   <small class="adm-form__label">Количество дней</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -146,7 +146,7 @@
                   <small class="adm-form__label">Дата начала лишения свободы</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -154,7 +154,7 @@
                   <small class="adm-form__label">Количество месяцев</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -162,7 +162,7 @@
                   <small class="adm-form__label">Количество дней</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -179,7 +179,7 @@
                   <small class="adm-form__label">Дата начала приостановления</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="save" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="decis.periodStart" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -187,7 +187,7 @@
                   <small class="adm-form__label">Количество суток</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="save"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="decis.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="store"></masked-input>
                     </Col>
                   </Row>
                 </div>

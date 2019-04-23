@@ -1,25 +1,7 @@
 <template>
   <div v-if="currentInnerBean">
     <div class="hmin360">
-      <frm-ed-delo v-if="isVisible('FrmEdDelo')" @getMainDelo="getMainDelo" ref="FrmEdDelo"></frm-ed-delo>
-      <frm-ed-docs-post v-if="isVisible('FrmEdDocsPost')" ref="FrmEdDocsPost"></frm-ed-docs-post>
-      <frm-ed-docs-opred v-if="isVisible('FrmEdDocsOpred')" ref="FrmEdDocsOpred"></frm-ed-docs-opred>
-      <frm-ed-decis-shtraf v-if="isVisible('FrmEdDecisShtraf')" ref="FrmEdDecisShtraf"></frm-ed-decis-shtraf>
-      <frm-ed-decis-lish v-if="isVisible('FrmEdDecisLish')" ref="FrmEdDecisLish"></frm-ed-decis-lish>
-      <frm-ed-decis-vozb-delo v-if="isVisible('FrmEdDecisVozbDelo')" ref="FrmEdDecisVozbDelo"></frm-ed-decis-vozb-delo>
-
-      <frm-ed-ispoln-shtraf v-if="isVisible('FrmEdIspolnShtraf')" ref="FrmEdIspolnShtraf"></frm-ed-ispoln-shtraf>
-      <frm-ed-vehs-a-m-t-c v-if="isVisible('FrmEdVehsAMTC')" ref="FrmEdVehsAMTC"></frm-ed-vehs-a-m-t-c>
-      <frm-ed-prot-p-z-t-c v-if="isVisible('FrmEdDocsOtherPZTC')" ref="FrmEdDocsOtherPZTC"></frm-ed-prot-p-z-t-c>
-      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastFL')" ref="FrmEdUchastFL"></frm-ed-uchast-f-l>
-      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastUL')" ref="FrmEdUchastUL"></frm-ed-uchast-f-l>
-      <frm-ed-uchast-f-l v-if="isVisible('FrmEdUchastOther')" ref="FrmEdUchastOther"></frm-ed-uchast-f-l>
-      <frm-ed-vu-pred v-if="isVisible('FrmEdVuPred')" ref="FrmEdVuPred"></frm-ed-vu-pred>
-      <frm-ed-vu-vyd v-if="isVisible('FrmEdVuVyd')" ref="FrmEdVuVyd"></frm-ed-vu-vyd>
-      <frm-ed-ispoln-post-uvedom v-if="isVisible('FrmEdIspolnPostUvedom')" ref="FrmEdIspolnPostUvedom"></frm-ed-ispoln-post-uvedom>
-      <dlg-ed-foto-material v-if="isVisible('DlgEdFotoMaterial')" ref="DlgEdFotoMaterial"></dlg-ed-foto-material>
-      <frm-ed-docs-prot v-if="isVisible('FrmEdDocsProt')" ref="FrmEdDocsProt"></frm-ed-docs-prot>
-      <dlg-advice v-if="isVisible('DlgAdvice')" ref="DlgAdvice"></dlg-advice>
+      <component :is="currentTabComponent" :ref="currentTabComponent" @getMainDelo="getMainDelo"></component>
     </div>
   </div>
 </template>
@@ -38,6 +20,7 @@
       FrmEdVuVyd: () => import('~/components/delo/FrmEdVuVyd'),
       FrmEdDocsOpred: () => import('~/components/delo/FrmEdDocsOpred'),
       FrmEdDocsPost: () => import('~/components/delo/FrmEdDocsPost'),
+
       FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
       FrmEdDecisLish: () => import('~/components/delo/decis/FrmEdDecisLish'),
       FrmEdDecisVozbDelo: () => import('~/components/delo/decis/FrmEdDecisVozbDelo'),
@@ -49,29 +32,85 @@
       FrmEdDocsProt: () => import('~/components/delo/FrmEdDocsProt'),
       FrmEdDelo: () => import('~/components/delo/FrmEdDelo'),
     },
-    updated() {
-      if (this.currentInnerBean) {
-        let currentForm = this.$refs[this.currentInnerBean.beanName];
-        if (currentForm) {
-          this.currentInnerBean.tag = currentForm.$vnode.componentOptions.tag;
+    computed: {
+      currentTabComponent() {
+        let res = null;
+        switch (this.currentInnerBean.beanName) {
+          case 'FrmEdDelo': {
+            res = 'FrmEdDelo';
+            break;
+          }
+          case 'FrmEdUchastFL':
+          case 'FrmEdUchastUL':
+          case 'FrmEdUchastOther': {
+            res = 'FrmEdUchastFL';
+            break;
+          }
+          case 'FrmEdVuPred': {
+            res = 'FrmEdVuPred';
+            break;
+          }
+          case 'FrmEdVuVyd': {
+            res = 'FrmEdVuVyd';
+            break;
+          }
+          case 'DlgAdvice': {
+            res = 'DlgAdvice';
+            break;
+          }
+          case 'DlgEdFotoMaterial': {
+            res = 'DlgEdFotoMaterial';
+            break;
+          }
+          case 'FrmEdDocsPost': {
+            res = 'FrmEdDocsPost';
+            break;
+          }
+          case 'FrmEdDocsOpred': {
+            res = 'FrmEdDocsOpred';
+            break;
+          }
+          case 'FrmEdDecisShtraf': {
+            res = 'FrmEdDecisShtraf';
+            break;
+          }
+          case 'FrmEdDecisLish': {
+            res = 'FrmEdDecisLish';
+            break;
+          }
+          case 'FrmEdIspolnShtraf': {
+            res = 'FrmEdIspolnShtraf';
+            break;
+          }
+          case 'FrmEdVehsAMTC': {
+            res = 'FrmEdVehsAMTC';
+            break;
+          }
+          case 'FrmEdProtPZTC': {
+            res = 'FrmEdProtPZTC';
+            break;
+          }
+          case 'FrmEdDocsProt': {
+            res = 'FrmEdDocsProt';
+            break;
+          }
+          case 'FrmEdIspolnPostUvedom': {
+            res = 'FrmEdIspolnPostUvedom';
+            break;
+          }
+          case 'FrmEdDecisVozbDelo': {
+            res = 'FrmEdDecisVozbDelo';
+            break;
+          }
         }
-
-        let currentBean = this.currentBean;
-        if (currentForm && currentBean && currentBean.tag === this.currentInnerBean.tag && currentBean.cid !== this.currentInnerBean.cid) {
-          currentForm.init();
+        let component = this.$refs[res];
+        if (component) {
+          component.init();
         }
-        this.currentBean = this.currentInnerBean;
-      }
-    },
-    data() {
-      return {
-        currentBean: null
+        return res;
       }
     },
     methods: {
-      isVisible(beanName) {
-        return this.currentInnerBean.beanName === beanName;
-      },
       getMainDelo(mainDeloId) {
         this.$emit('getMainDelo', mainDeloId);
       },

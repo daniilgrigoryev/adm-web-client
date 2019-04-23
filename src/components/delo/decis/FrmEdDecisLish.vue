@@ -34,7 +34,7 @@
           />
           <view-data-item 
             label="Дата начала срока лишения" 
-            :value="body.dateLishBeg | formatDateTime('DD.MM.YYYY')" 
+            :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
           />
         </div>
@@ -86,9 +86,9 @@
         dataStore: 'frmEdDecisLishGetData'
       }),
       lishTime() {
-          let months = this.body.lishMes;
-          let days = this.body.lishDay;
-          return months? months + " Месяца" : "" + days? ", " + days + " Дня" : ""
+          let months = this.body.lishMes? this.body.lishMes + " Месяца" : "";
+          let days = this.body.lishDay? this.body.lishDay + " Дня" : "";
+          return months + ", " + days
       },
       body() {
         let res = null;
