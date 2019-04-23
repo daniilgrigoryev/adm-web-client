@@ -142,7 +142,7 @@
           </Col>
           <Col class="col"> <!-- :xs="24" :sm="16" :md="16" :lg="16" -->
             <div class="wmax940"><!-- mx-auto -->
-              <delo-inner-form :currentInnerBeanName="currentInnerBeanName"
+              <delo-inner-form :currentInnerBean="currentInnerBean"
                                @addForm="addForm" ref="deloInnerForm"
                                @getMainDelo="getMainDelo"></delo-inner-form>
             </div>
@@ -186,7 +186,7 @@
     },
     data() {
       return {
-        currentInnerBeanName: null,
+        currentInnerBean: null,
         firstTreeNode: null,
         pdfData: null,
         menu: {
@@ -275,7 +275,10 @@
           if (innerFormStack.stackSize() === 0) {
             this.getDelo();
           } else {
-            this.currentInnerBeanName = innerFormStack.getCurrent().beanName;
+            this.currentInnerBean = {
+              beanName: innerFormStack.getCurrent().beanName,
+              cid: innerFormStack.getCurrent().cid
+            };
             this.updateSelected();
           }
         } catch (e) {
@@ -328,12 +331,17 @@
           beanName: beanName,
           params: node
         });
-        this.currentInnerBeanName = beanName;
-        this.$refs.deloInnerForm.initInnerForm(beanName);
+        this.currentInnerBean = {
+          beanName: innerFormStack.getCurrent().beanName,
+          cid: innerFormStack.getCurrent().cid
+        };
       },
       async removeForm() {
         await innerFormStack.toPrev();
-        this.currentInnerBeanName = innerFormStack.getCurrent().beanName;
+        this.currentInnerBean = {
+          beanName: innerFormStack.getCurrent().beanName,
+          cid: innerFormStack.getCurrent().cid
+        };
       },
       getCopyObj(node) {
         let copyObj = JSON.parse(this.stringifyCircularNode(node));
