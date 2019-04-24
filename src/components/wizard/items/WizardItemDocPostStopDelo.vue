@@ -5,7 +5,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">
-            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="changeStotvSearchInfo">
+            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="storeElementData">
               <Option class="" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -52,7 +52,6 @@
     data() {
       return {
 				data: null,
-				KBKSearchInfoList: null,
 				stotvSearchInfoList: null,
       }
     },
@@ -79,36 +78,6 @@
           eCID: this.info.eCID,
           data: this.data
         });
-			},
-			changeStotvSearchInfo() {
-				this.KBKSearchInfoList = null;
-				if (funcUtils.isNotEmpty(this.data.stotvId)) {
-					this.fillKBKSearchInfo();
-				}
-
-				this.storeElementData();
-			},
-			async fillKBKSearchInfo() {
-				let eventResponse = await RequestApi.prepareData({
-					method: 'invokeElementMethod',
-					params: {
-						eCID: this.info.eCID,
-						methodName: 'getKBKSearchInfo',
-						data: JSON.stringify({
-							stotvId: this.data.stotvId
-						})
-					}
-				});
-				let KBKSearchInfoAnswer = JSON.parse(JSON.parse(eventResponse.response).data);
-				if (KBKSearchInfoAnswer) {
-					this.KBKSearchInfoList = KBKSearchInfoAnswer.map(element => {
-						return {
-							label: element.kbkName,
-							value: element.kbk,
-							id: element.id
-						}
-					});
-				}
 			},
 			async fillStotvSearchInfo() {
 				let eventResponse = await RequestApi.prepareData({
