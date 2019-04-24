@@ -12,7 +12,7 @@
         </Row>
       </div>
     </div>
-		
+
 		<div class="adm-form__item">
 			<small class="adm-form__label">Дата прекращения</small>
 			<div class="adm-form__item_content">
@@ -37,7 +37,7 @@
   import RequestApi from "~/assets/js/api/requestApi";
 
 
-		
+
   export default {
 		name: "WizardItemDocPostStopDelo",
 		components: {
@@ -64,7 +64,7 @@
           }
         });
 				let data = JSON.parse(JSON.parse(eventResponse.response).data);
-				
+
         if (funcUtils.isEmpty(data)) {
           let error = JSON.parse(eventResponse.response).error.errorMsg;
           alert(error);

@@ -262,10 +262,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.osagoKemVydanId"
-                              clearable @on-clear="store" @on-change="store" filterable>
-                        <Option v-for="item in osagoCompanyList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.osagoKemVydan"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -344,7 +341,6 @@
           await this.fillMotorEcologClassList();
           await this.fillCategoryTCList();
           await this.fillTypeTCList();
-          await this.fillOsagoCompanyList();
           if (this.isNotEmptyMarkId()) {
             await this.fillModelList();
           }
@@ -366,7 +362,6 @@
         motorEcologClassList: null,
         categoryTCList: null,
         modelList: null,
-        osagoCompanyList: null,
         typeTCList: null,
         listSectionNav: [
           {
@@ -498,21 +493,6 @@
           });
         }
         this.categoryTCList = categoryTCList;
-      },
-      async fillOsagoCompanyList() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getOsagoCompanyDictionary'
-        });
-        let osagoCompanyList = [];
-        let osagoCompanyDict = JSON.parse(eventResponse.response).data;
-        for (let i = 0; i < osagoCompanyDict.length; i++) {
-          let osagoCompany = osagoCompanyDict[i];
-          osagoCompanyList.push({
-            label: osagoCompany.COMPANY_FULL_NAME,
-            value: osagoCompany.COMPANY_ID
-          });
-        }
-        this.osagoCompanyList = osagoCompanyList;
       },
       async fillTypeTCList() {
         let eventResponse = await RequestApi.prepareData({
