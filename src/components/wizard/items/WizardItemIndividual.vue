@@ -40,10 +40,11 @@
         <Col :xs="24" :md="14" :lg="22">
           <AutoComplete
             v-model="data.birthMesto"
-            :data="birthList"
+            :data="birthMestoArray"
             class="wmin180 adm-input adm-input--regular wmax360"
             :filter-method="filterBirthMesto"
-            @on-change="storeElementData"
+            @on-change="changeBirthMesto"
+            @on-select="selectBirthMesto"
             placeholder=""
             clearable>
           </AutoComplete>
@@ -122,6 +123,13 @@
         },
       }
     },
+    computed: {
+      birthMestoArray() {
+        return this.birthList.map((item) => {
+          return item.label;
+        })
+      },
+    },
     methods: {
       async initData() {
         let eventResponse = await RequestApi.prepareData({
@@ -159,7 +167,10 @@
         let birthDict = JSON.parse(JSON.parse(eventResponse.response).data);
         for (let i = 0; i < birthDict.length; i++) {
           let birth = birthDict[i];
-          birthList.push(birth.BIRTH_MESTO);
+          birthList.push({
+            label: birth.BIRTH_MESTO,
+            value: birth.BIRTH_MESTO_KOD
+          });
         }
         this.birthList = birthList;
       },
@@ -248,6 +259,23 @@
           return false;
         }
         return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
+      },
+      changeBirthMesto(e) {
+        if (e.length === 0) {
+          this.data.birthMestoKod = null;
+        } else if (e.length > 0 && funcUtils.isEmpty(this.data.birthMestoKod)) {
+          this.data.birthMesto = '';
+        }
+        this.storeElementData();
+      },
+      selectBirthMesto(value) {
+        let birthMestoKod = this.birthList.filter((item) => {
+          return item.label === value;
+        }).getFirst();
+        if (birthMestoKod) {
+          this.data.birthMestoKod = birthMestoKod.value;
+        }
+        this.storeElementData();
       },
       storeElementData() {
         this.$emit('storeElementData', {

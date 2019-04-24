@@ -57,7 +57,7 @@
 									<p class="adm-txt-regular color-dark-light my18">Такси</p>
 									<ul>
 										<li class="my18">
-											<a href="" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об административном правонарушении</a>
+											<a href="#" @click="createWizardScenarioProtTaxi" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об административном правонарушении</a>
 										</li>
 										<li class="my18">
 											<a href="#" @click="createWizardScenarioProtIzyat" class="adm-text-big link color-blue-base txt-underline-on-hover">Протокол об изъятии вещей и документов</a>
@@ -123,6 +123,23 @@
         try {
           let params = {
             scenarioName: 'CreateProtAPN'
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioProtTaxi() {
+        try {
+          let params = {
+            scenarioName: 'CreateProtTaxi'
           };
 
           formStack.toNext({
