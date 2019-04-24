@@ -48,6 +48,7 @@
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
+    "favicons-webpack-plugin": "0.0.9",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^2.24.1",
     "inputmask": "^4.0.6",

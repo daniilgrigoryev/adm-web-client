@@ -1,6 +1,7 @@
 const resolve = require('path').resolve;
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const url = require('url');
 const publicPath = '/admWeb/';
@@ -84,7 +85,7 @@ module.exports = (options = {}) => ({
       'scss': resolve(__dirname, 'src/assets/scss'),
       'img': resolve(__dirname, 'src/assets/img')
     },
-    extensions: ['.js', '.vue', '.json', '.css']
+    extensions: ['.js', '.vue', '.json', '.css', '.html']
   },
   devServer: {
     host: '0.0.0.0',
@@ -109,7 +110,8 @@ module.exports = (options = {}) => ({
       names: ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
     }),
+    new FaviconsWebpackPlugin('./src/assets/images/favicon.png')
   ]
 });
