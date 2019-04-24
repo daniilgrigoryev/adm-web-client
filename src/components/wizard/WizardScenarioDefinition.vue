@@ -28,8 +28,9 @@
             </div>
           </div>
           <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
-          <div class="adm-form__container">
-            <div class="adm-form__content"  v-if="isVisible('Owner')">
+          <div class="adm-form__container" v-if="isVisible('Owner')">
+            <h2 class="adm-form__headding">Владелец транспортного средства</h2>
+            <div class="adm-form__content">
               <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
               <wizard-item-individual id="Owner.Individual" v-if="isVisible('Owner.Individual')" ref="Owner.Individual" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
               <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')" ref="Owner.Individual.regAddr" :info="getInfo('Owner.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
@@ -38,19 +39,19 @@
               <wizard-item-address v-if="isVisible('Owner.Organization.regAddr')" ref="Owner.Organization.regAddr" :info="getInfo('Owner.Organization.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
               <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" ref="Owner.Organization.factAddr" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
-            <div class="adm-form__container">
-              <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
-              <div class="adm-form__content">
-                <wizard-item-prot-three id="DocDefinitionThree" v-if="isVisible('DocDefinitionThree')" ref="DocDefinitionThree" :info="getInfo('DocDefinitionThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
-                <wizard-item-place v-if="isVisible('DocDefinitionThree.PlaceNar')" ref="DocDefinitionThree.PlaceNar" :info="getInfo('DocDefinitionThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-                <wizard-item-prot-four id="DocDefinitionFour" v-if="isVisible('DocDefinitionFour')" ref="DocDefinitionFour" :info="getInfo('DocDefinitionFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
-              </div>
+          </div>
+          <div class="adm-form__container">
+            <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
+            <div class="adm-form__content">
+              <wizard-item-prot-three id="DocDefinitionThree" v-if="isVisible('DocDefinitionThree')" ref="DocDefinitionThree" :info="getInfo('DocDefinitionThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
+              <wizard-item-place v-if="isVisible('DocDefinitionThree.PlaceNar')" ref="DocDefinitionThree.PlaceNar" :info="getInfo('DocDefinitionThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+              <wizard-item-prot-four id="DocDefinitionFour" v-if="isVisible('DocDefinitionFour')" ref="DocDefinitionFour" :info="getInfo('DocDefinitionFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
             </div>
-            <div class="adm-form__container">
-              <h2 id="definition" class="adm-form__headding">Сведения о рассмотрении</h2>
-              <div class="adm-form__content">
-                <wizard-item-definition-five v-if="isVisible('DocDefinitionFive')" ref="DocDefinitionFive" :info="getInfo('DocDefinitionFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-five>
-              </div>
+          </div>
+          <div class="adm-form__container">
+            <h2 id="definition" class="adm-form__headding">Сведения о рассмотрении</h2>
+            <div class="adm-form__content">
+              <wizard-item-definition-five v-if="isVisible('DocDefinitionFive')" ref="DocDefinitionFive" :info="getInfo('DocDefinitionFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-five>
             </div>
           </div>
         </div>
