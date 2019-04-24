@@ -18,6 +18,25 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="adm-form" v-if="isVisible('Repres')">
+					<div class="adm-form__container">
+						<h2 class="adm-form__headding" id="repres">Информация по законному представителю</h2>
+						<div class="adm-form__content">
+							<wizard-item-individual v-if="isVisible('Repres')" ref="Repres" :info="getInfo('Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+							<wizard-item-address id="Repres.regAddr" v-if="isVisible('Repres.regAddr')" ref="Repres.regAddr" :info="getInfo('Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+						</div>
+					</div>
+				</div>
+			
+				<div class="adm-form">
+					<div class="adm-form__container">
+						<h2 class="adm-form__headding" id="stop">Решение о прекращении производства по делу</h2>
+						<div class="adm-form__content">
+							<wizard-item-doc-post-stop-delo id="DocPostStop" v-if="isVisible('DocPostStop')" ref="DocPostStop" :info="getInfo('DocPostStop')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-doc-post-stop-delo>
+						</div>
+					</div>
+				</div>
 
 			</Layout>
 		</div>
@@ -44,7 +63,11 @@ export default {
 		WizardItemDocPostFirstStopDelo: () => import('~/components/wizard/items/postStopDelo/WizardItemDocPostFirstStopDelo.vue'),
 		WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
 		WizardItemLvokPres: () => import('~/components/wizard/items/WizardItemLvokPres'),
-	  	WizardItemAddPredDoc: () => import('~/components/wizard/items/addPredDoc/WizardItemAddPredDoc'),
+		WizardItemAddPredDoc: () => import('~/components/wizard/items/addPredDoc/WizardItemAddPredDoc'),
+		WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
+		WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
+		WizardItemDocPostStopDelo: () => import('~/components/wizard/items/WizardItemDocPostStopDelo'),
+		
 	},
 	data() {
 		return {

@@ -1,0 +1,149 @@
+<template>
+  <div v-if="data">
+    <div class="adm-form__item">
+      <small class="adm-form__label">Статья-основание</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="22" :lg="22">
+            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="changeStotvSearchInfo">
+              <Option class="" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+            </Select>
+          </Col>
+        </Row>
+      </div>
+    </div>
+		
+		<div class="adm-form__item">
+			<small class="adm-form__label">Дата прекращения</small>
+			<div class="adm-form__item_content">
+				<DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateStop" @change="сhangeDateSost" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+			</div>
+		</div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Дополнительные сведения</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="22" :lg="22">
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.dopSved"></Input>
+          </Col>
+        </Row>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import RequestApi from "~/assets/js/api/requestApi";
+
+
+		
+  export default {
+		name: "WizardItemDocPostStopDelo",
+		components: {
+			DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+		},
+    props: {
+      info: Object
+    },
+    async created() {
+      await this.initData();
+    },
+    data() {
+      return {
+				data: null,
+				KBKSearchInfoList: null,
+				stotvSearchInfoList: null,
+      }
+    },
+    methods: {
+      async initData() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getElementData',
+          params: {
+            eCID: this.info.eCID
+          }
+        });
+				let data = JSON.parse(JSON.parse(eventResponse.response).data);
+				
+        if (funcUtils.isEmpty(data)) {
+          let error = JSON.parse(eventResponse.response).error.errorMsg;
+          alert(error);
+        } else {
+					await this.fillStotvSearchInfo();
+          this.data = data;
+				}
+			},
+      storeElementData() {
+        this.$emit('storeElementData', {
+          eCID: this.info.eCID,
+          data: this.data
+        });
+			},
+			changeStotvSearchInfo() {
+				this.KBKSearchInfoList = null;
+				if (funcUtils.isNotEmpty(this.data.stotvId)) {
+					this.fillKBKSearchInfo();
+				}
+
+				this.storeElementData();
+			},
+			async fillKBKSearchInfo() {
+				let eventResponse = await RequestApi.prepareData({
+					method: 'invokeElementMethod',
+					params: {
+						eCID: this.info.eCID,
+						methodName: 'getKBKSearchInfo',
+						data: JSON.stringify({
+							stotvId: this.data.stotvId
+						})
+					}
+				});
+				let KBKSearchInfoAnswer = JSON.parse(JSON.parse(eventResponse.response).data);
+				if (KBKSearchInfoAnswer) {
+					this.KBKSearchInfoList = KBKSearchInfoAnswer.map(element => {
+						return {
+							label: element.kbkName,
+							value: element.kbk,
+							id: element.id
+						}
+					});
+				}
+			},
+			async fillStotvSearchInfo() {
+				let eventResponse = await RequestApi.prepareData({
+					method: 'invokeElementMethod',
+					params: {
+						eCID: this.info.eCID,
+						methodName: 'getStotvDecisSearchInfo',
+						data: null
+					}
+				});
+				let stotvSearchInfoList = [];
+				let stotvSearchInfoDict = JSON.parse(JSON.parse(eventResponse.response).data);
+				for (let i = 0; i < stotvSearchInfoDict.length; i++) {
+					let stotvSearchInfo = stotvSearchInfoDict[i];
+					stotvSearchInfoList.push({
+						label: stotvSearchInfo.stotvName,
+						value: stotvSearchInfo.stotvKod,
+						id: stotvSearchInfo.stotvId
+					});
+				}
+				this.stotvSearchInfoList = stotvSearchInfoList;
+			},
+      сhangeDateSost() {
+        this.stotvSearchInfoList = null;
+        this.data.stotvId = null;
+        if (funcUtils.isNotEmpty(this.data.dateStop)) {
+          this.fillStotvSearchInfo();
+        }
+
+        this.storeElementData();
+      },
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>
