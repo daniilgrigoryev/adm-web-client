@@ -21,6 +21,7 @@
       WizardScenarioAddDocPhoto: () => import('~/components/wizard/WizardScenarioAddDocPhoto'),
       WizardScenarioProtIzyat: () => import('~/components/wizard/WizardScenarioProtIzyat'),
       WizardScenarioAddUchast: () => import('~/components/wizard/WizardScenarioAddUchast'),
+      WizardScenarioProtTaxi: () => import('~/components/wizard/WizardScenarioProtTaxi'),
       WizardScenarioPostStopDelo: () => import('~/components/wizard/WizardScenarioPostStopDelo')
     },
     async created() {
@@ -152,6 +153,12 @@
           case 'CreateProtIzyat': {
             res = {
               name: 'WizardScenarioProtIzyat'
+            };
+            break;
+          }
+          case 'CreateProtTaxi': {
+            res = {
+              name: 'WizardScenarioProtTaxi'
             };
             break;
           }

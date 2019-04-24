@@ -1,12 +1,12 @@
 <template>
-<!-- Протокол об административном правонарушении -->
-  <aside-template :listSectionNav="listSectionNav" title="Протокол об АПН">
+<!-- Протокол об административном правонарушении такси -->
+  <aside-template :listSectionNav="listSectionNav" title="Протокол об АПН такси">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="head">
-              Ввод данных по протоколу об административном правонарушении
+              Ввод данных по протоколу об административном правонарушении такси
             </h2>
             <div class="adm-form__content">
               <wizard-item-prot-one-apn id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-one-apn>
@@ -44,7 +44,14 @@
                 <wizard-item-prot-three id="DocProtApnThree" v-if="isVisible('DocProtApnThree')" ref="DocProtApnThree" :info="getInfo('DocProtApnThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
                 <wizard-item-place v-if="isVisible('DocProtApnThree.PlaceNar')" ref="DocProtApnThree.PlaceNar" :info="getInfo('DocProtApnThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
                 <wizard-item-prot-four id="DocProtApnFour" v-if="isVisible('DocProtApnFour')" ref="DocProtApnFour" :info="getInfo('DocProtApnFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
-                <wizard-item-prot-apn-five id="apn" v-if="isVisible('DocProtApnFive')" ref="DocProtApnFive" :info="getInfo('DocProtApnFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-apn-five>
+                <wizard-item-prot-taxi-five id="apn" v-if="isVisible('DocProtTaxiFive')" ref="DocProtTaxiFive" :info="getInfo('DocProtTaxiFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-taxi-five>
+
+                <wizard-item-individual id="DocProtTaxiFive.Individual" v-if="isVisible('DocProtTaxiFive.Individual')" ref="DocProtTaxiFive.Individual" :info="getInfo('DocProtTaxiFive.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+                <wizard-item-address v-if="isVisible('DocProtTaxiFive.Individual.regAddr')" ref="DocProtTaxiFive.Individual.regAddr" :info="getInfo('DocProtTaxiFive.Individual.regAddr')"  title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+                <wizard-item-address v-if="isVisible('DocProtTaxiFive.Individual.factAddr')" ref="DocProtTaxiFive.Individual.factAddr" :info="getInfo('DocProtTaxiFive.Individual.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+                <wizard-item-organization v-if="isVisible('DocProtTaxiFive.Organization')" ref="DocProtTaxiFive.Organization" :info="getInfo('DocProtTaxiFive.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
+                <wizard-item-address v-if="isVisible('DocProtTaxiFive.Organization.regAddr')" ref="DocProtTaxiFive.Organization.regAddr" :info="getInfo('DocProtTaxiFive.Organization.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+                <wizard-item-address v-if="isVisible('DocProtTaxiFive.Organization.factAddr')" ref="DocProtTaxiFive.Organization.factAddr" :info="getInfo('DocProtTaxiFive.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
               </div>
             </div>
             <div class="adm-form__container">
@@ -76,7 +83,7 @@
   import RequestApi from "~/assets/js/api/requestApi";
 
   export default {
-    name: "WizardScenarioProtAPN",
+    name: "WizardScenarioProtTaxi",
     props: {
       pathes: Object
     },
@@ -86,7 +93,7 @@
       WizardItemProtTwo: () => import('~/components/wizard/items/WizardItemProtTwo'),
       WizardItemProtThree: () => import('~/components/wizard/items/WizardItemProtThree'),
       WizardItemProtFour: () => import('~/components/wizard/items/WizardItemProtFour'),
-      WizardItemProtApnFive: () => import('~/components/wizard/items/protApn/WizardItemProtApnFive'),
+      WizardItemProtTaxiFive: () => import('~/components/wizard/items/protTaxi/WizardItemProtTaxiFive'),
       WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
       WizardItemLvok: () => import('~/components/wizard/items/WizardItemLvok'),
@@ -100,7 +107,7 @@
       return {
         listSectionNav: [
           {
-            title: "Ввод данных по протоколу об АПН",
+            title: "Ввод данных по протоколу об АПН такси",
             name: "head",
           },
           {
