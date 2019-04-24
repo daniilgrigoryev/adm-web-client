@@ -5,7 +5,7 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.decisKod" filterable clearable @on-change="storeElementData">
-            <Option class="wmax360 " v-for="item in decisList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+            <Option class="wmax360 " v-for="item in decisList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
       </Row>
