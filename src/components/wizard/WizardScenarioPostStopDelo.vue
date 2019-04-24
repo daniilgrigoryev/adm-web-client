@@ -9,7 +9,15 @@
 				</div>
 				
 				<wizard-item-lvok-pres v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok-pres>
-
+				
+				<div class="adm-form" v-if="isVisible('LVOK.PredDoc')">
+					<div class="adm-form__container">
+						<h2 class="adm-form__headding" id="head">Предъявленный документ</h2>
+						<div class="adm-form__content">
+							<wizard-item-add-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-pred-doc>
+						</div>
+					</div>
+				</div>
 
 			</Layout>
 		</div>
@@ -36,7 +44,7 @@ export default {
 		WizardItemDocPostFirstStopDelo: () => import('~/components/wizard/items/postStopDelo/WizardItemDocPostFirstStopDelo.vue'),
 		WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
 		WizardItemLvokPres: () => import('~/components/wizard/items/WizardItemLvokPres'),
-	  // WizardItemAddPredDoc: () => import('~/components/wizard/items/addPredDoc/WizardItemAddPredDoc'),
+	  	WizardItemAddPredDoc: () => import('~/components/wizard/items/addPredDoc/WizardItemAddPredDoc'),
 	},
 	data() {
 		return {
