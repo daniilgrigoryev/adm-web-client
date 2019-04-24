@@ -12,7 +12,7 @@
 				
 				<div class="adm-form" v-if="isVisible('LVOK.PredDoc')">
 					<div class="adm-form__container">
-						<h2 class="adm-form__headding" id="head">Предъявленный документ</h2>
+						<h2 class="adm-form__headding" id="predDoc">Предъявленный документ</h2>
 						<div class="adm-form__content">
 							<wizard-item-add-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-pred-doc>
 						</div>
@@ -72,26 +72,22 @@ export default {
 	data() {
 		return {
 			listSectionNav: [
-				// {
-				// 	title: "Ввод данных по ПЗТС",
-				// 	name: "head",
-				// },
-				// {
-				// 	title: "Транспортное средство",
-				// 	name: "vehs",
-				// },
-				// {
-				// 	title: "Сведения о нарушении",
-				// 	name: "nar",
-				// },
-				// {
-				// 	title: "Сведения об эвакуации",
-				// 	name: "evac",
-				// },
-				// {
-				// 	title: "Понятые",
-				// 	name: "witness",
-				// },
+				{
+					title: "Ввод данных постановления о прекращения дела",
+					name: "head",
+				},
+				{
+					title: "Предъявленный документ",
+					name: "predDoc",
+				},
+				{
+					title: "Информация по законному представителю",
+					name: "repres",
+				},
+				{
+					title: "Решение о прекращении производства по делу",
+					name: "stop",
+				},
 			],
 			maskInputProt: {
 				regex: '[0-9]+',
