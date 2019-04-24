@@ -8,7 +8,9 @@
 					</wizard-item-doc-post-first-stop-delo>
 				</div>
 				
-				<wizard-item-lvok-exists v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok-exists>
+				<wizard-item-lvok-pres v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok-pres>
+
+
 			</Layout>
 		</div>
 		<div class="bot-wrap">
@@ -33,31 +35,32 @@ export default {
 		MaskedInput: () => import ('~/components/shared/MaskedInput'),
 		WizardItemDocPostFirstStopDelo: () => import('~/components/wizard/items/postStopDelo/WizardItemDocPostFirstStopDelo.vue'),
 		WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
-		WizardItemLvokExists: () => import('~/components/wizard/items/WizardItemLvokExists'),
+		WizardItemLvokPres: () => import('~/components/wizard/items/WizardItemLvokPres'),
 	  // WizardItemAddPredDoc: () => import('~/components/wizard/items/addPredDoc/WizardItemAddPredDoc'),
 	},
 	data() {
 		return {
-			listSectionNav: [{
-					title: "Ввод данных по ПЗТС",
-					name: "head",
-				},
-				{
-					title: "Транспортное средство",
-					name: "vehs",
-				},
-				{
-					title: "Сведения о нарушении",
-					name: "nar",
-				},
-				{
-					title: "Сведения об эвакуации",
-					name: "evac",
-				},
-				{
-					title: "Понятые",
-					name: "witness",
-				},
+			listSectionNav: [
+				// {
+				// 	title: "Ввод данных по ПЗТС",
+				// 	name: "head",
+				// },
+				// {
+				// 	title: "Транспортное средство",
+				// 	name: "vehs",
+				// },
+				// {
+				// 	title: "Сведения о нарушении",
+				// 	name: "nar",
+				// },
+				// {
+				// 	title: "Сведения об эвакуации",
+				// 	name: "evac",
+				// },
+				// {
+				// 	title: "Понятые",
+				// 	name: "witness",
+				// },
 			],
 			maskInputProt: {
 				regex: '[0-9]+',
