@@ -33,7 +33,7 @@
               <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" ref="Owner.Organization.factAddr" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
-          <wizard-item-vehs-evac id="vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs-evac>
+          <wizard-item-vehs id="vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
           <div class="adm-form__container">
             <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
@@ -71,6 +71,9 @@
   export default {
     name: "WizardScenarioProtIzyat",
     extends: WizardScenarioProtEvac,
+    components: {
+      WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs'),
+    },
       data() {
       return {
         listSectionNav: [
