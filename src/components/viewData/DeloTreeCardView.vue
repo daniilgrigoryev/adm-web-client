@@ -5,8 +5,7 @@
       <embed class="pdf-data" :src="pdfData" />
     </div>
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
-      <div v-if="deloContext" class="bg-white">
-        <!-- style="padding-left: 60px; padding-right: 40px; padding-bottom: 10px; padding-top: 40px;" -->
+      <div v-if="deloContext" class="bg-white deloContext-sticky">
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py6">
           <div class="flex-parent flex-parent--center-cross">
 
@@ -127,9 +126,10 @@
             </Button>
           </div>
         </div>
+        <hr class="txt-hr my0">
       </div>
 
-      <hr class="txt-hr my0">
+
       <div v-if="deloTree">
         <Row type="flex">
           <Col>
