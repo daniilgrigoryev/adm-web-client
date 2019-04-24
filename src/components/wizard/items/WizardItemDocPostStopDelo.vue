@@ -16,7 +16,7 @@
 		<div class="adm-form__item">
 			<small class="adm-form__label">Дата прекращения</small>
 			<div class="adm-form__item_content">
-				<DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateStop" @change="сhangeDateSost" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+				<DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateStop" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
 			</div>
 		</div>
     <div class="adm-form__item">
@@ -100,15 +100,6 @@
 				}
 				this.stotvSearchInfoList = stotvSearchInfoList;
 			},
-      сhangeDateSost() {
-        this.stotvSearchInfoList = null;
-        this.data.stotvId = null;
-        if (funcUtils.isNotEmpty(this.data.dateStop)) {
-          this.fillStotvSearchInfo();
-        }
-
-        this.storeElementData();
-      },
     }
   }
 </script>
