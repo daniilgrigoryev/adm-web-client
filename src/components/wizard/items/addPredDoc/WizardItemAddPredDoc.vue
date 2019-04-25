@@ -1,15 +1,5 @@
 <template>
   <div v-if="data">
-
-    <div class="adm-form__item">
-      <small class="adm-form__label">Предъявленный документ</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-           <masked-input ref="docNum" inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.docNum"  :maskProps="maskDocNum" clearable @onInputChange="storeElementData"></masked-input>
-        </Col>
-      </Row>
-    </div>
-
     <div class="adm-form__item">
       <small class="adm-form__label">Тип документа:</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -20,9 +10,14 @@
         </Col>
       </Row>
     </div>
-
-
-
+    <div class="adm-form__item">
+      <small class="adm-form__label">Предъявленный документ</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+           <masked-input ref="docNum" inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.docNum"  :maskProps="maskDocNum" clearable @onInputChange="storeElementData"></masked-input>
+        </Col>
+      </Row>
+    </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Дата выдачи:</small>
       <Row :gutter="16" type="flex" align="middle">

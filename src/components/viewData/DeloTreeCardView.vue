@@ -57,7 +57,7 @@
                 </span>
               </Button>
               <div slot="content">
-                <ul class="amd-poptip-sub__nav">
+                <ul class="amd-poptip-sub__nav" style="max-width: 450px;">
                   <li>
                     <Button :disabled="!menuItemVisible(menu.addDocument.ApplyDocOnDelo)" type="text" class="adm-btn-regular">Приложить документ к делу</Button>
                   </li>

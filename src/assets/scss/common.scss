@@ -286,7 +286,7 @@ html, body, #app {
   background: #f5fafd;
   top: 121px;
   direction: rtl;
-  z-index: 9;
+  z-index: 8;
   height: calc(100vh - 130px);
   background: linear-gradient(to right, #f5fafd 95.6%, #fafafa 0%);
 }
@@ -848,7 +848,7 @@ html, body, #app {
     }
     button{
       margin-top: 5px;
-      height: 40px;
+      // height: 40px;
       margin-bottom: 5px;
       padding-top: 8px;
       padding-bottom: 8px;
@@ -856,6 +856,7 @@ html, body, #app {
       color: $dark-base;
       text-align: left;
       width: 100%;
+      white-space: normal;
       &:hover{
         background-color: $white-light;
         color: $dark-base;

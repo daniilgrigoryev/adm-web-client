@@ -153,7 +153,6 @@ export default {
 					let params = {
 						deloId: resp.data
 					};
-
 					formStack.toNext({
 						module: this.$store.state.deloTreeCardView,
 						vm: this,
