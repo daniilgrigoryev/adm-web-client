@@ -14,7 +14,7 @@
       <small class="adm-form__label">Предъявленный документ</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-           <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" :disabled="data.docId !== null" v-model="data.docNum" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я0-9]+', placeholder: ''}" clearable @onInputChange="storeElementData"></masked-input>
+           <masked-input ref="docNum" inputClass="adm-input adm-input--regular wmax360 wmin180" :disabled="data.docId !== null" v-model="data.docNum" :maskProps="maskDocNum" clearable @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
     </div>
@@ -22,7 +22,7 @@
       <small class="adm-form__label">Тип документа:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId !== null" placeholder="" v-model="data.docTip" filterable clearable @on-change="storeElementData">
+          <Select class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId !== null" placeholder="" v-model="data.docTip" filterable clearable @on-change="changeDocTip">
             <Option class="wmax360 " v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -70,7 +70,24 @@
         tipDocList: null
       }
     },
+
     computed: {
+      maskDocNum(){
+        let typeDoc = parseInt(this.data.docTip);
+        if(typeDoc == 8 || typeDoc == 2 || typeDoc == 7){
+          return {
+            regex: '[0-9]+',
+            mask: '99 9999999',
+            placeholder: ''
+          }
+        }else{
+           return {
+            regex: '[0-9]+',
+            mask: '99 99 999999',
+            placeholder: ''
+          }
+        }
+      },
       isNotEmptyParentNode() {
         return funcUtils.isNotEmpty(this.info.parentNode);
       },
@@ -131,6 +148,13 @@
       changeDocLVOK(e) {
         if (funcUtils.isEmpty(e)) {
           this.data.docId = null;
+        }
+        this.storeElementData();
+      },
+      changeDocTip() {
+        if (this.$refs.docNum) {
+          this.$refs.docNum.init();
+          this.$refs.docNum.$forceUpdate();
         }
         this.storeElementData();
       },
