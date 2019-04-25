@@ -1,5 +1,5 @@
 <template>
-  <aside-template :listSectionNav="[]" title="Решение по делу" v-if="decis">
+  <aside-template :listSectionNav="listSectionNav" title="Решение по делу" v-if="decis">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form">
@@ -270,6 +270,11 @@
     data() {
       return {
         decis: null,
+        listSectionNav: [
+          {
+            title: 'Прекратить производство по делу'
+          }
+        ],
         decisKods: {
           lish: 29, // Лишить права управления ТС
           warning: 51, // Предупредить
