@@ -65,7 +65,7 @@
         <div class="errors-table__content" v-show="hideMore">
           <div class="view-data__container border--0">
             <div class="items-wrap">
-              <view-data-item v-for="(item, index) in dopData.postOpers"
+              <view-data-item v-for="(item, index) in this.dopData.postOpers.slice().reverse()"
                 :label="item.operTime, item.organIspolnName | concatByDelimiter('-')" 
                 :value="item.postOperName"
                 style="grid-column: span 2;"
@@ -73,7 +73,7 @@
               />
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
