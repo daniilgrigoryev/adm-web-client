@@ -65,7 +65,7 @@
       </Row>
     </div>
     <div v-if="data.vsTypeId === 1" class="adm-form__item">
-      <small class="adm-form__label">Фомилия</small>
+      <small class="adm-form__label">Фамилия</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col>
           <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="data.vsFlFirstName"
