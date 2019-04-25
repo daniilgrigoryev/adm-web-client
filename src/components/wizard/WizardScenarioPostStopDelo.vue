@@ -1,5 +1,5 @@
 <template>
-	<aside-template :listSectionNav="listSectionNav" title="Постановление о прекращении дела об АПН">
+	<aside-template :listSectionNav="listSectionNav()" title="Постановление о прекращении дела об АПН">
 		<div class="layout-wrap">
 			<Layout ref="Main" class="layout">
 				<div class="adm-form">
@@ -8,7 +8,7 @@
 					</wizard-item-doc-post-first-stop-delo>
 				</div>
 				
-				<wizard-item-lvok-pres v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok-pres>
+				<wizard-item-lvok-pres  v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok-pres>
 				
 				<div class="adm-form" v-if="isVisible('LVOK.PredDoc')">
 					<div class="adm-form__container">
@@ -28,7 +28,6 @@
 						</div>
 					</div>
 				</div>
-			
 				<div class="adm-form">
 					<div class="adm-form__container">
 						<h2 class="adm-form__headding" id="stop">Решение о прекращении производства по делу</h2>
@@ -37,7 +36,6 @@
 						</div>
 					</div>
 				</div>
-
 			</Layout>
 		</div>
 		<div class="bot-wrap">
@@ -71,24 +69,6 @@ export default {
 	},
 	data() {
 		return {
-			listSectionNav: [
-				{
-					title: "Ввод данных постановления о прекращения дела",
-					name: "head",
-				},
-				{
-					title: "Предъявленный документ",
-					name: "predDoc",
-				},
-				{
-					title: "Информация по законному представителю",
-					name: "repres",
-				},
-				{
-					title: "Решение о прекращении производства по делу",
-					name: "stop",
-				},
-			],
 			maskInputProt: {
 				regex: '[0-9]+',
 				casing: 'upper',
@@ -97,6 +77,32 @@ export default {
 		}
 	},
 	methods: {
+		listSectionNav(){
+			return [
+				{
+					title: "Ввод данных постановления о прекращения дела",
+					name: "head",
+				},
+				{
+					title: "Сведения о явке",
+					name: "lvok"
+				},
+				{
+					title: "Предъявленный документ",
+					name: "predDoc",
+					hide: !this.isVisible('LVOK.PredDoc')
+				},
+				{
+					title: "Информация по законному представителю",
+					name: "repres",
+					hide: !this.isVisible('Repres')
+				},
+				{
+					title: "Решение о прекращении производства по делу",
+					name: "stop",
+				},
+			]
+		},
 		isNotEmptyParentNode(path) {
 			if (funcUtils.isEmpty(this.pathes)) {
 				return false;

@@ -2,7 +2,7 @@
   <div v-if="data">
     <div class="adm-form">
       <div class="adm-form__container">
-        <h2 class="adm-form__headding">Сведения о явке</h2>
+        <h2 class="adm-form__headding" id="lvok">Сведения о явке</h2>
         <div class="adm-form__content">
 					<div class="adm-form__item">
 						<small class="adm-form__label">Статус</small>
