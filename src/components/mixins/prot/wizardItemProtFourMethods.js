@@ -77,7 +77,7 @@ export default {
           return {
             label: element.kbkName,
             value: element.kbk,
-            id: element.id
+            id: element.id + ''
           }
         });
       }

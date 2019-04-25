@@ -45,7 +45,7 @@
             <div class="adm-form__content">
               <wizard-item-prot-three id="DocDefinitionThree" v-if="isVisible('DocDefinitionThree')" ref="DocDefinitionThree" :info="getInfo('DocDefinitionThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
               <wizard-item-place v-if="isVisible('DocDefinitionThree.PlaceNar')" ref="DocDefinitionThree.PlaceNar" :info="getInfo('DocDefinitionThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-prot-four id="DocDefinitionFour" v-if="isVisible('DocDefinitionFour')" ref="DocDefinitionFour" :info="getInfo('DocDefinitionFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
+              <wizard-item-definition-four id="DocDefinitionFour" v-if="isVisible('DocDefinitionFour')" ref="DocDefinitionFour" :info="getInfo('DocDefinitionFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-four>
             </div>
           </div>
           <div class="adm-form__container">
@@ -79,7 +79,7 @@
       WizardItemDefinitionOne: () => import('~/components/wizard/items/definition/WizardItemDefinitionOne'),
       WizardItemProtTwo: () => import('~/components/wizard/items/WizardItemProtTwo'),
       WizardItemProtThree: () => import('~/components/wizard/items/WizardItemProtThree'),
-      WizardItemProtFour: () => import('~/components/wizard/items/WizardItemProtFour'),
+      WizardItemDefinitionFour: () => import('~/components/wizard/items/definition/WizardItemDefinitionFour'),
       WizardItemDefinitionFive: () => import('~/components/wizard/items/definition/WizardItemDefinitionFive'),
       WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
