@@ -139,7 +139,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.stotvId" clearable filterable :disabled="!docsProt.dateNar" @on-change="store">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.stotvId" clearable filterable :disabled="!docsProt.dateNar" @on-change="store, fillFactSved">
                         <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
                       </Select>
                     </Col>
@@ -151,7 +151,16 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="docsProt.factSved" @on-input-change="store"></Input>
+                      <AutoComplete
+                        v-model="docsProt.factSved"
+                        :data="factSvedList"
+                        class="wmin180 adm-input adm-input--regular"
+                        :filter-method="filterfactSvedList"
+                        @on-blur="store"
+                        @on-select="store"
+                        placeholder=""
+                        clearable>
+                      </AutoComplete>
                     </Col>
                   </Row>
                 </div>
@@ -275,7 +284,8 @@
           this.docsProt = docsProt;
 
           if (funcUtils.isNotEmpty(docsProt.dateNar)) {
-            this.fillStotvSearchInfo();
+            await this.fillStotvSearchInfo();
+            await this.fillFactSved();
           }
         }
       } catch (e) {
@@ -290,6 +300,7 @@
       return {
         docsProt: null,
         pnpaList: null,
+        factSvedList: [],
         stotvSearchInfoList: null,
         listSectionNav: [
           {
@@ -613,6 +624,21 @@
           });
         }
         this.stotvSearchInfoList = stotvSearchInfoList;
+      },
+      async fillFactSved() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getFactSved'
+        });
+        let responseData = JSON.parse(eventResponse.response).data;
+        if (responseData.length) {
+          this.factSvedList = JSON.parse(responseData);
+        }
+      },
+      filterfactSvedList(value, option) {
+        if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+          return false;
+        }
+        return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
 
       async changeInspSostKod() {

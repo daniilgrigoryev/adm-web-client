@@ -143,7 +143,16 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input--regular" v-model="protPZTC.factSved" @on-input-change="store"></Input>
+                      <AutoComplete
+                        v-model="protPZTC.factSved"
+                        :data="factSvedList"
+                        class="wmin180 adm-input adm-input--regular"
+                        :filter-method="filterfactSvedList"
+                        @on-blur="store"
+                        @on-select="store"
+                        placeholder=""
+                        clearable>
+                      </AutoComplete>
                     </Col>
                   </Row>
                 </div>
@@ -266,7 +275,8 @@
           this.protPZTC = protPZTC;
 
           if (funcUtils.isNotEmpty(protPZTC.dateNar)) {
-            this.fillStotvSearchInfo();
+            await this.fillStotvSearchInfo();
+            await this.fillFactSved();
           }
         }
       } catch (e) {
@@ -281,6 +291,7 @@
       return {
         protPZTC: null,
         pnpaList: null,
+        factSvedList: [],
         stotvSearchInfoList: null,
         listSectionNav: [
           {
@@ -650,6 +661,21 @@
         } else {
           this.clearOrganSost();
         }
+      },
+      async fillFactSved() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getFactSved'
+        });
+        let responseData = JSON.parse(eventResponse.response).data;
+        if (responseData.length) {
+          this.factSvedList = JSON.parse(responseData);
+        }
+      },
+      filterfactSvedList(value, option) {
+        if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+          return false;
+        }
+        return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
       changeFIO() {
         let fioLength = 0;

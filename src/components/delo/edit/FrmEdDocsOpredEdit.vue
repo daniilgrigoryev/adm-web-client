@@ -131,7 +131,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.stotvId" clearable filterable @on-change="store">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.stotvId" clearable filterable @on-change="store, fillFactSved">
                         <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </Select>
                     </Col>
@@ -143,7 +143,16 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input--regular" v-model="docsOpred.factSved" @on-input-change="store"></Input>
+                      <AutoComplete
+                        v-model="docsOpred.factSved"
+                        :data="factSvedList"
+                        class="wmin180 adm-input adm-input--regular"
+                        :filter-method="filterfactSvedList"
+                        @on-blur="store"
+                        @on-select="store"
+                        placeholder=""
+                        clearable>
+                      </AutoComplete>
                     </Col>
                   </Row>
                 </div>
@@ -324,7 +333,8 @@
           this.docsOpred = docsOpred;
 
           if (funcUtils.isNotEmpty(docsOpred.dateNar)) {
-            this.fillStotvSearchInfo();
+            await this.fillStotvSearchInfo();
+            await this.fillFactSved();
           }
         }
       } catch (e) {
@@ -340,6 +350,7 @@
         docsOpred: null,
         pnpaList: null,
         stotvSearchInfoList: null,
+        factSvedList: [],
         listSectionNav: [
           {
             title: "Определение по делу",
@@ -730,6 +741,21 @@
         } else {
           this.clearOrganSost();
         }
+      },
+      async fillFactSved() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getFactSved'
+        });
+        let responseData = JSON.parse(eventResponse.response).data;
+        if (responseData.length) {
+          this.factSvedList = JSON.parse(responseData);
+        }
+      },
+      filterfactSvedList(value, option) {
+        if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+          return false;
+        }
+        return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
       changeFIO() {
         let fioLength = 0;
