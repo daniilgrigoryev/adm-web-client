@@ -308,7 +308,9 @@
         }
         if ((funcUtils.isEmpty(query) || query.length === 0)) {
           this.data.adr.cityId = null;
+          this.data.adr.npunktName = null;
           this.data.adr.streetId = null;
+          this.data.adr.streetName = null;
         } else if (query.length >= limit) {
           await this.fillCityList(query);
         } else {
@@ -328,6 +330,7 @@
         }
         if ((funcUtils.isEmpty(query) || query.length === 0)) {
           this.data.adr.streetId = null;
+          this.data.adr.streetName = null;
         } else if (query.length >= limit) {
           await this.fillStreetList(query);
         } else {
