@@ -89,6 +89,18 @@
         </Col>
       </Row>
     </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Говорит по-русски:</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="22">
+          <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.isSpeaksRussian" filterable @on-change="storeElementData" placeholder="">
+            <Option value="true">Да</Option>
+            <Option value="false">Нет</Option>
+            <Option value="null">Неизвестно</Option>
+          </Select>
+        </Col>
+      </Row>
+    </div>
   </div>
 </template>
 
@@ -147,6 +159,7 @@
         if (funcUtils.isEmpty(this.data.birthMesto)) {
           this.data.birthMesto = '';
         }
+        this.data.isSpeaksRussian += '';
 
         this.parseFIO();
 

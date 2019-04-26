@@ -164,6 +164,18 @@
                   </Row>
                 </div>
               </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Говорит по-русски:</small>
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="14" :lg="22">
+                    <Select class="adm-input adm-input--regular wmin180" v-model="uchastIndivid.isSpeaksRussian" filterable @on-change="store" placeholder="">
+                      <Option value="true">Да</Option>
+                      <Option value="false">Нет</Option>
+                      <Option value="null">Неизвестно</Option>
+                    </Select>
+                  </Col>
+                </Row>
+              </div>
             </div> 
           </div> 
         </div>
@@ -214,6 +226,7 @@
           if (funcUtils.isEmpty(this.uchastIndivid.individ.birthMesto)) {
             this.uchastIndivid.individ.birthMesto = '';
           }
+          this.uchastIndivid.isSpeaksRussian += '';
           
           await this.fillVehsList();
           await this.fillTipVidList();

@@ -176,7 +176,7 @@ export function isDate (value) {
 }
 
 export function undefinedJSONreplacer(key, value) {
-  if (typeof value === 'undefined') {
+  if (isUndefined(value) || isString(value) && value === 'null') {
     return null;
   }
   return value;
