@@ -45,7 +45,7 @@
             <div class="adm-form__content">
               <wizard-item-prot-three id="DocProtApnThree" v-if="isVisible('DocProtApnThree')" ref="DocProtApnThree" :info="getInfo('DocProtApnThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
               <wizard-item-place v-if="isVisible('DocProtApnThree.PlaceNar')" ref="DocProtApnThree.PlaceNar" :info="getInfo('DocProtApnThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-prot-four id="DocProtApnFour" v-if="isVisible('DocProtApnFour')" ref="DocProtApnFour" :info="getInfo('DocProtApnFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
+              <wizard-item-prot-apn-four id="DocProtApnFour" v-if="isVisible('DocProtApnFour')" ref="DocProtApnFour" :info="getInfo('DocProtApnFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-apn-four>
             </div>
           </div>
           <div class="adm-form__container">
@@ -91,7 +91,7 @@
       WizardItemProtOneApn: () => import('~/components/wizard/items/protApn/WizardItemProtOneApn'),
       WizardItemProtTwo: () => import('~/components/wizard/items/WizardItemProtTwo'),
       WizardItemProtThree: () => import('~/components/wizard/items/WizardItemProtThree'),
-      WizardItemProtFour: () => import('~/components/wizard/items/WizardItemProtFour'),
+      WizardItemProtApnFour: () => import('~/components/wizard/items/protApn/WizardItemProtApnFour'),
       WizardItemProtApnFive: () => import('~/components/wizard/items/protApn/WizardItemProtApnFive'),
       WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),

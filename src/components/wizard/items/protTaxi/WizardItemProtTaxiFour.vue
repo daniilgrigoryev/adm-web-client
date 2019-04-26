@@ -60,7 +60,7 @@
       <small class="adm-form__label">Номер разрешения</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <masked-input inputClass="adm-input adm-input--regular" v-model="data.licenseNum" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
+          <masked-input inputClass="adm-input adm-input--regular" v-model="data.tlNumber" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
         </Col>
       </Row>
     </div>
@@ -69,7 +69,7 @@
       <small class="adm-form__label">Дата начала действия</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.startDate" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.tlDateBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </Col>
       </Row>
     </div>
@@ -78,9 +78,20 @@
       <small class="adm-form__label">Дата окончания действия</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.stopDate" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.tlDateEnd" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </Col>
       </Row>
+    </div>
+
+    <div class="adm-form__item">
+      <small class="adm-form__label">Организация, выдавшая разрешение такси</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="24" :lg="24">
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.tlLicensor" ></Input>
+          </Col>
+        </Row>
+      </div>
     </div>
 
     <div class="adm-form__item">
