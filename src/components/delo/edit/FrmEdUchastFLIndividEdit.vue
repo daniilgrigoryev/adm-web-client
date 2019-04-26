@@ -153,6 +153,23 @@
                 </div>
               </div>
               <div class="adm-form__item">
+                <small class="adm-form__label">Должность:</small>
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="14" :lg="22">
+                    <Input class="adm-input adm-input--regular wmax360" v-model="uchastIndivid.dolz" @on-input-change="store" placeholder="Место работы:"></Input>
+                  </Col>
+                </Row>
+              </div>
+
+              <div class="adm-form__item">
+                <small class="adm-form__label">Место работы:</small>
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="14" :lg="22">
+                    <Input class="adm-input adm-input--regular wmax360" v-model="uchastIndivid.workPlace" @on-input-change="store" placeholder="Место работы:"></Input>
+                  </Col>
+                </Row>
+              </div>
+              <div class="adm-form__item">
                 <small class="adm-form__label">АМТС</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
