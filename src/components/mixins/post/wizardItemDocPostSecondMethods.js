@@ -78,8 +78,7 @@ export default {
         this.KBKSearchInfoList = KBKSearchInfoAnswer.map(element => {
           return {
             label: element.kbkName,
-            value: element.kbk,
-            id: element.id
+            value: element.kbk
           }
         });
       }
