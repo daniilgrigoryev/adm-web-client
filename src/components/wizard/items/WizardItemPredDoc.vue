@@ -72,16 +72,16 @@
     },
 
     computed: {
-      maskDocNum(){
+      maskDocNum() {
         let typeDoc = parseInt(this.data.docTip);
-        if(typeDoc == 8 || typeDoc == 2 || typeDoc == 7){
+        if (typeDoc == 8 || typeDoc == 2 || typeDoc == 7) {
           return {
             regex: '[0-9]+',
             mask: '99 9999999',
             placeholder: ''
           }
-        }else{
-           return {
+        } else {
+          return {
             regex: '[0-9]+',
             mask: '99 99 999999',
             placeholder: ''
@@ -159,9 +159,13 @@
         this.storeElementData();
       },
       storeElementData() {
+        let objCopy = JSON.parse(JSON.stringify(this.data));
+        if (funcUtils.isNotEmpty(objCopy.docNum)) {
+          objCopy.docNum = objCopy.docNum.split(' ').join('');
+        }
         this.$emit('storeElementData', {
           eCID: this.info.eCID,
-          data: this.data
+          data: objCopy
         });
       },
     }

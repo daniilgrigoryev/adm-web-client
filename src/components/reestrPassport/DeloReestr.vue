@@ -342,7 +342,8 @@
           upi: null
         },
         sort: {
-          deloDate: true
+          deloDate: true,
+          deloN: true
         },
         maskRegno: {
           regex: '[a-zA-Zа-яА-Я0-9]+',
@@ -1492,6 +1493,10 @@
           if (sort.hasOwnProperty(prop)) {
             switch (prop) {
               case 'deloDate': {
+                sort[prop] = true;
+                break;
+              }
+              case 'deloN': {
                 sort[prop] = true;
                 break;
               }
