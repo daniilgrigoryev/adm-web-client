@@ -137,7 +137,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsPost.stotvId" clearable filterable :disabled="!docsPost.dateNar" @on-change="store">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsPost.stotvId" clearable filterable :disabled="!docsPost.dateNar" @on-change="store, fillFactSved">
                         <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </Select>
                     </Col>
@@ -149,7 +149,16 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="docsPost.factSved" @on-input-change="store"></Input>
+                      <AutoComplete
+                        v-model="docsPost.factSved"
+                        :data="factSvedList"
+                        class="wmin180 adm-input adm-input--regular"
+                        :filter-method="filterfactSvedList"
+                        @on-blur="store"
+                        @on-select="store"
+                        placeholder=""
+                        clearable>
+                      </AutoComplete>
                     </Col>
                   </Row>
                 </div>
@@ -241,6 +250,7 @@
         docsPost: null,
         pnpaList: null,
         stotvSearchInfoList: null,
+        factSvedList: [],
         listSectionNav: [
           {
             title: "Постановление по делу",
@@ -604,6 +614,21 @@
         } else {
           this.clearOrganSost();
         }
+      },
+      async fillFactSved() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getFactSved'
+        });
+        let responseData = JSON.parse(eventResponse.response).data;
+        if (responseData.length) {
+          this.factSvedList = JSON.parse(responseData);
+        }
+      },
+      filterfactSvedList(value, option) {
+        if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+          return false;
+        }
+        return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
       changeDateNar() {
         this.stotvSearchInfoList = null;

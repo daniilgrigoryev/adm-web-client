@@ -50,7 +50,16 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.factSved" ></Input>
+            <AutoComplete
+              v-model="data.factSved"
+              :data="factSvedList"
+              class="wmin180 adm-input adm-input--regular"
+              :filter-method="filterfactSvedList"
+              @on-blur="storeElementData"
+              @on-select="storeElementData"
+              placeholder=""
+              clearable>
+            </AutoComplete>
           </Col>
         </Row>
       </div>
@@ -96,7 +105,7 @@
           this.data = data;
           await this.fillPnpaList();
           await this.fillStotvSearchInfo();
-          
+          await this.fillFactSved();
         }
 
         if (funcUtils.isNotEmpty(this.data.stotvId)) {

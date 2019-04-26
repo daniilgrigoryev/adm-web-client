@@ -7,15 +7,17 @@ export default {
       KBKSearchInfoList: null,
       pnpaList: null,
       stotvSearchInfoList: null,
+      factSvedList: [],
     }
   },
   methods: {
     changeStotvSearchInfo() {
       this.KBKSearchInfoList = null;
+      this.factSvedList = [];
       if (funcUtils.isNotEmpty(this.data.stotvId)) {
         this.fillKBKSearchInfo();
+        this.fillFactSved();
       }
-
       this.storeElementData();
     },
     async fillPnpaList() {
@@ -77,10 +79,30 @@ export default {
           return {
             label: element.kbkName,
             value: element.kbk,
-            id: element.id
+            id: element.id + ''
           }
         });
       }
+    },
+    async fillFactSved() {
+      let eventResponse = await RequestApi.prepareData({
+        method: 'invokeElementMethod',
+        params: {
+          eCID: this.info.eCID,
+          methodName: 'getFactSved',
+          data: null
+        }
+      });
+      let responseData = JSON.parse(eventResponse.response).data;
+      if (responseData.length) {
+        this.factSvedList = JSON.parse(responseData);
+      }
+    },
+    filterfactSvedList(value, option) {
+      if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+        return false;
+      }
+      return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
     },
   }
 }

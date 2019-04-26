@@ -45,7 +45,7 @@
             <div class="adm-form__content">
               <wizard-item-prot-three id="DocProtApnThree" v-if="isVisible('DocProtApnThree')" ref="DocProtApnThree" :info="getInfo('DocProtApnThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
               <wizard-item-place v-if="isVisible('DocProtApnThree.PlaceNar')" ref="DocProtApnThree.PlaceNar" :info="getInfo('DocProtApnThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-prot-four id="DocProtApnFour" v-if="isVisible('DocProtApnFour')" ref="DocProtApnFour" :info="getInfo('DocProtApnFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
+              <wizard-item-prot-taxi-four id="DocProtTaxiFour" v-if="isVisible('DocProtTaxiFour')" ref="DocProtTaxiFour" :info="getInfo('DocProtTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-taxi-four>
               <wizard-item-prot-taxi-five id="apn" v-if="isVisible('DocProtTaxiFive')" ref="DocProtTaxiFive" :info="getInfo('DocProtTaxiFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-taxi-five>
 
               <wizard-item-individual id="DocProtTaxiFive.Individual" v-if="isVisible('DocProtTaxiFive.Individual')" ref="DocProtTaxiFive.Individual" :info="getInfo('DocProtTaxiFive.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
@@ -93,7 +93,7 @@
       WizardItemProtOneApn: () => import('~/components/wizard/items/protApn/WizardItemProtOneApn'),
       WizardItemProtTwo: () => import('~/components/wizard/items/WizardItemProtTwo'),
       WizardItemProtThree: () => import('~/components/wizard/items/WizardItemProtThree'),
-      WizardItemProtFour: () => import('~/components/wizard/items/WizardItemProtFour'),
+      WizardItemProtTaxiFour: () => import('~/components/wizard/items/protTaxi/WizardItemProtTaxiFour'),
       WizardItemProtTaxiFive: () => import('~/components/wizard/items/protTaxi/WizardItemProtTaxiFive'),
       WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),

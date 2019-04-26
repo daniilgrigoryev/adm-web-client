@@ -67,6 +67,76 @@
             :value="body.organRasmName" 
             style="grid-column: span 2;"
           />
+
+          <view-data-item
+            label="Тип источника"
+            :value="body.vsTypeName"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            v-if="body.vsTypeId === 1"
+            label="Фамилия"
+            :value="body.vsFlFirstName"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            v-if="body.vsTypeId === 1"
+            label="Имя"
+            :value="body.vsFlSecondName"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            v-if="body.vsTypeId === 1"
+            label="Отчество"
+            :value="body.vsFlThirdName"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            v-if="body.vsTypeId === 1"
+            label="Пол"
+            :value="body.vsFlSex"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            v-if="body.vsTypeId !== 1"
+            label="Наименование источника данных о нарушении"
+            :value="body.vsName"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Вхоящий номер документа, полученного от источника данных о нарушении"
+            :value="body.vsIncomingNumber"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Входящая дата документа, полученного от источника данных о нарушении"
+            :value="body.vsIncomingDate | formatDateTime('DD.MM.YYYY')"
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item
+            v-if="body.vsTypeId !== 1"
+            label="Номер разрешения такси"
+            :value="body.tlNumber"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Дата начала срока действия разрешения такси"
+            :value="body.tlDateBeg | formatDateTime('DD.MM.YYYY')"
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item
+            label="Дата окончания срока действия разрешения такси"
+            :value="body.tlDateEnd | formatDateTime('DD.MM.YYYY')"
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/time.svg')"
+          />
+          <view-data-item
+            label="Организация, выдавшая разрешение такси"
+            :value="body.tlLicensor"
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
