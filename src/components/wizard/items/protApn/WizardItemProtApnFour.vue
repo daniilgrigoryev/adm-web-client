@@ -58,7 +58,7 @@
       <small class="adm-form__label"></small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <Checkbox v-model="data.isRemovedFromEvac" @on-change="storeElementData">Признак снятия транспортного средства, посредством которого было совершено нарушение, с эвакуатора</Checkbox>
+          <Checkbox class="amd-checkbox" v-model="data.isRemovedFromEvac" @on-change="storeElementData">Признак снятия транспортного средства, посредством которого было совершено нарушение, с эвакуатора</Checkbox>
         </Col>
       </Row>
     </div>
