@@ -22,6 +22,7 @@
       WizardScenarioProtIzyat: () => import('~/components/wizard/WizardScenarioProtIzyat'),
       WizardScenarioAddUchast: () => import('~/components/wizard/WizardScenarioAddUchast'),
       WizardScenarioProtTaxi: () => import('~/components/wizard/WizardScenarioProtTaxi'),
+      WizardScenarioDefinitionTaxi: () => import('~/components/wizard/WizardScenarioDefinitionTaxi'),
       WizardScenarioPostStopDelo: () => import('~/components/wizard/WizardScenarioPostStopDelo')
     },
     async created() {
@@ -159,6 +160,12 @@
           case 'CreateProtTaxi': {
             res = {
               name: 'WizardScenarioProtTaxi'
+            };
+            break;
+          }
+          case 'CreateDefinitionTaxi': {
+            res = {
+              name: 'WizardScenarioDefinitionTaxi'
             };
             break;
           }
