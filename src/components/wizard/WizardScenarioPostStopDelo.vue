@@ -21,7 +21,7 @@
 				
 				<div class="adm-form" v-if="isVisible('Repres')">
 					<div class="adm-form__container">
-						<h2 class="adm-form__headding" id="repres">Информация по законному представителю</h2>
+						<h2 class="adm-form__headding" id="	">Информация по законному представителю</h2>
 						<div class="adm-form__content">
 							<wizard-item-individual v-if="isVisible('Repres')" ref="Repres" :info="getInfo('Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
 							<wizard-item-address id="Repres.regAddr" v-if="isVisible('Repres.regAddr')" ref="Repres.regAddr" :info="getInfo('Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
