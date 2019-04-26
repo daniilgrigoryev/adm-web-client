@@ -35,10 +35,10 @@
               <div slot="content">
                 <ul class="amd-poptip-sub__nav">
                   <li>
-                    <Button :disabled="!menuItemVisible(menu.createDelo.ProtAPNAnothFace)" type="text" class="adm-btn-regular">Протокол об АПН на другое лицо</Button>
+                    <Button :disabled="!menuItemVisible(menu.createDelo.ProtAPNAnothFace)" @click="createWizardScenarioProtTaxi(true)" type="text" class="adm-btn-regular">Протокол об АПН на другое лицо</Button>
                   </li>
                   <li>
-                    <Button :disabled="!menuItemVisible(menu.createDelo.OpredAPNAnothFace)" type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
+                    <Button :disabled="!menuItemVisible(menu.createDelo.OpredAPNAnothFace)" @click="createWizardScenarioDefinitionTaxi(true)" type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
                   </li>
                   <li>
                     <Button :disabled="!menuItemVisible(menu.createDelo.PostAPNAnothFace)" type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
@@ -798,6 +798,46 @@
           let params = {
             scenarioName: 'CreateProtAPN',
             node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioProtTaxi(newDelo) {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            scenarioName: 'CreateProtTaxi',
+            node: copyNode,
+            newDelo: newDelo
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          alert(e.message);
+        }
+      },
+      createWizardScenarioDefinitionTaxi(newDelo) {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            scenarioName: 'CreateDefinitionTaxi',
+            node: copyNode,
+            newDelo: newDelo
           };
 
           formStack.toNext({

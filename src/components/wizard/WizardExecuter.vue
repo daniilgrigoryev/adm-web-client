@@ -31,10 +31,11 @@
           method: 'restore'
         };
         if (funcUtils.isNotEmpty(this.$route.params.scenarioName)) {
-          prepareParams.method = 'loadScenarioWithNode';
+          prepareParams.method = 'loadScenarioWithNodeNewDelo';
           prepareParams.params = {
             'name': this.$route.params.scenarioName,
-            'node': this.$route.params.node || null
+            'node': this.$route.params.node || null,
+            'newDelo': this.$route.params.newDelo ? this.$route.params.newDelo : funcUtils.isEmpty(this.$route.params.node)
           };
         }
 
