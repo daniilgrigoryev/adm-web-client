@@ -29,7 +29,7 @@
           <div
             v-if="item.title"
             class="title"
-            :class="{ tdu: !Array.isArray(item.value) }"
+            :class="{ tdu: !Array.isArray(item.value), empty: !item.value.length }"
           >
             {{ item.title }}
           </div>
@@ -50,12 +50,6 @@ export default {
   data() {
     return {
       defoultList: [
-        {
-          title: "Определение",
-          desc: "о возбуждении дела об административном расследовании",
-          icon: require("../../assets/images/grayIcons/Документ_4 gray.png"),
-          value: "CreateDefinition"
-        },
         {
           title: "Протоколы",
           desc: "Общая форма, такси, эвакуация",
@@ -81,26 +75,44 @@ export default {
                   desc: "статья 8.25. Размещение транспортных средств на территории, занятой зелеными насаждениями) по 20.25(Уклонение от исполнения административного наказания",
                   value: "",
                 },
+                {
+                  title: "20.25",
+                  value: "CreatePost",
+                },
               ]
             },
             {
               title: "О задержании ТС",
-              value: [
-                {
-                  title: "Эвакуация",
-                  value: "CreateProtEvac"
-                }
-              ]
+              value: "CreateProtEvac"
             },
             {
-              title: "Об изъятии вещей и документов",
-              value: [
-                {
-                  title: "Такси",
-                  value: "CreateProtIzyat"
-                }
-              ]
+              title: "Об изъятии вещей и документов (ТС)",
+              value:  "CreateProtIzyat"
             }
+          ]
+        },
+        {
+          title: "Определение",
+          desc: "о возбуждении дела об административном расследовании",
+          icon: require("../../assets/images/grayIcons/Документ_4 gray.png"),
+          value: [
+            {
+              title: "Общее",
+              value: "CreateDefinition"
+            },
+            {
+              title: "Такси",
+              value: "CreateDefinitionTaxi"
+            },
+            {
+              title: "Эвакуация",
+              value: ""
+            },
+            {
+              title: "КоАП г. Москвы",
+              desc: "статья 8.25. Размещение транспортных средств на территории, занятой зелеными насаждениями) по 20.25(Уклонение от исполнения административного наказания",
+              value: "",
+            },
           ]
         },
         {
@@ -124,6 +136,7 @@ export default {
   methods: {
     openItem(item) {
       if (!item.value.length) {
+        alert("В разработке");
         return;
       }
       if (Array.isArray(item.value)) {
@@ -211,6 +224,9 @@ export default {
         color: #1888cc;
         font-size: 20px;
         font-weight: 600;
+        &.empty {
+          opacity: 0.5;
+        }
         &.tdu {
           text-decoration: underline;
           &:hover {
