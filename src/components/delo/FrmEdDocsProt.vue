@@ -13,6 +13,8 @@
         </Button> -->
       </div>
     </div>
+    <!-- {{body}} -->
+
 
     <div class="view-data">
       <div class="view-data__container">
@@ -60,18 +62,11 @@
           />
           <hr>
           <view-data-item 
-            label="Дата и время рассмотрения" 
-            :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')" 
-            style="grid-column: span 2;"
-            :icon="require('../../assets/images/time.svg')"
-          />
-          <view-data-item 
-            label="Орган рассмотрения" 
-            :value="body.organRasmName" 
+            label="Было снятие ТС с эвакуатора" 
+            :value="isRemovedFromEvac" 
             style="grid-column: span 2;"
           />
-
-          <div v-if="body.tlNumber">
+          <div class="items-wrap" v-if="body.tlNumber">
             <view-data-item
               label="Номер разрешения такси"
               :value="body.tlNumber"
@@ -144,6 +139,9 @@
       this.$store.dispatch('frmEdDocsProtSetData', null);
     },
     computed: {
+      isRemovedFromEvac(){
+        return this.body.isRemovedFromEvac ? 'да' : 'нет' 
+      },
       ...mapGetters({
         dataStore: 'frmEdDocsProtGetData'
       }),

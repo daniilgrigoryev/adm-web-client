@@ -14,6 +14,8 @@ import frmEdDocsPost from './modules/frmEdDocsPost';
 import frmEdDocsProt from './modules/frmEdDocsProt';
 
 import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
+import FrmEdDecisRasm from './modules/frmEdDecisRasm';
+
 import frmEdDecisLish from './modules/frmEdDecisLish';
 import frmEdDecisVozbDelo from './modules/frmEdDecisVozbDelo';
 import frmEdDecisPredup from './modules/frmEdDecisPredup';
@@ -120,6 +122,7 @@ const store = new Vuex.Store({
     frmEdDocsProt,
 
     frmEdDecisShtraf,
+    FrmEdDecisRasm,
     frmEdDecisLish,
     frmEdDecisVozbDelo,
     frmEdDecisPredup,
