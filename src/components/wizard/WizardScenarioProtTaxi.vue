@@ -52,10 +52,16 @@
               <wizard-item-organization v-if="isVisible('DocProtTaxiFour.Organization')" ref="DocProtTaxiFour.Organization" :info="getInfo('DocProtTaxiFour.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
               <wizard-item-address v-if="isVisible('DocProtTaxiFour.Organization.regAddr')" ref="DocProtTaxiFour.Organization.regAddr" :info="getInfo('DocProtTaxiFour.Organization.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
               <wizard-item-address v-if="isVisible('DocProtTaxiFour.Organization.factAddr')" ref="DocProtTaxiFour.Organization.factAddr" :info="getInfo('DocProtTaxiFour.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            </div>
+          </div>
 
+          <div class="adm-form__container">
+            <h2 id="rasm" class="adm-form__headding">Сведения о рассмотрении</h2>
+            <div class="adm-form__content">
               <wizard-item-prot-taxi-five id="apn" v-if="isVisible('DocProtTaxiFive')" ref="DocProtTaxiFive" :info="getInfo('DocProtTaxiFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-taxi-five>
             </div>
           </div>
+
           <div class="adm-form__container">
             <h2 id="witness" class="adm-form__headding">Свидетели</h2>
             <div class="adm-form__content">
@@ -122,6 +128,10 @@
           {
             title: "Сведения о нарушении",
             name: "nar"
+          },
+          {
+            title: "Сведения о рассмотрении",
+            name: "rasm"
           },
           {
             title: "Свидетели",
