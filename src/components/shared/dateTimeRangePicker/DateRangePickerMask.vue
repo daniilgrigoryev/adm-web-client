@@ -1,6 +1,6 @@
 <template>
-  <div v-click-outside="hide">
-    <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @hide="hide" @onClick="show" @onClear="onClear" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable" :inputClass="inputClass"></calendar-body>
+  <div v-click-outside="hide" class="calendar-parent">
+    <calendar-body ref="dateRangePickerMaskBody" :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @hide="hide" @onClick="show" @onClear="onClear" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable" :inputClass="inputClass"></calendar-body>
 
     <calendar-header ref="dateRangePickerMaskHeader" v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @onClear="onClear" @hide="hide" :valueFirst="currentValueFirst" :valueSecond="currentValueSecond"></calendar-header>
   </div>
@@ -63,11 +63,13 @@
     },
     updated() {
       let dateRangePickerMaskHeader = this.$refs.dateRangePickerMaskHeader;
+      let dateRangePickerMaskBody = this.$refs.dateRangePickerMaskBody;
       if (dateRangePickerMaskHeader) {
         let dateRangePickerMaskHeaderOffset = dateRangePickerMaskHeader.$el.getBoundingClientRect();
+        let dateRangePickerMaskBodyOffset = dateRangePickerMaskBody.$el.getBoundingClientRect();
 
-        if (dateRangePickerMaskHeaderOffset.bottom > window.innerHeight) {
-          dateRangePickerMaskHeaderOffset.$el.style.top = '-277px';
+        if ((dateRangePickerMaskHeaderOffset.bottom + dateRangePickerMaskHeaderOffset.height) > window.innerHeight) {
+          dateRangePickerMaskHeader.$el.style.bottom = dateRangePickerMaskBodyOffset.height  + 'px';
         }
       }
     },
@@ -126,11 +128,18 @@
 </script>
 
 <style scoped lang="scss">
-  .calendar-header {
-    position: absolute;
-    height: 277px;
-    background: #fff;
-    border-color: rgb(81, 90, 110);
-    z-index: 15;
+  .calendar-parent {
+    position: relative;
+
+    .calendar-header {
+      position: absolute;
+      height: 277px;
+      background: #fff;
+      border-color: rgb(81, 90, 110);
+      z-index: 15;
+      .calendar .time .time-list{
+        max-width: none;
+      }
+    }
   }
 </style>
