@@ -406,7 +406,7 @@
             this.data.organIspolnId = data.ogaiId;
             this.data.organIspolnKod = data.organKod;
             this.data.organIspolnName = data.ogaiName;
-            this.storeElementData();
+            await this.storeElementData();
           }
         } else {
           this.clearInspIspoln();
@@ -506,26 +506,26 @@
         }
         this.organModal.visible = visible;
       },
-      clearInspIspolnKod() {
+      async clearInspIspolnKod() {
         this.data.inspIspolnId = null;
         this.data.inspIspolnKod = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
-      clearInspIspoln() {
+      async clearInspIspoln() {
         this.data.inspIspolnId = null;
         this.data.inspIspolnKod = null;
         this.data.inspIspolnName = null;
         this.data.inspIspolnDolz = null;
         this.data.inspIspolnRang = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
-      clearOrganIspoln() {
+      async clearOrganIspoln() {
         this.data.organIspolnId = null;
         this.data.organIspolnKod = null;
         this.data.organIspolnName = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
-      onSispClick(data) {
+      async onSispClick(data) {
         this.data.inspIspolnId = data.inspId;
         this.data.inspIspolnKod = data.inspKod;
         this.data.inspIspolnName = data.inspName;
@@ -536,15 +536,15 @@
         this.data.organIspolnName = data.ogaiName;
         this.dolzModal.visible = false;
         this.dolzModal.sispList = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
-      onGibddClick(data) {
+      async onGibddClick(data) {
         this.data.organIspolnId = data.ID;
         this.data.organIspolnKod = data.ORGAN_KOD;
         this.data.organIspolnName = data.ORGAN_NAME;
         this.organModal.gibddList = null;
         this.organModal.visible = false;
-        this.storeElementData();
+        await this.storeElementData();
       },
 
       async storeElementData() {

@@ -311,7 +311,7 @@
         if (this.isNotEmptyTipTcKod()) {
           await this.fillKuzovTypeList();
         }
-        this.storeElementData();
+        await this.storeElementData();
       },
       async changeMarkaAvto() {
         this.modelList = null;
@@ -319,7 +319,7 @@
         if (this.isNotEmptyMarkId()) {
           await this.fillModelList();
         }
-        this.storeElementData();
+        await this.storeElementData();
       },
       isNotEmptyTipTcKod() {
         return funcUtils.isNotEmpty(this.data.tiptcKod);
@@ -327,10 +327,13 @@
       isNotEmptyMarkId() {
         return funcUtils.isNotEmpty(this.data.markaAvto);
       },
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }

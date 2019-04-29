@@ -367,7 +367,7 @@
         this.ulModal.ulList = null;
       },
 
-      onUlClick(data) {
+      async onUlClick(data) {
         this.data.id = data.ulId;
         this.data.name = data.name;
         this.data.inn = data.inn;
@@ -376,13 +376,16 @@
         this.data.okpo = data.okpo;
         this.ulModal.visible = false;
         this.ulModal.ulList = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
 
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }

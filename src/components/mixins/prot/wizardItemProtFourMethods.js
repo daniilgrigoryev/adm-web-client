@@ -11,14 +11,14 @@ export default {
     }
   },
   methods: {
-    changeStotvSearchInfo() {
+    async changeStotvSearchInfo() {
       this.KBKSearchInfoList = null;
       this.factSvedList = [];
       if (funcUtils.isNotEmpty(this.data.stotvId)) {
         this.fillKBKSearchInfo();
         this.fillFactSved();
       }
-      this.storeElementData();
+      await this.storeElementData();
     },
     async fillPnpaList() {
       let eventResponse = await RequestApi.prepareData({

@@ -293,7 +293,7 @@ export default {
         this.$refs.street.reset();
       }
 
-      this.storeElementData();
+      await this.storeElementData();
 		},
 		async changeCity(query) {
       let limit;
@@ -313,7 +313,7 @@ export default {
         this.citiesList = null;
       }
 
-      this.storeElementData();
+      await this.storeElementData();
 		},
 		async changeStreet(query) {
       let limit;
@@ -333,7 +333,7 @@ export default {
         this.streetsList = null;
       }
 
-      this.storeElementData();
+      await this.storeElementData();
 		},
     filterPlace(value, option) {
       if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
@@ -559,24 +559,26 @@ export default {
 		},
 
 		isNotEmptyRegionId() {
-			return funcUtils.isNotEmpty(this.data.adr.regionId);
+			return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.adr.regionId);
 		},
 		isNotEmptyCityId() {
-			return funcUtils.isNotEmpty(this.data.adr.cityId);
+			return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.adr.cityId);
 		},
 		isNotEmptyRayonId() {
-			return funcUtils.isNotEmpty(this.data.adr.rayonId);
+			return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.adr.rayonId);
 		},
     isNotEmptyStreetId() {
-      return funcUtils.isNotEmpty(this.data.adr.streetId);
+      return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.adr.streetId);
     },
-		storeElementData() {
-			let copyData = JSON.parse(JSON.stringify(this.data));
-			this.$emit('storeElementData', {
-				eCID: this.info.eCID,
-				data: copyData
-			});
-		},
+    async storeElementData() {
+      return new Promise((resolve, reject) => {
+        this.$emit('storeElementData', {
+          eCID: this.info.eCID,
+          data: this.data,
+          resolve: resolve
+        });
+      });
+    },
 	}
 }
 </script>

@@ -166,15 +166,18 @@
         this.vehsList = vehsList;
       },
       async changeStatus() {
-        this.storeElementData();
+        await this.storeElementData();
         this.data.tip = null;
         this.data.vid = null;
         await this.fillTipList();
       },
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }

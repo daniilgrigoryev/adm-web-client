@@ -582,7 +582,7 @@
             this.data.organSostId = data.ogaiId;
             this.data.organSostKod = data.organKod;
             this.data.organSostName = data.ogaiName;
-            this.storeElementData();
+            await this.storeElementData();
           }
         } else {
           this.clearInspSost();
@@ -660,7 +660,7 @@
         }
       },
 
-      onDeloSelect(e) {
+      async onDeloSelect(e) {
         if (funcUtils.isNotEmpty(e)) {
           let delo = JSON.parse(e);
           this.data.mainDeloId = delo.id;
@@ -669,19 +669,19 @@
           this.deloModal.visible = false;
           this.deloModal.deloList = null;
         }
-        this.storeElementData();
+        await this.storeElementData();
       },
 
-      onSudClick(data) {
+      async onSudClick(data) {
         this.data.organRasmId = data.ID;
         this.data.organRasmKod = data.ORGAN_KOD;
         this.data.organRasmName = data.ORGAN_NAME;
         this.sudModal.visible = false;
         this.sudModal.sudList = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
 
-      onSispClick(data) {
+      async onSispClick(data) {
         this.data.inspSostId = data.inspId;
         this.data.inspSostKod = data.inspKod;
         this.data.inspSostName = data.inspName;
@@ -692,27 +692,30 @@
         this.data.organSostName = data.ogaiName;
         this.dolzModal.visible = false;
         this.dolzModal.sispList = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
 
-      clearInspSostKod() {
+      async clearInspSostKod() {
         this.data.inspSostId = null;
         this.data.inspSostKod = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
-      clearInspSost() {
+      async clearInspSost() {
         this.data.inspSostId = null;
         this.data.inspSostKod = null;
         this.data.inspSostName = null;
         this.data.inspSostDolz = null;
         this.data.inspSostRang = null;
-        this.storeElementData();
+        await this.storeElementData();
       },
 
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }

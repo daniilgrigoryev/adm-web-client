@@ -229,7 +229,7 @@
           this.individualStatus = JSON.parse(JSON.parse(eventResponse.response).data);
         }
       },
-      changeFIO() {
+      async changeFIO() {
         let fio = '';
         this.data.firstName = null;
         this.data.secondName = null;
@@ -261,7 +261,7 @@
           }
         }
         this.fio = fio;
-        this.storeElementData();
+        await this.storeElementData();
       },
       parseFIO () {
         this.fio = '';
@@ -282,27 +282,30 @@
         }
         return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
-      changeBirthMesto(e) {
+      async changeBirthMesto(e) {
         if (e.length === 0) {
           this.data.birthMestoKod = null;
         } else if (e.length > 0 && funcUtils.isEmpty(this.data.birthMestoKod)) {
           this.data.birthMesto = '';
         }
-        this.storeElementData();
+        await this.storeElementData();
       },
-      selectBirthMesto(value) {
+      async selectBirthMesto(value) {
         let birthMestoKod = this.birthList.filter((item) => {
           return item.label === value;
         }).getFirst();
         if (birthMestoKod) {
           this.data.birthMestoKod = birthMestoKod.value;
         }
-        this.storeElementData();
+        await this.storeElementData();
       },
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }

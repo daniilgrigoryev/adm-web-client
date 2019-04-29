@@ -71,12 +71,15 @@
           this.data = data;
 				}
 			},
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
-			},
+      },
 			async fillStotvSearchInfo() {
 				let eventResponse = await RequestApi.prepareData({
 					method: 'invokeElementMethod',
