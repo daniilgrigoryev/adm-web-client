@@ -33,12 +33,6 @@
 <style lang="scss">
   #indicator {
     display: none;
-    /*width: 100vw;*/
-    /*height: 100vh;*/
-    /*position: fixed;*/
-    /*opacity: 0.8;*/
-    /*z-index: 1000000000;*/
-    /*background: grey;*/
   }
 
   $grey: #CCCCCC;
@@ -79,14 +73,7 @@
   }
 
   .loader {
-    // position: relative;
-    // margin: 75px auto;
-    // width: 150px;
-    // height: 150px;
-    // display: block;
-    // overflow: hidden;
     position: fixed;
-    /* margin: 75px auto; */
     width: 150px;
     height: 150px;
     display: block;
@@ -94,10 +81,6 @@
     z-index: 999;
     bottom: 0;
     right: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    top: 0;
-    position: absolute;
     left: 50%;
     top: 40%;
     transform: translate(-50%, -50%);

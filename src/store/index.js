@@ -33,6 +33,7 @@ import frmEdVuPred from './modules/frmEdVuPred';
 import frmEdIspolnPostUvedom from './modules/frmEdIspolnPostUvedom';
 import dlgEdFotoMaterial from './modules/dlgEdFotoMaterial';
 import dlgAdvice from './modules/dlgAdvice';
+import frmEdMediaMaterial from './modules/frmEdMediaMaterial';
 
 import frmEdDeloEdit from './modules/frmEdDeloEdit';
 import frmEdDecisEdit from './modules/frmEdDecisEdit';
@@ -139,6 +140,7 @@ const store = new Vuex.Store({
     frmEdProtPZTC,
     frmEdIspolnPostUvedom,
     dlgEdFotoMaterial,
+    frmEdMediaMaterial,
     dlgAdvice,
 
     addressViewEdit,

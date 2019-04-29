@@ -114,10 +114,18 @@
             },
             withSpinner: false
           });
-          response.then(() => vm.byteArraysCount--, () => vm.byteArraysCount--);
-          if (vm.byteArraysCount === 0) {
-            vm.checkSended();
-          }
+          response.then(() => {
+            vm.byteArraysCount--;
+            if (vm.byteArraysCount === 0) {
+              vm.checkSended();
+            }
+          }, () => {
+            vm.byteArraysCount--;
+            if (vm.byteArraysCount === 0) {
+              vm.checkSended();
+            }
+
+          });
         }
       },
       async checkSended() {

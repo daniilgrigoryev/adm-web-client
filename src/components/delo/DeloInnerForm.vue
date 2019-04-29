@@ -15,6 +15,7 @@
     components: {
       DlgAdvice: () => import('~/components/delo/DlgAdvice'),
       DlgEdFotoMaterial: () => import('~/components/delo/DlgEdFotoMaterial/DlgEdFotoMaterial'),
+      FrmEdMediaMaterial: () => import('~/components/delo/FrmEdMediaMaterial'),
       FrmEdIspolnPostUvedom: () => import('~/components/delo/FrmEdIspolnPostUvedom'),
       FrmEdVuPred: () => import('~/components/delo/FrmEdVuPred'),
       FrmEdVuVyd: () => import('~/components/delo/FrmEdVuVyd'),
@@ -118,6 +119,10 @@
           }
           case 'FrmEdDecisVozbDelo': {
             res = 'FrmEdDecisVozbDelo';
+            break;
+          }
+          case 'FrmEdMediaMaterial': {
+            res = 'FrmEdMediaMaterial';
             break;
           }
         }
