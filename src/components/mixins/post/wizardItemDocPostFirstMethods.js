@@ -329,7 +329,7 @@ export default {
             })
           }
         });
-        this.clearOrganSost();
+        await this.clearOrganSost();
         let gibddList = JSON.parse(JSON.parse(eventResponse.response).data);
         if (gibddList.length > 0) {
           this.organModal.visible = true;
@@ -351,7 +351,7 @@ export default {
             })
           }
         });
-        this.clearInspSost();
+        await this.clearInspSost();
         let data = JSON.parse(JSON.parse(eventResponse.response).data);
         if (funcUtils.isNotEmpty(data) && data.length > 0) {
           data = data.getFirst();
@@ -363,7 +363,7 @@ export default {
           this.data.organSostId = data.ogaiId;
           this.data.organSostKod = data.organKod;
           this.data.organSostName = data.ogaiName;
-          this.storeElementData();
+          await this.storeElementData();
         }
       } else {
         this.clearInspSost();
@@ -400,7 +400,7 @@ export default {
       this.clearInspSostKod();
     },
 
-    onSispClick(data) {
+    async onSispClick(data) {
       this.data.inspSostId = data.inspId;
       this.data.inspSostKod = data.inspKod;
       this.data.inspSostName = data.inspName;
@@ -411,35 +411,35 @@ export default {
       this.data.organSostName = data.ogaiName;
       this.dolzModal.visible = false;
       this.dolzModal.sispList = null;
-      this.storeElementData();
+      await this.storeElementData();
     },
-    onGibddClick(data) {
+    async onGibddClick(data) {
       this.data.organSostId = data.ID;
       this.data.organSostKod = data.ORGAN_KOD;
       this.data.organSostName = data.ORGAN_NAME;
       this.organModal.gibddList = null;
       this.organModal.visible = false;
-      this.storeElementData();
+      await this.storeElementData();
     },
 
-    clearInspSostKod() {
+    async clearInspSostKod() {
       this.data.inspSostId = null;
       this.data.inspSostKod = null;
-      this.storeElementData();
+      await this.storeElementData();
     },
-    clearInspSost() {
+    async clearInspSost() {
       this.data.inspSostId = null;
       this.data.inspSostKod = null;
       this.data.inspSostName = null;
       this.data.inspSostDolz = null;
       this.data.inspSostRang = null;
-      this.storeElementData();
+      await this.storeElementData();
     },
-    clearOrganSost() {
+    async clearOrganSost() {
       this.data.organSostId = null;
       this.data.organSostKod = null;
       this.data.organSostName = null;
-      this.storeElementData();
+      await this.storeElementData();
     },
   }
 }

@@ -56,8 +56,8 @@
           return this.pathes[path];
         }
       },
-      storeElementData(params) {
-        this.$emit('storeElementData', params);
+      async storeElementData(params) {
+        await this.$emit('storeElementData', params);
       },
       updateComponents(cids) {
         this.$emit('updateComponents', cids);

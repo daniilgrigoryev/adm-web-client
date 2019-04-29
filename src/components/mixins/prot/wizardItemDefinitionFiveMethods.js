@@ -154,19 +154,19 @@ export default {
         this.clearRasmSost();
       }
     },
-    onRasmClick(data) {
+    async onRasmClick(data) {
       this.data.organRasmId = data.ID;
       this.data.organRasmKod = data.ORGAN_KOD;
       this.data.organRasmName = data.ORGAN_NAME;
       this.rasmModal.visible = false;
       this.rasmModal.rasmList = null;
-      this.storeElementData();
+      await this.storeElementData();
     },
-    clearRasmSost() {
+    async clearRasmSost() {
       this.data.organRasmId = null;
       this.data.organRasmKod = null;
       this.data.organRasmName = null;
-      this.storeElementData();
+      await this.storeElementData();
     },
   }
 }

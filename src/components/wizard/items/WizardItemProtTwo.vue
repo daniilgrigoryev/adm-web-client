@@ -8,10 +8,10 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="4" :md="4" :lg="4">
-            <masked-input inputClass="adm-input adm-input--regular" v-model="data.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod"></masked-input>
           </Col>
           <Col :xs="18" :md="18" :lg="18">
-            <Input class="adm-input adm-input--regular" disabled v-model="data.inspSostName" @on-input-change="changeFIO" ></Input>
+            <Input class="adm-input adm-input--regular" disabled v-model="data.inspSostName"></Input>
           </Col>
           <Col :xs="2" :md="2" :lg="2">
             <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -88,16 +88,18 @@
         }
       },
 
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }
   }
 </script>
 
-<style scoped>
-
+<style lang="scss">
 </style>

@@ -257,7 +257,7 @@
           this.$refs.street.reset();
         }
 
-        this.storeElementData();
+        await this.storeElementData();
       },
       async changeCity(query) {
         let limit;
@@ -277,7 +277,7 @@
           this.citiesList = null;
         }
 
-        this.storeElementData();
+        await this.storeElementData();
       },
       async changeStreet(query) {
         let limit;
@@ -297,7 +297,7 @@
           this.streetsList = null;
         }
 
-        this.storeElementData();
+        await this.storeElementData();
       },
 
       async fillCountryList() {
@@ -472,19 +472,19 @@
       },
 
       isNotEmptyContryCode() {
-        return funcUtils.isNotEmpty(this.data.countryCode);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.countryCode);
       },
       isNotEmptyRegionId() {
-        return funcUtils.isNotEmpty(this.data.regionId);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.regionId);
       },
       isNotEmptyCityId() {
-        return funcUtils.isNotEmpty(this.data.cityId);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.cityId);
       },
       isNotEmptyRayonId() {
-        return funcUtils.isNotEmpty(this.data.rayonId);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.rayonId);
       },
       isNotEmptyStreetId() {
-        return funcUtils.isNotEmpty(this.data.streetId);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.streetId);
       },
       async showAddressModal(visible) {
         this.addressModal.visible = visible;
@@ -530,10 +530,13 @@
         this.streetsList = null;
       },
 
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }

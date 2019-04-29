@@ -181,9 +181,9 @@
         if (this.data.status) {
           await this.fillPresenceTypeList();
         }
-        this.storeElementData();
+        await this.storeElementData();
       },
-      changeFIO() {
+      async changeFIO() {
         let fioLength = 0;
         let fioArr = this.data.lvokName.split(' ');
         this.data.lvokName = '';
@@ -211,12 +211,15 @@
             fioLength++;
           }
         }
-        this.storeElementData();
+        await this.storeElementData();
       },
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }

@@ -44,7 +44,7 @@
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
       },
-      onFileChange(e) {
+      async onFileChange(e) {
         let vm = this;
         this.byteArraysCount = 0;
         this.files = {};
@@ -52,7 +52,7 @@
 
         let files = e.target.files || e.dataTransfer.files;
         if (!files || files.length === 0) {
-          this.storeElementData();
+          await this.storeElementData();
           return;
         }
 
@@ -65,7 +65,7 @@
             loadSize: 0
           });
         }
-        this.storeElementData();
+        await this.storeElementData();
 
         for (let i = 0; i < files.length; i++) {
           let file = files[i];
@@ -172,10 +172,13 @@
         let input = this.$refs.file;
         input.type = 'file';
       },
-      storeElementData() {
-        this.$emit('storeElementData', {
-          eCID: this.info.eCID,
-          data: this.data
+      async storeElementData() {
+        return new Promise((resolve, reject) => {
+          this.$emit('storeElementData', {
+            eCID: this.info.eCID,
+            data: this.data,
+            resolve: resolve
+          });
         });
       },
     }
