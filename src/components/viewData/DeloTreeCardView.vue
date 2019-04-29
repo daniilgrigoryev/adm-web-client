@@ -311,7 +311,7 @@
         }
         let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeParams'));
         this.$set(this.firstTreeNode, 'selected', jsonParams === firstTreeNode);
-        this.deloTree.forEach((item) => {
+        this.dataStore.tree.forEach((item) => {
           let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeParams'));
           this.$set(item, 'selected', jsonParams === copyNode);
         });
@@ -566,6 +566,8 @@
 
         this.firstTreeNode = this.getCopyObj(arr.getFirst(), 'children');
         tree.push(this.firstTreeNode);
+
+        this.updateSelected();
 
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];

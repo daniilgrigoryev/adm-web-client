@@ -70,6 +70,36 @@
             :value="body.organRasmName" 
             style="grid-column: span 2;"
           />
+
+          <div v-if="body.tlNumber">
+            <view-data-item
+              label="Номер разрешения такси"
+              :value="body.tlNumber"
+              style="grid-column: span 2;"
+            />
+            <view-data-item
+              label="Дата начала срока действия разрешения такси"
+              :value="body.tlDateBeg | formatDateTime('DD.MM.YYYY')"
+              style="grid-column: span 2;"
+              :icon="require('../../assets/images/time.svg')"
+            />
+            <view-data-item
+              label="Дата окончания срока действия разрешения такси"
+              :value="body.tlDateEnd | formatDateTime('DD.MM.YYYY')"
+              style="grid-column: span 2;"
+              :icon="require('../../assets/images/time.svg')"
+            />
+            <view-data-item
+              label="Владелец разрешения такси"
+              :value="body.tlLicenseeName"
+              style="grid-column: span 2;"
+            />
+            <view-data-item
+              label="Организация, выдавшая разрешение такси"
+              :value="body.tlLicensor"
+              style="grid-column: span 2;"
+            />
+          </div>
         </div>
       </div>
     </div>

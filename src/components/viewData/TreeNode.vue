@@ -422,6 +422,9 @@
           for (let i = 0; i < node.children.length; i++) {
             let child = node.children[i];
             res = this.hasSelectedChildren(child);
+            if (res) {
+              return res;
+            }
           }
         }
         return res;

@@ -175,69 +175,65 @@
                   </Row>
                 </div>
               </div>
+              <div v-if="docsProt.tlNumber">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Номер разрешения такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsProt.tlNumber" ></Input>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата начала срока действия разрешения такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsProt.tlDateBeg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата окончания срока действия разрешения такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsProt.tlDateEnd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Владелец разрешения такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsProt.tlLicenseeName" ></Input>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Организация, выдавшая разрешение такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsProt.tlLicensor" ></Input>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+              </div>
+              </div>
             </div>
           </div>
-          <!--<div class="adm-form__container">
-              <div class="adm-form__item">
-                <small class="adm-form__label">Место работы</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="docsProt.workPlace" @on-input-change="store"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-            <h2 class="adm-form__headding" id="rasmr">Сведения о рассмотрении</h2>
-            <div class="adm-form__content">
-              <div class="adm-form__item">
-                <small class="adm-form__label">Дата и время</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input&#45;&#45;regular wmin120 wmax180" v-model="docsProt.dateRasm" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Орган рассмотрения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input&#45;&#45;regular" readonly :value="docsProt.organRasmName" ></Input>
-                    </Col>
-                    <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
-                      </Button>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Место рассмотрения</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    &lt;!&ndash; TODO &ndash;&gt;
-                    <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input&#45;&#45;regular" disabled ></Input>
-                    </Col>
-                    &lt;!&ndash;<Col :xs="2" :md="2" :lg="2">&ndash;&gt;
-                      &lt;!&ndash;<Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">&ndash;&gt;
-                        &lt;!&ndash;<Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />&ndash;&gt;
-                      &lt;!&ndash;</Button>&ndash;&gt;
-                    &lt;!&ndash;</Col>&ndash;&gt;
-                    &lt;!&ndash; ENDTODO &ndash;&gt;
-                  </Row>
-                </div>
-              </div>
-            </div>
-          </div>-->
         </div>
      </div>
-    </div>
-        
+
     <div class="bot-wrap">
       <Button @click="getPrev" type="text">Отменить изменения</Button>
       <Button @click="save" type="primary" class="ml12">Сохранить</Button>

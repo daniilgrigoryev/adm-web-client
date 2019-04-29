@@ -22,7 +22,10 @@
           <view-data-item 
             label="Тип документа" 
             :value="body.docTipName" 
-            style="grid-column: span 2;"
+          />
+          <view-data-item 
+            label="Статус" 
+            :value="body.statusName" 
           />
           <hr>
           <view-data-item 
