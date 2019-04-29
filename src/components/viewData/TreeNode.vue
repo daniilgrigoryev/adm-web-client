@@ -87,6 +87,7 @@
               case docTipEnum.VEHS_FOTO:
               case docTipEnum.UCHAST_FOTO:
               case docTipEnum.DOCS_FOTO:
+              case docTipEnum.MEDIA_DOC:
               case docTipEnum.VIDEOFIX_FOTO: {
                 return photo;
               }
@@ -253,6 +254,7 @@
               case docTipEnum.VEHS_FOTO:
               case docTipEnum.UCHAST_FOTO:
               case docTipEnum.DOCS_FOTO:
+              case docTipEnum.MEDIA_DOC:
               case docTipEnum.VIDEOFIX_FOTO: {
                 return `
                   <h4>

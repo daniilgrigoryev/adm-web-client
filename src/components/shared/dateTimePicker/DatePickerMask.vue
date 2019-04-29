@@ -1,6 +1,6 @@
 <template>
-  <div v-click-outside="hide">
-    <calendar-body :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @onClick="show" @onClear="onClear" @hide="hide" :value="currentValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable"></calendar-body>
+  <div v-click-outside="hide" class="calendar-parent">
+    <calendar-body ref="datePickerMaskBody" :maskFormat="maskFormat" :momentFormat="momentFormat" @change="change" @onClick="show" @onClear="onClear" @hide="hide" :value="currentValue" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :clearable="clearable"></calendar-body>
 
     <calendar-header ref="datePickerMaskHeader" v-if="visible" class="calendar-header" :format="maskFormat" :type="type" @change="change" @hide="hide" :value="currentValue"></calendar-header>
   </div>
@@ -56,11 +56,13 @@
     },
     updated() {
       let datePickerMaskHeader = this.$refs.datePickerMaskHeader;
+      let datePickerMaskBody = this.$refs.datePickerMaskBody;
       if (datePickerMaskHeader) {
         let datePickerMaskHeaderOffset = datePickerMaskHeader.$el.getBoundingClientRect();
+        let datePickerMaskBodyOffset = datePickerMaskBody.$el.getBoundingClientRect();
 
-        if (datePickerMaskHeaderOffset.bottom > window.innerHeight) {
-          datePickerMaskHeader.$el.style.top = '-277px';
+        if ((datePickerMaskHeaderOffset.bottom + datePickerMaskHeaderOffset.height) > window.innerHeight) {
+          datePickerMaskHeader.$el.style.bottom = datePickerMaskBodyOffset.height  + 'px';
         }
       }
     },
@@ -104,20 +106,24 @@
         }
         this.$emit('input', date);
         this.$emit('change', date);
-      },
+      }
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .calendar-header {
-    position: absolute;
-    // height: 277px;
-    background: #fff;
-    border-color: rgb(81, 90, 110);
-    z-index: 15;
-    .calendar .time .time-list{
-      max-width: none;
+  .calendar-parent {
+    position: relative;
+
+    .calendar-header {
+      position: absolute;
+      height: 277px;
+      background: #fff;
+      border-color: rgb(81, 90, 110);
+      z-index: 15;
+      .calendar .time .time-list{
+        max-width: none;
+      }
     }
   }
 
