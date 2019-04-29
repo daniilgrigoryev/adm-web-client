@@ -287,6 +287,8 @@ html, body, #app {
   top: 121px;
   direction: rtl;
   z-index: 8;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: calc(100vh - 130px);
   background: linear-gradient(to right, #f5fafd 95.6%, #fafafa 0%);
 }
