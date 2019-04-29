@@ -174,6 +174,7 @@
 
               <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.exclusion)"></div>-->
 
+
               <div v-if="decis.decisKod && showByDecisKod(decisKods.stopWorkDay)">
                 <div class="adm-form__item">
                   <small class="adm-form__label">Дата начала приостановления</small>
@@ -192,6 +193,30 @@
                   </Row>
                 </div>
               </div>
+
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.rasm)">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Орган рассмотрения</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <masked-input inputClass="adm-input adm-input--regular" v-model="decis.organNapravlName" :maskProps="{casing: 'upper', placeholder: ''}" @onInputChange="store"></masked-input>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата и время рассмотрения</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.dateRasm" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+              </div>
+
               <div class="adm-form__item">
                 <small class="adm-form__label">Дата вручения</small><!-- Дата уведомления -->
                 <div class="adm-form__item_content">
@@ -289,6 +314,7 @@
           confiscation: 76, // Конфискация
           exclusion: 77, // Выдворение за пределы РФ
           stopWorkDay: 78, // Приостановление деятельности
+          rasm: 92, // Назначить дату и место рассмотрения
         }
       }
     },
