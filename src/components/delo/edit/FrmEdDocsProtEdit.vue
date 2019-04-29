@@ -175,6 +175,14 @@
                   </Row>
                 </div>
               </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label"></small>
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="14" :lg="22">
+                    <Checkbox class="amd-checkbox" v-model="docsProt.isRemovedFromEvac" @on-change="store">Признак снятия транспортного средства, посредством которого было совершено нарушение, с эвакуатора</Checkbox>
+                  </Col>
+                </Row>
+              </div>
               <div v-if="docsProt.tlNumber">
                 <div class="adm-form__item">
                   <small class="adm-form__label">Номер разрешения такси</small>
