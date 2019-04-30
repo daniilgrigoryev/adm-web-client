@@ -66,7 +66,7 @@
             :value="isRemovedFromEvac" 
             style="grid-column: span 2;"
           />
-          <div class="items-wrap" v-if="body.tlNumber">
+          <div class="items-wrap" v-if="isTaxi">
             <view-data-item
               label="Номер разрешения такси"
               :value="body.tlNumber"
@@ -103,6 +103,7 @@
 
 <script>
   import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import * as constants from "~/assets/js/utils/constants";
   import * as formStack from '~/assets/js/api/formStack';
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
@@ -149,6 +150,13 @@
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.body;
+        }
+        return res;
+      },
+      isTaxi() {
+        let res = null;
+        if (this.dataStore) {
+          res = funcUtils.isNotEmpty(this.dataStore.deloTag) &&  this.dataStore.deloTag.includes(constants.TAG_TAXI);
         }
         return res;
       },
