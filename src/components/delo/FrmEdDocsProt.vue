@@ -60,8 +60,9 @@
             :value="body.organSostName" 
             style="grid-column: span 2;"
           />
-          <hr>
-          <view-data-item 
+
+          <hr v-if="isTaxi">
+          <view-data-item v-if="isTaxi"
             label="Было снятие ТС с эвакуатора" 
             :value="isRemovedFromEvac" 
             style="grid-column: span 2;"
