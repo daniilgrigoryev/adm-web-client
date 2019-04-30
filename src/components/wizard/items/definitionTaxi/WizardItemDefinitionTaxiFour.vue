@@ -54,6 +54,7 @@
         </Row>
       </div>
     </div>
+
     <div class="adm-form__item">
       <small class="adm-form__label">Справочник типов источников</small>
       <Row :gutter="16" type="flex" align="middle">

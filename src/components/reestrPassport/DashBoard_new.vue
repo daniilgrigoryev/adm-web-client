@@ -29,8 +29,8 @@
           <div
             v-if="item.title"
             class="title"
-            :class="{ tdu: !Array.isArray(item.value), empty: !item.value.length }"
           >
+            <!-- :class="{ tdu: !Array.isArray(item.value), empty: !item.value.length }" -->
             {{ item.title }}
           </div>
           <div v-if="item.desc" class="desc">{{ item.desc }}</div>
