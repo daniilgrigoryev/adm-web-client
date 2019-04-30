@@ -157,127 +157,129 @@
                   </Row>
                 </div>
               </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Справочник типов источников</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col>
-                    <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="docsOpred.vsTypeId" clearable @on-change="store">
-                      <Option class="wmax360 " v-for="item in violSourceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select>
-                  </Col>
-                </Row>
-              </div>
-              <div v-if="docsOpred.vsTypeId === 1" class="adm-form__item">
-                <small class="adm-form__label">Фамилия</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col>
-                    <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlFirstName"
-                                  :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
-                                  @onInputChange="store"></masked-input>
-                  </Col>
-                </Row>
-              </div>
-              <div v-if="docsOpred.vsTypeId === 1" class="adm-form__item">
-                <small class="adm-form__label">Имя</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col>
-                    <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlSecondName"
-                                  :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
-                                  @onInputChange="store"></masked-input>
-                  </Col>
-                </Row>
-              </div>
-              <div v-if="docsOpred.vsTypeId === 1" class="adm-form__item">
-                <small class="adm-form__label">Отчество</small>
-                <Row :gutter="16" type="flex" align="middle">
-                  <Col>
-                    <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlThirdName"
-                                  :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
-                                  @onInputChange="store"></masked-input>
-                  </Col>
-                </Row>
-              </div>
-              <div v-if="docsOpred.vsTypeId === 1" class="adm-form__item">
-                <small class="adm-form__label">Пол</small>
-                <div class="adm-form__item_content">
+              <div v-if="isTaxi">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Справочник типов источников</small>
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="docsOpred.vsFlSex" clearable filterable @on-change="store">
-                        <Option class="" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    <Col>
+                      <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="docsOpred.vsTypeId" clearable @on-change="store">
+                        <Option class="wmax360 " v-for="item in violSourceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
                   </Row>
                 </div>
-              </div>
+                <div v-if="docsOpred.vsTypeId === 1" class="adm-form__item">
+                  <small class="adm-form__label">Фамилия</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlFirstName"
+                                    :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
+                                    @onInputChange="store"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div v-if="docsOpred.vsTypeId === 1" class="adm-form__item">
+                  <small class="adm-form__label">Имя</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlSecondName"
+                                    :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
+                                    @onInputChange="store"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div v-if="docsOpred.vsTypeId === 1" class="adm-form__item">
+                  <small class="adm-form__label">Отчество</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlThirdName"
+                                    :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
+                                    @onInputChange="store"></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+                <div v-if="docsOpred.vsTypeId === 1" class="adm-form__item">
+                  <small class="adm-form__label">Пол</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <Select class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="docsOpred.vsFlSex" clearable filterable @on-change="store">
+                          <Option class="" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        </Select>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
 
-              <div v-if="docsOpred.vsTypeId !== 1" class="adm-form__item">
-                <small class="adm-form__label">Наименование источника данных о нарушении</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsOpred.vsName" ></Input>
-                    </Col>
-                  </Row>
+                <div v-if="docsOpred.vsTypeId !== 1" class="adm-form__item">
+                  <small class="adm-form__label">Наименование источника данных о нарушении</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsOpred.vsName" ></Input>
+                      </Col>
+                    </Row>
+                  </div>
                 </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Вхоящий номер документа, полученного от источника данных о нарушении</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsOpred.vsIncomingNumber" ></Input>
-                    </Col>
-                  </Row>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Вхоящий номер документа, полученного от источника данных о нарушении</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsOpred.vsIncomingNumber" ></Input>
+                      </Col>
+                    </Row>
+                  </div>
                 </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Входящая дата документа, полученного от источника данных о нарушении</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.vsIncomingDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                    </Col>
-                  </Row>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Входящая дата документа, полученного от источника данных о нарушении</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.vsIncomingDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      </Col>
+                    </Row>
+                  </div>
                 </div>
-              </div>
-              <div v-if="docsOpred.vsTypeId !== 1" class="adm-form__item">
-                <small class="adm-form__label">Номер разрешения такси</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsOpred.tlNumber" ></Input>
-                    </Col>
-                  </Row>
+                <div v-if="docsOpred.vsTypeId !== 1" class="adm-form__item">
+                  <small class="adm-form__label">Номер разрешения такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsOpred.tlNumber" ></Input>
+                      </Col>
+                    </Row>
+                  </div>
                 </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Дата начала срока действия разрешения такси</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.tlDateBeg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                    </Col>
-                  </Row>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата начала срока действия разрешения такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.tlDateBeg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      </Col>
+                    </Row>
+                  </div>
                 </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Дата окончания срока действия разрешения такси</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.tlDateEnd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                    </Col>
-                  </Row>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дата окончания срока действия разрешения такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsOpred.tlDateEnd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      </Col>
+                    </Row>
+                  </div>
                 </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Организация, выдавшая разрешение такси</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsOpred.tlLicensor" ></Input>
-                    </Col>
-                  </Row>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Организация, выдавшая разрешение такси</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsOpred.tlLicensor" ></Input>
+                      </Col>
+                    </Row>
+                  </div>
                 </div>
               </div>
             </div>
@@ -298,6 +300,7 @@
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as formStack from '~/assets/js/api/formStack';
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as constants from "~/assets/js/utils/constants";
 
   export default {
     name: "FrmEdProtPZTCEdit",
@@ -330,6 +333,7 @@
           await this.fillPnpaList();
           await this.fillViolSourceTypeList();
 
+          await this.getDeloTag();
           this.docsOpred = docsOpred;
 
           if (funcUtils.isNotEmpty(docsOpred.dateNar)) {
@@ -347,6 +351,7 @@
     },
     data() {
       return {
+        deloTags: null,
         docsOpred: null,
         pnpaList: null,
         stotvSearchInfoList: null,
@@ -610,6 +615,15 @@
           },
         ],
       }
+    },
+    computed: {
+      isTaxi() {
+        let res = null;
+        if (this.deloTags) {
+          res = funcUtils.isNotEmpty(this.deloTags) &&  this.deloTags.includes(constants.TAG_TAXI);
+        }
+        return res;
+      },
     },
     methods: {
       async showDolzModal(visible) {
@@ -881,6 +895,13 @@
             type: 'placeNar'
           }
         });
+      },
+      async getDeloTag() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getDeloTag'
+        });
+        let deloTags = JSON.parse(eventResponse.response).data;
+        this.deloTags = deloTags;
       },
       getPrev() {
         try {

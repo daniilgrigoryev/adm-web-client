@@ -183,7 +183,7 @@
                   </Col>
                 </Row>
               </div>
-              <div v-if="docsProt.tlNumber">
+              <div v-if="isTaxi">
                 <div class="adm-form__item">
                   <small class="adm-form__label">Номер разрешения такси</small>
                   <div class="adm-form__item_content">
@@ -254,6 +254,7 @@
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as formStack from '~/assets/js/api/formStack';
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as constants from "~/assets/js/utils/constants";
 
   export default {
     name: "FrmEdDocsProtEdit",
@@ -285,6 +286,7 @@
         } else {
           await this.fillPnpaList();
 
+          await this.getDeloTag();
           this.docsProt = docsProt;
 
           if (funcUtils.isNotEmpty(docsProt.dateNar)) {
@@ -302,6 +304,7 @@
     },
     data() {
       return {
+        deloTags: null,
         docsProt: null,
         pnpaList: null,
         factSvedList: [],
@@ -557,6 +560,15 @@
             ]
         },
       }
+    },
+    computed: {
+      isTaxi() {
+        let res = null;
+        if (this.deloTags) {
+          res = funcUtils.isNotEmpty(this.deloTags) &&  this.deloTags.includes(constants.TAG_TAXI);
+        }
+        return res;
+      },
     },
     methods: {
       async showDolzModal(visible) {
@@ -822,6 +834,13 @@
             type: 'placeNar'
           }
         });
+      },
+      async getDeloTag() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getDeloTag'
+        });
+        let deloTags = JSON.parse(eventResponse.response).data;
+        this.deloTags = deloTags;
       },
       getPrev() {
         try {
