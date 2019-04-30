@@ -46,14 +46,16 @@
               <wizard-item-prot-three id="DocDefinitionTaxiThree" v-if="isVisible('DocDefinitionTaxiThree')" ref="DocDefinitionTaxiThree" :info="getInfo('DocDefinitionTaxiThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
               <wizard-item-place v-if="isVisible('DocDefinitionTaxiThree.PlaceNar')" ref="DocDefinitionTaxiThree.PlaceNar" :info="getInfo('DocDefinitionTaxiThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
               <wizard-item-definition-taxi-four id="DocDefinitionTaxiFour" v-if="isVisible('DocDefinitionTaxiFour')" ref="DocDefinitionTaxiFour" :info="getInfo('DocDefinitionTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-taxi-four>
-              <wizard-item-individual id="DocDefinitionTaxiFour.Individual" v-if="isVisible('DocDefinitionTaxiFour.Individual')" ref="DocDefinitionTaxiFour.Individual" :info="getInfo('DocDefinitionTaxiFour.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-              <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Individual.regAddr')" ref="DocDefinitionTaxiFour.Individual.regAddr" :info="getInfo('DocDefinitionTaxiFour.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Individual.factAddr')" ref="DocDefinitionTaxiFour.Individual.factAddr" :info="getInfo('DocDefinitionTaxiFour.Individual.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-organization v-if="isVisible('DocDefinitionTaxiFour.Organization')" ref="DocDefinitionTaxiFour.Organization" :info="getInfo('DocDefinitionTaxiFour.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
-              <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Organization.regAddr')" ref="DocDefinitionTaxiFour.Organization.regAddr" :info="getInfo('DocDefinitionTaxiFour.Organization.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Organization.factAddr')" ref="DocDefinitionTaxiFour.Organization.factAddr" :info="getInfo('DocDefinitionTaxiFour.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
+          <wizard-item-definition-taxi-four2 id="DocDefinitionTaxiFour" v-if="isVisible('DocDefinitionTaxiFour')" ref="DocDefinitionTaxiFour2" :info="getInfo('DocDefinitionTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents">
+            <wizard-item-individual id="DocDefinitionTaxiFour.Individual" v-if="isVisible('DocDefinitionTaxiFour.Individual')" ref="DocDefinitionTaxiFour.Individual" :info="getInfo('DocDefinitionTaxiFour.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+            <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Individual.regAddr')" ref="DocDefinitionTaxiFour.Individual.regAddr" :info="getInfo('DocDefinitionTaxiFour.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Individual.factAddr')" ref="DocDefinitionTaxiFour.Individual.factAddr" :info="getInfo('DocDefinitionTaxiFour.Individual.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            <wizard-item-organization v-if="isVisible('DocDefinitionTaxiFour.Organization')" ref="DocDefinitionTaxiFour.Organization" :info="getInfo('DocDefinitionTaxiFour.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
+            <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Organization.regAddr')" ref="DocDefinitionTaxiFour.Organization.regAddr" :info="getInfo('DocDefinitionTaxiFour.Organization.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Organization.factAddr')" ref="DocDefinitionTaxiFour.Organization.factAddr" :info="getInfo('DocDefinitionTaxiFour.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+          </wizard-item-definition-taxi-four2>
           <div class="adm-form__container">
             <h2 id="definition" class="adm-form__headding">Сведения о рассмотрении</h2>
             <div class="adm-form__content">
@@ -86,6 +88,7 @@
       WizardItemProtTwo: () => import('~/components/wizard/items/WizardItemProtTwo'),
       WizardItemProtThree: () => import('~/components/wizard/items/WizardItemProtThree'),
       WizardItemDefinitionTaxiFour: () => import('~/components/wizard/items/definitionTaxi/WizardItemDefinitionTaxiFour'),
+      WizardItemDefinitionTaxiFour2: () => import('~/components/wizard/items/definitionTaxi/WizardItemDefinitionTaxiFour2'),
       WizardItemDefinitionFive: () => import('~/components/wizard/items/definition/WizardItemDefinitionFive'),
       WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
@@ -114,6 +117,14 @@
           {
             title: "Сведения о нарушении",
             name: "nar"
+          },
+          {
+            title: "Сведения об источнике данных",
+            name: "data-source"
+          },
+          {
+            title: "Сведения о владельце разрешения",
+            name: "owner-details"
           },
           {
             title: "Сведения о рассмотрении",
