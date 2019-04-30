@@ -120,7 +120,7 @@
             break;
           }
           case 'normal': {
-            this.list = this.data.slice();
+            this.list.slice(); // this.list = this.data.slice();
             break;
           }
         }

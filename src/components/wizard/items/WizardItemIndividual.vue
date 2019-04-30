@@ -85,7 +85,7 @@
       <small class="adm-form__label">Должность:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <Input class="adm-input adm-input--regular wmax360" v-model="data.dolz" @on-input-change="storeElementData" placeholder="Место работы:"></Input>
+          <Input class="adm-input adm-input--regular wmax360" v-model="data.dolz" @on-input-change="storeElementData" placeholder=""></Input>
         </Col>
       </Row>
     </div>
@@ -94,7 +94,7 @@
       <small class="adm-form__label">Место работы:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <Input class="adm-input adm-input--regular wmax360" v-model="data.workPlace" @on-input-change="storeElementData" placeholder="Место работы:"></Input>
+          <Input class="adm-input adm-input--regular wmax360" v-model="data.workPlace" @on-input-change="storeElementData" placeholder=""></Input>
         </Col>
       </Row>
     </div>
