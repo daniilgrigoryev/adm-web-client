@@ -25,6 +25,19 @@
             :value="body.organNapravlName" 
             style="grid-column: span 2;"
           />
+
+          <view-data-item 
+            label="Дата решения" 
+            :value="body.decisDate | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+            :icon="require('../../../assets/images/time.svg')"
+          />
+          <view-data-item 
+            label="Дата вручения" 
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+            :icon="require('../../../assets/images/time.svg')"
+          />
         </div>
       </div>
     </div>
