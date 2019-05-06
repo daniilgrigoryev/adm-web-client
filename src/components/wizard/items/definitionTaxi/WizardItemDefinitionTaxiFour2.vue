@@ -92,6 +92,16 @@
     <div class="adm-form__container">
       <h2 id="owner-details" class="adm-form__headding">Сведения о владельце разрешения</h2>
       <div class="adm-form__content">
+        <div class="adm-form__item">
+          <small class="adm-form__label">Статус</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col>
+              <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
+                <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </div>
         <slot></slot>
         <div v-if="data.vsTypeId !== 1" class="adm-form__item">
           <small class="adm-form__label">Номер разрешения</small>
@@ -133,16 +143,7 @@
             </Row>
           </div>
         </div>
-        <div class="adm-form__item">
-          <small class="adm-form__label">Статус</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col>
-              <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
-                <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-              </Select>
-            </Col>
-          </Row>
-        </div>
+        
       </div>
     </div>
   </div>
