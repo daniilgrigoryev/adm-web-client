@@ -4,7 +4,7 @@
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
     <div class="adm-form__container">
-      <h2 class="adm-form__headding">Ввод данных постановления о прекращения дела</h2>
+      <h2 class="adm-form__headding">Ввод данных постановления о прекращении дела</h2>
       <div class="adm-form__content">
         <div v-if="!isNotEmptyParentNode" class="adm-form__item">
           <small class="adm-form__label">Дело №</small>

@@ -80,7 +80,7 @@ export default {
 		listSectionNav(){
 			return [
 				{
-					title: "Ввод данных постановления о прекращения дела",
+					title: "Ввод данных постановления о прекращении дела",
 					name: "head",
 				},
 				{
