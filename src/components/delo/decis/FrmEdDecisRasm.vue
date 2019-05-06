@@ -25,7 +25,7 @@
             :value="body.organNapravlName" 
             style="grid-column: span 2;"
           />
-
+          <hr>
           <view-data-item 
             label="Дата решения" 
             :value="body.decisDate | formatDateTime('DD.MM.YYYY')" 

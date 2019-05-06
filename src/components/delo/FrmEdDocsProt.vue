@@ -61,12 +61,14 @@
             style="grid-column: span 2;"
           />
 
-          <hr v-if="isTaxi">
-          <view-data-item v-if="isTaxi"
+          <hr v-if="!isTaxi">
+          <view-data-item v-if="!isTaxi"
             label="Было снятие ТС с эвакуатора" 
             :value="isRemovedFromEvac" 
             style="grid-column: span 2;"
           />
+
+
           <div class="items-wrap" v-if="isTaxi">
             <view-data-item
               label="Номер разрешения такси"
