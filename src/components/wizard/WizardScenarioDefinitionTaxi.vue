@@ -14,6 +14,7 @@
               <wizard-item-prot-two id="DocDefinitionTaxiTwo" v-if="isVisible('DocDefinitionTaxiTwo')" ref="DocDefinitionTaxiTwo" :info="getInfo('DocDefinitionTaxiTwo')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-two>
             </div>
           </div>
+          <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="Lvok">ЛВОК</h2>
             <div class="adm-form__content">
@@ -27,8 +28,7 @@
               <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
-          <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
-          <div class="adm-form__container" v-if="isVisible('Owner')">
+          <!--<div class="adm-form__container" v-if="isVisible('Owner')">
             <h2 class="adm-form__headding">Владелец транспортного средства</h2>
             <div class="adm-form__content">
               <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
@@ -39,7 +39,7 @@
               <wizard-item-address v-if="isVisible('Owner.Organization.regAddr')" ref="Owner.Organization.regAddr" :info="getInfo('Owner.Organization.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
               <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" ref="Owner.Organization.factAddr" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
-          </div>
+          </div>-->
           <div class="adm-form__container">
             <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
@@ -94,7 +94,7 @@
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
       WizardItemLvok: () => import('~/components/wizard/items/WizardItemLvok'),
       WizardItemOrganization: () => import('~/components/wizard/items/WizardItemOrganization'),
-      WizardItemOwner: () => import('~/components/wizard/items/WizardItemOwner'),
+      // WizardItemOwner: () => import('~/components/wizard/items/WizardItemOwner'),
       WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
       WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
