@@ -133,7 +133,7 @@
       <div v-if="deloTree">
         <Row type="flex">
           <Col>
-            <div class="tree_wrapper scroll-styled">
+            <div class="tree_wrapper">
               <tree-node v-for="(item, index) in tree" :key="index" :node="item" :nodeClick="nodeClick"></tree-node>
             </div>
           </Col>
