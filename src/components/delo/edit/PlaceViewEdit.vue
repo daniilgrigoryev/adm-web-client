@@ -114,6 +114,7 @@
                         v-model="data.placeName"
                         :data="placesList"
                         class="wmin180 adm-input adm-input--regular wmin180"
+                        icon="ios-arrow-down"
                         :filter-method="filterPlace"
                         @on-change="store"
                         placeholder=""

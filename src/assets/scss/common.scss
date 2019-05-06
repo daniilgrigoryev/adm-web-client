@@ -668,6 +668,23 @@ html, body, #app {
 }
 
 .adm-input {
+  
+  
+  // .ivu-auto-complete.ivu-select .ivu-input-wrapper.ivu-input-wrapper-default::before{
+  //   &::before{
+  //     content: "\F116";
+  //     position: absolute;
+  //     display: block;
+  //     top: 50%;
+  //     right: 8px;
+  //     line-height: 1;
+  //     margin-top: -7px;
+  //     font-size: 14px;
+  //     color: #808695;
+  //     transition: all .2s ease-in-out;
+  //   }
+  // }
+
 
   &.white-color-input {
     .ivu-select-selection,
@@ -701,7 +718,8 @@ html, body, #app {
     
   }
   .ivu-icon.ivu-input-icon-clear,
-  .ivu-icon.ivu-icon-ios-close-circle {
+  .ivu-icon.ivu-icon-ios-close-circle,
+  .ivu-icon-ios-close {
     background-image: url(../images/remove.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;

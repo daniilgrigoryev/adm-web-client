@@ -78,6 +78,7 @@
                         v-model="uchastIndivid.individ.birthMesto"
                         :data="birthMestoArray"
                         class="wmin180 adm-input adm-input--regular wmin180"
+                        icon="ios-arrow-down"
                         :filter-method="filterBirthMesto"
                         @on-change="changeBirthMesto"
                         @on-select="selectBirthMesto"

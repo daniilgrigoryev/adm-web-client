@@ -54,6 +54,7 @@
               v-model="data.factSved"
               :data="factSvedList"
               class="wmin180 adm-input adm-input--regular"
+              icon="ios-arrow-down"
               :filter-method="filterfactSvedList"
               @on-blur="storeElementData"
               @on-select="storeElementData"

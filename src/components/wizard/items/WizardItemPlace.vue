@@ -122,6 +122,7 @@
                     v-model="data.placeName"
                     :data="placesList"
                     class="wmin180 adm-input adm-input--regular wmax360"
+										icon="ios-arrow-down"
                     :filter-method="filterPlace"
                     @on-change="storeElementData"
                     placeholder=""

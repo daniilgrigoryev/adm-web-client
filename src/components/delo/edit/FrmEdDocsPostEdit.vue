@@ -153,6 +153,7 @@
                         v-model="docsPost.factSved"
                         :data="factSvedList"
                         class="wmin180 adm-input adm-input--regular"
+                        icon="ios-arrow-down"
                         :filter-method="filterfactSvedList"
                         @on-blur="store"
                         @on-select="store"
