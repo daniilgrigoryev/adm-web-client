@@ -15,9 +15,9 @@
           </div>
           <div v-if="isNotEmptyParentNode('LVOK')">
             <div class="adm-form__container">
-              <h2 class="adm-form__headding" id="lvok">ЛВОК</h2>
+              <h2 class="adm-form__headding" id="Lvok">ЛВОК</h2>
               <div class="adm-form__content">
-                <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
+                <wizard-item-lvok v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
                 <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
                 <wizard-item-individual v-if="isVisible('LVOK.Individual')" ref="LVOK.Individual" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
                 <wizard-item-address v-if="isVisible('LVOK.Individual.regAddr')" ref="LVOK.Individual.regAddr" :info="getInfo('LVOK.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
@@ -105,6 +105,10 @@
           {
             title: "Ввод данных по ПЗТС",
             name: "head",
+          },
+          {
+            title: "ЛВОК",
+            name: "Lvok",
           },
           {
             title: "Транспортное средство",

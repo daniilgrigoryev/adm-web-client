@@ -8,7 +8,7 @@
           </wizard-item-doc-post-first>
           <!-- <div v-if="isNotEmptyParentNode('LVOK')"> -->
             <div class="adm-form__container">
-              <h2 class="adm-form__headding" id="lvok">ЛВОК</h2>
+              <h2 class="adm-form__headding" id="Lvok">ЛВОК</h2>
               <div class="adm-form__content">
                 <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
                 <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
@@ -21,7 +21,7 @@
               </div>
             </div>
           <!-- </div> -->
-          <wizard-item-vehs id="vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
+          <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
           <div class="adm-form__container" v-if="isVisible('Owner')">
             <h2 class="adm-form__headding">Владелец транспортного средства</h2>
             <div class="adm-form__content">
@@ -94,7 +94,7 @@
           },
           {
             title: "ЛВОК",
-            name: "lvok",
+            name: "Lvok",
           },
           {
             title: "Транспортное средство",
