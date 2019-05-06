@@ -36,7 +36,9 @@
     },
     async created() {
       await this.initData();
-    },
+      await this.fillStatusList();
+      await this.fillTipList();
+1    },
     data() {
       return {
         data: null,
@@ -53,9 +55,6 @@
           }
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
-
-        await this.fillStatusList();
-        await this.fillTipList();
       },
       async fillStatusList() {
         let eventResponse = await RequestApi.prepareData({
@@ -86,6 +85,7 @@
             data: null
           }
         });
+        console.log("object");
         let tipList = [];
         let tipDict = JSON.parse(JSON.parse(eventResponse.response).data);
         for (let i = 0; i < tipDict.length; i++) {
@@ -112,12 +112,9 @@
         }
       },
       async changeStatus() {
-        console.log(this.tipList);
-        await this.fillTipList();
-        console.log(this.tipList);
-
         this.data.tip = null;
         await this.storeElementData();
+        await this.fillTipList();
       },
       async storeElementData() {
         return new Promise((resolve, reject) => {
