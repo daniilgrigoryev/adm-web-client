@@ -20,7 +20,7 @@
               <span class="adm-h2">{{deloContext.deloN}}</span>
             </a>
             <p class="ml24 flex-parent flex-parent--center-cross" :class="changeClass(deloContext.stadKod)">
-              <Icon class="color-green-bas mx6" type="ios-checkmark-circle-outline" :size="23"/>
+              <Icon class="mx6" type="ios-checkmark-circle" :size="23"/>
               <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
             </p>
           </div>
@@ -374,27 +374,27 @@
           switch (stadKod) {
             case 1: {
               // Возбуждено
-              return "color-red";
+              return "color-black";
             }
             case 2: {
               // Рассмотрение
-              return "color-orange";
+              return "color-black";
             }
             case 3: {
               // Обжалование
-              return "color-yellow";
+              return "color-black";
             }
             case 4: {
               // Пересмотр
-              return "color-green";
+              return "color-black";
             }
             case 5: {
               // Исполнение
-              return "color-blue";
+              return "color-black";
             }
             case 6: {
               // Исполнено
-              return "color-purple";
+              return "color-black";
             }
             case 7: {
               // Прекращено

@@ -210,7 +210,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.dateRasm" @change="store" clearable type="datetime"  placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                        <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.dateRasm" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                      </Col>
                     </Row>
                   </div>
