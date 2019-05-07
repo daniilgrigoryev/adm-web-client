@@ -13,7 +13,8 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <article class="gallery">
-            <Slider :photos="photos"/>
+            <img v-if="photos.length > 0" alt="img" :src="photos[0]" style="height: 300px; width: 300px;">
+<!--            <object :data="photos[0]" style="height: 100px;"></object>-->
           </article>
           <!--<view-data-item
             label="Место нарушения"
@@ -30,7 +31,6 @@
 <script>
   import * as ConstantUtils from "~/assets/js/utils/constantUtils";
   import * as funcUtils from "~/assets/js/utils/funcUtils";
-  import * as formStack from '~/assets/js/api/formStack';
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
@@ -115,17 +115,28 @@
 
           for (let i = 0; i < photos.length; i++) {
             item = photos[i];
-            eventResponse = await RequestApi.prepareData({
-              method: 'getPhotoBody',
-              params: {
-                'mediaMetaId': item.mediaId
-              },
-              cid: cid
+            switch (item.mimeType) {
+              case 'image/png':
+              case 'image/jpeg': {
+                eventResponse = await RequestApi.prepareData({
+                  method: 'getPhotoBody',
+                  params: {
+                    'mediaMetaId': item.mediaId
+                  },
+                  cid: cid
+                });
+                if (eventResponse.response) {
+                  photo = JSON.parse(eventResponse.response).data;
+                  vm.photos.push(`data:${item.mimeType};base64,${photo}`);
+                }
+              }
+            }
+            /*eventResponse = await RequestApi.sendGetMediaFileHttpRequest({
+              url: `${ConstantUtils.HTTP_URL_FILES}/${localStorage.getItem('admSid')}/${item.mediaId}`
             });
             if (eventResponse.response) {
-              photo = JSON.parse(eventResponse.response).data;
-              vm.photos.push('data:image/jpeg;base64,' + photo);
-            }
+              photo = eventResponse.response;
+            }*/
           }
         }
       },

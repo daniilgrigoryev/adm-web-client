@@ -32,11 +32,14 @@
                 @click="changePrevDateFirst(date)">
               <span>{{date}}</span>
             </li>
+            <!--
+            - select-day
+            - || (null != selectedDateSecond && date == selectedDaySecond && monthFirst == selectedMonthSecond && yearFirst == selectedYearSecond)
+            -->
             <li v-for="date in daysInMonthFirst"
                 @click="changeDateFirst(date)"
                 :class="['day', 'date',
-                 {'select-day': (null != selectedDateFirst && date == selectedDayFirst && monthFirst == selectedMonthFirst && yearFirst == selectedYearFirst) ||
-                 (null != selectedDateSecond && date == selectedDaySecond && monthFirst == selectedMonthSecond && yearFirst == selectedYearSecond),
+                 {'select-day': (null != selectedDateFirst && date == selectedDayFirst && monthFirst == selectedMonthFirst && yearFirst == selectedYearFirst),
                  'date-range': null != selectedDateFirst && null != selectedDateSecond && selectedMonthFirst == monthFirst && yearFirst == selectedYearFirst && ((date > selectedDayFirst && date < selectedDaySecond) || (date > selectedDayFirst && selectedMonthFirst != selectedMonthSecond)),
                  'current-day': currentDay == date && currentMonth == monthFirst && currentYear == yearFirst}]">
               <span>{{date}}</span>
@@ -79,11 +82,14 @@
                 @click="changePrevDateSecond(date)">
               <span>{{date}}</span>
             </li>
+            <!--
+            - select-day
+            - || (null != selectedDateFirst && date == selectedDayFirst && monthSecond == selectedMonthFirst && yearSecond == selectedYearFirst)
+            -->
             <li v-for="date in daysInMonthSecond"
                 @click="changeDateSecond(date)"
                 :class="['day', 'date',
-                 {'select-day': (null != selectedDateSecond && date == selectedDaySecond && monthSecond == selectedMonthSecond && yearSecond == selectedYearSecond) ||
-                 (null != selectedDateFirst && date == selectedDayFirst && monthSecond == selectedMonthFirst && yearSecond == selectedYearFirst),
+                 {'select-day': (null != selectedDateSecond && date == selectedDaySecond && monthSecond == selectedMonthSecond && yearSecond == selectedYearSecond),
                  'date-range': null != selectedDateFirst && null != selectedDateSecond && selectedMonthSecond == monthSecond && yearSecond == selectedYearSecond && ((date > selectedDayFirst && date < selectedDaySecond) || (date < selectedDaySecond && selectedMonthFirst != selectedMonthSecond)),
                   'current-day': currentDay == date && currentMonth == monthSecond && currentYear == yearSecond}]">
               <span>{{date}}</span>
@@ -295,9 +301,6 @@
       daysInMonthFirst() {
         return this.dateContextFirst.daysInMonth();
       },
-
-
-
       yearSecond() {
         return this.dateContextSecond.format('Y');
       },
@@ -375,10 +378,15 @@
           this.selectedDateFirst = null;
           this.dateContextSecond = moment(this.dateContextFirst).add(1, 'month');
           this.selectedDateSecond = null;
-        } else if (!this.dateContextFirst && !this.dateContextSecond && valueFirst && valueSecond) {
+        } else if (!this.dateContextFirst && !this.dateContextSecond && !valueFirst && !valueSecond) {
           this.dateContextFirst = moment(valueFirst);
           this.selectedDateFirst = moment(valueFirst);
           this.dateContextSecond = moment(valueSecond).add(1, 'month');
+          this.selectedDateSecond = moment(valueSecond);
+        } else if (!this.dateContextFirst && !this.dateContextSecond && valueFirst && valueSecond) {
+          this.dateContextFirst = moment(valueFirst);
+          this.selectedDateFirst = moment(valueFirst);
+          this.dateContextSecond = moment(valueSecond);
           this.selectedDateSecond = moment(valueSecond);
         } else if (funcUtils.isNotEmpty(valueFirst) && funcUtils.isNotEmpty(valueSecond) && valueFirst.getTime() <= valueSecond.getTime() && this.dateContextFirst.month() !== valueFirst.getMonth() && this.dateContextSecond.month() !== valueSecond.getMonth()) {
           this.dateContextFirst = moment(valueFirst);

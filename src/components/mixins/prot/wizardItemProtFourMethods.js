@@ -103,5 +103,22 @@ export default {
       }
       return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
     },
+    async ownerToLicense() {
+      let eventResponse = await RequestApi.prepareData({
+        method: 'invokeElementMethod',
+        params: {
+          eCID: this.info.eCID,
+          methodName: 'ownerToLicense',
+          data: null
+        }
+      });
+      let cids = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (funcUtils.isEmpty(cids)) {
+        let error = JSON.parse(eventResponse.response).error.errorMsg;
+        alert(error);
+      } else {
+        this.$emit('updateComponents', cids);
+      }
+    },
   }
 }

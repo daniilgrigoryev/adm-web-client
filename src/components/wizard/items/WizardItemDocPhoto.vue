@@ -1,12 +1,26 @@
 <template>
   <div>
     <div class="adm-form__item">
+      <small class="adm-form__label">Название</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData"></Input>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Описание</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.dopSved" @on-input-change="storeElementData"></Input>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
       <small class="adm-form__label">Медиа документы</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <input type="file" multiple ref="file" @change="onFileChange" id="file"/>
-
-          <button type="button">тест</button>
         </Col>
       </Row>
     </div>
@@ -73,7 +87,7 @@
           reader.onload = function (e) {
             let kb = 1024 * 64;
             let key = this.metaInfo.name + '-' + this.metaInfo.type + '-' + this.metaInfo.size;
-            let byteArray = Array.prototype.slice.call(new Int8Array(e.currentTarget.result));
+            let byteArray = Array.prototype.slice.call(new Uint8Array(e.currentTarget.result));
             let body = vm.chunkArray(byteArray, kb);
             vm.files[key] = {
               file: this.metaInfo,

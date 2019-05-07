@@ -55,6 +55,21 @@
       </div>
     </div>
 
+    <div class="adm-form__item">
+      <small class="adm-form__label">Статус держателя лицензии</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col span="10">
+          <Select class="adm-input adm-input--regular wmin180" ref="city" placeholder="" v-model="data.status" filterable clearable @on-change="storeElementData">
+            <Option class="" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
+        </Col>
+        <Col span="6">
+          <Button @click="ownerToLicense" type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+            <Icon type="md-key" title="" :size="30" />
+          </Button>
+        </Col>
+      </Row>
+    </div>
 
     <div class="adm-form__item">
       <small class="adm-form__label">Номер разрешения</small>
@@ -92,17 +107,6 @@
           </Col>
         </Row>
       </div>
-    </div>
-
-    <div class="adm-form__item">
-      <small class="adm-form__label">Статус держателя лицензии</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <Select class="adm-input adm-input--regular wmin180" ref="city" placeholder="" v-model="data.status" filterable clearable @on-change="storeElementData">
-            <Option class="" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>
-        </Col>
-      </Row>
     </div>
   </div>
 </template>

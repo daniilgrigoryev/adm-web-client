@@ -177,4 +177,79 @@ export default class RequestApi {
       };
     });
   }
+
+  static sendGetMediaFileHttpRequest(payload) {
+    let url = payload.url;
+    let withSpinner = payload.withSpinner;
+    let handleError = payload.handleError;
+    let spinner;
+    if (withSpinner) {
+      let target = document.getElementById('indicator');
+      if (funcUtils.isNotEmpty(target)) {
+        target.appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'))
+          .appendChild(document.createElement('div'));
+
+        target.style.display = 'block';
+      }
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.timeout = 180000;
+    xhr.open('GET', url, true);
+    // xhr.responseType = "arraybuffer";
+    xhr.responseType = "blob";
+    xhr.send();
+
+    let hideSpinner = () => {
+      let target = document.getElementById('indicator');
+      if (withSpinner && funcUtils.isNotEmpty(target)) {
+        for (let i = 0; i < target.childNodes.length; i++) {
+          target.childNodes[i].remove();
+        }
+        target.style.display = 'none';
+        if (withSpinner && funcUtils.isNotEmpty(spinner)) {
+          spinner.stop();
+        }
+      }
+    };
+
+    return new Promise((resolve, reject) => {
+      xhr.onload = () => {
+        // перевод Promise в состояние fulfilled.
+        hideSpinner();
+        let res = null;
+        if (xhr.response) {
+          // res = Array.prototype.slice.call(new Uint8Array(xhr.response));
+          res = xhr.response;
+        }
+        resolve({
+          status: 200,
+          response: res
+        });
+      };
+
+      xhr.onerror = (e) => {
+        // перевод Promise в состояние rejected
+        reject(new Error("Network Error"));
+        console.log(e);
+        hideSpinner();
+      };
+
+      xhr.ontimeout = (e) => {
+        // перевод Promise в состояние rejected
+        reject(new Error("TimeOut Error"));
+        console.log(e);
+        hideSpinner();
+      };
+    });
+  }
+
+
 }

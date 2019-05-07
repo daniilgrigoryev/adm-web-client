@@ -23,6 +23,8 @@
 </template>
 
 <script>
+  import RequestApi from "~/assets/js/api/requestApi";
+  import * as ConstantUtils from "~/assets/js/utils/constantUtils";
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import docTipEnum from "~/assets/js/utils/docTipEnum";
   import decisIspolnEnum from "~/assets/js/utils/decisIspolnEnum";
@@ -254,7 +256,22 @@
               case docTipEnum.VEHS_FOTO:
               case docTipEnum.UCHAST_FOTO:
               case docTipEnum.DOCS_FOTO:
-              case docTipEnum.MEDIA_DOC:
+              case docTipEnum.MEDIA_DOC: {
+                if (node.height > 3) {
+                  return `
+                  <p>${params.comments}</p>
+                `;
+                } else {
+                  return `
+                  <h4>
+                    ${params.doc_other_tip_name}
+                    <span class="date">${params.doc_other_dat}</span>
+                  </h4>
+                  <p>${params.doc_other_n}</p>
+                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                `;
+                }
+              }
               case docTipEnum.VIDEOFIX_FOTO: {
                 return `
                   <h4>
@@ -432,6 +449,10 @@
         return res;
       },
       parentNodeClick() {
+        if (this.node.recType === "DOCS_OTHER" && this.node.docTip === docTipEnum.MEDIA_DOC && this.node.height > 3) {
+          this.downloadMedia(this.node);
+          return;
+        }
         this.nodeClick(this.node);
         this.toggle();
       },
@@ -439,7 +460,33 @@
         if (this.isFolder && this.isParent) {
           this.open = !this.open;
         }
-      }
+      },
+      async downloadMedia(node) {
+        try {
+          let eventResponse = await RequestApi.sendGetMediaFileHttpRequest({
+            url: `${ConstantUtils.HTTP_URL_FILES}/${localStorage.getItem('admSid')}/${node.nodeParams.media_id}`
+          });
+          let data = null;
+          if (eventResponse.response) {
+            data = eventResponse.response;
+          }
+          if (data) {
+            let element = document.createElement("a");
+            element.href = window.URL.createObjectURL(data);
+            element.setAttribute("download", `${node.nodeParams.comments}`);
+            element.style.display = "none";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+          }
+        } catch (e) {
+          this.$Notice.warning({
+            title: 'Ошибка получения данных',
+            desc: e.message,
+            duration: 10
+          });
+        }
+      },
     }
   }
 </script>
