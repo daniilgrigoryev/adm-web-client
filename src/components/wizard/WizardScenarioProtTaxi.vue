@@ -1,6 +1,6 @@
 <template>
 <!-- Протокол об административном правонарушении такси -->
-  <aside-template :listSectionNav="listSectionNav" title="Протокол об АПН такси">
+  <aside-template :listSectionNav="listSectionNav()" title="Протокол об АПН такси">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
@@ -28,7 +28,7 @@
               <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
-          <!--<div class="adm-form__container" v-if="isVisible('Owner')">
+          <!--<div id="Owner" class="adm-form__container"  v-if="isVisible('Owner')">
             <h2 class="adm-form__headding">Владелец транспортного средства</h2>
             <div class="adm-form__content">
               <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
@@ -110,20 +110,26 @@
       WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
     },
-    data() {
-      return {
-        listSectionNav: [
+    methods: {
+      listSectionNav() {
+        return [
           {
             title: "Ввод данных по протоколу об АПН такси",
             name: "head",
           },
           {
-            title: "ЛВОК",
-            name: "Lvok",
+            title: "Транспортное средство",
+            name: "vehs",
           },
           {
-            title: "Транспортное средство",
-            name: "Vehs",
+            title: "Владелец транспортного средства",
+            name: "Owner",
+            hide: !this.isVisible('Owner')
+          },
+          {
+            title: "ЛВОК",
+            name: "Lvok",
+            hide: !this.isNotEmptyParentNode('LVOK')
           },
           {
             title: "Сведения о нарушении",
@@ -138,9 +144,7 @@
             name: "witness",
           },
         ]
-      }
-    },
-    methods: {
+      },
       isVisible(path) {
         if (funcUtils.isEmpty(this.pathes)) {
           return false;

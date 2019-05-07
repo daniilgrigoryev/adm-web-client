@@ -1,5 +1,5 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Протокол о задержании ТС">
+  <aside-template :listSectionNav="listSectionNav()" title="Протокол о задержании ТС">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
@@ -14,7 +14,7 @@
             </div>
           </div>
           <wizard-item-vehs-evac id="vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs-evac>
-          <div class="adm-form__container" v-if="isVisible('Owner')">
+          <div id="Owner" class="adm-form__container" v-if="isVisible('Owner')">
             <h2 class="adm-form__headding">Владелец транспортного средства</h2>
             <div class="adm-form__content">
               <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
@@ -101,18 +101,33 @@
     },
     data() {
       return {
-        listSectionNav: [
+        maskInputProt: {
+          regex: '[0-9]+',
+          casing: 'upper',
+          placeholder: ''
+        },
+      }
+    },
+    methods: {
+      listSectionNav() {
+        return [
           {
             title: "Ввод данных по ПЗТС",
             name: "head",
           },
           {
-            title: "ЛВОК",
-            name: "Lvok",
-          },
-          {
             title: "Транспортное средство",
             name: "vehs",
+          },
+          {
+            title: "Владелец транспортного средства",
+            name: "Owner",
+            hide: !this.isVisible('Owner')
+          },
+          {
+            title: "ЛВОК",
+            name: "Lvok",
+            hide: !this.isNotEmptyParentNode('LVOK')
           },
           {
             title: "Сведения о нарушении",
@@ -126,15 +141,8 @@
             title: "Понятые",
             name: "witness",
           },
-        ],
-        maskInputProt: {
-          regex: '[0-9]+',
-          casing: 'upper',
-          placeholder: ''
-        },
-      }
-    },
-    methods: {
+        ]
+      },
       isNotEmptyParentNode(path) {
         if (funcUtils.isEmpty(this.pathes)) {
           return false;

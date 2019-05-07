@@ -1,6 +1,6 @@
 <template>
   <!-- Форма возбуждения дела Определением об административном правонарушении -->
-  <aside-template :listSectionNav="listSectionNav" title="Определение об АПН">
+  <aside-template :listSectionNav="listSectionNav()" title="Определение об АПН">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
@@ -28,7 +28,7 @@
               <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
-          <!--<div class="adm-form__container" v-if="isVisible('Owner')">
+          <!--<div class="adm-form__container" id="Owner" v-if="isVisible('Owner')">
             <h2 class="adm-form__headding">Владелец транспортного средства</h2>
             <div class="adm-form__content">
               <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
@@ -99,20 +99,26 @@
       WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
     },
-    data() {
-      return {
-        listSectionNav: [
+    methods: {
+      listSectionNav() {
+        return [
           {
             title: "Ввод данных по определению",
             name: "head",
           },
           {
-            title: "ЛВОК",
-            name: "Lvok",
-          },
-          {
             title: "Транспортное средство",
             name: "Vehs",
+          },
+          // {
+          //   title: "Владелец транспортного средства",
+          //   name: "Owner",
+          //   hide: !this.isVisible('Owner')
+          // },
+          {
+            title: "ЛВОК",
+            name: "Lvok",
+            hide: !this.isVisible('LVOK')
           },
           {
             title: "Сведения о нарушении",
@@ -131,9 +137,7 @@
             name: "definition"
           },
         ]
-      }
-    },
-    methods: {
+      },
       isVisible(path) {
         if (funcUtils.isEmpty(this.pathes)) {
           return false;
