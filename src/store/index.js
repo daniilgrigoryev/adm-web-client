@@ -50,6 +50,7 @@ import placeViewEdit from './modules/placeViewEdit';
 import addressViewEdit from './modules/addressViewEdit';
 import dlgAdviceEdit  from './modules/dlgAdviceEdit';
 
+import errors  from './modules/errors';
 
 import wizardExecuter from './modules/wizardExecuter';
 import * as funcUtils from "~/assets/js/utils/funcUtils";
@@ -160,6 +161,8 @@ const store = new Vuex.Store({
     
     wizardExecuter,
     authorization,
+
+    errors,
   }
 });
 

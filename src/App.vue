@@ -15,13 +15,14 @@
     </div>
     <authorization v-if="!isLogged && !isAuth"></authorization>
     <auth v-if="isAuth"></auth>
+    <errors-modal></errors-modal>
   </div>
 </template>
 
 <script>
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as formStack from '~/assets/js/api/formStack';
-  import {mapGetters} from 'vuex';
+  import {mapGetters, mapActions} from 'vuex';
 
   export default {
     name: 'app',
@@ -30,7 +31,8 @@
       MainMenu: () => import('~/components/shared/MainMenu'),
       SiderMenu: () => import('~/components/shared/SiderMenu'),
       Authorization: () => import('~/components/Authorization'),
-      Auth: () => import('~/components/Auth')
+      Auth: () => import('~/components/Auth'),
+      ErrorsModal: () => import('~/components/shared/errors/Modal')
     },
     data() {
       return {
@@ -54,8 +56,7 @@
     methods: {
       collapsedSider() {
         this.$refs.siderMenu.$refs.sider.toggleCollapse();
-      }
+      },
     }
   }
 </script>
-
