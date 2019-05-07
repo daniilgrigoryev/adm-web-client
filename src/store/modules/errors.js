@@ -5,7 +5,7 @@ export default {
     content: {
       title: "",
       desc: "",
-    }
+    },
   },
   mutations: {
     changeStatus(state, payload) {
@@ -17,14 +17,35 @@ export default {
     changeContent(state, payload) {
       state.content = payload;
     },
+    toggleSize(state, item) {
+      item.open = !item.open;
+    },
   },
   actions: {
-    changeStatus ({ commit }, payload) {
-      commit('changeStatus', payload)
+    changeStatus({ commit }, payload) {
+      commit("changeStatus", payload);
     },
-    changeContent ({ commit, dispatch }, payload) {
-      commit('changeContent', payload);
-      dispatch('changeStatus', true);
+    toggleSize({ commit }, item) {
+      commit("toggleSize", item);
+    },
+    changeContent({ commit, dispatch }, payload) {
+      if (Array.isArray(payload.desc)) {
+        payload.desc.map(el => {
+          return {
+            open: false,
+            text: el,
+          };
+        });
+      } else {
+        payload.desc = [
+          {
+            open: false,
+            text: payload.desc,
+          },
+        ];
+      }
+      commit("changeContent", payload);
+      dispatch("changeStatus", true);
     },
   },
-};
+};1
