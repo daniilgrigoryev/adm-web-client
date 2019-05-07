@@ -48,4 +48,4 @@ export default {
       dispatch("changeStatus", true);
     },
   },
-};1
+};
