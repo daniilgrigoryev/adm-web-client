@@ -1,5 +1,4 @@
 <template>
-
   <div v-if="body" class="ml18 mb18">
     <div class="amd-title amd-title--sticky px36 py24"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
@@ -12,20 +11,34 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <article class="gallery">
-            <img v-if="photos.length > 0" alt="img" :src="photos[0]" style="height: 300px; width: 300px;">
-<!--            <object :data="photos[0]" style="height: 100px;"></object>-->
+          <article v-if="photos.length > 0" class="gallery">
+            <Slider :photos="photos" />
           </article>
-          <!--<view-data-item
-            label="Место нарушения"
-            :value="fotofix.violPlace"
-            :icon="require('../../../assets/images/map.svg')"
-          />-->
+
+          <div v-for="(item, index) in otherMedia" :key="index" @click="downloadMedia">
+            {{item}}
+          </div>
+
+          <view-data-item
+            label="Test"
+            :value="body.docN"
+          />
+          <view-data-item
+            label="Test"
+            :value="body.docTipName"
+          />
+          <view-data-item
+            label="Test"
+            :value="body.docN"
+          />
+          <view-data-item
+            label="Test"
+            :value="body.docTipName"
+          />
         </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -108,6 +121,7 @@
         let photos = vm.dataStore.fotoList;
 
         vm.photos = [];
+        vm.otherMedia = [];
         if (photos && photos.length > 0) {
           let item;
           let eventResponse;
@@ -129,21 +143,50 @@
                   photo = JSON.parse(eventResponse.response).data;
                   vm.photos.push(`data:${item.mimeType};base64,${photo}`);
                 }
+                break;
+              }
+              case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+              case 'video/mp4':
+              case 'application/pdf':
+              case 'application/pgp-signature':
+              case 'video/webm': {
+                vm.otherMedia.push(item);
               }
             }
-            /*eventResponse = await RequestApi.sendGetMediaFileHttpRequest({
-              url: `${ConstantUtils.HTTP_URL_FILES}/${localStorage.getItem('admSid')}/${item.mediaId}`
-            });
-            if (eventResponse.response) {
-              photo = eventResponse.response;
-            }*/
           }
+        }
+      },
+      async downloadMedia(item) {
+        try {
+          let eventResponse = await RequestApi.sendGetMediaFileHttpRequest({
+            url: `${ConstantUtils.HTTP_URL_FILES}/${localStorage.getItem('admSid')}/${item.mediaId}`
+          });
+          let data = null;
+          if (eventResponse.response) {
+            data = eventResponse.response;
+          }
+          if (data) {
+            let element = document.createElement("a");
+            element.href = window.URL.createObjectURL(data);
+            element.setAttribute("download", `${item.docNum}.${item.mimeType}`);
+            element.style.display = "none";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+          }
+        } catch (e) {
+          this.$Notice.warning({
+            title: 'Ошибка получения данных',
+            desc: e.message,
+            duration: 10
+          });
         }
       },
     },
     data() {
       return {
-        photos: []
+        photos: [],
+        otherMedia: [],
       }
     },
     computed: {

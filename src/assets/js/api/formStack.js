@@ -75,7 +75,7 @@ export async function toNextNewTab(payload) {
   funcUtils.addToLocalStorage('admWidNew', payload.externalSessionStorage);
 
   let addr = location.origin + constantUtils.contextPath + payload.module.routeName;
-  window.open(addr, '_blank');
+  return window.open(addr, '_blank');
 }
 
 export function toPrev(payload) {
