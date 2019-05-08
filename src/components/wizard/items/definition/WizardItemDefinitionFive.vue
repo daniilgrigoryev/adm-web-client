@@ -65,8 +65,8 @@
         });
         let data = JSON.parse(JSON.parse(eventResponse.response).data);
         if (funcUtils.isEmpty(data)) {
-          let error = JSON.parse(eventResponse.response).error.errorMsg;
-          alert(error);
+          let error = JSON.parse(eventResponse.response).error;
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
         } else {
           this.data = data;
         }

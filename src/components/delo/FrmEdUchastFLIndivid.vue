@@ -96,7 +96,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     },

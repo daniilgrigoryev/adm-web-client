@@ -116,7 +116,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioAPN() {
@@ -133,7 +133,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioProtTaxi() {
@@ -150,7 +150,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioPost() {
@@ -167,7 +167,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioProtIzyat() {
@@ -184,7 +184,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioDefinition() {
@@ -201,7 +201,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioDefinitionTaxi() {
@@ -218,7 +218,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenario2025() {
@@ -235,7 +235,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     }

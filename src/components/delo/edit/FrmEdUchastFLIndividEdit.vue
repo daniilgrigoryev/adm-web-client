@@ -235,8 +235,8 @@
         let uchastIndivid = JSON.parse(eventResponse.response).data;
 
         if (funcUtils.isEmpty(uchastIndivid)) {
-          let error = JSON.parse(eventResponse.response).error.errorMsg;
-          alert(error);
+          let error = JSON.parse(eventResponse.response).error;
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
         } else {
           this.uchastIndivid = uchastIndivid;
           this.parseBirthday(uchastIndivid);
@@ -255,7 +255,7 @@
           await this.readDelo();
         }
       } catch (e) {
-        alert(e.message);
+        this.$store.dispatch('errors/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -472,7 +472,7 @@
         });
         if (eventResponse.response) {
           let error = JSON.parse(eventResponse.response).error;
-          alert(error.errorMsg);
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
         } else {
           this.getPrev();
         }
@@ -483,7 +483,7 @@
             vm: this
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     },

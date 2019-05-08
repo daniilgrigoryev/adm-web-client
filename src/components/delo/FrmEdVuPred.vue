@@ -65,7 +65,7 @@
       try {
         await this.init();
       } catch (e) {
-        alert(e.message);
+        this.$store.dispatch('errors/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -117,11 +117,11 @@
               });
               await vm.$store.dispatch('fillModule', {'event': eventResponse});
             } catch (e) {
-              alert(e.message);
+              this.$store.dispatch('errors/changeContent', {title: e.message,});
             }
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       getVuPredEdit() {
@@ -139,7 +139,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     }

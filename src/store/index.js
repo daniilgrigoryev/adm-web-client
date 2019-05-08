@@ -107,7 +107,7 @@ const store = new Vuex.Store({
             }
           }
         } else if (!funcUtils.isNull(respError)) {
-          alert(respError.errorMsg);
+          this.$store.dispatch('errors/changeContent', {title: respError.errorMsg,});
         }
       }
     }

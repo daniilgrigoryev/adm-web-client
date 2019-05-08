@@ -78,7 +78,7 @@
         let scenarioName = JSON.parse(eventResponse.response).data;
         this.scenario = scenarioName;
       } catch (e) {
-        alert(e.message);
+        this.$store.dispatch('errors/changeContent', {title: e.message,});
       }
     },
     data() {
@@ -186,8 +186,8 @@
         });
         let cids = JSON.parse(eventResponse.response).data;
         if (funcUtils.isEmpty(cids)) {
-          let error = JSON.parse(eventResponse.response).error.errorMsg;
-          alert(error);
+          let error = JSON.parse(eventResponse.response).error;
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
           eventResponse = await RequestApi.prepareData({
             method: 'getChain'
           });

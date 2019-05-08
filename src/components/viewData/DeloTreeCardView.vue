@@ -173,7 +173,7 @@
         try {
           await vm.init();
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       });
     },
@@ -279,7 +279,7 @@
             this.updateSelected();
           }
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       async getMainDelo(mainDeloId) {
@@ -297,7 +297,7 @@
           });
           await this.init(mainDeloId);
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       async getDelo() {
@@ -663,7 +663,7 @@
             await this.init(current.params.deloId);
           }
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       async printDocument() {
@@ -696,7 +696,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       addPredDocWizard() {
@@ -715,7 +715,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       addDocPhotoWizard() {
@@ -734,7 +734,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       addIspolnWizard() {
@@ -753,7 +753,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioPZTC() {
@@ -772,7 +772,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioDefinition() {
@@ -791,7 +791,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioAPN() {
@@ -810,7 +810,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioProtTaxi(newDelo) {
@@ -830,7 +830,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioDefinitionTaxi(newDelo) {
@@ -850,7 +850,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardProtStopDelo(){
@@ -869,7 +869,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       createWizardScenarioPost() {
@@ -888,7 +888,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     },

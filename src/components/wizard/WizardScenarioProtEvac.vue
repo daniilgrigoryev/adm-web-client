@@ -179,7 +179,7 @@
           let error = '';
           funcUtils.isNotEmpty(resp.error.errorMsg) ? error += `ErrorMsg: ${resp.error.errorMsg}\n` : null;
           funcUtils.isNotEmpty(resp.error.errorDesc) ? error += `ErrorDesc: ${resp.error.errorDesc}\n` : null;
-          alert(error);
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
         } else {
           eventResponse = await RequestApi.prepareData({
             method: 'getDeloId'
@@ -213,7 +213,7 @@
             withTransition: withTransition || true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     }

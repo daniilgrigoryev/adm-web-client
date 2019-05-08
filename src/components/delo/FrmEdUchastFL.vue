@@ -32,11 +32,11 @@
             });
             await vm.$store.dispatch('fillModule', {'event': resp});
           } catch (e) {
-            alert(e.message);
+            this.$store.dispatch('errors/changeContent', {title: e.message,});
           }
         });
       } catch (e) {
-        alert(e.message);
+        this.$store.dispatch('errors/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -69,7 +69,7 @@
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     },

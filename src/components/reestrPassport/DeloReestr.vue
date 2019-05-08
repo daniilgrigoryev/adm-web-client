@@ -277,7 +277,7 @@
         this.fillDocumentVidDict();
         this.fillArticleProcDict();
       } catch (e) {
-        alert(e.message);
+        this.$store.dispatch('errors/changeContent', {title: e.message,});
       }
     },
     updated() {
@@ -1654,7 +1654,7 @@
             withCreate: true
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       outsideContextMenuClick(e) {
@@ -1691,7 +1691,7 @@
             withTransition: false
           });
         } catch (e) {
-          alert(e.message);
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     }
