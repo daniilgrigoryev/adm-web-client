@@ -279,6 +279,12 @@ html, body, #app {
     // margin-left: 50px;
   }
 }
+.tree_wrapper::-moz-scrollbar{
+  width: 0 !important 
+}
+.tree_wrapper::-webkit-scrollbar { 
+  width: 0 !important 
+}
 .tree_wrapper{
   position: -webkit-sticky;
   position: sticky;
@@ -287,11 +293,17 @@ html, body, #app {
   top: 121px;
   direction: rtl;
   z-index: 8;
-  // overflow-y: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
+  // overflow-y: hidden;
   overflow-x: hidden;
   height: calc(100vh - 130px);
   background: linear-gradient(to right, #f5fafd 95.6%, #fafafa 0%);
+  margin-left: -16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+  // -ms-overflow-style: none;
+  // -moz-appearance: menuimage; 
+  // overflow: -moz-scrollbars-none; 
 }
 .tree {
   position: -webkit-sticky;
@@ -301,6 +313,7 @@ html, body, #app {
   top: -1px;
   z-index: 9;
   direction: ltr;
+  margin-left: 16px;
   margin-right: 20px;
   .tree__link {
     &::before {
