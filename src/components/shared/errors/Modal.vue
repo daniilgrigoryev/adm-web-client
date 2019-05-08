@@ -86,7 +86,7 @@ export default {
     width: 400px;
     min-height: 180px;
     position: absolute;
-    top: 100px;
+    top: 200px;
     left: 0;
     right: 0;
     margin: auto;

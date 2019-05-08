@@ -30,7 +30,7 @@ export default {
     },
     changeContent({ commit, dispatch }, payload) {
       if (Array.isArray(payload.desc)) {
-        payload.desc.map(el => {
+        payload.desc = payload.desc.map(el => {
           return {
             open: false,
             text: el,
