@@ -212,7 +212,7 @@
 
         if (funcUtils.isEmpty(delo)) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           await this.fillPnpaList();
           await this.fillDeloVidList();
@@ -853,7 +853,7 @@
         });
         if (eventResponse.response) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           this.getPrev();
         }

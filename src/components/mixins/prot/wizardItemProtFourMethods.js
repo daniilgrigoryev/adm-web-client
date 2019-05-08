@@ -115,7 +115,7 @@ export default {
       let cids = JSON.parse(JSON.parse(eventResponse.response).data);
       if (funcUtils.isEmpty(cids)) {
         let error = JSON.parse(eventResponse.response).error;
-        this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
+        this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
       } else {
         this.$emit('updateComponents', cids);
       }

@@ -279,7 +279,7 @@
 
         if (funcUtils.isEmpty(decis)) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
 
           this.decis = decis;
@@ -337,7 +337,7 @@
         });
         if (eventResponse.response) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
+          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           this.getPrev();
         }
