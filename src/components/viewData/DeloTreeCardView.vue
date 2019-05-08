@@ -173,7 +173,7 @@
         try {
           await vm.init();
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       });
     },
@@ -279,7 +279,7 @@
             this.updateSelected();
           }
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       async getMainDelo(mainDeloId) {
@@ -297,7 +297,7 @@
           });
           await this.init(mainDeloId);
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       async getDelo() {
@@ -663,7 +663,7 @@
             await this.init(current.params.deloId);
           }
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       async printDocument() {
@@ -696,7 +696,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       addPredDocWizard() {
@@ -715,7 +715,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       addDocPhotoWizard() {
@@ -734,7 +734,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       addIspolnWizard() {
@@ -753,7 +753,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioPZTC() {
@@ -772,7 +772,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioDefinition() {
@@ -791,7 +791,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioAPN() {
@@ -810,7 +810,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioProtTaxi(newDelo) {
@@ -830,7 +830,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioDefinitionTaxi(newDelo) {
@@ -850,7 +850,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardProtStopDelo(){
@@ -869,7 +869,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioPost() {
@@ -888,7 +888,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
     },

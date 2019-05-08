@@ -116,11 +116,11 @@
               photos: vm.dataStore ? vm.dataStore.fotoList : null
             });
           } catch (e) {
-            this.$store.dispatch('errors/changeContent', {title: e.message,});
+            this.$store.dispatch('errors/changeContent', {title: e.message.error,});
           }
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errors/changeContent', {title: e.message.error,});
       }
     },
     destroyed() {
@@ -168,7 +168,7 @@
             photos: this.dataStore ? this.dataStore.fotoList : null
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       async fillComponent(params) {
@@ -218,7 +218,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       getCheckName(checkKey) {

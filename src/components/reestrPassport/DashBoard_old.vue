@@ -116,7 +116,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioAPN() {
@@ -133,7 +133,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioProtTaxi() {
@@ -150,7 +150,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioPost() {
@@ -167,7 +167,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioProtIzyat() {
@@ -184,7 +184,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioDefinition() {
@@ -201,7 +201,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenarioDefinitionTaxi() {
@@ -218,7 +218,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       createWizardScenario2025() {
@@ -235,7 +235,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
     }

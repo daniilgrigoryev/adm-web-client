@@ -282,7 +282,7 @@
           }
         }
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errors/changeContent', {title: e.message.error,});
       }
     },
     destroyed() {
@@ -810,7 +810,7 @@
             vm: this
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
     },

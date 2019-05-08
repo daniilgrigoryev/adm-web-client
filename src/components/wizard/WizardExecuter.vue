@@ -78,7 +78,7 @@
         let scenarioName = JSON.parse(eventResponse.response).data;
         this.scenario = scenarioName;
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errors/changeContent', {title: e.message.error,});
       }
     },
     data() {
