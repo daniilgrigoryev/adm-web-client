@@ -7,7 +7,7 @@
             <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место вынесения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
           </wizard-item-doc-post-first>
           <wizard-item-vehs id="Vehs" v-if="isVisible('Vehs')" ref="Vehs" :info="getInfo('Vehs')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-vehs>
-          <div class="adm-form__container" v-if="isVisible('Owner')">
+          <div id="Owner" class="adm-form__container" v-if="isVisible('Owner')">
             <h2 class="adm-form__headding">Владелец транспортного средства</h2>
             <div class="adm-form__content">
               <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
@@ -93,13 +93,19 @@
             name: "head",
           },
           {
-            title: "ЛВОК",
-            name: "Lvok",
-          },
-          {
             title: "Транспортное средство",
             name: "Vehs",
             hide: !this.isVisible('Vehs')
+          },
+          {
+            title: "Владелец транспортного средства",
+            name: "Owner",
+            hide: !this.isVisible('Owner')
+          },
+          {
+            title: "ЛВОК",
+            name: "Lvok",
+            hide: !this.isVisible('LVOK')
           },
           {
             title: "Сведения о нарушении",
