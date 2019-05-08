@@ -73,11 +73,11 @@
               cid: currentForm.cid
             });
           } catch (e) {
-            this.$store.dispatch('errors/changeContent', {title: e.message,});
+            this.$store.dispatch('errors/changeContent', {title: e.message.error,});
           }
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errors/changeContent', {title: e.message.error,});
       }
     },
     destroyed() {
@@ -112,7 +112,7 @@
             cid: currentForm.cid
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
       async fillComponent(params) {
