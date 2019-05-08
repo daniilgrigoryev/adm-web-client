@@ -26,24 +26,15 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("errors");
 
 export default {
-  
   computed: {
-    ...mapState(["status", "content"]),
-    items() {
-      return this.testItems.map(el => {
-        return {
-          open: true,
-          text: el
-        };
-      });
-    }
+    ...mapState(["status", "content"])
   },
   methods: {
-    ...mapActions(["changeStatus", "toggleSize"]),
+    ...mapActions(["changeStatus", "toggleSize"])
   },
   destroyed() {
     this.changeStatus(false);
-  },
+  }
 };
 </script>
 
