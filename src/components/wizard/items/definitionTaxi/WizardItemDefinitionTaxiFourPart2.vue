@@ -111,9 +111,9 @@
       </div>
     </div>
     <div class="adm-form__container">
-      <h2 id="owner-details" class="adm-form__headding">Сведения о разрешении</h2>
+      <h2 id="permission-details" class="adm-form__headding">Сведения о разрешении</h2>
       <div class="adm-form__content">
-        <div v-if="data.vsTypeId !== 1" class="adm-form__item">
+        <div class="adm-form__item">
           <small class="adm-form__label">Номер разрешения</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">

@@ -133,6 +133,10 @@
             name: "owner-details"
           },
           {
+            title: "Сведения о разрешении",
+            name: "permission-details"
+          },
+          {
             title: "Сведения о рассмотрении",
             name: "definition"
           },
