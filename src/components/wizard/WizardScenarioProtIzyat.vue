@@ -107,7 +107,7 @@
           {
             title: "ЛВОК",
             name: "Lvok",
-            hide: !this.isNotEmptyParentNode('LVOK')
+            hide: !this.isVisible('LVOK')
           },
           {
             title: "Сведения о нарушении",
