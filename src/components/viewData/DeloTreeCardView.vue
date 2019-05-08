@@ -71,7 +71,7 @@
                     <Button :disabled="!menuItemVisible(menu.addDocument.ProtAPN)" @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол об АПН</Button>
                   </li>
                   <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.OpredProvedAP)" @click="createWizardScenarioDefinition" type="text" class="adm-btn-regular">Опредение о проведении АР</Button>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.OpredProvedAP)" @click="createWizardScenarioDefinition" type="text" class="adm-btn-regular">Определение о проведении АР</Button>
                   </li>
                   <li>
                     <Button :disabled="!menuItemVisible(menu.addDocument.PostDeloAPN)" @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
