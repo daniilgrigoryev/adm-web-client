@@ -68,10 +68,7 @@
         });
         let resp =  JSON.parse(eventResponse.response);
         if (resp.error && resp.error.errorId) {
-          this.$store.dispatch('errors/changeContent', {
-            title: resp.error.errorMsg,
-            desc: resp.error.errorDesc,
-          });
+          this.$store.dispatch('errors/changeContent', {title: resp.error.errorMsg, desc: resp.error.errorDesc,});
         } else {
           this.getPrev();
         }
