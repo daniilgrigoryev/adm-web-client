@@ -24,6 +24,13 @@
         </Col>
       </Row>
     </div>
+
+    <article v-if="filesArray.length > 0" class="gallery">
+      <Slider :photos="filesArray" />
+    </article>
+    <div v-if="otherMedia.length > 0" v-for="(item, index) in otherMedia" :key="index">
+      {{item}}
+    </div>
   </div>
 </template>
 
@@ -36,6 +43,9 @@
     props: {
       info: Object
     },
+    components: {
+      Slider: () => import('~/components/delo/DlgEdFotoMaterial/Slider')
+    },
     async created() {
       await this.initData();
     },
@@ -43,7 +53,9 @@
       return {
         data: null,
         files: null,
-        byteArraysCount: 0
+        byteArraysCount: 0,
+        filesArray: [],
+        otherMedia: []
       }
     },
     methods: {
@@ -58,10 +70,20 @@
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
       },
+      byteArrayToBase64(bytes, type) {
+        let binary = '';
+        let len = bytes.length;
+        for (let i = 0; i < len; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        return `data:${type};base64,${window.btoa(binary)}`;
+      },
       async onFileChange(e) {
         let vm = this;
         this.byteArraysCount = 0;
         this.files = {};
+        this.filesArray = [];
+        this.otherMedia = [];
         this.data.files = [];
 
         let files = e.target.files || e.dataTransfer.files;
@@ -94,6 +116,23 @@
               body: body
             };
             vm.byteArraysCount += body.length;
+
+            switch (this.metaInfo.type) {
+              case 'image/png':
+              case 'image/jpeg': {
+                vm.filesArray.push(vm.byteArrayToBase64(byteArray, this.metaInfo.type));
+                break;
+              }
+              case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+              case 'video/mp4':
+              case 'application/pdf':
+              case 'application/pgp-signature':
+              case 'video/webm': {
+                vm.otherMedia.push(this.metaInfo.name);
+                break;
+              }
+            }
+
             this.onloaded();
           };
           reader.metaInfo = file;

@@ -15,7 +15,7 @@
             <Slider :photos="photos" />
           </article>
 
-          <div v-for="(item, index) in otherMedia" :key="index" @click="downloadMedia">
+          <div v-if="otherMedia.length > 0" v-for="(item, index) in otherMedia" :key="index" @click="downloadMedia">
             {{item}}
           </div>
 
