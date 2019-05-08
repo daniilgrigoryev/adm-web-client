@@ -220,7 +220,7 @@
 
         if (funcUtils.isEmpty(vuVyd)) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
+          this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
         } else {
           await this.fillDocStatusList();
           await this.fillDocTypeList();
@@ -229,7 +229,7 @@
           this.vuVyd = vuVyd;
         }
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+        this.$store.dispatch('errors/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -683,7 +683,7 @@
         });
         if (eventResponse.response) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
+          this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
         } else {
           this.getPrev();
         }
@@ -694,7 +694,7 @@
             vm: this
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     },

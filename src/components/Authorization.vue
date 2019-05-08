@@ -120,7 +120,7 @@
               });
             }
           } catch (e) {
-            this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+            this.$store.dispatch('errors/changeContent', {title: e.message,});
           }
         } else {
           this.$store.dispatch('errors/changeContent', {title: "Неправильное имя пользователя или пароль",});

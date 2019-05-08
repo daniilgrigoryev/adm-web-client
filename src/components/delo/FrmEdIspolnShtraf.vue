@@ -65,11 +65,11 @@
             });
             await vm.$store.dispatch('fillModule', {'event': eventResponse});
           } catch (e) {
-            this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+            this.$store.dispatch('errors/changeContent', {title: e.message,});
           }
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+        this.$store.dispatch('errors/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -111,7 +111,7 @@
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       getIspolnEdit() {
@@ -129,7 +129,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
     }

@@ -2,16 +2,18 @@
   <transition name="overlay">
     <div class="overlay" v-if="status">
       <div class="modal">
-        <div class="title">{{ content.title }}</div>
-        <div
-          v-for="item in content.desc"
-          :key="item.id"
-          class="desc-item"
-          :class="{ open: item.open }"
-          @click="toggleSize(item)"
-        >
-          {{ item.text }}
-          <button class="toggle-size" :class="{ open: item.open }" />
+        <div class="wrap">
+          <div class="title">{{ content.title }}</div>
+          <div
+            v-for="item in content.desc"
+            :key="item.id"
+            class="desc-item"
+            :class="{ open: item.open }"
+            @click="toggleSize(item)"
+          >
+            {{ item.text }}
+            <button class="toggle-size" :class="{ open: item.open }" />
+          </div>
         </div>
         <button class="close" @click="changeStatus(false)">ОК</button>
       </div>
@@ -83,8 +85,7 @@ export default {
   }
   .modal {
     background: #fff;
-    width: 400px;
-    min-height: 180px;
+    width: 600px;
     position: absolute;
     top: 200px;
     left: 0;
@@ -94,6 +95,11 @@ export default {
     padding-bottom: 70px;
     border-radius: 5px;
     border: 1px solid #dedede;
+    .wrap {
+      max-height: 500px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
     .title {
       font-size: 22px;
       font-weight: 700;

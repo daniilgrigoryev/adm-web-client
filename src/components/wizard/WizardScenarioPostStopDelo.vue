@@ -139,7 +139,7 @@ export default {
 				let error = '';
 				funcUtils.isNotEmpty(resp.error.errorMsg) ? error += `ErrorMsg: ${resp.error.errorMsg}\n` : null;
 				funcUtils.isNotEmpty(resp.error.errorDesc) ? error += `ErrorDesc: ${resp.error.errorDesc}\n` : null;
-				this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
+				this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
 			} else {
 				eventResponse = await RequestApi.prepareData({
 					method: 'getDeloId'
@@ -172,7 +172,7 @@ export default {
 					withTransition: withTransition || true
 				});
 			} catch (e) {
-				this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+				this.$store.dispatch('errors/changeContent', {title: e.message,});
 			}
 		},
 	}

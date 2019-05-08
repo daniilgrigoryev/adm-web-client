@@ -152,7 +152,7 @@ router.beforeEach( async (to, from, next) => {
       }
     }
   } catch (e) {
-    this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+    this.$store.dispatch('errors/changeContent', {title: e.message,});
   }
 });
 

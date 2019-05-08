@@ -65,7 +65,7 @@
 
         if (funcUtils.isEmpty(data)) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg,});
+          this.$store.dispatch('errors/changeContent', {desc: error.errorMsg,});
         } else {
 					await this.fillStotvSearchInfo();
           this.data = data;

@@ -99,7 +99,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
       stringToDateFormat(stringDate){
