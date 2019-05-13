@@ -61,6 +61,20 @@
             :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
             style="grid-column: span 2;"
           />
+          <div v-if="body.docVid === docVid.ADV_ADM">
+            <hr>
+            <view-data-item
+              label="Код сотрудника утвердившего документ - Ф.И.О"
+              :value="body.inspUtvKod, body.inspUtvName  | concatByDelimiter('-')"
+              style="grid-column: span 2;"
+              :icon="require('../../assets/images/police.svg')"
+            />
+            <view-data-item
+              label="Звание, Должность"
+              :value="body.inspUtvRang, body.inspUtvDolz | concatByDelimiter(',')"
+              style="grid-column: span 2;"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -72,6 +86,7 @@
   import * as formStack from '~/assets/js/api/formStack';
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
+  import docVidEnum from "~/assets/js/utils/docVidEnum";
   import {mapGetters} from 'vuex';
 
   export default {
@@ -115,6 +130,11 @@
         }
         return res;
       },
+    },
+    data() {
+      return {
+        docVid: docVidEnum
+      }
     },
     methods: {
       isNotEmptyField(field) {

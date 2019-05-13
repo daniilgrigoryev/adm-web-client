@@ -124,6 +124,15 @@
               <span
                 style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
             </Button>
+
+            <Button type="text"
+                    @click="getLogs"
+                    class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
+              <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
+              <span
+                style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">Логи</span>
+            </Button>
+
           </div>
         </div>
         <hr class="txt-hr my0">
@@ -889,6 +898,24 @@
           });
         } catch (e) {
           this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      getLogs() {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmLog,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
     },

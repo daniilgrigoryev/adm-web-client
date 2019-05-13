@@ -15,8 +15,8 @@
             <Slider :photos="photos" />
           </article>
 
-          <div v-if="otherMedia.length > 0" v-for="(item, index) in otherMedia" :key="index" @click="downloadMedia">
-            {{item}}
+          <div v-if="otherMedia.length > 0" v-for="(item, index) in otherMedia" :key="index" @click="downloadMedia(item)">
+            {{item.docNum}}
           </div>
 
           <view-data-item
@@ -168,7 +168,7 @@
           if (data) {
             let element = document.createElement("a");
             element.href = window.URL.createObjectURL(data);
-            element.setAttribute("download", `${item.docNum}.${item.mimeType}`);
+            element.setAttribute("download", `${item.docNum}`);
             element.style.display = "none";
             document.body.appendChild(element);
             element.click();

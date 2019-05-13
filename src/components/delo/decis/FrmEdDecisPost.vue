@@ -22,12 +22,12 @@
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
           <hr>
-          <view-data-item 
-            label="Дата начала" 
-            :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата начала"
+            :value="body.periodStart | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
+          <view-data-item
             label="Дата вручения" 
             :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
             style="grid-column: span 2;"
@@ -35,6 +35,16 @@
           <view-data-item 
             label="Дата вступления" 
             :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Список документов"
+            :value="body.provideMaterials"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Обеспечить явку"
+            :value="body.providePresence"
             style="grid-column: span 2;"
           />
         </div>

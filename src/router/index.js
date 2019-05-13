@@ -28,6 +28,12 @@ const router = new Router({
       props: true
     },
     {
+      path: '/frmLog',
+      name: 'FrmLog',
+      component: () => import('~/components/log/FrmLog'),
+      props: true
+    },
+    {
       path: '/frmEdDeloEdit',
       name: 'FrmEdDeloEdit',
       component: () => import('~/components/delo/edit/FrmEdDeloEdit'),

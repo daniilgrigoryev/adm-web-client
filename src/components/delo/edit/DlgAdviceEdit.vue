@@ -128,6 +128,24 @@
                   </Row>
                 </div>
               </div>
+              <div v-if="dataAdvice.docVid === docVid.ADV_ADM" class="adm-form__item">
+                <small class="adm-form__label">Инспектор утвердивший документ</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="4" :md="4" :lg="4">
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="dataAdvice.inspUtvKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspUtvKod" ></masked-input>
+                    </Col>
+                    <Col :xs="18" :md="18" :lg="18">
+                      <Input class="adm-input adm-input--regular" disabled v-model="dataAdvice.inspUtvName"></Input>
+                    </Col>
+                    <Col :xs="2" :md="2" :lg="2">
+                      <Button @click="showInspUtvModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="30" />
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -145,6 +163,7 @@
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as formStack from '~/assets/js/api/formStack';
   import RequestApi from "~/assets/js/api/requestApi";
+  import docVidEnum from "~/assets/js/utils/docVidEnum";
 
   export default {
     name: "DlgAdviceEdit",
@@ -424,6 +443,135 @@
               }
             ]
         },
+        inspUtvModal: {
+          visible: false,
+          inspUtvList: null,
+          srcList: null,
+          columnsOptions:
+            [
+              {
+                title: 'Нагрудный знак',
+                key: 'inspKod',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'ФИО',
+                key: 'inspName',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Должность',
+                key: 'inspDolz',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Звание',
+                key: 'inspRang',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Код подразделения',
+                key: 'organKod',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Подразделение',
+                key: 'ogaiName',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Отдел',
+                key: 'otdName',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Телефон',
+                key: 'phone',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Дата начала действия',
+                key: 'dateBeg',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Дата окончания действия',
+                key: 'dateEnd',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              }
+            ]
+        },
+        docVid: docVidEnum
       }
     },
     methods: {
@@ -486,6 +634,61 @@
         this.dataAdvice.organSostKod = null;
         this.dataAdvice.organSostName = null;
         this.store();
+      },
+      async showInspUtvModal(visible) {
+        if (funcUtils.isEmpty(this.inspUtvModal.srcList)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'getSinspList'
+          });
+          this.inspUtvModal.srcList = JSON.parse(eventResponse.response).data;
+        }
+        if (visible) {
+          this.inspUtvModal.inspUtvList = this.inspUtvModal.srcList;
+        } else {
+          this.inspUtvModal.inspUtvList = null;
+        }
+        this.inspUtvModal.visible = visible;
+      },
+      async changeInspUtvKod() {
+        if (funcUtils.isNotEmpty(this.dataAdvice.inspUtvKod)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'getSinspList',
+            params: {
+              inspKod: this.dataAdvice.inspUtvKod
+            }
+          });
+          await this.clearInspUtv();
+          let data = JSON.parse(eventResponse.response).data;
+          if (funcUtils.isNotEmpty(data) && data.length > 0) {
+            data = data.getFirst();
+            this.dataAdvice.inspUtvId = data.inspId;
+            this.dataAdvice.inspUtvKod = data.inspKod;
+            this.dataAdvice.inspUtvName = data.inspName;
+            this.dataAdvice.inspUtvDolz = data.inspDolz;
+            this.dataAdvice.inspUtvRang = data.inspRang;
+            await this.store();
+          }
+        } else {
+          this.clearInspUtv();
+        }
+      },
+      async onInspUtvClick(data) {
+        this.dataAdvice.inspUtvId = data.inspId;
+        this.dataAdvice.inspUtvKod = data.inspKod;
+        this.dataAdvice.inspUtvName = data.inspName;
+        this.dataAdvice.inspUtvDolz = data.inspDolz;
+        this.dataAdvice.inspUtvRang = data.inspRang;
+        this.inspUtvModal.visible = false;
+        this.inspUtvModal.inspUtvList = null;
+        await this.store();
+      },
+      async clearInspUtv() {
+        this.dataAdvice.inspUtvId = null;
+        this.dataAdvice.inspUtvKod = null;
+        this.dataAdvice.inspUtvName = null;
+        this.dataAdvice.inspUtvDolz = null;
+        this.dataAdvice.inspUtvRang = null;
+        await this.store();
       },
       async getPlaceSost() {
         let eventResponse = await RequestApi.prepareData({

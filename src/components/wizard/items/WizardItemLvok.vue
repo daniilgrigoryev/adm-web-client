@@ -38,7 +38,7 @@
       await this.initData();
       await this.fillStatusList();
       await this.fillTipList();
-1    },
+    },
     data() {
       return {
         data: null,

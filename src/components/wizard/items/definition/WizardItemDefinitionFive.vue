@@ -1,6 +1,7 @@
 <template>
   <div v-if="data">
     <wizard-modal v-if="rasmModal.visible" :columnsOptions="rasmModal.columnsOptions" :data="rasmModal.rasmList" @showModal="showRasmModal" @onRowDbClick="onRasmClick"></wizard-modal>
+    <wizard-modal v-if="inspUtvModal.visible" :columnsOptions="inspUtvModal.columnsOptions" :data="inspUtvModal.inspUtvList" @showModal="showInspUtvModal" @onRowDbClick="onInspUtvClick"></wizard-modal>
 
     <div class="adm-form__item">
       <small class="adm-form__label">Дата и время рассмотрения</small>
@@ -22,6 +23,52 @@
           </Col>
           <Col :xs="2" :md="2" :lg="2">
             <Button @click="showRasmModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+              <Icon type="ios-bookmarks-outline" class=" " title="Список подразделений" :size="30" />
+            </Button>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Дополнение к адресу органа</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular" v-model="data.organRasmAdrDetails"></Input>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Список документов</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="22" :lg="22">
+            <Input class="adm-input adm-input--regular" @on-blur="storeElementData" v-model="data.provideMaterials" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Обеспечить явку</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="22" :lg="22">
+            <Input class="adm-input adm-input--regular" @on-blur="storeElementData" v-model="data.providePresence" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Инспектор утвердивший документ</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="4" :md="4" :lg="4">
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.inspUtvKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspUtvKod" ></masked-input>
+          </Col>
+          <Col :xs="18" :md="18" :lg="18">
+            <Input class="adm-input adm-input--regular" disabled v-model="data.inspUtvName"></Input>
+          </Col>
+          <Col :xs="2" :md="2" :lg="2">
+            <Button @click="showInspUtvModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
               <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="30" />
             </Button>
           </Col>
