@@ -531,13 +531,16 @@
       isNotEmptyTipTcKod() {
         return funcUtils.isNotEmpty(this.vehsAMTC.tiptcKod);
       },
-      store() {
-        RequestApi.prepareData({
+      async store() {
+        let eventResponse = await RequestApi.prepareData({
           method: 'store',
           params: {
             data: this.vehsAMTC
           }
         });
+        if (eventResponse.response) {
+          this.vehsAMTC = JSON.parse(eventResponse.response).data;
+        }
       },
       async save() {
         let eventResponse = await RequestApi.prepareData({

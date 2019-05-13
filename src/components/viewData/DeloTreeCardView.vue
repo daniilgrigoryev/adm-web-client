@@ -80,7 +80,7 @@
                     <Button :disabled="!menuItemVisible(menu.addDocument.PostPrekrDeloAPN)" @click="createWizardProtStopDelo" type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
                   </li>
                   <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.Izvesh)" type="text" class="adm-btn-regular">Извещение</Button>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.Izvesh)" @click="createWizardAddAdvice" type="text" class="adm-btn-regular">Извещение</Button>
                   </li>
                   <li>
                     <Button :disabled="!menuItemVisible(menu.addDocument.ChangeDateRasmDelo)" type="text" class="adm-btn-regular">Перенос даты рассмотрения дела</Button>
@@ -862,7 +862,7 @@
           this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
-      createWizardProtStopDelo(){
+      createWizardProtStopDelo() {
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
@@ -886,6 +886,25 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreatePost',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      createWizardAddAdvice() {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            scenarioName: 'AddAdvice',
             node: copyNode
           };
 
