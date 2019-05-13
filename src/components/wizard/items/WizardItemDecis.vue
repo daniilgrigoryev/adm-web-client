@@ -4,8 +4,8 @@
       <small class="adm-form__label">{{ title }}</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.decisKod" filterable clearable @on-change="storeElementData">
-            <Option class="wmax360 " v-for="item in decisList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.decisKod" filterable clearable @on-change="storeElementData">
+            <Option v-for="item in decisList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
       </Row>
@@ -73,18 +73,18 @@
 
     <div v-if="data.decisKod && showByDecisKod(decisKods.discval)">
       <div class="adm-form__item">
-        <small class="adm-form__label">Количество дней</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <masked-input inputClass="adm-input adm-input--regular" v-model="data.diskvDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
-          </Col>
-        </Row>
-      </div>
-      <div class="adm-form__item">
         <small class="adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <masked-input inputClass="adm-input adm-input--regular" v-model="data.diskvMes" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
+          </Col>
+        </Row>
+      </div>
+      <div class="adm-form__item">
+        <small class="adm-form__label">Количество дней</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.diskvDay" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -121,6 +121,22 @@
 
     <div v-if="data.decisKod && showByDecisKod(decisKods.forced)">
       <div class="adm-form__item">
+        <small class="adm-form__label">Количество месяцев</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
+          </Col>
+        </Row>
+      </div>
+      <div class="adm-form__item">
+        <small class="adm-form__label">Количество дней</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
+          </Col>
+        </Row>
+      </div>
+      <div class="adm-form__item">
         <small class="adm-form__label">Дата начала работ</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
@@ -128,6 +144,9 @@
           </Col>
         </Row>
       </div>
+    </div>
+
+    <div v-if="data.decisKod && showByDecisKod(decisKods.imprisonment)">
       <div class="adm-form__item">
         <small class="adm-form__label">Количество месяцев</small>
         <Row :gutter="16" type="flex" align="middle">
@@ -144,30 +163,11 @@
           </Col>
         </Row>
       </div>
-    </div>
-
-    <div v-if="data.decisKod && showByDecisKod(decisKods.imprisonment)">
       <div class="adm-form__item">
         <small class="adm-form__label">Дата начала лишения свободы</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.periodStart" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-          </Col>
-        </Row>
-      </div>
-      <div class="adm-form__item">
-        <small class="adm-form__label">Количество месяцев</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
-          </Col>
-        </Row>
-      </div>
-      <div class="adm-form__item">
-        <small class="adm-form__label">Количество дней</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <masked-input inputClass="adm-input adm-input--regular" v-model="data.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -181,18 +181,18 @@
 
     <div v-if="data.decisKod && showByDecisKod(decisKods.stopWorkDay)">
       <div class="adm-form__item">
-        <small class="adm-form__label">Дата начала приостановления</small>
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.periodStart" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-          </Col>
-        </Row>
-      </div>
-      <div class="adm-form__item">
         <small class="adm-form__label">Количество суток</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <masked-input inputClass="adm-input adm-input--regular" v-model="data.period2" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
+          </Col>
+        </Row>
+      </div>
+      <div class="adm-form__item">
+        <small class="adm-form__label">Дата начала приостановления</small>
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.periodStart" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
         </Row>
       </div>
