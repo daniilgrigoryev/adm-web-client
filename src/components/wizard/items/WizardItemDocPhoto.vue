@@ -152,6 +152,7 @@
         let vm = this;
         let file = this.files[key];
         let kbArrays = file.body;
+        let sendedBytes = 0;
         for (let i = 0; i < kbArrays.length; i++) {
           let kbArray = kbArrays[i];
           let response = RequestApi.prepareData({
@@ -161,12 +162,13 @@
               methodName: 'setPart',
               data: JSON.stringify({
                 fileName: file.file.name,
-                startPos: i,
+                startPos: sendedBytes,
                 body: kbArray,
               })
             },
             withSpinner: false
           });
+          sendedBytes += kbArray.length;
           response.then(() => {
             vm.byteArraysCount--;
             if (vm.byteArraysCount === 0) {
