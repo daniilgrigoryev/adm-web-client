@@ -1,69 +1,63 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Назад">
-    <div class="adm-form">
-      <div class="adm-form__container">
-        <div class="adm-form__item">
-          <small class="adm-form__label">Начало периода</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.startDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div class="adm-form__item">
-          <small class="adm-form__label">Конец периода</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.endDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-              </Col>
-            </Row>
-          </div>
-        </div>
-        <div v-if="tables.length > 0" class="adm-form__item">
-          <small class="adm-form__label">Список логирующих таблиц</small>
-          <div class="adm-form__item_content">
-            <Row :gutter="16" type="flex" align="middle">
-              <Col :xs="24" :md="14" :lg="16">
-                <span v-for="(key, item, index) in tables" :key="index">
-                  {{key}} - {{item}}
-                </span>
-              </Col>
-            </Row>
-          </div>
-        </div>
-
-        <Button @click="init" :disabled="!data.startDate || !data.endDate" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Получить лог">Получить лог</Button>
-      </div>
-
-      <div v-if="records" class="view-data">
-        <div class="view-data__container">
-          <div class="items-wrap" style="display: flex; flex-direction: column;">
-            <div v-for="(item, index) in records" :key="index">
-
-              <span style="color: red;" @click="item.visible = !item.visible">Дата изменения - {{item.date | formatDateTime('DD.MM.YYYY HH:mm')}}</span>
-              <span style="color: red;" @click="item.visible = !item.visible">Исполнитель - {{item.operIspName}}</span>
-              <span style="color: red;" @click="item.visible = !item.visible">Действие - {{item.operation}}</span>
-
-              <div v-if="item.visible" v-for="(logItem, key) in item.items" :key="key" style="display: flex; flex-direction: column;">
-                <hr />
-                <span>Имя поля - {{logItem.fieldName}}</span>
-                <span>Описание поля - {{logItem.fieldDesc}}</span>
-                <span>Старое значение - {{logItem.oldValue}}</span>
-                <span>Новое значение - {{logItem.newValue}}</span>
+  <aside-template :listSectionNav="listSectionNav" title="Логи">
+    <div class="layout-wrap">
+      <div class="layout">
+        <div class="adm-form logs">
+          <div class="adm-form__container">
+            <h2 id="data-source" class="adm-form__headding">Логи по делу №</h2>
+            <div class="adm-form__content">
+              <div class="logs__filter">
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Начало периода</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="14" :lg="16">
+                        <DatePickerMask class="adm-input adm-input--regular wmin180 wmax180" v-model="data.startDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Конец периода</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="14" :lg="16">
+                        <DatePickerMask class="adm-input adm-input--regular wmin180 wmax180" v-model="data.endDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+                <Button @click="init" :disabled="!data.startDate || !data.endDate" type="primary" title="Получить лог">Получить лог</Button>
               </div>
-
+              <div v-if="tables.length > 0" class="adm-form__item">
+                <small class="adm-form__label">Список логирующих таблиц</small>
+                <div class="adm-form__item_content">
+                  <span v-for="(key, item, index) in tables" :key="index">
+                    {{key}} - {{item}}
+                  </span>
+                </div>
+              </div>
+              <div class="logs__body">
+                <div v-for="(item, index) in records" :key="index" class="logs-item" :class="operationTypeClass(item.operation)">
+                  <div class="logs-item__head" @click="item.visible = !item.visible">
+                    Дата изменения - {{item.date | formatDateTime('DD.MM.YYYY HH:mm')}}
+                    Исполнитель - {{item.operIspName}}
+                  </div>
+                  <div class="logs-item__body">
+                    <div v-if="item.visible" v-for="(logItem, key) in item.items" :key="key" class="logs-item__block">
+                      <div>Имя поля - {{logItem.fieldName}}</div>
+                      <div>Описание поля - {{logItem.fieldDesc}}</div>
+                      <div>Старое значение - {{logItem.oldValue}}</div>
+                      <div>Новое значение - {{logItem.newValue}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-    </div>
-
-    <div class="bot-wrap">
-      <Button @click="getPrev" type="text">Назад</Button>
     </div>
   </aside-template>
 </template>
@@ -105,6 +99,7 @@
       }
     },
     computed: {
+      
       ...mapGetters({
         dataStore: 'frmLogGetData'
       }),
@@ -142,6 +137,19 @@
           this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
+      operationTypeClass(operation) {
+        switch (operation) {
+          case "I":
+            return "green"
+            break;
+          case "U":
+            return "orange"
+            break;
+          default:
+            return "green"
+            break;
+        }
+      },
       async getTables() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getTables'
@@ -161,6 +169,44 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .logs {
+    .logs__filter {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      button {
+        padding: 0 15px;
+        height: 32px;
+        margin-left: auto;
+      }
+    }
+    .logs__body {
+      padding: 20px 0;
+    }
+  }
+  .logs-item {
+    padding: 2px 0;
+    &.green {
+      .logs-item__head {
+        color: green;
+      }
+    }
+    &.orange {
+      .logs-item__head {
+        color: orange;
+      }
+    }
+    .logs-item__head {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .logs-item__body {
+      .logs-item__block {
+        padding: 10px 0;
+        border-bottom: 1px solid #e4e4e4;
+      }
+    }
+  }
 </style>
