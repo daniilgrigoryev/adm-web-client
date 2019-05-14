@@ -137,7 +137,6 @@
                     <Col :xs="12" :md="12" :lg="2">
                       <div class="flex-parent flex-parent--center-main flex-parent--end-cross h-full">
                         <div class="adm-form__item">
-                          
                         </div>
                       </div>
                     </Col>
@@ -156,23 +155,68 @@
               </Row>
               <Row type="flex" justify="start" :gutter="20" v-show="hideMore">
                 <Col :xs="24" :md="12" :lg="12">
-                  <div class="flex-parent flex-parent--end-cross h-full">
-                    <div class="w-full adm-form__item wmax360">
-                      <div class="adm-12 color-dark-lighter search-label">Наименование организации</div>
-                      <Input class="adm-input adm-input--big" @input="changeUlName" v-model="filter.ulName"
+                  <Row type="flex" :gutter="20">
+                    <Col :xs="24" :md="12" :lg="11">
+                      <div class="flex-parent flex-parent--end-cross h-full">
+                        <div class="w-full adm-form__item">
+                          <div class="adm-12 color-dark-lighter search-label">Наименование организации</div>
+                          <Input class="adm-input adm-input--big" @input="changeUlName" v-model="filter.ulName"
                              placeholder="" clearable></Input>
-                    </div>
-                  </div>
+                          </div>
+                        </div>
+                    </Col>
+                    <Col :xs="12" :md="12" :lg="2">
+                      <div class="flex-parent flex-parent--center-main flex-parent--end-cross h-full">
+                        <div class="adm-form__item">
+                        </div>
+                      </div>
+                    </Col>
+                    <Col :xs="24" :md="12" :lg="11">
+                      <div class="flex-parent flex-parent--end-cross h-full">
+                        <div class="w-full adm-form__item">
+                          <div class="adm-12 color-dark-lighter search-label">ИНН</div>
+                            <!-- TODO -->
+                            <!-- <Input class="adm-input adm-input--big" v-model="filter.inn" placeholder=""
+                              clearable></Input> -->
+                            <Input class="adm-input adm-input--big" placeholder=""
+                              clearable></Input>
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
                 </Col>
                 <Col :xs="24" :md="12" :lg="12">
-                  <div class="flex-parent flex-parent--end-cross h-full">
-                    <div class="w-full adm-form__item wmax360">
-                      <div class="adm-12 color-dark-lighter search-label">Почтовый идентификатор</div>
-                      <Input class="adm-input adm-input--big" v-model="filter.upi" placeholder=""
-                             clearable></Input>
-                    </div>
-                  </div>
+                  <Row type="flex" :gutter="20">
+                    <Col :xs="24" :md="12" :lg="11">
+                      <div class="flex-parent flex-parent--end-cross h-full">
+                        <div class="w-full adm-form__item">
+                          <div class="adm-12 color-dark-lighter search-label">Почтовый идентификатор</div>
+                          <Input class="adm-input adm-input--big" v-model="filter.upi" placeholder=""
+                              clearable></Input>
+                        </div>
+                      </div>
+                    </Col>
+                    <Col :xs="12" :md="12" :lg="2">
+                      <div class="flex-parent flex-parent--center-main flex-parent--end-cross h-full">
+                        <div class="adm-form__item">
+                        </div>
+                      </div>
+                    </Col>
+                    <Col :xs="24" :md="12" :lg="11">
+                      <div class="flex-parent flex-parent--end-cross h-full">
+                        <div class="w-full adm-form__item">
+                          <div class="adm-12 color-dark-lighter search-label">Тип дела об АПН</div>
+                          <Select class="adm-input adm-input--big" filterable clearable>
+                            <!-- TODO -->
+                          <!-- <Select class="adm-input adm-input--big" v-model="filter.deloTag" filterable clearable> -->
+                            <!-- <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label}}</Option> -->
+                          </Select>
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
                 </Col>
+
               </Row>
             </Col>
             <Col :xs="24" :md="4" :lg="3">
@@ -339,7 +383,9 @@
           thirdName: null,
           birthday: null,
           regno: null,
-          upi: null
+          upi: null,
+          // inn: null,
+          // deloTag: null,
         },
         sort: {
           deloDate: true,
