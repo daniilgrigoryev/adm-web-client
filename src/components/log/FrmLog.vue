@@ -4,7 +4,7 @@
       <div class="layout">
         <div class="adm-form logs">
           <div class="adm-form__container">
-            <h2 id="data-source" class="adm-form__headding">Логи по делу №</h2>
+            <h2 id="data-source" class="adm-form__headding">Заголовок</h2>
             <div class="adm-form__content">
               <div class="logs__filter">
                 <div class="adm-form__item">
@@ -99,7 +99,6 @@
       }
     },
     computed: {
-      
       ...mapGetters({
         dataStore: 'frmLogGetData'
       }),
@@ -140,14 +139,11 @@
       operationTypeClass(operation) {
         switch (operation) {
           case "I":
-            return "green"
-            break;
+            return "green";
           case "U":
-            return "orange"
-            break;
+            return "orange";
           default:
-            return "green"
-            break;
+            return "grey";
         }
       },
       async getTables() {
@@ -195,6 +191,11 @@
     &.orange {
       .logs-item__head {
         color: orange;
+      }
+    }
+    &.grey {
+      .logs-item__head {
+        color: grey;
       }
     }
     .logs-item__head {
