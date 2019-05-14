@@ -1,10 +1,10 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Логи">
+  <aside-template :listSectionNav="[]" title="Логи">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form logs">
           <div class="adm-form__container">
-            <h2 id="data-source" class="adm-form__headding">Заголовок</h2>
+            <h2 id="data-source" class="adm-form__headding" v-html="data.node.name"></h2>
             <div class="adm-form__content">
               <div class="logs__filter">
                 <div class="adm-form__item">
@@ -37,27 +37,48 @@
                   </span>
                 </div>
               </div>
-              <div class="logs__body">
-                <div v-for="(item, index) in records" :key="index" class="logs-item" :class="operationTypeClass(item.operation)">
-                  <div class="logs-item__head" @click="item.visible = !item.visible">
-                    Дата изменения - {{item.date | formatDateTime('DD.MM.YYYY HH:mm')}}
-                    Исполнитель - {{item.operIspName}}
-                  </div>
-                  <div class="logs-item__body">
-                    <div v-if="item.visible" v-for="(logItem, key) in item.items" :key="key" class="logs-item__block">
-                      <div>Имя поля - {{logItem.fieldName}}</div>
-                      <div>Описание поля - {{logItem.fieldDesc}}</div>
-                      <div>Старое значение - {{logItem.oldValue}}</div>
-                      <div>Новое значение - {{logItem.newValue}}</div>
-                    </div>
-                  </div>
+
+              <table class="logs__body">
+                <tr>
+                  <th>Имя файла</th>
+                  <th>Дата изменения</th>
+                  <th>Исполнитель</th>
+                  <th>Тип действия</th>
+                </tr>
+                <div v-for="(item, index) in records" :key="index" class="logs-item" :class="operation[item.operation || 'default'].color">
+                  <tr class="logs-item__head" @click="item.visible = !item.visible" :class="{open: item.visible}">
+                    <td>{{tables[item.tabName]}}</td>
+                    <td>{{item.date | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
+                    <td>{{item.operIspName}}</td>
+                    <td>{{operation[item.operation || "default"].text}}</td>
+                  </tr>
+                  <tr v-if="item.visible">
+                    <td colspan="4" style="padding: 0">
+                      <table class="logs-item__body" >
+                        <tr>
+                          <th>Имя поля </th>
+                          <th>Описание поля</th>
+                          <th>Старое значение</th>
+                          <th>Новое значение</th>
+                        </tr>
+                        <tr v-for="(logItem, key) in item.items" :key="key">
+                          <td>{{logItem.fieldName}}</td>
+                          <td>{{logItem.fieldDesc}}</td>
+                          <td>{{logItem.oldValue}}</td>
+                          <td>{{logItem.newValue}}</td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
                 </div>
-              </div>
+              </table>
             </div>
           </div>
         </div>
       </div>
-
+    </div>
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Назад</Button>
     </div>
   </aside-template>
 </template>
@@ -85,7 +106,6 @@
     },
     data() {
       return {
-        listSectionNav: [],
         tables: [],
         data: {
           node: null,
@@ -95,6 +115,20 @@
           endDate: new Date(),
           ispId: null,
           deloId: null
+        },
+        operation: {
+          I: { 
+            text: "Добавление",
+            color: "green",
+          },
+          U: { 
+            text: "Изменение",
+            color: "orange",
+          },
+          default: { 
+            text: "Неопределено",
+            color: "grey",
+          },
         }
       }
     },
@@ -136,16 +170,6 @@
           this.$store.dispatch('errors/changeContent', {title: e.message.error,});
         }
       },
-      operationTypeClass(operation) {
-        switch (operation) {
-          case "I":
-            return "green";
-          case "U":
-            return "orange";
-          default:
-            return "grey";
-        }
-      },
       async getTables() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getTables'
@@ -165,6 +189,12 @@
   }
 </script>
 
+<style>
+  h2 b {
+    padding: 0 5px;
+  }
+</style>
+
 <style lang="scss" scoped>
   .logs {
     .logs__filter {
@@ -178,11 +208,24 @@
       }
     }
     .logs__body {
-      padding: 20px 0;
+      margin: 20px 0;
     }
+  }
+  table {
+    border-collapse: collapse;
+  }
+  th {
+    padding: 5px;
+    border: 1px solid #e4e4e4;
+    vertical-align: middle;
+  }
+  td {
+    padding: 5px;
+    border: 1px solid #e4e4e4;
   }
   .logs-item {
     padding: 2px 0;
+    display: contents;
     &.green {
       .logs-item__head {
         color: green;
@@ -202,12 +245,17 @@
       cursor: pointer;
       font-size: 18px;
       font-weight: 600;
-    }
-    .logs-item__body {
-      .logs-item__block {
-        padding: 10px 0;
-        border-bottom: 1px solid #e4e4e4;
+      &.open {
+        background: #e4e4e4;
       }
+      td {
+        text-align: center;
+      }
+    }
+    
+    .logs-item__body {
+      padding: 10px 0;
+      width: 100%;
     }
   }
 </style>
