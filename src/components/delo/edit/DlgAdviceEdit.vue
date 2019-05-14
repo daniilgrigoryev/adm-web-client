@@ -88,7 +88,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="4" :md="4" :lg="4">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="dataAdvice.organSostName" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="dataAdvice.organSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
                     </Col>
                     <Col :xs="18" :md="18" :lg="18">
                       <Input class="adm-input adm-input--regular" readonly :value="dataAdvice.organSostName" ></Input>

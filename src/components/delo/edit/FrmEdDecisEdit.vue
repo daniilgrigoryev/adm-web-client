@@ -2,6 +2,7 @@
   <aside-template :listSectionNav="listSectionNav" title="Решение по делу" v-if="decis">
     <div class="layout-wrap">
       <div class="layout">
+        <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
         <div class="adm-form">
           <div class="adm-form__container">
             <h2 class="adm-form__headding">{{decis.decisName}}</h2>
@@ -199,11 +200,27 @@
                   <small class="adm-form__label">Орган рассмотрения</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
-                      <Col :xs="24" :md="24" :lg="24">
-                        <masked-input inputClass="adm-input adm-input--regular" v-model="decis.organNapravlName" :maskProps="{casing: 'upper', placeholder: ''}" @onInputChange="store"></masked-input>
+                      <Col :xs="4" :md="4" :lg="4">
+                        <masked-input inputClass="adm-input adm-input--regular" v-model="decis.organNapravlKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganNapravlKod" ></masked-input>
+                      </Col>
+                      <Col :xs="18" :md="18" :lg="18">
+                        <Input class="adm-input adm-input--regular" disabled v-model="decis.organNapravlName" ></Input>
+                      </Col>
+                      <Col :xs="2" :md="2" :lg="2">
+                        <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                          <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="30" />
+                        </Button>
                       </Col>
                     </Row>
                   </div>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">Дополнение к адресу органа</small>
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <Input class="adm-input adm-input--regular" v-model="decis.organNapravlAdrDetails"></Input>
+                    </Col>
+                  </Row>
                 </div>
                 <div class="adm-form__item">
                   <small class="adm-form__label">Дата и время рассмотрения</small>
@@ -277,6 +294,7 @@
     name: "FrmEdDecisEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
+      WizardModal: () => import('~/components/wizard/items/WizardModal'),
       DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
       MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
@@ -335,7 +353,111 @@
           stopWorkDay: 78, // Приостановление деятельности
           rasm: 92, // Назначить дату и место рассмотрения
           istrSved: 100, // Истребовать сведения
-        }
+        },
+        organModal: {
+          visible: false,
+          gibddList: null,
+          srcList: null,
+          columnsOptions:
+            [
+              {
+                title: 'Код органа',
+                key: 'ORGAN_KOD',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Код региона',
+                key: 'RESP_KOD',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Регион',
+                key: 'REGION_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Район',
+                key: 'RAYON_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Тип',
+                key: 'TIP',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Название',
+                key: 'ORGAN_NAME',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Контакты',
+                key: 'CONTACTS',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              },
+              {
+                title: 'Адрес',
+                key: 'KA_ADR_FULL',
+                minWidth: 120,
+                ellipsis: true,
+                sortable: 'custom',
+                filterable: true,
+                tooltip: true,
+                renderHeader: (h, params) => {
+                  return h('h4', params.column.title)
+                }
+              }
+            ]
+        },
       }
     },
     methods: {
@@ -349,6 +471,55 @@
       },
       showByDecisKod(decisKod) {
         return this.decis.decisKod == decisKod;
+      },
+      async showOrganModal(visible) {
+        if (visible && funcUtils.isEmpty(this.organModal.srcList)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'getGibddDict',
+            params: {
+              organKod: null
+            }
+          });
+          this.organModal.srcList = JSON.parse(eventResponse.response).data;
+        }
+        if (visible) {
+          this.organModal.gibddList = this.organModal.srcList;
+        } else {
+          this.organModal.gibddList = null;
+        }
+        this.organModal.visible = visible;
+      },
+      async changeOrganNapravlKod() {
+        if (funcUtils.isNotEmpty(this.decis.organNapravlKod)) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'getGibddDict',
+            params: {
+              organKod: this.decis.organNapravlKod
+            }
+          });
+          this.clearOrganNapravl();
+          let gibddList = JSON.parse(eventResponse.response).data;
+          if (gibddList.length > 0) {
+            this.organModal.visible = true;
+            this.organModal.gibddList = gibddList;
+          }
+        } else {
+          this.clearOrganNapravl();
+        }
+      },
+      onGibddClick(data) {
+        this.decis.organNapravlId = data.ID;
+        this.decis.organNapravlKod = data.ORGAN_KOD;
+        this.decis.organNapravlName = data.ORGAN_NAME;
+        this.organModal.gibddList = null;
+        this.organModal.visible = false;
+        this.store();
+      },
+      clearOrganNapravl() {
+        this.decis.organNapravlId = null;
+        this.decis.organNapravlKod = null;
+        this.decis.organNapravlName = null;
+        this.store();
       },
       async save() {
         await this.store();
