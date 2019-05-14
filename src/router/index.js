@@ -124,6 +124,12 @@ const router = new Router({
       props: true
     },
     {
+      path: '/frmSignatureEdit',
+      name: 'FrmSignatureEdit',
+      component: () => import('~/components/delo/edit/FrmSignatureEdit'),
+      props: true
+    },
+    {
       path: '/wizardExecuter',
       name: 'WizardExecuter',
       component: () => import('~/components/wizard/WizardExecuter'),

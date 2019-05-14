@@ -50,6 +50,7 @@ import frmEdUchastFLOrganizationEdit from './modules/frmEdUchastFLOrganizationEd
 import placeViewEdit from './modules/placeViewEdit';
 import addressViewEdit from './modules/addressViewEdit';
 import dlgAdviceEdit  from './modules/dlgAdviceEdit';
+import frmSignatureEdit  from './modules/frmSignatureEdit';
 
 import errors  from './modules/errors';
 
@@ -160,7 +161,8 @@ const store = new Vuex.Store({
     frmEdUchastFLIndividEdit,
     frmEdUchastFLOrganizationEdit,
     dlgAdviceEdit,
-    
+    frmSignatureEdit,
+
     wizardExecuter,
     authorization,
 

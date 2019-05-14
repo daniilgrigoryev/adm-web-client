@@ -572,7 +572,8 @@
                 }
               }
             ]
-        }
+        },
+        listSectionNav: [],
       }
     },
     methods: {

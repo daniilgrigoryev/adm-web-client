@@ -1,65 +1,71 @@
 <template>
-  <div class="adm-form">
-    <div class="adm-form__container">
-      <div class="adm-form__item">
-        <small class="adm-form__label">Начало периода</small>
-        <div class="adm-form__item_content">
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.startDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-            </Col>
-          </Row>
+  <aside-template :listSectionNav="listSectionNav" title="Назад">
+    <div class="adm-form">
+      <div class="adm-form__container">
+        <div class="adm-form__item">
+          <small class="adm-form__label">Начало периода</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.startDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+              </Col>
+            </Row>
+          </div>
         </div>
-      </div>
-      <div class="adm-form__item">
-        <small class="adm-form__label">Конец периода</small>
-        <div class="adm-form__item_content">
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.endDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-            </Col>
-          </Row>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Конец периода</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.endDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+              </Col>
+            </Row>
+          </div>
         </div>
-      </div>
-      <div v-if="tables.length > 0" class="adm-form__item">
-        <small class="adm-form__label">Список логирующих таблиц</small>
-        <div class="adm-form__item_content">
-          <Row :gutter="16" type="flex" align="middle">
-            <Col :xs="24" :md="14" :lg="16">
-              <span v-for="(key, item, index) in tables" :key="index">
-                {{key}} - {{item}}
-              </span>
-            </Col>
-          </Row>
+        <div v-if="tables.length > 0" class="adm-form__item">
+          <small class="adm-form__label">Список логирующих таблиц</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="14" :lg="16">
+                <span v-for="(key, item, index) in tables" :key="index">
+                  {{key}} - {{item}}
+                </span>
+              </Col>
+            </Row>
+          </div>
         </div>
+
+        <Button @click="init" :disabled="!data.startDate || !data.endDate" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Получить лог">Получить лог</Button>
       </div>
 
-      <Button @click="init" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Получить лог">Получить лог</Button>
-    </div>
+      <div v-if="records" class="view-data">
+        <div class="view-data__container">
+          <div class="items-wrap" style="display: flex; flex-direction: column;">
+            <div v-for="(item, index) in records" :key="index">
 
-    <div v-if="records" class="view-data">
-      <div class="view-data__container">
-        <div class="items-wrap" style="display: flex; flex-direction: column;">
-          <div v-for="(item, index) in records" :key="index">
+              <span style="color: red;" @click="item.visible = !item.visible">Дата изменения - {{item.date | formatDateTime('DD.MM.YYYY HH:mm')}}</span>
+              <span style="color: red;" @click="item.visible = !item.visible">Исполнитель - {{item.operIspName}}</span>
+              <span style="color: red;" @click="item.visible = !item.visible">Действие - {{item.operation}}</span>
 
-            <span style="color: red;" @click="item.visible = !item.visible">Дата изменения - {{item.date | formatDateTime('DD.MM.YYYY HH:mm')}}</span>
-            <span style="color: red;" @click="item.visible = !item.visible">Исполнитель - {{item.operIspName}}</span>
-            <span style="color: red;" @click="item.visible = !item.visible">Действие - {{item.operation}}</span>
+              <div v-if="item.visible" v-for="(logItem, key) in item.items" :key="key" style="display: flex; flex-direction: column;">
+                <hr />
+                <span>Имя поля - {{logItem.fieldName}}</span>
+                <span>Описание поля - {{logItem.fieldDesc}}</span>
+                <span>Старое значение - {{logItem.oldValue}}</span>
+                <span>Новое значение - {{logItem.newValue}}</span>
+              </div>
 
-            <div v-if="item.visible" v-for="(logItem, key) in item.items" :key="key" style="display: flex; flex-direction: column;">
-              <hr />
-              <span>Имя поля - {{logItem.fieldName}}</span>
-              <span>Описание поля - {{logItem.fieldDesc}}</span>
-              <span>Старое значение - {{logItem.oldValue}}</span>
-              <span>Новое значение - {{logItem.newValue}}</span>
             </div>
-
           </div>
         </div>
       </div>
+
     </div>
 
-  </div>
+    <div class="bot-wrap">
+      <Button @click="getPrev" type="text">Назад</Button>
+    </div>
+  </aside-template>
 </template>
 
 <script>
@@ -71,6 +77,7 @@
   export default {
     name: "FrmLog",
     components: {
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
       DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
     },
@@ -84,6 +91,7 @@
     },
     data() {
       return {
+        listSectionNav: [],
         tables: [],
         data: {
           node: null,
@@ -139,6 +147,15 @@
           method: 'getTables'
         });
         this.tables = JSON.parse(eventResponse.response).data;
+      },
+      getPrev() {
+        try {
+          formStack.toPrev({
+            vm: this
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
       },
     },
   }

@@ -8,6 +8,7 @@
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Постановление по делу № {{ body.docN }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
+          <Button @click="getSignatureEdit" type="primary" class="ml12">Подписать</Button>
         </div>
         <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/wiki.svg' class="wmax-none">
@@ -68,6 +69,12 @@
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
+
+          <ul v-if="docSignatures && false">
+            <li v-for="(itemSign, signIdx) in docSignatures" :key="signIdx">
+              {{ itemSign.sign }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -111,6 +118,11 @@
       this.$store.dispatch('frmEdDocsPostSetCid', null);
       this.$store.dispatch('frmEdDocsPostSetData', null);
     },
+    data() {
+      return {
+        docSignatures: null
+      }
+    },
     computed: {
       ...mapGetters({
         dataStore: 'frmEdDocsPostGetData'
@@ -145,8 +157,20 @@
           innerFormStack.updateCurrent(currentForm);
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
+          this.fillDocSignatures();
         } catch (e) {
           this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      async fillDocSignatures() {
+        let currentForm = innerFormStack.getCurrent();
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getDocSinatures',
+          cid: currentForm.cid
+        });
+        let responseData = JSON.parse(eventResponse.response).data;
+        if (responseData && responseData.length) {
+          this.docSignatures = responseData;
         }
       },
       getDocsPostEdit() {
@@ -158,6 +182,24 @@
 
           formStack.toNext({
             module: this.$store.state.frmEdDocsPostEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      getSignatureEdit() {
+        try {
+          let currentForm = innerFormStack.getCurrent();
+          let params = {
+            docCID: currentForm.cid
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmSignatureEdit,
             vm: this,
             notRemoved: false,
             params: params,

@@ -30,10 +30,14 @@ export default {
     },
     title: {
       type: String
-    }
+    },
+    toPrev: Function
   },
   methods: {
     getPrev() {
+      if (this.toPrev) {
+        return this.toPrev;
+      }
       try {
         formStack.toPrev({
           vm: this
