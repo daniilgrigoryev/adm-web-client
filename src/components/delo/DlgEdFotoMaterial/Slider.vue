@@ -1,5 +1,5 @@
 <template>
-	<div class="gallery__wrap">
+	<div class="gallery__wrap" :class="classes">
 		<div class="gallery__active-item">
 			<img :src="acitveGalleryItem" alt="">
 		</div>
@@ -20,6 +20,9 @@ import $ from "jquery";
 
 export default {
 	props: {
+		classes: {
+			type: String,
+		},
 		photos: {
 			type: Array,
 		},
@@ -84,12 +87,17 @@ export default {
 
 <style lang="scss" scoped>
 	.gallery__wrap {
+		display: flex;
+		flex-direction: column;
+		&.reverse {
+			flex-direction: column-reverse;
+		}
 		.gallery__active-item {
-			height: 300px;
+			min-height: 300px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin-bottom: 20px;
+			margin: 20px 0;
 			img {
 				max-width: 100%;
 				width: 100%;

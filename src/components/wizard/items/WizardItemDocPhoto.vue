@@ -24,9 +24,9 @@
         </Col>
       </Row>
     </div>
-
     <article v-if="filesArray.length > 0" class="gallery">
-      <Slider :photos="filesArray" />
+      <hr>
+      <Slider :photos="filesArray" classes="reverse"/>
     </article>
     <div v-if="otherMedia.length > 0" v-for="(item, index) in otherMedia" :key="index">
       {{item}}
