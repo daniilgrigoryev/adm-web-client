@@ -4,7 +4,7 @@
       <h2 id="data-source" class="adm-form__headding">Сведения об источнике данных</h2>
       <div class="adm-form__content">
         <div class="adm-form__item">
-          <small class="adm-form__label">Тип</small>
+          <small class="adm-form__label">Тип источника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col>
               <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.vsTypeId" clearable @on-change="storeElementData">

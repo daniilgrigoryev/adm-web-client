@@ -70,7 +70,7 @@
           <div v-if="isTaxi" style="display: contents">
             <hr>
             <view-data-item
-              label="Тип"
+              label="Тип источника"
               :value="body.vsTypeName"
               style="grid-column: span 2;"
             />
