@@ -209,19 +209,23 @@
             return `
               <h4>
                 Дело
+                по ${params.delo_apn_stotv}
                 <span class="date">${params.delo_apn_dat}</span>
               </h4>
-              <p>${params.delo_apn_n}</p>
-              <p class="other-info">по ${params.delo_apn_stotv}</p>
+              <p>
+                ${params.delo_apn_n}
+              </p>
+              
             `;
           }
           case "UCHASTFL":
           case "UCHASTUL":
           case "UCHASTOTHER": {
-            let uchastBirthday = params.uchast_birthday ? `<p class="other-info">${params.uchast_birthday} г.р.</p>` : '';
+            let uchastBirthday = params.uchast_birthday ? `<p class="other-info">Дата рождения ${params.uchast_birthday}</p>` : '';
+            let uchast_tip_name = params.uchast_tip_name ? `, ${params.uchast_tip_name.slice(0, -1).slice(1)}` : '';
             return `
-              <h4>${params.uchast_vid_name_short}</h4>
-              <p>${params.uchast_name_short} <small>${params.uchast_tip_name}</small></p>
+              <h4><div>${params.uchast_vid_name_short} ${uchast_tip_name}</div></h4>
+              <p>${params.uchast_name_short} </p>
               ${uchastBirthday}
             `;
           }
@@ -247,7 +251,9 @@
                 ${params.doc_other_tip_name}
                 <span class="date">${params.doc_other_dat}</span>
               </h4>
-              <p>${params.doc_other_uchast_name}</p>
+              <p>
+                ${params.doc_other_uchast_name}
+              </p>
             `;
           }
           case "DOCS_OTHER": {
@@ -267,7 +273,9 @@
                     ${params.doc_other_tip_name}
                     <span class="date">${params.doc_other_dat}</span>
                   </h4>
-                  <p>${params.doc_other_n}</p>
+                  <p>
+                    ${params.doc_other_n}
+                  </p>
                   <p class="other-info">${params.docs_other_fotomat_cnt}</p>
                 `;
                 }
@@ -278,7 +286,9 @@
                     ${params.doc_other_tip_name}
                     <span class="date">${params.doc_other_dat}</span>
                   </h4>
-                  <p>${params.doc_other_n}</p>
+                  <p>
+                    ${params.doc_other_n}
+                  </p>
                   <p class="other-info">${params.docs_other_fotomat_cnt}</p>
                 `;
               }
@@ -288,7 +298,9 @@
                     ${params.doc_other_tip_name}
                     <span class="date">${params.doc_other_dat}</span>
                   </h4>
-                  <p>${params.doc_other_n}</p>
+                  <p>
+                    ${params.doc_other_n}
+                  </p>
                   <p class="other-info">${params.docs_other_fotomat_cnt}</p>
                 `;
               }
@@ -300,7 +312,9 @@
                     ${params.doc_other_tip_name}
                     <span class="date">${params.doc_other_dat}</span>
                   </h4>
-                  <p>${params.doc_other_n}</p>
+                  <p>
+                    ${params.doc_other_n}
+                  </p>
                   <p class="other-info">${params.docs_other_fotomat_cnt}</p>
                 `;
               }
@@ -314,7 +328,9 @@
                     ${params.doc_other_tip_name}
                     <span class="date">${params.doc_other_dat}</span>
                   </h4>
-                  <p>${params.doc_other_n}</p>
+                  <p>
+                    ${params.doc_other_n}
+                  </p>
                   <p class="other-info">${params.docs_other_fotomat_cnt}</p>
                 `;
               }
@@ -337,7 +353,9 @@
                     ${params.doc_other_tip_name}
                     <span class="date">${params.doc_other_dat}</span>
                   </h4>
-                  <p>${params.doc_other_n}</p>
+                  <p>
+                    ${params.doc_other_n}
+                  </p>
                   <p class="other-info">${params.docs_other_fotomat_cnt}</p>
                 `;
               }
@@ -350,16 +368,21 @@
                 ${params.decis_name}
                 <span class="date">${params.decis_dat}</span>
               </h4>
+              <p>
+              </p>
               <p class="red">${params.decis_mera}</p>
             `;
           }
           case 'DOCS_POST':
           case 'DOCS_POST_UL': {
+            this.open = true;
             return `
               <h4>
                 ${params.post_short_name}
                 <span class="date">${params.post_dat_sost}</span>
               </h4>
+              <p>
+              </p>
               <p>${params.post_doc_n}</p>
             `;
           }
@@ -385,11 +408,14 @@
                 case decisIspolnEnum.POST_REMOVING:
                 case decisIspolnEnum.POST_OPERATION:
                 case decisIspolnEnum.POST_UNDEF: {
+                  this.open = true;
                   return `
                     <h4>
                       ${params.std_isp_name}
                       <span class="date">${params.std_isp_date}</span>
                     </h4>
+                    <p>
+                    </p>
                   `;
                 }
                 case decisIspolnEnum.IZMEN_POST_ON_GALOB:
@@ -399,6 +425,8 @@
                       ${params.std_isp_name}
                       <span class="date">${params.std_isp_date}</span>
                     </h4>
+                    <p>
+                    </p>
                   `;
                 }
               }
@@ -408,23 +436,32 @@
                 ${params.std_isp_name}
                 <span class="date">${params.std_isp_date}</span>
               </h4>
+              <p>
+              </p>
             `;
           }
           case 'DOCS_OPRED': {
+            this.open = true;
             return `
               <h4>
                 ${params.doc_other_tip_name}
                 <span class="date">${params.doc_other_dat}</span>
               </h4>
+              <p>
+              </p>
             `;
           }
           case 'DOCS_PROT': {
+            // console.log(params);
+            this.open = true;
             return `
               <h4>
                 ${params.prot_short_name}
                 <span class="date">${params.prot_dat_sost}</span>
               </h4>
-              <p>${params.prot_doc_n}</p>
+              <p>
+                ${params.prot_doc_n}
+              </p>
             `;
           }
         }
@@ -497,8 +534,17 @@
       width: 400px;
       z-index: 8;
       .tree__link {
+        padding: 8px 15px;
         &:before {
           width: 350px;
+        }
+        .tree__text-wrap {
+          h4 {
+            font-size: 14px;
+          }
+          p {
+            font-size: 14px;
+          }
         }
       } 
     }
@@ -511,7 +557,7 @@
       grid-template-columns: 40px 1fr;
       width: 100%;
       align-items: center;
-      padding: 15px;
+      padding: 10px 15px;
       padding-left: 25px;
       position: relative;
       &:before {
@@ -544,19 +590,23 @@
         width: 100%;
         padding-right: 20px;
         h4 {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
           color: #000;	
           font-size: 16px;	
           padding-bottom: 4px;
-          .date {
-            flex: none;
-            font-size: 12px;	
-            font-style: italic;	
-            text-align: right;
-            color: #797979;
-          }
+          display: flex;
+          justify-content: space-between;
+        }
+        .date {
+          flex: none;
+          font-size: 12px;	
+          font-style: italic;	
+          text-align: right;
+          color: #797979;
+        }
+        small {
+          color: #797979;
+          font-size: 12px;
+          font-weight: 400;
         }
         p {
           font-size: 18px;	
@@ -567,15 +617,11 @@
           &.red {
             color: #de6262;
           }
-          small {
-            color: #797979;
-            font-size: 12px;
-            font-weight: 400;
-          }
           &.other-info {
             color: #373737;	
             font-weight: 400;
             font-size: 14px;	
+            padding-top: 2px;
           }
         }
       }
