@@ -182,7 +182,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.massa"></Input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" @onInputChange="store" v-model="vehsAMTC.massa" placeholder="" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -192,7 +192,7 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax240 wmin180" @on-input-change="store" v-model="vehsAMTC.massaMax"></Input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" @onInputChange="store" v-model="vehsAMTC.massaMax" placeholder="" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input>
                     </Col>
                   </Row>
                 </div>
