@@ -20,16 +20,50 @@
       <small class="adm-form__label">Медиа документы</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <input type="file" multiple ref="file" @change="onFileChange" id="file"/>
+          <Alert v-if="fileError" type="warning" closable show-icon @on-close="clearFile">Неправильный формат
+            файла.
+          </Alert>
+
+          <div class="relative ivu-upload-drag py12 cursor-pointer">
+            <template>
+              <label class="absolute block w-full h-full cursor-pointer">
+                <input type="file" multiple ref="file" @change="onFileChange" id="file"
+                       class="none"/>
+              </label>
+
+              <Icon type="ios-cloud-upload" size="52" style="color: #3399ff" class="pt36"></Icon>
+              <p class="pb36">Щелкните для выбора файлов</p>
+            </template>
+          </div>
+        </Col>
+      </Row><!--
+      <div>
+        <div class="page-card-file-icon">
+          <Icon type="ios-document-outline" size="36"/>
+          <div class="page-card-file-icon-type"></div>
+        </div>
+        <p class="page-card-file-icon-caption">Test1</p>
+        <Button @click.stop="clearFile" icon="ios-close-circle color-orange" type="text" size="small">
+          Очистить
+        </Button>
+      </div>-->
+    </div>
+    <div v-if="filesArray.length > 0 || otherMedia.length > 0" class="adm-form__item">
+      <small class="adm-form__label">Выбранные файлы</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <article v-if="filesArray.length > 0" class="gallery">
+            <hr>
+            <Slider :showImage="false" :photos="filesArray" classes="reverse"/>
+          </article>
+
+          <div v-if="otherMedia.length > 0">
+            <div v-for="(itemMedia, itemMediaIdx) in otherMedia" :key="itemMediaIdx">
+              <span>{{ itemMedia.name }}</span>
+            </div>
+          </div>
         </Col>
       </Row>
-    </div>
-    <article v-if="filesArray.length > 0" class="gallery">
-      <hr>
-      <Slider :photos="filesArray" classes="reverse"/>
-    </article>
-    <div v-if="otherMedia.length > 0" v-for="(item, index) in otherMedia" :key="index">
-      {{item}}
     </div>
   </div>
 </template>
@@ -53,6 +87,8 @@
       return {
         data: null,
         files: null,
+        fileError: false,
+        allowedFiles: ['image/png', 'image/jpeg', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'video/mp4', 'application/pdf', 'application/pgp-signature', 'video/webm'],
         byteArraysCount: 0,
         filesArray: [],
         otherMedia: []
@@ -85,6 +121,7 @@
         this.filesArray = [];
         this.otherMedia = [];
         this.data.files = [];
+        this.fileError = false;
 
         let files = e.target.files || e.dataTransfer.files;
         if (!files || files.length === 0) {
@@ -94,6 +131,19 @@
 
         for (let i = 0; i < files.length; i++) {
           let file = files[i];
+          let type = file.type;
+          if (!this.allowedFiles.includes(type)) {
+            this.clearFile();
+            // this.$store.dispatch('errors/changeContent', {title: 'Неправильный формат файла', desc: 'Допустимые форматы: Microsoft Excel (XLS, XLSX), PNG, JPEG, MP4, PDF, WEBM',});
+            this.$Notice.warning({
+              title: 'Неправильный формат файла',
+              desc: 'Допустимые форматы: Microsoft Word (DOC), PNG, JPEG, MP4, PDF, WEBM',
+              duration: 10
+            });
+
+            this.fileError = true;
+            return;
+          }
           this.data.files.push({
             name: file.name,
             type: file.type,
@@ -113,26 +163,10 @@
             let body = vm.chunkArray(byteArray, kb);
             vm.files[key] = {
               file: this.metaInfo,
-              body: body
+              body: body,
+              byteArray: byteArray
             };
             vm.byteArraysCount += body.length;
-
-            switch (this.metaInfo.type) {
-              case 'image/png':
-              case 'image/jpeg': {
-                vm.filesArray.push(vm.byteArrayToBase64(byteArray, this.metaInfo.type));
-                break;
-              }
-              case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-              case 'video/mp4':
-              case 'application/pdf':
-              case 'application/pgp-signature':
-              case 'video/webm': {
-                vm.otherMedia.push(this.metaInfo.name);
-                break;
-              }
-            }
-
             this.onloaded();
           };
           reader.metaInfo = file;
@@ -207,6 +241,29 @@
             errorsFiles += file.file.name + '\n';
           } else {
             file.successed = true;
+
+            switch (file.file.type) {
+              case 'image/png':
+              case 'image/jpeg': {
+                this.filesArray.push({
+                  type: file.file.type,
+                  desc: file.file.name,
+                  body: this.byteArrayToBase64(file.byteArray, file.file.type)
+                  });
+                break;
+              }
+              case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+              case 'video/mp4':
+              case 'application/pdf':
+              case 'application/pgp-signature':
+              case 'video/webm': {
+                this.otherMedia.push({
+                  type: file.file.type,
+                  name: file.file.name
+                });
+                break;
+              }
+            }
           }
         }
         if (errors.length > 0) {
@@ -215,7 +272,7 @@
             debugger;
           }
         } else {
-          alert('Файлы загружены');
+          this.$store.dispatch('errors/changeContent', {title: 'Файлы загружены'});
         }
       },
       chunkArray(myArray, chunkSize) {

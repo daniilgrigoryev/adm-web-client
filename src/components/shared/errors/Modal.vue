@@ -15,7 +15,7 @@
             <button class="toggle-size" :class="{ open: item.open }" />
           </div>
         </div>
-        <button class="close" @click="changeStatus(false)">ОК</button>
+        <button class="close" @click="closeModal">ОК</button>
       </div>
     </div>
   </transition>
@@ -30,7 +30,11 @@ export default {
     ...mapState(["status", "content"])
   },
   methods: {
-    ...mapActions(["changeStatus", "toggleSize"])
+    ...mapActions(["changeStatus", "toggleSize"]),
+    closeModal() {
+      this.$emit('on-close');
+      this.changeStatus(false);
+    },
   },
   destroyed() {
     this.changeStatus(false);

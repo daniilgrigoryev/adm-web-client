@@ -1,13 +1,14 @@
 <template>
 	<div class="gallery__wrap" :class="classes">
-		<div class="gallery__active-item">
+		<div v-if="showImage" class="gallery__active-item">
 			<img :src="acitveGalleryItem" alt="">
 		</div>
 		<div class="slider">
 			<button v-if="photos.length > slideShow" class="arrow prev" @click="prev()"><</button>
 			<div class="gallery__items" :style="'transform: translateX(-' + (117 * leftSlideIndex) +  'px)'">
-				<div v-for="image in photos" :key="image.id" @click="acitveGalleryItem = image" class="gallery__item">
-					<img alt="img" @load="checkPic" :src="image"/>
+				<div v-for="image in photos" :key="image.id" @click="acitveGalleryItem = image" class="gallery__item" :title="image.desc || ''">
+					<img alt="img" @load="checkPic" :src="image.body || image"/>
+<!--          <p v-if="image.desc" class="gallery__items__desc" :title="image.desc">{{ image.desc }}</p>-->
 				</div>
 			</div>
 			<button v-if="photos.length > slideShow" class="arrow next" @click="next()">></button>
@@ -26,6 +27,10 @@ export default {
 		photos: {
 			type: Array,
 		},
+    showImage: {
+		  type: Boolean,
+      default: true
+    }
 	},
 	data() {
 		return {
@@ -145,6 +150,7 @@ export default {
 					display: flex;
 					align-items: center;
 					justify-content: center;
+          flex-direction: column;
 					height: 100px;
 					cursor: pointer;
 					overflow: hidden;
@@ -157,6 +163,10 @@ export default {
 					img {
 						height: auto !important;
 					}
+
+          .gallery__items__desc {
+            word-break: break-word;
+          }
 				}
 			}
 		}
