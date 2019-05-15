@@ -76,7 +76,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Место вынесения</small>
+                <small class="adm-form__label">Место составления</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">

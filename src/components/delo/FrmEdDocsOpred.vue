@@ -6,7 +6,7 @@
           <Button @click="getDocsOpredEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Определение о возбуждении административного расследования</b>
+          <b class="adm-text-big color-dark-lighter">Определение об истребовании сведений по делу {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
           />
           <hr>
           <view-data-item 
-            label="Место вынесения" 
+            label="Место составления" 
             :value="body.placeSost.placeFull | concatByDelimiter(', ')" 
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
@@ -53,18 +53,6 @@
           <view-data-item 
             label="Подразделение" 
             :value="body.organSostName" 
-            style="grid-column: span 2;"
-          />
-          <hr>
-          <view-data-item 
-            label="Дата и время рассмотрения" 
-            :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')" 
-            style="grid-column: span 2;"
-            :icon="require('../../assets/images/time.svg')"
-          />
-          <view-data-item 
-            label="Орган рассмотрения" 
-            :value="body.organRasmName" 
             style="grid-column: span 2;"
           />
           <div v-if="isTaxi" style="display: contents">

@@ -6,7 +6,7 @@
             <Button @click="getAdviceEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
               <img src='../../assets/images/pen.svg' class="wmax-none">
             </Button>
-            <b class="adm-text-big color-dark-lighter">Извещение</b>
+            <b class="adm-text-big color-dark-lighter">Извещение по делу {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
           </div>
           <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
             <img src='../../assets/images/wiki.svg' class="wmax-none">
@@ -17,17 +17,6 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Номер извещения" 
-            :value="body.docN" 
-            style="grid-column: span 2;"
-            :icon="require('../../assets/images/letter.svg')"
-          />
-          <view-data-item 
-            label="Дата и время составления" 
-            :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')" 
-          />
-          <hr>
           <view-data-item 
             label="Дата и время рассмотрения" 
             :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')"

@@ -7,7 +7,7 @@
           <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Постановление по делу № {{ body.docN }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
+          <b class="adm-text-big color-dark-lighter">Постановление по делу {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
           <Button @click="getSignatureEdit" type="primary" class="ml12">Подписать</Button>
         </div>
         <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
@@ -64,7 +64,7 @@
             style="grid-column: span 2;"
           />
           <view-data-item 
-            label="Место вынесения" 
+            label="Место составления" 
             :value="body.placeSost.placeFull || 'нет информации'" 
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
