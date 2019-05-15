@@ -117,15 +117,15 @@
           deloId: null
         },
         operation: {
-          I: { 
+          I: {
             text: "Добавление",
             color: "green",
           },
-          U: { 
+          U: {
             text: "Изменение",
             color: "orange",
           },
-          default: { 
+          default: {
             text: "Неопределено",
             color: "grey",
           },
@@ -196,6 +196,10 @@
 </style>
 
 <style lang="scss" scoped>
+  @supports (display: contents) {
+    .logs-item { display: contents; }
+  }
+
   .logs {
     .logs__filter {
       width: 100%;
@@ -208,6 +212,7 @@
       }
     }
     .logs__body {
+      width: 100%;
       margin: 20px 0;
     }
   }
@@ -225,7 +230,7 @@
   }
   .logs-item {
     padding: 2px 0;
-    display: contents;
+    display: table-footer-group;
     &.green {
       .logs-item__head {
         color: green;
@@ -252,7 +257,7 @@
         text-align: center;
       }
     }
-    
+
     .logs-item__body {
       padding: 10px 0;
       width: 100%;
