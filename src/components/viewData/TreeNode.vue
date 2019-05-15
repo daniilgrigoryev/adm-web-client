@@ -448,6 +448,7 @@
                 <span class="date">${params.doc_other_dat}</span>
               </h4>
               <p>
+                ${params.doc_other_n}
               </p>
             `;
           }
