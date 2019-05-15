@@ -453,7 +453,6 @@
             `;
           }
           case 'DOCS_PROT': {
-            // console.log(params);
             this.open = true;
             return `
               <h4>
