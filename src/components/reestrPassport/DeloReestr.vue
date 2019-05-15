@@ -178,7 +178,7 @@
                             <!-- TODO -->
                             <!-- <Input class="adm-input adm-input--big" v-model="filter.inn" placeholder=""
                               clearable></Input> -->
-                            <Input class="adm-input adm-input--big" placeholder=""
+                            <Input :disabled="true" class="adm-input adm-input--big" placeholder=""
                               clearable></Input>
                         </div>
                       </div>
@@ -206,7 +206,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Тип дела об АПН</div>
-                          <Select class="adm-input adm-input--big" filterable clearable>
+                          <Select :disabled="true" class="adm-input adm-input--big" filterable clearable>
                             <!-- TODO -->
                           <!-- <Select class="adm-input adm-input--big" v-model="filter.deloTag" filterable clearable> -->
                             <!-- <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label}}</Option> -->
