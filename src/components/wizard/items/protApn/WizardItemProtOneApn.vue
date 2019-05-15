@@ -3,14 +3,9 @@
     <div class="adm-form__item">
       <small class="adm-form__label">Протокол №</small>
       <div class="adm-form__item_content">
-        <Row type="flex" align="middle">
-          <Col span="10">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
             <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="data.docN" @onInputChange="storeElementData"></masked-input>
-          </Col>
-          <Col span="6">
-            <Button @click="createProtNum" type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-              <Icon type="md-key" title="Получить уникальный номер" :size="30" />
-            </Button>
           </Col>
         </Row>
       </div>

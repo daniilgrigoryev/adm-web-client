@@ -5,18 +5,11 @@
 
     <div class="adm-form__item">
       <small class="adm-form__label">Постановление №</small>
-      <div class="adm-form__item_content">
-        <Row type="flex" align="middle">
-          <Col span="10">
-            <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="data.docN" @onInputChange="storeElementData"></masked-input>
-          </Col>
-          <Col span="6">
-            <Button @click="createDocNum" type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-              <Icon type="md-key" title="Получить уникальный номер" :size="30" />
-            </Button>
-          </Col>
-        </Row>
-      </div>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="data.docN" @onInputChange="storeElementData"></masked-input>
+        </Col>
+      </Row>
     </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Дата и время составления</small>
@@ -329,23 +322,6 @@
           method: 'getElementData',
           params: {
             eCID: this.info.eCID
-          }
-        });
-        let data = JSON.parse(JSON.parse(eventResponse.response).data);
-        if (funcUtils.isEmpty(data)) {
-          let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
-        } else {
-          this.data = data;
-        }
-      },
-      async createDocNum() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'createDocNum',
-            data: null
           }
         });
         let data = JSON.parse(JSON.parse(eventResponse.response).data);

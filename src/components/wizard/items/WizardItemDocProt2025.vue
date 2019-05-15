@@ -56,9 +56,6 @@
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" v-model="data.docN" @on-input-change="storeElementData" ></Input>
           </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="createProtNum" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
-          </Col>
         </Row>
       </div>
       <div v-if="!isNotEmptyParentNode" class="adm-form__item">
@@ -66,9 +63,6 @@
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
             <Input class="adm-input adm-input--regular" :disabled="data.deloN !== null" @on-input-change="storeElementData" v-model="data.deloN" ></Input>
-          </Col>
-          <Col :xs="24" :md="14" :lg="8">
-            <a href="#" @click="createNewDeloNum" :disabled="data.deloN !== null" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Получить уникальный номер</a>
           </Col>
         </Row>
       </div>
@@ -459,41 +453,6 @@
           method: 'getElementData',
           params: {
             eCID: this.info.eCID
-          }
-        });
-        let data = JSON.parse(JSON.parse(eventResponse.response).data);
-        if (funcUtils.isEmpty(data)) {
-          let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
-        } else {
-          this.data = data;
-        }
-      },
-
-      async createProtNum() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'createProtNum',
-            data: null
-          }
-        });
-        let data = JSON.parse(JSON.parse(eventResponse.response).data);
-        if (funcUtils.isEmpty(data)) {
-          let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
-        } else {
-          this.data = data;
-        }
-      },
-      async createNewDeloNum() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'invokeElementMethod',
-          params: {
-            eCID: this.info.eCID,
-            methodName: 'createDeloNum',
-            data: null
           }
         });
         let data = JSON.parse(JSON.parse(eventResponse.response).data);
