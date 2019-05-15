@@ -45,8 +45,8 @@
                   <th>Исполнитель</th>
                   <th>Тип действия</th>
                 </tr>
-                <div v-for="(item, index) in records" :key="index" class="logs-item" :class="operation[item.operation || 'default'].color">
-                  <tr class="logs-item__head" @click="item.visible = !item.visible" :class="{open: item.visible}">
+                <template v-for="(item, index) in records">
+                  <tr class="logs-item__head" @click="item.visible = !item.visible" :class="[operation[item.operation || 'default'].color, {open: item.visible}]">
                     <td>{{tables[item.tabName]}}</td>
                     <td>{{item.date | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
                     <td>{{item.operIspName}}</td>
@@ -70,7 +70,7 @@
                       </table>
                     </td>
                   </tr>
-                </div>
+                </template>
               </table>
             </div>
           </div>
@@ -140,6 +140,9 @@
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.records;
+          res = res.sort((a,b) => {
+            return a.date-b.date;
+          });
           for (let i = 0; i < res.length; i++) {
             this.$set(res[i], 'visible', false);
           }
@@ -196,10 +199,6 @@
 </style>
 
 <style lang="scss" scoped>
-  @supports (display: contents) {
-    .logs-item { display: contents; }
-  }
-
   .logs {
     .logs__filter {
       width: 100%;
@@ -228,39 +227,28 @@
     padding: 5px;
     border: 1px solid #e4e4e4;
   }
-  .logs-item {
-    padding: 2px 0;
-    display: table-footer-group;
+  .logs-item__head {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    &.open {
+      background: #e4e4e4;
+    }
     &.green {
-      .logs-item__head {
         color: green;
-      }
     }
     &.orange {
-      .logs-item__head {
         color: orange;
-      }
     }
     &.grey {
-      .logs-item__head {
         color: grey;
-      }
     }
-    .logs-item__head {
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: 600;
-      &.open {
-        background: #e4e4e4;
-      }
-      td {
-        text-align: center;
-      }
+    td {
+      text-align: center;
     }
-
-    .logs-item__body {
-      padding: 10px 0;
-      width: 100%;
-    }
+  }
+  .logs-item__body {
+    padding: 10px 0;
+    width: 100%;
   }
 </style>
