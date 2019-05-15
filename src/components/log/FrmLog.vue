@@ -4,7 +4,7 @@
       <div class="layout">
         <div class="adm-form logs">
           <div class="adm-form__container">
-            <h2 id="data-source" class="adm-form__headding" v-html="data.node.name"></h2>
+            <h2 v-if="data.node" id="data-source" class="adm-form__headding" v-html="data.node.name"></h2>
             <div class="adm-form__content">
               <div class="logs__filter">
                 <div class="adm-form__item">
@@ -157,7 +157,7 @@
           };
           let node = current.params.node;
           if (funcUtils.isNotEmpty(node)) {
-            delete current.params.deloId;
+            delete current.params.node;
             formStack.updateCurrent(current);
             this.data.node = node;
             prepareParams.method = 'getData';
