@@ -34,6 +34,12 @@ const router = new Router({
       props: true
     },
     {
+      path: '/frmEdPetition',
+      name: 'FrmEdPetition',
+      component: () => import('~/components/delo/FrmEdPetition'),
+      props: true
+    },
+    {
       path: '/frmEdDeloEdit',
       name: 'FrmEdDeloEdit',
       component: () => import('~/components/delo/edit/FrmEdDeloEdit'),

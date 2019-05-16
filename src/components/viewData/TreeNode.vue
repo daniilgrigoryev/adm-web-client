@@ -98,6 +98,7 @@
               }
               case docTipEnum.ZALOB:
               case docTipEnum.APPEAL_CONCLUSION:
+              case docTipEnum.PETITION:
               case docTipEnum.APPEAL_DECISION: {
                 return ispolnDecisAppeal;
               }
@@ -306,6 +307,7 @@
               }
               case docTipEnum.ZALOB:
               case docTipEnum.APPEAL_CONCLUSION:
+              case docTipEnum.PETITION:
               case docTipEnum.APPEAL_DECISION: {
                 return `
                   <h4>

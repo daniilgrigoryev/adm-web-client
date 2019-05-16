@@ -24,6 +24,8 @@
       WizardScenarioProtTaxi: () => import('~/components/wizard/WizardScenarioProtTaxi'),
       WizardScenarioDefinitionTaxi: () => import('~/components/wizard/WizardScenarioDefinitionTaxi'),
       WizardScenarioAddAdvice: () => import('~/components/wizard/WizardScenarioAddAdvice'),
+      WizardScenarioAddDefinitionPetition: () => import('~/components/wizard/WizardScenarioAddDefinitionPetition.vue'),
+      WizardScenarioAddPetition: () => import('~/components/wizard/WizardScenarioAddPetition'),
       WizardScenarioPostStopDelo: () => import('~/components/wizard/WizardScenarioPostStopDelo')
     },
     async created() {
@@ -168,6 +170,18 @@
           case 'CreateDefinitionTaxi': {
             res = {
               name: 'WizardScenarioDefinitionTaxi'
+            };
+            break;
+          }
+          case 'AddPetition': {
+            res = {
+              name: 'WizardScenarioAddPetition'
+            };
+            break;
+          }
+          case 'AddDefinitionPetition': {
+            res = {
+              name: 'WizardScenarioAddDefinitionPetition'
             };
             break;
           }

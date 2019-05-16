@@ -86,7 +86,10 @@
                     <Button :disabled="!menuItemVisible(menu.addDocument.ChangeDateRasmDelo)" type="text" class="adm-btn-regular">Перенос даты рассмотрения дела</Button>
                   </li>
                   <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.HodatayProdlSrok)" type="text" class="adm-btn-regular">Ходатайство о продлении сроков административного расследования</Button>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.HodatayProdlSrok)" @click="createWizardAddPetition" type="text" class="adm-btn-regular">Ходатайство о продлении сроков административного расследования</Button>
+                  </li>
+                  <li>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.Petition)" type="text" @click="createWizardAddDefinitionPetition" class="adm-btn-regular">Определение по ходатайству</Button>
                   </li>
                   <li>
                     <Button :disabled="!menuItemVisible(menu.addDocument.DecicAppeal)" type="text" class="adm-btn-regular">Решение по жалобе</Button>
@@ -214,7 +217,8 @@
             HodatayProdlSrok: 'HodatayProdlSrok',
             DecicAppeal: 'DecicAppeal',
             ConclusAppeal: 'ConclusAppeal',
-            DocumentUchast: 'DocumentUchast'
+            DocumentUchast: 'DocumentUchast',
+            Petition: 'Petition',
           },
           addUchast: {AddUchast: 'AddUchast'},
           addIspoln: {AddIspoln: 'AddIspoln'}
@@ -535,6 +539,9 @@
           }
           case 'AddUchast': {
             return current.params.recType === 'DELO';
+          }
+          case 'Petition': {
+            return current.params.recType === 'DOCS_OTHER' && current.params.docTip === docTipEnum.PETITION;
           }
         }
         return false;
@@ -886,6 +893,44 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreatePost',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      createWizardAddPetition() {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            scenarioName: 'AddPetition',
+            node: copyNode
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      createWizardAddDefinitionPetition() {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            scenarioName: 'AddDefinitionPetition',
             node: copyNode
           };
 

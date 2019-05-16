@@ -78,5 +78,7 @@ POST_KVIT: '95',
   /** Требование о прекращении противоправных действий */
   TREB_PREKR: 'b7',
   /** Заключение по жалобе */
-  APPEAL_CONCLUSION: 'b8'
+  APPEAL_CONCLUSION: 'b8',
+  /**Ходатайство*/
+  PETITION: 'b9',
 }

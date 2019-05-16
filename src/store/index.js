@@ -35,6 +35,7 @@ import dlgEdFotoMaterial from './modules/dlgEdFotoMaterial';
 import dlgAdvice from './modules/dlgAdvice';
 import frmEdMediaMaterial from './modules/frmEdMediaMaterial';
 import frmLog from './modules/frmLog';
+import frmEdPetition from './modules/frmEdPetition';
 
 import frmEdDeloEdit from './modules/frmEdDeloEdit';
 import frmEdDecisEdit from './modules/frmEdDecisEdit';
@@ -124,6 +125,7 @@ const store = new Vuex.Store({
     frmEdDocsOpredEdit,
     frmEdDocsPost,
     frmEdDocsProt,
+    frmEdPetition,
 
     frmEdDecisShtraf,
     FrmEdDecisRasm,

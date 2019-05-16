@@ -21,6 +21,7 @@
       FrmEdVuVyd: () => import('~/components/delo/FrmEdVuVyd'),
       FrmEdDocsOpred: () => import('~/components/delo/FrmEdDocsOpred'),
       FrmEdDocsPost: () => import('~/components/delo/FrmEdDocsPost'),
+      FrmEdPetition: () => import('~/components/delo/FrmEdPetition'),
 
       FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
       FrmEdDecisRasm: () => import('~/components/delo/decis/FrmEdDecisRasm'),
@@ -128,6 +129,10 @@
           }
           case 'FrmEdMediaMaterial': {
             res = 'FrmEdMediaMaterial';
+            break;
+          }
+          case 'FrmEdPetition': {
+            res = 'FrmEdPetition';
             break;
           }
         }

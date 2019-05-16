@@ -272,7 +272,10 @@
             debugger;
           }
         } else {
-          this.$store.dispatch('errors/changeContent', {title: 'Файлы загружены'});
+          this.$Notice.warning({
+            title: 'Файлы загружены',
+            duration: 10
+          });
         }
       },
       chunkArray(myArray, chunkSize) {
