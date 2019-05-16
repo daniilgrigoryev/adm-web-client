@@ -54,7 +54,6 @@
         </Row>
       </div>
     </div>
-    
   </div>
 </template>
 

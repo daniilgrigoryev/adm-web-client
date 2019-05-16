@@ -53,7 +53,7 @@ export default {
         {
           title: "Протоколы",
           desc: "Общая форма, такси, эвакуация",
-          icon: require("../../assets/images/grayIcons/Документ gray.png"),
+          icon: require("../../assets/images/Документ gray.png"),
           value: [
             {
               title: "Об административном правонарушении",
@@ -94,7 +94,7 @@ export default {
         {
           title: "Определение",
           desc: "о возбуждении дела об административном расследовании",
-          icon: require("../../assets/images/grayIcons/Документ_4 gray.png"),
+          icon: require("../../assets/images/Документ_4 gray.png"),
           value: [
             {
               title: "Общее",
@@ -118,7 +118,7 @@ export default {
         {
           title: "Постановление",
           desc: "об административном правонарушении",
-          icon: require("../../assets/images/grayIcons/10_Постановление_v1 gray.png"),
+          icon: require("../../assets/images/10_Постановление_v1 gray.png"),
           value: "CreatePost"
         }
       ],

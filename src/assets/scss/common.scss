@@ -586,6 +586,34 @@ html, body, #app {
     line-height: 16px;
     padding-right: 10px;
   }
+  .adm-form__icon-button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    margin: 0 5px;
+    cursor: pointer;
+    img {
+      transition: .3s ease;
+      filter: contrast(0);
+      opacity: .7;
+    }
+    &:hover,&:focus {
+      box-shadow: none;
+      img {
+        opacity: 1;
+        filter: contrast(1);
+      }
+    }
+    &:disabled {
+      pointer-events: none;
+      img {
+        opacity: .3;
+      }
+    }
+  }
 }
 
 .adm-input[remote] .ivu-select-selection > div::before {

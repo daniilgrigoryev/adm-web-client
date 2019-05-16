@@ -597,8 +597,39 @@
                     ])
                   },
                   render: (h, params) => {
+                   return h('div', {}, [
+                      h('Tooltip', {
+                        props: {
+                          disabled: funcUtils.isEmpty(params.row.opredN) ? true : false,
+                          content: params.row.opredN,
+                          transfer: true,
+                          maxWidth: 250,
+                          placement: 'left'
+                        },
+                      }, [
+                        h('p', {
+                          class: {
+                            'txt-truncate': true,
+                            'txt-uppercase': true,
+                          }
+                        }, params.row.opredN),
+                      ]),
+                    ])
+                  },
+                  render: (h, params) => {
+                    console.log(params.row);
                     return h('div', {}, [
-                      h('p', params.row.stotvKod),
+                      h('Tooltip', {
+                        props: {
+                          disabled: funcUtils.isEmpty(params.row.stotvKod) ? true : false,
+                          content: params.row.stotvKod,
+                          transfer: true,
+                          maxWidth: 250,
+                          placement: 'left'
+                        },
+                      }, [
+                        h('p', {}, params.row.stotvKod),
+                      ]),
                       h('p', {
                           class: {
                             'color-dark-base': true,

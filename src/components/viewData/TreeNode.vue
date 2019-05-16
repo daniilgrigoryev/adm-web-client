@@ -39,6 +39,14 @@
   import * as ispolnAppeal from '~/assets/images/ispolnAppeal.png';
   import * as deloProizv from '~/assets/images/deloProizv.png';
   import * as photo from '~/assets/images/photo.png';
+  import * as docsPost from '~/assets/images/docsPost.png';
+  import * as docsProt from '~/assets/images/docsProt.png';
+  import * as pzts from '~/assets/images/pzts.png';
+  import * as docsOpred from '~/assets/images/docsOpred.png';
+  import * as protOtstrUprTC from '~/assets/images/protOtstrUprTC.png';
+  import * as protMed from '~/assets/images/protMed.png';
+  import * as downloadIcon from '~/assets/images/download.svg';
+
 
   export default {
     name: "TreeNode",
@@ -89,8 +97,13 @@
               case docTipEnum.VEHS_FOTO:
               case docTipEnum.UCHAST_FOTO:
               case docTipEnum.DOCS_FOTO:
-              case docTipEnum.MEDIA_DOC:
               case docTipEnum.VIDEOFIX_FOTO: {
+                return photo;
+              }
+              case docTipEnum.MEDIA_DOC: {
+                if (node.height === 4) {
+                  return downloadIcon;
+                }
                 return photo;
               }
               case docTipEnum.ADVICE: {
@@ -109,9 +122,13 @@
               case docTipEnum.OPL_SHTRAF_MPGU: {
                 return ispolnShtraf;
               }
+              case docTipEnum.PROT_OTSTR_UPR_TC: {
+                return protOtstrUprTC
+              }
+              case docTipEnum.PROT_MED:{
+                return protMed
+              }
               case docTipEnum.ACT_OCAO:
-              case docTipEnum.PROT_MED:
-              case docTipEnum.PROT_OTSTR_UPR_TC:
               case docTipEnum.PROT_ZAPR_EKSPLUAT_TC:
               case docTipEnum.PROT_ZADER_TC:
               case docTipEnum.PROT_DOSMOTR_TC:
@@ -123,7 +140,7 @@
               case docTipEnum.PROT_DOSMOTR_FL:
               case docTipEnum.PROT_OSMOTR_POMESH:
               case docTipEnum.RAZR_VYID_TC: {
-                return deloProizv;
+                return pzts;
               }
             }
             break;
@@ -133,7 +150,7 @@
           }
           case 'DOCS_POST':
           case 'DOCS_POST_UL': {
-            return deloProizv;
+            return docsPost;
           }
           case 'DECIS_ISPOLN': {
             if (funcUtils.isNotEmpty(node.kod)) {
@@ -167,9 +184,11 @@
             }
             return deloProizv;
           }
-          case 'DOCS_OPRED':
+          case 'DOCS_OPRED': {
+            return docsOpred;
+          }
           case 'DOCS_PROT': {
-            return deloProizv;
+            return docsProt;
           }
         }
         return '';

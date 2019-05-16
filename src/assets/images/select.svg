@@ -1,25 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
-    <title>AF261259-635D-4F7A-B946-9DC7CEFD304D-5625-0000C93ACEF8662E</title>
-    <desc>Created with sketchtool.</desc>
+<svg width="18" height="16" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
-        <path d="M18.0318075,12.6305894 C18.1940288,12.4741885 18.1858097,12.2280706 18.0134495,12.0808697 C17.8410893,11.9336689 17.5698574,11.941127 17.4076361,12.0975279 L12.3970726,18.600901 C12.2076042,18.8595833 12.2919996,19.1718339 12.5137403,19.3460587 L26.7054631,29.4842338 C26.8782411,29.5897208 27.1013717,29.4980621 27.2002506,29.3203025 C27.2991296,29.1425428 27.2907862,28.847281 27.0835841,28.7266653 L13.4200686,19.0477971 C13.2438362,18.9075126 13.2276316,18.7718516 13.3234026,18.6364034 C14.8470211,16.6750973 18.0318075,12.6305894 18.0318075,12.6305894 Z" id="path-1"></path>
+        <path d="M18.032 12.63a.364.364 0 0 0-.019-.55.46.46 0 0 0-.605.018l-5.01 6.503c-.19.259-.106.57.116.745l14.191 10.138c.173.106.396.014.495-.164.1-.177.09-.473-.116-.593l-13.664-9.68c-.176-.14-.192-.275-.097-.41 1.524-1.962 4.709-6.006 4.709-6.006z" id="a"/>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="#1888CC" fill-rule="evenodd">
-        <g id="администранивный-учет---список-дел---поиск-выпадающие-списки" transform="translate(-731.000000, -611.000000)">
-            <g id="Group-3" transform="translate(0.000000, 509.000000)">
-                <g id="Group-2-Copy-2" transform="translate(720.000000, 79.000000)">
-                    <g id="Group-2-Copy-15" transform="translate(0.000000, 10.000000)">
-                        <g id="-icon-/-40*40">
-                            <mask id="mask-2" fill="white">
-                                <use xlink:href="#path-1"></use>
-                            </mask>
-                            <use id="Path-7" fill="#1888CC" transform="translate(19.776904, 20.752073) rotate(-90.000000) translate(-19.776904, -20.752073) " xlink:href="#path-1"></use>
-                        </g>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+    <use transform="rotate(-90 7.777 19.752)" xlink:href="#a" fill="#1888CC" fill-rule="evenodd"/>
 </svg>

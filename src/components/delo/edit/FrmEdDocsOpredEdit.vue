@@ -16,9 +16,9 @@
                       <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="docsOpred.docN" @onInputChange="store"></masked-input>
                     </Col>
                     <Col span="6">
-                      <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="md-key" title="Получить уникальный номер" :size="30" />
-                      </Button>
+                      <button @click="copyOwner" class="adm-form__icon-button" :disabled="true" title="Получить уникальный номер" type="button">
+                        <img :src="require('~/assets/images/getDeloNumber.png')" alt="Получить уникальный номер">
+                      </button>
                     </Col>
                   </Row>
                 </div>
