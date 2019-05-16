@@ -162,9 +162,10 @@
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import RequestApi from "~/assets/js/api/requestApi";
   import wizardItemProtFourMethods from "~/components/mixins/prot/wizardItemProtFourMethods";
+  import {bus} from "~/assets/js/utils/bus";
 
   export default {
-    name: "WizardItemDefinitionTaxiFour",
+    name: "WizardItemDefinitionTaxiFourPart2",
     mixins: [wizardItemProtFourMethods],
     components: {
       MaskedInput: () => import('~/components/shared/MaskedInput'),
@@ -175,6 +176,7 @@
     },
     async created() {
       await this.initData();
+      bus.$on('setDataWizardItemDefinitionTaxiFourPart2', this.setDataWizardItemDefinitionTaxiFourPart2);
     },
     data() {
       return {
@@ -211,6 +213,9 @@
 
           this.data = data;
         }
+      },
+      setDataWizardItemDefinitionTaxiFourPart2(data) {
+        this.data = data;
       },
 
       async fillViolSourceTypeList() {
@@ -255,6 +260,8 @@
       },
 
       async storeElementData() {
+        bus.$emit('setDataWizardItemDefinitionTaxiFourPart1', this.data);
+
         return new Promise((resolve, reject) => {
           this.$emit('storeElementData', {
             eCID: this.info.eCID,

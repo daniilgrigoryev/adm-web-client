@@ -28,27 +28,15 @@
               <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
-          <!--<div class="adm-form__container" id="Owner" v-if="isVisible('Owner')">
-            <h2 class="adm-form__headding">Владелец транспортного средства</h2>
-            <div class="adm-form__content">
-              <wizard-item-owner v-if="isVisible('Owner')" ref="Owner" :info="getInfo('Owner')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-owner>
-              <wizard-item-individual id="Owner.Individual" v-if="isVisible('Owner.Individual')" ref="Owner.Individual" :info="getInfo('Owner.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-              <wizard-item-address v-if="isVisible('Owner.Individual.regAddr')" ref="Owner.Individual.regAddr" :info="getInfo('Owner.Individual.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-address v-if="isVisible('Owner.Individual.factAddr')" ref="Owner.Individual.factAddr" :info="getInfo('Owner.Individual.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-organization v-if="isVisible('Owner.Organization')" ref="Owner.Organization" :info="getInfo('Owner.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
-              <wizard-item-address v-if="isVisible('Owner.Organization.regAddr')" ref="Owner.Organization.regAddr" :info="getInfo('Owner.Organization.regAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-address v-if="isVisible('Owner.Organization.factAddr')" ref="Owner.Organization.factAddr" :info="getInfo('Owner.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-            </div>
-          </div>-->
           <div class="adm-form__container">
             <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
               <wizard-item-prot-three id="DocDefinitionTaxiThree" v-if="isVisible('DocDefinitionTaxiThree')" ref="DocDefinitionTaxiThree" :info="getInfo('DocDefinitionTaxiThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
               <wizard-item-place v-if="isVisible('DocDefinitionTaxiThree.PlaceNar')" ref="DocDefinitionTaxiThree.PlaceNar" :info="getInfo('DocDefinitionTaxiThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-definition-taxi-four-part1 id="DocDefinitionTaxiFourPart1" v-if="isVisible('DocDefinitionTaxiFour')" ref="DocDefinitionTaxiFourPart1" :info="getInfo('DocDefinitionTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-taxi-four-part1>
+              <wizard-item-definition-taxi-four-part1 id="DocDefinitionTaxiFourPart1" v-if="isVisible('DocDefinitionTaxiFour')" ref="DocDefinitionTaxiFour" :info="getInfo('DocDefinitionTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-taxi-four-part1>
             </div>
           </div>
-          <wizard-item-definition-taxi-four-part2 id="DocDefinitionTaxiFourPart2" v-if="isVisible('DocDefinitionTaxiFour')" ref="DocDefinitionTaxiFourPart2" :info="getInfo('DocDefinitionTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents">
+          <wizard-item-definition-taxi-four-part2 id="DocDefinitionTaxiFourPart2" v-if="isVisible('DocDefinitionTaxiFour')" ref="DocDefinitionTaxiFour" :info="getInfo('DocDefinitionTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents">
             <wizard-item-individual id="DocDefinitionTaxiFour.Individual" v-if="isVisible('DocDefinitionTaxiFour.Individual')" ref="DocDefinitionTaxiFour.Individual" :info="getInfo('DocDefinitionTaxiFour.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
             <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Individual.regAddr')" ref="DocDefinitionTaxiFour.Individual.regAddr" :info="getInfo('DocDefinitionTaxiFour.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Individual.factAddr')" ref="DocDefinitionTaxiFour.Individual.factAddr" :info="getInfo('DocDefinitionTaxiFour.Individual.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
@@ -94,7 +82,6 @@
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
       WizardItemLvok: () => import('~/components/wizard/items/WizardItemLvok'),
       WizardItemOrganization: () => import('~/components/wizard/items/WizardItemOrganization'),
-      // WizardItemOwner: () => import('~/components/wizard/items/WizardItemOwner'),
       WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
       WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
@@ -110,11 +97,6 @@
             title: "Транспортное средство",
             name: "Vehs",
           },
-          // {
-          //   title: "Владелец транспортного средства",
-          //   name: "Owner",
-          //   hide: !this.isVisible('Owner')
-          // },
           {
             title: "ЛВОК",
             name: "Lvok",
