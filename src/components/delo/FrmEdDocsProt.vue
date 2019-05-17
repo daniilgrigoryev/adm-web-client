@@ -19,52 +19,52 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Дата и время нарушения" 
-            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата и время нарушения"
+            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/time.svg')"
           />
-          <view-data-item 
-            label="Место нарушения" 
-            :value="body.placeNar.placeFull" 
+          <view-data-item
+            label="Место нарушения"
+            :value="body.placeNar.placeFull"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
-          <view-data-item 
-            label="Пункт НПА" 
-            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(', ')" 
+          <view-data-item
+            label="Пункт НПА"
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(', ')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/case_decision_gray.svg')"
           />
-          <view-data-item 
-            label="Статья КРФоАП" 
-            :value="body.stotvKod, body.stotvName | concatByDelimiter(', ')" 
+          <view-data-item
+            label="Статья КРФоАП"
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(', ')"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Место вынесения" 
-            :value="body.placeSost.placeFull | concatByDelimiter(', ')" 
+          <view-data-item
+            label="Место вынесения"
+            :value="body.placeSost.placeFull | concatByDelimiter(', ')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
-          <view-data-item 
-            label="Должностное лицо" 
-            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ')" 
+          <view-data-item
+            label="Должностное лицо"
+            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/police.svg')"
           />
-          <view-data-item 
-            label="Подразделение" 
-            :value="body.organSostName" 
+          <view-data-item
+            label="Подразделение"
+            :value="body.organSostName"
             style="grid-column: span 2;"
           />
 
           <hr v-if="!isTaxi">
           <view-data-item v-if="!isTaxi"
-            label="Было снятие ТС с эвакуатора" 
-            :value="isRemovedFromEvac" 
+            label="Было снятие ТС с эвакуатора"
+            :value="isRemovedFromEvac"
             style="grid-column: span 2;"
           />
 
@@ -86,11 +86,6 @@
               :value="body.tlDateEnd | formatDateTime('DD.MM.YYYY')"
               style="grid-column: span 2;"
               :icon="require('../../assets/images/time.svg')"
-            />
-            <view-data-item
-              label="Владелец разрешения такси"
-              :value="body.tlLicenseeName"
-              style="grid-column: span 2;"
             />
             <view-data-item
               label="Организация, выдавшая разрешение такси"
@@ -144,7 +139,7 @@
     },
     computed: {
       isRemovedFromEvac(){
-        return this.body.isRemovedFromEvac ? 'да' : 'нет' 
+        return this.body.isRemovedFromEvac ? 'да' : 'нет'
       },
       ...mapGetters({
         dataStore: 'frmEdDocsProtGetData'
