@@ -163,6 +163,7 @@
 </template>
 
 <script>
+  import * as constants from "~/assets/js/utils/constants";
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as formStack from '~/assets/js/api/formStack';
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
@@ -257,6 +258,13 @@
         let res = null;
         if (this.dataStore) {
           res = this.dataStore.context;
+        }
+        return res;
+      },
+      isTaxi() {
+        let res = null;
+        if (this.dataStore) {
+          res = funcUtils.isNotEmpty(this.dataStore.deloTag) &&  this.dataStore.deloTag.includes(constants.TAG_TAXI);
         }
         return res;
       },
@@ -795,7 +803,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: 'CreateDefinition',
+            scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode
           };
 
@@ -814,7 +822,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: 'CreateProtAPN',
+            scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode
           };
 
@@ -833,7 +841,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: 'CreateProtTaxi',
+            scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode,
             newDelo: newDelo
           };
@@ -853,7 +861,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: 'CreateDefinitionTaxi',
+            scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode,
             newDelo: newDelo
           };
