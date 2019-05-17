@@ -41,7 +41,7 @@
           <AutoComplete
             v-model="data.birthMesto"
             :data="birthMestoArray"
-            class="wmin180 adm-input adm-input--regular wmax360 txt-uppercase"
+            class=" adm-input adm-input--regular wmax360 txt-uppercase"
             icon="ios-arrow-down"
             :filter-method="filterBirthMesto"
             @on-change="changeBirthMesto"
