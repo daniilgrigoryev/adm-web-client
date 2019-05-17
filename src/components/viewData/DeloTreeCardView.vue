@@ -803,7 +803,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
+            scenarioName: this.isTaxi ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode
           };
 
@@ -822,7 +822,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
+            scenarioName: this.isTaxi ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode
           };
 
@@ -841,7 +841,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
+            scenarioName: this.isTaxi ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode,
             newDelo: newDelo
           };
@@ -861,7 +861,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
+            scenarioName: this.isTaxi ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode,
             newDelo: newDelo
           };

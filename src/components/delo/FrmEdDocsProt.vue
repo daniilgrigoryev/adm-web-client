@@ -88,6 +88,11 @@
               :icon="require('../../assets/images/time.svg')"
             />
             <view-data-item
+              label="Владелец разрешения такси"
+              :value="body.tlLicenseeName"
+              style="grid-column: span 2;"
+            />
+            <view-data-item
               label="Организация, выдавшая разрешение такси"
               :value="body.tlLicensor"
               style="grid-column: span 2;"

@@ -29,6 +29,16 @@
         </Row>
       </div>
     </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Основание прекращения</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="22" :lg="22">
+            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.reason"></Input>
+          </Col>
+        </Row>
+      </div>
+    </div>
   </div>
 </template>
 
