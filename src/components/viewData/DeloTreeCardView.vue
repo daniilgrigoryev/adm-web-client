@@ -261,13 +261,6 @@
         }
         return res;
       },
-      isTaxi() {
-        let res = null;
-        if (this.dataStore) {
-          res = funcUtils.isNotEmpty(this.dataStore.deloTag) &&  this.dataStore.deloTag.includes(constants.TAG_TAXI);
-        }
-        return res;
-      },
     },
     methods: {
       async init(mainDeloId) {
@@ -704,6 +697,12 @@
       clearDocument() {
         this.pdfData = null;
       },
+      isTaxi() {
+        let currentForm = innerFormStack.getCurrent();
+        let nameCapitalized = currentForm.beanName.charAt(0).toLowerCase() + currentForm.beanName.slice(1);
+        let data = this.$store.state[nameCapitalized].data;
+        return funcUtils.isNotEmpty(data.deloTag) &&  data.deloTag.includes(constants.TAG_TAXI);
+      },
       addUchastWizard() {
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
@@ -803,7 +802,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: this.isTaxi ? 'CreateDefinitionTaxi' : 'CreateDefinition',
+            scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode
           };
 
@@ -822,7 +821,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: this.isTaxi ? 'CreateProtTaxi' : 'CreateProtAPN',
+            scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode
           };
 
@@ -841,7 +840,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: this.isTaxi ? 'CreateProtTaxi' : 'CreateProtAPN',
+            scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode,
             newDelo: newDelo
           };
@@ -861,7 +860,7 @@
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: this.isTaxi ? 'CreateDefinitionTaxi' : 'CreateDefinition',
+            scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode,
             newDelo: newDelo
           };

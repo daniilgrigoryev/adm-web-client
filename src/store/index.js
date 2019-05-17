@@ -14,7 +14,7 @@ import frmEdDocsPost from './modules/frmEdDocsPost';
 import frmEdDocsProt from './modules/frmEdDocsProt';
 
 import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
-import FrmEdDecisRasm from './modules/frmEdDecisRasm';
+import frmEdDecisRasm from './modules/frmEdDecisRasm';
 
 import frmEdDecisLish from './modules/frmEdDecisLish';
 import frmEdDecisVozbDelo from './modules/frmEdDecisVozbDelo';
@@ -128,7 +128,7 @@ const store = new Vuex.Store({
     frmEdPetition,
 
     frmEdDecisShtraf,
-    FrmEdDecisRasm,
+    frmEdDecisRasm,
     frmEdDecisLish,
     frmEdDecisVozbDelo,
     frmEdDecisPredup,
@@ -136,7 +136,7 @@ const store = new Vuex.Store({
     frmEdDecisPost,
     frmEdDecisMandWork,
     frmEdDecisSuspendActivity,
-    
+
     frmEdIspolnShtraf,
     frmEdVehsAMTC,
     frmEdUchastFL,

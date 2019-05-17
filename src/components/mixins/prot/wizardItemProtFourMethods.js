@@ -74,7 +74,7 @@ export default {
         }
       });
       let KBKSearchInfoAnswer = JSON.parse(JSON.parse(eventResponse.response).data);
-      if (KBKSearchInfoAnswer) {
+      if (KBKSearchInfoAnswer && KBKSearchInfoAnswer.length > 0) {
         this.KBKSearchInfoList = KBKSearchInfoAnswer.map(element => {
           return {
             label: element.kbkName,
