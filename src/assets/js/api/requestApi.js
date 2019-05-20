@@ -250,6 +250,4 @@ export default class RequestApi {
       };
     });
   }
-
-
 }

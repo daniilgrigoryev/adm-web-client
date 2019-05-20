@@ -47,6 +47,7 @@
     "babel-preset-vue-app": "^1.2.0",
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.0.5",
+    "crypto-pro": "^1.1.0",
     "css-loader": "^0.28.7",
     "favicons-webpack-plugin": "0.0.9",
     "file-loader": "^1.1.11",
@@ -73,7 +74,6 @@
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4",
     "webpack": "^3.12.0",
-    "crypto-pro": "^1.1.0",
     "webpack-dev-server": "^2.9.1"
   }
 }

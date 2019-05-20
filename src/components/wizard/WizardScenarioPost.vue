@@ -24,7 +24,6 @@
               <h2 class="adm-form__headding" id="Lvok">ЛВОК</h2>
               <div class="adm-form__content">
                 <wizard-item-lvok id="LVOK" v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
-                <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
                 <wizard-item-individual v-if="isVisible('LVOK.Individual')" ref="LVOK.Individual" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
                 <wizard-item-address v-if="isVisible('LVOK.Individual.regAddr')" ref="LVOK.Individual.regAddr" :info="getInfo('LVOK.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
                 <wizard-item-address v-if="isVisible('LVOK.Individual.factAddr')" ref="LVOK.Individual.factAddr" :info="getInfo('LVOK.Individual.factAddr')" title="Адрес места жительства" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
@@ -34,6 +33,15 @@
               </div>
             </div>
           <!-- </div> -->
+          <div class="adm-form__container">
+            <h2 id="pres" class="adm-form__headding">Представитель</h2>
+            <div class="adm-form__content">
+              <wizard-item-present id="Present" v-if="isVisible('Present')" ref="Present" :info="getInfo('Present')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-present>
+              <wizard-item-pred-doc v-if="isVisible('Present.PredDoc')" ref="Present.PredDoc" :info="getInfo('Present.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
+              <wizard-item-individual v-if="isVisible('Present.Individual')" ref="Present.Individual" :info="getInfo('Present.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+              <wizard-item-address v-if="isVisible('Present.Individual.regAddr')" ref="Present.Individual.regAddr" :info="getInfo('Present.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            </div>
+          </div>
           <div class="adm-form__container">
             <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
@@ -83,6 +91,7 @@
       WizardItemOwner: () => import('~/components/wizard/items/WizardItemOwner'),
       WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
       WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
+      WizardItemPresent: () => import('~/components/wizard/items/WizardItemPresent'),
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
     },
     methods: {
@@ -106,6 +115,10 @@
             title: "ЛВОК",
             name: "Lvok",
             hide: !this.isVisible('LVOK')
+          },
+          {
+            title: "Блок присутствия",
+            name: "pres",
           },
           {
             title: "Сведения о нарушении",
