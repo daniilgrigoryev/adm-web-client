@@ -19,122 +19,73 @@
               <span class="adm-h3">Дело №</span>
               <span class="adm-h2">{{deloContext.deloN}}</span>
             </a>
+            <!-- TODO -->
             <p class="ml24 flex-parent flex-parent--center-cross" :class="changeClass(deloContext.stadKod)">
               <Icon class="mx6" type="ios-checkmark-circle" :size="23"/>
               <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
             </p>
           </div>
-          <div>
-            <Poptip @click.native="menuVisibleContent('menuCreateDelo', menu.createDelo)" ref="menuCreateDelo" width="350" placement="bottom-start" class="amd-poptip-sub">
-              <Button type="text"
-                      :disabled="!menuVisible(menu.createDelo)"
-                      class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
-                      style="box-shadow: none">
-                <span>Создать дело  <Icon v-if="menuVisible(menu.createDelo)" type="md-arrow-dropdown" :size="16"/></span>
-              </Button>
-              <div slot="content">
-                <ul class="amd-poptip-sub__nav">
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.createDelo.ProtAPNAnothFace)" @click="createWizardScenarioProtTaxi(true)" type="text" class="adm-btn-regular">Протокол об АПН на другое лицо</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.createDelo.OpredAPNAnothFace)" @click="createWizardScenarioDefinitionTaxi(true)" type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.createDelo.PostAPNAnothFace)" type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
-                  </li>
-                </ul>
-              </div>
-            </Poptip>
+          <div class="delo-menu">
+            <div class="delo-menu--body-wrap">
+              <Poptip @click.native="menuVisibleContent('menuCreateDelo', menu.createDelo)" ref="menuCreateDelo" width="350" placement="bottom-start" class="delo-menu--poptip">
+                <button :disabled="!menuVisible(menu.createDelo)" class="action-button">
+                  <img :src="require('../../assets/images/create-case.svg')" alt="">
+                  <span class="text">Создать дело</span>
+                  <Icon type="md-arrow-dropdown" :size="16"/>
+                </button>
+                <div slot="content">
+                  <ul class="delo-menu__poptip-list">
+                    <li>
+                      <Button :disabled="!menuItemVisible(menu.createDelo.ProtAPNAnothFace)" @click="createWizardScenarioProtTaxi(true)" type="text" class="adm-btn-regular">Протокол об АПН на другое лицо</Button>
+                    </li>
+                    <li>
+                      <Button :disabled="!menuItemVisible(menu.createDelo.OpredAPNAnothFace)" @click="createWizardScenarioDefinitionTaxi(true)" type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
+                    </li>
+                    <li>
+                      <Button :disabled="!menuItemVisible(menu.createDelo.PostAPNAnothFace)" type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
+                    </li>
+                  </ul>
+                </div>
+              </Poptip>
+              <Poptip @click.native="menuVisibleContent('menuAddDocument', menu.addDocument)" ref="menuAddDocument" placement="bottom-end" class="delo-menu--poptip"><!--  width="700" -->
+                <button :disabled="!menuVisible(menu.addDocument)" class="action-button">
+                  <img :src="require('../../assets/images/add-document.svg')" alt="">
+                  <span class="text">Добавить документ</span>
+                  <Icon type="md-arrow-dropdown" :size="16"/>
+                </button>
+                <div slot="content" class="da">
+                  <div class="search-wrap">
+                    <img :src="require('../../assets/images/icons8-search.svg')" alt="">
+                    <input type="text" class="search" placeholder="Найти…" v-model="searchForAddDocumentList">
+                  </div>
+                  <ul class="delo-menu__poptip-list">
+                    <li v-for="item in filteredAddDocumentList" :key="item.id">
+                      <Button :disabled="!menuItemVisible(menu.addDocument[item.visible])" 
+                              @click="item.action || ''" type="text" class="adm-btn-regular">
+                        {{item.text}}
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+              </Poptip>
+              <button :disabled="!menuVisible(menu.addUchast)" class="action-button" @click="addUchastWizard">
+                <img :src="require('../../assets/images/add-participant.svg')" alt="">
+                <span class="text">Добавить участника</span>
+              </button>
+              <button :disabled="!menuVisible(menu.addIspoln)" class="action-button" @click="addIspolnWizard">
+                <img :src="require('../../assets/images/add-process.svg')" alt="">
+                <span class="text">Добавить исполнение</span>
+              </button>
+            </div>
 
-            <Poptip @click.native="menuVisibleContent('menuAddDocument', menu.addDocument)" ref="menuAddDocument" placement="bottom-end" class="amd-poptip-sub"><!--  width="700" -->
-              <Button type="text"
-                      :disabled="!menuVisible(menu.addDocument)"
-                      class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
-                      style="box-shadow: none">
-                <span>Добавить документ
-                  <Icon v-if="menuVisible(menu.addDocument)" type="md-arrow-dropdown" :size="16"/>
-                </span>
-              </Button>
-              <div slot="content">
-                <ul class="amd-poptip-sub__nav" style="max-width: 450px;">
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.ApplyDocOnDelo)" type="text" class="adm-btn-regular">Приложить документ к делу</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.AddFotoVideo)" @click="addDocPhotoWizard" type="text" class="adm-btn-regular">Добавить фото и видеоматериалы</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.Explanation)" type="text" class="adm-btn-regular">Объяснение</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.ProtAPN)" @click="createWizardScenarioAPN" type="text" class="adm-btn-regular">Протокол об АПН</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.OpredProvedAP)" @click="createWizardScenarioDefinition" type="text" class="adm-btn-regular">Определение о проведении АР</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.PostDeloAPN)" @click="createWizardScenarioPostDecisDelo" type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.PostPrekrDeloAPN)" @click="createWizardProtStopDelo" type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.Izvesh)" @click="createWizardAddAdvice" type="text" class="adm-btn-regular">Извещение</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.ChangeDateRasmDelo)" type="text" class="adm-btn-regular">Перенос даты рассмотрения дела</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.HodatayProdlSrok)" @click="createWizardAddPetition" type="text" class="adm-btn-regular">Ходатайство о продлении сроков административного расследования</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.Petition)" type="text" @click="createWizardAddDefinitionPetition" class="adm-btn-regular">Определение по ходатайству</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.DecicAppeal)" type="text" class="adm-btn-regular">Решение по жалобе</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.ConclusAppeal)" type="text" class="adm-btn-regular">Заключение по жалобе</Button>
-                  </li>
-                  <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.DocumentUchast)" type="text" @click="addPredDocWizard" class="adm-btn-regular">Документ участника</Button>
-                  </li>
-                </ul>
-              </div>
-            </Poptip>
-
-            <Button :disabled="!menuVisible(menu.addUchast)"
-                    type="text"
-                    @click="addUchastWizard"
-                    class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
-                    style="box-shadow: none">
-              <span>Добавить участника</span>
-            </Button>
-
-            <Button :disabled="!menuVisible(menu.addIspoln)"
-                    type="text"
-                    @click="addIspolnWizard"
-                    class='bg-transparent border--0 link color-blue-base adm-12 txt-underline-on-hover mx18 px0 py0 mb0'
-                    style="box-shadow: none">
-              <span>Добавить исполнение</span>
-            </Button>
-
-            <Button type="text"
-                    @click="printDocument"
-                    class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
-              <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
-              <span
-                style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">печать дела</span>
-            </Button>
-
-            <Button type="text"
-                    @click="getLogs"
-                    class="bg-transparent border--0 link color-blue-base px0 py0 mb0 mx18 txt-underline-on-hover">
-              <img src="../../assets/images/print.png" alt="" style="vertical-align: middle; margin-right: 20px;">
-              <span
-                style="color: #1888CC;	font-family: 'Open Sans';	font-size: 12px;	letter-spacing: 0.2px;	line-height: 16px;	text-align: center;">Логи</span>
-            </Button>
+            <div class="special-buttons-wrap">
+              <button @click="printDocument" title="печать дела">
+                <img :src="require('../../assets/images/print.svg')" alt="">
+              </button>
+              <button @click="getLogs" title="Логи">
+                <img :src="require('../../assets/images/log.svg')" alt="" style="right: -2px;">
+              </button>
+            </div>
 
           </div>
         </div>
@@ -223,13 +174,87 @@
           },
           addUchast: {AddUchast: 'AddUchast'},
           addIspoln: {AddIspoln: 'AddIspoln'}
-        }
+        },
+        addDocumentList: [
+          {
+            text: "Приложить документ к делу",
+            visible: "ApplyDocOnDelo",
+          },
+          {
+            text: "Добавить фото и видеоматериалы",
+            visible: "AddFotoVideo",
+            action: this.addDocPhotoWizard,
+          },
+          {
+            text: "Объяснение",
+            visible: "Explanation",
+          },
+          {
+            text: "Протокол об АПН",
+            visible: "ProtAPN",
+            action: this.createWizardScenarioAPN,
+          },
+          {
+            text: "Определение о проведении АР",
+            visible: "OpredProvedAP",
+            action: this.createWizardScenarioDefinition,
+          },
+          {
+            text: "Постановление по делу об АПН",
+            visible: "PostDeloAPN",
+            action: this.createWizardScenarioPostDecisDelo,
+          },
+          {
+            text: "Постановление о прекращении дела об АПН",
+            visible: "PostPrekrDeloAPN",
+            action: this.createWizardProtStopDelo,
+          },
+          {
+            text: "Извещение",
+            visible: "Izvesh",
+            action: this.createWizardAddAdvice,
+          },
+          {
+            text: "Перенос даты рассмотрения дела",
+            visible: "ChangeDateRasmDelo",
+          },
+          {
+            text: "Ходатайство о продлении сроков административного расследования",
+            visible: "HodatayProdlSrok",
+            action: this.createWizardAddPetition,
+          },
+          {
+            text: "Определение по ходатайству",
+            visible: "Petition",
+            action: this.createWizardAddDefinitionPetition,
+          },
+          {
+            text: "Решение по жалобе",
+            visible: "DecicAppeal",
+          },
+          {
+            text: "Заключение по жалобе",
+            visible: "ConclusAppeal",
+          },
+          {
+            text: "Документ участника",
+            visible: "DocumentUchast",
+            action: this.addPredDocWizard,
+          },
+        ],
+        searchForAddDocumentList: ""
       }
     },
     computed: {
       ...mapGetters({
         dataStore: 'deloTreeCardViewGetData'
       }),
+      filteredAddDocumentList() {
+        const s = this.searchForAddDocumentList.toLowerCase();
+        const a = this.addDocumentList.filter(n => n.text.toLowerCase().includes(s));
+        return a.length ? a : [{text: "Нет элементов"}]
+        
+      },
       deloTree() {
         let res = [];
         if (this.dataStore) {
@@ -1024,6 +1049,122 @@
 
   .delo__headding:hover {
     border-bottom: 2px solid #00b1ff;
+  }
+
+  .delo-menu {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 100px;
+    align-items: center;
+    @media screen and (max-width: 1300px) {
+      grid-gap: 10px;
+    }
+    .delo-menu--body-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .delo-menu--poptip {
+        display: flex;
+        align-items: center;
+        .search-wrap {
+          border-bottom: 1px solid #CCCCCC;
+          height: 40px;
+          padding: 5px 15px;
+          display: flex;
+          align-items: center;
+          img {
+            margin-right: 10px;
+          }
+          .search {
+            width: 100%;
+            height: 100%;
+            border: none;
+            font-size: 14px;
+            &::placeholder { 
+              font-style: italic;
+              color: #CCCCCC;
+            }
+          }
+        }
+        .delo-menu__poptip-list {
+          width: 350px;
+          padding: 10px 0;
+          li {
+            display: flex;
+            align-items: center;
+            button {
+              text-align: left;
+              white-space: normal;
+              border-radius: 0;
+              width: 100%;
+              margin: 3px 0;
+              padding: 3px 15px;
+            }
+          }
+        }
+      }
+    }
+    .action-button {
+      display: flex;
+      align-items: center;
+      color: #1888cc;
+      margin: 0 10px;
+      transition: .3s ease;
+      &:disabled {
+        opacity: .3;
+        .ivu-icon-md-arrow-dropdown {
+          opacity: 0;
+        }
+      }
+      img {
+        width: 1em;
+        height: 1em;
+        font-size: 36px;
+      }
+      .text {
+        padding: 0 5px 0 5px;
+      }
+    }
+    .special-buttons-wrap {
+      display: grid;
+      grid-auto-flow: column;
+      grid-gap: 20px;
+      align-items: center;
+      button {
+        width: 1em;
+        height: 1em;
+        font-size: 48px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        img {
+          position: relative;
+        }
+        &:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          width: 0;
+          height: 0;
+          transition: .3s ease;
+          background: #DCE4F7;
+          border-radius: 50%;
+          z-index: -1;
+        }
+        &:hover {
+          &:before {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
   }
 </style>
 

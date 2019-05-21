@@ -926,41 +926,9 @@ html, body, #app {
 
 }
 
-
-.amd-poptip-sub{
-  .ivu-poptip-body{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .amd-poptip-sub__nav {
-    hr.adm-txt-hr{
-      margin-left: 20px;
-      margin-right: 50px;
-    }
-    button{
-      margin-top: 5px;
-      // height: 40px;
-      margin-bottom: 5px;
-      padding-top: 8px;
-      padding-bottom: 8px;
-      padding-left: 20px;
-      color: $dark-base;
-      text-align: left;
-      width: 100%;
-      white-space: normal;
-      &:hover{
-        background-color: $white-light;
-        color: $dark-base;
-      }
-      &:disabled {
-        color: #c5c8ce;
-      }
-    }
-  }
+.delo-menu .ivu-poptip-body {
+  padding: 0 !important;
 }
-
 .adm-btn{
   border-radius: 4px;
   padding: 10px 30px;
