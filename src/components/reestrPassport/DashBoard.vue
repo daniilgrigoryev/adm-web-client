@@ -160,6 +160,9 @@
       if (Object.keys(this.likedOfDashboard).length > 0) {
         res = Object.values(this.likedOfDashboard);
         res.sort((a, b) => {
+          if (b.count === a.count) {
+            return new Date(b.clickedDate).getTime() - new Date(a.clickedDate).getTime();
+          }
           return b.count - a.count;
         });
         res = res.slice(0, 5);
@@ -182,7 +185,8 @@
           this.likedOfDashboard[item.value] = {
             value: item.value,
             count: 0,
-            name: item.name
+            name: item.name,
+            clickedDate: new Date()
           };
           likedItem = this.likedOfDashboard[item.value];
         }
