@@ -59,10 +59,6 @@ export default {
               title: "Об административном правонарушении",
               value: [
                 {
-                  title: "Общее",
-                  value: ""
-                },
-                {
                   title: "Такси",
                   value: "CreateProtTaxi"
                 },
@@ -96,10 +92,6 @@ export default {
           desc: "о возбуждении дела об административном расследовании",
           icon: require("../../assets/images/Документ_4 gray.png"),
           value: [
-            {
-              title: "Общее",
-              value: ""
-            },
             {
               title: "Такси",
               value: "CreateDefinitionTaxi"
