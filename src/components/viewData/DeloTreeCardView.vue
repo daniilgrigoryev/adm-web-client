@@ -60,8 +60,8 @@
                   </div>
                   <ul class="delo-menu__poptip-list">
                     <li v-for="item in filteredAddDocumentList" :key="item.id">
-                      <Button :disabled="!menuItemVisible(menu.addDocument[item.visible])" 
-                              @click="item.action || ''" type="text" class="adm-btn-regular">
+                      <Button :disabled="!menuItemVisible(menu.addDocument[item.visible]) || !item.action" 
+                              @click="item.action" type="text" class="adm-btn-regular">
                         {{item.text}}
                       </Button>
                     </li>
@@ -86,6 +86,7 @@
                 <img :src="require('../../assets/images/log.svg')" alt="" style="right: -2px;">
               </button>
             </div>
+            <frm-log v-if="logOpen"></frm-log>
 
           </div>
         </div>
@@ -128,7 +129,8 @@
     name: "DeloTreeCardView",
     components: {
       DeloInnerForm: () => import('~/components/delo/DeloInnerForm'),
-      TreeNode: () => import('~/components/viewData/TreeNode')
+      TreeNode: () => import('~/components/viewData/TreeNode'),
+      FrmLog: () => import('~/components/log/FrmLog')
     },
     async created() {
       await this.init();
@@ -179,15 +181,12 @@
           {
             text: "Приложить документ к делу",
             visible: "ApplyDocOnDelo",
-          },
-          {
-            text: "Добавить фото и видеоматериалы",
-            visible: "AddFotoVideo",
             action: this.addDocPhotoWizard,
           },
           {
             text: "Объяснение",
             visible: "Explanation",
+            action: "",
           },
           {
             text: "Протокол об АПН",
@@ -217,6 +216,7 @@
           {
             text: "Перенос даты рассмотрения дела",
             visible: "ChangeDateRasmDelo",
+            action: "",
           },
           {
             text: "Ходатайство о продлении сроков административного расследования",
@@ -231,10 +231,12 @@
           {
             text: "Решение по жалобе",
             visible: "DecicAppeal",
+            action: "",
           },
           {
             text: "Заключение по жалобе",
             visible: "ConclusAppeal",
+            action: "",
           },
           {
             text: "Документ участника",
@@ -242,7 +244,8 @@
             action: this.addPredDocWizard,
           },
         ],
-        searchForAddDocumentList: ""
+        searchForAddDocumentList: "",
+        logOpen: false,
       }
     },
     computed: {
@@ -1002,7 +1005,7 @@
           let params = {
             node: copyNode
           };
-
+          // this.logOpen = !this.logOpen;
           formStack.toNext({
             module: this.$store.state.frmLog,
             vm: this,

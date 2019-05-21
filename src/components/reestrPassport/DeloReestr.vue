@@ -617,7 +617,6 @@
                     ])
                   },
                   render: (h, params) => {
-                    console.log(params.row);
                     return h('div', {}, [
                       h('Tooltip', {
                         props: {
