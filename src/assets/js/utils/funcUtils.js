@@ -116,6 +116,7 @@ export function clearAll() {
   localStorage.removeItem('admUserInfo');
   sessionStorage.removeItem('admAuthSid');
   sessionStorage.removeItem('mainMenuActiveName');
+  sessionStorage.removeItem('likedOfDashboard');
 }
 
 export function parseDateTime(dateTime, format) {

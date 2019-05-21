@@ -30,7 +30,7 @@
       <small class="adm-form__label">Кем выдан:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.vuOgaiVydName" :maskProps="{casing: 'upper', placeholder: ''}" clearable @onInputChange="storeElementData"></masked-input>
+          <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" v-model="data.vuOgaiVydName" :maskProps="{casing: 'upper', regex: '[а-яА-Я0-9 .-]+', placeholder: ''}" clearable @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
     </div>

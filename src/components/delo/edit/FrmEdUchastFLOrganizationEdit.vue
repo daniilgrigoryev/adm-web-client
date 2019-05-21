@@ -40,7 +40,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.name" :maskProps="{casing: 'upper', placeholder: ''}" :maxlength="100"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastOrganization.organization.name" :maskProps="{casing: 'upper', regex: '[а-яА-Я0-9 .-]+', placeholder: ''}" :maxlength="100"></masked-input>
                     </Col>
                   </Row>
                 </div>
