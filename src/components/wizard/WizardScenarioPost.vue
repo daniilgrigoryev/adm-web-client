@@ -117,7 +117,7 @@
             hide: !this.isVisible('LVOK')
           },
           {
-            title: "Блок присутствия",
+            title: "Информация по представителю",
             name: "pres",
           },
           {

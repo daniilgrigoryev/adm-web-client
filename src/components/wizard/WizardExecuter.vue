@@ -26,7 +26,8 @@
       WizardScenarioAddAdvice: () => import('~/components/wizard/WizardScenarioAddAdvice'),
       WizardScenarioAddDefinitionPetition: () => import('~/components/wizard/WizardScenarioAddDefinitionPetition.vue'),
       WizardScenarioAddPetition: () => import('~/components/wizard/WizardScenarioAddPetition'),
-      WizardScenarioPostStopDelo: () => import('~/components/wizard/WizardScenarioPostStopDelo')
+      WizardScenarioPostStopDelo: () => import('~/components/wizard/WizardScenarioPostStopDelo'),
+      WizardScenarioPostDecisDelo: () => import('~/components/wizard/WizardScenarioPostDecisDelo')
     },
     async created() {
       try {
@@ -188,6 +189,12 @@
           case 'AddAdvice': {
             res = {
               name: 'WizardScenarioAddAdvice'
+            };
+            break;
+          }
+          case 'CreateProtDecisDelo': {
+            res = {
+              name: 'WizardScenarioPostDecisDelo'
             };
             break;
           }

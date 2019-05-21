@@ -12,13 +12,8 @@
                 <small class="adm-form__label">Определение №</small>
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
-                    <Col span="10">
+                    <Col :xs="24" :md="14" :lg="16">
                       <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="docsOpred.docN" @onInputChange="store"></masked-input>
-                    </Col>
-                    <Col span="6">
-                      <button @click="copyOwner" class="adm-form__icon-button" :disabled="true" title="Получить уникальный номер" type="button">
-                        <img :src="require('~/assets/images/getDeloNumber.png')" alt="Получить уникальный номер">
-                      </button>
                     </Col>
                   </Row>
                 </div>

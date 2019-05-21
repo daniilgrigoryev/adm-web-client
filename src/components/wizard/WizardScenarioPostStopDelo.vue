@@ -7,27 +7,19 @@
 						<wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
 					</wizard-item-doc-post-first-stop-delo>
 				</div>
-				
-				<wizard-item-lvok-pres  v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok-pres>
-				
-				<div class="adm-form" v-if="isVisible('LVOK.PredDoc')">
-					<div class="adm-form__container">
-						<h2 class="adm-form__headding" id="predDoc">Предъявленный документ</h2>
-						<div class="adm-form__content">
-							<wizard-item-add-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-pred-doc>
-						</div>
-					</div>
-				</div>
-				
-				<div class="adm-form" v-if="isVisible('Repres')">
-					<div class="adm-form__container">
-						<h2 class="adm-form__headding" id="	">Информация по законному представителю</h2>
-						<div class="adm-form__content">
-							<wizard-item-individual v-if="isVisible('Repres')" ref="Repres" :info="getInfo('Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-							<wizard-item-address id="Repres.regAddr" v-if="isVisible('Repres.regAddr')" ref="Repres.regAddr" :info="getInfo('Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-						</div>
-					</div>
-				</div>
+
+        <div class="adm-form">
+          <div class="adm-form__container">
+            <h2 id="pres" class="adm-form__headding">Представитель</h2>
+            <div class="adm-form__content">
+              <wizard-item-present id="Present" v-if="isVisible('Present')" ref="Present" :info="getInfo('Present')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-present>
+              <wizard-item-pred-doc v-if="isVisible('Present.PredDoc')" ref="Present.PredDoc" :info="getInfo('Present.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
+              <wizard-item-individual v-if="isVisible('Present.Repres')" ref="Present.Repres" :info="getInfo('Present.Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+              <wizard-item-address v-if="isVisible('Present.Repres.regAddr')" ref="Present.Repres.regAddr" :info="getInfo('Present.Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            </div>
+          </div>
+        </div>
+
 				<div class="adm-form">
 					<div class="adm-form__container">
 						<h2 class="adm-form__headding" id="stop">Решение о прекращении производства по делу</h2>
@@ -60,12 +52,11 @@ export default {
 		MaskedInput: () => import ('~/components/shared/MaskedInput'),
 		WizardItemDocPostFirstStopDelo: () => import('~/components/wizard/items/postStopDelo/WizardItemDocPostFirstStopDelo.vue'),
 		WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
-		WizardItemLvokPres: () => import('~/components/wizard/items/WizardItemLvokPres'),
-		WizardItemAddPredDoc: () => import('~/components/wizard/items/addPredDoc/WizardItemAddPredDoc'),
+    WizardItemPresent: () => import('~/components/wizard/items/WizardItemPresent'),
+    WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
 		WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
 		WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
 		WizardItemDocPostStopDelo: () => import('~/components/wizard/items/WizardItemDocPostStopDelo'),
-		
 	},
 	data() {
 		return {
@@ -83,20 +74,11 @@ export default {
 					title: "Ввод данных постановления о прекращении дела",
 					name: "head",
 				},
-				{
-					title: "Сведения о явке",
-					name: "lvok"
-				},
-				{
-					title: "Предъявленный документ",
-					name: "predDoc",
-					hide: !this.isVisible('LVOK.PredDoc')
-				},
-				{
-					title: "Информация по законному представителю",
-					name: "repres",
-					hide: !this.isVisible('Repres')
-				},
+        {
+          title: "Информация по законному представителю",
+          name: "pres",
+          hide: !this.isVisible('Present')
+        },
 				{
 					title: "Решение о прекращении производства по делу",
 					name: "stop",

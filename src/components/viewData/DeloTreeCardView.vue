@@ -74,7 +74,7 @@
                     <Button :disabled="!menuItemVisible(menu.addDocument.OpredProvedAP)" @click="createWizardScenarioDefinition" type="text" class="adm-btn-regular">Определение о проведении АР</Button>
                   </li>
                   <li>
-                    <Button :disabled="!menuItemVisible(menu.addDocument.PostDeloAPN)" @click="createWizardScenarioPost" type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
+                    <Button :disabled="!menuItemVisible(menu.addDocument.PostDeloAPN)" @click="createWizardScenarioPostDecisDelo" type="text" class="adm-btn-regular">Постановление по делу об АПН</Button>
                   </li>
                   <li>
                     <Button :disabled="!menuItemVisible(menu.addDocument.PostPrekrDeloAPN)" @click="createWizardProtStopDelo" type="text" class="adm-btn-regular">Постановление о прекращении дела об АПН</Button>
@@ -895,11 +895,11 @@
           this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
-      createWizardScenarioPost() {
+      createWizardScenarioPostDecisDelo() {
         try {
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
-            scenarioName: 'CreatePost',
+            scenarioName: 'CreateProtDecisDelo',
             node: copyNode
           };
 
