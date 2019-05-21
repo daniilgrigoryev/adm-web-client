@@ -723,36 +723,6 @@
 
         this.store();
       },
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.docsProt.inspSostName.split(' ');
-        this.docsProt.inspSostName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.docsProt.inspSostName += item;
-                break;
-              }
-              case 1:
-              {
-                this.docsProt.inspSostName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.docsProt.inspSostName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspSostKod();
-      },
 
       onSispClick(data) {
         this.docsProt.inspSostId = data.inspId;
@@ -776,11 +746,6 @@
         this.store();
       },
 
-      clearInspSostKod() {
-        this.docsProt.inspSostId = null;
-        this.docsProt.inspSostKod = null;
-        this.store();
-      },
       clearInspSost() {
         this.docsProt.inspSostId = null;
         this.docsProt.inspSostKod = null;

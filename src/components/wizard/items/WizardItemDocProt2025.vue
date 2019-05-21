@@ -6,7 +6,7 @@
     <wizard-modal v-if="sudModal.visible" :columnsOptions="sudModal.columnsOptions" :data="sudModal.sudList" @showModal="showSudModal" @onRowDbClick="onSudClick"></wizard-modal>
 
     <div v-if="deloModal.visible" class="absolute bg-white z5 scroll-hidden px36 py12" style="top: 0; bottom: 0; right: 0; left: 0;">
-      
+
       <div class="flex-parent flex-parent--end-main">
         <Button type="text" @click="showDeloModal(false)" class="px0 py0">
           <div class="flex-parent flex-parent--center-cross">
@@ -16,7 +16,7 @@
         </Button>
       </div>
 
-    
+
       <div class="adm-form">
 				<div class="adm-form__item">
 					<small class="adm-form__label">Поиск</small>
@@ -26,7 +26,7 @@
                   <Select class="adm-input adm-input--regular w180 align-l" v-model="deloModal.paramKey" slot="prepend">
                       <Option value="deloNum">По номеру дела</Option>
                       <Option value="postNum">По номеру постановления</Option>
-                  </Select> 
+                  </Select>
                   <Button slot="append" class="append-custom" icon="ios-search" @click="findDeloList" :disabled="!deloModal.paramKey || !deloModal.paramValue" type="primary">Поиск</Button>
               </Input>
 						</Col>
@@ -91,7 +91,7 @@
         <small class="adm-form__label">ФИО сотрудника</small>
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input class="adm-input adm-input--regular" v-model="data.inspSostName" @on-input-change="changeFIO" ></Input>
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.inspSostName" :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}" @onInputChange="storeElementData"></masked-input>
           </Col>
         </Row>
       </div>
@@ -546,37 +546,6 @@
         } else {
           this.clearInspSost();
         }
-      },
-
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.data.inspSostName.split(' ');
-        this.data.inspSostName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.data.inspSostName += item;
-                break;
-              }
-              case 1:
-              {
-                this.data.inspSostName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.data.inspSostName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspSostKod();
       },
 
       async findDeloList() {

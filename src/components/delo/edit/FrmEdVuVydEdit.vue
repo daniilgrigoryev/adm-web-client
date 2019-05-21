@@ -87,7 +87,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydName" @on-input-change="changeFIO" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydName" disabled ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -97,7 +97,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydDolz" @on-input-change="clearInspVydKod" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydDolz" disabled ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -107,7 +107,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydRang" @on-input-change="clearInspVydKod" ></Input>
+                      <Input class="adm-input adm-input--regular" v-model="vuVyd.inspVydRang" disabled ></Input>
                     </Col>
                   </Row>
                 </div>
@@ -560,37 +560,6 @@
         }
         this.docTypeList = docTypeList;
       },
-
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.vuVyd.inspVydName.split(' ');
-        this.vuVyd.inspVydName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.vuVyd.inspVydName += item;
-                break;
-              }
-              case 1:
-              {
-                this.vuVyd.inspVydName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.vuVyd.inspVydName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspVydKod();
-      },
       async changeInspVydKod() {
         if (funcUtils.isNotEmpty(this.vuVyd.inspVydKod)) {
           let eventResponse = await RequestApi.prepareData({
@@ -651,11 +620,6 @@
         this.store();
       },
 
-      clearInspVydKod() {
-        this.vuVyd.inspVydId = null;
-        this.vuVyd.inspVydKod = null;
-        this.store();
-      },
       clearInspVyd() {
         this.vuVyd.inspVydId = null;
         this.vuVyd.inspVydKod = null;

@@ -11,7 +11,7 @@
             <masked-input inputClass="adm-input adm-input--regular" v-model="data.inspIspolnKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspIspolnKod" ></masked-input>
           </Col>
           <Col :xs="18" :md="18" :lg="18">
-            <Input class="adm-input adm-input--regular" disabled v-model="data.inspIspolnName" @on-input-change="changeFIO" ></Input>
+            <Input class="adm-input adm-input--regular" disabled v-model="data.inspIspolnName" ></Input>
           </Col>
           <Col :xs="2" :md="2" :lg="2">
             <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -433,36 +433,6 @@
         } else {
           this.clearOrganIspoln();
         }
-      },
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.data.inspIspolnName.split(' ');
-        this.data.inspIspolnName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.data.inspIspolnName += item;
-                break;
-              }
-              case 1:
-              {
-                this.data.inspIspolnName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.data.inspIspolnName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspIspolnKod();
       },
       async showDolzModal(visible) {
         if (funcUtils.isEmpty(this.dolzModal.srcList)) {

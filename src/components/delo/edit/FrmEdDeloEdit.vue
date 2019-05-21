@@ -96,7 +96,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbName" @on-input-change="changeFIO" ></Input>
+                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbName" disabled ></Input>
                 </Col>
               </Row>
             </div>
@@ -106,7 +106,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbDolz" @on-input-change="clearInspVozbKod" ></Input>
+                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbDolz" disabled ></Input>
                 </Col>
               </Row>
             </div>
@@ -116,7 +116,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="24" :md="14" :lg="16">
-                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbRang" @on-input-change="clearInspVozbKod" ></Input>
+                  <Input class="adm-input adm-input--regular" v-model="delo.inspVozbRang" disabled ></Input>
                 </Col>
               </Row>
             </div>
@@ -755,36 +755,6 @@
         }
 
         this.store();
-      },
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.delo.inspVozbName.split(' ');
-        this.delo.inspVozbName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.delo.inspVozbName += item;
-                break;
-              }
-              case 1:
-              {
-                this.delo.inspVozbName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.delo.inspVozbName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspVozbKod();
       },
 
       onSispClick(data) {

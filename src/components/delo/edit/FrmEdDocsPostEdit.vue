@@ -640,36 +640,6 @@
 
         this.store();
       },
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.docsPost.inspSostName.split(' ');
-        this.docsPost.inspSostName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.docsPost.inspSostName += item;
-                break;
-              }
-              case 1:
-              {
-                this.docsPost.inspSostName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.docsPost.inspSostName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspSostKod();
-      },
 
       onSispClick(data) {
         this.docsPost.inspSostId = data.inspId;
@@ -693,11 +663,6 @@
         this.store();
       },
 
-      clearInspSostKod() {
-        this.docsPost.inspSostId = null;
-        this.docsPost.inspSostKod = null;
-        this.store();
-      },
       clearInspSost() {
         this.docsPost.inspSostId = null;
         this.docsPost.inspSostKod = null;

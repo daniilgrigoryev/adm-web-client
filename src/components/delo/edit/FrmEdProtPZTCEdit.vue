@@ -57,7 +57,7 @@
                       <masked-input inputClass="adm-input adm-input--regular" v-model="protPZTC.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
                     </Col>
                     <Col :xs="18" :md="18" :lg="18">
-                      <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.inspSostName" @on-input-change="changeFIO" ></Input>
+                      <Input class="adm-input adm-input--regular" disabled v-model="protPZTC.inspSostName"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
                       <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -189,7 +189,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="protPZTC.evacRegno"  @onInputChange="store" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                      <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="protPZTC.evacRegno"  @onInputChange="store" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -210,7 +210,7 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
                       <!-- <Input class="adm-input adm-input--regular wmax240" @on-input-change="store" v-model="protPZTC.evacActNumber" ></Input> -->
-                      <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="protPZTC.evacActNumber" @onInputChange="store" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                      <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="protPZTC.evacActNumber" @onInputChange="store" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -679,36 +679,6 @@
         }
         return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.protPZTC.inspSostName.split(' ');
-        this.protPZTC.inspSostName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.protPZTC.inspSostName += item;
-                break;
-              }
-              case 1:
-              {
-                this.protPZTC.inspSostName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.protPZTC.inspSostName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspSostKod();
-      },
 
       onSispClick(data) {
         this.protPZTC.inspSostId = data.inspId;
@@ -732,11 +702,6 @@
         this.store();
       },
 
-      clearInspSostKod() {
-        this.protPZTC.inspSostId = null;
-        this.protPZTC.inspSostKod = null;
-        this.store();
-      },
       clearInspSost() {
         this.protPZTC.inspSostId = null;
         this.protPZTC.inspSostKod = null;

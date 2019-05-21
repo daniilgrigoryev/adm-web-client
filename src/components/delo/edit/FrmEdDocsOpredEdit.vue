@@ -51,7 +51,7 @@
                       <masked-input inputClass="adm-input adm-input--regular" v-model="docsOpred.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
                     </Col>
                     <Col :xs="18" :md="18" :lg="18">
-                      <Input class="adm-input adm-input--regular" disabled v-model="docsOpred.inspSostName" @on-input-change="changeFIO" ></Input>
+                      <Input class="adm-input adm-input--regular" disabled v-model="docsOpred.inspSostName"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
                       <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
@@ -775,36 +775,6 @@
         }
         return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
-      changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.docsOpred.inspSostName.split(' ');
-        this.docsOpred.inspSostName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.docsOpred.inspSostName += item;
-                break;
-              }
-              case 1:
-              {
-                this.docsOpred.inspSostName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.docsOpred.inspSostName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
-        }
-        this.clearInspSostKod();
-      },
 
       onSispClick(data) {
         this.docsOpred.inspSostId = data.inspId;
@@ -828,11 +798,6 @@
         this.store();
       },
 
-      clearInspSostKod() {
-        this.docsOpred.inspSostId = null;
-        this.docsOpred.inspSostKod = null;
-        this.store();
-      },
       clearInspSost() {
         this.docsOpred.inspSostId = null;
         this.docsOpred.inspSostKod = null;

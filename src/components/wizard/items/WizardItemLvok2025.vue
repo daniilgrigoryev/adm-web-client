@@ -27,7 +27,7 @@
           <small class="adm-form__label">ФИО:</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Input class="adm-input adm-input--regular" v-model="data.lvokName" disabled @on-input-change="changeFIO" ></Input>
+              <Input class="adm-input adm-input--regular" v-model="data.lvokName" disabled></Input>
             </Col>
           </Row>
         </div>
@@ -180,36 +180,6 @@
         this.data.presentType = null;
         if (this.data.status) {
           await this.fillPresenceTypeList();
-        }
-        await this.storeElementData();
-      },
-      async changeFIO() {
-        let fioLength = 0;
-        let fioArr = this.data.lvokName.split(' ');
-        this.data.lvokName = '';
-        for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-          let express = /^[а-яА-ЯёЁ]+$/;
-          let item = fioArr[i];
-          if (item.length > 0 && express.test(item)) {
-            switch (fioLength) {
-              case 0:
-              {
-                this.data.lvokName += item;
-                break;
-              }
-              case 1:
-              {
-                this.data.lvokName += ' ' + item;
-                break;
-              }
-              case 2:
-              {
-                this.data.lvokName += ' ' + item;
-                break;
-              }
-            }
-            fioLength++;
-          }
         }
         await this.storeElementData();
       },

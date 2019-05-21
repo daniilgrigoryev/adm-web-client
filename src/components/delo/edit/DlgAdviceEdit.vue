@@ -60,7 +60,7 @@
                   </div>
                 </Col>
               </Row>
-            </div> 
+            </div>
           </div>
           <div class="adm-form__container">
             <h2 class="adm-form__headding">Должностное лицо составившее Извещение</h2>
@@ -188,7 +188,7 @@
         }
         let eventResponse = await RequestApi.prepareData(prepareParams);
         let dataAdvice = JSON.parse(eventResponse.response).data;
-        
+
         if (funcUtils.isEmpty(dataAdvice)) {
           let error = JSON.parse(eventResponse.response).error;
           this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
@@ -616,11 +616,6 @@
         this.store();
       },
 
-      clearInspSostKod() {
-        this.dataAdvice.inspSostId = null;
-        this.dataAdvice.inspSostKod = null;
-        this.store();
-      },
       clearInspSost() {
         this.dataAdvice.inspSostId = null;
         this.dataAdvice.inspSostKod = null;

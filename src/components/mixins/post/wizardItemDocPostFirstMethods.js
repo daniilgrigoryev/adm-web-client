@@ -334,36 +334,6 @@ export default {
         this.clearInspSost();
       }
     },
-    changeFIO() {
-      let fioLength = 0;
-      let fioArr = this.data.inspSostName.split(' ');
-      this.data.inspSostName = '';
-      for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-        let express = /^[а-яА-ЯёЁ]+$/;
-        let item = fioArr[i];
-        if (item.length > 0 && express.test(item)) {
-          switch (fioLength) {
-            case 0:
-            {
-              this.data.inspSostName += item;
-              break;
-            }
-            case 1:
-            {
-              this.data.inspSostName += ' ' + item;
-              break;
-            }
-            case 2:
-            {
-              this.data.inspSostName += ' ' + item;
-              break;
-            }
-          }
-          fioLength++;
-        }
-      }
-      this.clearInspSostKod();
-    },
 
     async onSispClick(data) {
       this.data.inspSostId = data.inspId;
@@ -384,12 +354,6 @@ export default {
       this.data.organSostName = data.ORGAN_NAME;
       this.organModal.gibddList = null;
       this.organModal.visible = false;
-      await this.storeElementData();
-    },
-
-    async clearInspSostKod() {
-      this.data.inspSostId = null;
-      this.data.inspSostKod = null;
       await this.storeElementData();
     },
     async clearInspSost() {
