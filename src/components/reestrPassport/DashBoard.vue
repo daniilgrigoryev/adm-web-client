@@ -98,7 +98,7 @@ export default {
           value: [
             {
               title: "Общее",
-              value: "CreateDefinition"
+              value: ""
             },
             {
               title: "Такси",
@@ -106,7 +106,7 @@ export default {
             },
             {
               title: "Эвакуация",
-              value: ""
+              value: "CreateDefinition"
             },
             {
               title: "КоАП г. Москвы",
