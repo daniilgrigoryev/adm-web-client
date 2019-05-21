@@ -118,10 +118,7 @@ export default {
 			});
 			let resp = JSON.parse(eventResponse.response);
 			if (resp.error && resp.error.errorId) {
-				let error = '';
-				funcUtils.isNotEmpty(resp.error.errorMsg) ? error += `ErrorMsg: ${resp.error.errorMsg}\n` : null;
-				funcUtils.isNotEmpty(resp.error.errorDesc) ? error += `ErrorDesc: ${resp.error.errorDesc}\n` : null;
-				this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
+				this.$store.dispatch('errors/changeContent', {title: resp.error.errorMsg, desc: resp.error.errorDesc,});
 			} else {
 				eventResponse = await RequestApi.prepareData({
 					method: 'getDeloId'
