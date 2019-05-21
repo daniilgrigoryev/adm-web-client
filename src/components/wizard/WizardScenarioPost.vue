@@ -38,8 +38,8 @@
             <div class="adm-form__content">
               <wizard-item-present id="Present" v-if="isVisible('Present')" ref="Present" :info="getInfo('Present')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-present>
               <wizard-item-pred-doc v-if="isVisible('Present.PredDoc')" ref="Present.PredDoc" :info="getInfo('Present.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
-              <wizard-item-individual v-if="isVisible('Present.Individual')" ref="Present.Individual" :info="getInfo('Present.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-              <wizard-item-address v-if="isVisible('Present.Individual.regAddr')" ref="Present.Individual.regAddr" :info="getInfo('Present.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+              <wizard-item-individual v-if="isVisible('Present.Repres')" ref="Present.Repres" :info="getInfo('Present.Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+              <wizard-item-address v-if="isVisible('Present.Repres.regAddr')" ref="Present.Repres.regAddr" :info="getInfo('Present.Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
           <div class="adm-form__container">
