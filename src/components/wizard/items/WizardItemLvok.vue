@@ -10,9 +10,9 @@
             </Select>
           </Col>
           <Col span="4">
-          <button @click="copyOwner" class="adm-form__icon-button" :disabled="data.status !== 1 && data.status !== 3" title="Скопировать данные владельца" type="button">
-            <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
-          </button>
+            <button @click="copyOwner" class="adm-form__icon-button" :disabled="data.status !== 1 && data.status !== 3" title="Скопировать данные владельца" type="button">
+              <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
+            </button>
           </Col>
         </Row>
       </div>

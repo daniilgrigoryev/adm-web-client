@@ -94,16 +94,16 @@
       <div class="adm-form__content">
         <div class="adm-form__item">
           <small class="adm-form__label">Статус держателя лицензии</small>
-          <Row :gutter="16" type="flex" align="middle">
-            <Col span="10">
-              <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
+          <Row type="flex" align="middle">
+            <Col span="12">
+              <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
                 <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
               </Select>
             </Col>
-            <Col span="6">
-              <Button @click="ownerToLicense" type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                <Icon type="md-key" title="" :size="30" />
-              </Button>
+            <Col span="4">
+              <button @click="ownerToLicense" class="adm-form__icon-button" type="button">
+                <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
+              </button>
             </Col>
           </Row>
         </div>
