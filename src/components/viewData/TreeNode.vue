@@ -244,7 +244,7 @@
             let uchastBirthday = params.uchast_birthday ? `<p class="other-info">Дата рождения ${params.uchast_birthday}</p>` : '';
             let uchast_tip_name = params.uchast_tip_name ? `, ${params.uchast_tip_name.slice(0, -1).slice(1)}` : '';
             return `
-              <h4><div>${params.uchast_vid_name_short} ${uchast_tip_name}</div></h4>
+              <h4><div>${params.uchast_vid_name_short}${uchast_tip_name}</div></h4>
               <p>${params.uchast_name_short} </p>
               ${uchastBirthday}
             `;

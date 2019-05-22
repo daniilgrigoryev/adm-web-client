@@ -4,12 +4,12 @@
       <small class="adm-form__label">Статус</small>
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">
-          <Col span="10">
+          <Col span="12">
             <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
               <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
           </Col>
-          <Col span="6">
+          <Col span="4">
           <button @click="copyOwner" class="adm-form__icon-button" :disabled="data.status !== 1 && data.status !== 3" title="Скопировать данные владельца" type="button">
             <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
           </button>
