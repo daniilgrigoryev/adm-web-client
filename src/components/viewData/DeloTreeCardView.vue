@@ -6,7 +6,7 @@
     </div>
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
       <div v-if="deloContext" class="bg-white deloContext-sticky">
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross px60 py6">
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross pl60 py6">
           <div class="flex-parent flex-parent--center-cross">
 
             <Button @click="getPrev" type="text" style="outline: 0!important;"
@@ -82,11 +82,11 @@
               <button @click="printDocument" title="печать дела">
                 <img :src="require('../../assets/images/print.svg')" alt="">
               </button>
-              <button @click="getLogs" title="Логи">
+              <button @click="logOpen = !logOpen;" title="Логи">
                 <img :src="require('../../assets/images/log.svg')" alt="" style="right: -2px;">
               </button>
             </div>
-            <frm-log v-if="logOpen"></frm-log>
+            <frm-log ref="logs" v-if="logOpen" @closeLogs="logOpen = false"></frm-log>
 
           </div>
         </div>
@@ -246,6 +246,7 @@
         ],
         searchForAddDocumentList: "",
         logOpen: false,
+        logNode: {},
       }
     },
     computed: {
@@ -407,9 +408,11 @@
       async nodeClick(node) {
         await innerFormStack.clearStack();
         let copyNode = this.getCopyObj(node, 'selected', 'children', 'height', 'nodeParams');
-
         await this.addForm(copyNode);
         this.updateSelected();
+        if (this.logOpen) {
+          this.$refs.logs.changeNode();
+        }
       },
       changeClass(stadKod) {
         if (funcUtils.isNotEmpty(stadKod)) {
@@ -608,7 +611,6 @@
             arrElem.nodeParams = nodeParams;
           }
         }
-
         this.firstTreeNode = this.getCopyObj(arr.getFirst(), 'children');
         tree.push(this.firstTreeNode);
 
@@ -999,24 +1001,6 @@
           this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
-      getLogs() {
-        try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
-          let params = {
-            node: copyNode
-          };
-          // this.logOpen = !this.logOpen;
-          formStack.toNext({
-            module: this.$store.state.frmLog,
-            vm: this,
-            notRemoved: true,
-            params: params,
-            withCreate: true
-          });
-        } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message.error,});
-        }
-      },
     },
   }
 </script>
@@ -1057,7 +1041,7 @@
   .delo-menu {
     display: grid;
     grid-auto-flow: column;
-    grid-gap: 100px;
+    grid-gap: 80px;
     align-items: center;
     @media screen and (max-width: 1300px) {
       grid-gap: 10px;
@@ -1133,6 +1117,7 @@
       grid-auto-flow: column;
       grid-gap: 20px;
       align-items: center;
+      padding: 0 20px;
       button {
         width: 1em;
         height: 1em;

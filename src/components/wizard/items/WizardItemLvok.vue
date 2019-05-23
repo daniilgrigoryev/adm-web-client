@@ -88,7 +88,6 @@
             data: null
           }
         });
-        console.log("object");
         let tipList = [];
         let tipDict = JSON.parse(JSON.parse(eventResponse.response).data);
         for (let i = 0; i < tipDict.length; i++) {
