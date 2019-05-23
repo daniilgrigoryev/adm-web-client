@@ -126,8 +126,6 @@
     name: "WizardItemOrganization",
     components: {
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
-      Select: () => import('~/components/shared/CustomSelect'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     props: {
       info: Object,

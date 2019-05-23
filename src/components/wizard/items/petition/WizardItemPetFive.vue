@@ -47,8 +47,6 @@
     name: "WizardItemPetFive",
     components: {
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     props: {
       info: Object

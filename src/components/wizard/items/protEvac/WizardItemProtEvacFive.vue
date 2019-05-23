@@ -29,7 +29,7 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.evacRegno"  @onInputChange="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                  <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.evacRegno"  @onInputChange="storeElementData" placeholder="ГРЗ" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9]+', casing: 'upper', placeholder: ''}"  clearable></masked-input>
                 </Col>
               </Row>
             </div>
@@ -50,7 +50,7 @@
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
                   <!-- <Input class="adm-input adm-input--regular wmax240" @on-input-change="storeElementData" v-model="data.evacActNumber" ></Input> -->
-                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.evacActNumber" @onInputChange="storeElementData" :maskProps="{regex: '[а-яА-Я0-9\/\-]+', casing: 'upper', placeholder: ''}"  clearable></masked-input> 
+                  <masked-input inputClass="adm-input adm-input--regular wmax240" v-model="data.evacActNumber" @onInputChange="storeElementData" :maskProps="{regex: '[а-яА-Я0-9\/\-]+', casing: 'upper', placeholder: ''}"  clearable></masked-input>
                 </Col>
               </Row>
             </div>
@@ -80,8 +80,6 @@
     name: "WizardItemProtEvacFive",
     mixins: [wizardItemProtEvacFiveMethods],
     components: {
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     props: {
       info: Object

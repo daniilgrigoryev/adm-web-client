@@ -263,9 +263,6 @@
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
-      Select: () => import('~/components/shared/CustomSelect'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {

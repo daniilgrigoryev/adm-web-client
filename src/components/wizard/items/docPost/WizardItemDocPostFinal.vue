@@ -28,7 +28,6 @@
     name: "WizardItemDocPostFinal",
     mixins: [wizardItemDocPostFinalMethods],
     components: {
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     props: {
       info: Object

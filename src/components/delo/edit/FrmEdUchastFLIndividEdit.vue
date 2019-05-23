@@ -204,8 +204,8 @@
                   </Col>
                 </Row>
               </div>
-            </div> 
-          </div> 
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -225,8 +225,6 @@
     name: "FrmEdUchastFLIndividEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {
@@ -255,7 +253,7 @@
             this.uchastIndivid.individ.birthMesto = '';
           }
           this.uchastIndivid.isSpeaksRussian += '';
-          
+
           await this.fillVehsList();
           await this.fillTipVidList();
           await this.fillTipList();

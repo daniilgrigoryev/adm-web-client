@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
 
-    <div v-if="individualStatus == 3" class="adm-form__item">
+    <div v-if="individualStatus === constants.UCHAST_INDIVID" class="adm-form__item">
       <small class="adm-form__label">ИНН</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
@@ -9,7 +9,7 @@
         </Col>
       </Row>
     </div>
-    <div v-if="individualStatus == 3" class="adm-form__item">
+    <div v-if="individualStatus === constants.UCHAST_INDIVID" class="adm-form__item">
       <small class="adm-form__label">ОГРНИП:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
@@ -147,13 +147,11 @@
 <script>
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as constants from "~/assets/js/utils/constants";
 
   export default {
     name: "WizardItemIndividual",
     components: {
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
-      Select: () => import('~/components/shared/CustomSelect'),
     },
     props: {
       info: Object,
@@ -174,6 +172,7 @@
           casing: 'upper',
           placeholder: ''
         },
+        constants
       }
     },
     computed: {

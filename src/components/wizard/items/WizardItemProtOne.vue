@@ -38,8 +38,6 @@
     name: "WizardItemProtOne",
     mixins: [wizardItemProtOneMethods],
     components: {
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     props: {
       info: Object

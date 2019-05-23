@@ -7,7 +7,7 @@
           <div class="adm-form__container">
             <h2 class="adm-form__headding">{{decis.decisName}}</h2>
             <div class="adm-form__content">
-              
+
               <div v-if="decis.decisKod && showByDecisKod(decisKods.lish)">
                 <div class="adm-form__item">
                   <small class="adm-form__label">Количество месяцев</small>
@@ -295,8 +295,6 @@
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     async created() {
       try {

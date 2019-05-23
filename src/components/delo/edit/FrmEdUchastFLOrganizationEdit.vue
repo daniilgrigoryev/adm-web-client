@@ -176,8 +176,6 @@
     name: "FrmEdUchastFLOrganizationEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     async created() {
       try {

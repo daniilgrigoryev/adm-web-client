@@ -217,7 +217,6 @@
 export default {
 	name: "WizardItemPlace",
 	components: {
-    Select: () => import('~/components/shared/CustomSelect'),
     MaskedInput: () => import('~/components/shared/MaskedInput')
   },
 	props: {

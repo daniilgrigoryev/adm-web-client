@@ -89,9 +89,6 @@
     },
     components: {
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      Select: () => import('~/components/shared/CustomSelect'),
     },
     async created() {
       await this.initData();

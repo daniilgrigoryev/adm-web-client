@@ -136,7 +136,6 @@
     name: "WizardItemOrganizationUchast",
     components: {
       MaskedInput: () => import('~/components/shared/MaskedInput'),
-      Select: () => import('~/components/shared/CustomSelect'),
     },
     extends: WizardItemOrganization
   }

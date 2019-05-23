@@ -19,40 +19,52 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="ФИО, дата рождения" 
-            :value="body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'.') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.')" 
+          <view-data-item
+            label="ФИО, дата рождения"
+            :value="body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'.') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/owner.svg')"
           />
-          <view-data-item 
-            label="Место рождения" 
-            :value="body.individ.birthMesto" 
+          <view-data-item
+            label="Место рождения"
+            :value="body.individ.birthMesto"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
-          <view-data-item 
-            label="Гражданство" 
-            :value="body.individ.gragdName" 
+          <view-data-item
+            label="Гражданство"
+            :value="body.individ.gragdName"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Адрес регистрации" 
-            :value="body.individ.address.adrFull" 
+          <view-data-item
+            label="Адрес регистрации"
+            :value="body.individ.address.adrFull"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
-          <view-data-item 
-            label="Фактический адрес" 
-            :value="body.factAddr.adrFull" 
+          <view-data-item
+            label="Фактический адрес"
+            :value="body.factAddr.adrFull"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Телефон" 
-            :value="body.individ.phone" 
+          <view-data-item
+            label="Телефон"
+            :value="body.individ.phone"
             style="grid-column: span 2;"
           />
+          <div v-if="body.uchastStatus === constants.UCHAST_INDIVID">
+            <view-data-item
+              label="ИНН"
+              :value="body.individ.inn"
+              style="grid-column: span 2;"
+            />
+            <view-data-item
+              label="ОГРНИП"
+              :value="body.individ.ogrn"
+              style="grid-column: span 2;"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -64,6 +76,7 @@
   import * as formStack from '~/assets/js/api/formStack';
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import { mapGetters } from 'vuex';
+  import * as constants from "~/assets/js/utils/constants";
 
   export default {
     name: "FrmEdUchastFLIndivid",
@@ -72,6 +85,7 @@
     },
     data() {
       return {
+        constants
       }
     },
     methods: {

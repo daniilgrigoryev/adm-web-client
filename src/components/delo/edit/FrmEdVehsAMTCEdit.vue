@@ -151,7 +151,7 @@
                         <Option v-for="item in motorTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
-                  </Row>  
+                  </Row>
                 </div>
               </div>
               <div class="adm-form__item">
@@ -308,8 +308,6 @@
     name: "FrmEdVehsAMTCEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {

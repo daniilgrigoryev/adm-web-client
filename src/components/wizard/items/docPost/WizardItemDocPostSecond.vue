@@ -77,8 +77,6 @@
     name: "WizardItemDocPostSecond",
     mixins: [wizardItemDocPostSecondMethods],
     components: {
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      Select: () => import('~/components/shared/CustomSelect'),
     },
     props: {
       info: Object

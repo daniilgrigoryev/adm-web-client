@@ -84,9 +84,6 @@ export default {
   mixins: [wizardItemDocPostFirstMethods],
   components: {
     WizardModal: () => import('~/components/wizard/items/WizardModal'),
-    MaskedInput: () => import('~/components/shared/MaskedInput'),
-    DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-    MaskedInput: () => import('~/components/shared/MaskedInput'),
   },
   props: {
 		info: Object

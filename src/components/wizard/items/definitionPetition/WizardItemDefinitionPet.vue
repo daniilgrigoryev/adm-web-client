@@ -34,8 +34,6 @@
   export default {
     name: "WizardItemDefinitionPet",
     components: {
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     props: {
       info: Object

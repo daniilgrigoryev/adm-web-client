@@ -49,8 +49,6 @@
   export default {
 		name: "WizardItemDocPostStopDelo",
 		components: {
-			DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
-      Select: () => import('~/components/shared/CustomSelect'),
 		},
     props: {
       info: Object

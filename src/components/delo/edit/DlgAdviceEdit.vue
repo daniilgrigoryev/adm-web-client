@@ -169,9 +169,7 @@
     name: "DlgAdviceEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {

@@ -57,8 +57,6 @@
     name: "FrmEdIspolnEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {
       try {
