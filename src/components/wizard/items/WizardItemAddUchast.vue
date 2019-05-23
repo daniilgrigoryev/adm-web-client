@@ -14,7 +14,7 @@
       <small class="adm-form__label">Вид:</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.vid" clearable @on-change="storeElementData">
+          <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.vid" clearable @on-change="changeVid">
             <Option class="wmax360" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>
         </Col>
@@ -45,12 +45,16 @@
 
 <script>
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
 
   export default {
     name: "WizardItemAddUchast",
     props: {
       info: Object,
       title: String
+    },
+    components: {
+      Select: () => import('~/components/shared/CustomSelect'),
     },
     async created() {
       await this.initData();
@@ -61,6 +65,7 @@
         statusList: null,
         tipList: null,
         vidList: null,
+        tipVidList: null,
         vehsList: null,
       }
     },
@@ -75,9 +80,10 @@
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
 
         await this.fillStatusList();
+        await this.fillTipVidList();
         await this.fillVidList();
-        await this.fillVehsList();
         await this.fillTipList();
+        await this.fillVehsList();
       },
       async fillStatusList() {
         let eventResponse = await RequestApi.prepareData({
@@ -99,30 +105,6 @@
         }
         this.statusList = statusList;
       },
-      async fillTipList() {
-        let tipList = [];
-        if (this.data.status) {
-          let eventResponse = await RequestApi.prepareData({
-            method: 'invokeElementMethod',
-            params: {
-              eCID: this.info.eCID,
-              methodName: 'getTipDict',
-              data: JSON.stringify({
-                status: this.data.status
-              })
-            }
-          });
-          let tipDict = JSON.parse(JSON.parse(eventResponse.response).data);
-          for (let i = 0; i < tipDict.length; i++) {
-            let tip = tipDict[i];
-            tipList.push({
-              label: tip.UCHAST_TIP_NAME,
-              value: tip.UCHAST_TIP
-            });
-          }
-        }
-        this.tipList = tipList;
-      },
       async fillVidList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
@@ -142,6 +124,51 @@
           });
         }
         this.vidList = vidList;
+      },
+      async fillTipList() {
+        let tipList = [];
+        if (this.data.status) {
+          let eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getTipDict',
+              data: JSON.stringify({
+                status: this.data.status
+              })
+            }
+          });
+          let tipDict = JSON.parse(JSON.parse(eventResponse.response).data);
+          for (let i = 0; i < tipDict.length; i++) {
+            let tip = tipDict[i];
+            if (this.tipVidList.includes(tip.UCHAST_TIP)) {
+              tipList.push({
+                label: tip.UCHAST_TIP_NAME,
+                value: tip.UCHAST_TIP
+              });
+            }
+          }
+        }
+        this.tipList = tipList;
+      },
+      async fillTipVidList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getTipVidDictionary',
+            data: null
+          }
+        });
+        let tipVidList = [];
+        let tipVidDict = JSON.parse(JSON.parse(eventResponse.response).data);
+        for (let i = 0; i < tipVidDict.length; i++) {
+          let tipVid = tipVidDict[i];
+          if (this.data.vid === tipVid.UCHAST_VID && funcUtils.isNotEmpty(tipVid.UCHAST_TIP)) {
+            tipVidList.push(tipVid.UCHAST_TIP);
+          }
+        }
+        this.tipVidList = tipVidList;
       },
       async fillVehsList() {
         let eventResponse = await RequestApi.prepareData({
@@ -169,6 +196,13 @@
         await this.storeElementData();
         this.data.tip = null;
         this.data.vid = null;
+        await this.fillTipVidList();
+        await this.fillTipList();
+      },
+      async changeVid() {
+        await this.storeElementData();
+        this.data.tip = null;
+        await this.fillTipVidList();
         await this.fillTipList();
       },
       async storeElementData() {

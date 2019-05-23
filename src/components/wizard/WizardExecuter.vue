@@ -54,6 +54,14 @@
           parentNode = JSON.parse(eventResponse.response).data;
         }
 
+        let deloTag = null;
+        eventResponse = await RequestApi.prepareData({
+          method: 'getDeloTag',
+        });
+        if (eventResponse.response) {
+          deloTag = JSON.parse(eventResponse.response).data;
+        }
+
         let info = {};
         for (let i = 0; i < cids.length; i++) {
           let cid = cids[i];
@@ -65,6 +73,7 @@
           });
           info[cid] = JSON.parse(eventResponse.response).data;
           info[cid].parentNode = parentNode;
+          info[cid].deloTag = deloTag;
         }
         let pathes = {};
         for (let prop in info) {
@@ -253,8 +262,17 @@
               if (eventResponse.response) {
                 parentNode = JSON.parse(eventResponse.response).data;
               }
+
+              let deloTag = null;
+              eventResponse = await RequestApi.prepareData({
+                method: 'getDeloTag',
+              });
+              if (eventResponse.response) {
+                deloTag = JSON.parse(eventResponse.response).data;
+              }
               info.eCID = cid;
               info.parentNode = parentNode;
+              info.deloTag = deloTag;
               this.pathes[info.path] = info;
               this.$refs[this.scenario].$forceUpdate();
             }

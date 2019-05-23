@@ -64,7 +64,7 @@
                         </Col>
                       </Row>
                     </div>
-                  </div>  
+                  </div>
                 </Col>
               </Row>
               <Row :gutter="16">
@@ -158,6 +158,7 @@
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
       DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+      Select: () => import('~/components/shared/CustomSelect'),
       MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     async created() {

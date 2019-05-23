@@ -157,7 +157,7 @@
                     </Col>
                   </Row>
                 </div>
-              </div> 
+              </div>
             </div>
           </div>
           <div class="button-wrap">
@@ -178,6 +178,9 @@
     props: {
       info: Object,
       title: String
+    },
+    components: {
+      Select: () => import('~/components/shared/CustomSelect'),
     },
     async created() {
       await this.initData();

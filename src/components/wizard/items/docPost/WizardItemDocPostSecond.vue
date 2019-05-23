@@ -28,7 +28,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">
-            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="changeStotvSearchInfo">
+            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="changeStotvSearchInfo" :filterMethod="filterStotv">
               <Option class="" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
             </Select>
           </Col>
@@ -77,7 +77,8 @@
     name: "WizardItemDocPostSecond",
     mixins: [wizardItemDocPostSecondMethods],
     components: {
-      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
+      DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
+      Select: () => import('~/components/shared/CustomSelect'),
     },
     props: {
       info: Object
@@ -103,10 +104,10 @@
           let error = JSON.parse(eventResponse.response).error;
           this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
-          this.data = data;
           await this.fillPnpaList();
           await this.fillStotvSearchInfo();
           await this.fillFactSved();
+          this.data = data;
         }
 
         if (funcUtils.isNotEmpty(this.data.stotvId)) {

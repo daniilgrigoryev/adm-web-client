@@ -28,13 +28,13 @@
             style="grid-column: span 2;"
           />
           <view-data-item
-            label="Дата вручения" 
-            :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
+            label="Дата вручения"
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дата вступления" 
-            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вступления"
+            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
           <view-data-item

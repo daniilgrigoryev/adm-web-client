@@ -60,7 +60,7 @@
                   </div>
                   <ul class="delo-menu__poptip-list">
                     <li v-for="item in filteredAddDocumentList" :key="item.id">
-                      <Button :disabled="!menuItemVisible(menu.addDocument[item.visible]) || !item.action" 
+                      <Button :disabled="!menuItemVisible(menu.addDocument[item.visible]) || !item.action"
                               @click="item.action" type="text" class="adm-btn-regular">
                         {{item.text}}
                       </Button>
@@ -256,7 +256,7 @@
         const s = this.searchForAddDocumentList.toLowerCase();
         const a = this.addDocumentList.filter(n => n.text.toLowerCase().includes(s));
         return a.length ? a : [{text: "Нет элементов"}]
-        
+
       },
       deloTree() {
         let res = [];
@@ -1083,7 +1083,7 @@
             height: 100%;
             border: none;
             font-size: 14px;
-            &::placeholder { 
+            &::placeholder {
               font-style: italic;
               color: #CCCCCC;
             }

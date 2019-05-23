@@ -66,9 +66,19 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="storeElementData">
+            <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="changeIspolnKod">
               <Option class=" " v-for="item in ispolnList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </Select>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div v-if="data.stadIspolnKod === 11 || data.stadIspolnKod === 2" class="adm-form__item">
+      <small class="adm-form__label">УИП</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="24" :lg="24">
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.uip" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
           </Col>
         </Row>
       </div>
@@ -382,6 +392,10 @@
           this.fillStotvSearchInfo();
         }
       },
+      async changeIspolnKod() {
+        this.data.uip = null;
+        await this.storeElementData();
+      },
       async changeInspIspolnKod() {
         if (funcUtils.isNotEmpty(this.data.inspIspolnKod)) {
           let eventResponse = await RequestApi.prepareData({
@@ -475,11 +489,6 @@
           this.organModal.gibddList = null;
         }
         this.organModal.visible = visible;
-      },
-      async clearInspIspolnKod() {
-        this.data.inspIspolnId = null;
-        this.data.inspIspolnKod = null;
-        await this.storeElementData();
       },
       async clearInspIspoln() {
         this.data.inspIspolnId = null;

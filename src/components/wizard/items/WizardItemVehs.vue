@@ -3,7 +3,7 @@
     <div class="adm-form__container">
       <h2 class="adm-form__headding" id="tc">Транспортное средство</h2>
       <div class="adm-form__content">
-        
+
             <div class="adm-form__item">
               <small class="adm-form__label">ГРЗ</small>
               <div class="adm-form__item_content">
@@ -29,8 +29,8 @@
                 </Row>
               </div>
             </div>
-          
-        
+
+
             <div class="adm-form__item">
               <small class="adm-form__label">Марка</small>
               <div class="adm-form__item_content">
@@ -55,8 +55,8 @@
                 </Row>
               </div>
             </div>
-          
-        
+
+
             <div class="adm-form__item">
               <small class="adm-form__label">СТС</small>
               <div class="adm-form__item_content">
@@ -119,7 +119,7 @@
           </div>
         </div>
 
-        <div class="adm-form__item">
+        <div v-if="!isTaxi" class="adm-form__item">
           <small class="adm-form__label">Владелец</small>
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
@@ -139,10 +139,12 @@
 <script>
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as constants from "~/assets/js/utils/constants";
 
   export default {
     name: "WizardItemVehs",
     components: {
+      Select: () => import('~/components/shared/CustomSelect'),
       MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     props: {
@@ -169,6 +171,15 @@
           }
         ]
       }
+    },
+    computed: {
+      isTaxi() {
+        let res = null;
+        if (this.info) {
+          res = funcUtils.isNotEmpty(this.info.deloTag) &&  this.info.deloTag === constants.TAG_TAXI;
+        }
+        return res;
+      },
     },
     methods: {
       async initData() {

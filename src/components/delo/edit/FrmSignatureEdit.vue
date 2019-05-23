@@ -28,6 +28,7 @@
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       MaskedInput: () => import('~/components/shared/MaskedInput'),
+      Select: () => import('~/components/shared/CustomSelect'),
       DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     async created() {

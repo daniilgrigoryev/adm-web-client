@@ -55,7 +55,7 @@
         </Col>
       </Row>
     </div>
-    
+
     <!-- <div class="adm-form__item">
       <small class="adm-form__label">ОКПО</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -74,7 +74,7 @@
       </Row>
     </div> -->
     <!-- ENDTODO -->
-    
+
     <!-- <div class="adm-form__item">
       <small class="adm-form__label">Тип ЮЛ</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -126,6 +126,7 @@
     name: "WizardItemOrganization",
     components: {
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
+      Select: () => import('~/components/shared/CustomSelect'),
       DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     props: {

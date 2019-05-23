@@ -141,7 +141,7 @@
                       </Col>
                     </Row>
                   </div>
-                </div> 
+                </div>
               </div>
             </div>
           </div>
@@ -166,6 +166,7 @@
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       MaskedInput: () => import('~/components/shared/MaskedInput'),
+      Select: () => import('~/components/shared/CustomSelect'),
     },
     async created() {
       try {

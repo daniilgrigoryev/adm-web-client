@@ -68,6 +68,7 @@
     mixins: [wizardItemProtFourMethods],
     components: {
       MaskedInput: () => import('~/components/shared/MaskedInput'),
+      Select: () => import('~/components/shared/CustomSelect'),
       DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask')
     },
     props: {

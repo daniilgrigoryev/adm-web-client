@@ -68,6 +68,9 @@
     props: {
       info: Object
     },
+    components: {
+      Select: () => import('~/components/shared/CustomSelect'),
+    },
     async created() {
       await this.initData();
     },

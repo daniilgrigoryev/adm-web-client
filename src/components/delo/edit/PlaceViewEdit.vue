@@ -100,7 +100,7 @@
                       </Col>
                     </Row>
                   </div>
-                </div> 
+                </div>
               </div>
 
 
@@ -213,12 +213,13 @@
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as formStack from '~/assets/js/api/formStack';
   import RequestApi from "~/assets/js/api/requestApi";
-  
+
   export default {
     name: "PlaceViewEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       MaskedInput: () => import('~/components/shared/MaskedInput'),
+      Select: () => import('~/components/shared/CustomSelect'),
     },
     async created() {
       try {

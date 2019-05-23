@@ -209,6 +209,7 @@
     components: {
       DatePickerMask: () => import('~/components/shared/dateTimePicker/DatePickerMask'),
       MaskedInput: () => import('~/components/shared/MaskedInput'),
+      Select: () => import('~/components/shared/CustomSelect'),
     },
     props: {
       info: Object,

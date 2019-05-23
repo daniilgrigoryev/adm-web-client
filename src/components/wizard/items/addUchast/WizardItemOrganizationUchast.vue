@@ -65,7 +65,7 @@
         </Col>
       </Row>
     </div>
-    
+
     <!-- <div class="adm-form__item">
       <small class="adm-form__label">ОКПО</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -84,7 +84,7 @@
       </Row>
     </div> -->
     <!-- ENDTODO -->
-    
+
     <!-- <div class="adm-form__item">
       <small class="adm-form__label">Тип ЮЛ</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -136,6 +136,7 @@
     name: "WizardItemOrganizationUchast",
     components: {
       MaskedInput: () => import('~/components/shared/MaskedInput'),
+      Select: () => import('~/components/shared/CustomSelect'),
     },
     extends: WizardItemOrganization
   }
