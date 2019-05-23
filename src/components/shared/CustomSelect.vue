@@ -94,24 +94,17 @@
         this.$emit('on-query-change', query);
       },
       validateOption({children, elm, propsData}) {
-        if (this.filterMethod) {
-          let label = ((elm && elm.textContent) || (children || []).reduce((str, node) => {
-            const nodeText = node.elm ? node.elm.textContent : node.text;
-            return `${str} ${nodeText}`;
-          }, '') || '').toLowerCase().trim();
-          let value = (propsData.value + '').toLowerCase();
-          const query = this.query.toLowerCase().trim();
-          return this.filterMethod(label, value).startsWith(query);
-        }
-        let textContent = ((elm && elm.textContent) || (children || []).reduce((str, node) => {
+        let label = ((elm && elm.textContent) || (children || []).reduce((str, node) => {
           const nodeText = node.elm ? node.elm.textContent : node.text;
           return `${str} ${nodeText}`;
-        }, '') || '').toLowerCase();
-        let formatTextContent = textContent.replace(/ /g, '').replace(/,/g, '').replace(/\./g, '').replace(/-/g, '').replace(/:/g, '');
-        let trimmedTextContent = textContent.replace(/ /g, '');
+        }, '') || '').toLowerCase().trim();
+        let value = (propsData.value + '').toLowerCase();
         const query = this.query.toLowerCase().trim();
-        return textContent.includes(query) || formatTextContent.includes(query)
-          || trimmedTextContent.includes(query);
+
+        if (this.filterMethod) {
+          return this.filterMethod(label, value).startsWith(query);
+        }
+        return label.includes(query);
       },
     },
   }

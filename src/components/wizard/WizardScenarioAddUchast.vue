@@ -19,7 +19,7 @@
           <div class="adm-form">
             <div class="adm-form__container">
               <h2 class="adm-form__headding" id="uchast">Участник</h2>
-              <wizard-item-add-uchast v-if="isVisible('Uchast')" ref="DocProtFirst" :info="getInfo('Uchast')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
+              <wizard-item-add-uchast v-if="isVisible('Uchast')" ref="Uchast" :info="getInfo('Uchast')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-add-uchast>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Individual')">
               <h2 class="adm-form__headding" id="individual">Физическое лицо</h2>
