@@ -63,7 +63,6 @@
     async created() {
       window.addEventListener('beforeunload', this.clearData);
       await this.setCid();
-      await this.getTables();
     },
     destroyed() {
       this.clearData();
@@ -205,19 +204,11 @@
           cid: this.cid,
           withSpinner: false
         });
-        console.log(this.cid);
         this.$store.commit('frmLogSetCid', null);
         this.$store.commit('frmLogSetData', null);
       },
       async changeNode() {
-        await this.clearData();
-        await this.setCid();
-      },
-      async getTables() {
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getTables',
-        });
-        // this.tables = JSON.parse(eventResponse.response).data;
+        await this.getLogs();
       },
       closeLogs() {
         this.$emit("closeLogs");
@@ -322,9 +313,9 @@
         margin: 0 10px;
         width: 120px;
         font-size: 14px;
-        
+
       }
-      
+
     }
   }
   .logs__type-group {
@@ -360,7 +351,7 @@
       &.red:before {
         background: #DE6262;
       }
-    } 
+    }
   }
   .logs-items-wrap {
     padding: 5px 0;
