@@ -10,7 +10,7 @@
       </Row>
     </div>
     <div v-if="individualStatus === constants.UCHAST_INDIVID" class="adm-form__item">
-      <small class="adm-form__label">ОГРНИП:</small>
+      <small class="adm-form__label">ОГРНИП</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
           <masked-input inputClass="adm-input adm-input--regular wmax360" :maxlength="15" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="data.ogrn" @onInputChange="storeElementData"></masked-input>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="adm-form__item">
-      <small class="adm-form__label">ФИО:</small>
+      <small class="adm-form__label">ФИО</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
           <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="fio" @onInputChange="changeFIO"></masked-input>
@@ -57,7 +57,7 @@
       </div>
     </div>-->
     <div class="adm-form__item">
-      <small class="adm-form__label">Дата рождения:</small>
+      <small class="adm-form__label">Дата рождения</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
         <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.birthdayDay" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
@@ -83,7 +83,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Пол:</small>
+      <small class="adm-form__label">Пол</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
           <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.sex" filterable @on-change="storeElementData" placeholder="">
@@ -94,7 +94,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Гражданство:</small>
+      <small class="adm-form__label">Гражданство</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
           <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
@@ -104,7 +104,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Телефон:</small>
+      <small class="adm-form__label">Телефон</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
           <Input class="adm-input adm-input--regular wmax360" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон:"></Input>
@@ -113,7 +113,7 @@
     </div>
 
     <div class="adm-form__item">
-      <small class="adm-form__label">Должность:</small>
+      <small class="adm-form__label">Должность</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
           <Input class="adm-input adm-input--regular wmax360" v-model="data.dolz" @on-input-change="storeElementData" placeholder=""></Input>
@@ -122,7 +122,7 @@
     </div>
 
     <div class="adm-form__item">
-      <small class="adm-form__label">Место работы:</small>
+      <small class="adm-form__label">Место работы</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
           <Input class="adm-input adm-input--regular wmax360" v-model="data.workPlace" @on-input-change="storeElementData" placeholder=""></Input>
@@ -130,7 +130,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Владеет русским языком:</small>
+      <small class="adm-form__label">Владеет русским языком</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
           <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.isSpeaksRussian" filterable @on-change="storeElementData" placeholder="">

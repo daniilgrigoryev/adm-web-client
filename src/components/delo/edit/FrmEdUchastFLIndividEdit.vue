@@ -24,7 +24,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax240" readonly v-model="uchastIndivid.uchastStatusName"></Input>
+                      <Input class="adm-input adm-input--regular wmax360" readonly v-model="uchastIndivid.uchastStatusName"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -154,7 +154,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Должность:</small>
+                <small class="adm-form__label">Должность</small>
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="22">
                     <Input class="adm-input adm-input--regular wmax360" v-model="uchastIndivid.dolz" @on-input-change="store" placeholder=""></Input>
@@ -163,7 +163,7 @@
               </div>
 
               <div class="adm-form__item">
-                <small class="adm-form__label">Место работы:</small>
+                <small class="adm-form__label">Место работы</small>
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="22">
                     <Input class="adm-input adm-input--regular wmax360" v-model="uchastIndivid.workPlace" @on-input-change="store" placeholder=""></Input>
@@ -203,7 +203,7 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Владеет русским языком:</small>
+                <small class="adm-form__label">Владеет русским языком</small>
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="22">
                     <Select class="adm-input adm-input--regular wmin180" v-model="uchastIndivid.isSpeaksRussian" filterable @on-change="store" placeholder="">

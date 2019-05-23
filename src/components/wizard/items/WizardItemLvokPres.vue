@@ -15,7 +15,7 @@
 						</Row>
 					</div>
 					<div class="adm-form__item">
-						<small class="adm-form__label">Присутствие ЛВОКа:</small>
+						<small class="adm-form__label">Присутствие ЛВОКа</small>
 						<Row :gutter="16" type="flex" align="middle">
 							<Col :xs="24" :md="14" :lg="16">
 								<Select class="adm-input adm-input--regular wmax360" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">

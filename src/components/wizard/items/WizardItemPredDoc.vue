@@ -1,7 +1,7 @@
 <template>
   <div v-if="data">
     <div v-if="isNotEmptyParentNode" class="adm-form__item">
-      <small class="adm-form__label">Список документов ЛВОКа из дела:</small>
+      <small class="adm-form__label">Список документов ЛВОКа из дела</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" filterable clearable @on-change="changeDocLVOK">
@@ -11,7 +11,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Тип документа:</small>
+      <small class="adm-form__label">Тип документа</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Select class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId !== null" placeholder="" v-model="data.docTip" filterable clearable @on-change="changeDocTip">
@@ -29,7 +29,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Дата выдачи:</small>
+      <small class="adm-form__label">Дата выдачи</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
         <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" :disabled="data.docId !== null" v-model="data.vuDateVyd" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
@@ -37,7 +37,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Кем выдан:</small>
+      <small class="adm-form__label">Кем выдан</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
           <masked-input inputClass="adm-input adm-input--regular wmax360 wmin180" :disabled="data.docId !== null" v-model="data.vuOgaiVydName" :maskProps="{regex: '[а-яА-Я0-9 .-]+', casing: 'upper', placeholder: ''}" clearable @onInputChange="storeElementData"></masked-input>

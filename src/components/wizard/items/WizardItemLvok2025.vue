@@ -14,7 +14,7 @@
           </Row>
         </div>
         <div class="adm-form__item">
-          <small class="adm-form__label">Гражданство:</small>
+          <small class="adm-form__label">Гражданство</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData"  placeholder="">
@@ -24,7 +24,7 @@
           </Row>
         </div>
         <div class="adm-form__item">
-          <small class="adm-form__label">ФИО:</small>
+          <small class="adm-form__label">ФИО</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" v-model="data.lvokName" disabled></Input>
@@ -42,7 +42,7 @@
           </Row>
         </div>
         <div class="adm-form__item">
-          <small class="adm-form__label">Присутствие ЛВОКа:</small>
+          <small class="adm-form__label">Присутствие ЛВОКа</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
               <Select class="adm-input adm-input--regular wmin180" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">

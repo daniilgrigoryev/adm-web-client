@@ -7,11 +7,11 @@
       </div>
       <div class="logs__filter">
         <div class="adm-form__item">
-          <small class="adm-form__label">Период:</small>
+          <small class="adm-form__label">Период</small>
           <DatePickerMask class="adm-input adm-input--regular" v-model="data.startDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </div>
         <div class="adm-form__item">
-          <small class="adm-form__label">по:</small>
+          <small class="adm-form__label">по</small>
           <DatePickerMask class="adm-input adm-input--regular" v-model="data.endDate" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </div>
         <Button @click="getLogs()" :disabled="!data.startDate || !data.endDate" type="primary" title="Обновить">Обновить</Button>

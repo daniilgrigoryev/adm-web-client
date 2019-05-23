@@ -366,6 +366,14 @@
           {
             title: "Сведения о нарушении",
             name: "nar",
+          },
+          {
+            title: "Сведения об источнике данных",
+            name: "data-source",
+          },
+          {
+            title: "Сведения о разрешении",
+            name: "permission-details",
           }
         ],
         maskInputProt: {
