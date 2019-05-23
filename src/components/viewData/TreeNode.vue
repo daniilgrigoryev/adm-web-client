@@ -167,7 +167,7 @@
                 case decisIspolnEnum.POST_IMPORT:
                 case decisIspolnEnum.POST_EXPORT:
                 case decisIspolnEnum.POST_TAMOZHN:
-                case decisIspolnEnum.POST_NEUD_VRUCH:
+                case decisIspolnEnum.POST_NEUD_VRUCH: 
                 case decisIspolnEnum.POST_REG_OTPR:
                 case decisIspolnEnum.POST_TAMOZHN_FIN:
                 case decisIspolnEnum.POST_PERED_TEMP_CHRAN:
