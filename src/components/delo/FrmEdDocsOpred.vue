@@ -55,7 +55,7 @@
             :value="body.organSostName" 
             style="grid-column: span 2;"
           />
-          <div v-if="isTaxi" style="display: contents">
+          <template v-if="isTaxi">
             <hr>
             <view-data-item
               label="Тип источника"
@@ -127,7 +127,7 @@
               :value="body.tlLicensor"
               style="grid-column: span 2;"
             />
-          </div>
+          </template>
         </div>
       </div>
     </div>
