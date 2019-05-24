@@ -37,16 +37,20 @@
             :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item
-            label="Список документов"
-            :value="body.provideMaterials"
-            style="grid-column: span 2;"
-          />
-          <view-data-item
-            label="Обеспечить явку"
-            :value="body.providePresence"
-            style="grid-column: span 2;"
-          />
+          <div class="mt12" style="grid-column: span 2; padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter mb6">Список документов</p>
+            <div v-if="body.provideMaterials && body.provideMaterials.length > 0">
+              <p v-for="(item, index) in body.provideMaterials" class="adm-text-big color-dark-base" :key="index">{{ item.name }}</p><br />
+            </div>
+            <p v-else class="adm-text-big color-dark-base">Нет информации</p>
+          </div>
+          <div class="mt12" style="grid-column: span 2; padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter mb6">Обеспечить явку</p>
+            <div v-if="body.providePresence && body.providePresence.length > 0">
+              <p v-for="(item, index) in body.providePresence" class="adm-text-big color-dark-base" :key="index">{{ item.name }}</p><br />
+            </div>
+            <p v-else class="adm-text-big color-dark-base">Нет информации</p>
+          </div>
         </div>
       </div>
     </div>
@@ -101,6 +105,8 @@
           res = this.dataStore.body;
           res.diskvMes? res.diskvMes += " Месяца" : "";
           res.diskvDay? res.diskvDay += " Дня" : "";
+          res.provideMaterials = JSON.parse(res.provideMaterials);
+          res.providePresence = JSON.parse(res.providePresence);
         }
         return res;
       },

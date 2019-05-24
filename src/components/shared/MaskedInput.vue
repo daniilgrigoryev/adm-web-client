@@ -125,6 +125,7 @@
           this.$emit('onClear');
           this.$emit('input', null);
           this.$emit('onInputChange', null);
+          this.$refs.maskedField.$refs.input.placeholder = '';
         } else {
           this.$emit('input', e);
         }

@@ -543,7 +543,10 @@
             return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && apnProt.length > 0 && apnPost.length === 0;
           }
           case 'PostPrekrDeloAPN': {
-            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+            let docsPost = this.dataStore.tree.filter((item) => {
+              return item.recType === 'DOCS_POST';
+            });
+            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) || (current.params.recType === 'DELO' && docsPost.length > 0);
           }
           case 'Izvesh': {
             let apnPost = this.dataStore.tree.filter((item) => {

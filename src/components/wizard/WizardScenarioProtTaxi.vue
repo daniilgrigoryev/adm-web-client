@@ -40,7 +40,7 @@
             <wizard-item-address v-if="isVisible('DocProtTaxiFour.Organization.regAddr')" ref="DocProtTaxiFour.Organization.regAddr" :info="getInfo('DocProtTaxiFour.Organization.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             <wizard-item-address v-if="isVisible('DocProtTaxiFour.Organization.factAddr')" ref="DocProtTaxiFour.Organization.factAddr" :info="getInfo('DocProtTaxiFour.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
           </wizard-item-prot-taxi-four>
-          
+
 
           <div class="adm-form__container">
             <h2 id="rasm" class="adm-form__headding">Сведения о рассмотрении</h2>
@@ -192,10 +192,11 @@
           }
         }
       },
-      getPrev() {
+      getPrev(withTransition) {
         try {
           formStack.toPrev({
-            vm: this
+            vm: this,
+            withTransition: withTransition || true
           });
         } catch (e) {
           this.$store.dispatch('errors/changeContent', {title: e.message,});

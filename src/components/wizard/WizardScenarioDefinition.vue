@@ -174,10 +174,11 @@
           }
         }
       },
-      getPrev() {
+      getPrev(withTransition) {
         try {
           formStack.toPrev({
-            vm: this
+            vm: this,
+            withTransition: withTransition || true
           });
         } catch (e) {
           this.$store.dispatch('errors/changeContent', {title: e.message,});

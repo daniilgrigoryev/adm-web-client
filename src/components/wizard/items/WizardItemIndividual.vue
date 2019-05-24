@@ -17,21 +17,12 @@
         </Col>
       </Row>
     </div>
-
     <div class="adm-form__item">
-      <small class="adm-form__label">ФИО</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="22" :lg="22">
-          <masked-input inputClass="adm-input adm-input--regular" :maskProps="maskInputProt" v-model="fio" @onInputChange="changeFIO"></masked-input>
-        </Col>
-      </Row>
-    </div>
-    <!--<div class="adm-form__item">
       <small class="adm-form__label">Фамилия</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input&#45;&#45;regular wmax360" @onInputChange="storeElementData" v-model="data.firstName" :maskProps="{regex: '[a-zA-Zа-яА-Я]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.firstName" :maskProps="{regex: '[а-яА-ЯёЁ-]+', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>
@@ -41,7 +32,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input&#45;&#45;regular wmax360" @onInputChange="storeElementData" v-model="data.secondName" :maskProps="{regex: '[a-zA-Zа-яА-Я]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.secondName" :maskProps="{regex: '[а-яА-ЯёЁ]+', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>
@@ -51,11 +42,11 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input&#45;&#45;regular wmax360" @onInputChange="storeElementData" v-model="data.thirdName" :maskProps="{regex: '[a-zA-Zа-яА-Я]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.thirdName" :maskProps="{regex: '[а-яА-ЯёЁ]+', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>
-    </div>-->
+    </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Дата рождения</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -166,12 +157,6 @@
         birthList: [],
         gragdanstvoList: null,
         individualStatus: null, // 3 - ип
-        fio: null,
-        maskInputProt: {
-          regex: '[А-Я][-А-Яа-я]{2,15} [А-Я][-А-Яа-я]{2,15} [А-Я][-А-Яа-я]{2,15}',
-          casing: 'upper',
-          placeholder: ''
-        },
         constants
       }
     },
@@ -200,8 +185,6 @@
           this.data.birthMesto = '';
         }
         this.data.isSpeaksRussian += '';
-
-        this.parseFIO();
 
         await this.fillBirthList();
         await this.fillGragdanstvoList();
@@ -259,54 +242,6 @@
         if (eventResponse.response) {
           this.individualStatus = JSON.parse(JSON.parse(eventResponse.response).data);
         }
-      },
-      async changeFIO() {
-        let fio = '';
-        this.data.firstName = null;
-        this.data.secondName = null;
-        this.data.thirdName = null;
-        if (this.fio) {
-          let fioLength = 0;
-          let fioArr = this.fio.split(' ');
-          for (let i = 0; i < fioArr.length && fioLength < 3; i++) {
-            let item = fioArr[i];
-            if (item.length > 0) {
-              switch (fioLength) {
-                case 0: {
-                  this.data.firstName = item;
-                  fio += item;
-                  break;
-                }
-                case 1: {
-                  this.data.secondName = item;
-                  fio += ' ' + item;
-                  break;
-                }
-                case 2: {
-                  this.data.thirdName = item;
-                  fio += ' ' + item;
-                  break;
-                }
-              }
-              fioLength++;
-            }
-          }
-          this.fio = fio;
-        }
-        await this.storeElementData();
-      },
-      parseFIO () {
-        this.fio = '';
-        if (funcUtils.isNotEmpty(this.data.firstName)) {
-          this.fio += this.data.firstName + ' ';
-        }
-        if (funcUtils.isNotEmpty(this.data.secondName)) {
-          this.fio += this.data.secondName + ' ';
-        }
-        if (funcUtils.isNotEmpty(this.data.thirdName)) {
-          this.fio += this.data.thirdName;
-        }
-        this.fio = this.fio.trim();
       },
       filterBirthMesto(value, option) {
         if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
