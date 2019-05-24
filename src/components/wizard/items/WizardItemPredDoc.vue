@@ -71,19 +71,25 @@
 
     computed: {
       maskDocNum() {
-        let typeDoc = parseInt(this.data.docTip);
-        if (typeDoc == 8 || typeDoc == 2 || typeDoc == 7) {
-          return {
-            regex: '[0-9]+',
-            mask: '99 9999999',
-            placeholder: ''
-          }
-        } else {
-          return {
-            regex: '[0-9]+',
-            mask: '99 99 999999',
-            placeholder: ''
-          }
+        let numDocTip = parseInt(this.data.docTip);
+        switch (numDocTip) {
+          case 8:
+          case 7:
+          case 2:
+            return {
+              regex: '[0-9]+',
+              mask: '99 9999999',
+              placeholder: ''
+            }
+            break;
+        
+          default:
+            return {
+              regex: '[0-9]+',
+              mask: '99 99 999999',
+              placeholder: ''
+            }
+            break;
         }
       },
       isNotEmptyParentNode() {

@@ -3,7 +3,7 @@
     <div class="overlay" v-if="status">
       <div class="modal">
         <div class="wrap">
-          <div class="title">{{ content.title }}</div>
+          <div class="title" v-html="content.title"/>
           <div
             v-for="item in content.desc"
             :key="item.id"
@@ -11,7 +11,7 @@
             :class="{ open: item.open }"
             @click="toggleSize(item)"
           >
-            {{ item.text }}
+            <span v-html="item.text"></span>
             <button class="toggle-size" :class="{ open: item.open }" />
           </div>
         </div>
