@@ -1,111 +1,127 @@
 <template>
   <div v-if="data">
-    <div class="adm-form__item">
-      <small class="adm-form__label">Пункт НПА</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="22" :lg="22">
-            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
-              <Option class="" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
+    <div class="adm-form__container">
+      <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
+      <div class="adm-form__content">
+        <slot name="wizard-item-prot-three"/>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Пункт НПА</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="22" :lg="22">
+                <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.pnpaId" clearable filterable @on-change="storeElementData">
+                  <Option class="" v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Статья КРФоАП</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="22" :lg="22">
+                <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="changeStotvSearchInfo">
+                  <Option class="" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
+                </Select>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item" v-if="KBKSearchInfoList">
+          <small class="adm-form__label">КБК</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.kbk" clearable filterable :disabled="!data.stotvId" @on-change="storeElementData">
+                <Option class="wmax360 " v-for="item in KBKSearchInfoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
+              </Select>
+            </Col>
+          </Row>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Фактические сведения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="22" :lg="22">
+                <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.factSved" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Дополнительные сведения</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="22" :lg="22">
+                <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.dopSved" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Статья КРФоАП</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="22" :lg="22">
-            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="changeStotvSearchInfo">
-              <Option class="" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
-          </Col>
-        </Row>
+    <div class="adm-form__container">
+      <h2 id="owner-details" class="adm-form__headding">Сведения о владельце разрешения</h2>
+      <div class="adm-form__content">
+        <div class="adm-form__item">
+          <small class="adm-form__label">Статус держателя лицензии</small>
+          <Row type="flex" align="middle">
+            <Col span="12">
+              <Select class="adm-input adm-input--regular wmax360 wmin180" ref="city" placeholder="" v-model="data.status" filterable clearable @on-change="storeElementData">
+                <Option class="" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select>
+            </Col>
+            <Col span="4">
+              <button @click="ownerToLicense" class="adm-form__icon-button" type="button">
+                <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
+              </button>
+            </Col>
+          </Row>
+        </div>
+        <slot/>
       </div>
     </div>
-    <div class="adm-form__item" v-if="KBKSearchInfoList">
-      <small class="adm-form__label">КБК</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.kbk" clearable filterable :disabled="!data.stotvId" @on-change="storeElementData">
-            <Option class="wmax360 " v-for="item in KBKSearchInfoList" :value="item.value" :key="item.value">{{ item.value + ', ' + item.label }}</Option>
-          </Select>
-        </Col>
-      </Row>
-    </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Фактические сведения</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="22" :lg="22">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.factSved" ></Input>
-          </Col>
-        </Row>
-      </div>
-    </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Дополнительные сведения</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="22" :lg="22">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.dopSved" ></Input>
-          </Col>
-        </Row>
-      </div>
-    </div>
+    <div class="adm-form__container">
+      <h2 id="permission-details" class="adm-form__headding">Сведения о разрешении</h2>
+      <div class="adm-form__content">
+        <div class="adm-form__item">
+          <small class="adm-form__label">Номер разрешения</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <masked-input inputClass="adm-input adm-input--regular" v-model="data.tlNumber" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
+            </Col>
+          </Row>
+        </div>
 
-    <div class="adm-form__item">
-      <small class="adm-form__label">Статус держателя лицензии</small>
-      <Row type="flex" align="middle">
-        <Col span="12">
-          <Select class="adm-input adm-input--regular wmax360 wmin180" ref="city" placeholder="" v-model="data.status" filterable clearable @on-change="storeElementData">
-            <Option class="" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>
-        </Col>
-        <Col span="4">
-          <button @click="ownerToLicense" class="adm-form__icon-button" type="button">
-            <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
-          </button>
-        </Col>
-      </Row>
-    </div>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Дата начала действия</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.tlDateBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+            </Col>
+          </Row>
+        </div>
 
-    <div class="adm-form__item">
-      <small class="adm-form__label">Номер разрешения</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <masked-input inputClass="adm-input adm-input--regular" v-model="data.tlNumber" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
-        </Col>
-      </Row>
-    </div>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Дата окончания действия</small>
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="14" :lg="16">
+              <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.tlDateEnd" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+            </Col>
+          </Row>
+        </div>
 
-    <div class="adm-form__item">
-      <small class="adm-form__label">Дата начала действия</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.tlDateBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-        </Col>
-      </Row>
-    </div>
+        <div class="adm-form__item">
+          <small class="adm-form__label">Организация, выдавшая разрешение такси</small>
+          <div class="adm-form__item_content">
+            <Row :gutter="16" type="flex" align="middle">
+              <Col :xs="24" :md="24" :lg="24">
+                <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.tlLicensor" ></Input>
+              </Col>
+            </Row>
+          </div>
+        </div>
 
-    <div class="adm-form__item">
-      <small class="adm-form__label">Дата окончания действия</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.tlDateEnd" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-        </Col>
-      </Row>
-    </div>
-
-    <div class="adm-form__item">
-      <small class="adm-form__label">Организация, выдавшая разрешение такси</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="24" :lg="24">
-            <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.tlLicensor" ></Input>
-          </Col>
-        </Row>
       </div>
     </div>
   </div>
