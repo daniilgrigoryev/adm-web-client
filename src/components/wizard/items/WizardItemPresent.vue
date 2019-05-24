@@ -10,7 +10,7 @@
         </Col>
       </Row>
     </div>
-    <div class="adm-form__item">
+    <div v-if="data.presentVid != constants.PRESENT_OUT" class="adm-form__item">
       <small class="adm-form__label">Список представителей из дела</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
@@ -25,6 +25,7 @@
 
 <script>
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as constants from "~/assets/js/utils/constants";
 
   export default {
     name: "WizardItemPresent",
@@ -40,7 +41,8 @@
       return {
         data: null,
         presentVidsList: null,
-        representList: null
+        representList: null,
+        constants
       }
     },
     methods: {
@@ -104,7 +106,7 @@
       },
       async changePresentVids() {
         this.data.uchastId = null;
-        if (this.data.presentVid) {
+        if (this.data.presentVid && this.data.presentVid != constants.PRESENT_OUT) {
           await this.fillRepresentList();
         }
         await this.storeElementData();

@@ -417,31 +417,31 @@
       changeClass(stadKod) {
         if (funcUtils.isNotEmpty(stadKod)) {
           switch (stadKod) {
-            case 1: {
+            case constants.STAD_VOZB: {
               // Возбуждено
               return "color-black";
             }
-            case 2: {
+            case constants.STAD_REVIEW: {
               // Рассмотрение
               return "color-black";
             }
-            case 3: {
+            case constants.STAD_APPEAL: {
               // Обжалование
               return "color-black";
             }
-            case 4: {
+            case constants.STAD_REVISION: {
               // Пересмотр
               return "color-black";
             }
-            case 5: {
+            case constants.STAD_EXECUTION: {
               // Исполнение
               return "color-black";
             }
-            case 6: {
+            case constants.STAD_PERFORMED: {
               // Исполнено
               return "color-black";
             }
-            case 7: {
+            case constants.STAD_TERMINATED: {
               // Прекращено
               return "color-red";
             }
@@ -459,10 +459,10 @@
 
         switch (item) {
           case 'ProtAPNAnothFace': {
-            return current.params.recType === 'DELO';
+            return current.params.recType === constants.DELO;
           }
           case 'OpredAPNAnothFace': {
-            return current.params.recType === 'DELO';
+            return current.params.recType === constants.DELO;
           }
           case 'PostAPNAnothFace': {
             let galobs = {};
@@ -471,7 +471,7 @@
 
             for (let i = 0; i < this.dataStore.tree.length; i++) {
               arrElem = this.dataStore.tree[i];
-              if (arrElem.recType === 'DOCS_GALOB') {
+              if (arrElem.recType === constants.DOCS_GALOB) {
                 galobs[arrElem.category] = arrElem;
               }
             }
@@ -483,33 +483,33 @@
                 decisGalobs.push(arrElem);
               }
             }
-            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 6 || this.deloContext.stadKod === 7) && decisGalobs.length > 0;
+            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_PERFORMED || this.deloContext.stadKod === constants.STAD_TERMINATED) && decisGalobs.length > 0;
           }
           case 'ApplyDocOnDelo': {
-            return current.params.recType === 'DELO';
+            return current.params.recType === constants.DELO;
           }
           case 'AddFotoVideo': {
-            return current.params.recType === 'DELO';
+            return current.params.recType === constants.DELO;
           }
           case 'Explanation': {
-            return current.params.recType === 'DELO';
+            return current.params.recType === constants.DELO;
           }
           case 'ProtAPN': {
             let apnDocs = this.dataStore.tree.filter((item) => {
-              return item.recType === 'DOCS_POST' || item.recType === 'DOCS_PROT';
+              return item.recType === constants.DOCS_POST || item.recType === constants.DOCS_PROT;
             });
             let pztcDocs = this.dataStore.tree.filter((item) => {
-              return (item.recType === 'DOCS_OTHER' && item.kod === docTipEnum.PROT_ZADER_TC) || item.recType === 'DOCS_OPRED';
+              return (item.recType === constants.DOCS_OTHER && item.kod === docTipEnum.PROT_ZADER_TC) || item.recType === constants.DOCS_OPRED;
             });
 
-            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && (apnDocs.length === 0 || pztcDocs.length > 0);
+            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && (apnDocs.length === 0 || pztcDocs.length > 0);
           }
           case 'OpredProvedAP': {
             let apnDocs = this.dataStore.tree.filter((item) => {
-              return item.recType === 'DOCS_POST' || item.recType === 'DOCS_PROT';
+              return item.recType === constants.DOCS_POST || item.recType === constants.DOCS_PROT;
             });
             let pztcDocs = this.dataStore.tree.filter((item) => {
-              return item.recType === 'DOCS_OTHER' && item.kod === docTipEnum.PROT_ZADER_TC;
+              return item.recType === constants.DOCS_OTHER && item.kod === docTipEnum.PROT_ZADER_TC;
             });
             let twoDays = 1000 * 60 * 60 * 24 * 2;
             let currentDate = new Date();
@@ -519,7 +519,7 @@
 
             for (let i = 0; i < this.dataStore.tree.length; i++) {
               arrElem = this.dataStore.tree[i];
-              if (arrElem.recType === 'DOCS_OPRED') {
+              if (arrElem.recType === constants.DOCS_OPRED) {
                 opreds[arrElem.category] = arrElem;
               }
             }
@@ -531,52 +531,52 @@
                 decisVozbAPN.push(arrElem);
               }
             }
-            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && (decisVozbAPN.length === 0 && apnDocs.length === 0) || (pztcDocs.length > 0 && currentDate > (this.deloContext.deloDate + twoDays));
+            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && (decisVozbAPN.length === 0 && apnDocs.length === 0) || (pztcDocs.length > 0 && currentDate > (this.deloContext.deloDate + twoDays));
           }
           case 'PostDeloAPN': {
             let apnPost = this.dataStore.tree.filter((item) => {
-              return item.recType === 'DOCS_POST';
+              return item.recType === constants.DOCS_POST;
             });
             let apnProt = this.dataStore.tree.filter((item) => {
-              return item.recType === 'DOCS_PROT';
+              return item.recType === constants.DOCS_PROT;
             });
-            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) && apnProt.length > 0 && apnPost.length === 0;
+            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && apnProt.length > 0 && apnPost.length === 0;
           }
           case 'PostPrekrDeloAPN': {
             let docsPost = this.dataStore.tree.filter((item) => {
-              return item.recType === 'DOCS_POST';
+              return item.recType === constants.DOCS_POST;
             });
-            return current.params.recType === 'DELO' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2) || (current.params.recType === 'DELO' && docsPost.length > 0);
+            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) || (current.params.recType === constants.DELO && docsPost.length > 0);
           }
           case 'Izvesh': {
             let apnPost = this.dataStore.tree.filter((item) => {
-              return item.recType === 'DOCS_POST';
+              return item.recType === constants.DOCS_POST;
             });
-            return (current.params.recType === 'DOCS_OPRED' || current.params.recType === 'DOCS_PROT') && apnPost.length === 0;
+            return (current.params.recType === constants.DOCS_OPRED || current.params.recType === constants.DOCS_PROT) && apnPost.length === 0;
           }
           case 'ChangeDateRasmDelo': {
-            return current.params.recType === 'DOCS_OPRED' || current.params.recType === 'DOCS_PROT';
+            return current.params.recType === constants.DOCS_OPRED || current.params.recType === constants.DOCS_PROT;
           }
           case 'HodatayProdlSrok': {
-            return current.params.recType === 'DOCS_OPRED' && (this.deloContext.stadKod === 1 || this.deloContext.stadKod === 2);
+            return current.params.recType === constants.DOCS_OPRED && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW);
           }
           case 'DecicAppeal': {
-            return current.params.recType === 'DOCS_GALOB';
+            return current.params.recType === constants.DOCS_GALOB;
           }
           case 'ConclusAppeal': {
-            return current.params.recType === 'DOCS_GALOB';
+            return current.params.recType === constants.DOCS_GALOB;
           }
           case 'DocumentUchast': {
-            return current.params.recType === 'UCHASTFL' || current.params.recType === 'UCHASTOTHER';
+            return current.params.recType === constants.UCHASTFL || current.params.recType === constants.UCHASTOTHER;
           }
           case 'AddIspoln': {
-            return current.params.recType === 'DECIS' && this.deloContext.stadKod !== 7;
+            return current.params.recType === constants.DECIS && this.deloContext.stadKod !== constants.STAD_TERMINATED;
           }
           case 'AddUchast': {
-            return current.params.recType === 'DELO';
+            return current.params.recType === constants.DELO;
           }
           case 'Petition': {
-            return current.params.recType === 'DOCS_OTHER' && current.params.docTip === docTipEnum.PETITION;
+            return current.params.recType === constants.DOCS_OTHER && current.params.docTip === docTipEnum.PETITION;
           }
         }
         return false;
@@ -660,7 +660,7 @@
         }
       },
       checkPostUvedom(node) {
-        if (node.recType === 'DECIS_ISPOLN' && funcUtils.isNotEmpty(node.kod)) {
+        if (node.recType === constants.DECIS_ISPOLN && funcUtils.isNotEmpty(node.kod)) {
           switch (node.kod) {
             case decisIspolnEnum.POST_UVEDOM: {
               return true;

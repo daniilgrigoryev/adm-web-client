@@ -25,6 +25,7 @@
 <script>
   import RequestApi from "~/assets/js/api/requestApi";
   import * as ConstantUtils from "~/assets/js/utils/constantUtils";
+  import * as constants from "~/assets/js/utils/constants";
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import docTipEnum from "~/assets/js/utils/docTipEnum";
   import decisIspolnEnum from "~/assets/js/utils/decisIspolnEnum";
@@ -46,7 +47,6 @@
   import * as protOtstrUprTC from '~/assets/images/protOtstrUprTC.png';
   import * as protMed from '~/assets/images/protMed.png';
   import * as downloadIcon from '~/assets/images/download.svg';
-
 
   export default {
     name: "TreeNode",
@@ -72,26 +72,26 @@
       iconNode() {
         let node = this.node;
         switch (node.recType) {
-          case "DELO": {
+          case constants.DELO: {
             return delo;
           }
-          case "UCHASTFL":
-          case "UCHASTUL":
-          case "UCHASTOTHER": {
+          case constants.UCHASTFL:
+          case constants.UCHASTUL:
+          case constants.UCHASTOTHER: {
             return uchast;
           }
-          case "VEHS":
-          case "VEHSOTHER": {
+          case constants.VEHS:
+          case constants.VEHSOTHER: {
             return amtc;
           }
-          case "VU_PRED":
-          case "VU_VYD": {
+          case constants.VU_PRED:
+          case constants.VU_VYD: {
             return predDoc;
           }
-          case 'DOCS_GALOB': {
+          case constants.DOCS_GALOB: {
             return ispolnAppeal;
           }
-          case "DOCS_OTHER": {
+          case constants.DOCS_OTHER: {
             switch (node.docTip) {
               case docTipEnum.DTP_FOTO:
               case docTipEnum.VEHS_FOTO:
@@ -145,14 +145,14 @@
             }
             break;
           }
-          case 'DECIS': {
+          case constants.DECIS: {
             return decis;
           }
-          case 'DOCS_POST':
-          case 'DOCS_POST_UL': {
+          case constants.DOCS_POST:
+          case constants.DOCS_POST_UL: {
             return docsPost;
           }
-          case 'DECIS_ISPOLN': {
+          case constants.DECIS_ISPOLN: {
             if (funcUtils.isNotEmpty(node.kod)) {
               switch (node.kod) {
                 case decisIspolnEnum.POST_UVEDOM:
@@ -167,7 +167,7 @@
                 case decisIspolnEnum.POST_IMPORT:
                 case decisIspolnEnum.POST_EXPORT:
                 case decisIspolnEnum.POST_TAMOZHN:
-                case decisIspolnEnum.POST_NEUD_VRUCH: 
+                case decisIspolnEnum.POST_NEUD_VRUCH:
                 case decisIspolnEnum.POST_REG_OTPR:
                 case decisIspolnEnum.POST_TAMOZHN_FIN:
                 case decisIspolnEnum.POST_PERED_TEMP_CHRAN:
@@ -184,10 +184,10 @@
             }
             return deloProizv;
           }
-          case 'DOCS_OPRED': {
+          case constants.DOCS_OPRED: {
             return docsOpred;
           }
-          case 'DOCS_PROT': {
+          case constants.DOCS_PROT: {
             return docsProt;
           }
         }
@@ -196,24 +196,24 @@
       deloBgCorrection(){
         let node = this.node;
         let params = node.nodeParams;
-        
-        if(node.recType == "DELO"){
+
+        if(node.recType === constants.DELO){
           switch (params.delo_apn_check_priority) {
             // 0-3 - красный
-            // 4-7 - жёлтый
-            // 8 и выше - зелёный
             case 0:
             case 1:
             case 2:
             case 3: {
               return "bg-pink-thin";
             }
+            // 4-7 - жёлтый
             case 4:
             case 5:
             case 6:
             case 7:{
               return "bg-yellow-thin";
             }
+            // 8 и выше - зелёный
             default: {
               return "";
             }
@@ -223,9 +223,9 @@
       dataNode() {
         let node = this.node;
         let params = node.nodeParams;
-        
+
         switch (node.recType) {
-          case "DELO": {
+          case constants.DELO: {
             return `
               <h4>
                 Дело
@@ -235,12 +235,12 @@
               <p>
                 ${params.delo_apn_n}
               </p>
-              
+
             `;
           }
-          case "UCHASTFL":
-          case "UCHASTUL":
-          case "UCHASTOTHER": {
+          case constants.UCHASTFL:
+          case constants.UCHASTUL:
+          case constants.UCHASTOTHER: {
             let uchastBirthday = params.uchast_birthday ? `<p class="other-info">Дата рождения ${params.uchast_birthday}</p>` : '';
             let uchast_tip_name = params.uchast_tip_name ? `, ${params.uchast_tip_name.slice(0, -1).slice(1)}` : '';
             return `
@@ -249,23 +249,23 @@
               ${uchastBirthday}
             `;
           }
-          case "VEHS":
-          case "VEHSOTHER": {
+          case constants.VEHS:
+          case constants.VEHSOTHER: {
             return `
               <h4>Транспортное средство</h4>
               <p>${params.vehs_nspec}</p>
               <p class="other-info">${params.vehs_marka_avto} ${params.vehs_modavto_name}</p>
             `;
           }
-          case "VU_PRED":
-          case "VU_VYD": {
+          case constants.VU_PRED:
+          case constants.VU_VYD: {
             return `
               <h4>${params.vu_pred_doc_tip}</h4>
               <p>${params.vu_pred_n}</p>
               <p class="other-info">Выдан ${params.vu_pred_dat_vyd}</p>
             `;
           }
-          case 'DOCS_GALOB': {
+          case constants.DOCS_GALOB: {
             return `
               <h4>
                 ${params.doc_other_tip_name}
@@ -276,7 +276,7 @@
               </p>
             `;
           }
-          case "DOCS_OTHER": {
+          case constants.DOCS_OTHER: {
             switch (node.docTip) {
               case docTipEnum.DTP_FOTO:
               case docTipEnum.VEHS_FOTO:
@@ -383,7 +383,7 @@
             }
             break;
           }
-          case 'DECIS': {
+          case constants.DECIS: {
             return `
               <h4>
                 ${params.decis_name}
@@ -394,8 +394,8 @@
               <p class="red">${params.decis_mera}</p>
             `;
           }
-          case 'DOCS_POST':
-          case 'DOCS_POST_UL': {
+          case constants.DOCS_POST:
+          case constants.DOCS_POST_UL: {
             this.open = true;
             return `
               <h4>
@@ -407,7 +407,7 @@
               <p>${params.post_doc_n}</p>
             `;
           }
-          case 'DECIS_ISPOLN': {
+          case constants.DECIS_ISPOLN: {
             if (funcUtils.isNotEmpty(node.kod)) {
               switch (node.kod) {
                 case decisIspolnEnum.POST_UVEDOM:
@@ -461,7 +461,7 @@
               </p>
             `;
           }
-          case 'DOCS_OPRED': {
+          case constants.DOCS_OPRED: {
             this.open = true;
             return `
               <h4>
@@ -473,7 +473,7 @@
               </p>
             `;
           }
-          case 'DOCS_PROT': {
+          case constants.DOCS_PROT: {
             this.open = true;
             return `
               <h4>
@@ -507,7 +507,7 @@
         return res;
       },
       parentNodeClick() {
-        if (this.node.recType === "DOCS_OTHER" && this.node.docTip === docTipEnum.MEDIA_DOC && this.node.height > 3) {
+        if (this.node.recType === constants.DOCS_OTHER && this.node.docTip === docTipEnum.MEDIA_DOC && this.node.height > 3) {
           this.downloadMedia(this.node);
           return;
         }
@@ -567,7 +567,7 @@
             font-size: 14px;
           }
         }
-      } 
+      }
     }
   }
   .tree {
@@ -607,20 +607,20 @@
         }
       }
       .tree__text-wrap {
-        letter-spacing: 0.2px;	
+        letter-spacing: 0.2px;
         width: 100%;
         padding-right: 20px;
         h4 {
-          color: #000;	
-          font-size: 16px;	
+          color: #000;
+          font-size: 16px;
           padding-bottom: 4px;
           display: flex;
           justify-content: space-between;
         }
         .date {
           flex: none;
-          font-size: 12px;	
-          font-style: italic;	
+          font-size: 12px;
+          font-style: italic;
           text-align: right;
           color: #797979;
         }
@@ -630,8 +630,8 @@
           font-weight: 400;
         }
         p {
-          font-size: 18px;	
-          font-weight: 600;	
+          font-size: 18px;
+          font-weight: 600;
           letter-spacing: 0.2px;
           line-height: 16px;
           color: #373737;
@@ -639,9 +639,9 @@
             color: #de6262;
           }
           &.other-info {
-            color: #373737;	
+            color: #373737;
             font-weight: 400;
-            font-size: 14px;	
+            font-size: 14px;
             padding-top: 2px;
           }
         }
