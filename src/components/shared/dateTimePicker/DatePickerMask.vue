@@ -61,7 +61,7 @@
         let datePickerMaskHeaderOffset = datePickerMaskHeader.$el.getBoundingClientRect();
         let datePickerMaskBodyOffset = datePickerMaskBody.$el.getBoundingClientRect();
 
-        if ((datePickerMaskHeaderOffset.bottom + datePickerMaskHeaderOffset.height) > window.innerHeight) {
+        if ((datePickerMaskHeaderOffset.bottom) > window.innerHeight) {
           datePickerMaskHeader.$el.style.bottom = datePickerMaskBodyOffset.height  + 'px';
         }
       }

@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="adm-form__container">
-            <h2 id="pet" class="adm-form__headding">Третья часть</h2>
+            <h2 id="pet" class="adm-form__headding">Сведения о продлении сроков</h2>
             <div class="adm-form__content">
               <wizard-item-pet-five id="PetitionFive" v-if="isVisible('PetitionFive')" ref="PetitionFive" :info="getInfo('PetitionFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pet-five>
             </div>
@@ -55,7 +55,7 @@
             name: "head",
           },
           {
-            title: "Третья часть",
+            title: "Сведения о продлении сроков",
             name: "pet",
           },
         ]
