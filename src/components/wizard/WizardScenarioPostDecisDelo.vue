@@ -11,7 +11,7 @@
 
         <div v-if="isVisible('Present')" class="adm-form">
           <div class="adm-form__container">
-            <h2 id="pres" class="adm-form__headding">Представитель</h2>
+            <h2 id="pres" class="adm-form__headding">Сведения о явке</h2>
             <div class="adm-form__content">
               <wizard-item-present id="Present" ref="Present" :info="getInfo('Present')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-present>
               <wizard-item-pred-doc v-if="isVisible('Present.PredDoc')" ref="Present.PredDoc" :info="getInfo('Present.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>

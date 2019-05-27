@@ -263,7 +263,7 @@
                   </Row>
                 </div>
               </div>
-              <div v-if="!decis.decisKod && showByDecisKod(!decisKods.rasm)" class="adm-form__item" >
+              <div v-if="decis.decisKod && showByDecisKod(decisKods.rasm)" class="adm-form__item" >
                 <small class="adm-form__label">Дата вступления</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">

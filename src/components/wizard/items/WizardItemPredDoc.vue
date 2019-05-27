@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    <div v-if="isNotEmptyParentNode" class="adm-form__item">
+    <div v-if="isNotEmptyParentNode && lvokDeloDocsList.length" class="adm-form__item">
       <small class="adm-form__label">Список документов ЛВОКа из дела</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
@@ -64,7 +64,7 @@
     data() {
       return {
         data: null,
-        lvokDeloDocsList: null,
+        lvokDeloDocsList: [],
         tipDocList: null
       }
     },

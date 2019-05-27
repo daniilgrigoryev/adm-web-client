@@ -6,7 +6,7 @@
           <Button @click="getDocsOpredEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Определение - {{body.decisName}} по делу {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
+          <b class="adm-text-big color-dark-lighter">Определение - {{body.decisName}}  {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
         </div>
       </div>
     </div>

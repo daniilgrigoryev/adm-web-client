@@ -10,7 +10,7 @@
         </Col>
       </Row>
     </div>
-    <div v-if="data.presentVid != constants.PRESENT_OUT" class="adm-form__item">
+    <div v-if="data.presentVid != constants.PRESENT_OUT && data.presentVid != constants.PRESENT_LVOK" class="adm-form__item">
       <small class="adm-form__label">Список представителей из дела</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">

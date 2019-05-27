@@ -7,7 +7,7 @@
           <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Постановление по делу {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
+          <b class="adm-text-big color-dark-lighter">Постановление  {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
           <Button @click="getSignatureEdit" type="primary" class="ml12">Подписать</Button>
         </div>
         <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
@@ -219,7 +219,7 @@
         });
         let responseData = JSON.parse(eventResponse.response).data;
         if (responseData && responseData.length) {
-          this.docSignatures = responseData;
+          this.docSignatures = responseData.sort((a,b)=> b.sign.createTime - a.sign.createTime);
         }
       },
       async downloadMedia(mediaId) {

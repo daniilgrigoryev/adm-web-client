@@ -8,6 +8,8 @@ export const UCHAST_INDIVID=3;
 
 /**Представитель отсутствовал*/
 export const PRESENT_OUT=0;
+/**Представитель - ЛВОК*/
+export const PRESENT_LVOK=1;
 /**Стадия дела Возбуждено*/
 export const STAD_VOZB=1;
 /**Стадия дела Рассмотрение*/

@@ -6,7 +6,7 @@
           <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Ходатайство по делу {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
+          <b class="adm-text-big color-dark-lighter">Ходатайство  {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
         </div>
       </div>
     </div>

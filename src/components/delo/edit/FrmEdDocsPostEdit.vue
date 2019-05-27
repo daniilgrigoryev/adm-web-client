@@ -6,34 +6,28 @@
         <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Постановление по делу № {{ docsPost.docN }} от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
+            <h2 class="adm-form__headding" id="head">Постановление  {{ docsPost.docN ? "№" + docsPost.docN : "" }}ё от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
             <div class="adm-form__content">
-              <Row>
-                <Col span="12">
-                  <div class="adm-form__item">
-                    <small class="adm-form__label">Постановление №</small>
-                    <div class="adm-form__item_content">
-                      <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="24" :md="14" :lg="16">
-                          <Input class="adm-input adm-input--regular" readonly :value="docsPost.docN"></Input>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Col>
-                <Col span="12">
-                  <div class="adm-form__item">
-                    <small class="adm-form__label">Дата и время вынесения</small>
-                    <div class="adm-form__item_content">
-                      <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="24" :md="14" :lg="16">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsPost.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Постановление №</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <Input class="adm-input adm-input--regular" readonly :value="docsPost.docN"></Input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Дата и время вынесения</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="16">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsPost.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
             </div>
           </div>
           <div class="adm-form__container">
