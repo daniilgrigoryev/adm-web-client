@@ -170,7 +170,7 @@
                   </Col>
                 </Row>
               </div>
-              <template v-if="uchastIndivid.uchastStatus === 3">
+              <template v-if="uchastIndivid.uchastStatus === constants.UCHAST_INDIVID">
                 <div class="adm-form__item">
                   <small class="adm-form__label">ИНН</small>
                   <div class="adm-form__item_content">
@@ -232,6 +232,7 @@
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as formStack from '~/assets/js/api/formStack';
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as constants from "~/assets/js/utils/constants";
 
   export default {
     name: "FrmEdUchastFLIndividEdit",
@@ -284,6 +285,7 @@
     },
     data() {
       return {
+        constants,
         phoneMask: {
           placeholder: '',
           mask: '99999999999'
