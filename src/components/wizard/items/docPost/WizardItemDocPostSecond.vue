@@ -65,6 +65,16 @@
         </Row>
       </div>
     </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Признание вины</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.guiltAdmissionType" clearable filterable @on-change="storeElementData">
+            <Option class="wmax360 " v-for="item in guiltAdmissionDictionaryList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>
+        </Col>
+      </Row>
+    </div>
   </div>
 </template>
 
@@ -105,6 +115,7 @@
           await this.fillPnpaList();
           await this.fillStotvSearchInfo();
           await this.fillFactSved();
+          await this.fillGuiltAdmissionDictionary();
           this.data = data;
         }
 

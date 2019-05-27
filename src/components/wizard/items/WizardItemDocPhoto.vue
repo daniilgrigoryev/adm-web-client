@@ -318,6 +318,19 @@
       async clearPreview() {
         this.filesArray = [];
         this.otherMedia = [];
+        for (let i = 0; i < this.data.files.length; i++) {
+          let file = this.data.files[i];
+          await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'removeFile',
+              data: {
+                fileName: file.name
+              }
+            }
+          });
+        }
         this.data.files = [];
         await this.storeElementData();
       },

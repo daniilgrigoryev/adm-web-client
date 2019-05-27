@@ -58,7 +58,7 @@
                 <p class="adm-14 color-dark-lighter mb6">Должностное лицо, возбудившее дело. ФИО. Код сотрудника.</p>
                 <p class="adm-text-big color-dark-base">{{body.inspVozbName, body.inspVozbKod | concatByDelimiter('-')}}</p>
               </div>
-              
+
               <div v-if="isNotEmptyField(body.inspVozbRang)">
                 <p class="adm-text-italic color-dark-base mb6">{{ body.inspVozbRang, body.inspVozbDolz | concatByDelimiter(',') }}</p>
               </div>
@@ -84,7 +84,15 @@
 
             <div v-if="isNotEmptyField(body.deloMainDescr)" class="mt12">
               <p class="adm-14 color-dark-lighter mb6">Дело - основание</p>
-              <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo">{{body.deloMainDescr}}</p>
+              <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo(body.deloMainId)">{{body.deloMainDescr}}</p>
+            </div>
+
+            <Button @click="searchSecondaryCases" type="text">Найти связаные дела</Button>
+            <div v-if="secondaryCases && secondaryCases.length > 0">
+              <p class="adm-14 color-dark-lighter mb6">Список дел, связанных с текущим делом</p>
+              <div v-for="(item, index) in secondaryCases" :key="index" class="mt12">
+                <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo(item.deloId)">Дело №{{item.deloN}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -92,7 +100,7 @@
 
       <div class="errors-table errors-table--v2">
         <div class="errors-table__container">
-          <h2  @click="hideMore = !hideMore" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
+          <h2 @click="hideMore = !hideMore" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
             <span class="adm-h4 color-dark-lighter" style="line-height: inherit;">Ошибки</span>
             <Button type="text" class="bg-transparent" style="box-shadow: none;">
               <Icon v-if="hideMore" type="md-remove" class="color-gray" :size="25" title="свернуть" />
@@ -153,6 +161,7 @@
     data() {
       return {
         hideMore: false,
+        secondaryCases: []
       }
     },
     async created() {
@@ -208,12 +217,24 @@
           innerFormStack.updateCurrent(currentForm);
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
+          this.secondaryCases = [];
         } catch (e) {
           this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
       },
-      getMainDelo() {
-        this.$emit('getMainDelo', this.body.deloMainId);
+      async searchSecondaryCases() {
+        let currentForm = innerFormStack.getCurrent();
+        let eventResponse = await RequestApi.prepareData({
+          method: 'searchSecondaryCases',
+          cid: currentForm.cid
+        });
+        let responseData = JSON.parse(eventResponse.response).data;
+        if (responseData && responseData.length) {
+          this.secondaryCases = responseData;
+        }
+      },
+      getMainDelo(deloId) {
+        this.$emit('getMainDelo', deloId);
       },
       changeClass(errorPriority) {
         if (funcUtils.isNotEmpty(errorPriority)) {

@@ -167,6 +167,11 @@
         if (resp.error && resp.error.errorId) {
           this.$store.dispatch('errors/changeContent', {title: resp.error.errorMsg, desc: resp.error.errorDesc,});
         } else {
+          let stack = formStack.getStack();
+          let prev = stack.indexOf(stack.size() - 2);
+          prev.params.scenarioResult = resp.data;
+          formStack.updateStack(stack);
+
           eventResponse = await RequestApi.prepareData({
             method: 'getDeloId'
           });

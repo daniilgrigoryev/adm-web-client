@@ -299,19 +299,25 @@
           let prepareParams = {
             method: 'restore'
           };
+          let scenarioResult = current.params.scenarioResult;
           let deloId = mainDeloId || current.params.deloId;
           if (funcUtils.isNotEmpty(deloId)) {
             delete current.params.deloId;
-            formStack.updateCurrent(current);
             prepareParams.method = 'getData';
             prepareParams.params = {
               'deloId': deloId
             };
           }
+          delete current.params.scenarioResult;
+          formStack.updateCurrent(current);
 
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
 
+          if (scenarioResult) {
+            let createdNode = this.findNode(scenarioResult);
+            await this.nodeClick(createdNode);
+          }
           if (innerFormStack.stackSize() === 0) {
             this.getDelo();
           } else {
@@ -345,6 +351,11 @@
       },
       async getDelo() {
         await this.nodeClick(this.deloInfo);
+      },
+      findNode(params) {
+        return this.deloTree.filter((item) => {
+          return item.docId === params.docId && item.category === params.category;
+        }).getFirst();
       },
       updateSelected() {
         let current = innerFormStack.getCurrent();

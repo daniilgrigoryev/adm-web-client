@@ -21,6 +21,15 @@
           </div>
         </div>
 
+        <div class="adm-form__container">
+          <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
+          <div class="adm-form__content">
+            <wizard-item-doc-post-second id="DocPostSecond" v-if="isVisible('DocPostSecond')" ref="DocPostSecond" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData" @updateComponents="updateComponents">
+              <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" ref="DocPostSecond.PlaceNar" :info="getInfo('DocPostSecond.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+            </wizard-item-doc-post-second>
+          </div>
+        </div>
+
         <div class="adm-form">
           <div class="adm-form__container" id="decis" v-if="isVisible('DecisMain')">
             <h2 class="adm-form__headding">Решение по делу</h2>
@@ -56,6 +65,7 @@
       WizardItemDecis: () => import('~/components/wizard/items/WizardItemDecis'),
       WizardItemDocPostFinal: () => import('~/components/wizard/items/docPost/WizardItemDocPostFinal'),
       WizardItemDocPostFirst: () => import('~/components/wizard/items/docPost/WizardItemDocPostFirst.vue'),
+      WizardItemDocPostSecond: () => import('~/components/wizard/items/docPost/WizardItemDocPostSecond'),
       WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
       WizardItemPresent: () => import('~/components/wizard/items/WizardItemPresent'),
       WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
@@ -82,6 +92,10 @@
             title: "Информация по представителю",
             name: "pres",
             hide: !this.isVisible('Present')
+          },
+          {
+            title: "Сведения о нарушении",
+            name: "nar",
           },
           {
             title: "Решение по делу",
@@ -118,6 +132,11 @@
         if (resp.error && resp.error.errorId) {
           this.$store.dispatch('errors/changeContent', {title: resp.error.errorMsg, desc: resp.error.errorDesc});
         } else {
+          let stack = formStack.getStack();
+          let prev = stack.indexOf(stack.size() - 2);
+          prev.params.scenarioResult = resp.data;
+          formStack.updateStack(stack);
+
           eventResponse = await RequestApi.prepareData({
             method: 'getDeloId'
           });

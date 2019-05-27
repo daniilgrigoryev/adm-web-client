@@ -54,7 +54,7 @@ export async function toNext(payload) {
         if (!funcUtils.isNull(respError)) {
           console.log(respError.errorMsg);
           vm.$store.dispatch('errors/changeContent', {
-            title: respError.errorMsg, 
+            title: respError.errorMsg,
             desc: respError.errorDesc
           });
         }
@@ -124,6 +124,23 @@ export function updateCurrent(current) {
   stack.pop();
   stack.push(current);
   funcUtils.addToSessionStorage(wid, stack);
+}
+
+export function updateStack(stack) {
+  let wid = sessionStorage.getItem('admWid');
+  funcUtils.addToSessionStorage(wid, stack);
+}
+
+export function getStack() {
+  let wid = sessionStorage.getItem('admWid');
+  let stack = new Stack(funcUtils.getFromSessionStorage(wid));
+  for (let i = 0; i < stack.items.length; i++) {
+    let item = stack.items[i];
+    if (item) {
+      item.innerStack = new Stack(item.innerStack);
+    }
+  }
+  return stack;
 }
 
 export function getCurrent() {

@@ -8,6 +8,7 @@ export default {
       pnpaList: null,
       stotvSearchInfoList: null,
       factSvedList: [],
+      guiltAdmissionDictionaryList: [],
     }
   },
   methods: {
@@ -86,6 +87,26 @@ export default {
           }
         });
       }
+    },
+    async fillGuiltAdmissionDictionary() {
+      let eventResponse = await RequestApi.prepareData({
+        method: 'invokeElementMethod',
+        params: {
+          eCID: this.info.eCID,
+          methodName: 'getGuiltAdmissionDictionary',
+          data: null
+        }
+      });
+      let guiltAdmissionDictionaryList = [];
+      let guiltAdmissionDictionaryDict = JSON.parse(JSON.parse(eventResponse.response).data);
+      for (let i = 0; i < guiltAdmissionDictionaryDict.length; i++) {
+        let guiltAdmissionDictionary = guiltAdmissionDictionaryDict[i];
+        guiltAdmissionDictionaryList.push({
+          label: guiltAdmissionDictionary.NAME,
+          value: guiltAdmissionDictionary.ID
+        });
+      }
+      this.guiltAdmissionDictionaryList = guiltAdmissionDictionaryList;
     },
     async fillFactSved() {
       let eventResponse = await RequestApi.prepareData({

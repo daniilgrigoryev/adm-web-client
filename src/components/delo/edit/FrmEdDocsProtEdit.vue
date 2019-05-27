@@ -139,7 +139,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.stotvId" clearable filterable :disabled="!docsProt.dateNar" @on-change="store, fillFactSved">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.stotvId" clearable filterable :disabled="!docsProt.dateNar" @on-change="changeStotv">
                         <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
                       </Select>
                     </Col>
@@ -668,6 +668,10 @@
         }
       },
 
+      async changeStotv() {
+        await this.store();
+        await this.fillFactSved();
+      },
       async changeInspSostKod() {
         if (funcUtils.isNotEmpty(this.docsProt.inspSostKod)) {
           let eventResponse = await RequestApi.prepareData({
