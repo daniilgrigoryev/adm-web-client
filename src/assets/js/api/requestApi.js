@@ -2,6 +2,7 @@ import * as ConstantUtils from '~/assets/js/utils/constantUtils';
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import * as RequestEntity from "~/assets/js/api/requestEntity";
 import * as formStack from "~/assets/js/api/formStack";
+import store from '~/store'
 
 export default class RequestApi {
   static sendSocketRequest(payload) {
@@ -153,7 +154,11 @@ export default class RequestApi {
         if (xhr.responseText) {
           let response = JSON.parse(xhr.responseText);
           if (response && response.error && handleError) {
-            console.error(response.error.errorMsg);
+            console.log(response.error.errorMsg);
+            store.dispatch('errors/changeContent', {
+              title: response.error.errorMsg, 
+              desc: response.error.errorDesc
+            });
           }
         }
         resolve({

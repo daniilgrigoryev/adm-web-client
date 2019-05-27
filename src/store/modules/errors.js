@@ -28,7 +28,7 @@ export default {
     toggleSize({ commit }, item) {
       commit("toggleSize", item);
     },
-    changeContent({ commit, dispatch }, payload) {
+    changeContent({ state, commit, dispatch }, payload) {
       if (Array.isArray(payload.desc)) {
         payload.desc = payload.desc.map(el => {
           return {
@@ -43,6 +43,9 @@ export default {
             text: payload.desc,
           },
         ];
+      }
+      if (state.content.title && payload.title == "Cannot convert undefined or null to object") {
+        return;
       }
       commit("changeContent", payload);
       dispatch("changeStatus", true);
