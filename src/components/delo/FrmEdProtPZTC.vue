@@ -14,78 +14,93 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Дата и время нарушения" 
-            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата и время нарушения"
+            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/time.svg')"
           />
-          <view-data-item 
-            label="Место нарушения" 
-            :value="body.placeNar.placeFull" 
+          <view-data-item
+            label="Место нарушения"
+            :value="body.placeNar.placeFull"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
 
           <hr>
-          
-          <view-data-item 
-            label="Пункт НПА" 
-            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" 
+
+          <view-data-item
+            label="Пункт НПА"
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/case_decision_gray.svg')"
           />
-          <view-data-item 
-            label="Статья КРФоАП" 
-            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
+          <view-data-item
+            label="Статья КРФоАП"
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Тип фиксации совершения процессуальных действий"
+            :value="body.proceedingsFixingTypeName"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Изъятые вещи и документы"
+            :value="body.seizedThings"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Использованные технические средства"
+            :value="body.usedTechnicalMeans"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Место составления" 
-            :value="body.placeSost.placeFull" 
+          <view-data-item
+            label="Место составления"
+            :value="body.placeSost.placeFull"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
-          <view-data-item 
-            label="Должностное лицо" 
-            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" 
+          <view-data-item
+            label="Должностное лицо"
+            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/police.svg')"
           />
-          <view-data-item 
-            label="Подразделение" 
-            :value="body.organSostName" 
+          <view-data-item
+            label="Подразделение"
+            :value="body.organSostName"
             style="grid-column: span 2;"
           />
           <hr>
 
-          <view-data-item 
-            label="Дата и время составления акта эвакуации" 
+          <view-data-item
+            label="Дата и время составления акта эвакуации"
             :value="body.evacActTime | formatDateTime('DD.MM.YYYY HH:mm')"
-            :icon="require('../../assets/images/time.svg')" 
+            :icon="require('../../assets/images/time.svg')"
           />
-          <view-data-item 
-            label="№ акта эвакуации" 
-            :value="body.evacActNumber" 
+          <view-data-item
+            label="№ акта эвакуации"
+            :value="body.evacActNumber"
           />
-          <view-data-item 
-            label="Организация эвакуатора" 
-            :value="body.evacOrgName" 
+          <view-data-item
+            label="Организация эвакуатора"
+            :value="body.evacOrgName"
             :icon="require('../../assets/images/truck.png')"
           />
-          <view-data-item 
-            label="ГРЗ эвакуатора" 
-            :value="body.evacRegno" 
+          <view-data-item
+            label="ГРЗ эвакуатора"
+            :value="body.evacRegno"
           />
-          <view-data-item 
-            label="Штрафстоянка" 
-            :value="body.impoundLotName" 
+          <view-data-item
+            label="Штрафстоянка"
+            :value="body.impoundLotName"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Представитель" 
-            :value="body.evacAgentName" 
+          <view-data-item
+            label="Представитель"
+            :value="body.evacAgentName"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/owner.svg')"
           />

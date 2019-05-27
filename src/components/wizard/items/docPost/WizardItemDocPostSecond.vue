@@ -75,6 +75,26 @@
         </Col>
       </Row>
     </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Пояснения нарушителя</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="22" :md="22" :lg="22">
+            <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.violatorClarification"  @onInputChange="storeElementData" placeholder="" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9,.]+', casing: 'upper', placeholder: ''}" clearable></masked-input>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Пояснения должностного лица</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="22" :md="22" :lg="22">
+            <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.officialClarification"  @onInputChange="storeElementData" placeholder="" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9,.]+', casing: 'upper', placeholder: ''}" clearable></masked-input>
+          </Col>
+        </Row>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -24,48 +24,63 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Пункт НПА" 
-            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')" 
+          <view-data-item
+            label="Пункт НПА"
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/case_decision_gray.svg')"
           />
-          <view-data-item 
-            label="Статья КРФоАП" 
-            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
+          <view-data-item
+            label="Статья КРФоАП"
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Пояснения нарушителя"
+            :value="body.violatorClarification"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Пояснения должностного лица"
+            :value="body.officialClarification"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Тип признания вины"
+            :value="body.guiltAdmissionTypeName"
             style="grid-column: span 2;"
           />
 
           <hr>
 
-          <view-data-item 
-            label="Дата вручения" 
-            :value="body.datUved | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вручения"
+            :value="body.datUved | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/letter.svg')"
           />
-          <view-data-item 
-            label="Дата вступления" 
-            :value="body.dateSost | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вступления"
+            :value="body.dateSost | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
 
           <hr>
 
-          <view-data-item 
-            label="Должностное лицо" 
-            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')" 
+          <view-data-item
+            label="Должностное лицо"
+            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/police.svg')"
           />
-          <view-data-item 
-            label="Подразделение" 
-            :value="body.organSostName || 'нет информации'" 
+          <view-data-item
+            label="Подразделение"
+            :value="body.organSostName || 'нет информации'"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Место составления" 
-            :value="body.placeSost.placeFull || 'нет информации'" 
+          <view-data-item
+            label="Место составления"
+            :value="body.placeSost.placeFull || 'нет информации'"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />

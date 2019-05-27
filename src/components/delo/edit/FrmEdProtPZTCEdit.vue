@@ -169,6 +169,18 @@
                   </Row>
                 </div>
               </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Тип фиксации совершения процессуальных действий</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="22" :md="22" :lg="22">
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.proceedingsFixingType" clearable filterable @on-change="store">
+                        <Option class=" " v-for="item in proceedingsFixingList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </Select>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
             </div>
           </div>
           <div class="adm-form__container">
@@ -281,6 +293,7 @@
           this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           await this.fillPnpaList();
+          await this.fillProceedingsFixingList();
 
           this.protPZTC = protPZTC;
 
@@ -301,6 +314,7 @@
       return {
         protPZTC: null,
         pnpaList: null,
+        proceedingsFixingList: null,
         factSvedList: [],
         stotvSearchInfoList: null,
         listSectionNav: [
@@ -607,6 +621,21 @@
           });
         }
         this.pnpaList = pnpaList;
+      },
+      async fillProceedingsFixingList() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getProceedingsFixingDict'
+        });
+        let proceedingsFixingList = [];
+        let proceedingsFixingDict = JSON.parse(eventResponse.response).data;
+        for (let i = 0; i < proceedingsFixingDict.length; i++) {
+          let proceedingsFixing = proceedingsFixingDict[i];
+          proceedingsFixingList.push({
+            label: proceedingsFixing.NAME,
+            value: proceedingsFixing.ID,
+          });
+        }
+        this.proceedingsFixingList = proceedingsFixingList;
       },
       async fillStotvSearchInfo() {
         let eventResponse = await RequestApi.prepareData({

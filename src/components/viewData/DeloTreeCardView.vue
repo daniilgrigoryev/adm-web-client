@@ -316,7 +316,9 @@
 
           if (scenarioResult) {
             let createdNode = this.findNode(scenarioResult);
-            await this.nodeClick(createdNode);
+            if (createdNode) {
+              await this.nodeClick(createdNode);
+            }
           }
           if (innerFormStack.stackSize() === 0) {
             this.getDelo();
