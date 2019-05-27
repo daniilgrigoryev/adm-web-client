@@ -312,7 +312,8 @@
             value: 'Ж'
           },
         ],
-        delo: null
+        delo: null,
+        constants
       }
     },
     computed: {

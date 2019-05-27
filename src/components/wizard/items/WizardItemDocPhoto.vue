@@ -21,7 +21,7 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <Alert v-if="fileError" type="warning" closable show-icon @on-close="clearFile">Неправильный формат
-            файла.
+            файла {{fileError}}.
           </Alert>
 
           <div class="relative ivu-upload-drag py12 cursor-pointer">
@@ -36,17 +36,7 @@
             </template>
           </div>
         </Col>
-      </Row><!--
-      <div>
-        <div class="page-card-file-icon">
-          <Icon type="ios-document-outline" size="36"/>
-          <div class="page-card-file-icon-type"></div>
-        </div>
-        <p class="page-card-file-icon-caption">Test1</p>
-        <Button @click.stop="clearFile" icon="ios-close-circle color-orange" type="text" size="small">
-          Очистить
-        </Button>
-      </div>-->
+      </Row>
     </div>
     <div v-if="filesArray.length > 0 || otherMedia.length > 0" class="adm-form__item">
       <small class="adm-form__label">Выбранные файлы</small>
@@ -62,6 +52,8 @@
               <span>{{ itemMedia.name }}</span>
             </div>
           </div>
+
+          <Button @click="clearPreview" type="text">Очистить</Button>
         </Col>
       </Row>
     </div>
@@ -69,7 +61,6 @@
 </template>
 
 <script>
-  import * as funcUtils from "~/assets/js/utils/funcUtils";
   import RequestApi from "~/assets/js/api/requestApi";
 
   export default {
@@ -86,10 +77,8 @@
     data() {
       return {
         data: null,
-        files: null,
-        fileError: false,
+        fileError: null,
         allowedFiles: ['image/png', 'image/jpeg', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'video/mp4', 'application/pdf', 'application/pgp-signature', 'video/webm'],
-        byteArraysCount: 0,
         filesArray: [],
         otherMedia: []
       }
@@ -105,6 +94,43 @@
           }
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
+        if (this.data.files && this.data.files.length > 0) {
+          eventResponse = await RequestApi.prepareData({
+            method: 'invokeElementMethod',
+            params: {
+              eCID: this.info.eCID,
+              methodName: 'getFileBody',
+              data: null
+            }
+          });
+          let filesBody = JSON.parse(JSON.parse(eventResponse.response).data);
+          for (let i = 0; i < this.data.files.length; i++) {
+            let file = this.data.files[i];
+            let fileBody = filesBody[file.name];
+            switch (file.type) {
+              case 'image/png':
+              case 'image/jpeg': {
+                this.filesArray.push({
+                  type: file.type,
+                  desc: file.name,
+                  body: `data:${file.type};base64,${fileBody}`
+                });
+                break;
+              }
+              case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+              case 'video/mp4':
+              case 'application/pdf':
+              case 'application/pgp-signature':
+              case 'video/webm': {
+                this.otherMedia.push({
+                  type: file.type,
+                  name: file.name,
+                });
+                break;
+              }
+            }
+          }
+        }
       },
       byteArrayToBase64(bytes, type) {
         let binary = '';
@@ -116,110 +142,101 @@
       },
       async onFileChange(e) {
         let vm = this;
-        this.byteArraysCount = 0;
-        this.files = {};
-        this.filesArray = [];
-        this.otherMedia = [];
-        this.data.files = [];
-        this.fileError = false;
 
         let files = e.target.files || e.dataTransfer.files;
-        if (!files || files.length === 0) {
+        if (!files) {
+          this.clearFile();
           await this.storeElementData();
           return;
         }
 
+        files = Array.prototype.slice.call(files);
         for (let i = 0; i < files.length; i++) {
           let file = files[i];
           let type = file.type;
           if (!this.allowedFiles.includes(type)) {
-            this.clearFile();
             // this.$store.dispatch('errors/changeContent', {title: 'Неправильный формат файла', desc: 'Допустимые форматы: Microsoft Excel (XLS, XLSX), PNG, JPEG, MP4, PDF, WEBM',});
             this.$Notice.warning({
-              title: 'Неправильный формат файла',
+              title: `Неправильный формат файла ${file.name}.`,
               desc: 'Допустимые форматы: Microsoft Word (DOC), PNG, JPEG, MP4, PDF, WEBM',
               duration: 10
             });
 
-            this.fileError = true;
+            this.fileError = file.name;
+            this.clearFile(false);
             return;
           }
-          this.data.files.push({
-            name: file.name,
-            type: file.type,
-            size: file.size,
-            loadSize: 0
-          });
         }
+
+        files.forEach((file, index, object) => {
+          let fileOfDataFiles = this.data.files.filter((item) => {
+            return item.desc === file.name;
+          }).getFirst();
+          if (!fileOfDataFiles) {
+            this.data.files.push({
+              name: file.name,
+              type: file.type,
+              size: file.size,
+              loadSize: 0
+            });
+          } else {
+            object.splice(index, 1);
+          }
+        });
         await this.storeElementData();
+
+        let filesToLoad = {
+          files: [],
+          count: files.length
+        };
 
         for (let i = 0; i < files.length; i++) {
           let file = files[i];
           let reader = new FileReader();
-          reader.onload = function (e) {
-            let kb = 1024 * 64;
-            let key = this.metaInfo.name + '-' + this.metaInfo.type + '-' + this.metaInfo.size;
-            let byteArray = Array.prototype.slice.call(new Uint8Array(e.currentTarget.result));
-            let body = vm.chunkArray(byteArray, kb);
-            vm.files[key] = {
-              file: this.metaInfo,
-              body: body,
-              byteArray: byteArray
-            };
-            vm.byteArraysCount += body.length;
-            this.onloaded();
-          };
-          reader.metaInfo = file;
-          reader.onloaded = function () {
-            let keys = Object.keys(vm.files);
-            if (keys.length === vm.data.files.length) {
-              for (let i = 0; i < keys.length; i++) {
-                let key = keys[i];
-                vm.sendFile(key);
-              }
+          reader.onload = async function (e) {
+            this.metaInfo.byteArray = Array.prototype.slice.call(new Uint8Array(e.currentTarget.result));
+            filesToLoad.files.push(this.metaInfo);
+            await vm.sendFile(this.metaInfo);
+            filesToLoad.count--;
+            if (filesToLoad.count === 0) {
+              vm.checkSended(filesToLoad.files);
             }
           };
+          reader.metaInfo = file;
           reader.readAsArrayBuffer(file);
         }
       },
-      sendFile(key) {
-        let vm = this;
-        let file = this.files[key];
-        let kbArrays = file.body;
+      async sendRepeatFiles(files) {
+        for (let i = 0; i < files.length; i++) {
+          let file = files[i];
+          await this.sendFile(file);
+        }
+        this.checkSended(files);
+      },
+      async sendFile(file) {
+        let kb = 1024 * 64;
+        let kbArrays = this.chunkArray(file.byteArray, kb);
         let sendedBytes = 0;
         for (let i = 0; i < kbArrays.length; i++) {
           let kbArray = kbArrays[i];
-          let response = RequestApi.prepareData({
+          await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {
               eCID: this.info.eCID,
               methodName: 'setPart',
               data: JSON.stringify({
-                fileName: file.file.name,
+                fileName: file.name,
                 startPos: sendedBytes,
                 body: kbArray,
               })
-            },
-            withSpinner: false
+            }
           });
           sendedBytes += kbArray.length;
-          response.then(() => {
-            vm.byteArraysCount--;
-            if (vm.byteArraysCount === 0) {
-              vm.checkSended();
-            }
-          }, () => {
-            vm.byteArraysCount--;
-            if (vm.byteArraysCount === 0) {
-              vm.checkSended();
-            }
-
-          });
         }
       },
-      async checkSended() {
-        let errors = [];
-        let errorsFiles = '';
+      async checkSended(files) {
+        let errorsFiles = [];
+        let errors = '';
         let eventResponse = await RequestApi.prepareData({
           method: 'invokeElementMethod',
           params: {
@@ -230,26 +247,27 @@
           withSpinner: false
         });
         let data = JSON.parse(JSON.parse(eventResponse.response).data);
+        this.data = data;
         for (let i = 0; i < data.files.length; i++) {
           let dataFile = data.files[i];
-          let key = dataFile.name + '-' + dataFile.type + '-' + dataFile.size;
-          let file = this.files[key];
-          this.byteArraysCount += file.body.length;
-          if (dataFile.loadSize !== file.file.size) {
-            file.successed = false;
-            errors.push(key);
-            errorsFiles += file.file.name + '\n';
+          let file = files.filter((item) => {
+            return item.name === dataFile.name;
+          }).getFirst();
+          if (!file) {
+            continue;
+          }
+          if (dataFile.loadSize !== file.size) {
+            errorsFiles.push(file);
+            errors += file.name + '\n';
           } else {
-            file.successed = true;
-
-            switch (file.file.type) {
+            switch (file.type) {
               case 'image/png':
               case 'image/jpeg': {
                 this.filesArray.push({
-                  type: file.file.type,
-                  desc: file.file.name,
-                  body: this.byteArrayToBase64(file.byteArray, file.file.type)
-                  });
+                  type: file.type,
+                  desc: file.name,
+                  body: this.byteArrayToBase64(file.byteArray, file.type)
+                });
                 break;
               }
               case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
@@ -258,18 +276,18 @@
               case 'application/pgp-signature':
               case 'video/webm': {
                 this.otherMedia.push({
-                  type: file.file.type,
-                  name: file.file.name
+                  type: file.type,
+                  name: file.name
                 });
                 break;
               }
             }
           }
         }
-        if (errors.length > 0) {
-          let answer = confirm(`Не удалось загрузить файлы:\n${errorsFiles}Повторить отправку?`);
+        if (errorsFiles.length > 0) {
+          let answer = confirm(`Не удалось загрузить файлы:\n${errors}Повторить отправку?`);
           if (answer) {
-            debugger;
+            this.sendRepeatFiles(errorsFiles);
           }
         } else {
           this.$Notice.warning({
@@ -290,10 +308,18 @@
 
         return tempArray;
       },
-      clearFile() {
-        this.file = null;
+      clearFile(withClearError = true) {
         let input = this.$refs.file;
         input.type = 'file';
+        if (withClearError === true) {
+          this.fileError = null;
+        }
+      },
+      async clearPreview() {
+        this.filesArray = [];
+        this.otherMedia = [];
+        this.data.files = [];
+        await this.storeElementData();
       },
       async storeElementData() {
         return new Promise((resolve, reject) => {

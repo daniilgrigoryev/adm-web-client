@@ -1,15 +1,5 @@
 <template>
   <div v-if="data">
-    <div v-if="!isNotEmptyParentNode" class="adm-form__item">
-      <small class="adm-form__label">Дело №</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <masked-input :disabled="data.deloN !== null" :autofocus="true" inputClass="adm-input adm-input--regular wmin120" :value="data.deloN" :maskProps="maskInputProt" @onInputChange="storeElementData"></masked-input>
-          </Col>
-        </Row>
-      </div>
-    </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Ходатайство №</small>
       <div class="adm-form__item_content">
