@@ -8,6 +8,7 @@ export default {
       pnpaList: null,
       stotvSearchInfoList: null,
       factSvedList: [],
+      proceedingsFixingList: null,
     }
   },
   methods: {
@@ -40,6 +41,26 @@ export default {
         });
       }
       this.pnpaList = pnpaList;
+    },
+    async fillProceedingsFixingList() {
+      let eventResponse = await RequestApi.prepareData({
+        method: 'invokeElementMethod',
+        params: {
+          eCID: this.info.eCID,
+          methodName: 'getProceedingsFixingDict',
+          data: null
+        }
+      });
+      let proceedingsFixingList = [];
+      let proceedingsFixingDict = JSON.parse(JSON.parse(eventResponse.response).data);
+      for (let i = 0; i < proceedingsFixingDict.length; i++) {
+        let proceedingsFixing = proceedingsFixingDict[i];
+        proceedingsFixingList.push({
+          label: proceedingsFixing.NAME,
+          value: proceedingsFixing.ID,
+        });
+      }
+      this.proceedingsFixingList = proceedingsFixingList;
     },
     async fillStotvSearchInfo() {
       let eventResponse = await RequestApi.prepareData({

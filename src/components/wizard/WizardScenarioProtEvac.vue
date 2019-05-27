@@ -46,7 +46,7 @@
             <div class="adm-form__content">
               <wizard-item-prot-three id="DocProtEvacThree" v-if="isVisible('DocProtEvacThree')" ref="DocProtEvacThree" :info="getInfo('DocProtEvacThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
               <wizard-item-place v-if="isVisible('DocProtEvacThree.PlaceNar')" ref="DocProtEvacThree.PlaceNar" :info="getInfo('DocProtEvacThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-prot-four id="DocProtEvacFour" v-if="isVisible('DocProtEvacFour')" ref="DocProtEvacFour" :info="getInfo('DocProtEvacFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-four>
+              <wizard-item-prot-evac-four id="DocProtEvacFour" v-if="isVisible('DocProtEvacFour')" ref="DocProtEvacFour" :info="getInfo('DocProtEvacFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-four>
             </div>
           </div>
           <wizard-item-prot-evac-five id="evac" v-if="isVisible('DocProtEvacFive')" ref="DocProtEvacFive" :info="getInfo('DocProtEvacFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
@@ -87,7 +87,7 @@
       WizardItemProtOne: () => import('~/components/wizard/items/WizardItemProtOne'),
       WizardItemProtTwo: () => import('~/components/wizard/items/WizardItemProtTwo'),
       WizardItemProtThree: () => import('~/components/wizard/items/WizardItemProtThree'),
-      WizardItemProtFour: () => import('~/components/wizard/items/WizardItemProtFour'),
+      WizardItemProtEvacFour: () => import('~/components/wizard/items/protEvac/WizardItemProtEvacFour'),
       WizardItemProtEvacFive: () => import('~/components/wizard/items/protEvac/WizardItemProtEvacFive'),
       WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
