@@ -318,6 +318,7 @@
       async clearPreview() {
         this.filesArray = [];
         this.otherMedia = [];
+        this.clearFile();
         for (let i = 0; i < this.data.files.length; i++) {
           let file = this.data.files[i];
           await RequestApi.prepareData({
@@ -325,9 +326,9 @@
             params: {
               eCID: this.info.eCID,
               methodName: 'removeFile',
-              data: {
+              data: JSON.stringify({
                 fileName: file.name
-              }
+              })
             }
           });
         }
