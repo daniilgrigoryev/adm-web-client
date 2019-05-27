@@ -53,18 +53,20 @@
             :value="body.individ.phone"
             style="grid-column: span 2;"
           />
-          <div v-if="body.uchastStatus === constants.UCHAST_INDIVID">
-            <view-data-item
-              label="ИНН"
-              :value="body.individ.inn"
-              style="grid-column: span 2;"
-            />
-            <view-data-item
-              label="ОГРНИП"
-              :value="body.individ.ogrn"
-              style="grid-column: span 2;"
-            />
-          </div>
+          <template v-if="body.uchastStatus === 3">
+            <div v-if="body.uchastStatus === constants.UCHAST_INDIVID">
+              <view-data-item
+                label="ИНН"
+                :value="body.individ.inn"
+                style="grid-column: span 2;"
+              />
+              <view-data-item
+                label="ОГРНИП"
+                :value="body.individ.ogrn"
+                style="grid-column: span 2;"
+              />
+            </div>
+          </template>
         </div>
       </div>
     </div>
