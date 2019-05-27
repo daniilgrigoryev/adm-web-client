@@ -55,7 +55,7 @@
             </div>
             <div class="ml18">
               <div v-if="isNotEmptyField(body.inspVozbName)">
-                <p class="adm-14 color-dark-lighter mb6">Должностное лицо возбудившее дело. ФИО - Код сотрудника.</p>
+                <p class="adm-14 color-dark-lighter mb6">Должностное лицо, возбудившее дело. ФИО. Код сотрудника.</p>
                 <p class="adm-text-big color-dark-base">{{body.inspVozbName, body.inspVozbKod | concatByDelimiter('-')}}</p>
               </div>
               

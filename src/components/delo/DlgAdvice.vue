@@ -29,7 +29,7 @@
           />
           <hr>
           <view-data-item 
-            label="Код сотрудника - Ф.И.О" 
+            label="Код сотрудника - ФИО" 
             :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')" 
             style="grid-column: span 2;"
             :icon="require('../../assets/images/police.svg')"
@@ -53,7 +53,7 @@
           <div v-if="body.docVid === docVid.ADV_ADM">
             <hr>
             <view-data-item
-              label="Код сотрудника утвердившего документ - Ф.И.О"
+              label="Код сотрудника, утвердившего документ - ФИО"
               :value="body.inspUtvKod, body.inspUtvName  | concatByDelimiter('-')"
               style="grid-column: span 2;"
               :icon="require('../../assets/images/police.svg')"

@@ -119,6 +119,7 @@
           {
             title: "Информация по представителю",
             name: "pres",
+            hide: !this.isVisible('Present')
           },
           {
             title: "Сведения о нарушении",
