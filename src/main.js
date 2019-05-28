@@ -22,12 +22,14 @@ import Stack from '~/assets/js/api/stack';
 import Select from '~/components/shared/CustomSelect';
 import DatePickerMask from '~/components/shared/dateTimePicker/DatePickerMask';
 import MaskedInput from '~/components/shared/MaskedInput';
+import ListItemsDocs from '~/components/shared/ListItemsDocs';
 
 import moment from 'moment';
 moment.locale('ru');
 Vue.component('Select', Select);
 Vue.component('DatePickerMask', DatePickerMask);
 Vue.component('MaskedInput', MaskedInput);
+Vue.component('ListItemsDocs', ListItemsDocs);
 Vue.use(iView, {
   locale
 });
