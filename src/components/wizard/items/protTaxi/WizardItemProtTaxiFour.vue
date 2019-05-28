@@ -78,7 +78,7 @@
             </Col>
           </Row>
         </div>
-        <slot/>
+        <slot name="owner-details"/>
       </div>
     </div>
     <div class="adm-form__container">
