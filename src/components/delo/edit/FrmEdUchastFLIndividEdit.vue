@@ -34,7 +34,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240" @onInputChange="store" v-model="uchastIndivid.individ.firstName" :maskProps="maskInputFIO" :maxlength="80"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.firstName" :maskProps="maskInputFIO" :maxlength="80"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240" @onInputChange="store" v-model="uchastIndivid.individ.secondName" :maskProps="maskInputFIO" :maxlength="25"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.secondName" :maskProps="maskInputFIO" :maxlength="25"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular wmax240"  @onInputChange="store" v-model="uchastIndivid.individ.thirdName"  :maskProps="maskInputFIO" :maxlength="25"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax360"  @onInputChange="store" v-model="uchastIndivid.individ.thirdName"  :maskProps="maskInputFIO" :maxlength="25"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -148,7 +148,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input v-model="uchastIndivid.individ.phone" @onInputChange="store" inputClass="adm-input adm-input--regular wmax240" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
+                      <masked-input v-model="uchastIndivid.individ.phone" @onInputChange="store" inputClass="adm-input adm-input--regular wmax360" :maskProps="phoneMask" clearable :placeholder="phoneMask.placeholder"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -176,7 +176,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastIndivid.individ.inn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
+                        <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.inn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
                       </Col>
                     </Row>
                   </div>
@@ -186,7 +186,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <masked-input inputClass="adm-input adm-input--regular" @onInputChange="store" v-model="uchastIndivid.individ.ogrn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
+                        <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.ogrn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
                       </Col>
                     </Row>
                   </div>
@@ -197,7 +197,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="uchastIndivid.vehsId" clearable filterable @on-change="store">
+                      <Select class="adm-input adm-input--regular wmin180 wmax360" placeholder="" v-model="uchastIndivid.vehsId" clearable filterable @on-change="store">
                         <Option class="" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </Select>
                     </Col>
@@ -208,7 +208,7 @@
                 <small class="adm-form__label">Владеет русским языком</small>
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="22">
-                    <Select class="adm-input adm-input--regular wmin180" v-model="uchastIndivid.isSpeaksRussian" filterable @on-change="store" placeholder="">
+                    <Select class="adm-input adm-input--regular wmin180 wmax240" v-model="uchastIndivid.isSpeaksRussian" filterable @on-change="store" placeholder="">
                       <Option value="true">Да</Option>
                       <Option value="false">Нет</Option>
                       <Option value="null">Неизвестно</Option>
