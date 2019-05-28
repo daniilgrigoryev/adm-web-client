@@ -147,6 +147,7 @@
           {
             title: "Свидетели",
             name: "witness",
+            hide: !this.isVisible('Witness1')
           },
         ]
       },
