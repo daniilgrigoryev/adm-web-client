@@ -112,15 +112,38 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'make'
         });
-        let resp =  JSON.parse(eventResponse.response);
-        if (resp.error && resp.error.errorId) {
-          this.$store.dispatch('errors/changeContent', {title: resp.error.errorMsg, desc: resp.error.errorDesc,});
+        let eventResp =  JSON.parse(eventResponse.response);
+        if (eventResp.error && eventResp.error.errorId) {
+          this.$store.dispatch('errors/changeContent', {title: eventResp.error.errorMsg, desc: eventResp.error.errorDesc,});
         } else {
-          let stack = formStack.getStack();
-          let prev = stack.indexOf(stack.size() - 2);
-          prev.params.scenarioResult = resp.data;
-          formStack.updateStack(stack);
-          this.getPrev();
+          let response = await RequestApi.prepareData({
+            method: 'getDeloId'
+          });
+          let resp = null;
+          if (response.response) {
+            resp = JSON.parse(response.response);
+          }
+          if (resp && resp.data) {
+            this.getPrev(false);
+            let params = {
+              deloId: resp.data,
+              scenarioResult: eventResp.data,
+            };
+
+            formStack.toNext({
+              module: this.$store.state.deloTreeCardView,
+              vm: this,
+              notRemoved: false,
+              params: params,
+              withCreate: true
+            });
+          } else {
+            let stack = formStack.getStack();
+            let prev = stack.indexOf(stack.size() - 2);
+            prev.params.scenarioResult = eventResp.data;
+            formStack.updateStack(stack);
+            this.getPrev();
+          }
         }
       },
       getPrev() {

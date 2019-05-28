@@ -6,7 +6,7 @@
         <Col :xs="22" :md="22" :lg="22">
           <div class="list-docs">
             <div v-for="(item, index) in items" :key="item.index" class="doc-item">
-              <label class="list-docs__checkbox" :class="{ checked: item.check}" v-if="!disabledFields.checkbox">
+              <label class="list-docs__checkbox" :class="{ checked: item.check}" v-if="!disabledFields.check">
                 <input type="checkbox" v-model="item.check" @change="change">
                 <div class="check-block">
                   <Icon type="md-checkmark" :size="16"/>
@@ -14,7 +14,7 @@
               </label>
               <Input class="adm-input adm-input--regular name"
                      type="text"
-                     :style="!disabledFields.checkbox ? 'margin-left: 14px' : ''"
+                     :style="!disabledFields.check ? 'margin-left: 14px' : ''"
                      v-model="item.name"
                      @on-input-change="change"
                      @on-blur="change"
@@ -44,7 +44,7 @@
         type: Object,
         default: () => ({
           quantity: false,
-          checkbox: false,
+          check: false,
         })
       },
       title: {
@@ -70,7 +70,7 @@
       };
     },
     created() {
-      this.disabledFields.checkbox ? delete this.itemTemplate.check : '';
+      this.disabledFields.check ? delete this.itemTemplate.check : '';
       this.disabledFields.quantity ? delete this.itemTemplate.sheets_quantity : '';
     },
     methods: {
