@@ -39,6 +39,17 @@
               <wizard-item-address v-if="isVisible('LVOK.Organization.factAddr')" ref="LVOK.Organization.factAddr" :info="getInfo('LVOK.Organization.factAddr')" title="Адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
+          <div v-if="isVisible('Present')" class="adm-form">
+            <div class="adm-form__container">
+              <h2 id="pres" class="adm-form__headding">Сведения о явке</h2>
+              <div class="adm-form__content">
+                <wizard-item-present id="Present" ref="Present" :info="getInfo('Present')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-present>
+                <wizard-item-pred-doc v-if="isVisible('Present.PredDoc')" ref="Present.PredDoc" :info="getInfo('Present.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
+                <wizard-item-individual v-if="isVisible('Present.Repres')" ref="Present.Repres" :info="getInfo('Present.Repres')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+                <wizard-item-address v-if="isVisible('Present.Repres.regAddr')" ref="Present.Repres.regAddr" :info="getInfo('Present.Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+              </div>
+            </div>
+          </div>
           <div class="adm-form__container">
             <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
@@ -78,6 +89,8 @@
     extends: WizardScenarioProtEvac,
     components: {
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs'),
+      WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
+      WizardItemPresent: () => import('~/components/wizard/items/WizardItemPresent'),
     },
     data() {
       return {

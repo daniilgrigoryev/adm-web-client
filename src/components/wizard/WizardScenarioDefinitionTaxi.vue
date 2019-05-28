@@ -19,7 +19,6 @@
             <h2 class="adm-form__headding" id="Lvok">ЛВОК</h2>
             <div class="adm-form__content">
               <wizard-item-lvok v-if="isVisible('LVOK')" ref="LVOK" :info="getInfo('LVOK')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-lvok>
-              <wizard-item-pred-doc v-if="isVisible('LVOK.PredDoc')" ref="LVOK.PredDoc" :info="getInfo('LVOK.PredDoc')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-pred-doc>
               <wizard-item-individual v-if="isVisible('LVOK.Individual')" ref="LVOK.Individual" :info="getInfo('LVOK.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
               <wizard-item-address v-if="isVisible('LVOK.Individual.regAddr')" ref="LVOK.Individual.regAddr" :info="getInfo('LVOK.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
               <wizard-item-address v-if="isVisible('LVOK.Individual.factAddr')" ref="LVOK.Individual.factAddr" :info="getInfo('LVOK.Individual.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
@@ -83,7 +82,6 @@
       WizardItemLvok: () => import('~/components/wizard/items/WizardItemLvok'),
       WizardItemOrganization: () => import('~/components/wizard/items/WizardItemOrganization'),
       WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
-      WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
     },
     methods: {
