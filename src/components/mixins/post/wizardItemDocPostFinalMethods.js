@@ -4,12 +4,12 @@ import RequestApi from "~/assets/js/api/requestApi";
 export default {
   data() {},
   methods: {
-    async calcDateVstud() {
+    async calcDateVstup() {
       let eventResponse = await RequestApi.prepareData({
         method: 'invokeElementMethod',
         params: {
           eCID: this.info.eCID,
-          methodName: 'calcDateVstud',
+          methodName: 'calcDateVstup',
           data: null
         }
       });

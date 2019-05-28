@@ -16,7 +16,7 @@
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateVstup" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
           </Col>
           <Col :xs="2" :md="2" :lg="2">
-            <Button @click="calcDateVstud" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+            <Button @click="calcDateVstup" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
               <Icon type="ios-bookmarks-outline" class=" " title="Расчитать дату вступления в законную силу" :size="30" />
             </Button>
           </Col>
