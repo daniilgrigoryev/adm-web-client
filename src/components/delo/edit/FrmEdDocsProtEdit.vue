@@ -237,6 +237,7 @@
                     </Row>
                   </div>
                 </div>
+                <list-items-docs :items="docsProt.annexesList" title="Список приложений" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
               </div>
               </div>
             </div>

@@ -13,6 +13,14 @@
       </Row>
     </div>
     <div class="adm-form__item">
+      <small class="adm-form__label">Телефон</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="22" :lg="22">
+          <masked-input inputClass="adm-input adm-input--regular wmax360" :maskProps="{regex: '[0-9()+-]+', placeholder: ''}" v-model="data.phone" @onInputChange="storeElementData"></masked-input>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
       <small class="adm-form__label">ИНН</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="6" :lg="6">

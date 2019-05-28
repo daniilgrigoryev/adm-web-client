@@ -95,6 +95,8 @@
         </Row>
       </div>
     </div>
+    <list-items-docs :items="data.inculpatoryEvidencesList" title="Список доказательств виновности" @change="storeElementData"></list-items-docs>
+    <list-items-docs :items="data.exculpatoryEvidencesList" title="Список доказательств невиновности" :disabledFields="{ quantity: true }" @change="storeElementData"></list-items-docs>
   </div>
 </template>
 

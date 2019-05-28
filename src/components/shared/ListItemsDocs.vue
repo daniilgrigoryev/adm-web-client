@@ -21,12 +21,7 @@
               />
               <div class="quantity" v-if="!disabledFields.quantity">
                 Количество листов
-                <Input
-                  class="adm-input adm-input--regular"
-                  v-model="item.sheets_quantity"
-                  @on-input-change="change"
-                  @on-blur="change"
-                />
+                <masked-input inputClass="adm-input adm-input--regular" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="item.sheets_quantity" @onBlur="change" @onInputChange="change"></masked-input>
               </div>
               <button class="remove" @click="removeItem(index)"></button>
             </div>

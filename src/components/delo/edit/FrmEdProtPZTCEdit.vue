@@ -247,6 +247,8 @@
                   </Row>
                 </div>
               </div>
+              <list-items-docs :items="protPZTC.seizedThingsList" title="Список изъятых вещи и документов" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
+              <list-items-docs :items="protPZTC.usedTechnicalMeansList" title="Список использованных технических средств" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
             </div>
           </div>
         </div>

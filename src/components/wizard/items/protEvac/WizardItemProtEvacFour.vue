@@ -66,6 +66,8 @@
         </Row>
       </div>
     </div>
+    <list-items-docs :items="data.seizedThings" title="Изъятые вещи и документы" :disabledFields="{ quantity: true, check: true }" @change="storeElementData"></list-items-docs>
+    <list-items-docs :items="data.usedTechnicalMeans" title="Использованные технические средства" :disabledFields="{ quantity: true, check: true }" @change="storeElementData"></list-items-docs>
   </div>
 </template>
 

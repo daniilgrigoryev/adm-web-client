@@ -198,6 +198,8 @@
                   </Row>
                 </div>
               </div>
+              <list-items-docs :items="docsPost.inculpatoryEvidencesList" title="Список доказательств виновности" :disabledFields="{ check: true }" @change="store"></list-items-docs>
+              <list-items-docs :items="docsPost.exculpatoryEvidencesList" title="Список доказательств невиновности" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
             </div>
           </div>
         </div>

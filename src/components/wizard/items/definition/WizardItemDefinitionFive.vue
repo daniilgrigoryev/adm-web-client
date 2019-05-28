@@ -75,6 +75,8 @@
         </Row>
       </div>
     </div>
+    <list-items-docs :items="data.provideMaterials" title="Список документов" :disabledFields="{ quantity: true, check: true }" @change="storeElementData"></list-items-docs>
+    <list-items-docs :items="data.providePresence" title="Обеспечить явку" :disabledFields="{ quantity: true, check: true }" @change="storeElementData"></list-items-docs>
   </div>
 </template>
 
