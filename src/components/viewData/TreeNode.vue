@@ -34,19 +34,20 @@
   import * as decis from '~/assets/images/decis.png';
   import * as predDoc from '~/assets/images/predDoc.png';
   import * as delo from '~/assets/images/delo.png';
-  import * as amtc from '~/assets/images/amtc.png';
+  import * as amtc from '~/assets/images/ts.svg';
   import * as uchast from '~/assets/images/uchast.png';
   import * as ispolnDecisAppeal from '~/assets/images/ispolnDecisAppeal.png';
   import * as ispolnAppeal from '~/assets/images/ispolnAppeal.png';
   import * as deloProizv from '~/assets/images/deloProizv.png';
   import * as photo from '~/assets/images/photo.png';
-  import * as docsPost from '~/assets/images/docsPost.png';
-  import * as docsProt from '~/assets/images/docsProt.png';
+  import * as posnanovlenie from '~/assets/images/posnanovlenie.svg';
+  import * as protokol from '~/assets/images/protokol.svg';
   import * as pzts from '~/assets/images/pzts.png';
-  import * as docsOpred from '~/assets/images/docsOpred.png';
-  import * as protOtstrUprTC from '~/assets/images/protOtstrUprTC.png';
-  import * as protMed from '~/assets/images/protMed.png';
+  import * as opredelenie from '~/assets/images/opredelenie.svg';
+  import * as protOtstrUprTC from '~/assets/images/protokol-ts-otstranenie.svg';
+  import * as protMed from '~/assets/images/protokol-alcohol.svg';
   import * as downloadIcon from '~/assets/images/download.svg';
+  import * as protZaderTC from '~/assets/images/protokol-ts-zaderzhanie.svg';
 
   export default {
     name: "TreeNode",
@@ -128,9 +129,11 @@
               case docTipEnum.PROT_MED:{
                 return protMed
               }
+              case docTipEnum.PROT_ZADER_TC: {
+                return protZaderTC;
+              }
               case docTipEnum.ACT_OCAO:
               case docTipEnum.PROT_ZAPR_EKSPLUAT_TC:
-              case docTipEnum.PROT_ZADER_TC:
               case docTipEnum.PROT_DOSMOTR_TC:
               case docTipEnum.PROT_IZYAT_VESH_DOC:
               case docTipEnum.PROT_OSMOTR_MESTA_APN:
@@ -150,7 +153,7 @@
           }
           case constants.DOCS_POST:
           case constants.DOCS_POST_UL: {
-            return docsPost;
+            return posnanovlenie;
           }
           case constants.DECIS_ISPOLN: {
             if (funcUtils.isNotEmpty(node.kod)) {
@@ -185,10 +188,10 @@
             return deloProizv;
           }
           case constants.DOCS_OPRED: {
-            return docsOpred;
+            return opredelenie;
           }
           case constants.DOCS_PROT: {
-            return docsProt;
+            return protokol;
           }
         }
         return '';
