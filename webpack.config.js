@@ -1,7 +1,7 @@
 const resolve = require('path').resolve;
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const url = require('url');
 const publicPath = '/admWeb/';
@@ -87,8 +87,8 @@ module.exports = (options = {}) => ({
     },
     extensions: ['.js', '.vue', '.json', '.css', '.html']
   },
-  devServer: {
-    host: '0.0.0.0',
+/*  devServer: {
+    host: '172.20.255.54',
     disableHostCheck: true,
     port: 8040,
     open: true,
@@ -100,7 +100,7 @@ module.exports = (options = {}) => ({
     watchOptions: {
       ignored: /node_modules/
     }
-  },
+  },*/
   devtool: options.dev ? '#eval-source-map' : '#source-map',
   performance: {
     hints: false
@@ -110,7 +110,7 @@ module.exports = (options = {}) => ({
       names: ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'src/index.html'
     }),
     new FaviconsWebpackPlugin({
       logo: "./src/assets/images/favicon.png",

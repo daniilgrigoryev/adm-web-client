@@ -71,6 +71,7 @@
             <p class="adm-14 color-dark-lighter mb6">Список приложений</p>
             <div v-for="(item, index) in body.annexesList" :key="index" class="mt12">
               <p class="adm-text-big color-dark-base">{{ item.name }}</p>
+              <p class="adm-text-big color-dark-base">{{ item.sheets_quantity }}</p>
             </div>
           </div>
 

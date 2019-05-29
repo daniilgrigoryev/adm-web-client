@@ -216,7 +216,7 @@
                   </Col>
                 </Row>
               </div>
-              <list-items-docs :items="docsProt.annexesList" title="Список приложений" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
+              <list-items-docs :items="docsProt.annexesList" title="Список приложений" :disabledFields="{ check: true }" @change="store"></list-items-docs>
               <div v-if="isTaxi">
                 <div class="adm-form__item">
                   <small class="adm-form__label">Номер разрешения такси</small>

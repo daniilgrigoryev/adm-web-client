@@ -54,7 +54,7 @@
         </Row>
       </div>
     </div>
-    <list-items-docs :items="data.annexesList" title="Список приложений" :disabledFields="{ quantity: true, check: true }" @change="storeElementData"></list-items-docs>
+    <list-items-docs :items="data.annexesList" title="Список приложений" :disabledFields="{ check: true }" @change="storeElementData"></list-items-docs>
   </div>
 </template>
 
