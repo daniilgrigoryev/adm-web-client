@@ -50,6 +50,19 @@
             :value="body.guiltAdmissionTypeName"
             style="grid-column: span 2;"
           />
+          <div v-if="body.inculpatoryEvidencesList && body.inculpatoryEvidencesList.length > 0" style="grid-column: span 2 / auto; display: grid; grid-gap: 0; margin: 5px 0; position: relative; padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter mb6">Список доказательств виновности</p>
+            <div v-for="(item, index) in body.inculpatoryEvidencesList" :key="index" class="mt12">
+              <p class="adm-text-big color-dark-base">{{ item.name }}</p>
+              <p class="adm-text-big color-dark-base">{{ item.sheets_quantity }}</p>
+            </div>
+          </div>
+          <div v-if="body.exculpatoryEvidencesList && body.exculpatoryEvidencesList.length > 0" style="grid-column: span 2 / auto; display: grid; grid-gap: 0; margin: 5px 0; position: relative; padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter mb6">Список доказательств невиновности</p>
+            <div v-for="(item, index) in body.exculpatoryEvidencesList" :key="index" class="mt12">
+              <p class="adm-text-big color-dark-base">{{ item.name }}</p>
+            </div>
+          </div>
 
           <hr>
 

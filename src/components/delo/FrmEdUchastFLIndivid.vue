@@ -21,7 +21,7 @@
         <div class="items-wrap">
           <view-data-item
             label="ФИО, дата рождения"
-            :value="body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), body.individ.birthdayDay.replace(/[\.\/]/g,'.') | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.')"
+            :value="body.individ.firstName, body.individ.secondName, body.individ.thirdName | concatByDelimiter(' '), parsedBirthday | concatByDelimiter('-'), body.individ.birthdayYear | concatByDelimiter('.')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/owner.svg')"
           />
@@ -124,7 +124,14 @@
           res = this.dataStore.body;
         }
         return res;
-      }
+      },
+      parsedBirthday() {
+        let res = null;
+        if (this.body && this.body.individ.birthdayDay) {
+          res = this.body.individ.birthdayDay.replace(/[\.\/]/g,'.');
+        }
+        return res;
+      },
     },
   }
 </script>

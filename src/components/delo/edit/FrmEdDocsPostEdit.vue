@@ -189,6 +189,16 @@
                 </div>
               </div>
               <div class="adm-form__item">
+                <small class="adm-form__label">Признание вины</small>
+                <Row :gutter="16" type="flex" align="middle">
+                  <Col :xs="24" :md="14" :lg="16">
+                    <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="docsPost.guiltAdmissionType" clearable filterable @on-change="store">
+                      <Option class="wmax360 " v-for="item in guiltAdmissionDictionaryList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                    </Select>
+                  </Col>
+                </Row>
+              </div>
+              <div class="adm-form__item">
                 <small class="adm-form__label">Пояснения должностного лица</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
@@ -245,6 +255,7 @@
           this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           await this.fillPnpaList();
+          await this.fillGuiltAdmissionDictionary();
 
           this.docsPost = docsPost;
 
@@ -265,6 +276,7 @@
         docsPost: null,
         pnpaList: null,
         stotvSearchInfoList: null,
+        guiltAdmissionDictionaryList: null,
         factSvedList: [],
         listSectionNav: [
           {
@@ -550,6 +562,21 @@
         this.organModal.visible = visible;
       },
 
+      async fillGuiltAdmissionDictionary() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getGuiltAdmissionDictionary'
+        });
+        let guiltAdmissionDictionaryList = [];
+        let guiltAdmissionDictionaryDict = JSON.parse(eventResponse.response).data;
+        for (let i = 0; i < guiltAdmissionDictionaryDict.length; i++) {
+          let guiltAdmissionDictionary = guiltAdmissionDictionaryDict[i];
+          guiltAdmissionDictionaryList.push({
+            label: guiltAdmissionDictionary.NAME,
+            value: guiltAdmissionDictionary.ID
+          });
+        }
+        this.guiltAdmissionDictionaryList = guiltAdmissionDictionaryList;
+      },
       async fillPnpaList() {
         let eventResponse = await RequestApi.prepareData({
           method: 'getPnpaDict'

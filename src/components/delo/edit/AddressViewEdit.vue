@@ -429,19 +429,19 @@
         }
       },
       isNotEmptyContryCode() {
-        return funcUtils.isNotEmpty(this.data.countryCode);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.countryCode);
       },
       isNotEmptyRegionId() {
-        return funcUtils.isNotEmpty(this.data.regionId);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.regionId);
       },
       isNotEmptyCityId() {
-        return funcUtils.isNotEmpty(this.data.cityId);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.cityId);
       },
       isNotEmptyRayonId() {
-        return funcUtils.isNotEmpty(this.data.rayonId);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.rayonId);
       },
       isNotEmptyStreetId() {
-        return funcUtils.isNotEmpty(this.data.streetId);
+        return funcUtils.isNotEmpty(this.data) && funcUtils.isNotEmpty(this.data.streetId);
       },
       async store() {
         let eventResponse = await RequestApi.prepareData({

@@ -27,7 +27,7 @@
     "mapbox-gl": "^0.45.0",
     "mapbox-gl-vue": "^1.9.0",
     "source-sans-pro": "^2.20.2",
-    "vue": "^2.5.16"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.0",
@@ -70,7 +70,7 @@
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vue-style-loader": "^4.1.0",
-    "vue-template-compiler": "^2.5.16",
+    "vue-template-compiler": "^2.6.10",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4",
     "webpack": "^3.12.0",

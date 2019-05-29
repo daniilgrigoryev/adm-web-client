@@ -67,7 +67,12 @@
             :value="isRemovedFromEvac"
             style="grid-column: span 2;"
           />
-
+          <div v-if="body.annexesList && body.annexesList.length > 0" style="grid-column: span 2 / auto; display: grid; grid-gap: 0; margin: 5px 0; position: relative; padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter mb6">Список приложений</p>
+            <div v-for="(item, index) in body.annexesList" :key="index" class="mt12">
+              <p class="adm-text-big color-dark-base">{{ item.name }}</p>
+            </div>
+          </div>
 
           <div class="items-wrap" v-if="isTaxi">
             <view-data-item

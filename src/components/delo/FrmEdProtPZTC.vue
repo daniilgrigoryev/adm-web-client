@@ -45,16 +45,18 @@
             :value="body.proceedingsFixingTypeName"
             style="grid-column: span 2;"
           />
-          <view-data-item
-            label="Изъятые вещи и документы"
-            :value="body.seizedThings"
-            style="grid-column: span 2;"
-          />
-          <view-data-item
-            label="Использованные технические средства"
-            :value="body.usedTechnicalMeans"
-            style="grid-column: span 2;"
-          />
+          <div v-if="body.seizedThingsList && body.seizedThingsList.length > 0" style="grid-column: span 2 / auto; display: grid; grid-gap: 0; margin: 5px 0; position: relative; padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter mb6">Изъятые вещи и документы</p>
+            <div v-for="(item, index) in body.seizedThingsList" :key="index" class="mt12">
+              <p class="adm-text-big color-dark-base">{{ item.name }}</p>
+            </div>
+          </div>
+          <div v-if="body.usedTechnicalMeansList && body.usedTechnicalMeansList.length > 0" style="grid-column: span 2 / auto; display: grid; grid-gap: 0; margin: 5px 0; position: relative; padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter mb6">Использованные технические средства</p>
+            <div v-for="(item, index) in body.usedTechnicalMeansList" :key="index" class="mt12">
+              <p class="adm-text-big color-dark-base">{{ item.name }}</p>
+            </div>
+          </div>
           <hr>
           <view-data-item
             label="Место составления"

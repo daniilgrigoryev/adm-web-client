@@ -105,8 +105,6 @@
           res = this.dataStore.body;
           res.diskvMes? res.diskvMes += " Месяца" : "";
           res.diskvDay? res.diskvDay += " Дня" : "";
-          res.provideMaterials = JSON.parse(res.provideMaterials);
-          res.providePresence = JSON.parse(res.providePresence);
         }
         return res;
       },

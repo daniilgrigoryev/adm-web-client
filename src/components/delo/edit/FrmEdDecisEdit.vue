@@ -235,22 +235,8 @@
               </div>
 
               <div v-if="decis.decisKod && showByDecisKod(decisKods.istrSved)">
-                <div class="adm-form__item">
-                  <small class="adm-form__label">Список документов</small>
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" @on-blur="store" v-model="decis.provideMaterials" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                    </Col>
-                  </Row>
-                </div>
-                <div class="adm-form__item">
-                  <small class="adm-form__label">Обеспечить явку</small>
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" @on-blur="store" v-model="decis.providePresence" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-                    </Col>
-                  </Row>
-                </div>
+                <list-items-docs :items="decis.provideMaterialsList" title="Список требуемых документов" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
+                <list-items-docs :items="decis.providePresenceList" title="Обеспечить явку" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
               </div>
 
               <div class="adm-form__item">
@@ -273,8 +259,6 @@
                   </Row>
                 </div>
               </div>
-              <list-items-docs :items="decis.provideMaterialsList" title="Список требуемых документов" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
-              <list-items-docs :items="decis.providePresenceList" title="Обеспечить явку" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
             </div>
           </div>
         </div>

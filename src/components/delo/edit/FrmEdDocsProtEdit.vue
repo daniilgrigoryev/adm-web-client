@@ -2,12 +2,15 @@
   <aside-template :listSectionNav="listSectionNav" title="Редактирование протокола" v-if="docsProt">
     <div class="layout-wrap">
       <div class="layout">
-        <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
-        <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
+        <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList"
+                      @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
+        <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList"
+                      @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
 
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Протокол об АПН № {{ docsProt.docN }} от {{ docsProt.dateSost | formatDateTime('DD.MM.YYYY HH:mm') }}</h2>
+            <h2 class="adm-form__headding" id="head">Протокол об АПН № {{ docsProt.docN }} от {{ docsProt.dateSost |
+              formatDateTime('DD.MM.YYYY HH:mm') }}</h2>
             <div class="adm-form__content">
               <Row>
                 <Col span="12">
@@ -28,7 +31,10 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="14" :lg="16">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsProt.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180"
+                                          v-model="docsProt.dateSost" @change="store" clearable type="datetime"
+                                          placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm"
+                                          maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                         </Col>
                       </Row>
                     </div>
@@ -45,14 +51,19 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="4" :md="4" :lg="4">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsProt.inspSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeInspSostKod" ></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsProt.inspSostKod"
+                                    :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}"
+                                    @onInputChange="changeInspSostKod"></masked-input>
                     </Col>
                     <Col :xs="18" :md="18" :lg="18">
-                      <Input class="adm-input adm-input--regular" readonly :value="docsProt.inspSostName, docsProt.inspSostRang | concatByDelimiter(',')" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly
+                             :value="docsProt.inspSostName, docsProt.inspSostRang | concatByDelimiter(',')"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="showDolzModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35" />
+                      <Button @click="showDolzModal(true)" type="text"
+                              style="outline: 0!important; box-shadow: none; padding: 0;"
+                              class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="Список должностных лиц" :size="35"/>
                       </Button>
                     </Col>
                   </Row>
@@ -63,14 +74,18 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="4" :md="4" :lg="4">
-                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsProt.organSostKod" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="changeOrganSostKod" ></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular" v-model="docsProt.organSostKod"
+                                    :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}"
+                                    @onInputChange="changeOrganSostKod"></masked-input>
                     </Col>
                     <Col :xs="18" :md="18" :lg="18">
-                      <Input class="adm-input adm-input--regular" readonly :value="docsProt.organSostName" ></Input>
+                      <Input class="adm-input adm-input--regular" readonly :value="docsProt.organSostName"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="showOrganModal(true)" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35" />
+                      <Button @click="showOrganModal(true)" type="text"
+                              style="outline: 0!important; box-shadow: none; padding: 0;"
+                              class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="Справочник подразделений" :size="35"/>
                       </Button>
                     </Col>
                   </Row>
@@ -81,11 +96,14 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input--regular" disabled v-model="docsProt.placeSost.placeFull"></Input>
+                      <Input class="adm-input adm-input--regular" disabled
+                             v-model="docsProt.placeSost.placeFull"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="getPlaceSost" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                      <Button @click="getPlaceSost" type="text"
+                              style="outline: 0!important; box-shadow: none; padding: 0;"
+                              class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35"/>
                       </Button>
                     </Col>
                   </Row>
@@ -101,7 +119,9 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsProt.dateNar" @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsProt.dateNar"
+                                      @change="changeDateNar" clearable type="datetime" placeholder="дд/мм/гггг чч:мм"
+                                      momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
                     </Col>
                   </Row>
                 </div>
@@ -111,11 +131,14 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <Input class="adm-input adm-input--regular" disabled v-model="docsProt.placeNar.placeFull"></Input>
+                      <Input class="adm-input adm-input--regular" disabled
+                             v-model="docsProt.placeNar.placeFull"></Input>
                     </Col>
                     <Col :xs="2" :md="2" :lg="2">
-                      <Button @click="getPlaceNar" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35" />
+                      <Button @click="getPlaceNar" type="text"
+                              style="outline: 0!important; box-shadow: none; padding: 0;"
+                              class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
+                        <Icon type="ios-bookmarks-outline" class=" " title="адресный справочник" :size="35"/>
                       </Button>
                     </Col>
                   </Row>
@@ -126,9 +149,12 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.pnpaId" clearable filterable @on-change=
-                        "store">
-                        <Option class=" " v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.pnpaId"
+                              clearable filterable @on-change=
+                                "store">
+                        <Option class=" " v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value ,
+                          item.label | concatByDelimiter(",")}}
+                        </Option>
                       </Select>
                     </Col>
                   </Row>
@@ -139,8 +165,11 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.stotvId" clearable filterable :disabled="!docsProt.dateNar" @on-change="changeStotv">
-                        <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
+                      <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.stotvId"
+                              clearable filterable :disabled="!docsProt.dateNar" @on-change="changeStotv">
+                        <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{
+                          item.value , item.label | concatByDelimiter(",")}}
+                        </Option>
                       </Select>
                     </Col>
                   </Row>
@@ -171,7 +200,8 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular" v-model="docsProt.dopSved" @on-input-change="store"></Input>
+                      <Input class="adm-input adm-input--regular" v-model="docsProt.dopSved"
+                             @on-input-change="store"></Input>
                     </Col>
                   </Row>
                 </div>
@@ -180,17 +210,21 @@
                 <small class="adm-form__label"></small>
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="22">
-                    <Checkbox class="amd-checkbox" v-model="docsProt.isRemovedFromEvac" @on-change="store">Признак снятия транспортного средства, посредством которого было совершено нарушение, с эвакуатора</Checkbox>
+                    <Checkbox class="amd-checkbox" v-model="docsProt.isRemovedFromEvac" @on-change="store">Признак
+                      снятия транспортного средства, посредством которого было совершено нарушение, с эвакуатора
+                    </Checkbox>
                   </Col>
                 </Row>
               </div>
+              <list-items-docs :items="docsProt.annexesList" title="Список приложений" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
               <div v-if="isTaxi">
                 <div class="adm-form__item">
                   <small class="adm-form__label">Номер разрешения такси</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsProt.tlNumber" ></Input>
+                        <Input class="adm-input adm-input--regular" @on-input-change="store"
+                               v-model="docsProt.tlNumber"></Input>
                       </Col>
                     </Row>
                   </div>
@@ -200,7 +234,10 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsProt.tlDateBeg" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180"
+                                        v-model="docsProt.tlDateBeg" @change="store" clearable type="date"
+                                        placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY"
+                                        maskFormat="dd/mm/yyyy"></DatePickerMask>
                       </Col>
                     </Row>
                   </div>
@@ -210,7 +247,10 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="docsProt.tlDateEnd" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180"
+                                        v-model="docsProt.tlDateEnd" @change="store" clearable type="date"
+                                        placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY"
+                                        maskFormat="dd/mm/yyyy"></DatePickerMask>
                       </Col>
                     </Row>
                   </div>
@@ -220,8 +260,11 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsProt.tlLicensee" clearable filterable @on-change="store">
-                          <Option class=" " v-for="item in licenseerList" :value="item.id" :key="item.id">{{ item.uchastName }}</Option>
+                        <Select class="adm-input adm-input--regular  wmin180" placeholder=""
+                                v-model="docsProt.tlLicensee" clearable filterable @on-change="store">
+                          <Option class=" " v-for="item in licenseerList" :value="item.id" :key="item.id">{{
+                            item.uchastName }}
+                          </Option>
                         </Select>
                       </Col>
                     </Row>
@@ -232,18 +275,18 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsProt.tlLicensor" ></Input>
+                        <Input class="adm-input adm-input--regular" @on-input-change="store"
+                               v-model="docsProt.tlLicensor"></Input>
                       </Col>
                     </Row>
                   </div>
                 </div>
-                <list-items-docs :items="docsProt.annexesList" title="Список приложений" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
-              </div>
               </div>
             </div>
           </div>
         </div>
-     </div>
+      </div>
+    </div>
 
     <div class="bot-wrap">
       <Button @click="getPrev" type="text">Отменить изменения</Button>
@@ -568,7 +611,7 @@
       isTaxi() {
         let res = null;
         if (this.deloTags) {
-          res = funcUtils.isNotEmpty(this.deloTags) &&  this.deloTags.includes(constants.TAG_TAXI);
+          res = funcUtils.isNotEmpty(this.deloTags) && this.deloTags.includes(constants.TAG_TAXI);
         }
         return res;
       },
