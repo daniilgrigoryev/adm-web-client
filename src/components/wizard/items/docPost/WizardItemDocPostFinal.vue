@@ -12,13 +12,11 @@
       <small class="adm-form__label">Дата вступления</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="22" :md="22" :lg="22">
+          <Col :xs="16" :md="16" :lg="16" style="display:flex;">
             <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateVstup" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-          </Col>
-          <Col :xs="2" :md="2" :lg="2">
-            <Button @click="calcDateVstup" :disabled="!data.dateUved" type="text" style="outline: 0!important; box-shadow: none; padding: 0;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-              <Icon type="ios-bookmarks-outline" class=" " title="Расчитать дату вступления в законную силу" :size="30" />
-            </Button>
+            <button @click="calcDateVstup" class="adm-form__icon-button" :disabled="!data.dateUved" title="Расчитать дату вступления в законную силу" type="button">
+              <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
+            </button>
           </Col>
         </Row>
       </div>
