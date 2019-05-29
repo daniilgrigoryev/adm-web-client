@@ -117,7 +117,7 @@
             hide: !this.isVisible('LVOK')
           },
           {
-            title: "Информация по представителю",
+            title: "Сведения о явке",
             name: "pres",
             hide: !this.isVisible('Present')
           },

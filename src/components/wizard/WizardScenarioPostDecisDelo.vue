@@ -20,13 +20,14 @@
             </div>
           </div>
         </div>
-
-        <div class="adm-form__container">
-          <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
-          <div class="adm-form__content">
-            <wizard-item-doc-post-second id="DocPostSecond" v-if="isVisible('DocPostSecond')" ref="DocPostSecond" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData" @updateComponents="updateComponents">
-              <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" ref="DocPostSecond.PlaceNar" :info="getInfo('DocPostSecond.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-            </wizard-item-doc-post-second>
+        <div class="adm-form">
+          <div class="adm-form__container">
+            <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
+            <div class="adm-form__content">
+              <wizard-item-doc-post-second id="DocPostSecond" v-if="isVisible('DocPostSecond')" ref="DocPostSecond" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData" @updateComponents="updateComponents">
+                <wizard-item-place v-if="isVisible('DocPostSecond.PlaceNar')" ref="DocPostSecond.PlaceNar" :info="getInfo('DocPostSecond.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+              </wizard-item-doc-post-second>
+            </div>
           </div>
         </div>
 
@@ -89,7 +90,7 @@
             name: "head",
           },
           {
-            title: "Информация по представителю",
+            title: "Сведения о явке",
             name: "pres",
             hide: !this.isVisible('Present')
           },

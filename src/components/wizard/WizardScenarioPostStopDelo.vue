@@ -75,7 +75,7 @@ export default {
 					name: "head",
 				},
         {
-          title: "Информация по законному представителю",
+          title: "Сведения о явке",
           name: "pres",
           hide: !this.isVisible('Present')
         },
