@@ -48,6 +48,7 @@
   import * as protMed from '~/assets/images/protokol-alcohol.svg';
   import * as downloadIcon from '~/assets/images/download.svg';
   import * as protZaderTC from '~/assets/images/protokol-ts-zaderzhanie.svg';
+  import * as protokolIzjatie from '~/assets/images/protokol-izjatie.svg';
 
   export default {
     name: "TreeNode",
@@ -132,10 +133,12 @@
               case docTipEnum.PROT_ZADER_TC: {
                 return protZaderTC;
               }
+              case docTipEnum.PROT_IZYAT_VESH_DOC:{
+                return protokolIzjatie;
+              }
               case docTipEnum.ACT_OCAO:
               case docTipEnum.PROT_ZAPR_EKSPLUAT_TC:
               case docTipEnum.PROT_DOSMOTR_TC:
-              case docTipEnum.PROT_IZYAT_VESH_DOC:
               case docTipEnum.PROT_OSMOTR_MESTA_APN:
               case docTipEnum.PROT_AREST_TC_VESH:
               case docTipEnum.PROT_DOSTAVL_FL:

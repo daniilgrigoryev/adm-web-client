@@ -25,6 +25,11 @@
             :value="body.organNapravlName" 
             style="grid-column: span 2;"
           />
+          <view-data-item 
+            label="Дополнение к адресу органа" 
+            :value="body.organNapravlAdrDetails" 
+            style="grid-column: span 2;"
+          />
           <hr>
           <view-data-item 
             label="Дата решения" 
