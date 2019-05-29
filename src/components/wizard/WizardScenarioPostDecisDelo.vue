@@ -7,10 +7,7 @@
           <wizard-item-doc-post-first id="head" v-if="isVisible('DocPostFirst')" ref="DocPostFirst" :info="getInfo('DocPostFirst')" @storeElementData="storeElementData" @updateComponents="updateComponents">
             <wizard-item-place v-if="isVisible('DocPostFirst.PlaceSost')" ref="DocPostFirst.PlaceSost" :info="getInfo('DocPostFirst.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
           </wizard-item-doc-post-first>
-        </div>
-
-        <div v-if="isVisible('Present')" class="adm-form">
-          <div class="adm-form__container">
+          <div class="adm-form__container" v-if="isVisible('Present')">
             <h2 id="pres" class="adm-form__headding">Сведения о явке</h2>
             <div class="adm-form__content">
               <wizard-item-present id="Present" ref="Present" :info="getInfo('Present')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-present>
@@ -19,8 +16,6 @@
               <wizard-item-address v-if="isVisible('Present.Repres.regAddr')" ref="Present.Repres.regAddr" :info="getInfo('Present.Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
-        </div>
-        <div class="adm-form">
           <div class="adm-form__container">
             <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
@@ -29,9 +24,6 @@
               </wizard-item-doc-post-second>
             </div>
           </div>
-        </div>
-
-        <div class="adm-form">
           <div class="adm-form__container" id="decis" v-if="isVisible('DecisMain')">
             <h2 class="adm-form__headding">Решение по делу</h2>
             <div class="adm-form__content">
