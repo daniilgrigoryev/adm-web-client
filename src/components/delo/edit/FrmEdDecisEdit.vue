@@ -253,8 +253,11 @@
                 <small class="adm-form__label">Дата вступления</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="24">
+                    <Col :xs="24" :md="24" :lg="24" style="display:flex;">
                       <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                      <button @click="calcDateVstup" class="adm-form__icon-button" :disabled="!decis.dateUved" title="Расчитать дату вступления в законную силу" type="button">
+                        <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
+                      </button>
                     </Col>
                   </Row>
                 </div>
@@ -490,6 +493,21 @@
         } else {
           this.clearOrganNapravl();
         }
+      },
+      async calcDateVstup() {
+        return;
+        // let eventResponse = await RequestApi.prepareData({
+        //   method: 'invokeElementMethod',
+        //   params: {
+        //     eCID: this.info.eCID,
+        //     methodName: 'calcDateVstup',
+        //     data: null
+        //   }
+        // });
+        // let dateVstup = JSON.parse(JSON.parse(eventResponse.response).data);
+        // if (dateVstup) {
+        //   this.decis.dateVstup = dateVstup;
+        // }
       },
       onGibddClick(data) {
         this.decis.organNapravlId = data.ID;
