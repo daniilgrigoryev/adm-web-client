@@ -80,7 +80,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="22" :md="22" :lg="22">
-            <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.violatorClarification"  @onInputChange="storeElementData" placeholder="" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9,.]+', casing: 'upper', placeholder: ''}" clearable></masked-input>
+            <Input class="adm-input adm-input--regular" v-model="data.violatorClarification" @on-input-change="storeElementData"  :maxlength="255" clearable></Input>
           </Col>
         </Row>
       </div>
@@ -90,7 +90,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="22" :md="22" :lg="22">
-            <masked-input inputClass="adm-input adm-input--regular wmax240"  v-model="data.officialClarification"  @onInputChange="storeElementData" placeholder="" :maskProps="{regex: '[a-zA-Zа-яА-Я0-9,.]+', casing: 'upper', placeholder: ''}" clearable></masked-input>
+            <Input class="adm-input adm-input--regular" v-model="data.officialClarification" @on-input-change="storeElementData"  :maxlength="255" clearable></Input>
           </Col>
         </Row>
       </div>
