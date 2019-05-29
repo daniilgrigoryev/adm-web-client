@@ -38,26 +38,6 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Список документов</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="22" :lg="22">
-            <Input class="adm-input adm-input--regular" @on-blur="storeElementData" v-model="data.provideMaterials" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-    </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Обеспечить явку</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="22" :lg="22">
-            <Input class="adm-input adm-input--regular" @on-blur="storeElementData" v-model="data.providePresence" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
-          </Col>
-        </Row>
-      </div>
-    </div>
-    <div class="adm-form__item">
       <small class="adm-form__label">Инспектор утвердивший документ</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
