@@ -21,10 +21,10 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.markaAvto"
+                      <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.markaAvto"
                               clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
                         <Option v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      </CustomSelect>
                     </Col>
                   </Row>
                 </div>
@@ -34,10 +34,10 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.modavtoName"
+                      <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.modavtoName"
                               clearable @on-change="store" :disabled="!isNotEmptyMarkId()" filterable>
                         <Option v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      </CustomSelect>
                     </Col>
                   </Row>
                 </div>
@@ -107,10 +107,10 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.katcKod"
+                      <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.katcKod"
                               clearable @on-clear="store" @on-change="store" filterable>
                         <Option v-for="item in categoryTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      </CustomSelect>
                     </Col>
                   </Row>
                 </div>
@@ -120,10 +120,10 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tiptcKod"
+                      <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tiptcKod"
                               clearable @on-change="changeTipTc" filterable>
                         <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      </CustomSelect>
                     </Col>
                   </Row>
                 </div>
@@ -133,10 +133,10 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tipkuzKod"
+                      <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tipkuzKod"
                               :disabled="!isNotEmptyTipTcKod()" clearable @on-change="store" filterable>
                         <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      </CustomSelect>
                     </Col>
                   </Row>
                 </div>
@@ -146,10 +146,10 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorTip"
+                      <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorTip"
                               clearable @on-clear="store" @on-change="store" filterable>
                         <Option v-for="item in motorTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      </CustomSelect>
                     </Col>
                   </Row>
                 </div>
@@ -159,10 +159,10 @@
                 <div class="adm-form__item_content">
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorEcologClass"
+                      <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorEcologClass"
                               clearable @on-clear="store" @on-change="store" filterable>
                         <Option v-for="item in motorEcologClassList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      </CustomSelect>
                     </Col>
                   </Row>
                 </div>

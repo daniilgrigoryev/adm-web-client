@@ -77,10 +77,10 @@
       <small class="adm-form__label">Пол</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
-          <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.sex" filterable @on-change="storeElementData" placeholder="">
+          <CustomSelect class="adm-input adm-input--regular wmin180 wmax360" v-model="data.sex" filterable @on-change="storeElementData" placeholder="">
             <Option value="М">Мужской</Option>
             <Option value="Ж">Женский</Option>
-          </Select>
+          </CustomSelect>
         </Col>
       </Row>
     </div>
@@ -88,9 +88,9 @@
       <small class="adm-form__label">Гражданство</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
-          <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
+          <CustomSelect class="adm-input adm-input--regular wmin180 wmax360" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" placeholder="">
             <Option class="" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{item.label}}</Option>
-          </Select>
+          </CustomSelect>
         </Col>
       </Row>
     </div>
@@ -124,11 +124,11 @@
       <small class="adm-form__label">Владеет русским языком</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
-          <Select class="adm-input adm-input--regular wmin180 wmax360" v-model="data.isSpeaksRussian" filterable @on-change="storeElementData" placeholder="">
+          <CustomSelect class="adm-input adm-input--regular wmin180 wmax360" v-model="data.isSpeaksRussian" filterable @on-change="storeElementData" placeholder="">
             <Option value="true">Да</Option>
             <Option value="false">Нет</Option>
             <Option value="null">Неизвестно</Option>
-          </Select>
+          </CustomSelect>
         </Col>
       </Row>
     </div>

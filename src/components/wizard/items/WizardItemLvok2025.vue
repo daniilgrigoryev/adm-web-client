@@ -7,9 +7,9 @@
           <small class="adm-form__label">Статус</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col>
-              <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+              <CustomSelect class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
                 <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-              </Select>
+              </CustomSelect>
             </Col>
           </Row>
         </div>
@@ -17,9 +17,9 @@
           <small class="adm-form__label">Гражданство</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData"  placeholder="">
+              <CustomSelect class="adm-input adm-input--regular wmin180" v-model="data.gragdKod" filterable clearable @on-change="storeElementData"  placeholder="">
                 <Option class="wmax360 " v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{item.label }}</Option>
-              </Select>
+              </CustomSelect>
             </Col>
           </Row>
         </div>
@@ -35,9 +35,9 @@
           <small class="adm-form__label">Место рождения</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
+              <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.birthMestoKod" filterable clearable @on-change="storeElementData">
                 <Option class="wmax360 " v-for="item in birthList" :value="item.value" :key="item.value">{{item.label }}</Option>
-              </Select>
+              </CustomSelect>
             </Col>
           </Row>
         </div>
@@ -45,9 +45,9 @@
           <small class="adm-form__label">Присутствие ЛВОКа</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col :xs="24" :md="14" :lg="16">
-              <Select class="adm-input adm-input--regular wmin180" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">
+              <CustomSelect class="adm-input adm-input--regular wmin180" v-model="data.presentType" :disabled="!data.status" filterable clearable @on-change="storeElementData" placeholder="">
                 <Option class="wmax360 " v-for="item in presenceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-              </Select>
+              </CustomSelect>
             </Col>
           </Row>
         </div>

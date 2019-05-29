@@ -12,9 +12,9 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="22">
-                      <Select class="adm-input adm-input--regular" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="changeDocTip">
+                      <CustomSelect class="adm-input adm-input--regular" placeholder="" v-model="vuPred.docTip" clearable filterable @on-change="changeDocTip">
                         <Option class="" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </Select>
+                      </CustomSelect>
                     </Col>
                   </Row>
                 </div>
@@ -126,9 +126,9 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="24" :lg="24">
-                          <Select class="adm-input adm-input--regular wmax180" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
+                          <CustomSelect class="adm-input adm-input--regular wmax180" placeholder="" v-model="vuPred.status" clearable filterable @on-change="store">
                             <Option class="" v-for="item in docStatusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                          </Select>
+                          </CustomSelect>
                         </Col>
                       </Row>
                     </div>

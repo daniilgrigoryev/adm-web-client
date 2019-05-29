@@ -54,9 +54,9 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateStadIspoln" @on-change="storeElementData">
+            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateStadIspoln" @on-change="storeElementData" :filterMethod="filterStotv">
               <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
-            </Select>
+            </CustomSelect>
           </Col>
         </Row>
       </div>
@@ -66,9 +66,9 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <Select class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="changeIspolnKod">
+            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="changeIspolnKod">
               <Option class=" " v-for="item in ispolnList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
+            </CustomSelect>
           </Col>
         </Row>
       </div>

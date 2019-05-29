@@ -8,9 +8,9 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="22" :lg="22">
-            <Select class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="storeElementData">
+            <CustomSelect class="adm-input adm-input--regular wmin180" placeholder="" v-model="data.stotvId" clearable filterable @on-change="storeElementData" :filterMethod="filterStotv">
               <Option class="" v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-            </Select>
+            </CustomSelect>
           </Col>
         </Row>
       </div>

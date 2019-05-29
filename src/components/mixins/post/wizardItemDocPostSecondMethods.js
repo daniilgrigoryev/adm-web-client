@@ -21,10 +21,6 @@ export default {
       }
       await this.storeElementData();
     },
-    filterStotv(label, value) {
-      let stotvKod = label.split(',').getFirst();
-      return stotvKod.replace(/^[а-яА-Я][^\-]{1,}|\D/g,'');
-    },
     async fillPnpaList() {
       let eventResponse = await RequestApi.prepareData({
         method: 'invokeElementMethod',

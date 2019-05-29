@@ -4,9 +4,9 @@
       <small class="adm-form__label">Тип документа</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docTip" filterable clearable @on-change="changeDocTip">
+          <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docTip" filterable clearable @on-change="changeDocTip">
             <Option class="wmax360 " v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>
+          </CustomSelect>
         </Col>
       </Row>
     </div>

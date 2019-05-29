@@ -19,14 +19,16 @@ import * as formStack from '~/assets/js/api/formStack';
 import * as RequestEntity from "~/assets/js/api/requestEntity";
 import Fingerprint from "~/assets/js/vendor/fingerprint";
 import Stack from '~/assets/js/api/stack';
-import Select from '~/components/shared/CustomSelect';
+import CustomSelect from '~/components/shared/CustomSelect';
 import DatePickerMask from '~/components/shared/dateTimePicker/DatePickerMask';
 import MaskedInput from '~/components/shared/MaskedInput';
 import ListItemsDocs from '~/components/shared/ListItemsDocs';
+import filterSelectHelper from '~/components/mixins/filterSelectHelper';
 
 import moment from 'moment';
 moment.locale('ru');
-Vue.component('Select', Select);
+Vue.mixin(filterSelectHelper);
+Vue.component('CustomSelect', CustomSelect);
 Vue.component('DatePickerMask', DatePickerMask);
 Vue.component('MaskedInput', MaskedInput);
 Vue.component('ListItemsDocs', ListItemsDocs);

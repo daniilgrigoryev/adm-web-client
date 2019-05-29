@@ -5,9 +5,9 @@
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">
           <Col span="12">
-            <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+            <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
               <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
+            </CustomSelect>
           </Col>
           <Col span="4">
             <button @click="copyOwner" class="adm-form__icon-button" :disabled="data.status !== 1 && data.status !== 3" title="Скопировать данные владельца" type="button">
@@ -19,9 +19,9 @@
     </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Тип участника</small>
-      <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.tip" clearable @on-change="storeElementData">
+      <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.tip" clearable @on-change="storeElementData">
         <Option class="wmax360" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
+      </CustomSelect>
     </div>
   </div>
 </template>

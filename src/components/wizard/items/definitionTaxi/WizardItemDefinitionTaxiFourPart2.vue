@@ -7,9 +7,9 @@
           <small class="adm-form__label">Тип источника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col>
-              <Select class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.vsTypeId" clearable @on-change="storeElementData">
+              <CustomSelect class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.vsTypeId" clearable @on-change="storeElementData">
                 <Option class="wmax360 " v-for="item in violSourceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-              </Select>
+              </CustomSelect>
             </Col>
           </Row>
         </div>
@@ -48,9 +48,9 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <Select class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="data.vsFlSex" clearable filterable @on-change="storeElementData">
+                <CustomSelect class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="data.vsFlSex" clearable filterable @on-change="storeElementData">
                   <Option class="" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
+                </CustomSelect>
               </Col>
             </Row>
           </div>
@@ -96,9 +96,9 @@
           <small class="adm-form__label">Статус держателя лицензии</small>
           <Row type="flex" align="middle">
             <Col span="12">
-              <Select class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
+              <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
                 <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-              </Select>
+              </CustomSelect>
             </Col>
             <Col span="4">
               <button @click="ownerToLicense" class="adm-form__icon-button" type="button">

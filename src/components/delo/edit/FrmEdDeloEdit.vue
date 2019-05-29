@@ -31,9 +31,9 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.pnpaId" clearable filterable @on-change="store">
+                <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.pnpaId" clearable filterable @on-change="store" :filterMethod="filterStotv">
                   <Option class="wmax360 " v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-                </Select>
+                </CustomSelect>
               </Col>
             </Row>
           </div>
@@ -43,9 +43,9 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.stotvId" clearable filterable :disabled="!delo.dateNar" @on-change="store">
+                <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.stotvId" clearable filterable :disabled="!delo.dateNar" @on-change="store" :filterMethod="filterStotv">
                   <Option class="wmax360 " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-                </Select>
+                </CustomSelect>
               </Col>
             </Row>
           </div>
@@ -55,9 +55,9 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.deloVid" clearable filterable @on-change="store">
+                <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="delo.deloVid" clearable filterable @on-change="store">
                   <Option class="wmax360 " v-for="item in deloVidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
+                </CustomSelect>
               </Col>
             </Row>
           </div>

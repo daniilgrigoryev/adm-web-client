@@ -3,9 +3,9 @@
 
     <div class="adm-form">
       <div class="adm-form__container">
-        <Select class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings">
+        <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings">
           <Option class="wmax360 " v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </Select>
+        </CustomSelect>
         <Button @click="signData" type="primary" class="ml12">Подписать</Button>
       </div>
     </div>

@@ -23,10 +23,10 @@
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" v-model="deloModal.paramValue" @on-input-change="changeDeloValue">
-                  <Select class="adm-input adm-input--regular w180 align-l" v-model="deloModal.paramKey" slot="prepend">
+                  <CustomSelect class="adm-input adm-input--regular w180 align-l" v-model="deloModal.paramKey" slot="prepend">
                       <Option value="deloNum">По номеру дела</Option>
                       <Option value="postNum">По номеру постановления</Option>
-                  </Select>
+                  </CustomSelect>
                   <Button slot="append" class="append-custom" icon="ios-search" @click="findDeloList" :disabled="!deloModal.paramKey || !deloModal.paramValue" type="primary">Поиск</Button>
               </Input>
 						</Col>
@@ -40,9 +40,9 @@
           </small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-              <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect">
+              <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect">
                 <Option class="wmax360 " v-for="item in deloModal.deloList" :value="item.value.delo" :key="item.value.id">{{ item.label }}</Option>
-              </Select>
+              </CustomSelect>
 						</Col>
 					</Row>
 				</div>

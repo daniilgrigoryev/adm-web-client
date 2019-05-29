@@ -34,10 +34,10 @@
                           <div class="flex-parent flex-parent--column flex-parent--end-cross h-full">
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label w-full">В текущем году</div>
-                              <Select class="adm-input adm-input--big" v-model="filter.flagYear">
+                              <CustomSelect class="adm-input adm-input--big" v-model="filter.flagYear">
                                 <Option value="true">Да</Option>
                                 <Option value="false">Нет</Option>
-                              </Select>
+                              </CustomSelect>
                             </div>
                           </div>
                         </Col>
@@ -60,9 +60,9 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Документ дела</div>
-                          <Select class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable>
+                          <CustomSelect class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable>
                             <Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
-                          </Select>
+                          </CustomSelect>
                         </div>
                       </div>
                     </Col>
@@ -128,9 +128,9 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Стадия дела</div>
-                            <Select class="adm-input adm-input--big" v-model="filter.stadDeloKod" filterable clearable>
+                            <CustomSelect class="adm-input adm-input--big" v-model="filter.stadDeloKod" filterable clearable>
                               <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
-                            </Select>
+                            </CustomSelect>
                           </div>
                         </div>
                     </Col>
@@ -144,9 +144,9 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Статья КРФоАП</div>
-                            <Select class="adm-input adm-input--big select-state" placeholder="" v-model="filter.stotvId" filterable clearable>
+                            <CustomSelect class="adm-input adm-input--big select-state" placeholder="" v-model="filter.stotvId" filterable clearable :filterMethod="filterStotv">
                               <Option style="max-width: 100%;" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
-                            </Select>
+                            </CustomSelect>
                           </div>
                         </div>
                     </Col>
@@ -206,11 +206,11 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Тип дела об АПН</div>
-                          <Select :disabled="true" class="adm-input adm-input--big" filterable clearable>
+                          <CustomSelect :disabled="true" class="adm-input adm-input--big" filterable clearable>
                             <!-- TODO -->
-                          <!-- <Select class="adm-input adm-input--big" v-model="filter.deloTag" filterable clearable> -->
+                          <!-- <CustomSelect class="adm-input adm-input--big" v-model="filter.deloTag" filterable clearable> -->
                             <!-- <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label}}</Option> -->
-                          </Select>
+                          </CustomSelect>
                         </div>
                       </div>
                     </Col>

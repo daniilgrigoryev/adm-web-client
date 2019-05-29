@@ -36,9 +36,9 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="16">
-                    <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
+                    <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.markaAvto" clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
                       <Option v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select>
+                    </CustomSelect>
                   </Col>
                 </Row>
               </div>
@@ -48,9 +48,9 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="16">
-                    <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()" filterable>
+                    <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.modavtoName" clearable @on-change="storeElementData" :disabled="!isNotEmptyMarkId()" filterable>
                       <Option v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select>
+                    </CustomSelect>
                   </Col>
                 </Row>
               </div>
@@ -87,9 +87,9 @@
           <div class="adm-form__item_content">
             <Row type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="24">
-                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.katcKod" clearable @on-change="storeElementData" filterable>
+                <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.katcKod" clearable @on-change="storeElementData" filterable>
                   <Option v-for="item in categoryTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
+                </CustomSelect>
               </Col>
             </Row>
           </div>
@@ -99,9 +99,9 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tiptcKod" clearable @on-change="changeTipTc" filterable>
+                <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tiptcKod" clearable @on-change="changeTipTc" filterable>
                   <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
+                </CustomSelect>
               </Col>
             </Row>
           </div>
@@ -111,9 +111,9 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="14" :lg="16">
-                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" :disabled="!isNotEmptyTipTcKod()" clearable @on-change="storeElementData" filterable>
+                <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tipkuzKod" :disabled="!isNotEmptyTipTcKod()" clearable @on-change="storeElementData" filterable>
                   <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
+                </CustomSelect>
               </Col>
             </Row>
           </div>
@@ -124,9 +124,9 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="22" :lg="22">
-                <Select class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.ownerTip" clearable @on-change="storeElementData" filterable>
+                <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.ownerTip" clearable @on-change="storeElementData" filterable>
                   <Option v-for="item in ownerList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                </Select>
+                </CustomSelect>
               </Col>
             </Row>
           </div>
