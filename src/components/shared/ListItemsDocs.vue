@@ -63,7 +63,7 @@
     data() {
       return {
         itemTemplate: {
-          name: "",
+          name: null,
           check: true,
           sheets_quantity: 0
         }
