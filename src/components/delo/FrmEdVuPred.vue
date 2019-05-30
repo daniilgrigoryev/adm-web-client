@@ -19,27 +19,27 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Тип документа" 
-            :value="body.docTipName" 
+          <view-data-item
+            label="Тип документа"
+            :value="body.docTipName"
           />
-          <view-data-item 
-            label="Статус" 
-            :value="body.statusName" 
-          />
-          <hr>
-          <view-data-item 
-            label="Серия номер" 
-            :value="body.vuN" 
-          />
-          <view-data-item 
-            label="Дата выдачи" 
-            :value="body.dateVyd | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Статус"
+            :value="body.statusName"
           />
           <hr>
-          <view-data-item 
-            label="Кем выдан" 
-            :value="body.ogaiVydName" 
+          <view-data-item
+            label="Серия номер"
+            :value="body.vuN"
+          />
+          <view-data-item
+            label="Дата выдачи"
+            :value="body.dateVyd | formatDateTime('DD.MM.YYYY')"
+          />
+          <hr>
+          <view-data-item
+            label="Кем выдан"
+            :value="body.ogaiVydName"
             style="grid-column: span 2;"
           />
         </div>
@@ -59,7 +59,6 @@
   export default {
     name: "FrmEdVuPred",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

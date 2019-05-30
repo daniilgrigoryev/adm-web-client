@@ -16,42 +16,42 @@
             <Slider :photos="photos"/>
             <div class="dc-object-map-wrap">
               <div id="dc-object-map"></div>
-              <view-data-item 
-                label="Координаты" 
-                :value="fotofix.violPlaceLatitude, fotofix.violPlaceLongitude | concatByDelimiter(',')" 
+              <view-data-item
+                label="Координаты"
+                :value="fotofix.violPlaceLatitude, fotofix.violPlaceLongitude | concatByDelimiter(',')"
               />
             </div>
           </article>
-          <view-data-item 
-            label="Дата и время нарушения" 
-            :value="fotofix.violTime | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата и время нарушения"
+            :value="fotofix.violTime | formatDateTime('DD.MM.YYYY HH:mm')"
             :icon="require('../../../assets/images/time.svg')"
 
           />
-          <view-data-item 
-            label="Место нарушения" 
-            :value="fotofix.violPlace" 
+          <view-data-item
+            label="Место нарушения"
+            :value="fotofix.violPlace"
             :icon="require('../../../assets/images/map.svg')"
 
           />
           <hr>
-          <view-data-item 
-            label="Идентификатор" 
-            :value="fotofix.cam1CertNumber" 
+          <view-data-item
+            label="Идентификатор"
+            :value="fotofix.cam1CertNumber"
           />
-          <view-data-item 
-            label="Модель" 
-            :value="fotofix.cam1Model" 
+          <view-data-item
+            label="Модель"
+            :value="fotofix.cam1Model"
           />
-          <view-data-item 
-            label="Сертификат поверки" 
-            :value="fotofix.cam2CertExpirDate" 
+          <view-data-item
+            label="Сертификат поверки"
+            :value="fotofix.cam2CertExpirDate"
           />
-          <view-data-item 
-            label="Окончание" 
-            :value="fotofix.cam1CertExpirDate | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Окончание"
+            :value="fotofix.cam1CertExpirDate | formatDateTime('DD.MM.YYYY HH:mm')"
           />
-        
+
         </div>
       </div>
     </div>
@@ -73,7 +73,6 @@
     name: "DlgEdFotoMaterial",
     components: {
       Slider: () => import('~/components/delo/DlgEdFotoMaterial/Slider'),
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

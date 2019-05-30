@@ -15,37 +15,37 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Уникальный почтовый идентификатор" 
-            :value="body.upi" 
+          <view-data-item
+            label="Уникальный почтовый идентификатор"
+            :value="body.upi"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/letter.svg')"
           />
-          <view-data-item 
-            label="Номер реестра" 
-            :value="body.reestrN" 
+          <view-data-item
+            label="Номер реестра"
+            :value="body.reestrN"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Дата отправки" 
+          <view-data-item
+            label="Дата отправки"
             :value="body.dateOtpravVu | formatDateTime('DD.MM.YYYY')"
             :icon="require('../../assets/images/time.svg')"
           />
-          <view-data-item 
-            label="Участник дела" 
-            :value="body.uchastName" 
+          <view-data-item
+            label="Участник дела"
+            :value="body.uchastName"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Место исполнения" 
-            :value="body.placeIspoln.placeFull" 
+          <view-data-item
+            label="Место исполнения"
+            :value="body.placeIspoln.placeFull"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
-          <view-data-item 
-            label="Уведомление направлено по адресу" 
-            :value="dopData.sendingAddress" 
+          <view-data-item
+            label="Уведомление направлено по адресу"
+            :value="dopData.sendingAddress"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/map.svg')"
           />
@@ -65,10 +65,10 @@
         <div class="errors-table__content" v-show="hideMore">
           <div class="view-data__container border--0">
             <div class="items-wrap">
-              <view-data-item 
+              <view-data-item
                 v-for="(item, index) in this.dopData.postOpers.slice().reverse()"
                 :key="item.postOperName"
-                :label="item.operTime, item.organIspolnName | concatByDelimiter('-')" 
+                :label="item.operTime, item.organIspolnName | concatByDelimiter('-')"
                 :value="item.id"
                 style="grid-column: span 2;"
                 :icon="require('../../assets/images/letter.svg')"
@@ -97,7 +97,6 @@
       }
     },
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

@@ -75,7 +75,6 @@
   export default {
     name: "FrmEdPetition",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

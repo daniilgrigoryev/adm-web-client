@@ -18,62 +18,62 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="ГРЗ" 
-            :value="body.regno" 
+          <view-data-item
+            label="ГРЗ"
+            :value="body.regno"
             :icon="require('../../assets/images/vehicle_passport.svg')"
           />
-          <view-data-item 
-            label="VIN" 
-            :value="body.vin" 
+          <view-data-item
+            label="VIN"
+            :value="body.vin"
           />
-          <view-data-item 
-            label="Марка, модель, год выпуска" 
-            :value="body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',')" 
+          <view-data-item
+            label="Марка, модель, год выпуска"
+            :value="body.markaAvto, body.modavtoName, body.yearVyp | concatByDelimiter(',')"
           />
-          <view-data-item 
-            label="СТС" 
-            :value="body.ctc" 
+          <view-data-item
+            label="СТС"
+            :value="body.ctc"
           />
-          <view-data-item 
-            label="Цвет ТС" 
-            :value="body.color" 
+          <view-data-item
+            label="Цвет ТС"
+            :value="body.color"
           />
-          <view-data-item 
-            label="ПТС" 
-            :value="body.ptcN" 
+          <view-data-item
+            label="ПТС"
+            :value="body.ptcN"
           />
           <hr>
-          <view-data-item 
-            label="Тип двигателя" 
-            :value="body.motorTip" 
+          <view-data-item
+            label="Тип двигателя"
+            :value="body.motorTip"
             :icon="require('../../assets/images/eng.svg')"
           />
-          <view-data-item 
-            label="Экологический класс" 
-            :value="body.motorEcologClass" 
+          <view-data-item
+            label="Экологический класс"
+            :value="body.motorEcologClass"
           />
-          <view-data-item 
-            label="Тип ТС" 
-            :value="body.tiptcName" 
+          <view-data-item
+            label="Тип ТС"
+            :value="body.tiptcName"
           />
-          <view-data-item 
-            label="Категория ТС" 
-            :value="body.katcKod" 
+          <view-data-item
+            label="Категория ТС"
+            :value="body.katcKod"
           />
           <hr>
-          <view-data-item 
-            label="Масса без нагрузки" 
+          <view-data-item
+            label="Масса без нагрузки"
             :value="body.massa"
             :icon="require('../../assets/images/car_weight.svg')"
           />
-          <view-data-item 
-            label="Максимальная масса" 
-            :value="body.massaMax" 
+          <view-data-item
+            label="Максимальная масса"
+            :value="body.massaMax"
           />
           <hr>
-          <view-data-item 
-            label="Владелец" 
+          <view-data-item
+            label="Владелец"
             :value="body.sobstvName"
             :icon="require('../../assets/images/owner.svg')"
             style="grid-column: span 2;"
@@ -94,7 +94,6 @@
   export default {
     name: "FrmEdVehsAMTC",
     components:{
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

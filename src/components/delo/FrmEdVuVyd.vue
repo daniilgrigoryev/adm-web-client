@@ -18,67 +18,67 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Вид предъявленного документа" 
-            :value="body.docTipName" 
+          <view-data-item
+            label="Вид предъявленного документа"
+            :value="body.docTipName"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Номер документа" 
-            :value="body.vuN" 
+          <view-data-item
+            label="Номер документа"
+            :value="body.vuN"
           />
-          <view-data-item 
-            label="Дата выдачи" 
-            :value="body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата выдачи"
+            :value="body.dateVyd | formatDateTime('DD.MM.YYYY HH:mm')"
           />
-          <view-data-item 
-            label="Срок действия" 
-            :value="body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Срок действия"
+            :value="body.dateSrok | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Личный номер сотрудника" 
-            :value="body.inspVydKod" 
+          <view-data-item
+            label="Личный номер сотрудника"
+            :value="body.inspVydKod"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="ФИО сотрудника" 
-            :value="body.inspVydName" 
+          <view-data-item
+            label="ФИО сотрудника"
+            :value="body.inspVydName"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Должность сотрудника" 
-            :value="body.inspVydDolz" 
+          <view-data-item
+            label="Должность сотрудника"
+            :value="body.inspVydDolz"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Звание" 
-            :value="body.inspVydRang" 
+          <view-data-item
+            label="Звание"
+            :value="body.inspVydRang"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Кем выдан документ. Код - Название организации" 
-            :value="body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-')" 
+          <view-data-item
+            label="Кем выдан документ. Код - Название организации"
+            :value="body.ogaiVydKod, body.ogaiVydName | concatByDelimiter('-')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дополнительные сведения" 
-            :value="body.remarks" 
+          <view-data-item
+            label="Дополнительные сведения"
+            :value="body.remarks"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Предъявленный документ" 
-            :value="body.vuPred" 
+          <view-data-item
+            label="Предъявленный документ"
+            :value="body.vuPred"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Статус документа" 
-            :value="body.statusName" 
+          <view-data-item
+            label="Статус документа"
+            :value="body.statusName"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дата утилизации документа" 
-            :value="body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата утилизации документа"
+            :value="body.dateUtil | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
           />
         </div>
@@ -97,7 +97,6 @@
   export default {
     name: "FrmEdVuVyd",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

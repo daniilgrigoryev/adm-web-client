@@ -52,7 +52,6 @@
     name: "FrmEdMediaMaterial",
     components: {
       Slider: () => import('~/components/delo/DlgEdFotoMaterial/Slider'),
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

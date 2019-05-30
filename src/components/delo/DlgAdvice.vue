@@ -17,37 +17,37 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Дата и время рассмотрения" 
+          <view-data-item
+            label="Дата и время рассмотрения"
             :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')"
             :icon="require('../../assets/images/map.svg')"
           />
-          <view-data-item 
-            label="Дата и время вручения" 
-            :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата и время вручения"
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Код сотрудника - ФИО" 
-            :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')" 
+          <view-data-item
+            label="Код сотрудника - ФИО"
+            :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/police.svg')"
           />
-          <view-data-item 
-            label="Звание, Должность" 
-            :value="body.inspSostRang, body.inspSostDolz | concatByDelimiter(',')" 
+          <view-data-item
+            label="Звание, Должность"
+            :value="body.inspSostRang, body.inspSostDolz | concatByDelimiter(',')"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Место составления извещения" 
-            :value="body.placeSost.placeFull" 
+          <view-data-item
+            label="Место составления извещения"
+            :value="body.placeSost.placeFull"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Статья-основание" 
-            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')" 
+          <view-data-item
+            label="Статья-основание"
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')"
             style="grid-column: span 2;"
           />
           <div v-if="body.docVid === docVid.ADV_ADM">
@@ -81,7 +81,6 @@
   export default {
     name: "DlgAdvice",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

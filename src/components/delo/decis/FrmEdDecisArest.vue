@@ -22,19 +22,19 @@
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
           <hr>
-          <view-data-item 
-            label="Дата и время начала ареста" 
-            :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата и время начала ареста"
+            :value="body.periodStart | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дата вручения" 
-            :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вручения"
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дата вступления" 
-            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вступления"
+            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
         </div>
@@ -54,7 +54,6 @@
   export default {
     name: "FrmEdDecisArest",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

@@ -22,20 +22,20 @@
             :icon="require('../../../assets/images/penalty_gray.svg')"
           />
           <hr>
-          <view-data-item 
+          <view-data-item
             v-if="body.decisCode !== 71"
-            label="Дата начала" 
-            :value="body.periodStart | formatDateTime('DD.MM.YYYY')" 
+            label="Дата начала"
+            :value="body.periodStart | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дата вручения" 
-            :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вручения"
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дата вступления" 
-            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вступления"
+            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
         </div>
@@ -55,7 +55,6 @@
   export default {
     name: "FrmEdDecisMandWork",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

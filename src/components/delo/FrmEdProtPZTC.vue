@@ -122,7 +122,6 @@
   export default {
     name: "FrmEdProtPZTC",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

@@ -14,32 +14,32 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-        	<view-data-item 
-            label="Дата и время рассмотрения" 
-            :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')" 
+        	<view-data-item
+            label="Дата и время рассмотрения"
+            :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/time.svg')"
           />
-          <view-data-item 
-            label="Орган рассмотрения" 
-            :value="body.organNapravlName" 
+          <view-data-item
+            label="Орган рассмотрения"
+            :value="body.organNapravlName"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дополнение к адресу органа" 
-            :value="body.organNapravlAdrDetails" 
+          <view-data-item
+            label="Дополнение к адресу органа"
+            :value="body.organNapravlAdrDetails"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Дата решения" 
-            :value="body.decisDate | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата решения"
+            :value="body.decisDate | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/time.svg')"
           />
-          <view-data-item 
-            label="Дата вручения" 
-            :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вручения"
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/time.svg')"
           />
@@ -60,7 +60,6 @@
   export default {
     name: "FrmEdDecisRasm",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

@@ -15,19 +15,19 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Дата решения" 
-            :value="body.decisDate | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата решения"
+            :value="body.decisDate | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дата вручения" 
-            :value="body.dateUved | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вручения"
+            :value="body.dateUved | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Дата вступления" 
-            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата вступления"
+            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
         </div>
@@ -47,7 +47,6 @@
   export default {
     name: "FrmEdDecisVozbDelo",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

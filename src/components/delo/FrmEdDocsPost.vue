@@ -167,7 +167,6 @@
   export default {
     name: "FrmEdDocsPost",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

@@ -18,42 +18,42 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Наименование организации" 
-            :value="body.organization.name" 
+          <view-data-item
+            label="Наименование организации"
+            :value="body.organization.name"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="ИНН" 
-            :value="body.organization.inn" 
+          <view-data-item
+            label="ИНН"
+            :value="body.organization.inn"
           />
-          <view-data-item 
-            label="КПП" 
-            :value="body.organization.kpp" 
+          <view-data-item
+            label="КПП"
+            :value="body.organization.kpp"
           />
-          <view-data-item 
-            label="ОГРН" 
-            :value="body.organization.ogrn" 
+          <view-data-item
+            label="ОГРН"
+            :value="body.organization.ogrn"
           />
-          <view-data-item 
-            label="Дата регистрации" 
-            :value="stringToDateFormat(body.organization.dateReg) | formatDateTime('DD.MM.YYYY')" 
+          <view-data-item
+            label="Дата регистрации"
+            :value="stringToDateFormat(body.organization.dateReg) | formatDateTime('DD.MM.YYYY')"
           />
           <hr>
-          <view-data-item 
-            label="Адрес регистрации" 
-            :value="body.organization.address.adrFull" 
+          <view-data-item
+            label="Адрес регистрации"
+            :value="body.organization.address.adrFull"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Фактический адрес" 
-            :value="body.factAddr.adrFull" 
+          <view-data-item
+            label="Фактический адрес"
+            :value="body.factAddr.adrFull"
             style="grid-column: span 2;"
           />
-          <view-data-item 
-            label="Телефон" 
-            :value="body.organization.phone" 
+          <view-data-item
+            label="Телефон"
+            :value="body.organization.phone"
             style="grid-column: span 2;"
           />
         </div>
@@ -71,7 +71,6 @@
   export default {
     name: "FrmEdUchastFLOrganization",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     data() {
       return {}
@@ -105,7 +104,7 @@
       stringToDateFormat(stringDate){
         if(funcUtils.isNotEmpty(stringDate)){
           let parts = stringDate.split('-');
-          let dateFormat = new Date(parts[0], parts[1] - 1, parts[2]); 
+          let dateFormat = new Date(parts[0], parts[1] - 1, parts[2]);
           return dateFormat;
         }
       },

@@ -22,15 +22,15 @@
             :icon="require('../../assets/images/rub_gray.svg')"
           />
           <hr>
-          <view-data-item 
-            label="Дата оплаты штрафа" 
-            :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата оплаты штрафа"
+            :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/time.svg')"
           />
-          <view-data-item 
+          <view-data-item
             label="УИП"
-            :value="body.uip" 
+            :value="body.uip"
             style="grid-column: span 2;"
           />
         </div>
@@ -49,7 +49,6 @@
   export default {
     name: "FrmEdIspolnShtraf",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     async created() {
       try {

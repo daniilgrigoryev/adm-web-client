@@ -81,7 +81,6 @@
   export default {
     name: "FrmEdUchastFLIndivid",
     components: {
-      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
     data() {
       return {
