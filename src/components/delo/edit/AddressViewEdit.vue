@@ -228,12 +228,12 @@
       },
       async changeRayon() {
         if (!this.isNotEmptyRayonId() && (this.isNotEmptyCityId() && this.isNotEmptyStreetId())) {
-          this.$refs.rayon.reset();
+          this.$refs.rayon.$refs.select.reset();
         } else if (this.isNotEmptyRayonId()) {
           this.data.cityId = null;
           this.data.streetId = null;
-          this.$refs.city.reset();
-          this.$refs.street.reset();
+          this.$refs.city.$refs.select.reset();
+          this.$refs.street.$refs.select.reset();
         }
 
         this.store();
