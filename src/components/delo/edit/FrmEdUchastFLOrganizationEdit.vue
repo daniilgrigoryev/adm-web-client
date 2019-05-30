@@ -385,7 +385,7 @@
         let copy = JSON.parse(JSON.stringify(this.uchastOrganization));
         copy.organization.priznOffice = copy.organization.priznOffice ? '+' : '-';
 
-        RequestApi.prepareData({
+        return RequestApi.prepareData({
           method: 'store',
           params: {
             data: copy
@@ -393,6 +393,7 @@
         });
       },
       async save() {
+        await this.store();
         let eventResponse = await RequestApi.prepareData({
           method: 'update'
         });

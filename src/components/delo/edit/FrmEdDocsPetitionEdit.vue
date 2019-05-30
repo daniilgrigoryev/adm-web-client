@@ -617,7 +617,7 @@
               inspKod: this.docsPetition.inspSostKod
             }
           });
-          this.clearInspSost();
+          await this.clearInspSost();
           let data = JSON.parse(eventResponse.response).data;
           if (funcUtils.isNotEmpty(data) && data.length > 0) {
             data = data.getFirst();
@@ -643,7 +643,7 @@
               organKod: this.docsPetition.organSostKod
             }
           });
-          this.clearOrganSost();
+          await this.clearOrganSost();
           let gibddList = JSON.parse(eventResponse.response).data;
           if (gibddList.length > 0) {
             this.organModal.visible = true;
@@ -709,31 +709,31 @@
         this.store();
       },
 
-      clearInspSost() {
+      async clearInspSost() {
         this.docsPetition.inspSostId = null;
         this.docsPetition.inspSostKod = null;
         this.docsPetition.inspSostName = null;
         this.docsPetition.inspSostDolz = null;
         this.docsPetition.inspSostRang = null;
-        this.store();
+        await this.store();
       },
-      clearOrganSost() {
+      async clearOrganSost() {
         this.docsPetition.organSostId = null;
         this.docsPetition.organSostKod = null;
         this.docsPetition.organSostName = null;
-        this.store();
+        await this.store();
       },
-      clearInspUtv() {
+      async clearInspUtv() {
         this.docsPetition.inspUtvId = null;
         this.docsPetition.inspUtvKod = null;
         this.docsPetition.inspUtvName = null;
         this.docsPetition.inspUtvDolz = null;
         this.docsPetition.inspUtvRang = null;
-        this.store();
+        await this.store();
       },
 
       store() {
-        RequestApi.prepareData({
+        return RequestApi.prepareData({
           method: 'store',
           params: {
             data: this.docsPetition
@@ -741,6 +741,7 @@
         });
       },
       async save() {
+        await this.store();
         let eventResponse = await RequestApi.prepareData({
           method: 'update'
         });

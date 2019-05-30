@@ -541,6 +541,7 @@
         }
       },
       async save() {
+        await this.store();
         let eventResponse = await RequestApi.prepareData({
           method: 'update'
         });

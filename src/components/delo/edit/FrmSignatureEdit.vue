@@ -224,7 +224,7 @@
         }
       },
       store() {
-        RequestApi.prepareData({
+        return RequestApi.prepareData({
           method: 'store',
           params: {
             data: this.signature
@@ -232,6 +232,7 @@
         });
       },
       async save() {
+        await this.store();
         let eventResponse = await RequestApi.prepareData({
           method: 'save'
         });
