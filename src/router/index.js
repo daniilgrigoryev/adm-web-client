@@ -48,7 +48,7 @@ const router = new Router({
     {
       path: '/frmEdDecisEdit',
       name: 'FrmEdDecisEdit',
-      component: () => import('~/components/delo/edit/FrmEdDecisEdit'),
+      component: () => import('~/components/delo/edit/FrmEdDecisEdit/index'),
       props: true
     },
     {

@@ -2,60 +2,15 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueResource from 'vue-resource'
 
-import authorization from './modules/authorization';
-import deloReestr from './modules/deloReestr';
-import dashBoard from './modules/dashBoard';
 
-import deloTreeCardView from './modules/deloTreeCardView';
-import frmEdDelo from './modules/frmEdDelo';
-import frmEdDocsOpred from './modules/frmEdDocsOpred';
-import frmEdDocsOpredEdit from './modules/frmEdDocsOpredEdit';
-import frmEdDocsPost from './modules/frmEdDocsPost';
-import frmEdDocsProt from './modules/frmEdDocsProt';
+const req = require.context('./modules', false, /\.js$/);
+const storeModules = {};
+req.keys().forEach(filename => {
+  const name = `${filename.split('.')[1].split('/')[1]}`;
+  const module = req(filename).default;
+  storeModules[name] = module;
+});
 
-import frmEdDecisShtraf from './modules/frmEdDecisShtraf';
-import frmEdDecisRasm from './modules/frmEdDecisRasm';
-
-import frmEdDecisLish from './modules/frmEdDecisLish';
-import frmEdDecisVozbDelo from './modules/frmEdDecisVozbDelo';
-import frmEdDecisPredup from './modules/frmEdDecisPredup';
-import frmEdDecisArest from './modules/frmEdDecisArest';
-import frmEdDecisPost from './modules/frmEdDecisPost';
-import frmEdDecisMandWork from './modules/frmEdDecisMandWork';
-import frmEdDecisSuspendActivity from './modules/frmEdDecisSuspendActivity';
-
-import frmEdIspolnShtraf from './modules/frmEdIspolnShtraf';
-import frmEdVehsAMTC from './modules/frmEdVehsAMTC';
-import frmEdProtPZTC from './modules/frmEdProtPZTC';
-import frmEdUchastFL from './modules/frmEdUchastFL';
-import frmEdVuVyd from './modules/frmEdVuVyd';
-import frmEdVuPred from './modules/frmEdVuPred';
-import frmEdIspolnPostUvedom from './modules/frmEdIspolnPostUvedom';
-import dlgEdFotoMaterial from './modules/dlgEdFotoMaterial';
-import dlgAdvice from './modules/dlgAdvice';
-import frmEdMediaMaterial from './modules/frmEdMediaMaterial';
-import frmLog from './modules/frmLog';
-import frmEdPetition from './modules/frmEdPetition';
-
-import frmEdDeloEdit from './modules/frmEdDeloEdit';
-import frmEdDecisEdit from './modules/frmEdDecisEdit';
-import frmEdIspolnEdit from './modules/frmEdIspolnEdit';
-import frmEdVuPredEdit from './modules/frmEdVuPredEdit';
-import frmEdVuVydEdit from './modules/frmEdVuVydEdit';
-import frmEdDocsPostEdit from './modules/frmEdDocsPostEdit';
-import frmEdVehsAMTCEdit from './modules/frmEdVehsAMTCEdit';
-import frmEdProtPZTCEdit from './modules/frmEdProtPZTCEdit';
-import frmEdDocsProtEdit from './modules/frmEdDocsProtEdit';
-import frmEdUchastFLIndividEdit from './modules/frmEdUchastFLIndividEdit';
-import frmEdUchastFLOrganizationEdit from './modules/frmEdUchastFLOrganizationEdit';
-import placeViewEdit from './modules/placeViewEdit';
-import addressViewEdit from './modules/addressViewEdit';
-import dlgAdviceEdit  from './modules/dlgAdviceEdit';
-import frmSignatureEdit  from './modules/frmSignatureEdit';
-
-import errors  from './modules/errors';
-
-import wizardExecuter from './modules/wizardExecuter';
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 
 Vue.use(Vuex);
@@ -117,58 +72,7 @@ const store = new Vuex.Store({
   },
   getters: {},
   modules: {
-    deloReestr,
-    dashBoard,
-    deloTreeCardView,
-    frmEdDelo,
-    frmEdDocsOpred,
-    frmEdDocsOpredEdit,
-    frmEdDocsPost,
-    frmEdDocsProt,
-    frmEdPetition,
-
-    frmEdDecisShtraf,
-    frmEdDecisRasm,
-    frmEdDecisLish,
-    frmEdDecisVozbDelo,
-    frmEdDecisPredup,
-    frmEdDecisArest,
-    frmEdDecisPost,
-    frmEdDecisMandWork,
-    frmEdDecisSuspendActivity,
-
-    frmEdIspolnShtraf,
-    frmEdVehsAMTC,
-    frmEdUchastFL,
-    frmEdVuVyd,
-    frmEdVuPred,
-    frmEdProtPZTC,
-    frmEdIspolnPostUvedom,
-    dlgEdFotoMaterial,
-    frmEdMediaMaterial,
-    frmLog,
-    dlgAdvice,
-
-    addressViewEdit,
-    placeViewEdit,
-    frmEdDeloEdit,
-    frmEdVuPredEdit,
-    frmEdVuVydEdit,
-    frmEdDocsPostEdit,
-    frmEdVehsAMTCEdit,
-    frmEdProtPZTCEdit,
-    frmEdDocsProtEdit,
-    frmEdDecisEdit,
-    frmEdIspolnEdit,
-    frmEdUchastFLIndividEdit,
-    frmEdUchastFLOrganizationEdit,
-    dlgAdviceEdit,
-    frmSignatureEdit,
-
-    wizardExecuter,
-    authorization,
-
-    errors,
+    ...storeModules
   }
 });
 

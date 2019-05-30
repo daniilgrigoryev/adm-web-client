@@ -26,6 +26,8 @@
       FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
       FrmEdDecisRasm: () => import('~/components/delo/decis/FrmEdDecisRasm'),
       FrmEdDecisLish: () => import('~/components/delo/decis/FrmEdDecisLish'),
+      FrmEdDecisRefuse: () => import('~/components/delo/decis/FrmEdDecisRefuse'),
+      FrmEdDecisExtendPeriod: () => import('~/components/delo/decis/FrmEdDecisExtendPeriod'),
       FrmEdDecisVozbDelo: () => import('~/components/delo/decis/FrmEdDecisVozbDelo'),
       FrmEdDecisPredup: () => import('~/components/delo/decis/FrmEdDecisPredup'),
       FrmEdDecisPost: () => import('~/components/delo/decis/FrmEdDecisPost'),
@@ -85,6 +87,14 @@
           }
           case 'FrmEdDecisLish': {
             res = 'FrmEdDecisLish';
+            break;
+          }
+          case 'FrmEdDecisRefuse': {
+            res = 'FrmEdDecisRefuse';
+            break;
+          }
+          case 'FrmEdDecisExtendPeriod': {
+            res = 'FrmEdDecisExtendPeriod';
             break;
           }
           case 'FrmEdDecisPredup': {

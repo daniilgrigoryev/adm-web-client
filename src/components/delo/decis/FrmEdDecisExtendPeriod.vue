@@ -1,13 +1,135 @@
 <template>
-  <div></div>
+  <div v-if="body" class="ml18">
+
+    <div class="amd-title amd-title--sticky px36 pt24 pb18">
+      <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
+        <div class="flex-parent flex-parent--center-cross">
+          <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+            <img src='../../../assets/images/pen.svg' class="wmax-none">
+          </Button>
+          <b class="adm-text-big color-dark-lighter">Решение по делу - {{body.decisName }}</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-data">
+      <div class="view-data__container">
+        <div class="items-wrap">
+          <view-data-item 
+            label="Дата, до которой продлевается срок" 
+            :value="body.prolongUntilDate | formatDateTime('DD.MM.YYYY HH:mm')" 
+            style="grid-column: span 2;"
+            :icon="require('../../../assets/images/time.svg')"
+          />
+          <view-data-item
+            label="Основание принятия решения"
+            :value="body.reason"
+            style="grid-column: span 2;"
+            :icon="require('../../../assets/images/penalty_gray.svg')"
+          />
+        </div>
+      </div>
+    </div>
+
+  </div>
 </template>
 
 <script>
-export default {
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import * as formStack from '~/assets/js/api/formStack';
+  import * as innerFormStack from '~/assets/js/api/innerFormStack';
+  import RequestApi from "~/assets/js/api/requestApi";
+  import { mapGetters } from 'vuex';
 
-}
+  export default {
+    name: "FrmEdDecisExtendPeriod",
+    components: {
+      ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
+    },
+    async created() {
+      try {
+        await this.init();
+
+        let vm = this;
+        this.$store.watch(this.$store.getters.frmEdDecisExtendPeriodGetCommand, async () => {
+          try {
+            let currentForm = innerFormStack.getCurrent();
+            let eventResponse = await RequestApi.prepareData({
+              cid: currentForm.cid,
+              withSpinner: false
+            });
+            await vm.$store.dispatch('fillModule', {'event': eventResponse});
+          } catch (e) {
+            this.$store.dispatch('errors/changeContent', {title: e.message,});
+          }
+        });
+      } catch (e) {
+        this.$store.dispatch('errors/changeContent', {title: e.message,});
+      }
+    },
+    destroyed() {
+      this.$store.dispatch('frmEdDecisExtendPeriodSetCid', null);
+      this.$store.dispatch('frmEdDecisExtendPeriodSetData', null);
+    },
+    computed: {
+      ...mapGetters({
+        dataStore: 'frmEdDecisExtendPeriodGetData'
+      }),
+      body() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.body;
+          res.lishMes? res.lishMes += " Месяца" : "";
+          res.lishDay? res.lishDay += " Дня" : "";
+        }
+        return res;
+      },
+    },
+    methods: {
+      async init() {
+        try {
+          let currentForm = innerFormStack.getCurrent();
+          await this.$store.dispatch('frmEdDecisExtendPeriodSetCid', currentForm.cid);
+
+          let prepareParams = {
+            method: 'restore',
+            cid: currentForm.cid
+          };
+          if (funcUtils.isEmpty(currentForm.restore)) {
+            prepareParams.method = 'getData';
+            prepareParams.params = {
+              'node': currentForm.params
+            };
+            currentForm.restore = true;
+          } else {
+            delete currentForm['restore'];
+          }
+          innerFormStack.updateCurrent(currentForm);
+          let eventResponse = await RequestApi.prepareData(prepareParams);
+          await this.$store.dispatch('fillModule', {'event': eventResponse});
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      getDecisEdit() {
+        try {
+          let currentForm = innerFormStack.getCurrent();
+          let params = {
+            node: currentForm.params
+          };
+
+          formStack.toNext({
+            module: this.$store.state.frmEdDecisEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+    }
+  }
 </script>
 
-<style>
-
-</style>
