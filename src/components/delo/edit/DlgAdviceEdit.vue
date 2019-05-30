@@ -15,7 +15,7 @@
                     <div class="adm-form__item_content">
                       <Row :gutter="16" type="flex" align="middle">
                         <Col :xs="24" :md="14" :lg="24">
-                          <masked-input @onInputChange="store" v-model="dataAdvice.docN" inputClass="adm-input adm-input--regular wmin120 wmax180" :maskProps="{placeholder: '', regex: '[0-9\/\-]+'}" clearable readonly></masked-input>
+                          <masked-input @onInputChange="store" v-model="dataAdvice.docN" inputClass="adm-input adm-input--regular wmin120 wmax180" :maskProps="{placeholder: '', regex: '[0-9\/\-]+'}" clearable></masked-input>
                         </Col>
                       </Row>
                     </div>
