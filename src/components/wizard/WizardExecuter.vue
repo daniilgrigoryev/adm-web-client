@@ -236,9 +236,16 @@
         }
       },
       async updateComponents(cids) {
-        let cidsKeySet = Object.keys(cids);
-        for (let i = 0; i < cidsKeySet.length; i++) {
-          let cid = cidsKeySet[i];
+        let cidsEntries = Object.entries(cids).sort((a, b) => {
+          if (!a[1]) {
+            return -1;
+          } else if (!b[1]) {
+            return 1;
+          }
+        });
+
+        for (let i = 0; i < cidsEntries.length; i++) {
+          let cid = cidsEntries[i][0];
           let prop = cids[cid];
           let child = this.getChild(cid);
           if (child && funcUtils.isEmpty(prop)) {

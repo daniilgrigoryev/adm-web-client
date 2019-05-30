@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+
   export default {
     name: "CustomSelect",
     props: {
@@ -94,14 +96,19 @@
         this.$emit('on-query-change', query);
       },
       validateOption({children, elm, propsData}) {
+        const queryNumber = Number(this.query);
+        const isQueryNumber = funcUtils.isNumber(queryNumber);
+        if (isQueryNumber) {
+          this.query = queryNumber.toString();
+        }
+        const query = this.query.toLowerCase().trim();
         let label = ((elm && elm.textContent) || (children || []).reduce((str, node) => {
           const nodeText = node.elm ? node.elm.textContent : node.text;
           return `${str} ${nodeText}`;
         }, '') || '').toLowerCase().trim();
         let value = (propsData.value + '').toLowerCase();
-        const query = this.query.toLowerCase().trim();
 
-        if (this.filterMethod) {
+        if (this.filterMethod && isQueryNumber) {
           return this.filterMethod(label, value).startsWith(query);
         }
         return label.includes(query);

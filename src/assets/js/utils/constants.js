@@ -63,3 +63,9 @@ export const DECIS='DECIS';
 export const DECIS_ISPOLN='DECIS_ISPOLN';
 /**Тип элемента дерева */
 export const DEL_RAPORT='DEL_RAPORT';
+
+
+/**Стадия исполнения Возобновление исполнения */
+export const VOZB_ISPOLN=2;
+/**Стадия исполнения Уплата штрафа (ГИБДД)*/
+export const UPL_SHTRAF_GIBDD=11;

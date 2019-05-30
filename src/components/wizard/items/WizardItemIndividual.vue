@@ -98,7 +98,7 @@
       <small class="adm-form__label">Телефон</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
-          <masked-input inputClass="adm-input adm-input--regular wmax360" :maskProps="{regex: '[0-9()+-]+', placeholder: ''}" v-model="data.phone" @onInputChange="storeElementData"></masked-input>
+          <Input class="adm-input adm-input--regular wmax360" v-model="data.phone" @on-input-change="storeElementData" placeholder=""></Input>
         </Col>
       </Row>
     </div>

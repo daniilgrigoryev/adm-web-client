@@ -73,7 +73,7 @@
         </Row>
       </div>
     </div>
-    <div v-if="data.stadIspolnKod === 11 || data.stadIspolnKod === 2" class="adm-form__item">
+    <div v-if="data.stadIspolnKod === constants.VOZB_ISPOLN || data.stadIspolnKod === constants.UPL_SHTRAF_GIBDD" class="adm-form__item">
       <small class="adm-form__label">УИП</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
@@ -87,6 +87,7 @@
 </template>
 
 <script>
+  import * as constants from "~/assets/js/utils/constants";
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import RequestApi from "~/assets/js/api/requestApi";
 
@@ -319,7 +320,8 @@
                 }
               }
             ]
-        }
+        },
+        constants
       }
     },
     methods: {
