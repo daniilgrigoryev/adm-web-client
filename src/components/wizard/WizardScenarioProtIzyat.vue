@@ -55,7 +55,7 @@
             <div class="adm-form__content">
               <wizard-item-prot-three id="DocProtIzyatThree" v-if="isVisible('DocProtIzyatThree')" ref="DocProtIzyatThree" :info="getInfo('DocProtIzyatThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
               <wizard-item-place v-if="isVisible('DocProtIzyatThree.PlaceNar')" ref="DocProtIzyatThree.PlaceNar" :info="getInfo('DocProtIzyatThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-              <wizard-item-prot-evac-four id="DocProtIzyatFour" v-if="isVisible('DocProtIzyatFour')" ref="DocProtIzyatFour" :info="getInfo('DocProtIzyatFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-four>
+              <wizard-item-prot-izyat-four id="DocProtIzyatFour" v-if="isVisible('DocProtIzyatFour')" ref="DocProtIzyatFour" :info="getInfo('DocProtIzyatFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-izyat-four>
             </div>
           </div>
           <wizard-item-prot-evac-five id="evac" v-if="isVisible('DocProtIzyatFive')" ref="DocProtIzyatFive" :info="getInfo('DocProtIzyatFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-evac-five>
@@ -91,6 +91,7 @@
       WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs'),
       WizardItemPredDoc: () => import('~/components/wizard/items/WizardItemPredDoc'),
       WizardItemPresent: () => import('~/components/wizard/items/WizardItemPresent'),
+      WizardItemProtIzyatFour: () => import('~/components/wizard/items/protIzyat/WizardItemProtIzyatFour'),
     },
     data() {
       return {
