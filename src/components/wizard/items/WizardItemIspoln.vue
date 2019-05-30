@@ -73,7 +73,7 @@
         </Row>
       </div>
     </div>
-    <div v-if="data.stadIspolnKod === constants.VOZB_ISPOLN || data.stadIspolnKod === constants.UPL_SHTRAF_GIBDD" class="adm-form__item">
+    <div v-if="data.stadIspolnKod === constants.VOZB_ISPOLN || data.stadIspolnKod === constants.UPL_SHTRAF_GIBDD || data.stadIspolnKod === constants.UPL_SHTRAF_SSP" class="adm-form__item">
       <small class="adm-form__label">УИП</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">

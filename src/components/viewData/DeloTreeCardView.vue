@@ -124,6 +124,7 @@
   import decisEnum from "~/assets/js/utils/decisEnum";
   import decisIspolnEnum from "~/assets/js/utils/decisIspolnEnum";
   import docTipEnum from "~/assets/js/utils/docTipEnum";
+  import docVidEnum from "~/assets/js/utils/docVidEnum";
 
   export default {
     name: "DeloTreeCardView",
@@ -562,10 +563,7 @@
             return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) || (current.params.recType === constants.DELO && docsPost.length > 0);
           }
           case 'Izvesh': {
-            let apnPost = this.dataStore.tree.filter((item) => {
-              return item.recType === constants.DOCS_POST;
-            });
-            return (current.params.recType === constants.DOCS_OPRED || current.params.recType === constants.DOCS_PROT) && apnPost.length === 0;
+            return current.params.recType === constants.DOCS_OPRED && (current.params.docTip === docTipEnum.OPR_VOZB_DELO || current.params.docVid === docVidEnum.OPRED_ADM);
           }
           case 'ChangeDateRasmDelo': {
             return current.params.recType === constants.DOCS_OPRED || current.params.recType === constants.DOCS_PROT;

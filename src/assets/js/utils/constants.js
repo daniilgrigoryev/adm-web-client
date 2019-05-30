@@ -69,3 +69,5 @@ export const DEL_RAPORT='DEL_RAPORT';
 export const VOZB_ISPOLN=2;
 /**Стадия исполнения Уплата штрафа (ГИБДД)*/
 export const UPL_SHTRAF_GIBDD=11;
+/**Стадия исполнения Уплата штрафа (ССП)*/
+export const UPL_SHTRAF_SSP=22;
