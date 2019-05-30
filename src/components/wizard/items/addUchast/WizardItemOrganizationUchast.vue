@@ -5,32 +5,18 @@
       <small class="adm-form__label">Наименование</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <Input class="adm-input adm-input--regular" v-model="data.name" @on-input-change="storeElementData" ></Input>
-        </Col>
-        <Col :xs="24" :md="14" :lg="8">
-          <a href="#" @click="searchUlByName" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
+          <Input class="adm-input adm-input--regular wmax360" v-model="data.name" @on-input-change="storeElementData" ></Input>
         </Col>
       </Row>
     </div>
     <div class="adm-form__item">
       <small class="adm-form__label">ИНН</small>
       <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="6" :lg="6">
-          <Input class="adm-input adm-input--regular" v-model="data.inn" @on-input-change="storeElementData" ></Input>
-        </Col>
-        <Col :xs="24" :md="14" :lg="8">
-          <a href="#" @click="searchUlByInn" class="link color-blue-base adm-txt-regular txt-underline-on-hover block">Справочник ЮЛ</a>
+        <Col :xs="24" :md="14" :lg="16">
+          <Input class="adm-input adm-input--regular wmax360" v-model="data.inn" @on-input-change="storeElementData" ></Input>
         </Col>
       </Row>
     </div>
-    <!-- <div class="adm-form__item">
-      <small class="adm-form__label">ИНН кем выдан</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <Input class="adm-input adm-input--regular" v-model="data.innKemVydan" @on-input-change="storeElementData" ></Input>
-        </Col>
-      </Row>
-    </div> -->
     <div class="adm-form__item">
       <small class="adm-form__label">КПП</small>
       <Row :gutter="16" type="flex" align="middle">
@@ -55,12 +41,10 @@
         </Col>
       </Row>
     </div>
-
     <div class="adm-form__item">
       <small class="adm-form__label">Телефон</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
-          <!-- <Input class="adm-input adm-input--regular wmax360" v-model="data.phone" @on-input-change="storeElementData" placeholder="Телефон"></Input> -->
           <masked-input inputClass="adm-input adm-input--regular" :maskProps="{mask: '99999999999', placeholder: '',}" v-model="data.phone" @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
