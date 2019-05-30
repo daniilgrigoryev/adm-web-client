@@ -76,6 +76,12 @@ const router = new Router({
       props: true
     },
     {
+      path: '/frmEdDocsPetitionEdit',
+      name: 'FrmEdDocsPetitionEdit',
+      component: () => import('~/components/delo/edit/FrmEdDocsPetitionEdit'),
+      props: true
+    },
+    {
       path: '/frmEdVehsAMTCEdit',
       name: 'FrmEdVehsAMTCEdit',
       component: () => import('~/components/delo/edit/FrmEdVehsAMTCEdit'),
