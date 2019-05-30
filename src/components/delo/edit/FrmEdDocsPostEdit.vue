@@ -6,7 +6,7 @@
         <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Постановление  {{ docsPost.docN ? "№" + docsPost.docN : "" }}ё от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
+            <h2 class="adm-form__headding" id="head">Постановление  {{ docsPost.docN ? "№" + docsPost.docN : "" }} от {{ docsPost.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-form__label">Постановление №</small>
