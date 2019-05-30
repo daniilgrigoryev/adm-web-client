@@ -1,5 +1,5 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Протокол о задержании ТС" v-if="protPZTC">
+  <aside-template :listSectionNav="listSectionNav" :title="protPZTC.docTipName" v-if="protPZTC">
     <div class="layout-wrap">
       <div class="layout">
         <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
