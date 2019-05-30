@@ -235,13 +235,10 @@
             return `
               <h4>
                 Дело
-                по ${params.delo_apn_stotv}
                 <span class="date">${params.delo_apn_dat}</span>
               </h4>
-              <p>
-                ${params.delo_apn_n}
-              </p>
-
+              <p>${params.delo_apn_n}</p>
+              <p class="other-info">по ${params.delo_apn_stotv}</p>
             `;
           }
           case constants.UCHASTFL:

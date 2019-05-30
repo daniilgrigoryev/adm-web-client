@@ -327,12 +327,12 @@ html, body, #app {
       right: 0;
       width: 81%;
       height: 1px;
-      background-color: #E4EEF5;
+      background-color: #d0e7fc;
     }
     position: relative;
     &.tree__link--selected {
       z-index: 9;
-      background-color: #E4EEF5;
+      background-color: #d0e7fc;
       &::after {
         content: "";
         position: absolute;
@@ -347,7 +347,7 @@ html, body, #app {
       }
     }
     &:hover {
-      background-color: #E4EEF5;
+      background-color: #d0e7fc;
       &::after {
         content: "";
         position: absolute;
