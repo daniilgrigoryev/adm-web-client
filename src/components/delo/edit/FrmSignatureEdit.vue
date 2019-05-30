@@ -1,5 +1,5 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Редактирование дела" v-if="signature">
+  <aside-template :listSectionNav="listSectionNav" title="ЭЦП" v-if="signature">
 
     <div class="adm-form">
       <div class="adm-form__container">
