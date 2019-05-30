@@ -87,8 +87,9 @@
               <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo(body.deloMainId)">{{body.deloMainDescr}}</p>
             </div>
 
-            <Button @click="searchSecondaryCases" type="text">Найти связаные дела</Button>
-            <div v-if="secondaryCases && secondaryCases.length > 0">
+            <Button @click="searchSecondaryCases" type="primary" class="search-secondary-cases-btn">Найти связанные дела</Button>
+            <p v-if="typeof secondaryCases === 'string'" class="adm-14 color-dark-lighter mb6">{{secondaryCases}}</p>
+            <div v-if="secondaryCases && (typeof secondaryCases === 'object') && secondaryCases.length > 0">
               <p class="adm-14 color-dark-lighter mb6">Список дел, связанных с текущим делом</p>
               <div v-for="(item, index) in secondaryCases" :key="index" class="mt12">
                 <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo(item.deloId)">Дело №{{item.deloN}}</p>
@@ -231,6 +232,8 @@
         let responseData = JSON.parse(eventResponse.response).data;
         if (responseData && responseData.length) {
           this.secondaryCases = responseData;
+        } else {
+          this.secondaryCases = "Связанных дел не найдено";
         }
       },
       getMainDelo(deloId) {
@@ -328,6 +331,9 @@
 </script>
 
 <style lang="scss" scoped>
+  .search-secondary-cases-btn {
+    margin: 10px 0;
+  }
   .errors-table{
     .table td{
       border-bottom: 0;
