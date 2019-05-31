@@ -105,11 +105,11 @@
         this.representList = representList;
       },
       async changePresentVids() {
+        await this.storeElementData();
         this.data.uchastId = null;
         if (this.data.presentVid && this.data.presentVid != constants.PRESENT_OUT) {
           await this.fillRepresentList();
         }
-        await this.storeElementData();
       },
       async storeElementData() {
         return new Promise((resolve, reject) => {
