@@ -16,25 +16,8 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
-            label="Срок"
-            :value="body.diskvMes, body.diskvDay | concatByDelimiter(',')"
-            style="grid-column: span 2;"
-            :icon="require('../../../assets/images/penalty_gray.svg')"
-          />
-          <hr>
-          <view-data-item
-            label="Дата начала"
-            :value="body.periodStart | formatDateTime('DD.MM.YYYY')"
-            style="grid-column: span 2;"
-          />
-          <view-data-item
             label="Дата вручения"
             :value="body.dateUved | formatDateTime('DD.MM.YYYY')"
-            style="grid-column: span 2;"
-          />
-          <view-data-item
-            label="Дата вступления"
-            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
           <div class="mt12" style="grid-column: span 2; padding-left: 60px;">

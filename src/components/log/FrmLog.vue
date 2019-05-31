@@ -2,7 +2,7 @@
   <div class="logs">
     <div class="logs__fixed-wrap">
       <div class="logs__head">
-        <h4>История изменений</h4>
+        <h4>История изменений: <span v-html="data.node.name"></span></h4>
         <button class="close" @click="closeLogs()"></button>
       </div>
       <div class="logs__filter">

@@ -261,7 +261,8 @@
       decisByResh() {
         const exceptions = [
           this.decisKods.Refuse,
-          this.decisKods.ExtendPeriod
+          this.decisKods.ExtendPeriod,
+          this.decisKods.IstrSved
         ]
         if (exceptions.includes(this.decis.decisKod)) {
           return false;

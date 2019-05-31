@@ -87,8 +87,8 @@ module.exports = (options = {}) => ({
     },
     extensions: ['.js', '.vue', '.json', '.css', '.html']
   },
-/*  devServer: {
-    host: '172.20.255.54',
+ devServer: {
+    host: '0.0.0.0',
     disableHostCheck: true,
     port: 8040,
     open: true,
@@ -100,7 +100,7 @@ module.exports = (options = {}) => ({
     watchOptions: {
       ignored: /node_modules/
     }
-  },*/
+  },
   devtool: options.dev ? '#eval-source-map' : '#source-map',
   performance: {
     hints: false

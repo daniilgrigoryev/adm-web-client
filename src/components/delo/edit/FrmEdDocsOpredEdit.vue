@@ -213,7 +213,7 @@
                 </div>
 
                 <div v-if="docsOpred.vsTypeId !== 1" class="adm-form__item">
-                  <small class="adm-form__label">Наименование</small>
+                  <small class="adm-form__label">Наименование источника</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">

@@ -259,5 +259,8 @@ export default {
     getPlaceSost() {
       this.$emit("getPlaceSost");
     },
+    calcDateVstup() {
+      this.$emit("calcDateVstup");
+    },
   },
 }
