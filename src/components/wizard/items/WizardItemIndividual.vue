@@ -22,7 +22,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.firstName" :maskProps="{regex: '[а-яА-ЯёЁ ]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.firstName" :maskProps="{regex: '[а-яА-ЯёЁ- ]+', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>
@@ -32,7 +32,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.secondName" :maskProps="{regex: '[а-яА-ЯёЁ ]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.secondName" :maskProps="{regex: '[а-яА-ЯёЁ- ]+', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>
@@ -42,7 +42,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.thirdName" :maskProps="{regex: '[а-яА-ЯёЁ ]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.thirdName" :maskProps="{regex: '[а-яА-ЯёЁ- ]+', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>

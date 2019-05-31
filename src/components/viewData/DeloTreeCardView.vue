@@ -721,7 +721,7 @@
       },
       async getPrev() {
         try {
-          formStack.toPrev({
+          await formStack.toPrev({
             vm: this
           });
 

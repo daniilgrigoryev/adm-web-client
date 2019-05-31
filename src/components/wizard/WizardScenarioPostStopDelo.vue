@@ -128,7 +128,7 @@ export default {
           resp = JSON.parse(response.response);
         }
         if (resp && resp.data) {
-          this.getPrev(false);
+          await this.getPrev(false);
           let params = {
             deloId: resp.data,
             scenarioResult: eventResp.data,
@@ -150,9 +150,9 @@ export default {
         }
       }
     },
-		getPrev(withTransition) {
+    async getPrev(withTransition) {
 			try {
-				formStack.toPrev({
+        await formStack.toPrev({
 					vm: this,
 					withTransition: withTransition || true
 				});

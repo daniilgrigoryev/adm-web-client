@@ -14,7 +14,6 @@ export async function toNext(payload) {
   let withCreate = payload.withCreate;
   let params = payload.params;
   let withTransition = payload.withTransition || true;
-  let withInnerStack = payload.withInnerStack || false;
   let externalSessionStorage = payload.externalSessionStorage;
   let externalStack;
   if (funcUtils.isNotEmpty(externalSessionStorage)) {
@@ -82,7 +81,7 @@ export async function toNextNewTab(payload) {
   return window.open(addr, '_blank');
 }
 
-export function toPrev(payload) {
+export async function toPrev(payload) {
   let vm = payload.vm;
   let wid = sessionStorage.getItem('admWid');
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
@@ -93,7 +92,7 @@ export function toPrev(payload) {
   prev.current = true;
 
   if (!current.notRemoved) {
-    RequestApi.prepareData({
+    await RequestApi.prepareData({
       beanName: null,
       method: 'removeCID',
       cid: current.cid,
@@ -101,7 +100,7 @@ export function toPrev(payload) {
     });
     while (innerStack.size() !== 0) {
       let innerCurrent = innerStack.pop();
-      RequestApi.prepareData({
+      await RequestApi.prepareData({
         beanName: null,
         method: 'removeCID',
         cid: innerCurrent.cid,
