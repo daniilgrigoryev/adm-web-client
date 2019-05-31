@@ -7,10 +7,10 @@
           <div class="adm-form__container">
             <h2 class="adm-form__headding">{{decis.decisName}}</h2>
             <div class="adm-form__content">
-              <component 
-                :is="decisComponentName" 
-                :decis="decis" 
-                @store="store()" 
+              <component
+                :is="decisComponentName"
+                :decis="decis"
+                @store="store()"
               />
               <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.warning)"></div>-->
               <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.observ)"></div>-->
@@ -67,7 +67,7 @@
     const component = req(filename).default;
     decisComponent[name] = component;
   });
-  
+
   export default {
     name: "FrmEdDecisEdit",
     components: {
@@ -304,19 +304,13 @@
         }
       },
       async calcDateVstup() {
-        return;
-        // let eventResponse = await RequestApi.prepareData({
-        //   method: 'invokeElementMethod',
-        //   params: {
-        //     eCID: this.info.eCID,
-        //     methodName: 'calcDateVstup',
-        //     data: null
-        //   }
-        // });
-        // let dateVstup = JSON.parse(JSON.parse(eventResponse.response).data);
-        // if (dateVstup) {
-        //   this.decis.dateVstup = dateVstup;
-        // }
+        let eventResponse = await RequestApi.prepareData({
+          method: 'calcDateVstup'
+        });
+        let dateVstup = JSON.parse(eventResponse.response).data;
+        if (dateVstup) {
+          this.decis.dateVstup = dateVstup;
+        }
       },
       onGibddClick(data) {
         this.decis.organNapravlId = data.ID;
