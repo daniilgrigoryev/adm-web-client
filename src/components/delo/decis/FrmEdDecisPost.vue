@@ -21,14 +21,14 @@
             style="grid-column: span 2;"
           />
           <div class="mt12" style="grid-column: span 2; padding-left: 60px;">
-            <p class="adm-14 color-dark-lighter mb6">Список документов</p>
+            <p class="adm-14 color-dark-lighter ">Список документов</p>
             <div v-if="body.provideMaterialsList && body.provideMaterialsList.length > 0">
               <p v-for="(item, index) in body.provideMaterialsList" class="adm-text-big color-dark-base" :key="index">{{ item.name }}</p><br />
             </div>
             <p v-else class="adm-text-big color-dark-base">Нет информации</p>
           </div>
           <div class="mt12" style="grid-column: span 2; padding-left: 60px;">
-            <p class="adm-14 color-dark-lighter mb6">Обеспечить явку</p>
+            <p class="adm-14 color-dark-lighter ">Обеспечить явку</p>
             <div v-if="body.providePresenceList && body.providePresenceList.length > 0">
               <p v-for="(item, index) in body.providePresenceList" class="adm-text-big color-dark-base" :key="index">{{ item.name }}</p><br />
             </div>

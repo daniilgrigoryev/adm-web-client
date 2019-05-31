@@ -36,14 +36,14 @@
         </div>
 
         <div v-if="isNotEmptyField(viol.violPnpaKod)" class="ml60 my18">
-          <p class="adm-14 color-dark-lighter mb6">Пункт НПА</p>
+          <p class="adm-14 color-dark-lighter ">Пункт НПА</p>
           <h2 class="adm-h2 color-dark-base mb6">{{viol.violPnpaKod}}</h2>
           <p class="adm-text-italic color-dark-base">{{viol.violPnpaName || 'нет информации'}}</p>
         </div>
 
 
         <div v-if="isNotEmptyField(body.stotvZakon)" class="ml60 my18">
-          <p class="adm-14 color-dark-lighter mb6">Статья {{body.stotvZakon}}</p>
+          <p class="adm-14 color-dark-lighter ">Статья {{body.stotvZakon}}</p>
           <h2 class="adm-h2 color-dark-base mb6">{{viol.violStotvKod || 'нет информации'}}</h2>
           <p class="adm-text-italic color-dark-base">{{viol.violStotvName || 'нет информации'}}</p>
         </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="ml18">
               <div v-if="isNotEmptyField(body.inspVozbName)">
-                <p class="adm-14 color-dark-lighter mb6">Должностное лицо, возбудившее дело. ФИО. Код сотрудника.</p>
+                <p class="adm-14 color-dark-lighter ">Должностное лицо, возбудившее дело. ФИО. Код сотрудника.</p>
                 <p class="adm-text-big color-dark-base">{{body.inspVozbName, body.inspVozbKod | concatByDelimiter('-')}}</p>
               </div>
 
@@ -64,7 +64,7 @@
               </div>
 
               <div v-if="isNotEmptyField(body.organVozbId)" class="mt18">
-                <p class="adm-14 color-dark-lighter mb6">Орган, возбудивший дело</p>
+                <p class="adm-14 color-dark-lighter ">Орган, возбудивший дело</p>
                 <p class="adm-text-big color-dark-base">{{body.organVozbId, body.organVozbName | concatByDelimiter('-') }}</p>
               </div>
             </div>
@@ -73,25 +73,25 @@
 
           <div class="ml60">
             <div v-if="isNotEmptyField(body.docVozbName)" class="mt12">
-              <p class="adm-14 color-dark-lighter mb6">Документ основание</p>
+              <p class="adm-14 color-dark-lighter ">Документ основание</p>
               <p class="adm-text-big color-dark-base">{{body.docVozbName}}</p>
             </div>
 
             <div v-if="isNotEmptyField(viol.mvidFisFull)" class="mt12">
-              <p class="adm-14 color-dark-lighter mb6">Уникальный номер АП</p>
+              <p class="adm-14 color-dark-lighter ">Уникальный номер АП</p>
               <p class="adm-text-big color-dark-base">{{viol.mvidFisFull}}</p>
             </div>
 
             <div v-if="isNotEmptyField(body.deloMainDescr)" class="mt12">
-              <p class="adm-14 color-dark-lighter mb6">Дело - основание</p>
+              <p class="adm-14 color-dark-lighter ">Дело - основание</p>
               <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo(body.deloMainId)">{{body.deloMainDescr}}</p>
             </div>
 
             <Button @click="searchSecondaryCases" type="primary" class="search-secondary-cases-btn">Найти связанные дела</Button>
-            <p v-if="typeof secondaryCases === 'string'" class="adm-14 color-dark-lighter mb6">{{secondaryCases}}</p>
+            <p v-if="typeof secondaryCases === 'string'" class="adm-14 color-dark-lighter ">{{secondaryCases}}</p>
             <div v-if="secondaryCases && (typeof secondaryCases === 'object') && secondaryCases.length > 0">
-              <p class="adm-14 color-dark-lighter mb6">Список дел, связанных с текущим делом</p>
-              <div v-for="(item, index) in secondaryCases" :key="index" class="mt12">
+              <p class="adm-14 color-dark-lighter ">Список дел, связанных с текущим делом</p>
+              <div v-for="(item, index) in secondaryCases" :key="index" >
                 <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo(item.deloId)">Дело №{{item.deloN}}</p>
               </div>
             </div>

@@ -45,21 +45,21 @@
             :value="body.proceedingsFixingTypeName"
             style="grid-column: span 2;"
           />
-          <div v-if="body.seizedThingsList && body.seizedThingsList.length > 0" style="grid-column: span 2 / auto; display: grid; grid-gap: 0; margin: 5px 0; position: relative; padding-left: 60px;">
-            <p class="adm-14 color-dark-lighter mb6">Изъятые вещи и документы</p>
-            <div v-for="(item, index) in body.seizedThingsList" :key="index" class="mt12">
+          <div v-if="body.seizedThingsList && body.seizedThingsList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter ">Изъятые вещи и документы</p>
+            <div v-for="(item, index) in body.seizedThingsList" :key="index" >
               <p class="adm-text-big color-dark-base">{{ item.name }}</p>
             </div>
           </div>
-          <div v-if="body.usedTechnicalMeansList && body.usedTechnicalMeansList.length > 0" style="grid-column: span 2 / auto; display: grid; grid-gap: 0; margin: 5px 0; position: relative; padding-left: 60px;">
-            <p class="adm-14 color-dark-lighter mb6">Использованные технические средства</p>
-            <div v-for="(item, index) in body.usedTechnicalMeansList" :key="index" class="mt12">
+          <div v-if="body.usedTechnicalMeansList && body.usedTechnicalMeansList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter ">Использованные технические средства</p>
+            <div v-for="(item, index) in body.usedTechnicalMeansList" :key="index" >
               <p class="adm-text-big color-dark-base">{{ item.name }}</p>
             </div>
           </div>
-          <div v-if="body.annexesList && body.annexesList.length > 0" style="grid-column: span 2 / auto; display: grid; grid-gap: 0; margin: 5px 0; position: relative; padding-left: 60px;">
-            <p class="adm-14 color-dark-lighter mb6">Список приложений</p>
-            <div v-for="(item, index) in body.annexesList" :key="index" class="mt12">
+          <div v-if="body.annexesList && body.annexesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
+            <p class="adm-14 color-dark-lighter ">Список приложений</p>
+            <div v-for="(item, index) in body.annexesList" :key="index" >
               <p class="adm-text-big color-dark-base">{{ item.name }}</p>
               <p class="adm-text-big color-dark-base">{{ item.sheets_quantity }}</p>
             </div>

@@ -77,7 +77,10 @@
           startDate: new Date(new Date().getTime() - (1000 * 60 * 60 * 24 * 7)),
           endDate: new Date(),
           ispId: null,
-          deloId: null
+          deloId: null,
+          node: {
+            name: ""
+          }
         },
         operation: {
           I: {

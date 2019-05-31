@@ -53,7 +53,7 @@
             :value="body.individ.phone"
             style="grid-column: span 2;"
           />
-          <temlpate v-if="body.uchastStatus === constants.UCHAST_INDIVID">
+          <template v-if="body.uchastStatus === constants.UCHAST_INDIVID">
             <view-data-item
               label="ИНН"
               :value="body.individ.inn"
@@ -64,7 +64,7 @@
               :value="body.individ.ogrn"
               style="grid-column: span 2;"
             />
-          </temlpate>
+          </template>
         </div>
       </div>
     </div>
