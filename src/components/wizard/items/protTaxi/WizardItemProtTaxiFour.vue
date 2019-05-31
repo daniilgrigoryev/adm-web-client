@@ -58,6 +58,7 @@
             </Row>
           </div>
         </div>
+        <list-items-docs :items="data.annexesList" title="Список приложений" @change="storeElementData"></list-items-docs>
       </div>
     </div>
     <div class="adm-form__container">
