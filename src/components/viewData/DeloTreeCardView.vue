@@ -420,12 +420,18 @@
         return JSON.stringify(node, objectJSONreplacer);
       },
       async nodeClick(node) {
+        let currentForm = innerFormStack.getCurrent();
+        let currentKey = currentForm ? currentForm.params.category + '-' + currentForm.params.docId : null;
+        let selectedKey = node.category + '-' + node.docId;
+        if (funcUtils.isNotEmpty(currentKey) && currentKey === selectedKey) {
+          return;
+        }
         await innerFormStack.clearStack();
         let copyNode = this.getCopyObj(node, 'selected', 'children', 'height', 'nodeParams');
         await this.addForm(copyNode);
         this.updateSelected();
         if (this.logOpen) {
-          this.$refs.logs.changeNode();
+          await this.$refs.logs.changeNode();
         }
       },
       changeClass(stadKod) {

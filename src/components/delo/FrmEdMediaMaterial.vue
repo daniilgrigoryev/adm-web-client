@@ -106,7 +106,7 @@
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
 
-          this.fillComponent({
+          await this.fillComponent({
             vm: this,
             cid: currentForm.cid
           });

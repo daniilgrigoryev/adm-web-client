@@ -509,12 +509,12 @@
         }
         return res;
       },
-      parentNodeClick() {
+      async parentNodeClick() {
         if (this.node.recType === constants.DOCS_OTHER && this.node.docTip === docTipEnum.MEDIA_DOC && this.node.height > 3) {
           this.downloadMedia(this.node);
           return;
         }
-        this.nodeClick(this.node);
+        await this.nodeClick(this.node);
         this.toggle();
       },
       toggle() {
