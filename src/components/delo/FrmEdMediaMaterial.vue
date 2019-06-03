@@ -8,34 +8,46 @@
       </div>
     </div>
 
-    <div class="view-data">
-      <div class="view-data__container">
-        <div class="items-wrap">
-          <article v-if="photos.length > 0" class="gallery">
-            <Slider :photos="photos" />
-          </article>
-
-          <div v-if="otherMedia.length > 0" v-for="(item, index) in otherMedia" :key="index" @click="downloadMedia(item)">
-            {{item.docNum}}
-          </div>
-
-          <view-data-item
-            label="Test"
-            :value="body.docN"
-          />
-          <view-data-item
-            label="Test"
-            :value="body.docTipName"
-          />
-          <view-data-item
-            label="Test"
-            :value="body.docN"
-          />
-          <view-data-item
-            label="Test"
-            :value="body.docTipName"
-          />
+    <div class="material-items-wrap">
+      <div class="material-item" v-for="item in filesArray" :key="item.id">
+        <div class="item-preview" @click="openModal(item)">
+          <img :src="item.body" alt="" :class="item.class">
+          <div class="hov-block"><img :src="require('~/assets/images/icons/resize-diagonal.svg')" alt=""></div>
         </div>
+        <div class="text-wrap">
+          <div class="date">
+            {{item.date}}
+            <!-- <button class="options" @click="options(item)" title="Загрузить">
+              <img :src="require('~/assets/images/icons/dots.svg')" alt="">
+            </button> -->
+          </div>
+          <div class="name">{{item.docNum}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" v-if="modal.status">
+      <div class="head">
+        <div class="name-wrap">
+          <button class="back" @click="closeModal()">
+            <img :src="require('~/assets/images/icons/arrow-to-left.svg')" alt="">
+          </button>
+          <div class="name">
+            {{modal.data.docNum}}
+          </div>
+        </div>
+        <div class="date">{{modal.data.date}}</div>
+        <div class="options-wrap">
+          <button class="download" @click="downloadMedia(modal.data)">
+            <img :src="require('~/assets/images/icons/download.svg')" alt="">
+          </button>
+          <button class="options" @click="options(modal.data)" title="Загрузить">
+            <img :src="require('~/assets/images/icons/dots.svg')" alt="">
+          </button>
+        </div>
+      </div>
+      <div class="body">
+        <img :src="modal.data.body" alt="">
       </div>
     </div>
   </div>
@@ -83,6 +95,27 @@
       this.$store.dispatch('frmEdMediaMaterialSetCid', null);
       this.$store.dispatch('frmEdMediaMaterialSetData', null);
     },
+    data() {
+      return {
+        modal: {
+          status: false,
+          data: {},
+        },
+        filesArray: [],
+      }
+    },
+    computed: {
+      ...mapGetters({
+        dataStore: 'frmEdMediaMaterialGetData'
+      }),
+      body() {
+        let res = null;
+        if (this.dataStore) {
+          res = this.dataStore.body;
+        }
+        return res;
+      },
+    },
     methods: {
       async init() {
         try {
@@ -117,41 +150,54 @@
       async fillComponent(params) {
         let cid = params.cid;
         let vm = params.vm;
-        let photos = vm.dataStore.fotoList;
+        let storeFilesArray = this.dataStore.fotoList;
 
-        vm.photos = [];
-        vm.otherMedia = [];
-        if (photos && photos.length > 0) {
-          let item;
-          let eventResponse;
-          let photo;
-
-          for (let i = 0; i < photos.length; i++) {
-            item = photos[i];
-            switch (item.mimeType) {
+        this.filesArray = [];
+        if (storeFilesArray && storeFilesArray.length > 0) {
+          for (let i = 0; i < storeFilesArray.length; i++) {
+            let file = storeFilesArray[i];
+            let item = {
+              docNum: file.docNum,
+              date: file.docDate,
+            };
+            switch (file.mimeType) {
               case 'image/png':
               case 'image/jpeg': {
-                eventResponse = await RequestApi.prepareData({
+                let eventResponse = await RequestApi.prepareData({
                   method: 'getPhotoBody',
                   params: {
-                    'mediaMetaId': item.mediaId
+                    'mediaMetaId': file.mediaId
                   },
                   cid: cid
                 });
                 if (eventResponse.response) {
-                  photo = JSON.parse(eventResponse.response).data;
-                  vm.photos.push(`data:${item.mimeType};base64,${photo}`);
+                  let photo = JSON.parse(eventResponse.response).data;
+                  item.body = `data:${file.mimeType};base64,${photo}`;
                 }
                 break;
               }
-              case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-              case 'video/mp4':
-              case 'application/pdf':
-              case 'application/pgp-signature':
-              case 'video/webm': {
-                vm.otherMedia.push(item);
+              case "video/webm":
+              case "video/mp4": {
+                item.body = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
+                break;
+              }
+              case "application/pdf": {
+                item.body = require("~/assets/images/icons/dokument-pdf.svg");
+                item.class = "--icon";
+                break;
+              }
+              case "application/pgp-signature": {
+                item.body = require("~/assets/images/icons/dokument-digital.svg");
+                item.class = "--icon";
+                break;
+              }
+              case "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
+                item.body = require("~/assets/images/icons/dokument-docx.svg");
+                item.class = "--icon";
+                break;
               }
             }
+            this.filesArray.push(item);
           }
         }
       },
@@ -181,24 +227,17 @@
           });
         }
       },
-    },
-    data() {
-      return {
-        photos: [],
-        otherMedia: [],
-      }
-    },
-    computed: {
-      ...mapGetters({
-        dataStore: 'frmEdMediaMaterialGetData'
-      }),
-      body() {
-        let res = null;
-        if (this.dataStore) {
-          res = this.dataStore.body;
-        }
-        return res;
+      openModal(item) {
+        this.modal.status = true;
+        this.modal.data = item
       },
+      closeModal(item) {
+        this.modal.status = false;
+        this.modal.data = {}
+      },
+      options(item) {
+        this.downloadMedia(item);
+      }
     },
   }
 </script>
@@ -222,6 +261,127 @@
     display: grid;
     .item{
       display: block;
+    }
+  }
+  .material-items-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 280px);
+    grid-gap: 10px;
+    .material-item {
+      min-height: 220px;
+      background: #fff;
+      border: 1px solid #CCCCCC;
+      .item-preview {
+        border-bottom: 1px solid #CCCCCC;
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        img {
+          height: 100%;
+          &.--icon {
+            height: 70%;
+          }
+        }
+        .hov-block {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          background: rgba(0, 0, 0, 0.5);
+          transition: .3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 32px;
+          }
+        }
+        &:hover {
+          .hov-block {
+            opacity: 1;
+          }
+        }
+      }
+      .text-wrap {
+        padding: 10px;
+        .date {
+          color: #797979;
+          font-size: 13px;
+          font-style: italic;
+          margin-bottom: 5px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .options {
+            padding: 0 5px;
+          }
+        }
+        .name {
+          color: #808080;
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .modal {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    z-index: 90;
+    display: grid;
+    grid-auto-rows: 100px 1fr;
+    .head {
+      color: #fff;
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr 100px 1fr;
+      padding: 10px;
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.name-wrap {
+          justify-content: flex-start;
+          .back {
+            padding: 20px;
+            transition: .3s ease;
+            &:hover {
+              opacity: .5;
+            }
+          }
+          .name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-left: 20px;
+          }
+        }
+        &.options-wrap {
+          justify-content: flex-end;
+          padding-right: 10px;
+          button {
+            padding: 10px 20px;
+
+          }
+        }
+      }
+    }
+    .body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        background: #fff;
+      }
     }
   }
 </style>
