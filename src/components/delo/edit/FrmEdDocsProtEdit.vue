@@ -215,14 +215,19 @@
                 </Row>
               </div>
               <list-items-docs :items="docsProt.annexesList" title="Список приложений" :disabledFields="{ check: true }" @change="store"></list-items-docs>
-              <div v-if="isTaxi">
+            </div>
+          </div>
+          <div v-if="isTaxi">
+            <div class="adm-form__container">
+              <h2 class="adm-form__headding" id="permission-details">Сведения о разрешении</h2>
+              <div class="adm-form__content">
                 <div class="adm-form__item">
                   <small class="adm-form__label">Номер разрешения такси</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
                         <Input class="adm-input adm-input--regular" @on-input-change="store"
-                               v-model="docsProt.tlNumber"></Input>
+                                v-model="docsProt.tlNumber"></Input>
                       </Col>
                     </Row>
                   </div>
@@ -253,6 +258,12 @@
                     </Row>
                   </div>
                 </div>
+                
+              </div>
+            </div>
+            <div class="adm-form__container">
+              <h2 class="adm-form__headding" id="owner-details">Сведения о владельце разрешения</h2>
+              <div class="adm-form__content">
                 <div class="adm-form__item">
                   <small class="adm-form__label">Владелец разрешения такси</small>
                   <div class="adm-form__item_content">
@@ -274,7 +285,7 @@
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
                         <Input class="adm-input adm-input--regular" @on-input-change="store"
-                               v-model="docsProt.tlLicensor"></Input>
+                                v-model="docsProt.tlLicensor"></Input>
                       </Col>
                     </Row>
                   </div>
@@ -365,6 +376,14 @@
           {
             title: "Сведения о нарушении",
             name: "nar",
+          },
+          {
+            title: "Сведения о разрешении",
+            name: "permission-details",
+          },
+          {
+            title: "Сведения о владельце разрешения",
+            name: "owner-details",
           },
           /*{
             title: "Сведения о рассмотрении",

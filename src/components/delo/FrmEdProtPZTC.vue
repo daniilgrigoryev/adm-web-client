@@ -60,8 +60,7 @@
           <div v-if="body.annexesList && body.annexesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
             <p class="adm-14 color-dark-lighter ">Список приложений</p>
             <div v-for="(item, index) in body.annexesList" :key="index" >
-              <p class="adm-text-big color-dark-base">{{ item.name }}</p>
-              <p class="adm-text-big color-dark-base">{{ item.sheets_quantity }}</p>
+              <p class="adm-text-big color-dark-base">{{ item.name }}({{item.sheets_quantity}})</p>
             </div>
           </div>
           <hr>
