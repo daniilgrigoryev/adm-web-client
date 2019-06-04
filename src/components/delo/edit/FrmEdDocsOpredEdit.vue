@@ -372,10 +372,12 @@
           {
             title: "Сведения об источнике данных",
             name: "data-source",
+            hide: this.isTaxi
           },
           {
             title: "Сведения о разрешении",
             name: "permission-details",
+            hide: this.isTaxi
           }
         ],
         maskInputProt: {

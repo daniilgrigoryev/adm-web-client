@@ -380,10 +380,12 @@
           {
             title: "Сведения о разрешении",
             name: "permission-details",
+            hide: this.isTaxi
           },
           {
             title: "Сведения о владельце разрешения",
             name: "owner-details",
+            hide: this.isTaxi
           },
           /*{
             title: "Сведения о рассмотрении",
