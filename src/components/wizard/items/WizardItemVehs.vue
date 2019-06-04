@@ -144,7 +144,6 @@
   export default {
     name: "WizardItemVehs",
     components: {
-      MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     props: {
       info: Object

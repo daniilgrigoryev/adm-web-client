@@ -49,7 +49,6 @@ export default {
 	},
 	components: {
 		AsideTemplate: () => import ('~/components/templates/AsideTemplate'),
-		MaskedInput: () => import ('~/components/shared/MaskedInput'),
 		WizardItemDocPostFirstStopDelo: () => import('~/components/wizard/items/postStopDelo/WizardItemDocPostFirstStopDelo.vue'),
 		WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
     WizardItemPresent: () => import('~/components/wizard/items/WizardItemPresent'),

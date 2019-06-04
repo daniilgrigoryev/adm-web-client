@@ -147,6 +147,18 @@ const router = new Router({
       component: () => import('~/components/wizard/WizardExecuter'),
       props: true
     },
+    {
+      path: '/registryReestr',
+      name: 'RegistryReestr',
+      component: () => import('~/components/reestrPassport/RegistryReestr'),
+      props: true
+    },
+    {
+      path: '/registryReestrItem',
+      name: 'RegistryReestrItem',
+      component: () => import('~/components/postoffice/RegistryReestrItem'),
+      props: true
+    },
   ]
 });
 

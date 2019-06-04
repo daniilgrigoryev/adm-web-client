@@ -74,6 +74,9 @@
             this.$root.getDashBoardReestr();
             break;
           }
+          case 7: {
+            this.$root.getRegistryReestr();
+          }
         }
         funcUtils.addToSessionStorage('mainMenuActiveName', activeName);
       }

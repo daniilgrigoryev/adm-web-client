@@ -54,7 +54,6 @@
     },
     components: {
       AsideTemplate: () => import ('~/components/templates/AsideTemplate'),
-      MaskedInput: () => import ('~/components/shared/MaskedInput'),
       WizardItemDecis: () => import('~/components/wizard/items/WizardItemDecis'),
       WizardItemDocPostFinal: () => import('~/components/wizard/items/docPost/WizardItemDocPostFinal'),
       WizardItemDocPostFirst: () => import('~/components/wizard/items/docPost/WizardItemDocPostFirst.vue'),

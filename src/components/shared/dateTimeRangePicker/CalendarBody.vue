@@ -12,7 +12,6 @@
   export default {
     name: "CalendarBody",
     components: {
-      MaskedInput: () => import('~/components/shared/MaskedInput')
     },
     props: {
       valueFirst: Date,

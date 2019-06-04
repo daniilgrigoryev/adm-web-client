@@ -95,7 +95,6 @@
       WizardItemOwner: () => import('~/components/wizard/items/WizardItemOwner'),
       WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
       WizardItemVehsEvac: () => import('~/components/wizard/items/protEvac/WizardItemVehsEvac'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     data() {
       return {

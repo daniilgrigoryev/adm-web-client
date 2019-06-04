@@ -119,7 +119,6 @@
   export default {
     name: "WizardItemOrganizationUchast",
     components: {
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     extends: WizardItemOrganization
   }

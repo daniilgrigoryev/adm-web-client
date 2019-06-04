@@ -218,7 +218,6 @@
     name: "PlaceViewEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
     },
     async created() {
       try {
