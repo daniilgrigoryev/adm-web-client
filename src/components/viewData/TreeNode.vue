@@ -297,9 +297,8 @@
                     <span class="date">${params.doc_other_dat}</span>
                   </h4>
                   <p>
-                    ${params.doc_other_n}
+                    ${params.docs_other_fotomat_cnt}
                   </p>
-                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
                 `;
                 }
               }
