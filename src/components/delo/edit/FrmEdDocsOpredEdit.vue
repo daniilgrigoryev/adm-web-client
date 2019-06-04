@@ -9,16 +9,6 @@
             <h2 class="adm-form__headding" id="head">Определение</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
-                <small class="adm-form__label">Определение №</small>
-                <div class="adm-form__item_content">
-                  <Row type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="16">
-                      <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="docsOpred.docN" @onInputChange="store"></masked-input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
                 <small class="adm-form__label">Дата и время составления</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">

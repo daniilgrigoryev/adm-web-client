@@ -72,8 +72,8 @@
             :icon="require('../../assets/images/letter.svg')"
           />
           <view-data-item
-            label="Дата составления"
-            :value="body.dateSost | formatDateTime('DD.MM.YYYY')"
+            label="Дата вступления"
+            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
 
