@@ -179,6 +179,7 @@
               case "video/webm":
               case "video/mp4": {
                 item.body = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
+                item.class = "--icon";
                 break;
               }
               case "application/pdf": {
