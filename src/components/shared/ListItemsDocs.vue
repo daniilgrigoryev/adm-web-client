@@ -19,7 +19,7 @@
                      @on-input-change="change"
                      @on-blur="change"
               />
-              <div class="quantity" v-if="!disabledFields.quantity">
+              <div class="quantity" v-if="!disabledFields.quantity && item.sheets_quantity !== null">
                 Количество листов
                 <masked-input inputClass="adm-input adm-input--regular" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="item.sheets_quantity" @onBlur="change" @onInputChange="change"></masked-input>
               </div>
