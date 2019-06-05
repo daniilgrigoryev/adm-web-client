@@ -2,9 +2,9 @@
   <div class="aside-template">
     <aside>
       <h3>
-        <Button @click="getPrev" type="text" title="вернуться назад">
-          <Icon type="ios-arrow-dropleft" :size="30" />
-        </Button>
+        <button @click="getPrev" type="button" title="вернуться назад">
+          <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
+        </button>
         {{ title }}
       </h3>
       <h3 v-if="listSectionNav && listSectionNav.length">Список подразделов</h3>
@@ -73,7 +73,15 @@ aside {
     border-bottom: 1px solid #d9d9d9;
     font-weight: 600;
     button {
-      padding: 0 5px 0 0 !important;
+      margin-right: 5px;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
+      }
     }
   }
   ul {

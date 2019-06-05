@@ -2,15 +2,15 @@
   <div>
     <section class="dashboard">
       <div class="dashboard__breadcrumbs">
-        <Button
+        <button
           v-if="breadcrumbs.length > 1"
           class="prev"
           @click="toPrevListItem()"
-          type="text"
+          type="button"
           title="вернуться назад"
         >
-          <Icon type="ios-arrow-dropleft" :size="30" />
-        </Button>
+          <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
+        </button>
         <ul>
           <li
             v-for="(item, index) in breadcrumbs"
@@ -257,10 +257,19 @@
     align-items: center;
     height: 56px;
     padding: 0 30px;
+    .prev {
+      width: 25px;
+      height: 25px;
+      flex: none;
+      margin-right: 5px;
+      img {
+        max-height: 100%;
+      }
+    }
     ul {
       display: flex;
       align-items: center;
-      font-size: 18px;
+      font-size: 16px;
       li {
         padding: 0 5px;
         position: relative;
@@ -335,9 +344,6 @@
           font-size: 16px;
           line-height: 18px;
         }
-      }
-      button {
-        color: #57a3f3;
       }
     }
   }

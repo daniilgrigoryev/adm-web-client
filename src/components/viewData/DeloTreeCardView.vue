@@ -6,15 +6,10 @@
     </div>
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
       <div v-if="deloContext" class="bg-white deloContext-sticky">
-        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross pl60 py6">
-          <div class="flex-parent flex-parent--center-cross">
-
-            <Button @click="getPrev" type="text" style="outline: 0!important;"
-                    class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="вернуться назад">
-              <Icon type="ios-arrow-dropleft"
-                    class="  px0 py0 mx0 my0" :size="30"/>
-            </Button>
-          </div>
+        <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross py6">
+          <button @click="getPrev" type="text" title="вернуться назад" class="back-button">
+            <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
+          </button>
           <div class="delo-menu">
             <div class="delo-menu--body-wrap">
               <Poptip @click.native="menuVisibleContent('menuCreateDelo', menu.createDelo)" ref="menuCreateDelo" width="350" placement="bottom-start" class="delo-menu--poptip">
@@ -1017,6 +1012,14 @@
 </script>
 
 <style lang="scss" scoped>
+  .back-button {
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    margin: 0 25px;
+  }
   .pdf-viewer {
     position: fixed;
     width: 100%;
