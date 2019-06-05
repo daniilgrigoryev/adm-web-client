@@ -159,6 +159,20 @@ const router = new Router({
       component: () => import('~/components/postoffice/RegistryReestrItem'),
       props: true
     },
+
+
+    {
+      path: '/postRegistryEdit',
+      name: 'PostRegistryEdit',
+      component: () => import('~/components/postoffice/edit/PostRegistryEdit'),
+      props: true
+    },
+    {
+      path: '/postRegistryCreate',
+      name: 'PostRegistryCreate',
+      component: () => import('~/components/postoffice/edit/PostRegistryCreate'),
+      props: true
+    },
   ]
 });
 

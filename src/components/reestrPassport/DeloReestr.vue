@@ -292,6 +292,7 @@
     async created() {
       try {
         let current = formStack.getCurrent();
+        await this.$store.dispatch('deloReestrSetCid', current.cid);
         let cid = funcUtils.getfromLocalStorage('admDeloReestr');
         let eventResponse;
 
@@ -314,7 +315,6 @@
           this.parseFilter(filter);
         }
 
-        await this.$store.dispatch('deloReestrSetCid', current.cid);
         await this.fillModule(eventResponse);
 
         this.fillStateDeloDict();

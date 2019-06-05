@@ -1,6 +1,6 @@
 <!-- prettier-ignore -->
 <template>
-  <Select ref="select" :placeholder="placeholder" :value="value" :clearable="clearable" :filterable="filterable"
+  <Select ref="select" :placeholder="placeholder" :value="value" :clearable="clearable" :filterable="filterable" :disabled="disabled"
           @on-query-change="onQueryChange" @on-change="onChange" @on-open-change="onOpenChange" @on-clear="onClear" @input="input">
     <slot></slot>
   </Select>

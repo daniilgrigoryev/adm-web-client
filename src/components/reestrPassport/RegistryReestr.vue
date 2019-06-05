@@ -43,6 +43,7 @@
               <div class="h-full flex-parent flex-parent--end-main flex-parent--wrap">
                 <Button @click="filterClick" type="default" class="adm-btn adm-btn-primary adm-btn-regular color-white  txt-uppercase my-auto w120 mr12">Найти</Button>
                 <Button @click="clearFilterSort" type="default" class="adm-btn adm-btn-regular my-auto w120 mr12 mt6">Очистить</Button>
+                <Button @click="createRegistry" type="default" class="adm-btn adm-btn-regular my-auto mr12 mt6">Создать запись</Button>
               </div>
             </Col>
           </Row>
@@ -81,7 +82,7 @@
         </div>
 
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
-               :stripe="false" :height="tableHeight" @on-row-dblclick="getRegistry" @on-sort-change="sortClick"></Table>
+               :stripe="false" :height="tableHeight" @on-sort-change="sortClick"></Table>
       </div>
     </div>
   </div>
@@ -99,37 +100,15 @@
       DateRangePickerMask: () => import('~/components/shared/dateTimeRangePicker/DateRangePickerMask')
     },
     async created() {
-      try {
-        let current = formStack.getCurrent();
-        let cid = funcUtils.getfromLocalStorage('admRegistryReestr');
-        let eventResponse;
-
-        if (funcUtils.isNull(cid)) {
-          funcUtils.addToLocalStorage('admRegistryReestr', current.cid);
-          eventResponse = await RequestApi.prepareData({
-            method: 'getData',
-            params: {
-              filter: null,
-              sort: null
-            }
-          });
-        } else {
-          eventResponse = await RequestApi.prepareData({
-            method: 'restore'
-          });
-
-          let filter = JSON.parse(eventResponse.response).data.filter;
-          this.parseFilter(filter);
+      await this.init();
+      let vm = this;
+      this.$store.watch(this.$store.getters.registryReestrGetCommand, async () => {
+        try {
+          await vm.init();
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
         }
-
-        await this.$store.dispatch('registryReestrSetCid', current.cid);
-        await this.fillModule(eventResponse);
-
-        this.fillPostRegTypeDict();
-        this.fillPostRegStatusDict();
-      } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
-      }
+      });
     },
     updated() {
       try {
@@ -202,6 +181,72 @@
               ])
             }
           },
+          {
+            title: "Действия",
+            width: 120,
+            align: "center",
+            key: 'action',
+            visible: true,
+            renderHeader: (h, params) => {
+              return h('Tooltip', {
+                props: {
+                  placement: 'left',
+                  content: params.column.title,
+                  transfer: true,
+                }
+              }, [
+                h('div', [
+                  h('p', {
+                    class: {
+                      'color-dark-medium': true,
+                      'adm-text-big': true,
+                      'txt-normal': true,
+                    },
+                  }, params.column.title),
+                ])
+              ])
+            },
+            render: (h, params) => {
+              return h('div', [
+                h("Icon", {
+                  props: {
+                    type: "ios-open-outline",
+                    size: 22,
+                  },
+                  style: {
+                    cursor: "pointer",
+                    color: "#2d8cf0"
+                  },
+                  attrs: {
+                    title: 'Просмотр'
+                  },
+                  on: {
+                    click: () => {
+                      this.showRegistry(params.row);
+                    }
+                  }
+                }),
+                h("Icon", {
+                  props: {
+                    type: "ios-open-outline",
+                    size: 22,
+                  },
+                  style: {
+                    cursor: "pointer",
+                    color: "#2d8cf0"
+                  },
+                  attrs: {
+                    title: 'Редактирование'
+                  },
+                  on: {
+                    click: () => {
+                      this.editRegistry(params.row);
+                    }
+                  }
+                })
+              ]);
+            },
+          }
         ]
       }
     },
@@ -226,6 +271,39 @@
       },
     },
     methods: {
+      async init() {
+        try {
+          let current = formStack.getCurrent();
+          await this.$store.dispatch('registryReestrSetCid', current.cid);
+          let cid = funcUtils.getfromLocalStorage('admRegistryReestr');
+          let eventResponse;
+
+          if (funcUtils.isNull(cid)) {
+            funcUtils.addToLocalStorage('admRegistryReestr', current.cid);
+            eventResponse = await RequestApi.prepareData({
+              method: 'getData',
+              params: {
+                filter: null,
+                sort: null
+              }
+            });
+          } else {
+            eventResponse = await RequestApi.prepareData({
+              method: 'restore'
+            });
+
+            let filter = JSON.parse(eventResponse.response).data.filter;
+            this.parseFilter(filter);
+          }
+
+          await this.fillModule(eventResponse);
+
+          await this.fillPostRegTypeDict();
+          await this.fillPostRegStatusDict();
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
       isEmptyData() {
         return funcUtils.isEmpty(this.dataStore) || funcUtils.isEmpty(this.dataStore.body);
       },
@@ -459,7 +537,7 @@
         });
         await this.fillModule(eventResponse);
       },
-      getRegistry(registry) {
+      showRegistry(registry) {
         try {
           let params = {
             id: registry.id
@@ -470,6 +548,35 @@
             vm: this,
             notRemoved: false,
             params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      editRegistry(registry) {
+        try {
+          let params = {
+            id: registry.id
+          };
+
+          formStack.toNext({
+            module: this.$store.state.postRegistryEdit,
+            vm: this,
+            notRemoved: false,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errors/changeContent', {title: e.message,});
+        }
+      },
+      createRegistry() {
+        try {
+          formStack.toNext({
+            module: this.$store.state.postRegistryCreate,
+            vm: this,
+            notRemoved: false,
             withCreate: true
           });
         } catch (e) {

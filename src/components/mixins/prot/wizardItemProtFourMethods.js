@@ -16,8 +16,8 @@ export default {
       this.KBKSearchInfoList = null;
       this.factSvedList = [];
       if (funcUtils.isNotEmpty(this.data.stotvId)) {
-        this.fillKBKSearchInfo();
-        this.fillFactSved();
+        await this.fillKBKSearchInfo();
+        await this.fillFactSved();
       }
       await this.storeElementData();
     },
