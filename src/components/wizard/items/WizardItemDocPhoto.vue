@@ -1,6 +1,6 @@
 <template>
   <div v-if="data">
-    <div class="items">
+    <div class="items" :class="{empty: !filesArray.length}">
       <div class="add-item-wrap">
         <div class="text">Перетащите сюда файл</div>
         <div class="text small">или</div>
@@ -373,6 +373,10 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 290px;
   grid-gap: 15px;
+  &.empty {
+    justify-content: center;
+    grid-template-columns: 290px;
+  }
 }
 .add-item-wrap {
   display: flex;
@@ -382,6 +386,7 @@ export default {
   border: 1px dashed #cccccc;
   border-radius: 4px;
   color: #808080;
+  
   .text {
     font-weight: 600;
     &.small {
