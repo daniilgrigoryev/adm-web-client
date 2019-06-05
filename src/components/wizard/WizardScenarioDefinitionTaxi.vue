@@ -163,7 +163,6 @@
               deloId: resp.data,
               scenarioResult: eventResp.data,
             };
-
             formStack.toNext({
               module: this.$store.state.deloTreeCardView,
               vm: this,
@@ -180,11 +179,11 @@
           }
         }
       },
-      async getPrev(withTransition) {
+      async getPrev(withTransition = true) {
         try {
           await formStack.toPrev({
             vm: this,
-            withTransition: withTransition || true
+            withTransition: withTransition
           });
         } catch (e) {
           this.$store.dispatch('errors/changeContent', {title: e.message,});

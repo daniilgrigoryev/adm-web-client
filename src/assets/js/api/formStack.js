@@ -87,7 +87,7 @@ export async function toPrev(payload) {
   let stack = new Stack(funcUtils.getFromSessionStorage(wid));
   let current = stack.pop();
   let innerStack = new Stack(current.innerStack);
-  let withTransition = payload.withTransition || true;
+  let withTransition = funcUtils.isEmpty(payload.withTransition) ? true : payload.withTransition;
   let prev = stack.peek();
   prev.current = true;
 
