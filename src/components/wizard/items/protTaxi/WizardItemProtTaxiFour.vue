@@ -79,7 +79,8 @@
             </Col>
           </Row>
         </div>
-        <slot name="owner-details"/>
+        <slot name="owner-details-individual"/>
+        <slot name="owner-details-organization"/>
       </div>
     </div>
     <div class="adm-form__container">
