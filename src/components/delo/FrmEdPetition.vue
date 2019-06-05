@@ -15,17 +15,6 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
-            label="Дата и время рассмотрения"
-            :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')"
-            :icon="require('../../assets/images/map.svg')"
-          />
-          <view-data-item
-            label="Дата и время вручения"
-            :value="body.dateUved | formatDateTime('DD.MM.YYYY HH:mm')"
-            style="grid-column: span 2;"
-          />
-          <hr>
-          <view-data-item
             label="Код сотрудника - ФИО"
             :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')"
             style="grid-column: span 2;"
@@ -38,7 +27,7 @@
           />
           <hr>
           <view-data-item
-            label="Место составления извещения"
+            label="Место составления ходатайства"
             :value="body.placeSost.placeFull"
             style="grid-column: span 2;"
           />

@@ -119,7 +119,7 @@
           },
           {
             title: "Транспортное средство",
-            name: "vehs",
+            name: "Vehs",
           },
           {
             title: "Владелец транспортного средства",
@@ -130,6 +130,11 @@
             title: "ЛВОК",
             name: "Lvok",
             hide: !this.isVisible('LVOK')
+          },
+          {
+            title: "Сведения о явке",
+            name: "pres",
+            hide: !this.isVisible('Present')
           },
           {
             title: "Сведения о нарушении",

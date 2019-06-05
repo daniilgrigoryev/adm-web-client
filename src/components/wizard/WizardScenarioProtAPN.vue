@@ -135,6 +135,11 @@
             hide: !this.isVisible('LVOK')
           },
           {
+            title: "Сведения о явке",
+            name: "pres",
+            hide: !this.isVisible('Present')
+          },
+          {
             title: "Сведения о нарушении",
             name: "nar"
           },
