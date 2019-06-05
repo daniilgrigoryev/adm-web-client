@@ -83,6 +83,16 @@
         </Row>
       </div>
     </div>
+    <div v-if="data.stadIspolnKod === constants.VOZB_ISPOLN || data.stadIspolnKod === constants.UPL_SHTRAF_GIBDD || data.stadIspolnKod === constants.UPL_SHTRAF_SSP" class="adm-form__item">
+      <small class="adm-form__label">Сумма оплаты штрафа</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="24" :lg="24">
+            <masked-input inputClass="adm-input adm-input--regular" v-model="data.sumOpl" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
+          </Col>
+        </Row>
+      </div>
+    </div>
   </div>
 </template>
 
