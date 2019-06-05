@@ -87,7 +87,7 @@
               <p class="adm-text-big color-dark-base link color-blue-light-on-hover cursor-pointer txt-underline-on-hover" @click="getMainDelo(body.deloMainId)">{{body.deloMainDescr}}</p>
             </div>
 
-            <Button @click="searchSecondaryCases" type="primary" class="search-secondary-cases-btn">Найти связанныеДополнение к дела</Button>
+            <Button @click="searchSecondaryCases" type="primary" class="search-secondary-cases-btn">Найти связанные дела</Button>
             <p v-if="typeof secondaryCases === 'string'" class="adm-14 color-dark-lighter ">{{secondaryCases}}</p>
             <div v-if="secondaryCases && (typeof secondaryCases === 'object') && secondaryCases.length > 0">
               <p class="adm-14 color-dark-lighter ">Список дел, связанных с текущим делом</p>
