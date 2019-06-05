@@ -290,7 +290,7 @@
           placeholder: '',
           mask: '99999999999'
         },
-        birthdayDate: null,
+        birthdayDate: '',
         uchastIndivid: null,
         vehsList: null,
         tipList: null,
@@ -313,7 +313,7 @@
           },
         ],
         delo: null,
-        constants
+
       }
     },
     computed: {

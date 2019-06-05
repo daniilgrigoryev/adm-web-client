@@ -7,7 +7,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-            <Input inputClass="adm-input adm-input--regular wmin120" v-model="data.reason" @onInputChange="storeElementData"></Input>
+            <Input inputClass="adm-input adm-input--regular wmin120" v-model="data.reason" @on-input-change="storeElementData"></Input>
           </Col>
         </Row>
       </div>

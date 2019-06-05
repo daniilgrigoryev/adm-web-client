@@ -257,12 +257,13 @@
         for (let i = 0; i < this.sendingDeloList.length; i++) {
           let sendingDelo = this.sendingDeloList[i];
           if (sendingDelo.select && sendingDelo.checked && !sendingDelo.hasError) {
-            await RequestApi.prepareData({
+            let eventResponse = await RequestApi.prepareData({
               method: 'addDeloToRegistry',
               params: {
                 delo: sendingDelo
               },
             });
+
           }
         }
       },

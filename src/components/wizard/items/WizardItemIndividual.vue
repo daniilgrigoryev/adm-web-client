@@ -51,7 +51,7 @@
       <small class="adm-form__label">Дата рождения</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
-        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.birthdayDay" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.birthdayDay" @change="formatBirthday" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </Col>
       </Row>
     </div>
@@ -177,10 +177,6 @@
         });
         this.data = JSON.parse(JSON.parse(eventResponse.response).data);
 
-        if (funcUtils.isNotEmpty(this.data.birthdayDay)) {
-          this.data.birthdayDay = new Date(this.data.birthdayDay);
-        }
-
         if (funcUtils.isEmpty(this.data.birthMesto)) {
           this.data.birthMesto = '';
         }
@@ -189,6 +185,16 @@
         await this.fillBirthList();
         await this.fillGragdanstvoList();
         await this.fillIndividualStatus();
+      },
+      formatBirthday(e) {
+        if (funcUtils.isNotEmpty(e)) {
+          this.data.birthdayDay = e;
+          this.data.birthdayYear = e.getFullYear();
+        } else {
+          this.data.birthdayDay = null;
+          this.data.birthdayYear = null;
+        }
+        this.storeElementData();
       },
       async fillBirthList() {
         let eventResponse = await RequestApi.prepareData({
