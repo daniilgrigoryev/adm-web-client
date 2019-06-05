@@ -5,7 +5,7 @@
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../../assets/images/pen.svg' class="wmax-none">
+            <img src='../../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Решение по делу - {{body.decisName }}</b>
         </div>
@@ -18,7 +18,7 @@
             label="Дата и время рассмотрения"
             :value="body.dateRasm | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
-            :icon="require('../../../assets/images/time.svg')"
+            :icon="require('../../../assets/images/icons/time.svg')"
           />
           <view-data-item
             label="Орган рассмотрения"
@@ -35,13 +35,13 @@
             label="Дата решения"
             :value="body.decisDate | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
-            :icon="require('../../../assets/images/time.svg')"
+            :icon="require('../../../assets/images/icons/time.svg')"
           />
           <view-data-item
             label="Дата вручения"
             :value="body.dateUved | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
-            :icon="require('../../../assets/images/time.svg')"
+            :icon="require('../../../assets/images/icons/time.svg')"
           />
         </div>
       </div>

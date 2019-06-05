@@ -5,7 +5,7 @@
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getDecisEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../../assets/images/pen.svg' class="wmax-none">
+            <img src='../../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Решение по делу - {{body.decisName }}</b>
         </div>
@@ -19,7 +19,7 @@
             label="Сумма штрафа"
             :value="body.sumShtraf"
             style="grid-column: span 2;"
-            :icon="require('../../../assets/images/penalty_gray.svg')"
+            :icon="require('../../../assets/images/icons/penalty_gray.svg')"
           />
           <hr>
           <view-data-item

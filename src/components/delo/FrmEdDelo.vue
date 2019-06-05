@@ -4,7 +4,7 @@
 
       <!-- <div class="flex-parent flex-parent--end-main py24">
         <Button @click="getDeloEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-          <img src='../../assets/images/pen.svg' class="wmax-none">
+          <img src='../../assets/images/icons/pen.svg' class="wmax-none">
         </Button>
       </div> -->
 
@@ -13,7 +13,7 @@
           <div v-if="isNotEmptyField(viol.violDatNar)" class="flex-parent my6">
             <div class="flex-parent flex-parent--center-cross w-full">
               <div class="s40 flex-parent flex-parent--center-cross flex-parent--center-main">
-                <img src="../../assets/images/time.svg" class="wmax-none" alt="">
+                <img src="../../assets/images/icons/time.svg" class="wmax-none" alt="">
               </div>
               <div class="ml18">
                 <p class="adm-14 color-dark-lighter">Дата - время нарушения</p>
@@ -25,7 +25,7 @@
           <div v-if="isNotEmptyField(viol.violPlaceNarFull)"  class="flex-parent my6">
             <div class="flex-parent flex-parent--center-cross w-full">
               <div class="s40 flex-parent flex-parent--center-cross flex-parent--center-main">
-                <img src="../../assets/images/map.svg" class="wmax-none" alt="">
+                <img src="../../assets/images/icons/map.svg" class="wmax-none" alt="">
               </div>
               <div class="ml18">
                 <p class="adm-14 color-dark-lighter">Место нарушения</p>
@@ -51,7 +51,7 @@
         <div>
           <div class="flex-parent py18" style="border-top: 1px solid #CCCCCC; border-bottom: 1px solid #CCCCCC;" v-if="isNotEmptyField(body.inspVozbName) || isNotEmptyField(body.inspVozbRang) || isNotEmptyField(body.organVozbId)">
             <div class="s40 mt12">
-                <img src="../../assets/images/police.svg" class="w-full h-full" alt="">
+                <img src="../../assets/images/icons/police.svg" class="w-full h-full" alt="">
             </div>
             <div class="ml18">
               <div v-if="isNotEmptyField(body.inspVozbName)">

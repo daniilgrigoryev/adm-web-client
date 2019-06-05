@@ -35,7 +35,7 @@
                       <Col :xs="24" :md="24" :lg="24" style="display:flex;">
                         <DatePickerMask class="adm-input adm-input--regular wmax240" v-model="decis.dateVstup" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
                         <button @click="calcDateVstup" class="adm-form__icon-button" :disabled="!decis.dateUved" title="Расчитать дату вступления в законную силу" type="button">
-                          <img :src="require('~/assets/images/copyData.png')" alt="Скопировать данные владельца">
+                          <img :src="require('~/assets/images/icons/copyData.png')" alt="Скопировать данные владельца">
                         </button>
                       </Col>
                     </Row>

@@ -8,7 +8,7 @@
               <div class="flex-parent flex-parent--center-cross my12">
                 <Button type="text" style="outline: 0!important;" class="icon-main px0 py0 mx12 my6 cursor-pointer"
                         @click.native="collapsedSider">
-                  <img src='../../assets/images/burger.svg' class="wmax-none">
+                  <img src='../../assets/images/icons/burger.svg' class="wmax-none">
                 </Button>
                 <div>
                   <h1 class="adm-h2 color-dark-light txt-uppercase">Исод Мади</h1>

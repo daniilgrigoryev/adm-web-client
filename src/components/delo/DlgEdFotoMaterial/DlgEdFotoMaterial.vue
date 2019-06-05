@@ -25,13 +25,13 @@
           <view-data-item
             label="Дата и время нарушения"
             :value="fotofix.violTime | formatDateTime('DD.MM.YYYY HH:mm')"
-            :icon="require('../../../assets/images/time.svg')"
+            :icon="require('../../../assets/images/icons/time.svg')"
 
           />
           <view-data-item
             label="Место нарушения"
             :value="fotofix.violPlace"
-            :icon="require('../../../assets/images/map.svg')"
+            :icon="require('../../../assets/images/icons/map.svg')"
 
           />
           <hr>
@@ -273,7 +273,7 @@
     height: 20px;
     z-index: 3;
     &.iconCamera {
-      background: url('../../../assets/images/map-cam-b.svg') no-repeat center;
+      background: url('../../../assets/images/icons/map-cam-b.svg') no-repeat center;
       background-size: contain;
     }
   }

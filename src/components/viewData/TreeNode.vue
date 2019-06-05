@@ -7,7 +7,7 @@
             <img :src="iconNode" alt="">
           </div>
           <div v-html="dataNode" class="tree__text-wrap"></div>
-          <img v-if="isParent && isFolder" class="tree__arrow" :class="{open: open}" src="../../assets/images/controls-switch-chevron-down.svg" />
+          <img v-if="isParent && isFolder" class="tree__arrow" :class="{open: open}" src="../../assets/images/icons/controls-switch-chevron-down.svg" />
         </a>
       </li>
     </ul>
@@ -29,26 +29,26 @@
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import docTipEnum from "~/assets/js/utils/docTipEnum";
   import decisIspolnEnum from "~/assets/js/utils/decisIspolnEnum";
-  import * as ispolnShtraf from '~/assets/images/ispolnShtraf.png';
-  import * as ispolnUved from '~/assets/images/ispolnUved.png';
-  import * as decis from '~/assets/images/decis.png';
-  import * as predDoc from '~/assets/images/predDoc.png';
-  import * as delo from '~/assets/images/delo.png';
-  import * as amtc from '~/assets/images/ts.svg';
-  import * as uchast from '~/assets/images/uchast.png';
-  import * as ispolnDecisAppeal from '~/assets/images/ispolnDecisAppeal.png';
-  import * as ispolnAppeal from '~/assets/images/ispolnAppeal.png';
-  import * as deloProizv from '~/assets/images/deloProizv.png';
-  import * as photo from '~/assets/images/photo.png';
-  import * as posnanovlenie from '~/assets/images/posnanovlenie.svg';
-  import * as protokol from '~/assets/images/protokol.svg';
-  import * as pzts from '~/assets/images/pzts.png';
-  import * as opredelenie from '~/assets/images/opredelenie.svg';
-  import * as protOtstrUprTC from '~/assets/images/protokol-ts-otstranenie.svg';
-  import * as protMed from '~/assets/images/protokol-alcohol.svg';
-  import * as downloadIcon from '~/assets/images/download.svg';
-  import * as protZaderTC from '~/assets/images/protokol-ts-zaderzhanie.svg';
-  import * as protokolIzjatie from '~/assets/images/protokol-izjatie.svg';
+
+  
+  import * as shtraf from '~/assets/images/icons/shtraf.svg';
+  import * as izveschenie from '~/assets/images/icons/izveschenie.svg';
+  import * as reshenie1_1 from '~/assets/images/icons/reshenie-variant-1_1.svg';
+  import * as reshenie1 from '~/assets/images/icons/reshenie-variant-1.svg';
+  import * as reshenie2 from '~/assets/images/icons/reshenie-variant-2.svg';
+  import * as VU from '~/assets/images/icons/udostoverenie-chelovek.svg';
+  import * as delo from '~/assets/images/icons/delo.svg';
+  import * as amtc from '~/assets/images/icons/ts.svg';
+  import * as uchast from '~/assets/images/icons/uchastnik.svg';
+  import * as photo from '~/assets/images/icons/foto-kamera-varialt-1.svg';
+  import * as posnanovlenie from '~/assets/images/icons/posnanovlenie.svg';
+  import * as protokol from '~/assets/images/icons/protokol.svg';
+  import * as pztsAll from '~/assets/images/icons/protokol-ts-zaderzhanie.svg';
+  import * as opredelenie from '~/assets/images/icons/opredelenie.svg';
+  import * as protOtstrUprTC from '~/assets/images/icons/protokol-ts-otstranenie.svg';
+  import * as protMed from '~/assets/images/icons/protokol-alcohol.svg';
+  import * as protZaderTC from '~/assets/images/icons/protokol-ts-zaderzhanie.svg';
+  import * as protokolIzjatie from '~/assets/images/icons/protokol-izjatie.svg';
 
   export default {
     name: "TreeNode",
@@ -88,10 +88,10 @@
           }
           case constants.VU_PRED:
           case constants.VU_VYD: {
-            return predDoc;
+            return VU;
           }
           case constants.DOCS_GALOB: {
-            return ispolnAppeal;
+            return reshenie1;
           }
           case constants.DOCS_OTHER: {
             switch (node.docTip) {
@@ -99,30 +99,25 @@
               case docTipEnum.VEHS_FOTO:
               case docTipEnum.UCHAST_FOTO:
               case docTipEnum.DOCS_FOTO:
+              case docTipEnum.MEDIA_DOC:
               case docTipEnum.VIDEOFIX_FOTO: {
                 return photo;
               }
-              case docTipEnum.MEDIA_DOC: {
-                if (node.height === 4) {
-                  return downloadIcon;
-                }
-                return photo;
-              }
               case docTipEnum.ADVICE: {
-                return ispolnUved;
+                return izveschenie;
               }
               case docTipEnum.ZALOB:
               case docTipEnum.APPEAL_CONCLUSION:
               case docTipEnum.PETITION:
               case docTipEnum.APPEAL_DECISION: {
-                return ispolnDecisAppeal;
+                return reshenie1;
               }
               case docTipEnum.OPL_SHTRAF:
               case docTipEnum.OPL_SHTRAF_UFK:
               case docTipEnum.OPL_SHTRAF_SUD:
               case docTipEnum.OPL_SHTRAF_SSP:
               case docTipEnum.OPL_SHTRAF_MPGU: {
-                return ispolnShtraf;
+                return shtraf;
               }
               case docTipEnum.PROT_OTSTR_UPR_TC: {
                 return protOtstrUprTC
@@ -146,13 +141,13 @@
               case docTipEnum.PROT_DOSMOTR_FL:
               case docTipEnum.PROT_OSMOTR_POMESH:
               case docTipEnum.RAZR_VYID_TC: {
-                return pzts;
+                return pztsAll;
               }
             }
             break;
           }
           case constants.DECIS: {
-            return decis;
+            return reshenie1_1;
           }
           case constants.DOCS_POST:
           case constants.DOCS_POST_UL: {
@@ -180,15 +175,15 @@
                 case decisIspolnEnum.POST_REMOVING:
                 case decisIspolnEnum.POST_OPERATION:
                 case decisIspolnEnum.POST_UNDEF: {
-                  return ispolnUved;
+                  return izveschenie;
                 }
                 case decisIspolnEnum.IZMEN_POST_ON_GALOB:
                 case decisIspolnEnum.OTMENA_DECIS_ON_GALOB: {
-                  return ispolnDecisAppeal;
+                  return reshenie1;
                 }
               }
             }
-            return deloProizv;
+            return reshenie2;
           }
           case constants.DOCS_OPRED: {
             return opredelenie;

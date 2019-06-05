@@ -78,7 +78,7 @@
                         label="Время создания реестра"
                         :value="body.creationDate | formatDateTime('DD.MM.YYYY HH:mm')"
                         style="grid-column: span 2;"
-                        :icon="require('../../assets/images/time.svg')"
+                        :icon="require('../../assets/images/icons/time.svg')"
                       />
                       <view-data-item
                         label="Автор, создавший реестр"
@@ -89,7 +89,7 @@
                         label="Тип реестра"
                         :value="body.regTypeName"
                         style="grid-column: span 2;"
-                        :icon="require('../../assets/images/case_decision_gray.svg')"
+                        :icon="require('../../assets/images/icons/reshenie-variant-2_1.svg')"
                       />
                       <view-data-item
                         label="Статус реестра"

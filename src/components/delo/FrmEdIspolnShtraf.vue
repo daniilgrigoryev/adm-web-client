@@ -4,7 +4,7 @@
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getIspolnEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../assets/images/pen.svg' class="wmax-none">
+            <img src='../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Исполнение по решению - Оплата штрафа</b>
         </div>
@@ -19,14 +19,14 @@
             label="Сумма оплаты штрафа"
             :value="body.sumOpl"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/rub_gray.svg')"
+            :icon="require('../../assets/images/icons/rub_gray.svg')"
           />
           <hr>
           <view-data-item
             label="Дата оплаты штрафа"
             :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/time.svg')"
+            :icon="require('../../assets/images/icons/time.svg')"
           />
           <view-data-item
             label="УИП"

@@ -29,7 +29,7 @@
             <div class="delo-menu--body-wrap">
               <Poptip @click.native="menuVisibleContent('menuCreateDelo', menu.createDelo)" ref="menuCreateDelo" width="350" placement="bottom-start" class="delo-menu--poptip">
                 <button :disabled="!menuVisible(menu.createDelo)" class="action-button">
-                  <img :src="require('../../assets/images/create-case.svg')" alt="">
+                  <img :src="require('../../assets/images/icons/create-case.svg')" alt="">
                   <span class="text">Создать дело</span>
                   <Icon type="md-arrow-dropdown" :size="16"/>
                 </button>
@@ -49,13 +49,13 @@
               </Poptip>
               <Poptip @click.native="menuVisibleContent('menuAddDocument', menu.addDocument)" ref="menuAddDocument" placement="bottom-end" class="delo-menu--poptip"><!--  width="700" -->
                 <button :disabled="!menuVisible(menu.addDocument)" class="action-button">
-                  <img :src="require('../../assets/images/add-document.svg')" alt="">
+                  <img :src="require('../../assets/images/icons/add-document.svg')" alt="">
                   <span class="text">Добавить документ</span>
                   <Icon type="md-arrow-dropdown" :size="16"/>
                 </button>
                 <div slot="content" class="da">
                   <div class="search-wrap">
-                    <img :src="require('../../assets/images/icons8-search.svg')" alt="">
+                    <img :src="require('../../assets/images/icons/icons8-search.svg')" alt="">
                     <input type="text" class="search" placeholder="Найти…" v-model="searchForAddDocumentList">
                   </div>
                   <ul class="delo-menu__poptip-list">
@@ -69,21 +69,21 @@
                 </div>
               </Poptip>
               <button :disabled="!menuVisible(menu.addUchast)" class="action-button" @click="addUchastWizard">
-                <img :src="require('../../assets/images/add-participant.svg')" alt="">
+                <img :src="require('../../assets/images/icons/add-participant.svg')" alt="">
                 <span class="text">Добавить участника</span>
               </button>
               <button :disabled="!menuVisible(menu.addIspoln)" class="action-button" @click="addIspolnWizard">
-                <img :src="require('../../assets/images/add-process.svg')" alt="">
+                <img :src="require('../../assets/images/icons/add-process.svg')" alt="">
                 <span class="text">Добавить исполнение</span>
               </button>
             </div>
 
             <div class="special-buttons-wrap">
               <button @click="printDocument" title="печать дела">
-                <img :src="require('../../assets/images/print.svg')" alt="">
+                <img :src="require('../../assets/images/icons/print.svg')" alt="">
               </button>
               <button @click="logOpen = !logOpen;" title="Логи">
-                <img :src="require('../../assets/images/log.svg')" alt="" style="right: -2px;">
+                <img :src="require('../../assets/images/icons/log.svg')" alt="" style="right: -2px;">
               </button>
             </div>
             <frm-log ref="logs" v-if="logOpen" @closeLogs="logOpen = false"></frm-log>

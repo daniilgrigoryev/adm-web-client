@@ -66,7 +66,6 @@
         </Row>
       </div>
     </div>
-    <list-items-docs :items="data.annexesList" title="Список приложений" @change="storeElementData"></list-items-docs>
   </div>
 </template>
 

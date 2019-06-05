@@ -5,12 +5,12 @@
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getUchastFLOrganizationEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../assets/images/pen.svg' class="wmax-none">
+            <img src='../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">{{'Участник дела', body.uchastTipName | concatByDelimiter('-')}}</b>
         </div>
         <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../assets/images/wiki.svg' class="wmax-none">
+          <img src='../../assets/images/icons/wiki.svg' class="wmax-none">
         </Button> -->
       </div>
     </div>

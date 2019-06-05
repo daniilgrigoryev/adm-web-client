@@ -5,13 +5,13 @@
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../assets/images/pen.svg' class="wmax-none">
+            <img src='../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Постановление  {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
           <Button @click="getSignatureEdit" type="primary" class="ml12">Подписать</Button>
         </div>
         <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-          <img src='../../assets/images/wiki.svg' class="wmax-none">
+          <img src='../../assets/images/icons/wiki.svg' class="wmax-none">
         </Button> -->
       </div>
       <!-- <div class="adm-nav-jump">
@@ -28,7 +28,7 @@
             label="Пункт НПА"
             :value="body.pnpaKod, body.pnpaName | concatByDelimiter(',')"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/case_decision_gray.svg')"
+            :icon="require('../../assets/images/icons/reshenie-variant-2_1.svg')"
           />
           <view-data-item
             label="Статья КРФоАП"
@@ -69,7 +69,7 @@
             label="Должностное лицо"
             :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(',')"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/police.svg')"
+            :icon="require('../../assets/images/icons/police.svg')"
           />
           <view-data-item
             label="Подразделение"
@@ -80,7 +80,7 @@
             label="Место составления"
             :value="body.placeSost.placeFull || 'нет информации'"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/map.svg')"
+            :icon="require('../../assets/images/icons/map.svg')"
           />
         </div>
       </div>
@@ -130,7 +130,7 @@
                 <p class="adm-14 color-dark-base">{{item.sign.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
               </td>
               <td class="align-middle">
-                <img class="error-image" alt="img" src="../../assets/images/pdf.svg" title="Скачать документ" v-for="(itemMedia, itemMediaIdx) in item.media" :key="itemMediaIdx" @click="downloadMedia(itemMedia.mediaId)" />
+                <img class="error-image" alt="img" src="../../assets/images/icons/pdf.svg" title="Скачать документ" v-for="(itemMedia, itemMediaIdx) in item.media" :key="itemMediaIdx" @click="downloadMedia(itemMedia.mediaId)" />
               </td>
             </tr>
             </tbody>

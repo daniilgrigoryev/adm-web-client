@@ -4,7 +4,7 @@
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getPetitionEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../assets/images/pen.svg' class="wmax-none">
+            <img src='../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Ходатайство  {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
         </div>
@@ -18,7 +18,7 @@
             label="Код сотрудника - ФИО"
             :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/police.svg')"
+            :icon="require('../../assets/images/icons/police.svg')"
           />
           <view-data-item
             label="Звание, Должность"
@@ -40,7 +40,7 @@
             label="Инспектор, на чье имя ходатайство"
             :value="body.inspUtvKod, body.inspUtvName  | concatByDelimiter('-')"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/police.svg')"
+            :icon="require('../../assets/images/icons/police.svg')"
           />
           <view-data-item
             label="Звание, Должность"

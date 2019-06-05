@@ -4,12 +4,12 @@
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
           <div class="flex-parent flex-parent--center-cross">
             <Button @click="getVehsAMTCEdit"  type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24 bg-transparent" title="Редактировать">
-              <img src='../../assets/images/pen.svg' class="wmax-none">
+              <img src='../../assets/images/icons/pen.svg' class="wmax-none">
             </Button>
             <b class="adm-text-big color-dark-lighter">Транспортное средство</b>
           </div>
           <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
-            <img src='../../assets/images/wiki.svg' class="wmax-none">
+            <img src='../../assets/images/icons/wiki.svg' class="wmax-none">
           </Button> -->
         </div>
     </div>
@@ -21,7 +21,7 @@
           <view-data-item
             label="ГРЗ"
             :value="body.regno"
-            :icon="require('../../assets/images/vehicle_passport.svg')"
+            :icon="require('../../assets/images/icons/udostoverenie-ts.svg')"
           />
           <view-data-item
             label="VIN"
@@ -47,7 +47,7 @@
           <view-data-item
             label="Тип двигателя"
             :value="body.motorTip"
-            :icon="require('../../assets/images/eng.svg')"
+            :icon="require('../../assets/images/icons/eng.svg')"
           />
           <view-data-item
             label="Экологический класс"
@@ -65,7 +65,7 @@
           <view-data-item
             label="Масса без нагрузки"
             :value="body.massa"
-            :icon="require('../../assets/images/car_weight.svg')"
+            :icon="require('../../assets/images/icons/car_weight.svg')"
           />
           <view-data-item
             label="Максимальная масса"
@@ -75,7 +75,7 @@
           <view-data-item
             label="Владелец"
             :value="body.sobstvName"
-            :icon="require('../../assets/images/owner.svg')"
+            :icon="require('../../assets/images/icons/owner.svg')"
             style="grid-column: span 2;"
           />
         </div>

@@ -4,7 +4,7 @@
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
           <Button @click="getDocsOpredEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
-            <img src='../../assets/images/pen.svg' class="wmax-none">
+            <img src='../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Определение - {{body.decisName}}  {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
         </div>
@@ -18,19 +18,19 @@
             label="Дата и время нарушения" 
             :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/time.svg')"
+            :icon="require('../../assets/images/icons/time.svg')"
           />
           <view-data-item 
             label="Место нарушения" 
             :value="body.placeNar.placeFull" 
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/map.svg')"
+            :icon="require('../../assets/images/icons/map.svg')"
           />
           <view-data-item 
             label="Пункт НПА" 
             :value="body.pnpaKod, body.pnpaName | concatByDelimiter(', ')" 
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/case_decision_gray.svg')"
+            :icon="require('../../assets/images/icons/reshenie-variant-2_1.svg')"
           />
           <view-data-item 
             label="Статья КРФоАП" 
@@ -42,13 +42,13 @@
             label="Место составления" 
             :value="body.placeSost.placeFull | concatByDelimiter(', ')" 
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/map.svg')"
+            :icon="require('../../assets/images/icons/map.svg')"
           />
           <view-data-item 
             label="Должностное лицо" 
             :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ')" 
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/police.svg')"
+            :icon="require('../../assets/images/icons/police.svg')"
           />
           <view-data-item 
             label="Подразделение" 
@@ -101,7 +101,7 @@
               label="Дата обращения"
               :value="body.vsIncomingDate | formatDateTime('DD.MM.YYYY')"
               style="grid-column: span 2;"
-              :icon="require('../../assets/images/time.svg')"
+              :icon="require('../../assets/images/icons/time.svg')"
             /> 
             <hr>
             <view-data-item
@@ -114,13 +114,13 @@
               label="Дата начала срока действия разрешения"
               :value="body.tlDateBeg | formatDateTime('DD.MM.YYYY')"
               style="grid-column: span 2;"
-              :icon="require('../../assets/images/time.svg')"
+              :icon="require('../../assets/images/icons/time.svg')"
             />
             <view-data-item
               label="Дата окончания срока действия разрешения"
               :value="body.tlDateEnd | formatDateTime('DD.MM.YYYY')"
               style="grid-column: span 2;"
-              :icon="require('../../assets/images/time.svg')"
+              :icon="require('../../assets/images/icons/time.svg')"
             />
             <view-data-item
               label="Организация, выдавшая разрешение такси"

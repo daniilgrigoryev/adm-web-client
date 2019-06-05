@@ -19,7 +19,7 @@
             label="Уникальный почтовый идентификатор"
             :value="body.upi"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/letter.svg')"
+            :icon="require('../../assets/images/icons/izveschenie.svg')"
           />
           <view-data-item
             label="Номер реестра"
@@ -30,7 +30,7 @@
           <view-data-item
             label="Дата отправки"
             :value="body.dateOtpravVu | formatDateTime('DD.MM.YYYY')"
-            :icon="require('../../assets/images/time.svg')"
+            :icon="require('../../assets/images/icons/time.svg')"
           />
           <view-data-item
             label="Участник дела"
@@ -41,13 +41,13 @@
             label="Место исполнения"
             :value="body.placeIspoln.placeFull"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/map.svg')"
+            :icon="require('../../assets/images/icons/map.svg')"
           />
           <view-data-item
             label="Уведомление направлено по адресу"
             :value="dopData.sendingAddress"
             style="grid-column: span 2;"
-            :icon="require('../../assets/images/map.svg')"
+            :icon="require('../../assets/images/icons/map.svg')"
           />
         </div>
       </div>
@@ -71,7 +71,7 @@
                 :label="item.operTime, item.organIspolnName | concatByDelimiter('-')"
                 :value="item.id"
                 style="grid-column: span 2;"
-                :icon="require('../../assets/images/letter.svg')"
+                :icon="require('../../assets/images/icons/izveschenie.svg')"
               />
             </div>
           </div>

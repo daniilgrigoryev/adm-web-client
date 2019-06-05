@@ -63,7 +63,7 @@
         {
           title: "Протоколом",
           desc: "АПН, такси, эвакуация",
-          icon: require("~/assets/images/Документ gray.png"),
+          icon: require("~/assets/images/icons/protokol.svg"),
           value: [
             {
               title: "Об административном правонарушении",
@@ -116,7 +116,7 @@
         {
           title: "Определением",
           desc: "о возбуждении дела об административном правонарушении",
-          icon: require("~/assets/images/Документ_4 gray.png"),
+          icon: require("~/assets/images/icons/opredelenie.svg"),
           value: [
             {
               title: "АПН",
@@ -143,7 +143,7 @@
           title: "Постановлением",
           desc: "об административном правонарушении",
           name: "Постановление об административном правонарушении",
-          icon: require("~/assets/images/10_Постановление_v1 gray.png"),
+          icon: require("~/assets/images/icons/posnanovlenie.svg"),
           value: "CreatePost"
         }
       ],
@@ -229,14 +229,14 @@
         case 'CreateProtEvac':
         case 'CreateProtIzyat':
         case 'CreateProtTaxi': {
-          return require("~/assets/images/Документ gray.png");
+          return require("~/assets/images/icons/protokol.svg");
         }
         case 'CreateDefinition':
         case 'CreateDefinitionTaxi': {
-          return require("~/assets/images/Документ_4 gray.png");
+          return require("~/assets/images/icons/opredelenie.svg");
         }
         case 'CreatePost': {
-          return require("~/assets/images/10_Постановление_v1 gray.png");
+          return require("~/assets/images/icons/posnanovlenie.svg");
         }
       }
     },
@@ -361,6 +361,7 @@
     .liked-item-image {
       width: 40px;
       height: 40px;
+      margin-right: 10px;
     }
   }
 }
