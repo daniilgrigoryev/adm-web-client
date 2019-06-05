@@ -559,7 +559,8 @@
             return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) || (current.params.recType === constants.DELO && docsPost.length > 0);
           }
           case 'Izvesh': {
-            return current.params.recType === constants.DOCS_OPRED && (current.params.docTip === docTipEnum.OPR_VOZB_DELO || current.params.docVid === docVidEnum.OPRED_ADM);
+            let nodeInfo = JSON.parse(current.params.nodeInfo);
+            return current.params.recType === constants.DOCS_OPRED && (current.params.docTip === docTipEnum.OPR_VOZB_DELO || nodeInfo.doc_vid === docVidEnum.OPRED_ADM);
           }
           case 'ChangeDateRasmDelo': {
             return current.params.recType === constants.DOCS_OPRED || current.params.recType === constants.DOCS_PROT;

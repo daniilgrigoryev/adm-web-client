@@ -39,7 +39,17 @@
             <div class="adm-form__item_content">
               <Row :gutter="16" type="flex" align="middle">
                 <Col :xs="22" :md="22" :lg="22">
-                  <Input class="adm-input adm-input--regular" @on-input-change="storeElementData" v-model="data.impoundLotName" ></Input>
+                  <AutoComplete
+                    v-model="data.impoundLotName"
+                    :data="impoundLotList"
+                    class="wmin180 adm-input adm-input--regular"
+                    icon="ios-arrow-down"
+                    :filter-method="filterImpoundLotList"
+                    @on-blur="storeElementData"
+                    @on-select="storeElementData"
+                    placeholder=""
+                    clearable>
+                  </AutoComplete>
                 </Col>
               </Row>
             </div>
@@ -89,7 +99,8 @@
     },
     data() {
       return {
-        data: null
+        data: null,
+        impoundLotList: null
       }
     },
     methods: {
@@ -105,8 +116,32 @@
           let error = JSON.parse(eventResponse.response).error;
           this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
+          await this.fillImpoundLotList();
           this.data = data;
         }
+      },
+      async fillImpoundLotList() {
+        this.impoundLotList = [];
+        let eventResponse = await RequestApi.prepareData({
+          method: 'invokeElementMethod',
+          params: {
+            eCID: this.info.eCID,
+            methodName: 'getImpoundDict',
+            data: null
+          }
+        });
+        let responseData = JSON.parse(JSON.parse(eventResponse.response).data);
+        if (responseData && responseData.length) {
+          responseData.forEach((item) => {
+            this.impoundLotList.push(item.NAME);
+          });
+        }
+      },
+      filterImpoundLotList(value, option) {
+        if (funcUtils.isEmpty(value) || funcUtils.isEmpty(option)) {
+          return false;
+        }
+        return option.toUpperCase().indexOf(value.toUpperCase()) !== -1;
       },
 
       async storeElementData() {

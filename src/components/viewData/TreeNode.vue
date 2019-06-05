@@ -30,7 +30,7 @@
   import docTipEnum from "~/assets/js/utils/docTipEnum";
   import decisIspolnEnum from "~/assets/js/utils/decisIspolnEnum";
 
-  
+
   import * as shtraf from '~/assets/images/icons/shtraf.svg';
   import * as izveschenie from '~/assets/images/icons/izveschenie.svg';
   import * as reshenie1_1 from '~/assets/images/icons/add-process.svg';
@@ -314,11 +314,11 @@
           case constants.DOCS_GALOB: {
             return `
               <h4>
-                ${params.doc_other_tip_name}
-                <span class="date">${params.doc_other_dat}</span>
+                ${params.doc_tip_name}
+                <span class="date">${params.dat_sost}</span>
               </h4>
               <p>
-                ${params.doc_other_uchast_name}
+                ${params.uchast_name}
               </p>
             `;
           }
@@ -336,11 +336,11 @@
                 } else {
                   return `
                   <h4>
-                    ${params.doc_other_tip_name}
-                    <span class="date">${params.doc_other_dat}</span>
+                    ${params.doc_tip_name}
+                    <span class="date">${params.dat_sost}</span>
                   </h4>
                   <p>
-                    ${params.docs_other_fotomat_cnt}
+                    ${params.media_materials_cnt}
                   </p>
                 `;
                 }
@@ -348,25 +348,25 @@
               case docTipEnum.VIDEOFIX_FOTO: {
                 return `
                   <h4>
-                    ${params.doc_other_tip_name}
-                    <span class="date">${params.doc_other_dat}</span>
+                    ${params.doc_tip_name}
+                    <span class="date">${params.dat_sost}</span>
                   </h4>
                   <p>
-                    ${params.doc_other_n}
+                    ${params.doc_n}
                   </p>
-                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                  <p class="other-info">${params.media_materials_cnt}</p>
                 `;
               }
               case docTipEnum.ADVICE: {
                 return `
                   <h4>
-                    ${params.doc_other_tip_name}
-                    <span class="date">${params.doc_other_dat}</span>
+                    ${params.doc_tip_name}
+                    <span class="date">${params.dat_sost}</span>
                   </h4>
                   <p>
-                    ${params.doc_other_n}
+                    ${params.doc_n}
                   </p>
-                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                  <p class="other-info">${params.media_materials_cnt}</p>
                 `;
               }
               case docTipEnum.ZALOB:
@@ -375,13 +375,13 @@
               case docTipEnum.APPEAL_DECISION: {
                 return `
                   <h4>
-                    ${params.doc_other_tip_name}
-                    <span class="date">${params.doc_other_dat}</span>
+                    ${params.doc_tip_name}
+                    <span class="date">${params.dat_sost}</span>
                   </h4>
                   <p>
-                    ${params.doc_other_n}
+                    ${params.doc_n}
                   </p>
-                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                  <p class="other-info">${params.media_materials_cnt}</p>
                 `;
               }
               case docTipEnum.OPL_SHTRAF:
@@ -391,13 +391,13 @@
               case docTipEnum.OPL_SHTRAF_MPGU: {
                 return `
                   <h4>
-                    ${params.doc_other_tip_name}
-                    <span class="date">${params.doc_other_dat}</span>
+                    ${params.doc_tip_name}
+                    <span class="date">${params.dat_sost}</span>
                   </h4>
                   <p>
-                    ${params.doc_other_n}
+                    ${params.doc_n}
                   </p>
-                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                  <p class="other-info">${params.media_materials_cnt}</p>
                 `;
               }
               case docTipEnum.ACT_OCAO:
@@ -416,13 +416,13 @@
               case docTipEnum.RAZR_VYID_TC: {
                 return `
                   <h4>
-                    ${params.doc_other_tip_name}
-                    <span class="date">${params.doc_other_dat}</span>
+                    ${params.doc_tip_name}
+                    <span class="date">${params.dat_sost}</span>
                   </h4>
                   <p>
-                    ${params.doc_other_n}
+                    ${params.doc_n}
                   </p>
-                  <p class="other-info">${params.docs_other_fotomat_cnt}</p>
+                  <p class="other-info">${params.media_materials_cnt}</p>
                 `;
               }
             }
@@ -444,12 +444,12 @@
             this.open = true;
             return `
               <h4>
-                ${params.post_short_name}
-                <span class="date">${params.post_dat_sost}</span>
+                ${params.doc_tip_name}
+                <span class="date">${params.dat_sost}</span>
               </h4>
               <p>
               </p>
-              <p>${params.post_doc_n}</p>
+              <p>${params.doc_n}</p>
             `;
           }
           case constants.DECIS_ISPOLN: {
@@ -510,11 +510,11 @@
             this.open = true;
             return `
               <h4>
-                ${params.doc_other_tip_name}
-                <span class="date">${params.doc_other_dat}</span>
+                ${params.doc_tip_name}
+                <span class="date">${params.dat_sost}</span>
               </h4>
               <p>
-                ${params.doc_other_n}
+                ${params.doc_n}
               </p>
             `;
           }
@@ -522,11 +522,11 @@
             this.open = true;
             return `
               <h4>
-                ${params.prot_short_name}
-                <span class="date">${params.prot_dat_sost}</span>
+                ${params.short_name}
+                <span class="date">${params.dat_sost}</span>
               </h4>
               <p>
-                ${params.prot_doc_n}
+                ${params.doc_n}
               </p>
             `;
           }
