@@ -31,7 +31,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <Input class="adm-input adm-input--regular wmax240" v-model="ispoln.uip" @on-input-change="store" placeholder=""></Input>
+                      <Input class="adm-input adm-input--regular wmax360" v-model="ispoln.uip" @on-input-change="store" placeholder=""></Input>
                     </Col>
                   </Row>
                 </div>
