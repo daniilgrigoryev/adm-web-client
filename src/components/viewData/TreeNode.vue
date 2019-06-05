@@ -522,7 +522,7 @@
             this.open = true;
             return `
               <h4>
-                ${params.short_name}
+                ${params.doc_tip_name}
                 <span class="date">${params.dat_sost}</span>
               </h4>
               <p>
