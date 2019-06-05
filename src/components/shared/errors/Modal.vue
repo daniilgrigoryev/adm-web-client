@@ -58,12 +58,12 @@ export default {
 }
 .overlay {
   background: rgba(0, 0, 0, 0.7);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 90;
+  z-index: 999;
   &-enter-active,
   &-leave-active {
     transition: background 0.5s;

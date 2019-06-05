@@ -247,9 +247,11 @@
                   </Row>
                 </div>
               </div>
-              <list-items-docs :items="protPZTC.seizedThingsList" title="Список изъятых вещи и документов" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
-              <list-items-docs :items="protPZTC.usedTechnicalMeansList" title="Список использованных технических средств" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
-              <list-items-docs :items="protPZTC.annexesList" title="Список приложений" :disabledFields="{ check: true }" @change="store"></list-items-docs>
+              <template v-if="protPZTC.docTip !== '76'">
+                <list-items-docs :items="protPZTC.seizedThingsList" title="Список изъятых вещи и документов" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
+                <list-items-docs :items="protPZTC.usedTechnicalMeansList" title="Список использованных технических средств" :disabledFields="{ quantity: true, check: true }" @change="store"></list-items-docs>
+                <list-items-docs :items="protPZTC.annexesList" title="Список приложений" :disabledFields="{ check: true }" @change="store"></list-items-docs>
+              </template>
             </div>
           </div>
         </div>

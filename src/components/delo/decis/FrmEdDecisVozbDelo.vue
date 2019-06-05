@@ -16,11 +16,6 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
-            label="Основание прекращения"
-            :value="body.reason"
-            style="grid-column: span 2;"
-          />
-          <view-data-item
             label="Дата решения"
             :value="body.decisDate | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
@@ -28,11 +23,6 @@
           <view-data-item
             label="Дата вручения"
             :value="body.dateUved | formatDateTime('DD.MM.YYYY')"
-            style="grid-column: span 2;"
-          />
-          <view-data-item
-            label="Дата вступления"
-            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
           />
         </div>

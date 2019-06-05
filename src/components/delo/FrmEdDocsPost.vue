@@ -53,7 +53,7 @@
           <div v-if="body.inculpatoryEvidencesList && body.inculpatoryEvidencesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
             <p class="adm-14 color-dark-lighter ">Список доказательств виновности</p>
             <div v-for="(item, index) in body.inculpatoryEvidencesList" :key="index">
-              <p class="adm-text-big color-dark-base">{{ item.name}} ({{item.sheets_quantity}})</p>
+              <p class="adm-text-big color-dark-base">{{ item.name}} (Количество листов - {{item.sheets_quantity}})</p>
             </div>
           </div>
           <div v-if="body.exculpatoryEvidencesList && body.exculpatoryEvidencesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
@@ -62,20 +62,6 @@
               <p class="adm-text-big color-dark-base">{{ item.name }}</p>
             </div>
           </div>
-
-          <hr>
-
-          <view-data-item
-            label="Дата вручения"
-            :value="body.datUved | formatDateTime('DD.MM.YYYY')"
-            style="grid-column: span 2;"
-            :icon="require('../../assets/images/letter.svg')"
-          />
-          <view-data-item
-            label="Дата вступления"
-            :value="body.dateVstup | formatDateTime('DD.MM.YYYY')"
-            style="grid-column: span 2;"
-          />
 
           <hr>
 
