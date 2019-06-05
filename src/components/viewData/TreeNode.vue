@@ -224,16 +224,64 @@
       dataNode() {
         let node = this.node;
         let params = node.nodeParams;
-
         switch (node.recType) {
           case constants.DELO: {
+            let deloContext = this.$store.getters.deloTreeCardViewGetData.context;
+            let colorClass = "";
+            switch (deloContext.stadKod) {
+              case constants.STAD_VOZB: {
+                // Возбуждено
+                colorClass = "green";
+                break
+              }
+              case constants.STAD_REVIEW: {
+                // Рассмотрение
+                colorClass = "black";
+                break
+              }
+              case constants.STAD_APPEAL: {
+                // Обжалование
+                colorClass = "black";
+                break
+              }
+              case constants.STAD_REVISION: {
+                // Пересмотр
+                colorClass = "black";
+                break
+              }
+              case constants.STAD_EXECUTION: {
+                // Исполнение
+                colorClass = "black";
+                break
+              }
+              case constants.STAD_PERFORMED: {
+                // Исполнено
+                colorClass = "black";
+                break
+              }
+              case constants.STAD_TERMINATED: {
+                // Прекращено
+                colorClass = "red";
+                break
+              }
+              default: {
+                colorClass = "";
+                break
+              }
+            }
+            console.log(colorClass);
             return `
               <h4>
                 Дело
                 <span class="date">${params.delo_apn_dat}</span>
               </h4>
               <p>${params.delo_apn_n}</p>
-              <p class="other-info">по ${params.delo_apn_stotv}</p>
+              <p class="other-info">
+                по ${params.delo_apn_stotv}
+                <span class="delo-status ${colorClass}">
+                  ${deloContext.stadName}
+                </span>
+               </p>
             `;
           }
           case constants.UCHASTFL:
@@ -625,6 +673,31 @@
           font-size: 12px;
           font-weight: 400;
         }
+        .delo-status {
+          display: flex;
+          align-items: center;
+          color: #808080;
+          font-weight: 600;
+          font-size: 13px;
+          margin-right: -25px;
+          &:before {
+            margin-right: 5px;
+            content: "";
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #000;
+          }
+          &.green:before {
+            background: #01AA46;
+          }
+          &.black:before {
+            background: #000;
+          }
+          &.red:before {
+            background: #dc2b28;
+          }
+        }
         p {
           font-size: 18px;
           font-weight: 600;
@@ -639,6 +712,9 @@
             font-weight: 400;
             font-size: 14px;
             padding-top: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
           }
         }
       }

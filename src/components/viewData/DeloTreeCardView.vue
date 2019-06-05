@@ -14,16 +14,6 @@
               <Icon type="ios-arrow-dropleft"
                     class="  px0 py0 mx0 my0" :size="30"/>
             </Button>
-
-            <a href="#" @click="getDelo" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
-              <span class="adm-h3">Дело №</span>
-              <span class="adm-h2">{{deloContext.deloN}}</span>
-            </a>
-            <!-- TODO -->
-            <p class="ml24 flex-parent flex-parent--center-cross" :class="changeClass(deloContext.stadKod)">
-              <Icon class="mx6" type="ios-checkmark-circle" :size="23"/>
-              <span class="adm-txt-regular line30_letter02">{{deloContext.stadName}}</span>
-            </p>
           </div>
           <div class="delo-menu">
             <div class="delo-menu--body-wrap">
