@@ -33,7 +33,7 @@
   
   import * as shtraf from '~/assets/images/icons/shtraf.svg';
   import * as izveschenie from '~/assets/images/icons/izveschenie.svg';
-  import * as reshenie1_1 from '~/assets/images/icons/reshenie-variant-1_1.svg';
+  import * as reshenie1_1 from '~/assets/images/icons/add-process.svg';
   import * as reshenie1 from '~/assets/images/icons/reshenie-variant-1.svg';
   import * as reshenie2 from '~/assets/images/icons/reshenie-variant-2.svg';
   import * as VU from '~/assets/images/icons/udostoverenie-chelovek.svg';
@@ -571,8 +571,8 @@
     width: 430px;
     .tree__link {
       display: grid;
-      grid-gap: 25px;
-      grid-template-columns: 40px 1fr;
+      grid-gap: 20px;
+      grid-template-columns: 48px 1fr;
       width: 100%;
       align-items: center;
       padding: 10px 15px;
@@ -592,9 +592,8 @@
         }
       }
       .tree__icon {
-        height: 40px;
-        width: 40px;
-        width: auto;
+        height: 48px;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
