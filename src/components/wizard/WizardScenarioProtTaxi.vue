@@ -38,20 +38,18 @@
               </div>
             </div>
           </div>
-          <wizard-item-prot-taxi-four id="DocProtTaxiFour" v-if="isVisible('DocProtTaxiFour')" ref="DocProtTaxiFour" :info="getInfo('DocProtTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents">
-            <template v-slot:wizard-item-prot-three="">
-              <wizard-item-prot-three id="DocProtApnThree" v-if="isVisible('DocProtApnThree')" ref="DocProtApnThree" :info="getInfo('DocProtApnThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
-              <wizard-item-place v-if="isVisible('DocProtApnThree.PlaceNar')" ref="DocProtApnThree.PlaceNar" :info="getInfo('DocProtApnThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
-            </template>
-            <template v-slot:owner-details="">
-              <wizard-item-individual id="DocProtTaxiFour.Individual" v-if="isVisible('DocProtTaxiFour.Individual')" ref="DocProtTaxiFour.Individual" :info="getInfo('DocProtTaxiFour.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
-              <wizard-item-address v-if="isVisible('DocProtTaxiFour.Individual.regAddr')" ref="DocProtTaxiFour.Individual.regAddr" :info="getInfo('DocProtTaxiFour.Individual.regAddr')"  title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-address v-if="isVisible('DocProtTaxiFour.Individual.factAddr')" ref="DocProtTaxiFour.Individual.factAddr" :info="getInfo('DocProtTaxiFour.Individual.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-organization v-if="isVisible('DocProtTaxiFour.Organization')" ref="DocProtTaxiFour.Organization" :info="getInfo('DocProtTaxiFour.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
-              <wizard-item-address v-if="isVisible('DocProtTaxiFour.Organization.regAddr')" ref="DocProtTaxiFour.Organization.regAddr" :info="getInfo('DocProtTaxiFour.Organization.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-              <wizard-item-address v-if="isVisible('DocProtTaxiFour.Organization.factAddr')" ref="DocProtTaxiFour.Organization.factAddr" :info="getInfo('DocProtTaxiFour.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
-            </template>
-          </wizard-item-prot-taxi-four>
+
+
+          <wizard-item-prot-three id="DocProtApnThree" v-if="isVisible('DocProtApnThree')" ref="DocProtApnThree" :info="getInfo('DocProtApnThree')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-three>
+          <wizard-item-place v-if="isVisible('DocProtApnThree.PlaceNar')" ref="DocProtApnThree.PlaceNar" :info="getInfo('DocProtApnThree.PlaceNar')" title="Место нарушения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+
+          <wizard-item-prot-taxi-four id="DocProtTaxiFour" v-if="isVisible('DocProtTaxiFour')" ref="DocProtTaxiFour" :info="getInfo('DocProtTaxiFour')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-taxi-four>
+          <wizard-item-individual id="DocProtTaxiFour.Individual" v-if="isVisible('DocProtTaxiFour.Individual')" ref="DocProtTaxiFour.Individual" :info="getInfo('DocProtTaxiFour.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+          <wizard-item-address v-if="isVisible('DocProtTaxiFour.Individual.regAddr')" ref="DocProtTaxiFour.Individual.regAddr" :info="getInfo('DocProtTaxiFour.Individual.regAddr')"  title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('DocProtTaxiFour.Individual.factAddr')" ref="DocProtTaxiFour.Individual.factAddr" :info="getInfo('DocProtTaxiFour.Individual.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+          <wizard-item-organization v-if="isVisible('DocProtTaxiFour.Organization')" ref="DocProtTaxiFour.Organization" :info="getInfo('DocProtTaxiFour.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
+          <wizard-item-address v-if="isVisible('DocProtTaxiFour.Organization.regAddr')" ref="DocProtTaxiFour.Organization.regAddr" :info="getInfo('DocProtTaxiFour.Organization.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+          <wizard-item-address v-if="isVisible('DocProtTaxiFour.Organization.factAddr')" ref="DocProtTaxiFour.Organization.factAddr" :info="getInfo('DocProtTaxiFour.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
 
 
           <div class="adm-form__container">
