@@ -159,6 +159,7 @@
             let item = {
               docNum: file.docNum,
               date: file.docDate,
+              mediaId: file.mediaId,
             };
             switch (file.mimeType) {
               case 'image/png':
