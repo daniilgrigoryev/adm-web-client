@@ -1,26 +1,27 @@
 <template>
-  <div v-if="data">
+  <div>
     <div class="items" :class="{empty: !filesArray.length}">
-      <div class="add-item-wrap">
+      <form ref="fileform" class="add-item-wrap">
         <div class="text">Перетащите сюда файл</div>
         <div class="text small">или</div>
         <label>
           Выберите
           <input type="file" multiple ref="file" @change="onFileChange" id="file" class="none"/>
         </label>
-      </div>
-      <div class="item" 
-           v-for="(item, index) in filesArray" 
+      </form>
+      <div v-if="data"
+           class="item"
+           v-for="(item, index) in filesArray"
            :key="item.id"
       >
         <div class="item-preview">
-          <img v-if="item.type === 'image/png' || item.type === 'image/jpeg'"  
+          <img v-if="item.type === 'image/png' || item.type === 'image/jpeg'"
                :src="item.body" alt="">
-          <img v-if="item.type === 'application/pdf'" 
+          <img v-if="item.type === 'application/pdf'"
                :src="require('~/assets/images/icons/dokument-pdf.svg')" alt="">
-          <img v-if="item.type === 'application/pgp-signature'" 
+          <img v-if="item.type === 'application/pgp-signature'"
                :src="require('~/assets/images/icons/dokument-docx.svg')" alt="">
-          <img v-if="item.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'" 
+          <img v-if="item.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
                :src="require('~/assets/images/icons/dokument-docx.svg')" alt="">
         </div>
         <div class="file-name">{{item.name}}</div>
@@ -44,9 +45,24 @@ export default {
   async created() {
     await this.initData();
   },
+  mounted(){
+    this.dragAndDropCapable = this.determineDragAndDropCapable();
+    if(this.dragAndDropCapable) {
+      ['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach((evt) => {
+        this.$refs.fileform.addEventListener(evt, function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      });
+
+      this.$refs.fileform.addEventListener('drop', this.onFileChange);
+    }
+  },
   data() {
     return {
       data: null,
+      dragFiles: null,
+      dragAndDropCapable: false,
       fileError: null,
       allowedFiles: [
         "image/png",
@@ -123,6 +139,13 @@ export default {
         binary += String.fromCharCode(bytes[i]);
       }
       return `data:${type};base64,${window.btoa(binary)}`;
+    },
+    determineDragAndDropCapable() {
+      let div = document.createElement('div');
+      return (('draggable' in div)
+        || ('ondragstart' in div && 'ondrop' in div))
+        && 'FormData' in window
+        && 'FileReader' in window;
     },
     async onFileChange(e) {
       let vm = this;
@@ -386,7 +409,7 @@ export default {
   border: 1px dashed #cccccc;
   border-radius: 4px;
   color: #808080;
-  
+
   .text {
     font-weight: 600;
     &.small {
