@@ -2,6 +2,64 @@
   <div v-if="data">
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
+    
+
+    <div class="adm-form__item">
+      <small class="adm-form__label">Дата стадии исполнения</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="14" :lg="16">
+            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateStadIspoln" @change="changeDateStadIspoln" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Стадия исполнения</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="24" :lg="24">
+            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="changeIspolnKod">
+              <Option class=" " v-for="item in ispolnList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </CustomSelect>
+          </Col>
+        </Row>
+      </div>
+    </div>
+    <template v-if="[constants.UPL_SHTRAF_GIBDD,constants.UPL_SHTRAF_SSP].includes(data.stadIspolnKod)">
+      <div class="adm-form__item">
+        <small class="adm-form__label">Сумма оплаты штрафа</small>
+        <div class="adm-form__item_content">
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="24" :lg="24">
+              <masked-input inputClass="adm-input adm-input--regular" v-model="data.sumOpl" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
+            </Col>
+          </Row>
+        </div>
+      </div>
+      <div class="adm-form__item">
+        <small class="adm-form__label">УИП</small>
+        <div class="adm-form__item_content">
+          <Row :gutter="16" type="flex" align="middle">
+            <Col :xs="24" :md="24" :lg="24">
+              <masked-input inputClass="adm-input adm-input--regular" v-model="data.uip" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
+            </Col>
+          </Row>
+        </div>
+      </div>
+    </template>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Статья КРФоАп</small>
+      <div class="adm-form__item_content">
+        <Row :gutter="16" type="flex" align="middle">
+          <Col :xs="24" :md="24" :lg="24">
+            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateStadIspoln" @on-change="storeElementData" :filterMethod="filterStotv">
+              <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
+            </CustomSelect>
+          </Col>
+        </Row>
+      </div>
+    </div>
 
     <div class="adm-form__item">
       <small class="adm-form__label">Должностное лицо</small>
@@ -39,60 +97,8 @@
         </Row>
       </div>
     </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Дата стадии исполнения</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="14" :lg="16">
-            <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateStadIspoln" @change="changeDateStadIspoln" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-          </Col>
-        </Row>
-      </div>
-    </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Статья КРФоАп</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="24" :lg="24">
-            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateStadIspoln" @on-change="storeElementData" :filterMethod="filterStotv">
-              <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
-            </CustomSelect>
-          </Col>
-        </Row>
-      </div>
-    </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Стадия исполнения</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="24" :lg="24">
-            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="changeIspolnKod">
-              <Option class=" " v-for="item in ispolnList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </CustomSelect>
-          </Col>
-        </Row>
-      </div>
-    </div>
-    <div v-if="data.stadIspolnKod === constants.VOZB_ISPOLN || data.stadIspolnKod === constants.UPL_SHTRAF_GIBDD || data.stadIspolnKod === constants.UPL_SHTRAF_SSP" class="adm-form__item">
-      <small class="adm-form__label">УИП</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input--regular" v-model="data.uip" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
-          </Col>
-        </Row>
-      </div>
-    </div>
-    <div v-if="data.stadIspolnKod === constants.VOZB_ISPOLN || data.stadIspolnKod === constants.UPL_SHTRAF_GIBDD || data.stadIspolnKod === constants.UPL_SHTRAF_SSP" class="adm-form__item">
-      <small class="adm-form__label">Сумма оплаты штрафа</small>
-      <div class="adm-form__item_content">
-        <Row :gutter="16" type="flex" align="middle">
-          <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input--regular" v-model="data.sumOpl" :maskProps="{casing: 'upper', regex: '[0-9]+', placeholder: ''}" @onInputChange="storeElementData" ></masked-input>
-          </Col>
-        </Row>
-      </div>
-    </div>
+    
+    
   </div>
 </template>
 

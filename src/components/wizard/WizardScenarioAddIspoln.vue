@@ -10,7 +10,7 @@
             </h2>
             <div class="adm-form__content">
               <wizard-item-ispoln v-if="isVisible('DocIspoln')" ref="DocIspoln" :info="getInfo('DocIspoln')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-ispoln>
-              <wizard-item-place v-if="isVisible('DocIspoln.PlaceSost')" ref="DocIspoln.PlaceSost" :info="getInfo('DocIspoln.PlaceSost')" title="Место составления" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
+              <wizard-item-place v-if="isVisible('DocIspoln.PlaceSost')" ref="DocIspoln.PlaceSost" :info="getInfo('DocIspoln.PlaceSost')" title="Место исполнения" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-place>
             </div>
           </div>
         </div>

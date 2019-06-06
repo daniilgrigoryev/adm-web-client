@@ -6,7 +6,7 @@
           <Button @click="getIspolnEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Исполнение по решению - Оплата штрафа</b>
+          <b class="adm-text-big color-dark-lighter">Стадия исполнения - {{body.stadIspolnName}}</b>
         </div>
       </div>
     </div>
@@ -16,23 +16,47 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
-            label="Сумма оплаты штрафа"
-            :value="body.sumOpl"
-            style="grid-column: span 2;"
-            :icon="require('../../assets/images/icons/rub_gray.svg')"
-          />
-          <hr>
-          <view-data-item
-            label="Дата оплаты штрафа"
+            label="Дата исполнения"
             :value="body.dateStadIspoln | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/time.svg')"
           />
+          <template v-if="[constants.UPL_SHTRAF_GIBDD,constants.UPL_SHTRAF_SSP].includes(body.stadIspolnKod)">
+            <view-data-item
+              label="Сумма оплаты штрафа"
+              :value="body.sumOpl"
+              style="grid-column: span 2;"
+              :icon="require('../../assets/images/icons/rub_gray.svg')"
+            />
+            <view-data-item
+              label="УИП"
+              :value="body.uip"
+              style="grid-column: span 2;"
+            />
+          </template>
           <view-data-item
-            label="УИП"
-            :value="body.uip"
+            label="Статья КРФоАп"
+            :value="body.stotvName"
             style="grid-column: span 2;"
           />
+          <view-data-item
+            label="Место исполнения"
+            :value="body.placeIspoln.placeFull"
+            style="grid-column: span 2;"
+          />
+          <hr>
+          <view-data-item
+            label="Должностное лицо"
+            :value="body.inspIspolnName"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
+            label="Подразделение"
+            :value="body.organIspolnName"
+            style="grid-column: span 2;"
+          />
+          
+          
         </div>
       </div>
     </div>
@@ -44,11 +68,17 @@
   import * as formStack from '~/assets/js/api/formStack';
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as constants from "~/assets/js/utils/constants";
   import { mapGetters } from 'vuex';
 
   export default {
     name: "FrmEdIspolnShtraf",
     components: {
+    },
+    data() {
+      return {
+        constants
+      }
     },
     async created() {
       try {

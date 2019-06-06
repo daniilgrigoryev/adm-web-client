@@ -113,7 +113,16 @@
             res = 'FrmEdDecisPost';
             break;
           }
-          case 'FrmEdIspolnShtraf': {
+          case 'FrmEdIspoln': 
+          case 'FrmEdIspolnOther': 
+          case 'FrmEdIspolnFSSP': 
+          case 'FrmEdIspolnPered': 
+          case 'FrmEdIspolnPeredArest': 
+          case 'FrmEdIspolnPostUvedom': 
+          case 'FrmEdIspolnPrecrashIsp': 
+          case 'FrmEdIspolnPriostVozobn': 
+          case 'FrmEdIspolnShtraf': 
+          case 'FrmEdIspolnVozvVU': {
             res = 'FrmEdIspolnShtraf';
             break;
           }

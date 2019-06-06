@@ -16,6 +16,12 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
+            v-if="body.decisKod === 52"
+            label="Основание прекращения"
+            :value="body.reason"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
             label="Дата решения"
             :value="body.decisDate | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
