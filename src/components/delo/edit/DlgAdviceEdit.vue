@@ -6,7 +6,7 @@
         <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Редактирование Извещения</h2>
+            <h2 class="adm-form__headding" id="head">Редактирование Извещения {{ dataAdvice.docN ? "№" + dataAdvice.docN : "" }}</h2>
             <div class="adm-form__content">
               <Row>
                 <Col span="12">

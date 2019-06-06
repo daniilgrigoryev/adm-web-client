@@ -9,7 +9,7 @@
 
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Протокол об АПН № {{ docsProt.docN }} от {{ docsProt.dateSost |
+            <h2 class="adm-form__headding" id="head">Протокол об АПН {{ docsProt.docN ? "№" + docsProt.docN : "" }} от {{ docsProt.dateSost |
               formatDateTime('DD.MM.YYYY HH:mm') }}</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
@@ -17,7 +17,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" :value="docsProt.docN"></Input>
+                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="docsProt.docN" ></Input>
                     </Col>
                   </Row>
                 </div>

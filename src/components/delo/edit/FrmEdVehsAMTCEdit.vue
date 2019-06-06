@@ -4,7 +4,7 @@
       <div class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Основные сведения</h2>
+            <h2 class="adm-form__headding" id="head">Редактирование ТС</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-text-small adm-form__label">ГРЗ</small>
