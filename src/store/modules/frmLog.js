@@ -21,7 +21,6 @@ export default {
   actions: {
     frmLogSetCid(vm, cid) {
       vm.state.cid = cid;
-      console.log(vm.state.cid);
     },
     frmLogSetData(vm, data) {
       vm.state.data = data;

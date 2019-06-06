@@ -416,7 +416,7 @@
         await this.addForm(copyNode);
         this.updateSelected();
         if (this.logOpen) {
-          await this.$refs.logs.changeNode();
+          await this.$refs.logs.getLogs();
         }
       },
       changeClass(stadKod) {

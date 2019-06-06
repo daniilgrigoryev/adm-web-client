@@ -210,9 +210,6 @@
         this.$store.commit('frmLogSetCid', null);
         this.$store.commit('frmLogSetData', null);
       },
-      async changeNode() {
-        await this.getLogs();
-      },
       closeLogs() {
         this.$emit("closeLogs");
       }

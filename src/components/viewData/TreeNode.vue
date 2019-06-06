@@ -7,7 +7,7 @@
             <img :src="iconNode" alt="">
           </div>
           <div v-html="dataNode" class="tree__text-wrap"></div>
-          <img v-if="isParent && isFolder" class="tree__arrow" :class="{open: open}" src="../../assets/images/icons/controls-switch-chevron-down.svg" />
+          <img v-if="isParent && isFolder" @click="toggle" class="tree__arrow" :class="{open: open}" src="../../assets/images/icons/controls-switch-chevron-down.svg" />
         </a>
       </li>
     </ul>
@@ -269,7 +269,6 @@
                 break
               }
             }
-            console.log(colorClass);
             return `
               <h4>
                 Дело
@@ -557,7 +556,6 @@
           return;
         }
         await this.nodeClick(this.node);
-        this.toggle();
       },
       toggle() {
         if (this.isFolder && this.isParent) {

@@ -22,7 +22,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.firstName" :maskProps="{regex: '[а-яА-ЯёЁ -]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="changeFIO('firstName')" v-model="data.firstName" :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>
@@ -32,7 +32,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.secondName" :maskProps="{regex: '[а-яА-ЯёЁ -]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="changeFIO('secondName')" v-model="data.secondName" :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>
@@ -42,7 +42,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="storeElementData" v-model="data.thirdName" :maskProps="{regex: '[а-яА-ЯёЁ -]+', casing: 'upper', placeholder: ''}"></masked-input>
+            <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="changeFIO('thirdName')" v-model="data.thirdName" :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}"></masked-input>
           </Col>
         </Row>
       </div>
@@ -269,6 +269,18 @@
         }).getFirst();
         if (birthMestoKod) {
           this.data.birthMestoKod = birthMestoKod.value;
+        }
+        await this.storeElementData();
+      },
+      async changeFIO(name) {
+        let value = this.data[name];
+        if (funcUtils.isNotEmpty(value)) {
+          let space = ' ';
+          let dash = '-';
+          let valueLength = value.length;
+          if (valueLength > 1 && (this.data[name][valueLength - 1] === space || this.data[name][valueLength - 1] === dash)) {
+            this.data[name] = value.slice(0, -1);
+          }
         }
         await this.storeElementData();
       },

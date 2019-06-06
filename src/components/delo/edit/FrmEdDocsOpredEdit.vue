@@ -164,8 +164,8 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col>
                       <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlFirstName"
-                                    :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
-                                    @onInputChange="store"></masked-input>
+                                    :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}"
+                                    @onInputChange="changeFIO('vsFlFirstName')"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -174,8 +174,8 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col>
                       <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlSecondName"
-                                    :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
-                                    @onInputChange="store"></masked-input>
+                                    :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}"
+                                    @onInputChange="changeFIO('vsFlSecondName')"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -184,8 +184,8 @@
                   <Row :gutter="16" type="flex" align="middle">
                     <Col>
                       <masked-input inputClass="adm-input adm-input--regular wmax240 wmin180" v-model="docsOpred.vsFlThirdName"
-                                    :maskProps="{casing: 'upper', regex: '[a-zA-Zа-яА-Я]+', placeholder: ''}"
-                                    @onInputChange="store"></masked-input>
+                                    :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}"
+                                    @onInputChange="changeFIO('vsFlThirdName')"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -815,6 +815,18 @@
         this.docsOpred.organSostKod = null;
         this.docsOpred.organSostName = null;
         this.store();
+      },
+      async changeFIO(name) {
+        let value = this.docsOpred[name];
+        if (funcUtils.isNotEmpty(value)) {
+          let space = ' ';
+          let dash = '-';
+          let valueLength = value.length;
+          if (valueLength > 1 && (this.docsOpred[name][valueLength - 1] === space || this.docsOpred[name][valueLength - 1] === dash)) {
+            this.docsOpred[name] = value.slice(0, -1);
+          }
+        }
+        await this.store();
       },
       store() {
         return RequestApi.prepareData({

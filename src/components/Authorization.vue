@@ -84,7 +84,6 @@
                   if (!funcUtils.isNull(respData)) {
                     localStorage.setItem('admSid', respData.sid);
                   } else {
-                    console.log(respError.errorMsg);
                     this.$store.dispatch('errors/changeContent', {
                       title: "Неправильное имя пользователя или пароль",
                       desc: respError.errorMsg,

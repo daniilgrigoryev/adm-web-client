@@ -34,7 +34,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.firstName" :maskProps="maskInputFIO" :maxlength="80"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="changeFIO('firstName')" v-model="uchastIndivid.individ.firstName" :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}" :maxlength="80"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.secondName" :maskProps="maskInputFIO" :maxlength="25"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="changeFIO('secondName')" v-model="uchastIndivid.individ.secondName" :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}" :maxlength="25"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -54,7 +54,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <masked-input inputClass="adm-input adm-input--regular wmax360"  @onInputChange="store" v-model="uchastIndivid.individ.thirdName"  :maskProps="maskInputFIO" :maxlength="25"></masked-input>
+                      <masked-input inputClass="adm-input adm-input--regular wmax360"  @onInputChange="changeFIO('thirdName')" v-model="uchastIndivid.individ.thirdName"  :maskProps="{regex: '([а-яА-ЯёЁ]+[ -]){0,}', casing: 'upper', placeholder: ''}" :maxlength="25"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -297,11 +297,6 @@
         tipVidList: null,
         birthMestoList: [],
         gragdanstvoList: null,
-        maskInputFIO: {
-          regex: '[а-яА-ЯёЁ]+',
-          casing: 'upper',
-          placeholder: ''
-        },
         sexList: [
           {
             label: 'Мужской',
@@ -480,6 +475,18 @@
           withCreate: false,
           cid: cid
         });
+      },
+      async changeFIO(name) {
+        let value = this.uchastIndivid.individ[name];
+        if (funcUtils.isNotEmpty(value)) {
+          let space = ' ';
+          let dash = '-';
+          let valueLength = value.length;
+          if (valueLength > 1 && (this.uchastIndivid.individ[name][valueLength - 1] === space || this.uchastIndivid.individ[name][valueLength - 1] === dash)) {
+            this.uchastIndivid.individ[name] = value.slice(0, -1);
+          }
+        }
+        await this.store();
       },
       store() {
         return RequestApi.prepareData({
