@@ -29,6 +29,7 @@
       FrmEdDecisRefuse: () => import('~/components/delo/decis/FrmEdDecisRefuse'),
       FrmEdDecisExtendPeriod: () => import('~/components/delo/decis/FrmEdDecisExtendPeriod'),
       FrmEdDecisVozbDelo: () => import('~/components/delo/decis/FrmEdDecisVozbDelo'),
+      FrmEdDecisPrekrDelo: () => import('~/components/delo/decis/FrmEdDecisPrekrDelo'),
       FrmEdDecisPredup: () => import('~/components/delo/decis/FrmEdDecisPredup'),
       FrmEdDecisPost: () => import('~/components/delo/decis/FrmEdDecisPost'),
 
@@ -144,6 +145,10 @@
           }
           case 'FrmEdDecisVozbDelo': {
             res = 'FrmEdDecisVozbDelo';
+            break;
+          }
+          case 'FrmEdDecisPrekrDelo': {
+            res = 'FrmEdDecisPrekrDelo';
             break;
           }
           case 'FrmEdMediaMaterial': {
