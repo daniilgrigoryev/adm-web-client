@@ -13,7 +13,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="adm-form__item w-full">
                           <div class="adm-12 color-dark-lighter search-label">№ дела</div>
-                          <Input class="adm-input adm-input--big" v-model="filter.deloN" placeholder=""
+                          <Input @on-enter="filterClick" class="adm-input adm-input--big" v-model="filter.deloN" placeholder=""
                                  clearable></Input>
                         </div>
                       </div>
@@ -47,7 +47,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">ГРЗ</div>
-                          <masked-input v-model="filter.regno" placeholder="" :maskProps="maskRegno" inputClass="adm-input adm-input--big" clearable></masked-input>
+                          <masked-input @onEnter="filterClick" v-model="filter.regno" placeholder="" :maskProps="maskRegno" inputClass="adm-input adm-input--big" clearable></masked-input>
                         </div>
                       </div>
                     </Col>
@@ -94,7 +94,7 @@
                           <div class="flex-parent flex-parent--end-cross h-full">
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label">Фамилия</div>
-                              <masked-input v-model="filter.firstName" @input="changeFIO" :maskProps="maskInputFIO"
+                              <masked-input @onEnter="filterClick" v-model="filter.firstName" @input="changeFIO" :maskProps="maskInputFIO"
                                           inputClass="adm-input adm-input--big" clearable
                                           placeholder=""></masked-input>
                             </div>
@@ -104,7 +104,7 @@
                           <div class="flex-parent flex-parent--end-cross h-full">
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label">Имя</div>
-                              <masked-input v-model="filter.secondName" @input="changeFIO" :maskProps="maskInputFIO"
+                              <masked-input @onEnter="filterClick" v-model="filter.secondName" @input="changeFIO" :maskProps="maskInputFIO"
                                           inputClass="adm-input adm-input--big" clearable placeholder=""></masked-input>
                             </div>
                           </div>
@@ -113,7 +113,7 @@
                           <div class="flex-parent flex-parent--end-cross h-full">
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label">Отчество</div>
-                              <masked-input v-model="filter.thirdName" @input="changeFIO" :maskProps="maskInputFIO"
+                              <masked-input @onEnter="filterClick" v-model="filter.thirdName" @input="changeFIO" :maskProps="maskInputFIO"
                                           inputClass="adm-input adm-input--big" clearable
                                           placeholder=""></masked-input>
                             </div>
@@ -286,7 +286,6 @@
   export default {
     name: "DeloReestr",
     components: {
-      MaskedInput: () => import('~/components/shared/MaskedInput'),
       DateRangePickerMask: () => import('~/components/shared/dateTimeRangePicker/DateRangePickerMask')
     },
     async created() {
