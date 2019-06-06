@@ -1,19 +1,5 @@
   <template>
-  <div class="aside-template">
-    <aside>
-      <h3>
-        <Button @click="getPrev" type="text" title="вернуться назад">
-          <Icon type="ios-arrow-dropleft" :size="30" />
-        </Button>
-        Список подразделов
-      </h3>
-      <ul>
-        <li v-for="item in listSectionNav" :key="item.id">
-          <a :href="'#' + item.name">{{item.title}}</a>
-        </li>
-      </ul>
-    </aside>
-    <main>
+    <aside-template :listSectionNav="listSectionNav" title="Добавление участника">
       <div class="layout-wrap">
         <Layout ref="Main" class="layout">
           <div class="adm-form">
@@ -48,8 +34,7 @@
         <Button @click="getPrev" type="text">Отменить добавление участника</Button>
         <Button @click="save" type="primary" class="ml12">Добавить</Button>
       </div>
-    </main>
-  </div>
+    </aside-template>
 </template>
 
 <script>
@@ -60,6 +45,7 @@
   export default {
     name: "WizardScenarioAddUchast",
     components: {
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       WizardItemAddUchast: () => import('~/components/wizard/items/WizardItemAddUchast'),
       WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
@@ -68,20 +54,7 @@
     data() {
       return {
         mode: 0,
-        listSectionNav: [
-          // {
-          //   title: "Участник",
-          //   name: "uchast",
-          // },
-          // {
-          //   title: "Физическое лицо",
-          //   name: "individual",
-          // },
-          // {
-          //   title: "Организация",
-          //   name: "organization",
-          // },
-        ]
+        listSectionNav: []
       }
     },
     props: {

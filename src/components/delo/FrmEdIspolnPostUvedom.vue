@@ -91,6 +91,9 @@
 
   export default {
     name: "FrmEdIspolnPostUvedom",
+    props: {
+      delo: Object
+    },
     data() {
       return {
         hideMore: false,

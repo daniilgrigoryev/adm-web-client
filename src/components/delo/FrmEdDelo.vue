@@ -159,6 +159,9 @@
 
   export default {
     name: "FrmEdDelo",
+    props: {
+      delo: Object
+    },
     data() {
       return {
         hideMore: false,
@@ -285,7 +288,8 @@
         try {
           let currentForm = innerFormStack.getCurrent();
           let params = {
-            node: currentForm.params
+            node: currentForm.params,
+            title: 'Дело №' + this.delo.deloN,
           };
 
           formStack.toNext({

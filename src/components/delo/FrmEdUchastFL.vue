@@ -1,7 +1,7 @@
 <template>
   <div v-if="body"><!-- class="px36 pb6" -->
-    <frm-ed-uchast-f-l-individ v-if="body.individ.id"></frm-ed-uchast-f-l-individ>
-    <frm-ed-uchast-f-l-organization v-if="body.organization.id"></frm-ed-uchast-f-l-organization>
+    <frm-ed-uchast-f-l-individ v-if="body.individ.id" :delo="delo"></frm-ed-uchast-f-l-individ>
+    <frm-ed-uchast-f-l-organization v-if="body.organization.id" :delo="delo"></frm-ed-uchast-f-l-organization>
   </div>
 </template>
 
@@ -14,6 +14,9 @@
 
   export default {
     name: "FrmEdUchastFL",
+    props: {
+      delo: Object
+    },
     components: {
       FrmEdUchastFLIndivid: () => import('~/components/delo/FrmEdUchastFLIndivid'),
       FrmEdUchastFLOrganization: () => import('~/components/delo/FrmEdUchastFLOrganization')

@@ -252,7 +252,7 @@
                     </Row>
                   </div>
                 </div>
-                
+
               </div>
             </div>
             <div class="adm-form__container">
@@ -852,7 +852,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeSost'
+            type: 'placeSost',
+            title: 'Протокол №' + this.docsProt.docN
           }
         });
       },
@@ -869,7 +870,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeNar'
+            type: 'placeNar',
+            title: 'Протокол №' + this.docsProt.docN
           }
         });
       },

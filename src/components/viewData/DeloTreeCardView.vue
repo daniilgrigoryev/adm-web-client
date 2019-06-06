@@ -7,9 +7,15 @@
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
       <div v-if="deloContext" class="bg-white deloContext-sticky">
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross py6">
-          <button @click="getPrev" type="text" title="вернуться назад" class="back-button">
-            <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
-          </button>
+          <div @click="getPrev" class="flex-parent flex-parent--center-cross">
+            <button type="text" title="вернуться назад" class="back-button">
+              <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
+            </button>
+            <a href="#" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
+              <span class="adm-h3">Вернуться назад </span>
+              <span class="adm-h2">({{ prevItemTitle }})</span>
+            </a>
+          </div>
           <div class="delo-menu">
             <div class="delo-menu--body-wrap">
               <Poptip @click.native="menuVisibleContent('menuCreateDelo', menu.createDelo)" ref="menuCreateDelo" width="350" placement="bottom-start" class="delo-menu--poptip">
@@ -233,6 +239,7 @@
         searchForAddDocumentList: "",
         logOpen: false,
         logNode: {},
+        prevItemTitle: null
       }
     },
     computed: {
@@ -281,6 +288,7 @@
       async init(mainDeloId) {
         try {
           let current = formStack.getCurrent();
+          this.prevItemTitle = current.params.title;
           await this.$store.dispatch('deloTreeCardViewSetCid', current.cid);
           let prepareParams = {
             method: 'restore'
@@ -311,7 +319,8 @@
           } else {
             this.currentInnerBean = {
               beanName: innerFormStack.getCurrent().beanName,
-              cid: innerFormStack.getCurrent().cid
+              cid: innerFormStack.getCurrent().cid,
+              delo: this.deloContext
             };
             this.updateSelected();
           }
@@ -322,7 +331,8 @@
       async getMainDelo(mainDeloId) {
         try {
           let params = {
-            deloId: mainDeloId
+            deloId: mainDeloId,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           await formStack.toNext({
@@ -372,14 +382,16 @@
         });
         this.currentInnerBean = {
           beanName: innerFormStack.getCurrent().beanName,
-          cid: innerFormStack.getCurrent().cid
+          cid: innerFormStack.getCurrent().cid,
+          delo: this.deloContext
         };
       },
       async removeForm() {
         await innerFormStack.toPrev();
         this.currentInnerBean = {
           beanName: innerFormStack.getCurrent().beanName,
-          cid: innerFormStack.getCurrent().cid
+          cid: innerFormStack.getCurrent().cid,
+          delo: this.deloContext
         };
       },
       getCopyObj(node) {
@@ -745,6 +757,7 @@
           let params = {
             scenarioName: 'AddUchast',
             node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -764,6 +777,7 @@
           let params = {
             scenarioName: 'AddPredDoc',
             node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -783,6 +797,7 @@
           let params = {
             scenarioName: 'AddDocPhoto',
             node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -802,6 +817,7 @@
           let params = {
             scenarioName: 'AddIspoln',
             node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -820,7 +836,8 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateProtEvac',
-            node: copyNode
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -839,7 +856,8 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
-            node: copyNode
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -858,7 +876,8 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
-            node: copyNode
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -878,6 +897,7 @@
           let params = {
             scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
             newDelo: newDelo
           };
 
@@ -898,6 +918,7 @@
           let params = {
             scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
             newDelo: newDelo
           };
 
@@ -917,7 +938,8 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateProtStopDelo',
-            node: copyNode
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -936,7 +958,8 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateProtDecisDelo',
-            node: copyNode
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -955,7 +978,8 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'AddPetition',
-            node: copyNode
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -974,7 +998,8 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'AddDefinitionPetition',
-            node: copyNode
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({
@@ -993,7 +1018,8 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'AddAdvice',
-            node: copyNode
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
           };
 
           formStack.toNext({

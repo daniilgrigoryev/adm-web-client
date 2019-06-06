@@ -1719,7 +1719,8 @@
             return;
           }
           let params = {
-            deloId: delo.deloId
+            deloId: delo.deloId,
+            title: 'Реестр дел',
           };
 
           formStack.toNext({
@@ -1755,7 +1756,8 @@
       getDeloNewTab(delo) {
         try {
           let params = {
-            deloId: delo.deloId
+            deloId: delo.deloId,
+            title: 'Реестр дел'
           };
 
           formStack.toNextNewTab({

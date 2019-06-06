@@ -821,7 +821,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeSost'
+            type: 'placeSost',
+            title: 'Протокол №' + this.protPZTC.docN
           }
         });
       },
@@ -838,7 +839,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeNar'
+            type: 'placeNar',
+            title: 'Протокол №' + this.protPZTC.docN
           }
         });
       },

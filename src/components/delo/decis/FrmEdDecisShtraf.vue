@@ -53,6 +53,9 @@
 
   export default {
     name: "FrmEdDecisShtraf",
+    props: {
+      delo: Object
+    },
     components: {
     },
     async created() {
@@ -122,7 +125,8 @@
         try {
           let currentForm = innerFormStack.getCurrent();
           let params = {
-            node: currentForm.params
+            node: currentForm.params,
+            title: 'Дело №' + this.delo.deloN,
           };
 
           formStack.toNext({

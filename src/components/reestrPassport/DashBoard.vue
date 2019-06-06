@@ -218,7 +218,10 @@
         module: this.$store.state.wizardExecuter,
         vm: this,
         notRemoved: true,
-        params: {scenarioName: wizardName},
+        params: {
+          scenarioName: wizardName,
+          title: 'Возбуждение дела'
+        },
         withCreate: true
       });
     },

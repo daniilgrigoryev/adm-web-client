@@ -14,45 +14,45 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Дата и время нарушения" 
-            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата и время нарушения"
+            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/time.svg')"
           />
-          <view-data-item 
-            label="Место нарушения" 
-            :value="body.placeNar.placeFull" 
+          <view-data-item
+            label="Место нарушения"
+            :value="body.placeNar.placeFull"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/map.svg')"
           />
-          <view-data-item 
-            label="Пункт НПА" 
-            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(', ')" 
+          <view-data-item
+            label="Пункт НПА"
+            :value="body.pnpaKod, body.pnpaName | concatByDelimiter(', ')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/reshenie-variant-2_1.svg')"
           />
-          <view-data-item 
-            label="Статья КРФоАП" 
-            :value="body.stotvKod, body.stotvName | concatByDelimiter(', ')" 
+          <view-data-item
+            label="Статья КРФоАП"
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(', ')"
             style="grid-column: span 2;"
           />
           <hr>
-          <view-data-item 
-            label="Место составления" 
-            :value="body.placeSost.placeFull | concatByDelimiter(', ')" 
+          <view-data-item
+            label="Место составления"
+            :value="body.placeSost.placeFull | concatByDelimiter(', ')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/map.svg')"
           />
-          <view-data-item 
-            label="Должностное лицо" 
-            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ')" 
+          <view-data-item
+            label="Должностное лицо"
+            :value="body.inspSostName, body.inspSostDolz, body.inspSostRang | concatByDelimiter(', ')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/police.svg')"
           />
-          <view-data-item 
-            label="Подразделение" 
-            :value="body.organSostName" 
+          <view-data-item
+            label="Подразделение"
+            :value="body.organSostName"
             style="grid-column: span 2;"
           />
           <template v-if="isTaxi">
@@ -102,7 +102,7 @@
               :value="body.vsIncomingDate | formatDateTime('DD.MM.YYYY')"
               style="grid-column: span 2;"
               :icon="require('../../assets/images/icons/time.svg')"
-            /> 
+            />
             <hr>
             <view-data-item
               v-if="body.vsTypeId !== 1"
@@ -144,6 +144,9 @@
 
   export default {
     name: "FrmEdDocsOpred",
+    props: {
+      delo: Object
+    },
     components: {
       ViewDataItem: () => import('~/components/shared/ui/view-data-item')
     },
@@ -221,7 +224,8 @@
         try {
           let currentForm = innerFormStack.getCurrent();
           let params = {
-            node: currentForm.params
+            node: currentForm.params,
+            title: 'Дело №' + this.delo.deloN,
           };
 
           formStack.toNext({

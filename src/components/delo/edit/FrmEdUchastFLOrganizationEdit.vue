@@ -364,6 +364,9 @@
           vm: this,
           notRemoved: false,
           withCreate: false,
+          params: {
+            title: 'Редактирование Участника'
+          },
           cid: cid
         });
       },
@@ -378,6 +381,9 @@
           vm: this,
           notRemoved: false,
           withCreate: false,
+          params: {
+            title: 'Редактирование Участника'
+          },
           cid: cid
         });
       },

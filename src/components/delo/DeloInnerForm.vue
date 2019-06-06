@@ -1,7 +1,7 @@
 <template>
   <div v-if="currentInnerBean">
     <div class="hmin360">
-      <component :is="currentTabComponent" :ref="currentTabComponent" @getMainDelo="getMainDelo"></component>
+      <component :is="currentTabComponent" :ref="currentTabComponent" @getMainDelo="getMainDelo" :delo="currentInnerBean.delo"></component>
     </div>
   </div>
 </template>

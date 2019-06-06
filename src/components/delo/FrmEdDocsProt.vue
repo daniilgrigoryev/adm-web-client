@@ -119,6 +119,9 @@
 
   export default {
     name: "FrmEdDocsProt",
+    props: {
+      delo: Object
+    },
     components: {
       ViewDataItem: () => import('~/components/shared/ui/view-data-item')
     },
@@ -199,7 +202,8 @@
         try {
           let currentForm = innerFormStack.getCurrent();
           let params = {
-            node: currentForm.params
+            node: currentForm.params,
+            title: 'Дело №' + this.delo.deloN,
           };
 
           formStack.toNext({

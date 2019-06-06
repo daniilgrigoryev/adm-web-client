@@ -5,7 +5,7 @@
         <button @click="getPrev" type="button" title="вернуться назад">
           <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
         </button>
-        {{ title }}
+        Вернуться назад ({{ prevItemTitle }})
       </h3>
       <h3 v-if="listSectionNav && listSectionNav.length">Список подразделов</h3>
       <ul v-if="listSectionNav">
@@ -32,6 +32,14 @@ export default {
       type: String
     },
     toPrev: Function
+  },
+  data() {
+    return {
+      prevItemTitle: null
+    }
+  },
+  created() {
+    this.prevItemTitle = formStack.getCurrent().params.title || this.title;
   },
   methods: {
     getPrev() {

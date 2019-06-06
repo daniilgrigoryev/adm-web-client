@@ -62,6 +62,9 @@
 
   export default {
     name: "FrmEdMediaMaterial",
+    props: {
+      delo: Object
+    },
     components: {
       Slider: () => import('~/components/delo/DlgEdFotoMaterial/Slider'),
     },

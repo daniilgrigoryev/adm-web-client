@@ -765,7 +765,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeSost'
+            type: 'placeSost',
+            title: 'Ходатайство №' + this.docsPetition.docN
           }
         });
       },

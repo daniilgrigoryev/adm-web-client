@@ -158,10 +158,12 @@
             resp = JSON.parse(response.response);
           }
           if (resp && resp.data) {
+            let current = formStack.getCurrent();
             await this.getPrev(false);
             let params = {
               deloId: resp.data,
               scenarioResult: eventResp.data,
+              title: current.params.title
             };
             formStack.toNext({
               module: this.$store.state.deloTreeCardView,

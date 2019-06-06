@@ -755,7 +755,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeSost'
+            type: 'placeSost',
+            title: 'Постановление №' + this.docsPost.docN
           }
         });
       },
@@ -772,7 +773,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeNar'
+            type: 'placeNar',
+            title: 'Постановление №' + this.docsPost.docN
           }
         });
       },

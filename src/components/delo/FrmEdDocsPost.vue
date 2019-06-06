@@ -151,6 +151,9 @@
 
   export default {
     name: "FrmEdDocsPost",
+    props: {
+      delo: Object
+    },
     components: {
     },
     async created() {
@@ -264,7 +267,8 @@
         try {
           let currentForm = innerFormStack.getCurrent();
           let params = {
-            node: currentForm.params
+            node: currentForm.params,
+            title: 'Дело №' + this.delo.deloN,
           };
 
           formStack.toNext({
@@ -282,7 +286,8 @@
         try {
           let currentForm = innerFormStack.getCurrent();
           let params = {
-            docCID: currentForm.cid
+            docCID: currentForm.cid,
+            title: 'Дело №' + this.delo.deloN,
           };
 
           formStack.toNext({

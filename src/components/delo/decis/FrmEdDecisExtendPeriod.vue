@@ -15,9 +15,9 @@
     <div class="view-data">
       <div class="view-data__container">
         <div class="items-wrap">
-          <view-data-item 
-            label="Дата, до которой продлевается срок" 
-            :value="body.prolongUntilDate | formatDateTime('DD.MM.YYYY HH:mm')" 
+          <view-data-item
+            label="Дата, до которой продлевается срок"
+            :value="body.prolongUntilDate | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/icons/time.svg')"
           />
@@ -43,6 +43,9 @@
 
   export default {
     name: "FrmEdDecisExtendPeriod",
+    props: {
+      delo: Object
+    },
     components: {
       ViewDataItem: () => import('~/components/shared/ui/view-data-item'),
     },
@@ -115,7 +118,8 @@
         try {
           let currentForm = innerFormStack.getCurrent();
           let params = {
-            node: currentForm.params
+            node: currentForm.params,
+            title: 'Дело №' + this.delo.deloN,
           };
 
           formStack.toNext({

@@ -73,6 +73,9 @@
 
   export default {
     name: "FrmEdIspolnShtraf",
+    props: {
+      delo: Object
+    },
     components: {
     },
     data() {
@@ -147,7 +150,8 @@
         try {
           let currentForm = innerFormStack.getCurrent();
           let params = {
-            node: currentForm.params
+            node: currentForm.params,
+            title: 'Дело №' + this.delo.deloN,
           };
 
           formStack.toNext({

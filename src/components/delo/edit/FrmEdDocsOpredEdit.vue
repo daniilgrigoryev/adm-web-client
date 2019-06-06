@@ -861,7 +861,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeSost'
+            type: 'placeSost',
+            title: 'Определение №' + this.docsOpred.docN
           }
         });
       },
@@ -878,7 +879,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeNar'
+            type: 'placeNar',
+            title: 'Определение №' + this.docsOpred.docN
           }
         });
       },

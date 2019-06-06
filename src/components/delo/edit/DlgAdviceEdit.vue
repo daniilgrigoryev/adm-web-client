@@ -696,7 +696,8 @@
           withCreate: false,
           cid: cid,
           params: {
-            type: 'placeSost'
+            type: 'placeSost',
+            title: 'Извещение №' + this.dataAdvice.docN
           }
         });
       },
