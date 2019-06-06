@@ -53,7 +53,7 @@
           <div v-if="body.inculpatoryEvidencesList && body.inculpatoryEvidencesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
             <p class="adm-14 color-dark-lighter ">Список доказательств виновности</p>
             <div v-for="(item, index) in body.inculpatoryEvidencesList" :key="index">
-              <p class="adm-text-big color-dark-base">{{ item.name}} (Количество листов - {{item.sheets_quantity}})</p>
+              <p class="adm-text-big color-dark-base">{{ item.name}} <span v-if="item.sheets_quantity">(Количество листов - {{item.sheets_quantity}})</span></p>
             </div>
           </div>
           <div v-if="body.exculpatoryEvidencesList && body.exculpatoryEvidencesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">

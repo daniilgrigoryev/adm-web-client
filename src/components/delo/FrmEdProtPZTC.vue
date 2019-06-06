@@ -60,7 +60,7 @@
           <div v-if="body.annexesList && body.annexesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
             <p class="adm-14 color-dark-lighter ">Список приложений</p>
             <div v-for="(item, index) in body.annexesList" :key="index" >
-              <p class="adm-text-big color-dark-base">{{ item.name }} (Количество листов - {{item.sheets_quantity}})</p>
+              <p class="adm-text-big color-dark-base">{{ item.name }} <span v-if="item.sheets_quantity">(Количество листов - {{item.sheets_quantity}})</span></p>
             </div>
           </div>
           <hr>
