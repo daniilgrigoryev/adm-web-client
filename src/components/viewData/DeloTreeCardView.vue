@@ -12,7 +12,7 @@
               <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
             </div>
             <div class="text ">
-              Вернуться назад 
+              Вернуться назад
               ({{ prevItemTitle }})
             </div>
           </button>
@@ -628,11 +628,13 @@
             }
             arrElem.nodeParams = nodeParams;
           }
-        }
-        this.firstTreeNode = this.getCopyObj(arr.getFirst(), 'children');
-        tree.push(this.firstTreeNode);
+          if (!arrElem.parentCategory) {
+            this.firstTreeNode = this.getCopyObj(arrElem, 'children');
+            tree.push(this.firstTreeNode);
 
-        this.updateSelected();
+            this.updateSelected();
+          }
+        }
 
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
@@ -1085,7 +1087,7 @@
     }
   }
 
-  
+
 
   .delo-menu {
     display: grid;
