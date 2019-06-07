@@ -7,15 +7,15 @@
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
       <div v-if="deloContext" class="bg-white deloContext-sticky">
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross py6">
-          <div @click="getPrev" class="flex-parent flex-parent--center-cross">
-            <button type="text" title="вернуться назад" class="back-button">
+          <button type="text" @click="getPrev" title="вернуться назад" class="back-button color-dark-lighter color-blue-light-on-hover">
+            <div class="icon-wrap">
               <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
-            </button>
-            <a href="#" class="delo__headding link color-dark-lighter color-blue-light-on-hover">
-              <span class="adm-h3">Вернуться назад </span>
-              <span class="adm-h2">({{ prevItemTitle }})</span>
-            </a>
-          </div>
+            </div>
+            <div class="text ">
+              Вернуться назад 
+              ({{ prevItemTitle }})
+            </div>
+          </button>
           <div class="delo-menu">
             <div class="delo-menu--body-wrap">
               <Poptip @click.native="menuVisibleContent('menuCreateDelo', menu.createDelo)" ref="menuCreateDelo" width="350" placement="bottom-start" class="delo-menu--poptip">
@@ -1039,12 +1039,27 @@
 
 <style lang="scss" scoped>
   .back-button {
-    width: 48px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 48px;
     margin: 0 25px;
+    color: #1888cc;
+    transition: .3s ease;
+    cursor: pointer;
+    .icon-wrap {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 5px;
+      img {
+        width: 36px;
+        height: 36px;
+      }
+    }
+    .text {
+      font-size: 22px;
+    }
   }
   .pdf-viewer {
     position: fixed;
@@ -1070,13 +1085,7 @@
     }
   }
 
-  .delo__headding {
-    border-bottom: 2px solid transparent;
-  }
-
-  .delo__headding:hover {
-    border-bottom: 2px solid #00b1ff;
-  }
+  
 
   .delo-menu {
     display: grid;
