@@ -42,7 +42,7 @@ export default {
 		padding-left: 60px;
 
 		.item__icon {
-			// filter: grayscale(90%);
+			filter: grayscale(90%);
 			position: absolute;
 			left: 0;
 			top: 0;
