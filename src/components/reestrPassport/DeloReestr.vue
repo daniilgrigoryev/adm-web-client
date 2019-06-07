@@ -34,7 +34,7 @@
                           <div class="flex-parent flex-parent--column flex-parent--end-cross h-full">
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label w-full">В текущем году</div>
-                              <CustomSelect class="adm-input adm-input--big" v-model="filter.flagYear">
+                              <CustomSelect class="adm-input adm-input--big" v-model="filter.flagYear" @on-enter="filterClick">
                                 <Option value="true">Да</Option>
                                 <Option value="false">Нет</Option>
                               </CustomSelect>
@@ -60,7 +60,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Документ дела</div>
-                          <CustomSelect class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable>
+                          <CustomSelect class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable @on-enter="filterClick">
                             <Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
                           </CustomSelect>
                         </div>
@@ -77,7 +77,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">№ документа</div>
-                          <Input class="adm-input adm-input--big" v-model="filter.docN" placeholder="" clearable></Input>
+                          <Input class="adm-input adm-input--big" @on-enter="filterClick" v-model="filter.docN" placeholder="" clearable></Input>
                         </div>
                       </div>
                     </Col>
@@ -87,7 +87,6 @@
 
               <Row type="flex" justify="start" :gutter="20" v-show="hideMore">
                 <Col :xs="24" :md="12" :lg="12">
-
                       <!-- <div class="adm-12 color-dark-lighter search-label">Физическое лицо</div> -->
                       <Row type="flex" :gutter="20">
                         <Col :xs="8" :md="8" :lg="8">
@@ -95,8 +94,8 @@
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label">Фамилия</div>
                               <masked-input @onEnter="filterClick" v-model="filter.firstName" @input="changeFIO" :maskProps="maskInputFIO"
-                                          inputClass="adm-input adm-input--big" clearable
-                                          placeholder=""></masked-input>
+                                            inputClass="adm-input adm-input--big" clearable
+                                            placeholder=""></masked-input>
                             </div>
                           </div>
                         </Col>
@@ -105,7 +104,8 @@
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label">Имя</div>
                               <masked-input @onEnter="filterClick" v-model="filter.secondName" @input="changeFIO" :maskProps="maskInputFIO"
-                                          inputClass="adm-input adm-input--big" clearable placeholder=""></masked-input>
+                                            inputClass="adm-input adm-input--big"
+                                            clearable placeholder=""></masked-input>
                             </div>
                           </div>
                         </Col>
@@ -114,8 +114,8 @@
                             <div class="w-full adm-form__item">
                               <div class="adm-12 color-dark-lighter search-label">Отчество</div>
                               <masked-input @onEnter="filterClick" v-model="filter.thirdName" @input="changeFIO" :maskProps="maskInputFIO"
-                                          inputClass="adm-input adm-input--big" clearable
-                                          placeholder=""></masked-input>
+                                            inputClass="adm-input adm-input--big" clearable
+                                            placeholder=""></masked-input>
                             </div>
                           </div>
                         </Col>
@@ -128,7 +128,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Стадия дела</div>
-                            <CustomSelect class="adm-input adm-input--big" v-model="filter.stadDeloKod" filterable clearable>
+                            <CustomSelect class="adm-input adm-input--big" v-model="filter.stadDeloKod" filterable clearable @on-enter="filterClick">
                               <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
                             </CustomSelect>
                           </div>
@@ -144,7 +144,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Статья КРФоАП</div>
-                            <CustomSelect class="adm-input adm-input--big select-state" placeholder="" v-model="filter.stotvId" filterable clearable :filterMethod="filterStotv">
+                            <CustomSelect class="adm-input adm-input--big select-state" placeholder="" v-model="filter.stotvId" filterable clearable :filterMethod="filterStotv" @on-enter="filterClick">
                               <Option style="max-width: 100%;" v-for="item in articleProcDict" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                             </CustomSelect>
                           </div>
@@ -161,7 +161,7 @@
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Наименование организации</div>
                           <Input class="adm-input adm-input--big" @input="changeUlName" v-model="filter.ulName"
-                             placeholder="" clearable></Input>
+                                 @on-enter="filterClick" placeholder="" clearable></Input>
                           </div>
                         </div>
                     </Col>
@@ -178,7 +178,7 @@
                             <!-- TODO -->
                             <!-- <Input class="adm-input adm-input--big" v-model="filter.inn" placeholder=""
                               clearable></Input> -->
-                            <Input :disabled="true" class="adm-input adm-input--big" placeholder=""
+                            <Input disabled class="adm-input adm-input--big" placeholder=""
                               clearable></Input>
                         </div>
                       </div>
@@ -191,7 +191,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Почтовый идентификатор</div>
-                          <Input class="adm-input adm-input--big" v-model="filter.upi" placeholder=""
+                          <Input class="adm-input adm-input--big" v-model="filter.upi" @on-enter="filterClick" placeholder=""
                               clearable></Input>
                         </div>
                       </div>
