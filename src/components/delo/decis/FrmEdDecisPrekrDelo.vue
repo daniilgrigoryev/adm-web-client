@@ -16,6 +16,11 @@
       <div class="view-data__container">
         <div class="items-wrap">
           <view-data-item
+            label="Статья прекращения"
+            :value="body.stotvName"
+            style="grid-column: span 2;"
+          />
+          <view-data-item
             label="Основание прекращения"
             :value="body.reason"
             style="grid-column: span 2;"
