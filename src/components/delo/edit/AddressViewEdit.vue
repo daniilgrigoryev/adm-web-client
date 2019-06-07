@@ -197,7 +197,7 @@
     },
     computed: {
       showIfRussia() {
-        return this.data.countryCode === '1100' || funcUtils.isEmpty(this.data.countryCode);
+        return funcUtils.isNotEmpty(this.data) && (this.data.countryCode === '1100' || funcUtils.isEmpty(this.data.countryCode));
       },
     },
     methods: {
