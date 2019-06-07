@@ -175,11 +175,7 @@
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">ИНН</div>
-                            <!-- TODO -->
-                            <!-- <Input class="adm-input adm-input--big" v-model="filter.inn" placeholder=""
-                              clearable></Input> -->
-                            <Input disabled class="adm-input adm-input--big" placeholder=""
-                              clearable></Input>
+                             <Input class="adm-input adm-input--big" v-model="filter.inn" placeholder="" clearable @on-enter="filterClick"></Input>
                         </div>
                       </div>
                     </Col>
@@ -383,7 +379,7 @@
           birthday: null,
           regno: null,
           upi: null,
-          // inn: null,
+          inn: null,
           // deloTag: null,
         },
         sort: {

@@ -619,6 +619,11 @@
 
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
+          arrElem.height = 0;
+          let key = arrElem.category + '-' + arrElem.docId;
+          mappedArr[key] = arrElem;
+          mappedArr[key].children = [];
+
           if (funcUtils.isNotEmpty(arrElem.nodeInfo)) {
             let nodeParams = JSON.parse(arrElem.nodeInfo);
             for (let key in nodeParams) {
@@ -629,19 +634,11 @@
             arrElem.nodeParams = nodeParams;
           }
           if (!arrElem.parentCategory) {
-            this.firstTreeNode = this.getCopyObj(arrElem, 'children');
+            this.firstTreeNode = this.getCopyObj(arrElem, 'children', 'height');
             tree.push(this.firstTreeNode);
 
             this.updateSelected();
           }
-        }
-
-        for (let i = 0; i < arr.length; i++) {
-          arrElem = arr[i];
-          arrElem.height = 0;
-          let key = arrElem.category + '-' + arrElem.docId;
-          mappedArr[key] = arrElem;
-          mappedArr[key].children = [];
         }
 
         for (let i = 0; i < arr.length; i++) {
