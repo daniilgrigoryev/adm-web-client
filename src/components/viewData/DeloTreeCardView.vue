@@ -153,7 +153,6 @@
           addDocument: {
             ApplyDocOnDelo: 'ApplyDocOnDelo',
             AddFotoVideo: 'AddFotoVideo',
-            Explanation: 'Explanation',
             ProtAPN: 'ProtAPN',
             OpredProvedAP: 'OpredProvedAP',
             PostDeloAPN: 'PostDeloAPN',
@@ -161,8 +160,6 @@
             Izvesh: 'Izvesh',
             ChangeDateRasmDelo: 'ChangeDateRasmDelo',
             HodatayProdlSrok: 'HodatayProdlSrok',
-            DecicAppeal: 'DecicAppeal',
-            ConclusAppeal: 'ConclusAppeal',
             DocumentUchast: 'DocumentUchast',
             Petition: 'Petition',
           },
@@ -174,11 +171,6 @@
             text: "Приложить документ к делу",
             visible: "ApplyDocOnDelo",
             action: this.addDocPhotoWizard,
-          },
-          {
-            text: "Объяснение",
-            visible: "Explanation",
-            action: "",
           },
           {
             text: "Протокол об АПН",
@@ -219,16 +211,6 @@
             text: "Определение по ходатайству",
             visible: "Petition",
             action: this.createWizardAddDefinitionPetition,
-          },
-          {
-            text: "Решение по жалобе",
-            visible: "DecicAppeal",
-            action: "",
-          },
-          {
-            text: "Заключение по жалобе",
-            visible: "ConclusAppeal",
-            action: "",
           },
           {
             text: "Документ участника",
@@ -508,9 +490,6 @@
           case 'AddFotoVideo': {
             return current.params.recType === constants.DELO;
           }
-          case 'Explanation': {
-            return current.params.recType === constants.DELO;
-          }
           case 'ProtAPN': {
             let apnDocs = this.dataStore.tree.filter((item) => {
               return item.recType === constants.DOCS_POST || item.recType === constants.DOCS_PROT;
@@ -574,12 +553,6 @@
           }
           case 'HodatayProdlSrok': {
             return current.params.recType === constants.DOCS_OPRED && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW);
-          }
-          case 'DecicAppeal': {
-            return current.params.recType === constants.DOCS_GALOB;
-          }
-          case 'ConclusAppeal': {
-            return current.params.recType === constants.DOCS_GALOB;
           }
           case 'DocumentUchast': {
             return current.params.recType === constants.UCHASTFL || current.params.recType === constants.UCHASTOTHER;

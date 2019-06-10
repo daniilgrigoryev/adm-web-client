@@ -6,9 +6,9 @@ import $ from "jquery";
 import './components/shared/Filters'
 import '@mapbox/assembly/dist/assembly.min.css';
 import '@mapbox/assembly/dist/assembly.js';
-import iView from 'iview';
-import locale from 'iview/dist/locale/ru-RU';
-import 'iview/dist/styles/iview.css';
+import iView from '~/assets/js/vendor/iview';
+import locale from '~/assets/js/vendor/iview/dist/locale/ru-RU';
+import '~/assets/js/vendor/iview/dist/styles/iview.css';
 
 import './assets/scss/common.scss';
 
