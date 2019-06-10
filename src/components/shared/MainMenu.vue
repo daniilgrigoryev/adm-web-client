@@ -20,7 +20,7 @@
         <Col :xs="24" :md="24" :lg="20">
           <Menu mode="horizontal" active-name="1" :active-name="activeName" @on-select="selectMenu" class="header-menu">
             <div class="flex-parent flex-parent--wrap flex-parent--center-main">
-              <MenuItem name="1" class="header-menu__item">Реестр дел</MenuItem>
+              <MenuItem name="1" class="header-menu__item">Поиск дел</MenuItem>
               <MenuItem name="2" class="header-menu__item">Возбудить дело</MenuItem>
               <MenuItem name="3" class="header-menu__item">Учет спецпродукции</MenuItem>
               <MenuItem name="4" class="header-menu__item">Состояние выгрузки</MenuItem>

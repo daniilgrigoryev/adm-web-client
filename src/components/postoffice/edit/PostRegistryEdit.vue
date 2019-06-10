@@ -1,11 +1,11 @@
 <!-- prettier-ignore -->
 <template>
-  <main v-if="postRegistry">
+  <aside-template v-if="postRegistry">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Создание нового почтового реестра</h2>
+            <h2 class="adm-form__headding" id="head">Редактирование почтового реестра</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-form__label">Исходящий номер</small>
@@ -31,7 +31,7 @@
                 <small class="adm-form__label">Тип реестра</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="22">
+                    <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.regType" clearable filterable  @on-change="changeRegType">
                         <Option class=" " v-for="item in postRegTypeDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
@@ -43,7 +43,7 @@
                 <small class="adm-form__label">Статус реестра</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="22">
+                    <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.status" clearable filterable  @on-change="store">
                         <Option class=" " v-for="item in postRegStatusDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
@@ -55,7 +55,7 @@
                 <small class="adm-form__label">Тип доставки реестра</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="22">
+                    <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.deliveryType" :disabled="!postRegistry.regType" clearable filterable  @on-change="store">
                         <Option class=" " v-for="item in deliveryTypeDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
@@ -67,7 +67,7 @@
                 <small class="adm-form__label">Список почтовых отделений</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="22">
+                    <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.postNum" clearable filterable  @on-change="store">
                         <Option class=" " v-for="item in postOfficesDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
@@ -79,7 +79,7 @@
                 <small class="adm-form__label">Список ассоциированных контрактов</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="24" :lg="22">
+                    <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.contractId" clearable filterable  @on-change="store">
                         <Option class=" " v-for="item in contractsDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
@@ -126,7 +126,7 @@
       <Button @click="getPrev" type="text">Отменить изменения</Button>
       <Button @click="save" type="primary" class="ml12">Сохранить</Button>
     </div>
-  </main>
+  </aside-template>
 </template>
 
 <script>
@@ -137,6 +137,7 @@
   export default {
     name: "PostRegistryEdit",
     components: {
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
     },
     async created() {
       await this.init();

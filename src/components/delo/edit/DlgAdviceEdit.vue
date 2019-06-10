@@ -1,5 +1,5 @@
 <template>
-  <aside-template :listSectionNav="[]" title="Редактирование Извещения" v-if="dataAdvice">
+  <aside-template :listSectionNav="[]" v-if="dataAdvice">
     <div class="layout-wrap">
       <div class="layout">
         <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
@@ -8,58 +8,26 @@
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="head">Редактирование Извещения {{ dataAdvice.docN ? "№" + dataAdvice.docN : "" }}</h2>
             <div class="adm-form__content">
-              <Row>
-                <Col span="12">
-                  <div class="adm-form__item">
-                    <small class="adm-form__label">Номер извещения</small>
-                    <div class="adm-form__item_content">
-                      <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="24" :md="14" :lg="24">
-                          <masked-input @onInputChange="store" v-model="dataAdvice.docN" inputClass="adm-input adm-input--regular wmin120 wmax180" :maskProps="{placeholder: '', regex: '[0-9\/\-]+'}" clearable></masked-input>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Col>
-                <Col span="12">
-                  <div class="adm-form__item">
-                    <small class="adm-form__label">Дата рассмотрения</small>
-                    <div class="adm-form__item_content">
-                      <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateRasm" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM" disabled></DatePickerMask>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col span="12">
-                  <div class="adm-form__item">
-                    <small class="adm-form__label">Дата составления</small>
-                    <div class="adm-form__item_content">
-                      <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateSost" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM" disabled></DatePickerMask>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Col>
-                <Col span="12">
-                  <div class="adm-form__item">
-                    <small class="adm-form__label">Дата вручения</small>
-                    <div class="adm-form__item_content">
-                      <Row :gutter="16" type="flex" align="middle">
-                        <Col :xs="24" :md="24" :lg="24">
-                          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateUved" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM" disabled></DatePickerMask>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Номер извещения</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="14" :lg="24">
+                      <masked-input @onInputChange="store" v-model="dataAdvice.docN" inputClass="adm-input adm-input--regular wmin120 wmax180" :maskProps="{placeholder: '', regex: '[0-9\/\-]+'}" clearable></masked-input>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Дата рассмотрения</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="dataAdvice.dateRasm" @change="store" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM" disabled></DatePickerMask>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
             </div>
           </div>
           <div class="adm-form__container">
