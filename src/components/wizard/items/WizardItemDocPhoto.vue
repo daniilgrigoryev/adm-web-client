@@ -15,14 +15,20 @@
            :key="item.id"
       >
         <div class="item-preview">
-          <img v-if="item.type === 'image/png' || item.type === 'image/jpeg'"
+          <img v-if="item.type === constants.PNG_MIME_TYPE || item.type === constants.JPEG_MIME_TYPE"
                :src="item.body" alt="">
-          <img v-if="item.type === 'application/pdf'"
+
+          <img v-else-if="item.type === constants.PDF_MIME_TYPE"
                :src="require('~/assets/images/icons/dokument-pdf.svg')" alt="">
-          <img v-if="item.type === 'application/pgp-signature'"
+
+          <img v-else-if="item.type === constants.PGP_SIGNATURE_MIME_TYPE"
+               :src="require('~/assets/images/icons/dokument-digital.svg')" alt="">
+
+          <img v-else-if="item.type === constants.DOCX_MIME_TYPE"
                :src="require('~/assets/images/icons/dokument-docx.svg')" alt="">
-          <img v-if="item.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'"
-               :src="require('~/assets/images/icons/dokument-docx.svg')" alt="">
+
+          <img v-else-if="item.type === constants.WEBM_MIME_TYPE || item.type === constants.MP4_MIME_TYPE"
+               :src="require('~/assets/images/icons/foto-kamera-varialt-1.svg')" alt="">
         </div>
         <div class="file-name">{{item.name}}</div>
         <button class="remove" @click="removeItem(item, index)"><img :src="require('~/assets/images/icons/remove.svg')" alt=""></button>
@@ -33,6 +39,7 @@
 
 <script>
 import RequestApi from "~/assets/js/api/requestApi";
+import * as constants from "~/assets/js/utils/constants";
 
 export default {
   name: "WizardItemDocPhoto",
@@ -65,15 +72,16 @@ export default {
       dragAndDropCapable: false,
       fileError: null,
       allowedFiles: [
-        "image/png",
-        "image/jpeg",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "video/mp4",
-        "application/pdf",
-        "application/pgp-signature",
-        "video/webm"
+        constants.PNG_MIME_TYPE,
+        constants.JPEG_MIME_TYPE,
+        constants.DOCX_MIME_TYPE,
+        constants.MP4_MIME_TYPE,
+        constants.PDF_MIME_TYPE,
+        constants.PGP_SIGNATURE_MIME_TYPE,
+        constants.WEBM_MIME_TYPE
       ],
-      filesArray: []
+      filesArray: [],
+      constants
     };
   },
   methods: {
@@ -105,25 +113,25 @@ export default {
             type: file.type
           };
           switch (file.type) {
-            case "image/png":
-            case "image/jpeg": {
+            case constants.PNG_MIME_TYPE:
+            case constants.JPEG_MIME_TYPE: {
               item.body = `data:${file.type};base64,${fileBody}`;
               break;
             }
-            case "video/webm":
-            case "video/mp4": {
+            case constants.WEBM_MIME_TYPE:
+            case constants.MP4_MIME_TYPE: {
               item.body = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
               break;
             }
-            case "application/pdf": {
+            case constants.PDF_MIME_TYPE: {
               item.body = require("~/assets/images/icons/dokument-pdf.svg");
               break;
             }
-            case "application/pgp-signature": {
+            case constants.PGP_SIGNATURE_MIME_TYPE: {
               item.body = require("~/assets/images/icons/dokument-digital.svg");
               break;
             }
-            case "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
+            case constants.DOCX_MIME_TYPE: {
               item.body = require("~/assets/images/icons/dokument-docx.svg");
               break;
             }
@@ -266,8 +274,7 @@ export default {
         let file = files
           .filter(item => {
             return item.name === dataFile.name;
-          })
-          .getFirst();
+          }).getFirst();
         if (!file) {
           continue;
         }
@@ -280,25 +287,25 @@ export default {
             type: file.type
           };
           switch (file.type) {
-            case "image/png":
-            case "image/jpeg": {
+            case constants.PNG_MIME_TYPE:
+            case constants.JPEG_MIME_TYPE: {
               item.body = this.byteArrayToBase64(file.byteArray, file.type);
               break;
             }
-            case "video/webm":
-            case "video/mp4": {
+            case constants.WEBM_MIME_TYPE:
+            case constants.MP4_MIME_TYPE: {
               item.body = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
               break;
             }
-            case "application/pdf": {
+            case constants.PDF_MIME_TYPE: {
               item.body = require("~/assets/images/icons/dokument-pdf.svg");
               break;
             }
-            case "application/pgp-signature": {
+            case constants.PGP_SIGNATURE_MIME_TYPE: {
               item.body = require("~/assets/images/icons/dokument-digital.svg");
               break;
             }
-            case "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
+            case constants.DOCX_MIME_TYPE: {
               item.body = require("~/assets/images/icons/dokument-docx.svg");
               break;
             }
@@ -357,25 +364,6 @@ export default {
           })
         }
       });
-    },
-    async clearPreview() {
-      this.filesArray = [];
-      this.clearFile();
-      for (let i = 0; i < this.data.files.length; i++) {
-        let file = this.data.files[i];
-        await RequestApi.prepareData({
-          method: "invokeElementMethod",
-          params: {
-            eCID: this.info.eCID,
-            methodName: "removeFile",
-            data: JSON.stringify({
-              fileName: file.name
-            })
-          }
-        });
-      }
-      this.data.files = [];
-      await this.storeElementData();
     },
     async storeElementData() {
       return new Promise((resolve, reject) => {

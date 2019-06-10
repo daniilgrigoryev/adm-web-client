@@ -79,7 +79,7 @@ export const JPEG_MIME_TYPE='image/jpeg';
 /** Mime тип PNG */
 export const PNG_MIME_TYPE='image/png';
 /** Mime тип MP4 */
-export const MP4_MIME_TYPE='avideo/mp4';
+export const MP4_MIME_TYPE='video/mp4';
 /** Mime тип WEBM */
 export const WEBM_MIME_TYPE='video/webm';
 /** Mime тип DOCX */

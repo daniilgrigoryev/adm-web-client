@@ -191,8 +191,9 @@
               }
               case constants.WEBM_MIME_TYPE:
               case constants.MP4_MIME_TYPE: {
-                item.preview = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
-                item.body = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
+                const icon = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
+                item.preview = icon;
+                item.body = icon;
                 item.class = "--icon";
                 break;
               }
@@ -212,7 +213,9 @@
                 break;
               }
               case constants.PGP_SIGNATURE_MIME_TYPE: {
-                item.preview = require("~/assets/images/icons/dokument-digital.svg");
+                const icon = require("~/assets/images/icons/dokument-digital.svg");
+                item.preview = icon;
+                item.body = icon;
                 item.class = "--icon";
                 break;
               }
