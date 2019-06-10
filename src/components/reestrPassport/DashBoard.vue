@@ -7,7 +7,7 @@
           class="prev"
           @click="toPrevListItem()"
           type="button"
-          title="вернуться назад"
+          title="Назад"
         >
           <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
         </button>

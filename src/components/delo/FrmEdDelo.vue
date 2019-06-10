@@ -17,7 +17,7 @@
               </div>
               <div class="ml18">
                 <p class="adm-14 color-dark-lighter">Дата - время нарушения</p>
-                <p class="adm-text-big color-dark-base py6">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+                <p class="adm-text-big color-dark-base py6">{{viol.violDatNar | formatDateTime('DD.MM.YYYY HH:MM')}}</p>
               </div>
             </div>
           </div>

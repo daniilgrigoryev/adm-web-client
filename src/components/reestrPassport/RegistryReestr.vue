@@ -43,7 +43,6 @@
     <div v-if="!isEmptyData()" class="bg-white">
       <div class="wmax1920 mx-auto">
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6 bg-white-light">
-
           <div class="flex-parent flex-parent--center-cross">
             <p class="adm-txt-regular color-dark-medium ml18" v-if="data.length > 0"> {{
               declOfNum(data.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ data.length}}
@@ -59,7 +58,7 @@
               <Icon type="ios-arrow-down"></Icon>
             </Button>
             <DropdownMenu slot="list" class="wmin240">
-              <DropdownItem v-for="column in columnsOptions" :key="column.id" class="px0 py0">
+              <DropdownItem v-for="column in tableColumnsForOptions" :key="column.id" class="px0 py0">
                 <Checkbox v-model="column.visible" class="adm-text-small py6 align-middle ml12">
                   <span class="mx6">{{column.title}}</span>
                 </Checkbox>
@@ -72,7 +71,7 @@
         </div>
 
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
-               :stripe="false" :height="tableHeight" @on-sort-change="sortClick"></Table>
+               :stripe="false" :height="tableHeight" @on-row-dblclick="editRegistry" @on-sort-change="sortClick"></Table>
       </div>
     </div>
   </div>
@@ -140,120 +139,176 @@ export default {
       sort: {},
       columnsOptions: [
         {
-          title: "Исходящий номер", // Исходящий номер
+          title: '',
+          key: 'status',
+          align: 'center',
+          width: 25,
+          ellipsis: true,
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h('div', [
+              h('p', {
+                class: {
+                  'color-dark-lighter': true,
+                  'adm-text-big': true,
+                  'txt-normal': true,
+                },
+              }, params.column.title)
+            ])
+          },
+          render: (h, params) => {
+            let color = this.changeClass(params.row.status);
+            return h('div', {}, [
+              h('div', {
+                class: ['round-full', 'w12', 'h12', 'inline-block', 'cursor-pointer', color],
+                attrs: {
+                  title: params.row.status
+                }
+              }),
+            ])
+          }
+        },
+        {
+          title: "№", // Исходящий номер
           key: "curIssue",
-          position: 6,
           minWidth: 180,
           ellipsis: true,
           referenceName: "curIssue",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
-            return h("div", [
-              h(
-                "p",
-                {
-                  class: {
-                    "color-dark-medium": true,
-                    "adm-text-big": true,
-                    "txt-normal": true
-                  }
+            return h('div', [
+              h('p', {
+                class: {
+                  'color-dark-medium': true,
+                  'adm-text-big': true,
+                  'txt-normal': true,
                 },
-                params.column.title
-              ),
-              h(
-                "p",
-                {
-                  class: {
-                    "color-dark-base": true,
-                    "adm-12": true,
-                    "line-height100": true,
-                    "txt-truncate": true,
-                    "txt-normal": true
-                  }
+              }, params.column.title),
+              h('p', {
+                class: {
+                  'color-dark-base': true,
+                  'adm-12': true,
+                  'line-height100': true,
+                  'txt-truncate': true,
+                  'txt-normal': true
                 },
-                "Исходящий номер"
-              )
-            ]);
+              }, 'Статус'),
+            ])
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.curIssue)]);
+            return h("div", [
+              h("p",{class:{"color-blue": true}}, params.row.curIssue),
+              h("p", params.row.statusName)
+            ]);
           }
         },
         {
-          title: "Действия",
-          width: 120,
-          align: "center",
-          key: "action",
+          title: "Автор",
+          key: "authorName",
+          minWidth: 100,
+          ellipsis: true,
+          referenceName: "authorName",
           visible: true,
+          tooltip: true,
           renderHeader: (h, params) => {
-            return h(
-              "Tooltip",
-              {
-                props: {
-                  placement: "left",
-                  content: params.column.title,
-                  transfer: true
-                }
-              },
-              [
-                h("div", [
-                  h(
-                    "p",
-                    {
-                      class: {
-                        "color-dark-medium": true,
-                        "adm-text-big": true,
-                        "txt-normal": true
-                      }
-                    },
-                    params.column.title
-                  )
-                ])
-              ]
-            );
+            return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [
-              h("Icon", {
-                props: {
-                  type: "ios-open-outline",
-                  size: 22
-                },
-                style: {
-                  cursor: "pointer",
-                  color: "#2d8cf0"
-                },
-                attrs: {
-                  title: "Просмотр"
-                },
-                on: {
-                  click: () => {
-                    this.showRegistry(params.row);
-                  }
-                }
-              }),
-              h("Icon", {
-                props: {
-                  type: "ios-open-outline",
-                  size: 22
-                },
-                style: {
-                  cursor: "pointer",
-                  color: "#2d8cf0"
-                },
-                attrs: {
-                  title: "Редактирование"
-                },
-                on: {
-                  click: () => {
-                    this.editRegistry(params.row);
-                  }
-                }
-              })
-            ]);
+            return h("div", [h("p", params.row.authorName)]);
           }
-        }
+        },
+        {
+          title: "Контракт",
+          key: "contractName",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "contractName",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", params.row.contractName)]);
+          }
+        },
+        {
+          title: "Дата создания",
+          key: "creationDate",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "creationDate",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", this.$options.filters.formatDateTime(params.row.creationDate, "DD.MM.YYYY HH:MM"))]);
+          }
+        },
+        {
+          title: "Дата отправки",
+          key: "sendDate",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "sendDate",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", this.$options.filters.formatDateTime(params.row.sendDate, "DD.MM.YYYY HH:MM"))]);
+          }
+        },
+        {
+          title: "Отправления",
+          key: "sendingsNum",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "sendingsNum",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", params.row.sendingsNum)]);
+          }
+        },
+        {
+          title: "Дата выгрузки",
+          key: "unloadDate",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "unloadDate",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", this.$options.filters.formatDateTime(params.row.unloadDate, "DD.MM.YYYY HH:MM"))]);
+          }
+        },
+        {
+          title: "Состояние выгрузки",
+          key: "unloadState",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "unloadState",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", params.row.unloadState)]);
+          }
+        },
       ]
     };
   },
@@ -315,6 +370,45 @@ export default {
       return (
         funcUtils.isEmpty(this.dataStore) ||
         funcUtils.isEmpty(this.dataStore.body)
+      );
+    },
+    changeClass(statusId) {
+      if (funcUtils.isNotEmpty(statusId)) {
+        switch (statusId) {
+          // 0-3 - красный
+          // 4-7 - жёлтый
+          // 8 и выше - зелёный
+          case 0: {
+            return "bg-red";
+          }
+          case 1: {
+            return "bg-yellow";
+          }
+          case 2: {
+            return "bg-green";
+          }
+          default: {
+            return "bg-green";
+          }
+        }
+      }
+    },
+    tableColumnsForOptions() {
+      return this.columnsOptions.filter(
+        column =>
+          ![
+            "action",
+            "deloN",
+            "deloDate",
+            "stadDeloName",
+            "checkPriority",
+            "birthday",
+            "lvokName",
+            "decisNameFirst",
+            "decisNameLast",
+            "stadIspolnNameLast",
+            "lockName"
+          ].includes(column.key)
       );
     },
     declOfNum(number, titles) {
@@ -557,7 +651,8 @@ export default {
     showRegistry(registry) {
       try {
         let params = {
-          id: registry.id
+          id: registry.id,
+          title: "Почтовые реестры"
         };
 
         formStack.toNext({
@@ -574,7 +669,8 @@ export default {
     editRegistry(registry) {
       try {
         let params = {
-          id: registry.id
+          id: registry.id,
+          title: "Почтовые реестры"
         };
 
         formStack.toNext({
@@ -596,7 +692,7 @@ export default {
           notRemoved: false,
           withCreate: true,
           params: {
-            title: 'Почтовые реестры'
+            title: "Почтовые реестры"
           }
         });
       } catch (e) {
@@ -607,59 +703,51 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-  .select-state .ivu-select-dropdown .ivu-select-dropdown-list .ivu-select-item{
-    padding-left: 16px;
-  }
-  .select-state .ivu-select-dropdown .ivu-select-dropdown-list .ivu-select-item.ivu-select-item-selected{
-    background-image: none;
-  }
-  .adm-form {
-  }
-  .breadcrumbs {
-    height: 46px;
-    padding: 0 24px;
-    color: #6B94C2;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 600;
-    background: #fff;
-    border-bottom: 1px solid #CCCCCC;
-  }
-  .adm-search-filter-panel {
-    display: grid;
-    grid-template-columns: repeat(3 , 250px) 1fr;
-    grid-gap: 0 35px;
-    .adm-form__item {
-      display: block;
-      .adm-form__item-label {
-        height: 18px;
-      }
-    }
-    .buttons-wrap {
-      grid-row: span 2;
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      grid-auto-flow: column;
-      align-items: flex-end;
-      justify-content: flex-start;
-      grid-gap: 0 20px;
-      .adm-btn {
-        width: 140px;
-        height: 45px;
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 5px 0;
-        padding: 0;
-        &.adm-btn--blue {
-          text-transform: uppercase;
-          color: #fff;
-          background: #1888CC;
-        }
-      }
-    }
 
+.breadcrumbs {
+  height: 46px;
+  padding: 0 24px;
+  color: #6b94c2;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  background: #fff;
+  border-bottom: 1px solid #cccccc;
+}
+.adm-search-filter-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 250px) 1fr;
+  grid-gap: 0 35px;
+  .adm-form__item {
+    display: block;
+    .adm-form__item-label {
+      height: 18px;
+    }
   }
+  .buttons-wrap {
+    grid-row: span 2;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    grid-gap: 0 20px;
+    .adm-btn {
+      width: 140px;
+      height: 45px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 5px 0;
+      padding: 0;
+      &.adm-btn--blue {
+        text-transform: uppercase;
+        color: #fff;
+        background: #1888cc;
+      }
+    }
+  }
+}
 </style>

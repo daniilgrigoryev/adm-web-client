@@ -7,12 +7,12 @@
     <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
       <div v-if="deloContext" class="bg-white deloContext-sticky">
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross py6">
-          <button type="text" @click="getPrev" title="вернуться назад" class="back-button color-dark-lighter color-blue-light-on-hover">
+          <button type="text" @click="getPrev" title="Назад" class="back-button color-dark-lighter color-blue-light-on-hover">
             <div class="icon-wrap">
               <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
             </div>
             <div class="text ">
-              Вернуться назад
+              Назад
               ({{ prevItemTitle }})
             </div>
           </button>

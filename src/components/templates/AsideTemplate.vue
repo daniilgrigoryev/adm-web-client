@@ -2,10 +2,10 @@
   <div class="aside-template">
     <aside>
       <h3>
-        <button @click="getPrev" type="button" title="вернуться назад">
+        <button @click="getPrev" type="button" title="Назад">
           <img :src="require('~/assets/images/icons/btn-back.svg')" alt="">
         </button>
-        Вернуться назад ({{ prevItemTitle }})
+        Назад ({{ prevItemTitle }})
       </h3>
       <h3 v-if="listSectionNav && listSectionNav.length">Список подразделов</h3>
       <ul v-if="listSectionNav">

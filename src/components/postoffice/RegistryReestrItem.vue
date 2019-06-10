@@ -7,7 +7,7 @@
           <div class="flex-parent flex-parent--center-cross">
 
             <Button @click="getPrev" type="text" style="outline: 0!important;"
-                    class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="вернуться назад">
+                    class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="Назад">
               <Icon type="ios-arrow-dropleft"
                     class="  px0 py0 mx0 my0" :size="30"/>
             </Button>

@@ -2,105 +2,121 @@
   <div class="content">
     <masked-input :value="currentValue" @onClick="onClick" @onEnter="onEnter" @onBlur="onBlur" @onClear="onClear" :maskProps="maskInput" :disabled="disabled" :readonly="readonly" :clearable="clearable" :placeholder="placeholder"></masked-input>
 
-    <i v-if="!isHidden" @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
+    <i v-if="!isHidden" :class="{active: currentValue === null}" @click="onClick" class="date-icon ivu-icon ivu-icon-ios-calendar-outline ivu-input-icon ivu-input-icon-normal"></i>
   </div>
 </template>
 
 <script>
-  import * as funcUtils from "~/assets/js/utils/funcUtils";
+import * as funcUtils from "~/assets/js/utils/funcUtils";
 
-  export default {
-    name: "CalendarBody",
-    components: {
+export default {
+  name: "CalendarBody",
+  components: {},
+  props: {
+    value: Date,
+    clearable: Boolean,
+    disabled: {
+      type: Boolean
     },
-    props: {
-      value: Date,
-      clearable: Boolean,
-      disabled: {
-        type: Boolean
-      },
-      readonly: {
-        type: Boolean
-      },
-      placeholder: String,
-      maskFormat: String,
-      momentFormat: String,
+    readonly: {
+      type: Boolean
     },
-    created() {
+    placeholder: String,
+    maskFormat: String,
+    momentFormat: String
+  },
+  created() {
+    if (funcUtils.isNotEmpty(this.value)) {
+      this.currentValue = funcUtils.parseDateTime(
+        this.value,
+        this.momentFormat
+      );
+    } else {
+      this.currentValue = null;
+    }
+  },
+  watch: {
+    value(newValue, oldValue) {
       if (funcUtils.isNotEmpty(this.value)) {
-        this.currentValue = funcUtils.parseDateTime(this.value, this.momentFormat);
+        this.currentValue = funcUtils.parseDateTime(
+          newValue,
+          this.momentFormat
+        );
       } else {
         this.currentValue = null;
       }
-    },
-    watch: {
-      value(newValue, oldValue) {
-        if (funcUtils.isNotEmpty(this.value)) {
-          this.currentValue = funcUtils.parseDateTime(newValue, this.momentFormat);
-        } else {
-          this.currentValue = null;
-        }
+    }
+  },
+  computed: {
+    isHidden() {
+      return this.disabled || this.readonly;
+    }
+  },
+  data() {
+    return {
+      maskInput: {
+        alias: "datetime",
+        placeholder: this.placeholder,
+        inputFormat: this.maskFormat
       },
-    },
-    computed: {
-      isHidden() {
-        return this.disabled || this.readonly;
-      },
-    },
-    data() {
-      return {
-        maskInput: {
-          alias: "datetime",
-          placeholder: this.placeholder,
-          inputFormat: this.maskFormat
-        },
-        currentValue: null
+      currentValue: null
+    };
+  },
+  methods: {
+    onEnter(e) {
+      let value = e.currentTarget.value;
+      let date = funcUtils.formatDateTime(value, this.momentFormat);
+      if (date.isValid()) {
+        this.$emit("change", date.toDate());
+      } else {
+        this.$emit("change", null);
+        this.currentValue = null;
       }
+      this.$emit("hide");
     },
-    methods: {
-      onEnter(e) {
-        let value = e.currentTarget.value;
+    onBlur(e) {
+      let value = e.currentTarget.value;
+      if (value !== this.currentValue) {
         let date = funcUtils.formatDateTime(value, this.momentFormat);
         if (date.isValid()) {
-          this.$emit('change', date.toDate());
-        } else {
-          this.$emit('change', null);
-          this.currentValue = null;
+          this.$emit("change", date.toDate());
+          this.$emit("hide");
         }
-        this.$emit('hide');
-      },
-      onBlur(e) {
-        let value = e.currentTarget.value;
-        if (value !== this.currentValue) {
-          let date = funcUtils.formatDateTime(value, this.momentFormat);
-          if (date.isValid()) {
-            this.$emit('change', date.toDate());
-            this.$emit('hide');
-          }
-        }
-      },
-      onClick(e) {
-        if (!this.disabled && !this.readonly) {
-          this.$emit('onClick');
-        }
-      },
-      onClear(e) {
-        this.currentValue = null;
-        this.$emit('onClear');
-        this.$emit('hide');
-      },
+      }
+    },
+    onClick(e) {
+      if (!this.disabled && !this.readonly) {
+        this.$emit("onClick");
+      }
+    },
+    onClear(e) {
+      this.currentValue = null;
+      this.$emit("onClear");
+      this.$emit("hide");
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
-  .content {
-    display: flex;
-    justify-items: flex-start;
-    align-items: center;
-
-    .date-icon {
-      position: relative;
-    }
+.content {
+  display: flex;
+  justify-items: flex-start;
+  align-items: center;
+  .date-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
   }
+  &:hover {
+    .date-icon {
+      display: none;
+      &.active {
+        display: block;
+      }
+    } 
+  }
+}
 </style>

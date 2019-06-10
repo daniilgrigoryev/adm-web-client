@@ -1,6 +1,6 @@
 <!-- prettier-ignore -->
 <template>
-  <aside-template v-if="postRegistry">
+  <aside-template v-if="postRegistry" :listSectionNav="listSectionNav">
     <div class="layout-wrap">
       <div class="layout">
         <div class="adm-form">
@@ -162,6 +162,16 @@
         deliveryTypeDict: [],
         postOfficesDict: [],
         contractsDict: [],
+        listSectionNav: [
+          {
+            title: "Редактирование реестра",
+            name: "nar",
+          },
+          {
+            title: "Отправления",
+            name: "nar",
+          },
+        ]
       }
     },
     methods: {
