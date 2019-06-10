@@ -11,7 +11,7 @@
     <div class="material-items-wrap">
       <div class="material-item" v-for="item in filesArray" :key="item.id">
         <div class="item-preview" @click="openModal(item)">
-          <img :src="item.body" alt="" :class="item.class">
+          <img :src="item.preview" alt="" :class="item.class">
           <div class="hov-block"><img :src="require('~/assets/images/icons/resize-diagonal.svg')" alt=""></div>
         </div>
         <div class="text-wrap">
@@ -29,7 +29,7 @@
     <div class="modal" v-if="modal.status">
       <div class="head">
         <div class="name-wrap">
-          <button class="back" @click="closeModal()">
+          <button class="back" @click="closeModal">
             <img :src="require('~/assets/images/icons/arrow-to-left.svg')" alt="">
           </button>
           <div class="name">
@@ -47,7 +47,9 @@
         </div>
       </div>
       <div class="body">
-        <img :src="modal.data.body" alt="">
+        <div id="docx" v-if="modal.data.mimeType === constants.DOCX_MIME_TYPE" v-html="modal.data.body.innerHTML"></div>
+        <embed v-else-if="modal.data.mimeType === constants.PDF_MIME_TYPE" :src="modal.data.body" />
+        <img v-else :src="modal.data.body" alt="">
       </div>
     </div>
   </div>
@@ -55,10 +57,14 @@
 
 <script>
   import * as ConstantUtils from "~/assets/js/utils/constantUtils";
+  import * as constants from "~/assets/js/utils/constants";
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
+
+  const docx = require('docx-preview');
+  window.JSZip = require('jszip');
 
   export default {
     name: "FrmEdMediaMaterial",
@@ -105,6 +111,7 @@
           data: {},
         },
         filesArray: [],
+        constants
       }
     },
     computed: {
@@ -155,7 +162,7 @@
         let vm = params.vm;
         let storeFilesArray = this.dataStore.fotoList;
 
-        this.filesArray = [];
+        vm.filesArray = [];
         if (storeFilesArray && storeFilesArray.length > 0) {
           for (let i = 0; i < storeFilesArray.length; i++) {
             let file = storeFilesArray[i];
@@ -163,10 +170,11 @@
               docNum: file.docNum,
               date: file.docDate,
               mediaId: file.mediaId,
+              mimeType: file.mimeType,
             };
             switch (file.mimeType) {
-              case 'image/png':
-              case 'image/jpeg': {
+              case constants.PNG_MIME_TYPE:
+              case constants.JPEG_MIME_TYPE: {
                 let eventResponse = await RequestApi.prepareData({
                   method: 'getPhotoBody',
                   params: {
@@ -175,36 +183,70 @@
                   cid: cid
                 });
                 if (eventResponse.response) {
-                  let photo = JSON.parse(eventResponse.response).data;
-                  item.body = `data:${file.mimeType};base64,${photo}`;
+                  let body = JSON.parse(eventResponse.response).data;
+                  item.preview = `data:${file.mimeType};base64,${body}`;
+                  item.body = `data:${file.mimeType};base64,${body}`;
                 }
                 break;
               }
-              case "video/webm":
-              case "video/mp4": {
+              case constants.WEBM_MIME_TYPE:
+              case constants.MP4_MIME_TYPE: {
+                item.preview = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
                 item.body = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
                 item.class = "--icon";
                 break;
               }
-              case "application/pdf": {
-                item.body = require("~/assets/images/icons/dokument-pdf.svg");
+              case constants.PDF_MIME_TYPE: {
+                item.preview = require("~/assets/images/icons/dokument-pdf.svg");
+                let eventResponse = await RequestApi.prepareData({
+                  method: 'getPhotoBody',
+                  params: {
+                    'mediaMetaId': file.mediaId
+                  },
+                  cid: cid
+                });
+                if (eventResponse.response) {
+                  let body = JSON.parse(eventResponse.response).data;
+                  item.body = `data:${file.mimeType};base64,${body}`;
+                }
+                break;
+              }
+              case constants.PGP_SIGNATURE_MIME_TYPE: {
+                item.preview = require("~/assets/images/icons/dokument-digital.svg");
                 item.class = "--icon";
                 break;
               }
-              case "application/pgp-signature": {
-                item.body = require("~/assets/images/icons/dokument-digital.svg");
-                item.class = "--icon";
-                break;
-              }
-              case "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {
-                item.body = require("~/assets/images/icons/dokument-docx.svg");
-                item.class = "--icon";
+              case constants.DOCX_MIME_TYPE: {
+                item.preview = require("~/assets/images/icons/dokument-docx.svg");
+                let eventResponse = await RequestApi.prepareData({
+                  method: 'getPhotoBody',
+                  params: {
+                    'mediaMetaId': item.mediaId
+                  },
+                  cid: cid
+                });
+                if (eventResponse.response) {
+                  let docxEl = document.createElement('div');
+                  let photo = JSON.parse(eventResponse.response).data;
+                  const blob = this.base64ToBlob(photo, item.mimeType);
+                  await docx.renderAsync(blob, docxEl);
+                  item.body = docxEl;
+                }
                 break;
               }
             }
-            this.filesArray.push(item);
+            vm.filesArray.push(item);
           }
         }
+      },
+      base64ToBlob(base64, type) {
+        const byteCharacters = atob(base64);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        return new Blob([byteArray], {type: type});
       },
       async downloadMedia(item) {
         try {
@@ -232,13 +274,13 @@
           });
         }
       },
-      openModal(item) {
+      async openModal(item) {
         this.modal.status = true;
-        this.modal.data = item
+        this.modal.data = item;
       },
-      closeModal(item) {
+      closeModal() {
         this.modal.status = false;
-        this.modal.data = {}
+        this.modal.data = {};
       },
       options(item) {
         this.downloadMedia(item);
@@ -386,6 +428,14 @@
       justify-content: center;
       img {
         background: #fff;
+      }
+      embed {
+        width: 100%;
+        height: 100%;
+      }
+      #docx {
+        overflow-y: auto;
+        height: calc(100vh - 200px);
       }
     }
   }

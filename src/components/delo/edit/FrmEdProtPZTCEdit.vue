@@ -14,13 +14,7 @@
                   <Row type="flex" align="middle">
                     <Col span="10">
                       <masked-input inputClass="adm-input adm-input--regular wmin120" :maskProps="maskInputProt" v-model="protPZTC.docN" @onInputChange="store"></masked-input>
-                      <!-- <Input class="adm-input adm-input--regular" readonly :value="protPZTC.docN"></Input> -->
                     </Col>
-                    <!-- <Col span="6">
-                      <Button type="text" style="outline: 0!important; box-shadow: none; padding: 0 5px;" class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus">
-                        <Icon type="md-key" title="Получить уникальный номер" :size="30" />
-                      </Button>
-                    </Col> -->
                   </Row>
                 </div>
               </div>

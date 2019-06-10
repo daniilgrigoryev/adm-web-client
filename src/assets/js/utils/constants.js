@@ -71,3 +71,18 @@ export const VOZB_ISPOLN=2;
 export const UPL_SHTRAF_GIBDD=11;
 /**Стадия исполнения Уплата штрафа (ССП)*/
 export const UPL_SHTRAF_SSP=22;
+
+/** Mime тип pdf */
+export const PDF_MIME_TYPE='application/pdf';
+/** Mime тип JPEG */
+export const JPEG_MIME_TYPE='image/jpeg';
+/** Mime тип PNG */
+export const PNG_MIME_TYPE='image/png';
+/** Mime тип MP4 */
+export const MP4_MIME_TYPE='avideo/mp4';
+/** Mime тип WEBM */
+export const WEBM_MIME_TYPE='video/webm';
+/** Mime тип DOCX */
+export const DOCX_MIME_TYPE='application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+/** Mime тип PGP-SIGNATURE */
+export const PGP_SIGNATURE_MIME_TYPE='application/pgp-signature';

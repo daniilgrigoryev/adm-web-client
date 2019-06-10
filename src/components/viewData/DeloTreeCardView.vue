@@ -237,10 +237,7 @@
       deloTree() {
         let res = [];
         if (this.dataStore) {
-          for (let i = 0; i < this.dataStore.tree.length; i++) {
-            let item = this.dataStore.tree[i];
-            res.push(item);
-          }
+          res = this.dataStore.tree;
         }
         return res;
       },
@@ -254,7 +251,16 @@
       deloInfo() {
         let res = null;
         if (this.dataStore) {
-          res = this.dataStore.tree.getFirst();
+          let arr = this.deloTree;
+          for (let i = 0; i < arr.length; i++) {
+            for (let i = 0; i < arr.length; i++) {
+              let arrElem = arr[i];
+              if (!arrElem.parentCategory) {
+                res = arrElem;
+                break;
+              }
+            }
+          }
         }
         return res;
       },
@@ -592,11 +598,6 @@
 
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
-          arrElem.height = 0;
-          let key = arrElem.category + '-' + arrElem.docId;
-          mappedArr[key] = arrElem;
-          mappedArr[key].children = [];
-
           if (funcUtils.isNotEmpty(arrElem.nodeInfo)) {
             let nodeParams = JSON.parse(arrElem.nodeInfo);
             for (let key in nodeParams) {
@@ -607,11 +608,19 @@
             arrElem.nodeParams = nodeParams;
           }
           if (!arrElem.parentCategory) {
-            this.firstTreeNode = this.getCopyObj(arrElem, 'children', 'height');
+            this.firstTreeNode = this.getCopyObj(arrElem, 'children');
             tree.push(this.firstTreeNode);
 
             this.updateSelected();
           }
+        }
+
+        for (let i = 0; i < arr.length; i++) {
+          arrElem = arr[i];
+          arrElem.height = 0;
+          let key = arrElem.category + '-' + arrElem.docId;
+          mappedArr[key] = arrElem;
+          mappedArr[key].children = [];
         }
 
         for (let i = 0; i < arr.length; i++) {

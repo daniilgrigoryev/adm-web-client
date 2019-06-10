@@ -9,9 +9,7 @@ import '@mapbox/assembly/dist/assembly.js';
 import iView from '~/assets/js/vendor/iview';
 import locale from '~/assets/js/vendor/iview/dist/locale/ru-RU';
 import '~/assets/js/vendor/iview/dist/styles/iview.css';
-
 import './assets/scss/common.scss';
-
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import * as constantUtils from "~/assets/js/utils/constantUtils";
 import RequestApi from "~/assets/js/api/requestApi";
