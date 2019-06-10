@@ -49,6 +49,7 @@
       <div class="body">
         <div id="docx" v-if="modal.data.mimeType === constants.DOCX_MIME_TYPE" v-html="modal.data.body.innerHTML"></div>
         <embed v-else-if="modal.data.mimeType === constants.PDF_MIME_TYPE" :src="modal.data.body" />
+        <video v-if="modal.data.mimeType === constants.WEBM_MIME_TYPE || modal.data.mimeType === constants.MP4_MIME_TYPE" :src="modal.data.body" :autoplay="false" controls playsinline :type="modal.data.mimeType"></video>
         <img v-else :src="modal.data.body" alt="">
       </div>
     </div>
@@ -62,7 +63,6 @@
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
-
   const docx = require('docx-preview');
   window.JSZip = require('jszip');
 
@@ -111,7 +111,7 @@
           data: {},
         },
         filesArray: [],
-        constants
+        constants,
       }
     },
     computed: {
@@ -125,6 +125,9 @@
         }
         return res;
       },
+      player() {
+        return this.$refs.videoPlayer.player
+      }
     },
     methods: {
       async init() {
@@ -191,10 +194,21 @@
               }
               case constants.WEBM_MIME_TYPE:
               case constants.MP4_MIME_TYPE: {
-                const icon = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
-                item.preview = icon;
-                item.body = icon;
-                item.class = "--icon";
+                item.preview = require("~/assets/images/icons/foto-kamera-varialt-1.svg");
+                let eventResponse = await RequestApi.prepareData({
+                  method: 'getPhotoBody',
+                  params: {
+                    'mediaMetaId': item.mediaId
+                  },
+                  cid: cid
+                });
+                if (eventResponse.response) {
+                  let body = JSON.parse(eventResponse.response).data;
+                  const blob = this.base64ToBlob(body, item.mimeType);
+                  let element = document.createElement("a");
+                  element.href = window.URL.createObjectURL(blob);
+                  item.body = element;
+                }
                 break;
               }
               case constants.PDF_MIME_TYPE: {
@@ -230,8 +244,8 @@
                 });
                 if (eventResponse.response) {
                   let docxEl = document.createElement('div');
-                  let photo = JSON.parse(eventResponse.response).data;
-                  const blob = this.base64ToBlob(photo, item.mimeType);
+                  let body = JSON.parse(eventResponse.response).data;
+                  const blob = this.base64ToBlob(body, item.mimeType);
                   await docx.renderAsync(blob, docxEl);
                   item.body = docxEl;
                 }
@@ -277,7 +291,7 @@
           });
         }
       },
-      async openModal(item) {
+      openModal(item) {
         this.modal.status = true;
         this.modal.data = item;
       },
@@ -439,6 +453,10 @@
       #docx {
         overflow-y: auto;
         height: calc(100vh - 200px);
+      }
+      video {
+        width: 70%;
+        height: 70%;
       }
     }
   }
