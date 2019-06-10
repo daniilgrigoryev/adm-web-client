@@ -41,7 +41,7 @@
       </div>
     </div>
     <div v-if="!isEmptyData()" class="bg-white">
-      <div class="wmax1920 mx-auto">
+      <div class="mx-auto">
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6 bg-white-light">
           <div class="flex-parent flex-parent--center-cross">
             <p class="adm-txt-regular color-dark-medium ml18" v-if="data.length > 0"> {{
@@ -330,6 +330,14 @@ export default {
     },
     tableFilteredColumns() {
       return this.columnsOptions.filter(column => column.visible === true);
+    },
+    tableColumnsForOptions() {
+      return this.columnsOptions.filter(
+        column =>
+          ![
+            "status",
+          ].includes(column.key)
+      );
     }
   },
   methods: {
@@ -392,24 +400,6 @@ export default {
           }
         }
       }
-    },
-    tableColumnsForOptions() {
-      return this.columnsOptions.filter(
-        column =>
-          ![
-            "action",
-            "deloN",
-            "deloDate",
-            "stadDeloName",
-            "checkPriority",
-            "birthday",
-            "lvokName",
-            "decisNameFirst",
-            "decisNameLast",
-            "stadIspolnNameLast",
-            "lockName"
-          ].includes(column.key)
-      );
     },
     declOfNum(number, titles) {
       let cases = [2, 0, 1, 1, 1, 2];
