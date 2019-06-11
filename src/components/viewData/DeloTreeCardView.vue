@@ -44,7 +44,7 @@
                   <span class="text">Добавить документ</span>
                   <Icon type="md-arrow-dropdown" :size="16"/>
                 </button>
-                <div slot="content" class="da">
+                <div slot="content">
                   <div class="search-wrap">
                     <img :src="require('../../assets/images/icons/icons8-search.svg')" alt="">
                     <input type="text" class="search" placeholder="Найти…" v-model="searchForAddDocumentList">

@@ -26,7 +26,16 @@
               <MenuItem name="4" class="header-menu__item">Состояние выгрузки</MenuItem>
               <MenuItem name="5" class="header-menu__item">Обработка документов</MenuItem>
               <MenuItem name="6" class="header-menu__item">Передача материалов в ФССП</MenuItem>
-              <MenuItem name="7" class="header-menu__item">Почтовые реестры</MenuItem>
+              <Poptip class="header-menu__item">
+                <button>
+                  Реестры
+                </button>
+                <div slot="content">
+                  <li><MenuItem name="7">Документы на подписание</MenuItem></li>
+                  <li><MenuItem name="8">Почтовые реестры</MenuItem></li>
+                  <li><MenuItem name="9">Рапорта</MenuItem></li>
+                </div>
+              </Poptip>
             </div>
           </Menu>
         </Col>
@@ -37,49 +46,67 @@
 
 
 <script>
-  import * as funcUtils from "~/assets/js/utils/funcUtils";
+import * as funcUtils from "~/assets/js/utils/funcUtils";
 
-  export default {
-    name: 'MainMenu',
-    mounted() {
-      try {
-        let activeName = funcUtils.getFromSessionStorage('mainMenuActiveName');
-        if (funcUtils.isNotEmpty(activeName)) {
-          this.activeName = activeName;
-        }
-      } catch (e) {
-        this.$Notice.warning({
-          title: 'Ошибка получения данных',
-          desc: e.message,
-          duration: 10
-        });
+export default {
+  name: "MainMenu",
+  mounted() {
+    try {
+      let activeName = funcUtils.getFromSessionStorage("mainMenuActiveName");
+      if (funcUtils.isNotEmpty(activeName)) {
+        this.activeName = activeName;
       }
+    } catch (e) {
+      this.$Notice.warning({
+        title: "Ошибка получения данных",
+        desc: e.message,
+        duration: 10
+      });
+    }
+  },
+  data() {
+    return {
+      activeName: "1"
+    };
+  },
+  methods: {
+    collapsedSider() {
+      this.$emit("collapsedSider");
     },
-    data() {
-      return {
-        activeName: '1'
-      }
-    },
-    methods: {
-      collapsedSider() {
-        this.$emit('collapsedSider');
-      },
-      selectMenu(activeName) {
-        switch (+activeName) {
-          case 1: {
-            this.$root.getDeloReestr();
-            break;
-          }
-          case 2: {
-            this.$root.getDashBoardReestr();
-            break;
-          }
-          case 7: {
-            this.$root.getRegistryReestr();
-          }
+    selectMenu(activeName) {
+      switch (+activeName) {
+        case 1: {
+          this.$root.getDeloReestr();
+          break;
         }
-        funcUtils.addToSessionStorage('mainMenuActiveName', activeName);
+        case 2: {
+          this.$root.getDashBoardReestr();
+          break;
+        }
+        case 7: {
+          this.$root.getDocsForSigning();
+        }
+        case 8: {
+          this.$root.getRegistryReestr();
+        }
+        case 9: {
+          // this.$root.getRegistryReestr();
+        }
+        
       }
+      funcUtils.addToSessionStorage("mainMenuActiveName", activeName);
     }
   }
+};
 </script>
+
+
+<style lang="scss" scoped>
+.header .header-menu .header-menu__item  .ivu-poptip-body {
+  .ivu-menu-item {
+    border: none !important;
+    text-align: left;
+    padding: 5px 10px;
+  }
+}
+</style>
