@@ -376,10 +376,7 @@ export default {
     },
     tableColumnsForOptions() {
       return this.columnsOptions.filter(
-        column =>
-          ![
-            "status",
-          ].includes(column.key)
+        column => !["status"].includes(column.key)
       );
     }
   },
