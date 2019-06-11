@@ -17,7 +17,7 @@
         <div class="items-wrap">
           <view-data-item
             label="Статья прекращения"
-            :value="body.stotvName"
+            :value="body.stotvKod, body.stotvName | concatByDelimiter(',')"
             style="grid-column: span 2;"
           />
           <view-data-item
