@@ -29,15 +29,15 @@
       </div>
       <div class="adm-form__item">
         <div class="adm-form__item-label">Автор</div>
-        <Input class="adm-input adm-input--big" clearable/>
+        <Input class="adm-input adm-input--big" placeholder="Фамилия" clearable/>
       </div>
       <div class="adm-form__item">
         <div class="adm-form__item-label"></div>
-        <Input class="adm-input adm-input--big" clearable/>
+        <Input class="adm-input adm-input--big" placeholder="Имя" clearable/>
       </div>
       <div class="adm-form__item">
         <div class="adm-form__item-label"></div>
-        <Input class="adm-input adm-input--big" clearable/>
+        <Input class="adm-input adm-input--big" placeholder="Отчество" clearable/>
       </div>
     </div>
     <div v-if="!isEmptyData()" class="bg-white">
