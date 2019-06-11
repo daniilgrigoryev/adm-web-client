@@ -139,34 +139,45 @@ export default {
       sort: {},
       columnsOptions: [
         {
-          title: '',
-          key: 'status',
-          align: 'center',
+          title: "",
+          key: "status",
+          align: "center",
           width: 25,
           ellipsis: true,
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
-            return h('div', [
-              h('p', {
-                class: {
-                  'color-dark-lighter': true,
-                  'adm-text-big': true,
-                  'txt-normal': true,
+            return h("div", [
+              h(
+                "p",
+                {
+                  class: {
+                    "color-dark-lighter": true,
+                    "adm-text-big": true,
+                    "txt-normal": true
+                  }
                 },
-              }, params.column.title)
-            ])
+                params.column.title
+              )
+            ]);
           },
           render: (h, params) => {
             let color = this.changeClass(params.row.status);
-            return h('div', {}, [
-              h('div', {
-                class: ['round-full', 'w12', 'h12', 'inline-block', 'cursor-pointer', color],
+            return h("div", {}, [
+              h("div", {
+                class: [
+                  "round-full",
+                  "w12",
+                  "h12",
+                  "inline-block",
+                  "cursor-pointer",
+                  color
+                ],
                 attrs: {
                   title: params.row.status
                 }
-              }),
-            ])
+              })
+            ]);
           }
         },
         {
@@ -178,28 +189,36 @@ export default {
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
-            return h('div', [
-              h('p', {
-                class: {
-                  'color-dark-medium': true,
-                  'adm-text-big': true,
-                  'txt-normal': true,
+            return h("div", [
+              h(
+                "p",
+                {
+                  class: {
+                    "color-dark-medium": true,
+                    "adm-text-big": true,
+                    "txt-normal": true
+                  }
                 },
-              }, params.column.title),
-              h('p', {
-                class: {
-                  'color-dark-base': true,
-                  'adm-12': true,
-                  'line-height100': true,
-                  'txt-truncate': true,
-                  'txt-normal': true
+                params.column.title
+              ),
+              h(
+                "p",
+                {
+                  class: {
+                    "color-dark-base": true,
+                    "adm-12": true,
+                    "line-height100": true,
+                    "txt-truncate": true,
+                    "txt-normal": true
+                  }
                 },
-              }, 'Статус'),
-            ])
+                "Статус"
+              )
+            ]);
           },
           render: (h, params) => {
             return h("div", [
-              h("p",{class:{"color-blue": true}}, params.row.curIssue),
+              h("p", { class: { "color-blue": true } }, params.row.curIssue),
               h("p", params.row.statusName)
             ]);
           }
@@ -246,7 +265,15 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", this.$options.filters.formatDateTime(params.row.creationDate, "DD.MM.YYYY HH:MM"))]);
+            return h("div", [
+              h(
+                "p",
+                this.$options.filters.formatDateTime(
+                  params.row.creationDate,
+                  "DD.MM.YYYY HH:MM"
+                )
+              )
+            ]);
           }
         },
         {
@@ -261,7 +288,15 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", this.$options.filters.formatDateTime(params.row.sendDate, "DD.MM.YYYY HH:MM"))]);
+            return h("div", [
+              h(
+                "p",
+                this.$options.filters.formatDateTime(
+                  params.row.sendDate,
+                  "DD.MM.YYYY HH:MM"
+                )
+              )
+            ]);
           }
         },
         {
@@ -291,7 +326,15 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", this.$options.filters.formatDateTime(params.row.unloadDate, "DD.MM.YYYY HH:MM"))]);
+            return h("div", [
+              h(
+                "p",
+                this.$options.filters.formatDateTime(
+                  params.row.unloadDate,
+                  "DD.MM.YYYY HH:MM"
+                )
+              )
+            ]);
           }
         },
         {
@@ -308,7 +351,7 @@ export default {
           render: (h, params) => {
             return h("div", [h("p", params.row.unloadState)]);
           }
-        },
+        }
       ]
     };
   },
@@ -693,7 +736,6 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-
 .breadcrumbs {
   height: 46px;
   padding: 0 24px;
