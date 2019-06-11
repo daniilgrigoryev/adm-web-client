@@ -298,72 +298,17 @@ html, body, #app {
   direction: rtl;
   z-index: 8;
   overflow-y: auto;
-  // overflow-y: hidden;
-  overflow-x: hidden;
+  overflow-x: visible;
   height: calc(100vh - 130px);
   background: linear-gradient(to right, #f5fafd 95.6%, #fafafa 0%);
-  margin-left: -16px;
   scrollbar-width: none;
   -ms-overflow-style: none; 
+  padding-right: 22px;
   // -ms-overflow-style: none;
   // -moz-appearance: menuimage; 
   // overflow: -moz-scrollbars-none; 
 }
-.tree {
-  position: -webkit-sticky;
-  position: sticky;
-  position: -webkit-sticky;
-  background: #f5fafd;
-  top: -1px;
-  z-index: 9;
-  direction: ltr;
-  margin-left: 16px;
-  margin-right: 20px;
-  .tree__link {
-    &::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 81%;
-      height: 1px;
-      background-color: #d0e7fc;
-    }
-    position: relative;
-    &.tree__link--selected {
-      z-index: 9;
-      background-color: #d0e7fc;
-      &::after {
-        content: "";
-        position: absolute;
-        width: 26px;
-        top: 0;
-        bottom: 0;
-        background-image: url(../images/arrow.svg);
-        background-repeat: no-repeat;
-        background-size: 100% 110%;
-        background-position: -5px;
-        right: -25px;
-      }
-    }
-    &:hover {
-      background-color: #d0e7fc;
-      &::after {
-        content: "";
-        position: absolute;
-        width: 26px;
-        top: 0;
-        bottom: 0;
-        background-image: url(../images/arrow.svg);
-        background-repeat: no-repeat;
-        background-size: 100% 110%;
-        background-position: -5px;
-        right: -25px;
-        z-index: 9;
-      }
-    }
-  }
-}
+
 
 .header {
   border-bottom: 1px solid #CCCCCC;
