@@ -1,5 +1,5 @@
 <template>
-  <div v-if="body" class="mx18 mb18">
+  <div v-if="body" class="mb18">
 
     <div class="amd-title amd-title--sticky px36 py24"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">

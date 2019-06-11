@@ -178,6 +178,9 @@ export default {
               case decisIspolnEnum.POST_UNDEF: {
                 return izveschenie;
               }
+              case decisIspolnEnum.OPL_SHTRAF_UFK:
+              case decisIspolnEnum.OPL_SHTRAF_SUD:
+              case decisIspolnEnum.OPL_SHTRAF_SSP:
               case decisIspolnEnum.OPL_SHTRAF: {
                 return shtraf;
               }
@@ -653,7 +656,7 @@ export default {
     align-items: center;
     padding: 10px 15px;
     position: relative;
-    border-left: 5px solid transparent;
+    border-left: 6px solid transparent;
     transition: .3s ease;
     &::before {
       content: "";

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="body" class="ml18">
+  <div v-if="body">
 
 
     <div class="adm-title px36 py24">
