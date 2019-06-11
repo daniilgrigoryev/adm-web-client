@@ -177,6 +177,9 @@
                 case decisIspolnEnum.POST_UNDEF: {
                   return izveschenie;
                 }
+                case decisIspolnEnum.OPL_SHTRAF: {
+                  return shtraf;
+                }
                 case decisIspolnEnum.IZMEN_POST_ON_GALOB:
                 case decisIspolnEnum.OTMENA_DECIS_ON_GALOB: {
                   return reshenie1;
