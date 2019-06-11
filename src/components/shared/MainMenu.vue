@@ -84,7 +84,7 @@ export default {
           break;
         }
         case 7: {
-          this.$root.getDocsForSigning();
+          // this.$root.getDocsForSigning();
         }
         case 8: {
           this.$root.getRegistryReestr();
