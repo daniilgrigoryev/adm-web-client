@@ -721,7 +721,7 @@ export default {
       img {
         max-width: 100%;
         max-height: 100%;
-        opacity: 0.85;
+        opacity: 0.75;
       }
     }
     .tree__text-wrap {
