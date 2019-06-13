@@ -246,7 +246,8 @@
                   let docxEl = document.createElement('div');
                   let body = JSON.parse(eventResponse.response).data;
                   const blob = this.base64ToBlob(body, item.mimeType);
-                  await docx.renderAsync(blob, docxEl);
+                  // TODO
+                  // await docx.renderAsync(blob, docxEl);
                   item.body = docxEl;
                 }
                 break;
