@@ -691,9 +691,6 @@ export default {
     }
     &:hover {
       background-color: #fff;
-      &::after {
-        background-size: 100% 110%;
-      }
     }
     .tree__arrow {
       position: absolute;

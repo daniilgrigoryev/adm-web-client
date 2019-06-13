@@ -114,6 +114,7 @@
     },
     methods: {
       init() {
+        console.log(this.maskProps);
         let input = this.$refs.maskedField.$refs.input;
         let im = new Inputmask(this.maskProps);
         im.mask(input);
