@@ -15,18 +15,16 @@
         <MenuItem name="4" class="header-menu__item">Состояние выгрузки</MenuItem>
         <MenuItem name="5" class="header-menu__item">Обработка документов</MenuItem>
         <MenuItem name="6" class="header-menu__item">Передача материалов в ФССП</MenuItem>
-        <li class="header-menu__item ivu-menu-item">
-          <Poptip>
-            <button>
-              Реестры
-            </button>
-            <div slot="content">
-              <li><MenuItem name="7">Документы на подписание</MenuItem></li>
-              <li><MenuItem name="8">Почтовые реестры</MenuItem></li>
-              <li><MenuItem name="9">Рапорта</MenuItem></li>
-            </div>
-          </Poptip>
-        </li>
+        <Poptip>
+          <button class="header-menu__item ivu-menu-item">
+            Реестры
+          </button>
+          <div slot="content">
+            <li><MenuItem name="7">Документы на подписание</MenuItem></li>
+            <li><MenuItem name="8">Почтовые реестры</MenuItem></li>
+            <li><MenuItem name="9">Рапорта</MenuItem></li>
+          </div>
+        </Poptip>
       </Menu>
       <div class="sidebar-wrap">
         <img :src="require('~/assets/images/icons/user-avatar.svg')" class="avatar">
@@ -65,7 +63,7 @@ export default {
   },
   methods: {
     collapsedSider() {
-      this.$emit("collapsedSider");
+      this.$emit("collapsedSider");onpopstate
     },
     selectMenu(activeName) {
       switch (+activeName) {
@@ -156,6 +154,7 @@ header {
         text-align: left;
         padding: 0;
       }
+      
     }
   }
   .sidebar-wrap {

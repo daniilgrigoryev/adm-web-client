@@ -928,3 +928,10 @@ html, body, #app {
     }
   }
 }
+
+header .ivu-poptip,header .ivu-poptip-rel {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
