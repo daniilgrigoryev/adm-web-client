@@ -2,7 +2,7 @@
   <header>
     <div class="content">
       <div class="logo-wrap">
-        <img :src="require('~/assets/images/system-logo.png')" alt="" class="logo">
+        <img :src="require('~/assets/images/logo_Madi_red.svg')" alt="" class="logo">
         <h1 class="title">
           <span>Исод</span>
           Мади
@@ -114,8 +114,7 @@ header {
     display: flex;
     align-items: center;
     .logo {
-      width: 32px;
-      margin-right: 12px;
+      height: 50px;
     }
     .title {
       font-size: 22px;
