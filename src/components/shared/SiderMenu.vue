@@ -1,97 +1,86 @@
 <template>
-    <Sider class="sider transition  scroll-auto scroll-styled" ref="sider" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsedLocal">
-        <div class="py18 relative h-full scroll-auto">
-            <div class="flex-parent flex-parent--column h-full">
-                <Icon @click="isCollapsedLocal = true" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
-                <div class="flex-parent flex-parent--column flex-parent--center-cross">
-                    <div style="width: 100px; height: 100px; background: #ea221d;">
-                        <img :src="require('~/assets/images/logo_Madi_white.svg')" alt="">
-                    </div>
-                    <b class="my18 product_header adm-text-big color-gray-medium align-center">
-                        Информационная Система<br>
-                        Обеспечения Деятельности<br> 
-                        Московской Административной<br>
-                        Дорожной Инспекции
-                    </b>
-                </div>
-                <ul>
-                    <!-- <li>
-                        <a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link active-link">
-                            <div class="bg-red-faint mx18" style="width: 40px; height: 40px;">
-                                <img src="" alt="">
-                            </div>
-                            <span class="adm-txt-regular color-gray-medium">Административная практика</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
-                            <div class="bg-red-faint mx18" style="width: 40px; height: 40px;">
-                                <img src="" alt="">
-                            </div>
-                            <span class="adm-txt-regular color-gray-medium">Обращения граждан</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
-                            <div class="bg-red-faint mx18" style="width: 40px; height: 40px;">
-                                <img src="" alt="">
-                            </div>
-                            <span class="adm-txt-regular color-gray-medium">Эвакуация</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
-                            <div class="bg-red-faint mx18" style="width: 40px; height: 40px;">
-                                <img src="" alt="">
-                            </div>
-                            <span class="adm-txt-regular color-gray-medium">Пункт 4</span>
-                        </a>
-                    </li>
-                    <hr class='txt-hr mx18'>
-                    <li>
-                        <a href="#" class="flex-parent flex-parent--center-cross py18 sider__menu-link">
-                            <div class="bg-red-faint mx18" style="width: 40px; height: 40px;">
-                                <img src="" alt="">
-                            </div>
-                            <span class="adm-txt-regular color-gray-medium">Справочник</span>
-                        </a>
-                    </li> -->
-                </ul>
-                
-                <small class="adm-btn-small color-dark-lighter mb12 align-center my12 txt-em">Версия 12.2 обновление 12.09.2018г</small>
-
-                <div class="flex-parent flex-parent--column flex-parent--center-main align-center mx-auto my-auto mb18">
-                    <div style="width: 50px; height: 50px;" class="bg-blue-light mx-auto round-full txt-truncate">
-                        <img src="../../assets/images/icons/police_white.svg" alt="">
-                    </div>
-                    <p class="adm-txt-regular color-dark-lighter mt12">Имя пользователя</p>
-                    <small class="adm-btn-small color-dark-lighter mb12">Звание, Должность</small>
-                    <a @click="logout" class='link color-blue-base adm-btn-small txt-underline-on-hover'>Выйти из профиля</a>
-                </div>
-            </div>
-        </div>
-    </Sider>
+	<Sider class="sider transition  scroll-auto scroll-styled" ref="sider" hide-trigger width="350" collapsible :collapsed-width="0" v-model="isCollapsedLocal">
+		<div class="py18 relative h-full scroll-auto">
+			<div class="flex-parent flex-parent--column h-full">
+				<Icon @click="isCollapsedLocal = true" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
+				<div class="flex-parent flex-parent--column flex-parent--center-cross">
+						<div style="width: 100px; height: 100px; background: #ea221d;">
+								<img :src="require('~/assets/images/logo_Madi_white.svg')" alt="">
+						</div>
+						<b class="my18 product_header adm-text-big color-gray-medium align-center">
+								Информационная Система<br>
+								Обеспечения Деятельности<br> 
+								Московской Административной<br>
+								Дорожной Инспекции
+						</b>
+				</div>
+				<small class="adm-btn-small color-dark-lighter mb12 align-center my12 txt-em">Версия 12.2 обновление 12.09.2018г</small>
+				<div class="user-wrap">
+					<img :src="require('~/assets/images/icons/user-avatar.svg')" class="avatar">
+					<p class="name">Имя пользователя</p>
+					<p class="rank">Звание, Должность</p>
+					<a @click="logout" class='logout'>Выйти из профиля</a>
+				</div>
+			</div>
+		</div>
+	</Sider>
 </template>
 
 
 <script>
 export default {
-    name: 'SiderMenu',
-    props: {
-        isCollapsed: {
-            type: Boolean,
-            default: false
-        }
-    },
-    data() {
-        return {
-            isCollapsedLocal: this.isCollapsed
-        }
-    },
-    methods: {
-      logout() {
-        this.$root.logout();
-      },
+  name: "SiderMenu",
+  props: {
+    isCollapsed: {
+      type: Boolean,
+      default: false
     }
-}
+  },
+  data() {
+    return {
+      isCollapsedLocal: this.isCollapsed
+    };
+  },
+  methods: {
+    logout() {
+      this.$root.logout();
+    }
+  }
+};
 </script>
+
+<style lang="scss" scoped>
+.sider {
+	right: 0;
+	top: 0;
+	.user-wrap {
+		padding-bottom: 200px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: auto;
+		color: #797979;
+		.avatar {
+			width: 70px;
+			height: 70px;
+			display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      overflow: hidden;
+			background: #ccc;
+			margin-bottom: 10px;
+		}
+		.name {
+			font-size: 14px;
+			font-weight: 600;
+		}
+		.rank {
+
+		}
+		.logout {
+			margin-top: 10px;
+		}
+	}
+}
+</style>
