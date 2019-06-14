@@ -568,14 +568,6 @@ export default {
       return res;
     },
     async parentNodeClick() {
-      if (
-        this.node.recType === constants.DOCS_OTHER &&
-        this.node.docTip === docTipEnum.MEDIA_DOC &&
-        this.node.height > 3
-      ) {
-        this.downloadMedia(this.node);
-        return;
-      }
       await this.nodeClick(this.node);
     },
     toggle() {
@@ -583,34 +575,6 @@ export default {
         this.open = !this.open;
       }
     },
-    async downloadMedia(node) {
-      try {
-        let eventResponse = await RequestApi.sendGetMediaFileHttpRequest({
-          url: `${ConstantUtils.HTTP_URL_FILES}/${localStorage.getItem(
-            "admSid"
-          )}/${node.nodeParams.media_id}`
-        });
-        let data = null;
-        if (eventResponse.response) {
-          data = eventResponse.response;
-        }
-        if (data) {
-          let element = document.createElement("a");
-          element.href = window.URL.createObjectURL(data);
-          element.setAttribute("download", `${node.nodeParams.comments}`);
-          element.style.display = "none";
-          document.body.appendChild(element);
-          element.click();
-          document.body.removeChild(element);
-        }
-      } catch (e) {
-        this.$Notice.warning({
-          title: "Ошибка получения данных",
-          desc: e.message,
-          duration: 10
-        });
-      }
-    }
   }
 };
 </script>

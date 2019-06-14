@@ -47,9 +47,9 @@
         </div>
       </div>
       <div class="body">
-        <div id="docx" v-if="modal.data.mimeType === constants.DOCX_MIME_TYPE" v-html="modal.data.body.innerHTML"></div>
-        <embed v-else-if="modal.data.mimeType === constants.PDF_MIME_TYPE" :src="modal.data.body" />
-        <video v-if="modal.data.mimeType === constants.WEBM_MIME_TYPE || modal.data.mimeType === constants.MP4_MIME_TYPE" :src="modal.data.body" :autoplay="false" controls playsinline :type="modal.data.mimeType"></video>
+<!--        <div id="docx" v-if="modal.data.mimeType === constants.DOCX_MIME_TYPE" v-html="modal.data.body.innerHTML"></div>-->
+        <embed v-if="modal.data.mimeType === constants.PDF_MIME_TYPE" :src="modal.data.body" />
+        <video v-else-if="modal.data.mimeType === constants.WEBM_MIME_TYPE || modal.data.mimeType === constants.MP4_MIME_TYPE" :src="modal.data.body" :autoplay="false" controls playsinline :type="modal.data.mimeType"></video>
         <img v-else :src="modal.data.body" alt="">
       </div>
     </div>
@@ -234,8 +234,12 @@
                 break;
               }
               case constants.DOCX_MIME_TYPE: {
-                item.preview = require("~/assets/images/icons/dokument-docx.svg");
-                let eventResponse = await RequestApi.prepareData({
+                const icon = require("~/assets/images/icons/dokument-docx.svg");
+                item.preview = icon;
+                item.body = icon;
+                item.class = "--icon";
+                // TODO НЕ РАБОТАЕТ, ЕСЛИ ФАЙЛ СОХРАНЕН НЕ ЧЕРЕЗ MICROSOFT OFFICE
+                /*let eventResponse = await RequestApi.prepareData({
                   method: 'getPhotoBody',
                   params: {
                     'mediaMetaId': item.mediaId
@@ -246,10 +250,9 @@
                   let docxEl = document.createElement('div');
                   let body = JSON.parse(eventResponse.response).data;
                   const blob = this.base64ToBlob(body, item.mimeType);
-                  // TODO
-                  // await docx.renderAsync(blob, docxEl);
+                  await docx.renderAsync(blob, docxEl);
                   item.body = docxEl;
-                }
+                }*/
                 break;
               }
             }
