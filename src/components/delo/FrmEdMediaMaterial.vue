@@ -63,8 +63,8 @@
   import * as innerFormStack from '~/assets/js/api/innerFormStack';
   import RequestApi from "~/assets/js/api/requestApi";
   import {mapGetters} from 'vuex';
-  const docx = require('docx-preview');
-  window.JSZip = require('jszip');
+  /*const docx = require('docx-preview');
+  window.JSZip = require('jszip');*/
 
   export default {
     name: "FrmEdMediaMaterial",
@@ -103,6 +103,7 @@
     destroyed() {
       this.$store.dispatch('frmEdMediaMaterialSetCid', null);
       this.$store.dispatch('frmEdMediaMaterialSetData', null);
+      // window.JSZip = null;
     },
     data() {
       return {
