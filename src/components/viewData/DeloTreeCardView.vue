@@ -558,7 +558,8 @@
             return current.params.recType === constants.DOCS_OPRED || current.params.recType === constants.DOCS_PROT;
           }
           case 'HodatayProdlSrok': {
-            return current.params.recType === constants.DOCS_OPRED && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW);
+            let nodeInfo = JSON.parse(current.params.nodeInfo);
+            return current.params.recType === constants.DOCS_OPRED && nodeInfo.doc_vid !== docVidEnum.OPRED_SVED && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW);
           }
           case 'DocumentUchast': {
             return current.params.recType === constants.UCHASTFL || current.params.recType === constants.UCHASTOTHER;
