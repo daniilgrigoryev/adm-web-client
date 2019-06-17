@@ -150,12 +150,13 @@ header {
       &.ivu-menu-item-active {
         border-bottom: 5px solid #1888cc;
       }
+    }
+    .ivu-poptip-body {
       .ivu-menu-item {
         border: none !important;
         text-align: left;
         padding: 0;
       }
-      
     }
   }
   .sidebar-wrap {

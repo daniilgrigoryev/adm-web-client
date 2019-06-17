@@ -937,3 +937,9 @@ header .ivu-poptip,header .ivu-poptip-rel {
   align-items: center;
   justify-content: center;
 } 
+
+header .header-menu .ivu-menu-item .ivu-menu-item {
+  border: none !important;
+  text-align: left;
+  padding: 0;
+}
