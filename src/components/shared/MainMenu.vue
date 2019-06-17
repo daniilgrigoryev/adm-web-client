@@ -106,7 +106,7 @@ header {
     padding: 0 10px 0 30px;
     max-width: 1920px;
     margin: 0 auto;
-    height: 66px;
+    height: 64px;
   }
   .logo-wrap {
     flex: none;
