@@ -290,23 +290,24 @@ html, body, #app {
   width: 0 !important 
 }
 .tree_wrapper{
-  position: -webkit-sticky;
   position: sticky;
-  position: -webkit-sticky;
   background: #f5fafd;
   top: 121px;
   direction: rtl;
   z-index: 8;
   overflow-y: auto;
-  overflow-x: visible;
+  overflow-x: hidden;
   height: calc(100vh - 130px);
   background: linear-gradient(to right, #f5fafd 95.6%, #fafafa 0%);
   scrollbar-width: none;
   -ms-overflow-style: none; 
-  padding-right: 22px;
   // -ms-overflow-style: none;
   // -moz-appearance: menuimage; 
   // overflow: -moz-scrollbars-none; 
+  & ::-moz-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
 }
 
 
