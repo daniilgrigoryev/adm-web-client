@@ -98,6 +98,7 @@ header {
   border-bottom: 1px solid #ccc;
   z-index: 88;
   position: sticky;
+  top: 0;
   .content {
     display: flex;
     justify-content: space-between;
