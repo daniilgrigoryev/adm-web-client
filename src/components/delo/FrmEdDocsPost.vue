@@ -170,11 +170,11 @@
             });
             await vm.$store.dispatch('fillModule', {'event': eventResponse});
           } catch (e) {
-            this.$store.dispatch('errors/changeContent', {title: e.message,});
+            this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
           }
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -223,7 +223,7 @@
           await this.$store.dispatch('fillModule', {'event': eventResponse});
           this.fillDocSignatures();
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
       async fillDocSignatures() {
@@ -279,7 +279,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
       getSignatureEdit() {
@@ -298,7 +298,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
     }

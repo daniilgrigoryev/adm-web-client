@@ -107,7 +107,7 @@ export default {
       let data = JSON.parse(JSON.parse(eventResponse.response).data);
       if (funcUtils.isEmpty(data)) {
         let error = JSON.parse(eventResponse.response).error;
-        this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
+        this.$store.dispatch('errorsModal/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
       } else {
         this.data = data;
       }

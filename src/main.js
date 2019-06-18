@@ -91,7 +91,7 @@ let vue = new Vue({
           withSpinner: false
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       } finally {
         funcUtils.clearAll();
         await this.$store.dispatch('authorizationSetData', {
@@ -116,7 +116,7 @@ let vue = new Vue({
           withCreate: funcUtils.isEmpty(cid)
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     async getRegistryReestr() {
@@ -131,7 +131,7 @@ let vue = new Vue({
           withCreate: funcUtils.isEmpty(cid)
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     getDashBoardReestr() {
@@ -144,7 +144,7 @@ let vue = new Vue({
           withCreate: false
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     async isValidSession() {

@@ -148,7 +148,7 @@ export default {
 
       if (funcUtils.isEmpty(ispoln)) {
         let error = JSON.parse(eventResponse.response).error;
-        this.$store.dispatch("errors/changeContent", {
+        this.$store.dispatch("errorsModal/changeContent", {
           title: error.errorMsg,
           desc: error.errorDesc
         });
@@ -157,7 +157,7 @@ export default {
       }
       this.fillStotvSearchInfo();
     } catch (e) {
-      this.$store.dispatch("errors/changeContent", { title: e.message });
+      this.$store.dispatch("errorsModal/changeContent", { title: e.message });
     }
   },
   destroyed() {
@@ -583,7 +583,7 @@ export default {
       });
       if (eventResponse.response) {
         let error = JSON.parse(eventResponse.response).error;
-        this.$store.dispatch("errors/changeContent", {
+        this.$store.dispatch("errorsModal/changeContent", {
           title: error.errorMsg,
           desc: error.errorDesc
         });
@@ -597,7 +597,7 @@ export default {
           vm: this
         });
       } catch (e) {
-        this.$store.dispatch("errors/changeContent", { title: e.message });
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     }
   }

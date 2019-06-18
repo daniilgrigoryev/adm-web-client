@@ -155,7 +155,7 @@ export default class RequestApi {
           let response = JSON.parse(xhr.responseText);
           if (response && response.error && handleError) {
             console.log(response.error.errorMsg);
-            store.dispatch('errors/changeContent', {
+            store.dispatch('errorsModal/changeContent', {
               title: response.error.errorMsg, 
               desc: response.error.errorDesc
             });

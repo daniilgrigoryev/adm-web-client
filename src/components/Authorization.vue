@@ -84,7 +84,7 @@
                   if (!funcUtils.isNull(respData)) {
                     localStorage.setItem('admSid', respData.sid);
                   } else {
-                    this.$store.dispatch('errors/changeContent', {
+                    this.$store.dispatch('errorsModal/changeContent', {
                       title: "Неправильное имя пользователя или пароль",
                       desc: respError.errorMsg,
                     });
@@ -119,10 +119,10 @@
               });
             }
           } catch (e) {
-            this.$store.dispatch('errors/changeContent', {title: e.message,});
+            this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
           }
         } else {
-          this.$store.dispatch('errors/changeContent', {title: "Неправильное имя пользователя или пароль",});
+          this.$store.dispatch('errorsModal/changeContent', {title: "Неправильное имя пользователя или пароль",});
         }
       }
     }

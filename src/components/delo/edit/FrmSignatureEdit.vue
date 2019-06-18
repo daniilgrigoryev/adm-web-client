@@ -46,12 +46,12 @@
 
         if (funcUtils.isEmpty(signature)) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
+          this.$store.dispatch('errorsModal/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           this.signature = signature;
         }
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -99,7 +99,7 @@
             }
           }
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e,});
         }
       },
       getSignList() {
@@ -151,7 +151,7 @@
           let dataToSign = window.btoa(unescape(encodeURIComponent(this.signature.sourceData)));
           let sign = await this.signCreate(this.sertificateNumber, dataToSign);
           if (sign) {
-            this.$store.dispatch('errors/changeContent', {title: 'Успешно'});
+            this.$store.dispatch('errorsModal/changeContent', {title: 'Успешно'});
             this.sertificateObj[this.sertificateNumber].IssuerName = sign.IssuerName;
             this.signature.signDataBase64 = sign.Message;
             this.signature.certSerialNumber = sign.SerialNumber;
@@ -162,7 +162,7 @@
             this.store();
           }
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e, desc: e,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e, desc: e,});
         }
       },
       signCreate(certSerialNumber, dataToSign) {
@@ -238,7 +238,7 @@
         });
         if (eventResponse.response) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
+          this.$store.dispatch('errorsModal/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           this.getPrev();
         }
@@ -249,7 +249,7 @@
             vm: this
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
     },

@@ -51,7 +51,7 @@ export async function toNext(payload) {
         next.cid = respData.cid;
       } else {
         if (!funcUtils.isNull(respError)) {
-          vm.$store.dispatch('errors/changeContent', {
+          vm.$store.dispatch('errorsModal/changeContent', {
             title: respError.errorMsg,
             desc: respError.errorDesc
           });

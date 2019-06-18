@@ -165,12 +165,12 @@
 
         if (funcUtils.isEmpty(docsPetition)) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
+          this.$store.dispatch('errorsModal/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           this.docsPetition = docsPetition;
         }
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -747,7 +747,7 @@
         });
         if (eventResponse.response) {
           let error = JSON.parse(eventResponse.response).error;
-          this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
+          this.$store.dispatch('errorsModal/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           this.getPrev();
         }
@@ -776,7 +776,7 @@
             vm: this
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
     },

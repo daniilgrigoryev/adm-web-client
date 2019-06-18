@@ -62,7 +62,7 @@
           });
         }
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     data: () => ({}),

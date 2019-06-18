@@ -88,11 +88,11 @@
             });
             await vm.$store.dispatch('fillModule', {'event': eventResponse});
           } catch (e) {
-            this.$store.dispatch('errors/changeContent', {title: e.message,});
+            this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
           }
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     mounted() {
@@ -109,7 +109,7 @@
             });
           }
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       });
     },
@@ -140,7 +140,7 @@
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
       async fillComponent(params) {

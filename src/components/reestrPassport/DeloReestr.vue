@@ -316,7 +316,7 @@
         this.fillDocumentVidDict();
         this.fillArticleProcDict();
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     updated() {
@@ -1726,7 +1726,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
       outsideContextMenuClick(e) {
@@ -1764,7 +1764,7 @@
             withTransition: false
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
     }

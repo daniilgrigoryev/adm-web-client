@@ -2,6 +2,7 @@ export default {
   namespaced: true,
   state: {
     status: false,
+    descShow: false,
     content: {
       title: "",
       desc: "",
@@ -10,43 +11,31 @@ export default {
   mutations: {
     changeStatus(state, payload) {
       state.status = payload;
-      if (!payload) {
+      if (!state.status) {
         state.content = {};
+        state.descShow = false;
       }
     },
     changeContent(state, payload) {
       state.content = payload;
     },
-    toggleSize(state, item) {
-      item.open = !item.open;
+    toggleDescShow(state) {
+      state.descShow = !state.descShow;
     },
   },
   actions: {
     changeStatus({ commit }, payload) {
       commit("changeStatus", payload);
     },
-    toggleSize({ commit }, item) {
-      commit("toggleSize", item);
+    toggleDescShow({ commit }) {
+      commit("toggleDescShow");
     },
     changeContent({ state, commit, dispatch }, payload) {
-      if (Array.isArray(payload.desc)) {
-        payload.desc = payload.desc.map(el => {
-          return {
-            open: false,
-            text: el,
-          };
-        });
-      } else {
-        payload.desc = [
-          {
-            open: false,
-            text: payload.desc,
-          },
-        ];
-      }
+      // Искллючения
       if (state.content.title && payload.title == "Cannot convert undefined or null to object") {
         return;
       }
+      // 
       commit("changeContent", payload);
       dispatch("changeStatus", true);
     },

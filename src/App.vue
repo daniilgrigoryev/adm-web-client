@@ -32,7 +32,7 @@
       SiderMenu: () => import('~/components/shared/SiderMenu'),
       Authorization: () => import('~/components/Authorization'),
       Auth: () => import('~/components/Auth'),
-      ErrorsModal: () => import('~/components/shared/errors/Modal')
+      ErrorsModal: () => import('~/components/shared/ErrorsModal')
     },
     data() {
       return {

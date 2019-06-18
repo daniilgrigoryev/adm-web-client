@@ -146,7 +146,7 @@
         try {
           await vm.init();
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       });
     },
@@ -193,7 +193,7 @@
 
           if (funcUtils.isEmpty(postRegistry)) {
             let error = JSON.parse(eventResponse.response).error;
-            this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
+            this.$store.dispatch('errorsModal/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
           } else {
             this.postRegistry = postRegistry;
 
@@ -207,7 +207,7 @@
 
           }
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
       async changeRegType() {
@@ -303,7 +303,7 @@
 
         let eventResp =  JSON.parse(eventResponse.response);
         if (eventResp.error && eventResp.error.errorId) {
-          this.$store.dispatch('errors/changeContent', {title: eventResp.error.errorMsg, desc: eventResp.error.errorDesc,});
+          this.$store.dispatch('errorsModal/changeContent', {title: eventResp.error.errorMsg, desc: eventResp.error.errorDesc,});
         } else {
           await this.getPrev();
         }
@@ -314,7 +314,7 @@
             vm: this
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
     }

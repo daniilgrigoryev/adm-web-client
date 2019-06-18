@@ -84,7 +84,7 @@
         });
         let resp =  JSON.parse(eventResponse.response);
         if (resp.error && resp.error.errorMsg) {
-          this.$store.dispatch('errors/changeContent', {title: resp.error.errorMsg,});
+          this.$store.dispatch('errorsModal/changeContent', {title: resp.error.errorMsg,});
         } else {
           this.getPrev();
         }
@@ -95,7 +95,7 @@
             vm: this
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
     }

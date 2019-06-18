@@ -117,7 +117,7 @@ export default {
       });
       let eventResp =  JSON.parse(eventResponse.response);
       if (eventResp.error && eventResp.error.errorId) {
-        this.$store.dispatch('errors/changeContent', {title: eventResp.error.errorMsg, desc: eventResp.error.errorDesc,});
+        this.$store.dispatch('errorsModal/changeContent', {title: eventResp.error.errorMsg, desc: eventResp.error.errorDesc,});
       } else {
         let response = await RequestApi.prepareData({
           method: 'getDeloId'
@@ -156,7 +156,7 @@ export default {
           withTransition: withTransition
 				});
 			} catch (e) {
-				this.$store.dispatch('errors/changeContent', {title: e.message,});
+				this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
 			}
 		},
 	}

@@ -181,7 +181,7 @@
             this.$store.commit('frmLogSetCid', respData.cid);
           } else {
             if (!funcUtils.isNull(respError)) {
-              this.$store.dispatch('errors/changeContent', {title: respError.errorMsg,});
+              this.$store.dispatch('errorsModal/changeContent', {title: respError.errorMsg,});
             }
           }
         }

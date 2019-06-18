@@ -65,7 +65,7 @@ const store = new Vuex.Store({
             }
           }
         } else if (!funcUtils.isNull(respError)) {
-          this.dispatch('errors/changeContent', {title: respError.errorMsg, desc: respError.errorDesc,});
+          this.dispatch('errorsModal/changeContent', {title: respError.errorMsg, desc: respError.errorDesc,});
         }
       }
     }

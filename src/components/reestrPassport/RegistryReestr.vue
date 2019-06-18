@@ -98,7 +98,7 @@ export default {
         try {
           await vm.init();
         } catch (e) {
-          this.$store.dispatch("errors/changeContent", { title: e.message });
+          this.$store.dispatch("errorsModal/changeContent", { title: e.message });
         }
       }
     );
@@ -112,7 +112,7 @@ export default {
         this.changeTableHeight();
       });
     } catch (e) {
-      this.$store.dispatch("errors/changeContent", { title: e.message });
+      this.$store.dispatch("errorsModal/changeContent", { title: e.message });
     }
   },
   destroyed() {
@@ -411,7 +411,7 @@ export default {
         await this.fillPostRegTypeDict();
         await this.fillPostRegStatusDict();
       } catch (e) {
-        this.$store.dispatch("errors/changeContent", { title: e.message });
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     },
     isEmptyData() {
@@ -693,7 +693,7 @@ export default {
           withCreate: true
         });
       } catch (e) {
-        this.$store.dispatch("errors/changeContent", { title: e.message });
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     },
     editRegistry(registry) {
@@ -711,7 +711,7 @@ export default {
           withCreate: true
         });
       } catch (e) {
-        this.$store.dispatch("errors/changeContent", { title: e.message });
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     },
     createRegistry() {
@@ -726,7 +726,7 @@ export default {
           }
         });
       } catch (e) {
-        this.$store.dispatch("errors/changeContent", { title: e.message });
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     }
   }

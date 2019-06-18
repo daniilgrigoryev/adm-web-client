@@ -170,7 +170,7 @@ export default {
         let file = files[i];
         let type = file.type;
         if (!this.allowedFiles.includes(type)) {
-          // this.$store.dispatch('errors/changeContent', {title: 'Неправильный формат файла', desc: 'Допустимые форматы: Microsoft Excel (XLS, XLSX), PNG, JPEG, MP4, PDF, WEBM',});
+          // this.$store.dispatch('errorsModal/changeContent', {title: 'Неправильный формат файла', desc: 'Допустимые форматы: Microsoft Excel (XLS, XLSX), PNG, JPEG, MP4, PDF, WEBM',});
           this.$Notice.warning({
             title: `Неправильный формат файла ${file.name}.`,
             desc:

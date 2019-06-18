@@ -182,11 +182,11 @@
             });
             await vm.$store.dispatch('fillModule', {'event': eventResponse});
           } catch (e) {
-            this.$store.dispatch('errors/changeContent', {title: e.message,});
+            this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
           }
         });
       } catch (e) {
-        this.$store.dispatch('errors/changeContent', {title: e.message,});
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
     destroyed() {
@@ -223,7 +223,7 @@
           await this.$store.dispatch('fillModule', {'event': eventResponse});
           this.secondaryCases = [];
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
       async searchSecondaryCases() {
@@ -300,7 +300,7 @@
             withCreate: true
           });
         } catch (e) {
-          this.$store.dispatch('errors/changeContent', {title: e.message,});
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
     },
