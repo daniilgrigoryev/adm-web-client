@@ -148,7 +148,7 @@ header {
       text-align: center;
       &:hover,
       &.ivu-menu-item-active {
-        border-bottom: 5px solid #1888cc;
+        border-bottom: 4px solid #2d8cf0;
       }
     }
     .ivu-poptip-body {
