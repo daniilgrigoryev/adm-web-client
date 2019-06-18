@@ -98,7 +98,7 @@ export default {
         margin: 0 15px;
       }
       .text {
-        font-size: 20px;
+        font-size: 18px;
         color: #17233d;
         font-weight: 700;
         line-height: 1em;
@@ -133,7 +133,7 @@ export default {
       overflow-x: hidden;
       padding: 0 76px 10px;
       .text {
-        font-size: 18px;
+        font-size: 16px;
         color: #515a6e;
       }
       .desc {
