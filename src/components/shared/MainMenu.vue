@@ -113,7 +113,7 @@ header {
     display: flex;
     align-items: center;
     .logo {
-      height: 50px;
+      height: 56px;
     }
     .title {
       font-size: 22px;
