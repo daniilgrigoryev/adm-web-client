@@ -351,6 +351,72 @@ export default {
           render: (h, params) => {
             return h("div", [h("p", params.row.unloadState)]);
           }
+        },
+        {
+          title: "Действия",
+          width: 120,
+          align: "center",
+          key: 'action',
+          visible: true,
+          renderHeader: (h, params) => {
+            return h('Tooltip', {
+              props: {
+                placement: 'left',
+                content: params.column.title,
+                transfer: true,
+              }
+            }, [
+              h('div', [
+                h('p', {
+                  class: {
+                    'color-dark-medium': true,
+                    'adm-text-big': true,
+                    'txt-normal': true,
+                  },
+                }, params.column.title),
+              ])
+            ])
+          },
+          render: (h, params) => {
+            return h('div', [
+              h("Icon", {
+                props: {
+                  type: "ios-open-outline",
+                  size: 22,
+                },
+                style: {
+                  cursor: "pointer",
+                  color: "#2d8cf0"
+                },
+                attrs: {
+                  title: 'Просмотр'
+                },
+                on: {
+                  click: () => {
+                    this.showRegistry(params.row);
+                  }
+                }
+              }),
+              h("Icon", {
+                props: {
+                  type: "ios-open-outline",
+                  size: 22,
+                },
+                style: {
+                  cursor: "pointer",
+                  color: "#2d8cf0"
+                },
+                attrs: {
+                  title: 'Редактирование'
+                },
+                on: {
+                  click: () => {
+                    this.editRegistry(params.row);
+                  }
+                }
+              })
+            ]);
+          },
         }
       ]
     };
