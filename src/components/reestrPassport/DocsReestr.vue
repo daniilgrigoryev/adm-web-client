@@ -2,45 +2,66 @@
   <div>
     <div class="breadcrumbs">
       <div class="content">
-        Реестры / Почтовые реестры
+        Реестры / Документы на подписание
       </div>
     </div>
     <div class="adm-search-filter-panel adm-form">
       <div class="content">
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Тип реестра</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.type" filterable clearable>
-            <Option v-for="item in postRegTypeDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
+          <div class="adm-form__item-label">Тип документа</div>
+          <CustomSelect class="adm-input adm-input--big" v-model="filter.docType" filterable clearable>
+            <Option v-for="item in docTipDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
           </CustomSelect>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Статус</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.status" filterable clearable>
-            <Option v-for="item in postRegStatusDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
-          </CustomSelect>
+          <div class="adm-form__item-label">Фамилия</div>
+          <Input class="adm-input adm-input--big" placeholder="Фамилия" clearable/>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Период</div>
-          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.begDate" :valueSecond="filter.endDate"
-                                clearable type="date" placeholder="дд/мм/гггг" @change="changeDateRange"
-                                momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
+          <div class="adm-form__item-label">Имя</div>
+          <Input class="adm-input adm-input--big" placeholder="Имя" clearable/>
+        </div>
+        <div class="adm-form__item">
+          <div class="adm-form__item-label">Отчество</div>
+          <Input class="adm-input adm-input--big" placeholder="Отчество" clearable/>
+        </div>
+        <div class="adm-form__item">
+          <div class="adm-form__item-label">ГРЗ</div>
+          <Input class="adm-input adm-input--big" v-model="filter.regno" clearable/>
         </div>
         <div class="buttons-wrap">
           <Button @click="filterClick" type="default" class="adm-btn adm-btn--blue">Найти</Button>
           <Button @click="clearFilterSort" type="default" class="adm-btn">Очистить</Button>
-          <Button @click="createRegistry" type="default" class="adm-btn">Создать запись</Button>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Автор</div>
-          <Input class="adm-input adm-input--big" placeholder="Фамилия" clearable/>
+          <div class="adm-form__item-label">Статус подписания</div>
+          <CustomSelect class="adm-input adm-input--big" v-model="filter.sign" filterable clearable>
+            <Option :value="0">Все</Option>
+            <Option :value="1">Не подписанные</Option>
+            <Option :value="2">Подписанные</Option>
+          </CustomSelect>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label"></div>
-          <Input class="adm-input adm-input--big" placeholder="Имя" clearable/>
+          <div class="adm-form__item-label">Наименование организации</div>
+          <Input class="adm-input adm-input--big" clearable/>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label"></div>
-          <Input class="adm-input adm-input--big" placeholder="Отчество" clearable/>
+          <div class="adm-form__item-label">Период нарушения</div>
+          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.docDateBeg" :valueSecond="filter.docDateEnd"
+                                clearable type="date" placeholder="дд/мм/гггг" @change="changedocDate"
+                                momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
+        </div>
+        <div class="adm-form__item">
+          <div class="adm-form__item-label">Период подписания</div>
+          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.signDateBeg" :valueSecond="filter.signDateEnd"
+                                clearable type="date" placeholder="дд/мм/гггг" @change="changeSignDate"
+                                momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
+        </div>
+        <div class="adm-form__item">
+          <div class="adm-form__item-label">Период рассмотрения</div>
+          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" 
+                                clearable type="date" placeholder="дд/мм/гггг" 
+                                momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
         </div>
       </div>
     </div>
@@ -75,7 +96,7 @@
         </div>
 
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
-              :stripe="false" :height="tableHeight" @on-row-dblclick="editRegistry" @on-sort-change="sortClick"></Table>
+               :stripe="false" :height="tableHeight" @on-sort-change="sortClick"></Table>
       </div>
     </div>
   </div>
@@ -88,7 +109,7 @@ import RequestApi from "~/assets/js/api/requestApi";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "RegistryReestr",
+  name: "DocsReestr",
   components: {
     DateRangePickerMask: () =>
       import("~/components/shared/dateTimeRangePicker/DateRangePickerMask")
@@ -96,18 +117,13 @@ export default {
   async created() {
     await this.init();
     let vm = this;
-    this.$store.watch(
-      this.$store.getters.registryReestrGetCommand,
-      async () => {
-        try {
-          await vm.init();
-        } catch (e) {
-          this.$store.dispatch("errorsModal/changeContent", {
-            title: e.message
-          });
-        }
+    this.$store.watch(this.$store.getters.docsReestrGetCommand, async () => {
+      try {
+        await vm.init();
+      } catch (e) {
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
-    );
+    });
   },
   updated() {
     try {
@@ -122,8 +138,8 @@ export default {
     }
   },
   destroyed() {
-    this.$store.dispatch("registryReestrSetCid", null);
-    this.$store.dispatch("registryReestrSetData", null);
+    this.$store.dispatch("docsReestrSetCid", null);
+    this.$store.dispatch("docsReestrSetData", null);
   },
   data() {
     return {
@@ -134,13 +150,17 @@ export default {
       delta: 40,
       currentPage: 1,
       columnsOptionsVisible: false,
-      postRegTypeDict: [],
+      docTipDict: [],
       postRegStatusDict: [],
       filter: {
-        type: null,
-        status: null,
-        begDate: null,
-        endDate: null
+        docType: null,
+        docDateBeg: null,
+        docDateEnd: null,
+        tag: null,
+        regno: null,
+        signDateBeg: null,
+        signDateEnd: null,
+        sign: 0
       },
       sort: {},
       columnsOptions: [
@@ -153,19 +173,7 @@ export default {
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
-            return h("div", [
-              h(
-                "p",
-                {
-                  class: {
-                    "color-dark-lighter": true,
-                    "adm-text-big": true,
-                    "txt-normal": true
-                  }
-                },
-                params.column.title
-              )
-            ]);
+            return h("div", [h("p", {}, params.column.title)]);
           },
           render: (h, params) => {
             let color = this.changeClass(params.row.status);
@@ -187,26 +195,16 @@ export default {
           }
         },
         {
-          title: "№", // Исходящий номер
-          key: "curIssue",
+          title: "ГРЗ", // Исходящий номер
+          key: "regno",
           minWidth: 180,
           ellipsis: true,
-          referenceName: "curIssue",
+          referenceName: "regno",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
             return h("div", [
-              h(
-                "p",
-                {
-                  class: {
-                    "color-dark-medium": true,
-                    "adm-text-big": true,
-                    "txt-normal": true
-                  }
-                },
-                params.column.title
-              ),
+              h("p", params.column.title),
               h(
                 "p",
                 {
@@ -218,21 +216,28 @@ export default {
                     "txt-normal": true
                   }
                 },
-                "Статус"
+                "Статус подписания"
               )
             ]);
           },
           render: (h, params) => {
+            let date = this.$options.filters.formatDateTime(
+              params.row.signTime,
+              "DD.MM.YYYY HH:MM"
+            );
+            let status = params.row.signTime
+              ? "Подписан " + date
+              : "не подписано";
             return h("div", [
-              h("p", { class: { "color-blue": true } }, params.row.curIssue),
-              h("p", params.row.statusName)
+              h("p", { class: { "color-blue": true } }, params.row.regno),
+              h("p", status)
             ]);
           }
         },
         {
-          title: "Автор",
+          title: "Дата и время составления",
           key: "authorName",
-          minWidth: 100,
+          minWidth: 180,
           ellipsis: true,
           referenceName: "authorName",
           visible: true,
@@ -241,41 +246,11 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.authorName)]);
-          }
-        },
-        {
-          title: "Контракт",
-          key: "contractName",
-          minWidth: 180,
-          ellipsis: true,
-          referenceName: "contractName",
-          visible: true,
-          tooltip: true,
-          renderHeader: (h, params) => {
-            return h("div", [h("p", params.column.title)]);
-          },
-          render: (h, params) => {
-            return h("div", [h("p", params.row.contractName)]);
-          }
-        },
-        {
-          title: "Дата создания",
-          key: "creationDate",
-          minWidth: 180,
-          ellipsis: true,
-          referenceName: "creationDate",
-          visible: true,
-          tooltip: true,
-          renderHeader: (h, params) => {
-            return h("div", [h("p", params.column.title)]);
-          },
-          render: (h, params) => {
             return h("div", [
               h(
                 "p",
                 this.$options.filters.formatDateTime(
-                  params.row.creationDate,
+                  params.row.datSost,
                   "DD.MM.YYYY HH:MM"
                 )
               )
@@ -283,139 +258,48 @@ export default {
           }
         },
         {
-          title: "Дата отправки",
-          key: "sendDate",
+          title: "Составил",
+          key: "inspSostName",
           minWidth: 180,
           ellipsis: true,
-          referenceName: "sendDate",
+          referenceName: "inspSostName",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [
-              h(
-                "p",
-                this.$options.filters.formatDateTime(
-                  params.row.sendDate,
-                  "DD.MM.YYYY HH:MM"
-                )
-              )
-            ]);
+            return h("div", [h("p", params.row.inspSostName)]);
           }
         },
         {
-          title: "Отправления",
-          key: "sendingsNum",
+          title: "ФИО нарушителя",
+          key: "FIO",
           minWidth: 180,
           ellipsis: true,
-          referenceName: "sendingsNum",
+          referenceName: "FIO",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.sendingsNum)]);
+            return h("div", [h("p", params.row.uchastName)]);
           }
         },
         {
-          title: "Дата выгрузки",
-          key: "unloadDate",
+          title: "Просмотреть",
+          key: "actions",
           minWidth: 180,
           ellipsis: true,
-          referenceName: "unloadDate",
+          referenceName: "actions",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [
-              h(
-                "p",
-                this.$options.filters.formatDateTime(
-                  params.row.unloadDate,
-                  "DD.MM.YYYY HH:MM"
-                )
-              )
-            ]);
-          }
-        },
-        {
-          title: "Состояние выгрузки",
-          key: "unloadState",
-          minWidth: 180,
-          ellipsis: true,
-          referenceName: "unloadState",
-          visible: true,
-          tooltip: true,
-          renderHeader: (h, params) => {
-            return h("div", [h("p", params.column.title)]);
-          },
-          render: (h, params) => {
-            return h("div", [h("p", params.row.unloadState)]);
-          }
-        },
-        {
-          title: "Действия",
-          width: 120,
-          align: "center",
-          key: "action",
-          visible: true,
-          renderHeader: (h, params) => {
-            return h(
-              "Tooltip",
-              {
-                props: {
-                  placement: "left",
-                  content: params.column.title,
-                  transfer: true
-                }
-              },
-              [h("div", [h("p", params.column.title)])]
-            );
-          },
-          render: (h, params) => {
-            return h("div", [
-              h("Icon", {
-                props: {
-                  type: "ios-open-outline",
-                  size: 22
-                },
-                style: {
-                  cursor: "pointer",
-                  color: "#2d8cf0"
-                },
-                attrs: {
-                  title: "Просмотр"
-                },
-                on: {
-                  click: () => {
-                    this.showRegistry(params.row);
-                  }
-                }
-              }),
-              h("Icon", {
-                props: {
-                  type: "ios-open-outline",
-                  size: 22
-                },
-                style: {
-                  cursor: "pointer",
-                  color: "#2d8cf0"
-                },
-                attrs: {
-                  title: "Редактирование"
-                },
-                on: {
-                  click: () => {
-                    this.editRegistry(params.row);
-                  }
-                }
-              })
-            ]);
+            return h("div", []);
           }
         }
       ]
@@ -423,13 +307,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      dataStore: "registryReestrGetData"
+      dataStore: "docsReestrGetData"
     }),
     data() {
       let res = [];
       if (!this.isEmptyData()) {
         for (let i = this.from; i < this.to; i++) {
-          let item = this.dataStore.body[i];
+          let item = this.dataStore.deloList[i];
           if (item) {
             res.push(item);
           }
@@ -450,16 +334,16 @@ export default {
     async init() {
       try {
         let current = formStack.getCurrent();
-        await this.$store.dispatch("registryReestrSetCid", current.cid);
-        let cid = funcUtils.getfromLocalStorage("admRegistryReestr");
+        await this.$store.dispatch("docsReestrSetCid", current.cid);
+        let cid = funcUtils.getfromLocalStorage("admDocsReestr");
         let eventResponse;
 
         if (funcUtils.isNull(cid)) {
-          funcUtils.addToLocalStorage("admRegistryReestr", current.cid);
+          funcUtils.addToLocalStorage("admDocsReestr", current.cid);
           eventResponse = await RequestApi.prepareData({
             method: "getData",
             params: {
-              filter: null,
+              find: null,
               sort: null
             }
           });
@@ -468,14 +352,11 @@ export default {
             method: "restore"
           });
 
-          let filter = JSON.parse(eventResponse.response).data.filter;
+          let filter = JSON.parse(eventResponse.response).data.find;
           this.parseFilter(filter);
         }
-
         await this.fillModule(eventResponse);
-
-        await this.fillPostRegTypeDict();
-        await this.fillPostRegStatusDict();
+        await this.fillDocTipDict();
       } catch (e) {
         this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
@@ -483,7 +364,7 @@ export default {
     isEmptyData() {
       return (
         funcUtils.isEmpty(this.dataStore) ||
-        funcUtils.isEmpty(this.dataStore.body)
+        funcUtils.isEmpty(this.dataStore.deloList)
       );
     },
     changeClass(statusId) {
@@ -518,7 +399,6 @@ export default {
     },
     async fillModule(eventResponse) {
       await this.$store.dispatch("fillModule", { event: eventResponse });
-
       let sort = JSON.parse(eventResponse.response).data.sort;
       this.parseSort(sort);
     },
@@ -534,14 +414,11 @@ export default {
             let item = filter[prop];
             if (funcUtils.isNotEmpty(item)) {
               switch (prop) {
-                case "deloDatStart":
-                case "deloDatEnd": {
+                case "docDateBeg":
+                case "docDateEnd":
+                case "signDateBeg":
+                case "signDateEnd": {
                   this.filter[prop] = new Date(item);
-                  break;
-                }
-                case "type":
-                case "status": {
-                  this.filter[prop] = item + "";
                   break;
                 }
                 default: {
@@ -574,9 +451,13 @@ export default {
         });
       }
     },
-    changeDateRange(e) {
-      this.filter.begDate = e.valueFirst;
-      this.filter.endDate = e.valueSecond;
+    changedocDate(e) {
+      this.filter.docDateBeg = e.valueFirst;
+      this.filter.docDateEnd = e.valueSecond;
+    },
+    changeSignDate(e) {
+      this.filter.signDateBeg = e.valueFirst;
+      this.filter.signDateEnd = e.valueSecond;
     },
     toggleColumnsOption() {
       this.columnsOptionsVisible = !this.columnsOptionsVisible;
@@ -602,55 +483,13 @@ export default {
           filterObj[prop] = propObj;
         }
       }
-
       return filterObj;
     },
-    async clearFilterSort() {
-      this.from = 0;
-      this.to = 40;
-      this.limit = 40;
-      this.delta = 40;
-      this.currentPage = 1;
-      this.columnsOptionsVisible = false;
-      let filter = this.filter;
-      // let sort = this.sort;
-      for (let prop in filter) {
-        if (filter.hasOwnProperty(prop)) {
-          filter[prop] = null;
-        }
-      }
-      /*for (let prop in sort) {
-          if (sort.hasOwnProperty(prop)) {
-            switch (prop) {
-              case 'deloDate': {
-                sort[prop] = true;
-                break;
-              }
-              case 'deloN': {
-                sort[prop] = true;
-                break;
-              }
-              default: {
-                sort[prop] = null;
-                break;
-              }
-            }
-          }
-        }*/
-      let eventResponse = await RequestApi.prepareData({
-        method: "getData",
-        params: {
-          filter: null,
-          sort: this.getSortedFields()
-        }
-      });
-      await this.fillModule(eventResponse);
-    },
+
     getSortedFields() {
       let sortObj = {
         sort: []
       };
-
       let fields = this.sort;
       for (let prop in fields) {
         if (fields.hasOwnProperty(prop)) {
@@ -663,8 +502,41 @@ export default {
           }
         }
       }
-
       return sortObj;
+    },
+    async clearFilterSort() {
+      this.from = 0;
+      this.to = 40;
+      this.limit = 40;
+      this.delta = 40;
+      this.currentPage = 1;
+      this.columnsOptionsVisible = false;
+      let filter = this.filter;
+      for (let prop in filter) {
+        if (filter.hasOwnProperty(prop)) {
+          filter[prop] = null;
+        }
+      }
+      let eventResponse = await RequestApi.prepareData({
+        method: "getData",
+        params: {
+          filter: null,
+          sort: this.getSortedFields()
+        }
+      });
+      await this.fillModule(eventResponse);
+    },
+    async fillDocTipDict() {
+      let eventResponse = await RequestApi.prepareData({
+        method: "getDocTipDict"
+      });
+      let docTipDict = JSON.parse(eventResponse.response).data;
+      this.docTipDict = docTipDict.map(item => {
+        return {
+          label: item.DOC_TIP_NAME,
+          value: item.DOC_TIP
+        };
+      });
     },
     async sortClick(name) {
       this.from = 0;
@@ -692,39 +564,11 @@ export default {
       let eventResponse = await RequestApi.prepareData({
         method: "getData",
         params: {
-          filter: filterFields,
+          find: filterFields,
           sort: sortedFields
         }
       });
       await this.fillModule(eventResponse);
-    },
-    async fillPostRegTypeDict() {
-      let postRegTypeDict = [];
-      let eventResponse = await RequestApi.prepareData({
-        method: "getPostRegTypeDictionary"
-      });
-      let postRegTypeList = JSON.parse(eventResponse.response).data;
-      postRegTypeList.forEach(item => {
-        postRegTypeDict.push({
-          label: item.values["NAME"],
-          value: item.values["ID"] + ""
-        });
-      });
-      this.postRegTypeDict = postRegTypeDict;
-    },
-    async fillPostRegStatusDict() {
-      let postRegStatusDict = [];
-      let eventResponse = await RequestApi.prepareData({
-        method: "getPostRegStatusDictionary"
-      });
-      let postRegStatusList = JSON.parse(eventResponse.response).data;
-      postRegStatusList.forEach(item => {
-        postRegStatusDict.push({
-          label: item.values["NAME"],
-          value: item.values["ID"] + ""
-        });
-      });
-      this.postRegStatusDict = postRegStatusDict;
     },
     async filterClick() {
       this.from = 0;
@@ -735,65 +579,15 @@ export default {
       this.columnsOptionsVisible = false;
       let filter = this.getFilterFields();
       let sort = this.getSortedFields();
+      console.log(filter);
       let eventResponse = await RequestApi.prepareData({
         method: "getData",
         params: {
-          filter: filter,
+          find: filter,
           sort: sort
         }
       });
       await this.fillModule(eventResponse);
-    },
-    showRegistry(registry) {
-      try {
-        let params = {
-          id: registry.id,
-          title: "Почтовые реестры"
-        };
-
-        formStack.toNext({
-          module: this.$store.state.registryReestrItem,
-          vm: this,
-          notRemoved: false,
-          params: params,
-          withCreate: true
-        });
-      } catch (e) {
-        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
-      }
-    },
-    editRegistry(registry) {
-      try {
-        let params = {
-          id: registry.id,
-          title: "Почтовые реестры"
-        };
-
-        formStack.toNext({
-          module: this.$store.state.postRegistryEdit,
-          vm: this,
-          notRemoved: false,
-          params: params,
-          withCreate: true
-        });
-      } catch (e) {
-        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
-      }
-    },
-    createRegistry() {
-      try {
-        formStack.toNext({
-          module: this.$store.state.postRegistryCreate,
-          vm: this,
-          notRemoved: false,
-          withCreate: true,
-          params: {
-            title: "Почтовые реестры"
-          }
-        });
-      } catch (e) {
-        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
-      }
     }
   }
 };
@@ -815,7 +609,7 @@ export default {
 .adm-search-filter-panel {
   .content {
     display: grid;
-    grid-template-columns: repeat(3, 250px) 1fr;
+    grid-template-columns: repeat(5, 1fr) 140px;
     grid-gap: 0 35px;
   }
   .adm-form__item {

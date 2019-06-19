@@ -119,6 +119,21 @@ let vue = new Vue({
         this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
+    async getDocsReestr() {
+      try {
+        let cid = funcUtils.getfromLocalStorage('admDocsReestr');
+        formStack.clearStack(false);
+        await formStack.toNext({
+          module: this.$store.state.docsReestr,
+          vm: this,
+          notRemoved: true,
+          cid: cid,
+          withCreate: funcUtils.isEmpty(cid)
+        });
+      } catch (e) {
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
+      }
+    },
     async getRegistryReestr() {
       try {
         let cid = funcUtils.getfromLocalStorage('admRegistryReestr');

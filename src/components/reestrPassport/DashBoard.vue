@@ -53,10 +53,10 @@
 </template>
 
 <script>
-  import * as formStack from "~/assets/js/api/formStack";
-  import * as funcUtils from "~/assets/js/utils/funcUtils";
+import * as formStack from "~/assets/js/api/formStack";
+import * as funcUtils from "~/assets/js/utils/funcUtils";
 
-  export default {
+export default {
   data() {
     return {
       defoultList: [
@@ -71,12 +71,12 @@
                 {
                   title: "Такси",
                   value: "CreateProtTaxi",
-                  name: "Протокол об административном правонарушении такси",
+                  name: "Протокол об административном правонарушении такси"
                 },
                 {
                   title: "Эвакуация",
                   value: "CreateProtAPN",
-                  name: "Протокол об административном правонарушении",
+                  name: "Протокол об административном правонарушении"
                 },
                 {
                   title: "КоАП г. Москвы",
@@ -84,32 +84,33 @@
                     {
                       title: "8.25",
                       value: "",
-                      name: "Протокол об административном правонарушении",
+                      name: "Протокол об административном правонарушении"
                     },
                     {
                       title: "4.50",
                       value: "",
-                      name: "Протокол об административном правонарушении",
-                    },
-                  ],
+                      name: "Протокол об административном правонарушении"
+                    }
+                  ]
                 },
                 {
                   title: "20.25",
                   value: "CreateProt2025",
                   desc: "",
-                  name: "Статья 20.25(Уклонение от исполнения административного наказания",
-                },
+                  name:
+                    "Статья 20.25(Уклонение от исполнения административного наказания"
+                }
               ]
             },
             {
               title: "О задержании ТС",
               value: "CreateProtEvac",
-              name: "Протокол о задержании ТС",
+              name: "Протокол о задержании ТС"
             },
             {
               title: "Об изъятии вещей и документов (ТС)",
-              value:  "CreateProtIzyat",
-              name: "Протокол изъятия вещей и документов",
+              value: "CreateProtIzyat",
+              name: "Протокол изъятия вещей и документов"
             }
           ]
         },
@@ -121,22 +122,22 @@
             {
               title: "АПН",
               value: "CreateDefinition",
-              name: "Определение об административном правонарушении",
+              name: "Определение об административном правонарушении"
             },
             {
               title: "Такси",
               value: "CreateDefinitionTaxi",
-              name: "Определение об административном правонарушении такси",
+              name: "Определение об административном правонарушении такси"
             },
             {
               title: "Эвакуация",
               value: "CreateDefinition",
-              name: "Определение об административном правонарушении",
+              name: "Определение об административном правонарушении"
             },
             {
               title: "КоАП г. Москвы",
-              value: "",
-            },
+              value: ""
+            }
           ]
         },
         {
@@ -158,7 +159,7 @@
       title: "Возбуждение дела",
       value: this.defoultList
     });
-    let likedOfDashboard = funcUtils.getFromSessionStorage('likedOfDashboard');
+    let likedOfDashboard = funcUtils.getFromSessionStorage("likedOfDashboard");
     if (likedOfDashboard) {
       this.likedOfDashboard = likedOfDashboard;
     }
@@ -170,14 +171,17 @@
         res = Object.values(this.likedOfDashboard);
         res.sort((a, b) => {
           if (b.count === a.count) {
-            return new Date(b.clickedDate).getTime() - new Date(a.clickedDate).getTime();
+            return (
+              new Date(b.clickedDate).getTime() -
+              new Date(a.clickedDate).getTime()
+            );
           }
           return b.count - a.count;
         });
         res = res.slice(0, 5);
       }
       return res;
-    },
+    }
   },
   methods: {
     openItem(item) {
@@ -200,7 +204,10 @@
           likedItem = this.likedOfDashboard[item.value];
         }
         likedItem.count++;
-        funcUtils.addToSessionStorage('likedOfDashboard', this.likedOfDashboard);
+        funcUtils.addToSessionStorage(
+          "likedOfDashboard",
+          this.likedOfDashboard
+        );
 
         this.goToWizard(item.value);
       }
@@ -220,29 +227,29 @@
         notRemoved: true,
         params: {
           scenarioName: wizardName,
-          title: 'Возбуждение дела'
+          title: "Возбуждение дела"
         },
         withCreate: true
       });
     },
     imageByWizardName(wizardName) {
       switch (wizardName) {
-        case 'CreateProtAPN':
-        case 'CreateProt2025':
-        case 'CreateProtEvac':
-        case 'CreateProtIzyat':
-        case 'CreateProtTaxi': {
+        case "CreateProtAPN":
+        case "CreateProt2025":
+        case "CreateProtEvac":
+        case "CreateProtIzyat":
+        case "CreateProtTaxi": {
           return require("~/assets/images/icons/protokol.svg");
         }
-        case 'CreateDefinition':
-        case 'CreateDefinitionTaxi': {
+        case "CreateDefinition":
+        case "CreateDefinitionTaxi": {
           return require("~/assets/images/icons/opredelenie.svg");
         }
-        case 'CreatePost': {
+        case "CreatePost": {
           return require("~/assets/images/icons/posnanovlenie.svg");
         }
       }
-    },
+    }
   }
 };
 </script>
@@ -326,6 +333,10 @@
           }
         }
       }
+      .ivu-icon {
+        font-size: 26px;
+        color: #c6c6c6;
+      }
       .gridWrap {
         display: grid;
         grid-template-columns: 56px 1fr;
@@ -351,7 +362,6 @@
     }
   }
 }
-
 
 .likedOfDashboard {
   display: grid;

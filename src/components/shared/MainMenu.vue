@@ -76,7 +76,7 @@ export default {
           break;
         }
         case 7: {
-          // this.$root.getDocsForSigning();
+          this.$root.getDocsReestr();
           break;
         }
         case 8: {

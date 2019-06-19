@@ -22,6 +22,11 @@ const router = new Router({
       component: () => import('~/components/reestrPassport/DashBoard'),
     },
     {
+      path: '/docsReestr',
+      name: 'DocsReestr',
+      component: () => import('~/components/reestrPassport/DocsReestr'),
+    },
+    {
       path: '/deloTreeCardView',
       name: 'DeloTreeCardView',
       component: () => import('~/components/viewData/DeloTreeCardView'),

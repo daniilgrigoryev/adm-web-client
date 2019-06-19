@@ -207,6 +207,11 @@ html, body, #app {
 .wmax1920 {
   max-width: 1920px;
 }
+.content {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+}
 
 .layout--inner {
   background: #ffff;
@@ -929,6 +934,18 @@ html, body, #app {
       grid-column: span 2;
     }
   }
+}
+
+.ivu-page-item, .ivu-page-prev, .ivu-page-next {
+  min-width: 28px;
+  height: 28px;
+  line-height: 25px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.ivu-page-item a {
+  font-family: inherit;
 }
 
 header .ivu-poptip,header .ivu-poptip-rel {
