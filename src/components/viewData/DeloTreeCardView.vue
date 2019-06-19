@@ -33,7 +33,7 @@
                       <Button :disabled="!menuItemVisible(menu.createDelo.OpredAPNAnothFace)" @click="createWizardScenarioDefinitionTaxi(true)" type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
                     </li>
                     <li>
-                      <Button :disabled="!menuItemVisible(menu.createDelo.PostAPNAnothFace)" type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
+                      <Button :disabled="!menuItemVisible(menu.createDelo.PostAPNAnothFace)" @click="createWizardScenarioPostDecisDelo(true)" type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
                     </li>
                   </ul>
                 </div>
@@ -470,25 +470,26 @@
             return current.params.recType === constants.DELO;
           }
           case 'PostAPNAnothFace': {
-            let galobs = {};
-            let decisGalobs = [];
-            let arrElem;
+            // let galobs = {};
+            // let decisGalobs = [];
+            // let arrElem;
 
-            for (let i = 0; i < this.dataStore.tree.length; i++) {
-              arrElem = this.dataStore.tree[i];
-              if (arrElem.recType === constants.DOCS_GALOB) {
-                galobs[arrElem.category] = arrElem;
-              }
-            }
+            // for (let i = 0; i < this.dataStore.tree.length; i++) {
+            //   arrElem = this.dataStore.tree[i];
+            //   if (arrElem.recType === constants.DOCS_GALOB) {
+            //     galobs[arrElem.category] = arrElem;
+            //   }
+            // }
 
-            for (let i = 0; i < this.dataStore.tree.length; i++) {
-              arrElem = this.dataStore.tree[i];
-              let galob = galobs[arrElem.parentCategory];
-              if (galob && arrElem.kod === decisEnum.PREKRASH_DELO) {
-                decisGalobs.push(arrElem);
-              }
-            }
-            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_PERFORMED || this.deloContext.stadKod === constants.STAD_TERMINATED) && decisGalobs.length > 0;
+            // for (let i = 0; i < this.dataStore.tree.length; i++) {
+            //   arrElem = this.dataStore.tree[i];
+            //   let galob = galobs[arrElem.parentCategory];
+            //   if (galob && arrElem.kod === decisEnum.PREKRASH_DELO) {
+            //     decisGalobs.push(arrElem);
+            //   }
+            // }
+            // return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_PERFORMED || this.deloContext.stadKod === constants.STAD_TERMINATED) && decisGalobs.length > 0;
+            return current.params.recType === constants.DELO;
           }
           case 'ApplyDocOnDelo': {
             return current.params.recType === constants.DELO;

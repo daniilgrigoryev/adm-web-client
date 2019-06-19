@@ -155,7 +155,7 @@ header {
       .ivu-menu-item {
         border: none !important;
         text-align: left;
-        padding: 0;
+        padding: 2px 0;
       }
     }
   }
