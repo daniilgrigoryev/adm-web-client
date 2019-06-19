@@ -77,12 +77,15 @@ export default {
         }
         case 7: {
           // this.$root.getDocsForSigning();
+          break;
         }
         case 8: {
           this.$root.getRegistryReestr();
+          break;
         }
         case 9: {
           // this.$root.getRegistryReestr();
+          break;
         }
       }
       funcUtils.addToSessionStorage("mainMenuActiveName", activeName);

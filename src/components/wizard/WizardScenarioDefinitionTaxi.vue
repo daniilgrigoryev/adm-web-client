@@ -49,6 +49,15 @@
               <wizard-item-definition-five v-if="isVisible('DocDefinitionTaxiFive')" ref="DocDefinitionTaxiFive" :info="getInfo('DocDefinitionTaxiFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-five>
             </div>
           </div>
+          <div class="adm-form__container" v-if="isVisible('Victim')">
+            <h2 class="adm-form__headding" id="Victim">Потерпевший</h2>
+            <div class="adm-form__content">
+              <wizard-item-victim v-if="isVisible('Victim')" ref="Victim" :info="getInfo('Victim')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-victim>
+              <wizard-item-individual v-if="isVisible('Victim.Individual')" ref="Victim.Individual" :info="getInfo('Victim.Individual')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-individual>
+              <wizard-item-address v-if="isVisible('Victim.Individual.regAddr')" ref="Victim.Individual.regAddr" :info="getInfo('Victim.Individual.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+              <wizard-item-address v-if="isVisible('Victim.Individual.factAddr')" ref="Victim.Individual.factAddr" :info="getInfo('Victim.Individual.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+            </div>
+          </div>
         </div>
       </Layout>
     </div>
@@ -82,7 +91,8 @@
       WizardItemLvok: () => import('~/components/wizard/items/WizardItemLvok'),
       WizardItemOrganization: () => import('~/components/wizard/items/WizardItemOrganization'),
       WizardItemPlace: () => import('~/components/wizard/items/WizardItemPlace'),
-      WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs')
+      WizardItemVehs: () => import('~/components/wizard/items/WizardItemVehs'),
+      WizardItemVictim: () => import('~/components/wizard/items/WizardItemVictim')
     },
     methods: {
       listSectionNav() {
