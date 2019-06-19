@@ -33,7 +33,7 @@
                       <Button :disabled="!menuItemVisible(menu.createDelo.OpredAPNAnothFace)" @click="createWizardScenarioDefinitionTaxi(true)" type="text" class="adm-btn-regular">Определение об АПН на другое лицо</Button>
                     </li>
                     <li>
-                      <Button :disabled="!menuItemVisible(menu.createDelo.PostAPNAnothFace)" @click="createWizardScenarioPostDecisDelo(true)" type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
+                      <Button :disabled="!menuItemVisible(menu.createDelo.PostAPNAnothFace)" @click="createWizardScenarioPost(true)" type="text" class="adm-btn-regular">Постановление об АПН на другое лицо</Button>
                     </li>
                   </ul>
                 </div>
@@ -900,6 +900,27 @@
           let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
+            node: copyNode,
+            title: 'Дело №' + this.deloContext.deloN,
+            newDelo: newDelo
+          };
+
+          formStack.toNext({
+            module: this.$store.state.wizardExecuter,
+            vm: this,
+            notRemoved: true,
+            params: params,
+            withCreate: true
+          });
+        } catch (e) {
+          this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
+        }
+      },
+      createWizardScenarioPost(newDelo) {
+        try {
+          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let params = {
+            scenarioName: 'CreatePost',
             node: copyNode,
             title: 'Дело №' + this.deloContext.deloN,
             newDelo: newDelo
