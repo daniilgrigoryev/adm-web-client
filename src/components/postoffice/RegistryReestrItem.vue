@@ -1,119 +1,101 @@
 <!-- prettier-ignore -->
 <template>
-  <div v-if="dataStore && body" class="layout">
-    <Layout class="layout--inner" style="min-height: calc(100vh - 66px);">
-      <div class="bg-white deloContext-sticky">
-        <div class="flex-parent flex-parent--center-cross pl60 py6">
-          <div class="flex-parent flex-parent--center-cross">
+  <aside-template v-if="dataStore && body" :listSectionNav="listSectionNav">
+    <div class="layout-wrap">
+      <div class="adm-form">
+        <div class="adm-form__container">
+          <h2 class="adm-form__headding" id="head">Почтовый реестр №{{body.curIssue}}</h2>
+          <div class="view-data">
+            <div class="view-data__container">
+              <div class="items-wrap">
+                <view-data-item
+                  label="Исходящий номер"
+                  :value="body.curIssue"
+                  style="grid-column: span 2;"
+                />
+                <view-data-item
+                  label="Время создания реестра"
+                  :value="body.creationDate | formatDateTime('DD.MM.YYYY HH:mm')"
+                  style="grid-column: span 2;"
+                  :icon="require('../../assets/images/icons/time.svg')"
+                />
+                <view-data-item
+                  label="Автор, создавший реестр"
+                  :value="body.authorName"
+                  style="grid-column: span 2;"
+                />
+                <view-data-item
+                  label="Тип реестра"
+                  :value="body.regTypeName"
+                  style="grid-column: span 2;"
+                  :icon="require('../../assets/images/icons/reshenie-variant-2_1.svg')"
+                />
+                <view-data-item
+                  label="Статус реестра"
+                  :value="body.statusName"
+                  style="grid-column: span 2;"
+                />
 
-            <Button @click="getPrev" type="text" style="outline: 0!important;"
-                    class=" bg-transparent-on-hover color-blue-on-hover color-gray-light transition color-blue-on-focus" title="Назад">
-              <Icon type="ios-arrow-dropleft"
-                    class="  px0 py0 mx0 my0" :size="30"/>
-            </Button>
-
-            <div class="color-dark-lighter">
-              <span class="adm-h3">Почтовый реестр №</span>
-              <span class="adm-h2">{{body.curIssue}}</span>
-            </div>
-          </div>
-          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="findDeloListDateBeg" :valueSecond="findDeloListDateEnd"
-                               clearable type="date" placeholder="дд/мм/гггг" @change="changeDateRange"
-                               momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
-          <p class="ml24 flex-parent flex-parent--center-cross">
-            <Button class="append-custom" icon="ios-search" @click="findDeloList" type="primary" :disabled="!findDeloListDateBeg || !findDeloListDateEnd">Найти список дел для создания отправлений</Button>
-          </p>
-          <div class="delo-menu">
-            <div class="delo-menu--body-wrap">
-            </div>
-          </div>
-        </div>
-        <hr class="txt-hr my0">
-      </div>
-
-
-      <div v-if="visibleSendingDeloList" style="position: absolute; width: 70vw; height: 70vh; top: 15%; left: 15%; z-index: 10; background: gainsboro;">
-        <Button @click="visibleSendingDeloList = false" type="primary">Закрыть</Button>
-        <Button @click="checkDeloFromRegistry" type="primary">Проверить выбранные дела на возможность включения в реестр</Button>
-        <Button @click="addDeloToRegistry" type="primary">Добавить выбранные дела в реестр</Button>
-        <span v-if="freeSlotCount">Количество свободных слотов в реестре: {{ freeSlotCount }}</span>
-
-        <ul v-if="sendingDeloList">
-          <li v-for="(item, itemIdx) in sendingDeloList" :key="itemIdx">
-           <div style="display: flex; align-items: center;">
-             <Checkbox v-model="item.select" />
-             <div style="display: flex; align-items: center;">
-               <p class="adm-text-big txt-normal color-dark-lighter">Дело №</p>
-               <p class="adm-14 color-dark-base">{{item.deloN}}</p>
-             </div>
-           </div>
-            <ul v-if="item.checked">
-              <li v-if="item.hasWarning" style="color: red">
-                {{ item.warning }}
-              </li>
-              <li v-if="item.hasError" style="color: orange">
-                {{ item.Error }}
-              </li>
-              <li v-if="!item.hasError && !item.hasWarning" style="color: limegreen">
-                Успешно
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <Row type="flex">
-          <Col class="col":xs="24" :sm="24" :md="24" :lg="24">
-            <div class="mx-auto">
-              <div>
-                <div class="view-data">
-                  <div class="view-data__container">
-                    <div class="items-wrap">
-                      <view-data-item
-                        label="Исходящий номер"
-                        :value="body.curIssue"
-                        style="grid-column: span 2;"
-                      />
-                      <view-data-item
-                        label="Время создания реестра"
-                        :value="body.creationDate | formatDateTime('DD.MM.YYYY HH:mm')"
-                        style="grid-column: span 2;"
-                        :icon="require('../../assets/images/icons/time.svg')"
-                      />
-                      <view-data-item
-                        label="Автор, создавший реестр"
-                        :value="body.authorName"
-                        style="grid-column: span 2;"
-                      />
-                      <view-data-item
-                        label="Тип реестра"
-                        :value="body.regTypeName"
-                        style="grid-column: span 2;"
-                        :icon="require('../../assets/images/icons/reshenie-variant-2_1.svg')"
-                      />
-                      <view-data-item
-                        label="Статус реестра"
-                        :value="body.statusName"
-                        style="grid-column: span 2;"
-                      />
-
-                      <div v-if="sendings && sendings.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
-                        <p class="adm-14 color-dark-lighter ">Список отправлений</p>
-                        <div v-for="(item, index) in sendings" :key="index">
-                          <p class="adm-text-big color-dark-base">{{ item }}</p>
-                        </div>
-                      </div>
-                    </div>
+                <div v-if="sendings && sendings.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
+                  <p class="adm-14 color-dark-lighter">Список отправлений</p>
+                  <div v-for="(item, index) in sendings" :key="index">
+                    <p class="adm-text-big color-dark-base">{{ item.addrFull }}</p>
                   </div>
                 </div>
               </div>
-
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
+        <div class="adm-form__container">
+          <h2 class="adm-form__headding" id="creating-shipments">Создание отправлений</h2>
+          <div class="creating-shipments">
+            <div class="creating-shipments__head">
+              <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="findDeloListDateBeg" :valueSecond="findDeloListDateEnd"
+                                  clearable type="date" placeholder="дд/мм/гггг" @change="changeDateRange"
+                                  momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
+              <Button class="append-custom" icon="ios-search" @click="findDeloList" type="primary" :disabled="!findDeloListDateBeg || !findDeloListDateEnd">Найти список дел для создания отправлений</Button>
+              <div v-if="freeSlotCount && sendingDeloList && sendingDeloList.length" class="count-free-slots">Количество свободных слотов в реестре: {{ freeSlotCount }}</div>
+            </div>
+            <table v-if="sendingDeloList && sendingDeloList.length" class="table">
+              <tr class="head">
+                <th>Автор</th>
+                <th>Дата создания</th>
+                <th>Дело</th>
+                <th>Получатель</th>
+              </tr>
+              <tr v-for="(item, index) in sendingDeloList" 
+                  :key="index" 
+                  class="item" 
+                  :class="{selected: item.select}" 
+                  @click="item.select = hasError? '': !item.select"
+              >
+                <td>{{item.createIspName}}</td>
+                <td>{{item.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
+                <td>
+                  <div>Дело № {{item.deloN}}</div>
+                  <div v-if="item.checked" 
+                      class="status" 
+                      :class="[
+                        {red:item.hasWarning},
+                        {orange:item.hasError},
+                        {limegreen:!item.hasError && !item.hasWarning}
+                      ]"
+                  >
+                    {{ !item.hasError && !item.hasWarning? 'Успешно': item.Error || item.warning}}
+                  </div>
+                </td>
+                <td>{{item.uchastName}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
-    </Layout>
-  </div>
+    </div>
+    <div class="bot-wrap">
+      <Button v-if="sendingDeloList && sendingDeloList.length" @click="checkDeloFromRegistry" type="primary">Проверить выбранные дела на возможность включения в реестр</Button>
+      <Button v-if="sendingDeloList && sendingDeloList.length" @click="addDeloToRegistry" type="primary">Добавить выбранные дела в реестр</Button>
+    </div>
+  </aside-template>
 </template>
 
 <script>
@@ -125,7 +107,8 @@
   export default {
     name: "RegistryReestrItem",
     components: {
-      DateRangePickerMask: () => import('~/components/shared/dateTimeRangePicker/DateRangePickerMask')
+      DateRangePickerMask: () => import('~/components/shared/dateTimeRangePicker/DateRangePickerMask'),
+      AsideTemplate: () => import('~/components/templates/AsideTemplate'),
     },
     async created() {
       await this.init();
@@ -147,8 +130,17 @@
         findDeloListDateBeg: null,
         findDeloListDateEnd: null,
         sendingDeloList: null,
-        visibleSendingDeloList: false,
-        freeSlotCount: null
+        freeSlotCount: null,
+        listSectionNav: [
+          {
+            title: "Почтовый реестр",
+            name: "head",
+          },
+          {
+            title: "Создание отправлений",
+            name: "creating-shipments",
+          },
+        ],
       }
     },
     computed: {
@@ -211,7 +203,6 @@
         }
       },
       async findDeloList() {
-        this.visibleSendingDeloList = true;
         let eventResponse = await RequestApi.prepareData({
           method: 'getSendingDeloList',
           params: {
@@ -287,6 +278,10 @@
 
   .delo__headding:hover {
     border-bottom: 2px solid #00b1ff;
+  }
+  .view-data__container {
+    background: transparent;
+    border: none;
   }
 
   .delo-menu {
@@ -404,5 +399,66 @@
         }
       }
     }
+  }
+  
+  .creating-shipments {
+    .creating-shipments__head {
+      position: sticky;
+      top: 0;
+      background: #f3f3f3;
+      z-index: 5;
+      padding: 15px 46px;
+      display: flex;
+      align-items: center;
+      .count-free-slots {
+        margin-left: auto;
+      }
+      button {
+        margin-left: 20px;
+      }
+    }
+    .table {
+      background: #fff;
+      width: 100%;
+      border: none;
+      font-size: 14px;
+      .head {
+        background: #f3f3f3;
+        position: sticky;
+        top: 90px;
+        th {
+          border: none;
+          padding: 15px;
+        }
+      }
+      .item {
+        border-bottom: 1px solid #e4e4e4;
+        box-sizing: border-box;
+        cursor: pointer;
+        &.selected {
+          background: #e4e4e4;
+        }
+        td {
+          border: none;
+          border-bottom: 1px solid #e4e4e4;
+          padding: 8px 15px;
+          .status {
+            max-width: 150px;
+            &.red {
+              color: red;
+            }
+            &.orange {
+              color: orange;
+            }
+            &.limegreen {
+              color: limegreen;
+            }
+          }
+        }
+      }
+    }
+  }
+  main .bot-wrap {
+    justify-content: space-between;
   }
 </style>

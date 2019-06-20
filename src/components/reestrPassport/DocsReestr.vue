@@ -70,9 +70,9 @@
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6 bg-white-light">
           <div class="flex-parent flex-parent--center-cross">
             <p class="adm-txt-regular color-dark-medium ml18" v-if="data.length > 0"> {{
-              declOfNum(data.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ data.length}}
-              {{ declOfNum(data.length, ['запись', 'записи', 'записей']) }}</p>
-            <Page v-if="data.length > limit" :total="data.length" :current="currentPage"
+              declOfNum(dataStore.deloList.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ dataStore.deloList.length}}
+              {{ declOfNum(dataStore.deloList.length, ['запись', 'записи', 'записей']) }}</p>
+            <Page v-if="dataStore.deloList.length > limit" :total="dataStore.deloList.length" :current="currentPage"
                   :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 
@@ -152,6 +152,7 @@ export default {
       columnsOptionsVisible: false,
       docTipDict: [],
       postRegStatusDict: [],
+      selectedDocs: [],
       filter: {
         docType: null,
         docDateBeg: null,
@@ -164,6 +165,38 @@ export default {
       },
       sort: {},
       columnsOptions: [
+        {
+          title: "check",
+          key: "check",
+          maxWidth: 50,
+          ellipsis: true,
+          referenceName: "check",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("Checkbox", {
+              class: ["amd-checkbox"],
+              on: {
+                "on-change": () => {
+                  this.toggleSelectedAll();
+                }
+              }
+            });
+          },
+          render: (h, params) => {
+            return h("Checkbox", {
+              class: ["amd-checkbox"],
+              attrs: {
+                'v-model': this.checkSelected(params.row.cardId),
+              },
+              on: {
+                "on-change": () => {
+                  this.toggleSelected(params.row.cardId);
+                }
+              }
+            });
+          }
+        },
         {
           title: "",
           key: "status",
@@ -286,21 +319,6 @@ export default {
           render: (h, params) => {
             return h("div", [h("p", params.row.uchastName)]);
           }
-        },
-        {
-          title: "Просмотреть",
-          key: "actions",
-          minWidth: 180,
-          ellipsis: true,
-          referenceName: "actions",
-          visible: true,
-          tooltip: true,
-          renderHeader: (h, params) => {
-            return h("div", [h("p", params.column.title)]);
-          },
-          render: (h, params) => {
-            return h("div", []);
-          }
         }
       ]
     };
@@ -367,6 +385,24 @@ export default {
         funcUtils.isEmpty(this.dataStore.deloList)
       );
     },
+    checkSelected(cardId) {
+      this.selectedDocs.includes(cardId);
+    },
+    toggleSelected(cardId) {
+      if (this.selectedDocs.includes(cardId)) {
+        this.selectedDocs.splice(this.selectedDocs.indexOf(cardId), 1);
+      } else {
+        this.selectedDocs.push(cardId);
+      }
+    },
+    toggleSelectedAll() {
+      let all = this.data.map(el => el.cardId);
+      if (this.selectedDocs.includes(all)) {
+        this.selectedDocs = {};
+      } else {
+        this.selectedDocs = all;
+      }
+    },
     changeClass(statusId) {
       if (funcUtils.isNotEmpty(statusId)) {
         switch (statusId) {
@@ -389,12 +425,12 @@ export default {
       }
     },
     declOfNum(number, titles) {
-      let cases = [2, 0, 1, 1, 1, 2];
+      let data = [2, 0, 1, 1, 1, 2];
       number = Math.abs(number);
       return titles[
         number % 100 > 4 && number % 100 < 20
           ? 2
-          : cases[number % 10 < 5 ? number % 10 : 5]
+          : data[number % 10 < 5 ? number % 10 : 5]
       ];
     },
     async fillModule(eventResponse) {
@@ -511,16 +547,16 @@ export default {
       this.delta = 40;
       this.currentPage = 1;
       this.columnsOptionsVisible = false;
-      let filter = this.filter;
-      for (let prop in filter) {
-        if (filter.hasOwnProperty(prop)) {
-          filter[prop] = null;
+      for (let prop in this.filter) {
+        if (this.filter.hasOwnProperty(prop)) {
+          this.filter[prop] = null;
         }
       }
+      this.filter.sign = 0;
       let eventResponse = await RequestApi.prepareData({
         method: "getData",
         params: {
-          filter: null,
+          find: null,
           sort: this.getSortedFields()
         }
       });
@@ -579,7 +615,6 @@ export default {
       this.columnsOptionsVisible = false;
       let filter = this.getFilterFields();
       let sort = this.getSortedFields();
-      console.log(filter);
       let eventResponse = await RequestApi.prepareData({
         method: "getData",
         params: {

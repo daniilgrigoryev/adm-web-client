@@ -137,6 +137,7 @@ export default {
         color: #515a6e;
       }
       .desc {
+        flex-direction: column;
         display: flex;
         overflow: hidden;
         font-size: 12px;

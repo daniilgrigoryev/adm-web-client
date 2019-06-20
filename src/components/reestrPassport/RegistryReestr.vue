@@ -48,10 +48,10 @@
       <div class="content">
         <div class="flex-parent flex-parent--center-cross flex-parent--space-between-main py6 bg-white-light">
           <div class="flex-parent flex-parent--center-cross">
-            <p class="adm-txt-regular color-dark-medium ml18" v-if="data.length > 0"> {{
-              declOfNum(data.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ data.length}}
-              {{ declOfNum(data.length, ['запись', 'записи', 'записей']) }}</p>
-            <Page v-if="data.length > limit" :total="data.length" :current="currentPage"
+            <p class="adm-txt-regular color-dark-medium ml18" v-if="dataStore.body.length > 0"> {{
+              declOfNum(dataStore.body.length, ['Найдена', 'Найдено', 'Найдены'])}} {{ dataStore.body.length}}
+              {{ declOfNum(dataStore.body.length, ['запись', 'записи', 'записей']) }}</p>
+            <Page v-if="dataStore.body.length > limit" :total="dataStore.body.length" :current="currentPage"
                   :page-size="limit" class="ml12" @on-change="changePage"/>
           </div>
 
@@ -399,7 +399,7 @@ export default {
               }),
               h("Icon", {
                 props: {
-                  type: "ios-open-outline",
+                  type: "md-create",
                   size: 22
                 },
                 style: {
