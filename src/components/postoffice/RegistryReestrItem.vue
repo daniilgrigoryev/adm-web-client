@@ -225,6 +225,7 @@ export default {
       }
     },
     async findDeloList() {
+      this.listSelectedItems = [];
       let eventResponse = await RequestApi.prepareData({
         method: "getSendingDeloList",
         params: {
