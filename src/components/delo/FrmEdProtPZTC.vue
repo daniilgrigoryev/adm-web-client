@@ -16,7 +16,7 @@
         <div class="items-wrap">
           <view-data-item
             label="Дата и время нарушения"
-            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:MM')"
+            :value="body.dateNar | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/time.svg')"
           />

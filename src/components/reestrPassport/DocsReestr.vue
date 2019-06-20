@@ -223,7 +223,7 @@ export default {
           render: (h, params) => {
             let date = this.$options.filters.formatDateTime(
               params.row.signTime,
-              "DD.MM.YYYY HH:MM"
+              "DD.MM.YYYY HH:mm"
             );
             let status = params.row.signTime
               ? "Подписан " + date
@@ -251,7 +251,7 @@ export default {
                 "p",
                 this.$options.filters.formatDateTime(
                   params.row.datSost,
-                  "DD.MM.YYYY HH:MM"
+                  "DD.MM.YYYY HH:mm"
                 )
               )
             ]);

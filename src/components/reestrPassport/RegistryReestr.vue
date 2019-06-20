@@ -276,7 +276,7 @@ export default {
                 "p",
                 this.$options.filters.formatDateTime(
                   params.row.creationDate,
-                  "DD.MM.YYYY HH:MM"
+                  "DD.MM.YYYY HH:mm"
                 )
               )
             ]);
@@ -299,7 +299,7 @@ export default {
                 "p",
                 this.$options.filters.formatDateTime(
                   params.row.sendDate,
-                  "DD.MM.YYYY HH:MM"
+                  "DD.MM.YYYY HH:mm"
                 )
               )
             ]);
@@ -337,7 +337,7 @@ export default {
                 "p",
                 this.$options.filters.formatDateTime(
                   params.row.unloadDate,
-                  "DD.MM.YYYY HH:MM"
+                  "DD.MM.YYYY HH:mm"
                 )
               )
             ]);
