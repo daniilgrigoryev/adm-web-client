@@ -134,6 +134,21 @@ let vue = new Vue({
         this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
       }
     },
+    async getDeloReestrForPost() {
+      try {
+        let cid = funcUtils.getfromLocalStorage('admDeloReestrForPost');
+        formStack.clearStack(false);
+        await formStack.toNext({
+          module: this.$store.state.deloReestrForPost,
+          vm: this,
+          notRemoved: true,
+          cid: cid,
+          withCreate: funcUtils.isEmpty(cid)
+        });
+      } catch (e) {
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
+      }
+    },
     async getRegistryReestr() {
       try {
         let cid = funcUtils.getfromLocalStorage('admRegistryReestr');

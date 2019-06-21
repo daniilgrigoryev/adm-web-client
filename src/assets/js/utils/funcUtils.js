@@ -115,6 +115,7 @@ export function clearAll() {
   localStorage.removeItem('admDeloReestr');
   localStorage.removeItem('admRegistryReestr');
   localStorage.removeItem('admDocsReestr');
+  localStorage.removeItem('admDeloReestrForPost');
   localStorage.removeItem('admUserInfo');
   sessionStorage.removeItem('admAuthSid');
   sessionStorage.removeItem('mainMenuActiveName');

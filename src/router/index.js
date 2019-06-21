@@ -27,6 +27,11 @@ const router = new Router({
       component: () => import('~/components/reestrPassport/DocsReestr'),
     },
     {
+      path: '/deloReestrForPost',
+      name: 'DeloReestrForPost',
+      component: () => import('~/components/reestrPassport/DeloReestrForPost'),
+    },
+    {
       path: '/deloTreeCardView',
       name: 'DeloTreeCardView',
       component: () => import('~/components/viewData/DeloTreeCardView'),

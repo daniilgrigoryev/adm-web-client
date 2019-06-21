@@ -2,20 +2,27 @@
   <div>
     <div class="breadcrumbs">
       <div class="content">
-        Реестры / Документы на подписание
+        Реестры / Формирование постановлений
       </div>
     </div>
     <div class="adm-search-filter-panel adm-form">
       <div class="content">
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Тип документа *</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.docType" filterable clearable>
-            <Option v-for="item in docTipDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
+          <div class="adm-form__item-label">Тег дела *</div>
+          <CustomSelect class="adm-input adm-input--big" v-model="filter.tag">
+            <Option :value="4">Эвакуация</Option>
+            <Option :value="5">Такси</Option>
+            <Option :value="6">Зеленых насаждений</Option>
+            <Option :value="7">Погрузки и разгрузки</Option>
           </CustomSelect>
         </div>
         <div class="adm-form__item">
+          <div class="adm-form__item-label">ГРЗ</div>
+          <Input class="adm-input adm-input--big" v-model="filter.regno" clearable/>
+        </div>
+        <div class="adm-form__item">
           <div class="adm-form__item-label">Фамилия</div>
-          <Input class="adm-input adm-input--big" placeholder="Фамилия" clearable/>
+          <Input class="adm-input adm-input--big" placeholder="Фамилия" clearable />
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">Имя</div>
@@ -25,36 +32,24 @@
           <div class="adm-form__item-label">Отчество</div>
           <Input class="adm-input adm-input--big" placeholder="Отчество" clearable/>
         </div>
-        <div class="adm-form__item">
-          <div class="adm-form__item-label">ГРЗ</div>
-          <Input class="adm-input adm-input--big" v-model="filter.regno" clearable/>
-        </div>
         <div class="buttons-wrap">
           <Button @click="filterClick" type="default" class="adm-btn adm-btn--blue">Найти</Button>
           <Button @click="clearFilterSort" type="default" class="adm-btn">Очистить</Button>
-        </div>
-        <div class="adm-form__item">
-          <div class="adm-form__item-label">Статус подписания *</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.sign">
-            <Option :value="0">Все</Option>
-            <Option :value="1">Не подписанные</Option>
-            <Option :value="2">Подписанные</Option>
-          </CustomSelect>
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">Наименование организации</div>
           <Input class="adm-input adm-input--big" clearable/>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Период документа *</div>
-          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.docDateBeg" :valueSecond="filter.docDateEnd"
-                                clearable type="date" placeholder="дд/мм/гггг" @change="changedocDate"
+          <div class="adm-form__item-label">Период нарушения</div>
+          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.dateBegViol" :valueSecond="filter.dateEndViol"
+                                clearable type="date" placeholder="дд/мм/гггг" @change="changeDateViol"
                                 momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Период подписания</div>
-          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.signDateBeg" :valueSecond="filter.signDateEnd"
-                                clearable type="date" placeholder="дд/мм/гггг" @change="changeSignDate"
+          <div class="adm-form__item-label">Период рассмотрения</div>
+          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.dateBegRasm" :valueSecond="filter.dateEndRasm"
+                                clearable type="date" placeholder="дд/мм/гггг" @change="changeDateRasm"
                                 momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
         </div>
       </div>
@@ -92,10 +87,8 @@
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
                :stripe="false" :height="tableHeight" @on-row-click="toggleSelected" @on-sort-change="sortClick"></Table>
         <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
-          <div class="action-bar__title">Подписать выбранные документы</div>
           <div class="action-bar__body">
-            <Button type="primary" @click="sign('person')">Подписать очно</Button>
-            <Button type="primary" @click="sign('absentia')">Подписать заочно</Button>
+            <Button type="primary" @click="createPost()">Сформировать Постановления</Button>
           </div>
         </div>
       </div>
@@ -110,7 +103,7 @@ import RequestApi from "~/assets/js/api/requestApi";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "DocsReestr",
+  name: "DeloReestrForPost",
   components: {
     DateRangePickerMask: () =>
       import("~/components/shared/dateTimeRangePicker/DateRangePickerMask")
@@ -118,13 +111,18 @@ export default {
   async created() {
     await this.init();
     let vm = this;
-    this.$store.watch(this.$store.getters.docsReestrGetCommand, async () => {
-      try {
-        await vm.init();
-      } catch (e) {
-        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
+    this.$store.watch(
+      this.$store.getters.deloReestrForPostGetCommand,
+      async () => {
+        try {
+          await vm.init();
+        } catch (e) {
+          this.$store.dispatch("errorsModal/changeContent", {
+            title: e.message
+          });
+        }
       }
-    });
+    );
   },
   updated() {
     try {
@@ -139,8 +137,8 @@ export default {
     }
   },
   destroyed() {
-    this.$store.dispatch("docsReestrSetCid", null);
-    this.$store.dispatch("docsReestrSetData", null);
+    this.$store.dispatch("deloReestrForPostSetCid", null);
+    this.$store.dispatch("deloReestrForPostSetData", null);
   },
   data() {
     return {
@@ -151,16 +149,14 @@ export default {
       delta: 40,
       currentPage: 1,
       columnsOptionsVisible: false,
-      docTipDict: [],
       filter: {
-        docType: null,
-        docDateBeg: null,
-        docDateEnd: null,
+        dateBegViol: null,
+        dateEndViol: null,
         tag: null,
         regno: null,
-        signDateBeg: null,
-        signDateEnd: null,
-        sign: 0
+        dateBegRasm: null,
+        dateEndRasm: null,
+        name: null
       },
       sort: {},
       columnsOptions: [
@@ -206,43 +202,20 @@ export default {
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
-            return h("div", [
-              h("p", params.column.title),
-              h(
-                "p",
-                {
-                  class: {
-                    "color-dark-base": true,
-                    "adm-12": true,
-                    "line-height100": true,
-                    "txt-truncate": true,
-                    "txt-normal": true
-                  }
-                },
-                "Статус подписания"
-              )
-            ]);
+            return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            let date = this.$options.filters.formatDateTime(
-              params.row.signTime,
-              "DD.MM.YYYY HH:mm"
-            );
-            let status = params.row.signTime
-              ? "Подписан " + date
-              : "не подписано";
             return h("div", [
-              h("p", { class: { "color-blue": true } }, params.row.regno),
-              h("p", status)
+              h("p", { class: { "color-blue": true } }, params.row.regno)
             ]);
           }
         },
         {
-          title: "Дата и время составления",
-          key: "authorName",
+          title: "Дело №",
+          key: "deloN",
           minWidth: 180,
           ellipsis: true,
-          referenceName: "authorName",
+          referenceName: "deloN",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
@@ -252,27 +225,44 @@ export default {
             return h("div", [
               h(
                 "p",
-                this.$options.filters.formatDateTime(
-                  params.row.datSost,
-                  "DD.MM.YYYY HH:mm"
-                )
+                params.row.deloN
               )
             ]);
           }
         },
         {
-          title: "Составил",
-          key: "inspSostName",
+          title: "Стадия исполнения",
+          key: "stadDeloName",
           minWidth: 180,
           ellipsis: true,
-          referenceName: "inspSostName",
+          referenceName: "stadDeloName",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.inspSostName)]);
+            return h("div", [
+              h(
+                "p",
+                params.row.stadDeloName
+              )
+            ]);
+          }
+        },
+        {
+          title: "Последнее решение",
+          key: "decisNameLast",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "decisNameLast",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", params.row.decisNameLast)]);
           }
         },
         {
@@ -295,7 +285,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      dataStore: "docsReestrGetData"
+      dataStore: "deloReestrForPostGetData"
     }),
     data() {
       let res = [];
@@ -332,12 +322,12 @@ export default {
     async init() {
       try {
         let current = formStack.getCurrent();
-        await this.$store.dispatch("docsReestrSetCid", current.cid);
-        let cid = funcUtils.getfromLocalStorage("admDocsReestr");
+        await this.$store.dispatch("deloReestrForPostSetCid", current.cid);
+        let cid = funcUtils.getfromLocalStorage("admDeloReestrForPost");
         let eventResponse;
 
         if (funcUtils.isNull(cid)) {
-          funcUtils.addToLocalStorage("admDocsReestr", current.cid);
+          funcUtils.addToLocalStorage("admDeloReestrForPost", current.cid);
           eventResponse = await RequestApi.prepareData({
             method: "getData",
             params: {
@@ -349,12 +339,10 @@ export default {
           eventResponse = await RequestApi.prepareData({
             method: "restore"
           });
-
           let filter = JSON.parse(eventResponse.response).data.find;
           this.parseFilter(filter);
         }
         await this.fillModule(eventResponse);
-        await this.fillDocTipDict();
       } catch (e) {
         this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
@@ -372,14 +360,16 @@ export default {
       );
     },
 
-
+    computeName(e) {
+      console.log(e.target.value);
+    },
     toggleSelected(item) {
-      this.$store.commit("docsReestrToggleSelected", item);
+      this.$store.commit("deloReestrForPostToggleSelected", item);
       this.setSelectId();
     },
     toggleSelectedColumn() {
       let columnItemsSelected = this.data.filter(el => el.selected);
-      this.$store.commit("docsReestrChangeSelectionItems", {
+      this.$store.commit("deloReestrForPostChangeSelectionItems", {
         items: this.data,
         action: this.columnChecked
       });
@@ -389,7 +379,7 @@ export default {
       RequestApi.prepareData({
         method: "setSelectId",
         params: {
-          selectId: this.selectedList.map(el => el.cardId)
+          selectId: this.selectedList.map(el => el.deloId)
         }
       });
     },
@@ -402,9 +392,9 @@ export default {
         return;
       }
       let items = this.dataStore.deloList.filter(el =>
-        eventResponse.data.includes(el.cardId)
+        eventResponse.data.includes(el.deloId)
       );
-      this.$store.commit("docsReestrChangeSelectionItems", {
+      this.$store.commit("deloReestrForPostChangeSelectionItems", {
         items: items,
         action: true
       });
@@ -430,10 +420,10 @@ export default {
             let item = filter[prop];
             if (funcUtils.isNotEmpty(item)) {
               switch (prop) {
-                case "docDateBeg":
-                case "docDateEnd":
-                case "signDateBeg":
-                case "signDateEnd": {
+                case "dateBegRasm":
+                case "dateEndRasm":
+                case "dateBegViol":
+                case "dateEndViol": {
                   this.filter[prop] = new Date(item);
                   break;
                 }
@@ -467,13 +457,13 @@ export default {
         });
       }
     },
-    changedocDate(e) {
-      this.filter.docDateBeg = e.valueFirst;
-      this.filter.docDateEnd = e.valueSecond;
+    changeDateRasm(e) {
+      this.filter.dateBegRasm = e.valueFirst;
+      this.filter.dateEndRasm = e.valueSecond;
     },
-    changeSignDate(e) {
-      this.filter.signDateBeg = e.valueFirst;
-      this.filter.signDateEnd = e.valueSecond;
+    changeDateViol(e) {
+      this.filter.dateBegViol = e.valueFirst;
+      this.filter.dateEndViol = e.valueSecond;
     },
     toggleColumnsOption() {
       this.columnsOptionsVisible = !this.columnsOptionsVisible;
@@ -488,9 +478,9 @@ export default {
       }
       this.tableHeight = height;
     },
-    async sign(method) {
-      return;
+    async createPost() {
       // TODO
+      return;
       await RequestApi.prepareData({
         method: method,
         params: {
@@ -554,18 +544,6 @@ export default {
         }
       });
       await this.fillModule(eventResponse);
-    },
-    async fillDocTipDict() {
-      let eventResponse = await RequestApi.prepareData({
-        method: "getDocTipDict"
-      });
-      let docTipDict = JSON.parse(eventResponse.response).data;
-      this.docTipDict = docTipDict.map(item => {
-        return {
-          label: item.DOC_TIP_NAME,
-          value: item.DOC_TIP
-        };
-      });
     },
     async sortClick(name) {
       this.from = 0;

@@ -89,7 +89,7 @@ export default {
           break;
         }
         case 10: {
-          // this.$root.getRegistryReestr();
+          this.$root.getDeloReestrForPost();
           break;
         }
       }

@@ -1,27 +1,27 @@
 export default {
   state: {
-    moduleName: 'docsReestr',
+    moduleName: 'deloReestrForPost',
     cid: null,
-    bean: 'DocsReestr',
-    routeName: 'DocsReestr',
+    bean: 'DeloReestrForPost',
+    routeName: 'DeloReestrForPost',
     data: null,
     command: null
   },
   mutations: {
-    docsReestrSetCid(state, cid) {
+    deloReestrForPostSetCid(state, cid) {
       state.cid = cid;
     },
-    docsReestrSetData(state, data) {
+    deloReestrForPostSetData(state, data) {
       state.data = data;
     },
-    docsReestrSetCommand(state, command) {
+    deloReestrForPostSetCommand(state, command) {
       state.command = command;
     },
-    docsReestrToggleSelected(state, item) {
-      let storeItem = state.data.deloList.find((el) => el.cardId === item.cardId);
+    deloReestrForPostToggleSelected(state, item) {
+      let storeItem = state.data.deloList.find((el) => el.deloId === item.deloId);
       storeItem.selected = !storeItem.selected;
     },
-    docsReestrChangeSelectionItems(state, payload) {
+    deloReestrForPostChangeSelectionItems(state, payload) {
       state.data.deloList.forEach((el) => {
         if (payload.items.includes(el)) {
           el.selected = payload.action;
@@ -30,27 +30,27 @@ export default {
     },
   },
   actions: {
-    docsReestrSetCid(vm, cid) {
+    deloReestrForPostSetCid(vm, cid) {
       vm.state.cid = cid;
     },
-    docsReestrSetData(vm, data) {
+    deloReestrForPostSetData(vm, data) {
       if (data !== null && data.deloList) {
         data.deloList.forEach(el => el.selected = false);
       }
       vm.state.data = data;
     },
-    docsReestrSetCommand(vm, command) {
+    deloReestrForPostSetCommand(vm, command) {
       vm.state.command = command;
     }
   },
   getters: {
-    docsReestrGetCommand: state => () => {
+    deloReestrForPostGetCommand: state => () => {
       return state.command
     },
-    docsReestrGetData: state => {
+    deloReestrForPostGetData: state => {
       return state.data
     },
-    docsReestrGetCid: state => {
+    deloReestrForPostGetCid: state => {
       return state.cid
     }
   }
