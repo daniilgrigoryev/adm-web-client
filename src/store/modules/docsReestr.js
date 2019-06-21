@@ -16,13 +16,25 @@ export default {
     },
     docsReestrSetCommand(state, command) {
       state.command = command;
-    }
+    },
+    docsReestrToggleSelected(state, item) {
+      let storeItem = state.data.deloList.find((el) => el.cardId === item.cardId);
+      storeItem.selected = !storeItem.selected;
+    },
+    docsReestrChangeSelectionItems(state, payload) {
+      state.data.deloList.forEach((el) => {
+        if (payload.items.includes(el)) {
+          el.selected = payload.action;
+        }
+      });
+    },
   },
   actions: {
     docsReestrSetCid(vm, cid) {
       vm.state.cid = cid;
     },
     docsReestrSetData(vm, data) {
+      data.deloList.forEach(el => el.selected = false);
       vm.state.data = data;
     },
     docsReestrSetCommand(vm, command) {

@@ -96,7 +96,14 @@
         </div>
 
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
-               :stripe="false" :height="tableHeight" @on-sort-change="sortClick"></Table>
+               :stripe="false" :height="tableHeight" @on-row-click="toggleSelected" @on-sort-change="sortClick"></Table>
+        <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
+          <div class="action-bar__title">Подписать выбранные документы</div>
+          <div class="action-bar__body">
+            <Button type="primary" @click="sign('person')">Подписать очно</Button>
+            <Button type="primary" @click="sign('absentia')">Подписать заочно</Button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -152,7 +159,6 @@ export default {
       columnsOptionsVisible: false,
       docTipDict: [],
       postRegStatusDict: [],
-      selectedDocs: [],
       filter: {
         docType: null,
         docDateBeg: null,
@@ -176,9 +182,12 @@ export default {
           renderHeader: (h, params) => {
             return h("Checkbox", {
               class: ["amd-checkbox"],
+              attrs: {
+                value: !this.columnChecked
+              },
               on: {
                 "on-change": () => {
-                  this.toggleSelectedAll();
+                  this.toggleSelectedColumn();
                 }
               }
             });
@@ -186,45 +195,13 @@ export default {
           render: (h, params) => {
             return h("Checkbox", {
               class: ["amd-checkbox"],
-              attrs: {
-                'v-model': this.checkSelected(params.row.cardId),
+              style: {
+                "pointer-events": "none"
               },
-              on: {
-                "on-change": () => {
-                  this.toggleSelected(params.row.cardId);
-                }
+              attrs: {
+                value: params.row.selected
               }
             });
-          }
-        },
-        {
-          title: "",
-          key: "status",
-          align: "center",
-          width: 25,
-          ellipsis: true,
-          visible: true,
-          tooltip: true,
-          renderHeader: (h, params) => {
-            return h("div", [h("p", {}, params.column.title)]);
-          },
-          render: (h, params) => {
-            let color = this.changeClass(params.row.status);
-            return h("div", {}, [
-              h("div", {
-                class: [
-                  "round-full",
-                  "w12",
-                  "h12",
-                  "inline-block",
-                  "cursor-pointer",
-                  color
-                ],
-                attrs: {
-                  title: params.row.status
-                }
-              })
-            ]);
           }
         },
         {
@@ -346,6 +323,16 @@ export default {
       return this.columnsOptions.filter(
         column => !["status"].includes(column.key)
       );
+    },
+    selectedList() {
+      return this.dataStore.deloList.filter(el => el.selected);
+    },
+    selectedListOnPage() {
+      // Выбранные в текущей странице
+      return this.data.filter(el => el.selected);
+    },
+    columnChecked() {
+      return this.selectedListOnPage.length !== this.data.length;
     }
   },
   methods: {
@@ -379,50 +366,51 @@ export default {
         this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     },
+    async fillModule(eventResponse) {
+      await this.$store.dispatch("fillModule", { event: eventResponse });
+      let sort = JSON.parse(eventResponse.response).data.sort;
+      this.parseSort(sort);
+      this.getSelectId();
+    },
     isEmptyData() {
       return (
         funcUtils.isEmpty(this.dataStore) ||
         funcUtils.isEmpty(this.dataStore.deloList)
       );
     },
-    checkSelected(cardId) {
-      this.selectedDocs.includes(cardId);
+
+
+    toggleSelected(item) {
+      this.$store.commit("docsReestrToggleSelected", item);
+      this.setSelectId();
     },
-    toggleSelected(cardId) {
-      if (this.selectedDocs.includes(cardId)) {
-        this.selectedDocs.splice(this.selectedDocs.indexOf(cardId), 1);
-      } else {
-        this.selectedDocs.push(cardId);
-      }
+    toggleSelectedColumn() {
+      let columnItemsSelected = this.data.filter(el => el.selected);
+      this.$store.commit("docsReestrChangeSelectionItems", {
+        items: this.data,
+        action: this.columnChecked
+      });
+      this.setSelectId();
     },
-    toggleSelectedAll() {
-      let all = this.data.map(el => el.cardId);
-      if (this.selectedDocs.includes(all)) {
-        this.selectedDocs = {};
-      } else {
-        this.selectedDocs = all;
-      }
-    },
-    changeClass(statusId) {
-      if (funcUtils.isNotEmpty(statusId)) {
-        switch (statusId) {
-          // 0-3 - красный
-          // 4-7 - жёлтый
-          // 8 и выше - зелёный
-          case 0: {
-            return "bg-red";
-          }
-          case 1: {
-            return "bg-yellow";
-          }
-          case 2: {
-            return "bg-green";
-          }
-          default: {
-            return "bg-green";
-          }
+    setSelectId() {
+      RequestApi.prepareData({
+        method: "setSelectId",
+        params: {
+          selectId: this.selectedList.map(el => el.cardId)
         }
-      }
+      });
+    },
+    async getSelectId() {
+      let eventResponse = await RequestApi.prepareData({
+        method: "getSelectId"
+      });
+      let items = this.dataStore.deloList.filter(el =>
+        JSON.parse(eventResponse.response).data.includes(el.cardId)
+      );
+      this.$store.commit("docsReestrChangeSelectionItems", {
+        items: items,
+        action: true
+      });
     },
     declOfNum(number, titles) {
       let data = [2, 0, 1, 1, 1, 2];
@@ -432,11 +420,6 @@ export default {
           ? 2
           : data[number % 10 < 5 ? number % 10 : 5]
       ];
-    },
-    async fillModule(eventResponse) {
-      await this.$store.dispatch("fillModule", { event: eventResponse });
-      let sort = JSON.parse(eventResponse.response).data.sort;
-      this.parseSort(sort);
     },
     changePage(nextPage) {
       this.to = this.delta * nextPage;
@@ -499,10 +482,22 @@ export default {
       this.columnsOptionsVisible = !this.columnsOptionsVisible;
     },
     changeTableHeight() {
+      let height = window.innerHeight;
       if (this.$refs.selection) {
-        let tableBounds = this.$refs.selection.$el.getBoundingClientRect();
-        this.tableHeight = window.innerHeight - tableBounds.y;
+        height -= this.$refs.selection.$el.getBoundingClientRect().top;
       }
+      if (this.$refs.actionBar) {
+        height -= this.$refs.actionBar.getBoundingClientRect().height;
+      }
+      this.tableHeight = height;
+    },
+    async sign(method) {
+      await RequestApi.prepareData({
+        method: method,
+        params: {
+          items: this.selectedList
+        }
+      });
     },
     getFilterFields() {
       let filterObj = {};
@@ -521,7 +516,6 @@ export default {
       }
       return filterObj;
     },
-
     getSortedFields() {
       let sortObj = {
         sort: []
@@ -675,6 +669,34 @@ export default {
         color: #fff;
         background: #1888cc;
       }
+    }
+  }
+}
+.action-bar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  .action-bar__title {
+    border-bottom: 1px solid #e8eaec;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    color: #6b94c2;
+    padding: 0 34px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .action-bar__body {
+    padding: 0 34px;
+    height: 80px;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      margin: 0 20px;
     }
   }
 }

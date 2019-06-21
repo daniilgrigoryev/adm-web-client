@@ -20,9 +20,10 @@
             Реестры
           </button>
           <div slot="content">
-            <li><MenuItem name="7">Документы на подписание</MenuItem></li>
-            <li><MenuItem name="8">Почтовые реестры</MenuItem></li>
-            <li><MenuItem name="9">Рапорта</MenuItem></li>
+            <MenuItem name="10">Формирование постановлений</MenuItem>
+            <MenuItem name="7">Документы на подписание</MenuItem>
+            <MenuItem name="8">Почтовые реестры</MenuItem>
+            <MenuItem name="9">Рапорта</MenuItem>
           </div>
         </Poptip>
       </Menu>
@@ -84,6 +85,10 @@ export default {
           break;
         }
         case 9: {
+          // this.$root.getRegistryReestr();
+          break;
+        }
+        case 10: {
           // this.$root.getRegistryReestr();
           break;
         }
@@ -159,6 +164,7 @@ header {
         border: none !important;
         text-align: left;
         padding: 2px 0;
+        float: none;
       }
     }
   }
