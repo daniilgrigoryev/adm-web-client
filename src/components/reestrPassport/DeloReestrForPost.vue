@@ -72,7 +72,7 @@
           </Dropdown>
         </div>
 
-        <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
+        <Table class="custom-table custom-table--sort" :row-class-name="rowClassName" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
                :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-row-click="toggleSelected" @on-sort-change="sortClick"></Table>
         <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
           <div class="action-bar__body">
@@ -127,6 +127,7 @@ export default {
   destroyed() {
     this.$store.dispatch("deloReestrForPostSetCid", null);
     this.$store.dispatch("deloReestrForPostSetData", null);
+    this.$store.dispatch("deloReestrForPostSetDeloErrors", []);
   },
   data() {
     return {
@@ -151,7 +152,7 @@ export default {
         {
           title: "Статус",
           key: "check",
-          maxWidth: 50,
+          maxWidth: 80,
           ellipsis: true,
           referenceName: "check",
           visible: true,
@@ -201,7 +202,7 @@ export default {
         {
           title: "Дело №",
           key: "deloN",
-          minWidth: 180,
+          minWidth: 100,
           ellipsis: true,
           referenceName: "deloN",
           visible: true,
@@ -210,12 +211,22 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [
-              h(
-                "p",
-                params.row.deloN
-              )
-            ]);
+            return h("div", [h("p", params.row.deloN)]);
+          }
+        },
+        {
+          title: "Дело ID",
+          key: "deloId",
+          minWidth: 100,
+          ellipsis: true,
+          referenceName: "deloId",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", params.row.deloId)]);
           }
         },
         {
@@ -230,12 +241,7 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [
-              h(
-                "p",
-                params.row.stadDeloName
-              )
-            ]);
+            return h("div", [h("p", params.row.stadDeloName)]);
           }
         },
         {
@@ -265,7 +271,9 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.uchastName || params.row.ulName)]);
+            return h("div", [
+              h("p", params.row.uchastName || params.row.ulName)
+            ]);
           }
         }
       ]
@@ -273,7 +281,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      dataStore: "deloReestrForPostGetData"
+      dataStore: "deloReestrForPostGetData",
     }),
     data() {
       let res = [];
@@ -378,10 +386,16 @@ export default {
       let items = this.dataStore.deloList.filter(el =>
         eventResponse.data.includes(el.deloId)
       );
-      this.$store.commit("deloReestrForPostChangeSelectionItems", {
+      this.$store.dispatch("deloReestrForPostChangeSelectionItems", {
         items: items,
         action: true
       });
+    },
+    rowClassName (row, index) {
+      if (row.errors) {
+        return "custom-table--row-error"
+      }
+      return "";
     },
     declOfNum(number, titles) {
       let data = [2, 0, 1, 1, 1, 2];
@@ -463,16 +477,15 @@ export default {
       this.tableHeight = height;
     },
     async createPost() {
-      
       let nodeList = await RequestApi.prepareData({
-        method: "getSelectNodes",
+        method: "getSelectNodes"
       });
-      nodeList = JSON.parse(nodeList.response).data
+      nodeList = JSON.parse(nodeList.response).data;
       try {
         let params = {
           scenarioName: "CreateProtDecisDeloList",
           node: nodeList,
-          title: 'Создание постановлений',
+          title: "Создание постановлений",
           newDelo: false
         };
 
@@ -484,7 +497,7 @@ export default {
           withCreate: true
         });
       } catch (e) {
-        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     },
     getFilterFields() {
@@ -597,7 +610,7 @@ export default {
       try {
         let params = {
           deloId: delo.deloId,
-          title: 'Поиск дел',
+          title: "Поиск дел"
         };
 
         formStack.toNext({
@@ -608,9 +621,9 @@ export default {
           withCreate: true
         });
       } catch (e) {
-        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
-    },
+    }
   }
 };
 </script>
@@ -693,4 +706,17 @@ export default {
     }
   }
 }
+</style>
+
+<style lang="scss">
+ .ivu-table .ivu-table-row.custom-table--row-error {
+   &:hover {
+     td {
+       background: rgba(249, 27, 27, 0.25) !important;
+     }
+   }
+   td {
+      background: rgba(249, 27, 27, 0.25);
+   }
+ } 
 </style>

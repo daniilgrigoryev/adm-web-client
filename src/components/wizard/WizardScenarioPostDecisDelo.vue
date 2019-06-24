@@ -148,8 +148,9 @@
               withCreate: true
             });
           } else {
-            if (resp && eventResp.data.deloErrors) {
-              console.log(eventResp.data.deloErrors);
+            if (funcUtils.isNotEmpty(eventResp.data.deloErrors)) {
+              this.protDecisDeloListResponseProcessing(eventResp.data.deloErrors);
+              return;
             }
             let stack = formStack.getStack();
             let prev = stack.indexOf(stack.size() - 2);
@@ -169,10 +170,31 @@
           this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
+      async protDecisDeloListResponseProcessing (deloErrors) {
+        let errors = {
+          id: [],
+          text: [],
+        };
+        for (const key in deloErrors) {
+          if (deloErrors[key]) {
+            console.log(key);
+            errors.text.push(`Дело id:${key}`);
+            errors.id.push(+key);
+          }
+        }
+        await this.$store.dispatch('deloReestrForPostSetDeloErrors', errors.id);
+        console.log(errors.id);
+        await this.getPrev();
+        if (errors.text.length) {
+          this.$store.dispatch('errorsModal/changeContent', {
+            title: "При создании постановлений дела с ошибками были пропущены:", 
+            desc: errors.text.join("<br>")
+          });
+        }
+      },
     }
   }
 </script>
 
 <style scoped>
-
 </style>
