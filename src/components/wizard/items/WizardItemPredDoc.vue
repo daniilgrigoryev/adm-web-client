@@ -181,7 +181,6 @@
         await this.storeElementData();
       },
       async changeDocTip() {
-        console.log(this.maskDocNum);
         await this.$nextTick();
         if (this.$refs.docNum) {
           this.$refs.docNum.$forceUpdate();

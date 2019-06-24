@@ -347,10 +347,6 @@ export default {
         funcUtils.isEmpty(this.dataStore.deloList)
       );
     },
-
-    computeName(e) {
-      console.log(e.target.value);
-    },
     toggleSelected(item) {
       this.$store.commit("deloReestrForPostToggleSelected", item);
       this.setSelectId();

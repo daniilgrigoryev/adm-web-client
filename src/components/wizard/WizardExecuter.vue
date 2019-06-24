@@ -45,9 +45,7 @@
             'newDelo': this.$route.params.newDelo ? this.$route.params.newDelo : funcUtils.isEmpty(this.$route.params.node)
           };
         }
-        console.log(prepareParams);
         let eventResponse = await RequestApi.prepareData(prepareParams);
-        console.log(eventResponse);
         let cids = Object.keys(JSON.parse(eventResponse.response).data);
 
         let parentNode = null;
