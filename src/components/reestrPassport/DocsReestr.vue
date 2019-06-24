@@ -78,7 +78,7 @@
         </div>
 
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
-               :stripe="false" :height="tableHeight" @on-row-click="toggleSelected" @on-sort-change="sortClick"></Table>
+               :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-row-click="toggleSelected" @on-sort-change="sortClick"></Table>
         <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
           <div class="action-bar__title">Подписать выбранные документы</div>
           <div class="action-bar__body">
@@ -604,6 +604,24 @@ export default {
         }
       });
       await this.fillModule(eventResponse);
+    },
+    getDelo(delo, e) {
+      try {
+        let params = {
+          deloId: delo.deloId,
+          title: 'Поиск дел',
+        };
+
+        formStack.toNext({
+          module: this.$store.state.deloTreeCardView,
+          vm: this,
+          notRemoved: false,
+          params: params,
+          withCreate: true
+        });
+      } catch (e) {
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
+      }
     }
   }
 };
