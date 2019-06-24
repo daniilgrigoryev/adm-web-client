@@ -16,7 +16,7 @@
               <wizard-item-address v-if="isVisible('Present.Repres.regAddr')" ref="Present.Repres.regAddr" :info="getInfo('Present.Repres.regAddr')" title="Адрес регистрации" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
           </div>
-          <div class="adm-form__container">
+          <div class="adm-form__container"  v-if="isVisible('DocPostSecond')">
             <h2 id="nar" class="adm-form__headding">Сведения о нарушении</h2>
             <div class="adm-form__content">
               <wizard-item-doc-post-second id="DocPostSecond" v-if="isVisible('DocPostSecond')" ref="DocPostSecond" :info="getInfo('DocPostSecond')" @storeElementData="storeElementData" @updateComponents="updateComponents">
@@ -88,6 +88,7 @@
           {
             title: "Сведения о нарушении",
             name: "nar",
+            hide: !this.isVisible('DocPostSecond')
           },
           {
             title: "Решение по делу",
@@ -121,6 +122,7 @@
           method: 'make'
         });
         let eventResp =  JSON.parse(eventResponse.response);
+        
         if (eventResp.error && eventResp.error.errorId) {
           this.$store.dispatch('errorsModal/changeContent', {title: eventResp.error.errorMsg, desc: eventResp.error.errorDesc,});
         } else {
@@ -146,6 +148,9 @@
               withCreate: true
             });
           } else {
+            if (resp && eventResp.data.deloErrors) {
+              console.log(eventResp.data.deloErrors);
+            }
             let stack = formStack.getStack();
             let prev = stack.indexOf(stack.size() - 2);
             prev.params.scenarioResult = eventResp.data;
