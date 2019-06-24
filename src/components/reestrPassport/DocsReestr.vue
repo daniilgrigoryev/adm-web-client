@@ -14,16 +14,8 @@
           </CustomSelect>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Фамилия</div>
-          <Input class="adm-input adm-input--big" placeholder="Фамилия" clearable/>
-        </div>
-        <div class="adm-form__item">
-          <div class="adm-form__item-label">Имя</div>
-          <Input class="adm-input adm-input--big" placeholder="Имя" clearable/>
-        </div>
-        <div class="adm-form__item">
-          <div class="adm-form__item-label">Отчество</div>
-          <Input class="adm-input adm-input--big" placeholder="Отчество" clearable/>
+          <div class="adm-form__item-label">Название участника</div>
+          <Input class="adm-input adm-input--big"  v-model="filter.name" placeholder="ФИО или название организации" clearable />
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">ГРЗ</div>
@@ -40,10 +32,6 @@
             <Option :value="1">Не подписанные</Option>
             <Option :value="2">Подписанные</Option>
           </CustomSelect>
-        </div>
-        <div class="adm-form__item">
-          <div class="adm-form__item-label">Наименование организации</div>
-          <Input class="adm-input adm-input--big" clearable/>
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">Период документа *</div>
@@ -637,7 +625,7 @@ export default {
 .adm-search-filter-panel {
   .content {
     display: grid;
-    grid-template-columns: repeat(5, 1fr) 140px;
+    grid-template-columns: repeat(3, 250px) 140px;
     grid-gap: 0 35px;
   }
   .adm-form__item {

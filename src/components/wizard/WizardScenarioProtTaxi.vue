@@ -164,6 +164,10 @@
             name: "rasm"
           },
           {
+            title: "Потерпевший",
+            name: "Victim"
+          },
+          {
             title: "Свидетели",
             name: "witness",
             hide: !this.isVisible('Witness1')

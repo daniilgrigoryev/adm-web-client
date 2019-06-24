@@ -130,6 +130,10 @@
             title: "Сведения о рассмотрении",
             name: "definition"
           },
+          {
+            title: "Потерпевший",
+            name: "Victim"
+          },
         ]
       },
       isVisible(path) {

@@ -21,35 +21,23 @@
           <Input class="adm-input adm-input--big" v-model="filter.regno" clearable/>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Фамилия</div>
-          <Input class="adm-input adm-input--big" placeholder="Фамилия" clearable />
-        </div>
-        <div class="adm-form__item">
-          <div class="adm-form__item-label">Имя</div>
-          <Input class="adm-input adm-input--big" placeholder="Имя" clearable/>
-        </div>
-        <div class="adm-form__item">
-          <div class="adm-form__item-label">Отчество</div>
-          <Input class="adm-input adm-input--big" placeholder="Отчество" clearable/>
+          <div class="adm-form__item-label">Название участника</div>
+          <Input class="adm-input adm-input--big"  v-model="filter.name" placeholder="ФИО или название организации" clearable />
         </div>
         <div class="buttons-wrap">
           <Button @click="filterClick" type="default" class="adm-btn adm-btn--blue">Найти</Button>
           <Button @click="clearFilterSort" type="default" class="adm-btn">Очистить</Button>
         </div>
         <div class="adm-form__item">
-          <div class="adm-form__item-label">Наименование организации</div>
-          <Input class="adm-input adm-input--big" clearable/>
+          <div class="adm-form__item-label">Период рассмотрения *</div>
+          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.dateBegRasm" :valueSecond="filter.dateEndRasm"
+                                clearable type="date" placeholder="дд/мм/гггг" @change="changeDateRasm"
+                                momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
         </div>
-        <div class="adm-form__item">
+         <div class="adm-form__item">
           <div class="adm-form__item-label">Период нарушения</div>
           <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.dateBegViol" :valueSecond="filter.dateEndViol"
                                 clearable type="date" placeholder="дд/мм/гггг" @change="changeDateViol"
-                                momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
-        </div>
-        <div class="adm-form__item">
-          <div class="adm-form__item-label">Период рассмотрения</div>
-          <DateRangePickerMask class="adm-input adm-input--big adm-input-data" :valueFirst="filter.dateBegRasm" :valueSecond="filter.dateEndRasm"
-                                clearable type="date" placeholder="дд/мм/гггг" @change="changeDateRasm"
                                 momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DateRangePickerMask>
         </div>
       </div>
@@ -535,7 +523,6 @@ export default {
           this.filter[prop] = null;
         }
       }
-      this.filter.sign = 0;
       let eventResponse = await RequestApi.prepareData({
         method: "getData",
         params: {
@@ -615,7 +602,7 @@ export default {
 .adm-search-filter-panel {
   .content {
     display: grid;
-    grid-template-columns: repeat(5, 1fr) 140px;
+    grid-template-columns: repeat(3, 250px) 140px;
     grid-gap: 0 35px;
   }
   .adm-form__item {
