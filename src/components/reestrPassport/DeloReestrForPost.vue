@@ -467,14 +467,29 @@ export default {
       this.tableHeight = height;
     },
     async createPost() {
-      // TODO
-      return;
-      await RequestApi.prepareData({
-        method: method,
-        params: {
-          items: this.selectedList
-        }
+      
+      let nodeList = await RequestApi.prepareData({
+        method: "getSelectNodes",
       });
+      nodeList = JSON.parse(nodeList.response).data
+      try {
+        let params = {
+          scenarioName: "CreateProtDecisDeloList",
+          node: nodeList,
+          title: 'Создание постановлений',
+          newDelo: false
+        };
+
+        formStack.toNext({
+          module: this.$store.state.wizardExecuter,
+          vm: this,
+          notRemoved: true,
+          params: params,
+          withCreate: true
+        });
+      } catch (e) {
+        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
+      }
     },
     getFilterFields() {
       let filterObj = {};

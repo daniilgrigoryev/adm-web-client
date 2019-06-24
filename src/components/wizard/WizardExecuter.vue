@@ -36,14 +36,18 @@
         };
         if (funcUtils.isNotEmpty(this.$route.params.scenarioName)) {
           prepareParams.method = 'loadScenarioWithNodeNewDelo';
+          if (Array.isArray(this.$route.params.node)) {
+            prepareParams.method = 'loadScenarioWithNodeListNewDelo';
+          }
           prepareParams.params = {
             'name': this.$route.params.scenarioName,
             'node': this.$route.params.node || null,
             'newDelo': this.$route.params.newDelo ? this.$route.params.newDelo : funcUtils.isEmpty(this.$route.params.node)
           };
         }
-
+        console.log(prepareParams);
         let eventResponse = await RequestApi.prepareData(prepareParams);
+        console.log(eventResponse);
         let cids = Object.keys(JSON.parse(eventResponse.response).data);
 
         let parentNode = null;
@@ -201,6 +205,7 @@
             };
             break;
           }
+          case 'CreateProtDecisDeloList':
           case 'CreateProtDecisDelo': {
             res = {
               name: 'WizardScenarioPostDecisDelo'
