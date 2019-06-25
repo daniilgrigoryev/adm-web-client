@@ -177,7 +177,6 @@
         };
         for (const key in deloErrors) {
           if (deloErrors[key]) {
-            console.log(key);
             errors.text.push(`Дело id:${key}`);
             errors.id.push(+key);
           }

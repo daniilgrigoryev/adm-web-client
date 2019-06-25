@@ -5,9 +5,9 @@ export default {
     bean: 'DocsReestr',
     routeName: 'DocsReestr',
     data: null,
+    command: null,
     deloErrors: [],
     selectId: [],
-    command: null
   },
   mutations: {
     docsReestrSetCid(state, cid) {
@@ -45,8 +45,8 @@ export default {
     docsReestrSetData({state}, data) {
       if (data !== null && data.deloList) {
         data.deloList.forEach(el => {
-          el.selected = state.selectId.length ? state.selectId.includes(el.cardId): false;
-          el.errors = state.deloErrors.length ? state.deloErrors.includes(el.cardId): false;
+          el.errors = state.deloErrors.length ? state.deloErrors.includes(el.deloId): false;
+          el.selected = state.selectId.length ? (!el.errors && state.selectId.includes(el.deloId)): false;
         });
       }
       state.data = data;

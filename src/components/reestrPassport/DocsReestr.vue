@@ -129,6 +129,7 @@ export default {
   destroyed() {
     this.$store.dispatch("docsReestrSetCid", null);
     this.$store.dispatch("docsReestrSetData", null);
+    this.$store.dispatch("deloReestrForPostSetDeloErrors", []);
   },
   data() {
     return {
@@ -605,7 +606,6 @@ export default {
           deloId: delo.deloId,
           title: "Поиск дел"
         };
-
         formStack.toNext({
           module: this.$store.state.deloTreeCardView,
           vm: this,
