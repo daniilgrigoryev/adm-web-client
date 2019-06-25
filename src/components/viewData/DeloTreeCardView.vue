@@ -70,10 +70,47 @@
             </div>
 
             <div class="special-buttons-wrap">
-              <button @click="printDocument" title="печать дела">
-                <img :src="require('../../assets/images/icons/print.svg')" alt="">
-              </button>
-              <button @click="logOpen = !logOpen;" title="Логи">
+              <Poptip placement="bottom-end" class="delo-menu--poptip">
+                <button title="печать дела" class="icon">
+                  <img :src="require('../../assets/images/icons/print.svg')" alt="">
+                </button>
+                <div slot="content">
+                  <ul class="delo-menu__poptip-list">
+                    <li>
+                      <Button @click="printDocument" type="text">Постановление</Button>
+                    </li>
+                    <li>
+                      <Button @click="printDocument" type="text">Письмо</Button>
+                    </li>
+                    <li>
+                      <Button @click="printDocument" type="text">Другое</Button>
+                    </li>
+                    <li>
+                      <Button @click="printDocument" type="text">Более другое</Button>
+                    </li>
+                    <li>
+                      <Button @click="printModalStatus = true" type="text">Печатать все</Button>
+                    </li>
+                  </ul>
+                </div>
+              </Poptip>
+              <Modal
+                title="Печать документов дела"
+                v-model="printModalStatus"
+                class-name="print-modal"
+              >
+                Выбранные документы будут распечатаны подряд:
+                <ul>
+                  <li v-for="item in printModalItems" :key="item.id">
+                    <Checkbox>
+                      <span style="padding-left: 10px;">
+                        {{ item }}
+                      </span>
+                    </Checkbox>
+                  </li>
+                </ul>
+              </Modal>
+              <button @click="logOpen = !logOpen;" title="Логи" class="icon">
                 <img :src="require('../../assets/images/icons/log.svg')" alt="" style="right: -2px;">
               </button>
             </div>
@@ -221,7 +258,15 @@
         searchForAddDocumentList: "",
         logOpen: false,
         logNode: {},
-        prevItemTitle: null
+        prevItemTitle: null,
+        printModalStatus: false,
+        printModalItems: [
+          "Постановление",
+          "Письмо",
+          "Другое",
+          "Более",
+          "другое",
+        ],
       }
     },
     computed: {
@@ -707,6 +752,9 @@
           this.pdfData = 'data:application/pdf;base64,' + data;
         }
       },
+      openPrintModal() {
+       
+      },
       clearDocument() {
         this.pdfData = null;
       },
@@ -1153,7 +1201,22 @@
       grid-gap: 20px;
       align-items: center;
       padding: 0 20px;
-      button {
+      
+      .delo-menu--poptip {
+        button {
+          padding: 6px 18px;
+          border-radius: 0;
+          width: 100%;
+          text-align: left;
+          font-size: 13px;
+        }
+        li {
+          &:last-child {
+            border-top: 1px solid #CCCCCC;
+          }
+        }
+      }
+      button.icon {
         width: 1em;
         height: 1em;
         font-size: 48px;
@@ -1190,5 +1253,19 @@
     }
   }
 </style>
+<style lang="scss">
+  .print-modal {
+    .ivu-modal {
+      top: 25vh;
+    }
+    .ivu-modal-body {
+      font-size: 14px;
+      ul {
+        margin-top: 10px;
+      }
+    }
+  }
+</style>
+
 
 
