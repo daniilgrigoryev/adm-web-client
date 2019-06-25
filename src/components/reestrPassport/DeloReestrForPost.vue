@@ -245,6 +245,52 @@ export default {
           }
         },
         {
+          title: "Дата и время рассмотрения",
+          key: "DateRasmr",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "DateRasmr",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [
+              h(
+                "p",
+                this.$options.filters.formatDateTime(
+                  params.row.DateRasmr,
+                  "DD.MM.YYYY HH:mm"
+                )
+              )
+            ]);
+          }
+        },
+        {
+          title: "Дата и время нарушения",
+          key: "dateNar",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "dateNar",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [
+              h(
+                "p",
+                this.$options.filters.formatDateTime(
+                  params.row.dateNar,
+                  "DD.MM.YYYY HH:mm"
+                )
+              )
+            ]);
+          }
+        },
+        {
           title: "Последнее решение",
           key: "decisNameLast",
           minWidth: 180,
