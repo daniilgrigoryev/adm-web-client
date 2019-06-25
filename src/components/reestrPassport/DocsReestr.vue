@@ -542,8 +542,8 @@ export default {
       let eventResponse = await RequestApi.prepareData({
         method: "getDocTipDict"
       });
-      let docTipDict = JSON.parse(eventResponse.response).data;
-      this.docTipDict = docTipDict.map(item => {
+      let {data} = JSON.parse(eventResponse.response);
+      this.docTipDict = data.map(item => {
         return {
           label: item.DOC_TIP_NAME,
           value: item.DOC_TIP

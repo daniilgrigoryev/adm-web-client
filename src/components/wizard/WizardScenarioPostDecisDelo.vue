@@ -182,7 +182,6 @@
           }
         }
         await this.$store.dispatch('deloReestrForPostSetDeloErrors', errors.id);
-        console.log(errors.id);
         await this.getPrev();
         if (errors.text.length) {
           this.$store.dispatch('errorsModal/changeContent', {

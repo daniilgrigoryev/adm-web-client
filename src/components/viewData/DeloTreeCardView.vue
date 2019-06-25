@@ -597,7 +597,6 @@
         let mappedArr = {};
         let arrElem;
         let mappedElem;
-
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
           if (funcUtils.isNotEmpty(arrElem.nodeInfo)) {
@@ -721,7 +720,7 @@
           cid: current.cid
         });
         if (eventResponse.response) {
-          let data = JSON.parse(eventResponse.response).data;
+          let {data} = JSON.parse(eventResponse.response);
           this.pdfData = 'data:application/pdf;base64,' + data;
         }
       },
