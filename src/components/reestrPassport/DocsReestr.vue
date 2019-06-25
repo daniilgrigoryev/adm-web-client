@@ -275,7 +275,9 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.uchastName || params.row.ulName)]);
+            return h("div", [
+              h("p", params.row.uchastName || params.row.ulName)
+            ]);
           }
         }
       ]
@@ -341,6 +343,7 @@ export default {
           let filter = JSON.parse(eventResponse.response).data.find;
           this.parseFilter(filter);
         }
+        await this.getSelectId();
         await this.fillModule(eventResponse);
         await this.fillDocTipDict();
       } catch (e) {
@@ -351,7 +354,6 @@ export default {
       await this.$store.dispatch("fillModule", { event: eventResponse });
       let sort = JSON.parse(eventResponse.response).data.sort;
       this.parseSort(sort);
-      this.getSelectId();
     },
     isEmptyData() {
       return (
@@ -359,7 +361,6 @@ export default {
         funcUtils.isEmpty(this.dataStore.deloList)
       );
     },
-
 
     toggleSelected(item) {
       this.$store.commit("docsReestrToggleSelected", item);
@@ -385,17 +386,10 @@ export default {
       let eventResponse = await RequestApi.prepareData({
         method: "getSelectId"
       });
-      eventResponse = JSON.parse(eventResponse.response);
-      if (!eventResponse.data.length) {
-        return;
+      let { data } = JSON.parse(eventResponse.response);
+      if (data.length) {
+        await this.$store.dispatch("docsReestrSetSelectId", data);
       }
-      let items = this.dataStore.deloList.filter(el =>
-        eventResponse.data.includes(el.cardId)
-      );
-      this.$store.commit("docsReestrChangeSelectionItems", {
-        items: items,
-        action: true
-      });
     },
     declOfNum(number, titles) {
       let data = [2, 0, 1, 1, 1, 2];
@@ -609,7 +603,7 @@ export default {
       try {
         let params = {
           deloId: delo.deloId,
-          title: 'Поиск дел',
+          title: "Поиск дел"
         };
 
         formStack.toNext({
@@ -620,7 +614,7 @@ export default {
           withCreate: true
         });
       } catch (e) {
-        this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     }
   }

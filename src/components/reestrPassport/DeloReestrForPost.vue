@@ -338,6 +338,7 @@ export default {
           let filter = JSON.parse(eventResponse.response).data.find;
           this.parseFilter(filter);
         }
+        await this.getSelectId();
         await this.fillModule(eventResponse);
       } catch (e) {
         this.$store.dispatch("errorsModal/changeContent", { title: e.message });
@@ -347,7 +348,6 @@ export default {
       await this.$store.dispatch("fillModule", { event: eventResponse });
       let sort = JSON.parse(eventResponse.response).data.sort;
       this.parseSort(sort);
-      this.getSelectId();
     },
     isEmptyData() {
       return (
@@ -356,12 +356,12 @@ export default {
       );
     },
     toggleSelected(item) {
-      this.$store.commit("deloReestrForPostToggleSelected", item);
+      this.$store.dispatch("deloReestrForPostToggleSelected", item);
       this.setSelectId();
     },
     toggleSelectedColumn() {
       let columnItemsSelected = this.data.filter(el => el.selected);
-      this.$store.commit("deloReestrForPostChangeSelectionItems", {
+      this.$store.dispatch("deloReestrForPostChangeSelectionItems", {
         items: this.data,
         action: this.columnChecked
       });
@@ -379,17 +379,10 @@ export default {
       let eventResponse = await RequestApi.prepareData({
         method: "getSelectId"
       });
-      eventResponse = JSON.parse(eventResponse.response);
-      if (!eventResponse.data.length) {
-        return;
+      let { data } = JSON.parse(eventResponse.response);
+      if (data.length) {
+        await this.$store.dispatch("deloReestrForPostSetSelectId", data);
       }
-      let items = this.dataStore.deloList.filter(el =>
-        eventResponse.data.includes(el.deloId)
-      );
-      this.$store.dispatch("deloReestrForPostChangeSelectionItems", {
-        items: items,
-        action: true
-      });
     },
     rowClassName (row, index) {
       if (row.errors) {

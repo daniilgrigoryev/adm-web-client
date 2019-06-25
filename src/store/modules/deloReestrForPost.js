@@ -6,6 +6,7 @@ export default {
     routeName: 'DeloReestrForPost',
     data: null,
     deloErrors: [],
+    selectId: [],
     command: null
   },
   mutations: {
@@ -33,6 +34,9 @@ export default {
     deloReestrForPostSetDeloErrors(state, payload) {
       state.deloErrors = payload;
     },
+    deloReestrForPostSetSelectId(state, payload) {
+      state.selectId = payload;
+    },
   },
   actions: {
     deloReestrForPostSetCid(vm, cid) {
@@ -41,7 +45,7 @@ export default {
     deloReestrForPostSetData({state}, data) {
       if (data !== null && data.deloList) {
         data.deloList.forEach(el => {
-          el.selected = false;
+          el.selected = state.selectId.length ? state.selectId.includes(el.deloId): false;
           el.errors = state.deloErrors.length ? state.deloErrors.includes(el.deloId): false;
         });
       }
@@ -50,12 +54,19 @@ export default {
     deloReestrForPostSetCommand(vm, command) {
       vm.state.command = command;
     },
+    deloReestrForPostToggleSelected({commit}, payload) {
+      commit("deloReestrForPostToggleSelected", payload)
+    },
     deloReestrForPostChangeSelectionItems({commit}, payload) {
       commit("deloReestrForPostChangeSelectionItems", payload)
     },
     deloReestrForPostSetDeloErrors({commit}, payload) {
       commit("deloReestrForPostSetDeloErrors", payload)
     },
+    deloReestrForPostSetSelectId({commit}, payload) {
+      commit("deloReestrForPostSetSelectId", payload)
+    },
+    
   },
   getters: {
     deloReestrForPostGetCommand: state => () => {
@@ -67,8 +78,5 @@ export default {
     deloReestrForPostGetCid: state => {
       return state.cid
     },
-    deloReestrForPostGetDeloErrors: state => {
-      return state.deloErrors
-    }
   }
 };
