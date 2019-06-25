@@ -165,7 +165,8 @@
           },
           {
             title: "Потерпевший",
-            name: "Victim"
+            name: "Victim",
+            hide: !this.isVisible('Victim')
           },
           {
             title: "Свидетели",
