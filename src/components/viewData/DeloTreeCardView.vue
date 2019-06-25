@@ -470,25 +470,6 @@
             return current.params.recType === constants.DELO;
           }
           case 'PostAPNAnothFace': {
-            // let galobs = {};
-            // let decisGalobs = [];
-            // let arrElem;
-
-            // for (let i = 0; i < this.dataStore.tree.length; i++) {
-            //   arrElem = this.dataStore.tree[i];
-            //   if (arrElem.recType === constants.DOCS_GALOB) {
-            //     galobs[arrElem.category] = arrElem;
-            //   }
-            // }
-
-            // for (let i = 0; i < this.dataStore.tree.length; i++) {
-            //   arrElem = this.dataStore.tree[i];
-            //   let galob = galobs[arrElem.parentCategory];
-            //   if (galob && arrElem.kod === decisEnum.PREKRASH_DELO) {
-            //     decisGalobs.push(arrElem);
-            //   }
-            // }
-            // return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_PERFORMED || this.deloContext.stadKod === constants.STAD_TERMINATED) && decisGalobs.length > 0;
             return current.params.recType === constants.DELO;
           }
           case 'ApplyDocOnDelo': {
@@ -629,7 +610,9 @@
           if (arrElem.parentCategory && this.checkPostUvedom(arrElem)) {
             let key = arrElem.parentCategory + '-' + arrElem.parentDocId;
             let parentElem = mappedArr[key];
-            parentElem.children.push(arrElem);
+            if (parentElem) {
+              parentElem.children.push(arrElem);
+            }
           }
         }
 

@@ -102,7 +102,10 @@
             </Col>
             <Col span="4">
               <button @click="ownerToLicense" class="adm-form__icon-button" type="button">
-                <img :src="require('~/assets/images/icons/copyData.png')" alt="Скопировать данные владельца">
+                <img :src="require('~/assets/images/icons/copyData.png')" title="Скопировать данные владельца" alt="Скопировать данные владельца">
+              </button>
+              <button @click="lvokToLicense" class="adm-form__icon-button" type="button">
+                <img :src="require('~/assets/images/icons/copyData.png')" title="Скопировать данные ЛВОКа" alt="Скопировать данные ЛВОКа">
               </button>
             </Col>
           </Row>

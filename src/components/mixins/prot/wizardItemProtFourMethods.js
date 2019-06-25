@@ -141,5 +141,22 @@ export default {
         this.$emit('updateComponents', cids);
       }
     },
+    async lvokToLicense() {
+      let eventResponse = await RequestApi.prepareData({
+        method: 'invokeElementMethod',
+        params: {
+          eCID: this.info.eCID,
+          methodName: 'lvokToLicense',
+          data: null
+        }
+      });
+      let cids = JSON.parse(JSON.parse(eventResponse.response).data);
+      if (funcUtils.isEmpty(cids)) {
+        let error = JSON.parse(eventResponse.response).error;
+        this.$store.dispatch('errors/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
+      } else {
+        this.$emit('updateComponents', cids);
+      }
+    },
   }
 }

@@ -156,7 +156,7 @@ export default class RequestApi {
           if (response && response.error && handleError) {
             console.log(response.error.errorMsg);
             store.dispatch('errorsModal/changeContent', {
-              title: response.error.errorMsg, 
+              title: response.error.errorMsg,
               desc: response.error.errorDesc
             });
           }
@@ -170,6 +170,10 @@ export default class RequestApi {
       xhr.onerror = (e) => {
         // перевод Promise в состояние rejected
         reject(new Error("Network Error"));
+        store.dispatch('errorsModal/changeContent', {
+          title: 'Ошибка соединения',
+          desc: 'Сервер не отвечает'
+        });
         console.log(e);
         hideSpinner();
       };
