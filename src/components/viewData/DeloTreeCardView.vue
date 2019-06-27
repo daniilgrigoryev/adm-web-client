@@ -70,26 +70,17 @@
             </div>
 
             <div class="special-buttons-wrap">
-              <Poptip placement="bottom-end" class="delo-menu--poptip">
+              <Poptip placement="bottom-end" class="delo-menu--poptip" @on-popper-show="getPrintTemplates()">
                 <button title="печать дела" class="icon">
                   <img :src="require('../../assets/images/icons/print.svg')" alt="">
                 </button>
                 <div slot="content">
                   <ul class="delo-menu__poptip-list">
-                    <li>
-                      <Button @click="printDocument" type="text">Постановление</Button>
+                    <li v-for="item in printTemplates" :key="item.id">
+                      <Button @click="printDocument(item)" type="text">{{ item }}</Button>
                     </li>
-                    <li>
-                      <Button @click="printDocument" type="text">Письмо</Button>
-                    </li>
-                    <li>
-                      <Button @click="printDocument" type="text">Другое</Button>
-                    </li>
-                    <li>
-                      <Button @click="printDocument" type="text">Более другое</Button>
-                    </li>
-                    <li>
-                      <Button @click="printModalStatus = true" type="text">Печатать все</Button>
+                    <li v-if="printTemplates.length > 1">
+                      <Button @click="printModalStatus = true" type="text">Печатать несколько</Button>
                     </li>
                   </ul>
                 </div>
@@ -99,12 +90,12 @@
                 v-model="printModalStatus"
                 class-name="print-modal"
               >
-                Выбранные документы будут распечатаны подряд:
+                Выбранные документы будут распечатаны вместе:
                 <ul>
-                  <li v-for="item in printModalItems" :key="item.id">
+                  <li v-for="item in printTemplates" :key="item.id">
                     <Checkbox>
                       <span style="padding-left: 10px;">
-                        {{ item }}
+                        {{ item.name }}
                       </span>
                     </Checkbox>
                   </li>
@@ -260,13 +251,7 @@
         logNode: {},
         prevItemTitle: null,
         printModalStatus: false,
-        printModalItems: [
-          "Постановление",
-          "Письмо",
-          "Другое",
-          "Более",
-          "другое",
-        ],
+        printTemplates: {},
       }
     },
     computed: {
@@ -623,6 +608,7 @@
         let mappedArr = {};
         let arrElem;
         let mappedElem;
+
         for (let i = 0; i < arr.length; i++) {
           arrElem = arr[i];
           if (funcUtils.isNotEmpty(arrElem.nodeInfo)) {
@@ -741,11 +727,25 @@
           this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
-      async printDocument() {
+      async getPrintTemplates() {
+        let current = innerFormStack.getCurrent();
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getPrintTemplates',
+          cid: current.cid
+        });
+        if (eventResponse.response) {
+          let {data} = JSON.parse(eventResponse.response);
+          debugger;
+          // TODO
+          // this.printTemplates = data;
+        }
+      },
+      async printDocument(document) {
         let current = innerFormStack.getCurrent();
         let eventResponse = await RequestApi.prepareData({
           method: 'getPdfReport',
-          cid: current.cid
+          cid: current.cid,
+          params: this.printTemplates.filter((el)=> el.selected)
         });
         if (eventResponse.response) {
           let {data} = JSON.parse(eventResponse.response);

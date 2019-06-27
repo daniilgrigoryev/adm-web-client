@@ -119,7 +119,6 @@
           case 'FrmEdIspolnFSSP': 
           case 'FrmEdIspolnPered': 
           case 'FrmEdIspolnPeredArest': 
-          case 'FrmEdIspolnPostUvedom': 
           case 'FrmEdIspolnPrecrashIsp': 
           case 'FrmEdIspolnPriostVozobn': 
           case 'FrmEdIspolnShtraf': 
