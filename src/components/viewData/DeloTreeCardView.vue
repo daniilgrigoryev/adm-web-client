@@ -378,16 +378,10 @@
         }).getFirst();
       },
       updateSelected() {
-        let current = innerFormStack.getCurrent();
-        let jsonParams = null;
-        if (funcUtils.isNotEmpty(current)) {
-          jsonParams = this.stringifyCircularNode(current.params);
-        }
-        let firstTreeNode = JSON.stringify(this.getCopyObj(this.firstTreeNode, 'selected', 'children', 'height', 'nodeParams'));
-        this.$set(this.firstTreeNode, 'selected', jsonParams === firstTreeNode);
+        let selectedDocId = innerFormStack.getCurrent() ? innerFormStack.getCurrent().params.docId : null;
+        this.$set(this.firstTreeNode, 'selected', this.firstTreeNode.docId === selectedDocId);
         this.dataStore.tree.forEach((item) => {
-          let copyNode = JSON.stringify(this.getCopyObj(item, 'selected', 'children', 'height', 'nodeParams'));
-          this.$set(item, 'selected', jsonParams === copyNode);
+          this.$set(item, 'selected', item.docId === selectedDocId);
         });
       },
       async addForm(node) {
