@@ -9,16 +9,6 @@
             <h2 class="adm-form__headding" id="head">Ходатайство  {{ docsPetition.docN ? "№" + docsPetition.docN : "" }} от {{ docsPetition.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
-                <small class="adm-form__label">Ходатайство №</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" :value="docsPetition.docN"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
                 <small class="adm-form__label">Дата и время составления</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
