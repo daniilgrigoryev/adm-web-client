@@ -76,10 +76,13 @@
                 </button>
                 <div slot="content">
                   <ul class="delo-menu__poptip-list">
-                    <li v-for="item in printTemplates" :key="item.id">
-                      <Button @click="printDocument(item)" type="text">{{ item }}</Button>
+                    <li v-if="!printTemplates.length">
+                      <Button type="text" style="pointer-events: none">Нет документов для печати</Button>
                     </li>
-                    <li v-if="printTemplates.length > 1">
+                    <li v-for="item in printTemplates" :key="item.key">
+                      <Button @click="printDocument([item.key])" type="text">{{ item.name }}</Button>
+                    </li>
+                    <li v-if="printTemplates.length > 1" class="some">
                       <Button @click="printModalStatus = true" type="text">Печатать несколько</Button>
                     </li>
                   </ul>
@@ -89,11 +92,12 @@
                 title="Печать документов дела"
                 v-model="printModalStatus"
                 class-name="print-modal"
+                @on-ok="printDocument(printTemplates.filter((el)=>el.isSelected).map(el=>el.key))"
               >
                 Выбранные документы будут распечатаны вместе:
                 <ul>
-                  <li v-for="item in printTemplates" :key="item.id">
-                    <Checkbox v-model="item.selected">
+                  <li v-for="item in printTemplates" :key="item.key">
+                    <Checkbox v-model="item.isSelected">
                       <span style="padding-left: 10px;">
                         {{ item.name }}
                       </span>
@@ -251,7 +255,7 @@
         logNode: {},
         prevItemTitle: null,
         printModalStatus: false,
-        printTemplates: {},
+        printTemplates: [],
       }
     },
     computed: {
@@ -728,6 +732,7 @@
         }
       },
       async getPrintTemplates() {
+        this.printTemplates = [];
         let current = innerFormStack.getCurrent();
         let eventResponse = await RequestApi.prepareData({
           method: 'getPrintTemplates',
@@ -735,31 +740,28 @@
         });
         if (eventResponse.response) {
           let {data} = JSON.parse(eventResponse.response);
-          debugger;
-          // TODO
-          // this.printTemplates = data.map((el, index)=> {
-          //   return {
-          //     id: el.id || index,
-          //     name: el.name || index,
-          //     selected: false,
-          //   }
-          // });
+          for (const item in data) {
+            this.printTemplates.push({
+              key: item,
+              name: data[item],
+              isSelected: false,
+            })
+          }
         }
       },
-      async printDocument(document) {
+      async printDocument(templates) {
         let current = innerFormStack.getCurrent();
         let eventResponse = await RequestApi.prepareData({
           method: 'getPdfReport',
           cid: current.cid,
-          params: this.printTemplates.filter((el)=> el.selected).id
+          params: {
+            templates
+          }
         });
         if (eventResponse.response) {
           let {data} = JSON.parse(eventResponse.response);
           this.pdfData = 'data:application/pdf;base64,' + data;
         }
-      },
-      openPrintModal() {
-       
       },
       clearDocument() {
         this.pdfData = null;
@@ -1078,199 +1080,197 @@
 </script>
 
 <style lang="scss" scoped>
-  .back-button {
+.back-button {
+  display: flex;
+  align-items: center;
+  margin: 0 25px;
+  color: #1888cc;
+  transition: 0.3s ease;
+  cursor: pointer;
+  .icon-wrap {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
-    margin: 0 25px;
+    justify-content: center;
+    margin-right: 5px;
+    img {
+      width: 36px;
+      height: 36px;
+    }
+  }
+  .text {
+    font-size: 22px;
+  }
+}
+.pdf-viewer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 99;
+  background: rgb(82, 86, 89);
+
+  i {
+    top: 10px;
+    color: #fff;
+  }
+
+  .pdf-data {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 40px;
+  }
+}
+
+.delo-menu {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 80px;
+  align-items: center;
+  @media screen and (max-width: 1300px) {
+    grid-gap: 10px;
+  }
+  .delo-menu--body-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .delo-menu--poptip {
+      display: flex;
+      align-items: center;
+      .search-wrap {
+        border-bottom: 1px solid #cccccc;
+        height: 40px;
+        padding: 5px 15px;
+        display: flex;
+        align-items: center;
+        img {
+          margin-right: 10px;
+        }
+        .search {
+          width: 100%;
+          height: 100%;
+          border: none;
+          font-size: 14px;
+          &::placeholder {
+            font-style: italic;
+            color: #cccccc;
+          }
+        }
+      }
+      .delo-menu__poptip-list {
+        width: 350px;
+        padding: 10px 0;
+        li {
+          display: flex;
+          align-items: center;
+          button {
+            text-align: left;
+            white-space: normal;
+            border-radius: 0;
+            width: 100%;
+            margin: 3px 0;
+            padding: 3px 15px;
+          }
+        }
+      }
+    }
+  }
+  .action-button {
+    display: flex;
+    align-items: center;
     color: #1888cc;
-    transition: .3s ease;
-    cursor: pointer;
-    .icon-wrap {
-      width: 48px;
-      height: 48px;
+    margin: 0 10px;
+    transition: 0.3s ease;
+    &:disabled {
+      opacity: 0.3;
+      .ivu-icon-md-arrow-dropdown {
+        opacity: 0;
+      }
+    }
+    img {
+      width: 1em;
+      height: 1em;
+      font-size: 36px;
+    }
+    .text {
+      padding: 0 5px 0 5px;
+    }
+  }
+  .special-buttons-wrap {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 20px;
+    align-items: center;
+    padding: 0 20px;
+
+    .delo-menu--poptip {
+      button {
+        padding: 6px 18px;
+        border-radius: 0;
+        width: 100%;
+        text-align: left;
+        font-size: 13px;
+      }
+      li {
+        &.some {
+          border-top: 1px solid #cccccc;
+        }
+      }
+    }
+    button.icon {
+      width: 1em;
+      height: 1em;
+      font-size: 48px;
+      padding: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 5px;
-      img {
-        width: 36px;
-        height: 36px;
-      }
-    }
-    .text {
-      font-size: 22px;
-    }
-  }
-  .pdf-viewer {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 99;
-    background: rgb(82, 86, 89);
-
-    i {
-      top: 10px;
-      color: #fff;
-    }
-
-    .pdf-data {
       position: relative;
-      width: 100%;
-      height: 100%;
-      top: 40px;
-    }
-  }
-
-
-
-  .delo-menu {
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: 80px;
-    align-items: center;
-    @media screen and (max-width: 1300px) {
-      grid-gap: 10px;
-    }
-    .delo-menu--body-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .delo-menu--poptip {
-        display: flex;
-        align-items: center;
-        .search-wrap {
-          border-bottom: 1px solid #CCCCCC;
-          height: 40px;
-          padding: 5px 15px;
-          display: flex;
-          align-items: center;
-          img {
-            margin-right: 10px;
-          }
-          .search {
-            width: 100%;
-            height: 100%;
-            border: none;
-            font-size: 14px;
-            &::placeholder {
-              font-style: italic;
-              color: #CCCCCC;
-            }
-          }
-        }
-        .delo-menu__poptip-list {
-          width: 350px;
-          padding: 10px 0;
-          li {
-            display: flex;
-            align-items: center;
-            button {
-              text-align: left;
-              white-space: normal;
-              border-radius: 0;
-              width: 100%;
-              margin: 3px 0;
-              padding: 3px 15px;
-            }
-          }
-        }
-      }
-    }
-    .action-button {
-      display: flex;
-      align-items: center;
-      color: #1888cc;
-      margin: 0 10px;
-      transition: .3s ease;
-      &:disabled {
-        opacity: .3;
-        .ivu-icon-md-arrow-dropdown {
-          opacity: 0;
-        }
-      }
       img {
-        width: 1em;
-        height: 1em;
-        font-size: 36px;
-      }
-      .text {
-        padding: 0 5px 0 5px;
-      }
-    }
-    .special-buttons-wrap {
-      display: grid;
-      grid-auto-flow: column;
-      grid-gap: 20px;
-      align-items: center;
-      padding: 0 20px;
-      
-      .delo-menu--poptip {
-        button {
-          padding: 6px 18px;
-          border-radius: 0;
-          width: 100%;
-          text-align: left;
-          font-size: 13px;
-        }
-        li {
-          &:last-child {
-            border-top: 1px solid #CCCCCC;
-          }
-        }
-      }
-      button.icon {
-        width: 1em;
-        height: 1em;
-        font-size: 48px;
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         position: relative;
-        img {
-          position: relative;
-        }
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0;
+        height: 0;
+        transition: 0.3s ease;
+        background: #dce4f7;
+        border-radius: 50%;
+        z-index: -1;
+      }
+      &:hover {
         &:before {
-          content: "";
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: auto;
-          width: 0;
-          height: 0;
-          transition: .3s ease;
-          background: #DCE4F7;
-          border-radius: 50%;
-          z-index: -1;
-        }
-        &:hover {
-          &:before {
-            width: 100%;
-            height: 100%;
-          }
+          width: 100%;
+          height: 100%;
         }
       }
     }
   }
+}
 </style>
 <style lang="scss">
-  .print-modal {
-    .ivu-modal {
-      top: 25vh;
-    }
-    .ivu-modal-body {
-      font-size: 14px;
-      ul {
-        margin-top: 10px;
-      }
+.print-modal {
+  .ivu-modal {
+    top: 25vh;
+  }
+  .ivu-modal-body {
+    font-size: 14px;
+    ul {
+      margin-top: 10px;
     }
   }
+}
 </style>
 
 
