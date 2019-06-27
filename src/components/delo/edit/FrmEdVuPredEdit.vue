@@ -303,22 +303,54 @@
       }
     },
     computed: {
-      maskDocNum(){
-        let typeDoc = parseInt(this.vuPred.docTip);
-        if(typeDoc == 8 || typeDoc == 2 || typeDoc == 7){
-          return {
-            regex: '[0-9]+',
-            mask: '99 9999999',
-            placeholder: ''
+      maskDocNum() {
+        let numDocTip = parseInt(this.vuPred.docTip);
+        switch (numDocTip) {
+          case 3: { // Военный билет
+            return {
+              regex: '[А-Я]{2} [0-9]{7}',
+              casing: 'upper',
+              placeholder: '',
+            }
           }
-        }else{
-           return {
-            regex: '[0-9]+',
-            mask: '99 99 999999',
-            placeholder: ''
+          case 5: { // Паспорт РФ
+            return {
+              regex: '[0-9]{2} [0-9]{2} [0-9]{6}',
+              casing: 'upper',
+              placeholder: ''
+            }
           }
+          case 7:   // Загранпаспорт
+          case 8: { // Вид на жительство
+            return {
+              regex: '[0-9]{2} [0-9]{7}',
+              casing: 'upper',
+              placeholder: ''
+            }
+          }
+          case 9: { // ВУ
+            return {
+              regex: '[0-9]{2} [А-Я]{2} [0-9]{6}',
+              casing: 'upper',
+              placeholder: ''
+            }
+          }
+          case 104: { // Международное ВУ
+            return {
+              regex: '[0-9]{2} [A-Z]{2} [0-9]{6}',
+              casing: 'upper',
+              placeholder: ''
+            }
+
+          }
+          default:
+            return {
+              regex: '[0-9A-Za-zА-Яа-я]+',
+              placeholder: ''
+            }
         }
       },
+      
     },
     methods: {
       async showOgaiModal(visible) {
@@ -405,11 +437,13 @@
         this.vuPred.ogaiVydName = null;
         this.store();
       },
-      changeDocTip() {
+      async changeDocTip() {
+        await this.$nextTick();
         if (this.$refs.vuN) {
-          this.$refs.vuN.init();
           this.$refs.vuN.$forceUpdate();
+          this.$refs.vuN.init();
         }
+        this.vuPred.vuN = null;
         this.store();
       },
       store() {
