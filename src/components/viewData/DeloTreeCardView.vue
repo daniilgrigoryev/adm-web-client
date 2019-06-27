@@ -93,7 +93,7 @@
                 Выбранные документы будут распечатаны вместе:
                 <ul>
                   <li v-for="item in printTemplates" :key="item.id">
-                    <Checkbox>
+                    <Checkbox v-model="item.selected">
                       <span style="padding-left: 10px;">
                         {{ item.name }}
                       </span>
@@ -737,7 +737,13 @@
           let {data} = JSON.parse(eventResponse.response);
           debugger;
           // TODO
-          // this.printTemplates = data;
+          // this.printTemplates = data.map((el, index)=> {
+          //   return {
+          //     id: el.id || index,
+          //     name: el.name || index,
+          //     selected: false,
+          //   }
+          // });
         }
       },
       async printDocument(document) {
@@ -745,7 +751,7 @@
         let eventResponse = await RequestApi.prepareData({
           method: 'getPdfReport',
           cid: current.cid,
-          params: this.printTemplates.filter((el)=> el.selected)
+          params: this.printTemplates.filter((el)=> el.selected).id
         });
         if (eventResponse.response) {
           let {data} = JSON.parse(eventResponse.response);
