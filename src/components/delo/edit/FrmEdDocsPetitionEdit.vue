@@ -4,6 +4,7 @@
       <div class="layout">
         <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
         <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
+        <wizard-modal v-if="inspUtvModal.visible" :columnsOptions="inspUtvModal.columnsOptions" :data="inspUtvModal.inspUtvList" @showModal="showInspUtvModal" @onRowDbClick="onInspUtvClick"></wizard-modal>
         <div class="adm-form">
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="head">Ходатайство  {{ docsPetition.docN ? "№" + docsPetition.docN : "" }} от {{ docsPetition.dateSost | formatDateTime('DD.MM.YYYY') }}</h2>
