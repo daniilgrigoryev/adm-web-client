@@ -3,3 +3,4 @@ package-lock.json
 admWeb/
 .idea
 /src/assets/js/utils/constantUtils.js
+pushToSsh
