@@ -73,7 +73,7 @@
         </div>
 
         <Table class="custom-table custom-table--sort" :row-class-name="rowClassName" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
-               :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-row-click="toggleSelected" @on-sort-change="sortClick"></Table>
+               :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-sort-change="sortClick"></Table>
         <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
           <div class="action-bar__body">
             <Button type="primary" @click="createPost()">Сформировать Постановления</Button>
@@ -173,11 +173,13 @@ export default {
           render: (h, params) => {
             return h("Checkbox", {
               class: ["amd-checkbox"],
-              style: {
-                "pointer-events": "none"
-              },
               attrs: {
                 value: params.row.selected
+              },
+              on: {
+                "on-change": () => {
+                  this.toggleSelected(params.row);
+                }
               }
             });
           }
@@ -215,18 +217,36 @@ export default {
           }
         },
         {
-          title: "Дело ID",
-          key: "deloId",
-          minWidth: 100,
+          title: 'Номер дела', // Индефикационный номер
+          key: 'deloId',
+          minWidth: 80,
           ellipsis: true,
-          referenceName: "deloId",
-          visible: true,
+          visible: false,
           tooltip: true,
           renderHeader: (h, params) => {
-            return h("div", [h("p", params.column.title)]);
+            return h('div', [
+              h('p', {
+                class: {
+                  'color-dark-medium': true,
+                  'adm-text-big': true,
+                  'txt-normal': true,
+                },
+              }, params.column.title),
+              h('p', {
+                class: {
+                  'color-dark-base': true,
+                  'adm-12': true,
+                  'line-height100': true,
+                  'txt-truncate': true,
+                  'txt-normal': true
+                },
+              }, 'идентификационный номер'),
+            ])
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.deloId)]);
+            return h('div', [
+              h('p', params.row.deloId),
+            ])
           }
         },
         {

@@ -131,7 +131,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.tlDateBeg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+                <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.tlDateBeg" @change="tlDateBegChange" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
               </Col>
             </Row>
           </div>
@@ -270,6 +270,11 @@
           });
         }
         this.statusList = statusList;
+      },
+      tlDateBegChange() {
+        let d = new Date(this.data.tlDateBeg);
+        this.data.tlDateEnd = d.setFullYear(d.getFullYear() + 5);
+        this.store();
       },
 
       async storeElementData() {

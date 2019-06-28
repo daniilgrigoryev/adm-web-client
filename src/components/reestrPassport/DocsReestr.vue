@@ -78,7 +78,7 @@
         </div>
 
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
-               :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-row-click="toggleSelected" @on-sort-change="sortClick"></Table>
+               :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-sort-change="sortClick"></Table>
         <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
           <div class="action-bar__title">Подписать выбранные документы</div>
           <div class="action-bar__body">
@@ -177,11 +177,13 @@ export default {
           render: (h, params) => {
             return h("Checkbox", {
               class: ["amd-checkbox"],
-              style: {
-                "pointer-events": "none"
-              },
               attrs: {
                 value: params.row.selected
+              },
+              on: {
+                "on-change": () => {
+                  this.toggleSelected(params.row);
+                }
               }
             });
           }

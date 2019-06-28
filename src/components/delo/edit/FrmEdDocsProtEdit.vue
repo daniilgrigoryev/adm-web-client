@@ -232,7 +232,7 @@
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
                         <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180"
-                                        v-model="docsProt.tlDateBeg" @change="store" clearable type="date"
+                                        v-model="docsProt.tlDateBeg" @change="tlDateBegChange" clearable type="date"
                                         placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY"
                                         maskFormat="dd/mm/yyyy"></DatePickerMask>
                       </Col>
@@ -874,6 +874,11 @@
             title: 'Протокол №' + this.docsProt.docN
           }
         });
+      },
+      tlDateBegChange() {
+        let d = new Date(this.docsProt.tlDateBeg);
+        this.docsProt.tlDateEnd = d.setFullYear(d.getFullYear() + 5);
+        this.store();
       },
       async getDeloTag() {
         let eventResponse = await RequestApi.prepareData({

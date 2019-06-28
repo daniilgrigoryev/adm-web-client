@@ -34,7 +34,7 @@ const store = new Vuex.Store({
           let secondsInactive = (new Date().getTime() - funcUtils.getfromLocalStorage('admLastActive')) / 1000 / 60;
           if (secondsInactive > 15) {
             // vm.logout();
-            console.log('secondsInactive -- logout');
+            // console.log('secondsInactive -- logout');
           }
           return;
         }
