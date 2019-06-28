@@ -13,7 +13,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular wmax600" placeholder="" v-model="vuVyd.docTip" clearable filterable @on-change="store">
+                      <CustomSelect class="adm-input adm-input--regular wmax600" placeholder="" v-model="vuVyd.docTip" clearable filterable @on-change="changeDocTip">
                         <Option class="" v-for="item in docTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -39,7 +39,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="vuVyd.vuN" ></Input>
+                      <masked-input ref="vuN" inputClass="adm-input adm-input--regular wmin120 wmax180" @onInputChange="store" v-model="vuVyd.vuN" clearable :maskProps="maskDocNum"></masked-input>
                     </Col>
                   </Row>
                 </div>
@@ -474,6 +474,56 @@
         }
       }
     },
+    computed: {
+      maskDocNum() {
+        let numDocTip = parseInt(this.vuVyd.docTip);
+        switch (numDocTip) {
+          case 3: { // Военный билет
+            return {
+              regex: '[А-Я]{2} [0-9]{7}',
+              casing: 'upper',
+              placeholder: '',
+            }
+          }
+          case 5: { // Паспорт РФ
+            return {
+              regex: '[0-9]{2} [0-9]{2} [0-9]{6}',
+              casing: 'upper',
+              placeholder: ''
+            }
+          }
+          case 7:   // Загранпаспорт
+          case 8: { // Вид на жительство
+            return {
+              regex: '[0-9]{2} [0-9]{7}',
+              casing: 'upper',
+              placeholder: ''
+            }
+          }
+          case 9: { // ВУ
+            return {
+              regex: '[0-9]{2} [А-Я]{2} [0-9]{6}',
+              casing: 'upper',
+              placeholder: ''
+            }
+          }
+          case 104: { // Международное ВУ
+            return {
+              regex: '[0-9]{2} [A-Z]{2} [0-9]{6}',
+              casing: 'upper',
+              placeholder: ''
+            }
+
+          }
+          default:
+            return {
+              regex: '[0-9A-Za-zА-Яа-я]+',
+              placeholder: ''
+            }
+        }
+      },
+      
+    },
     methods: {
       async showDolzModal(visible) {
         if (funcUtils.isEmpty(this.dolzModal.srcList)) {
@@ -631,7 +681,19 @@
         this.vuVyd.ogaiVydName = null;
         this.store();
       },
+      async changeDocTip() {
+        await this.$nextTick();
+        if (this.$refs.vuN) {
+          this.$refs.vuN.$forceUpdate();
+          this.$refs.vuN.init();
+        }
+        this.vuVyd.vuN = null;
+        this.store();
+      },
       store() {
+        if (this.vuVyd.vuN) {
+          this.vuVyd.vuN = this.vuVyd.vuN.replace(/\s+/g, '');
+        }
         return RequestApi.prepareData({
           method: 'store',
           params: {

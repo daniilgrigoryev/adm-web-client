@@ -190,14 +190,13 @@
         await this.storeElementData();
       },
       async storeElementData() {
-        let objCopy = JSON.parse(JSON.stringify(this.data));
-        if (funcUtils.isNotEmpty(objCopy.docNum)) {
-          objCopy.docNum = objCopy.docNum.split(' ').join('');
+        if (this.data.docNum) {
+          this.data.docNum = this.data.docNum.replace(/\s+/g, '');
         }
         return new Promise((resolve, reject) => {
           this.$emit('storeElementData', {
             eCID: this.info.eCID,
-            data: objCopy,
+            data: this.data,
             resolve: resolve
           });
         });

@@ -447,6 +447,9 @@
         this.store();
       },
       store() {
+        if (this.vuPred.vuN) {
+          this.vuPred.vuN = this.vuPred.vuN.replace(/\s+/g, '');
+        }
         return RequestApi.prepareData({
           method: 'store',
           params: {
