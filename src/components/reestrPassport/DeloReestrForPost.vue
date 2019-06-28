@@ -115,13 +115,27 @@ export default {
   updated() {
     try {
       this.$nextTick(() => {
+        let tableBodyTr = document.querySelectorAll(".ivu-table-body tr");
+        if (tableBodyTr) {
+          tableBodyTr.forEach(item => {
+            item.addEventListener("contextmenu", e => {
+              e.preventDefault();
+              let deloId = item.querySelector("ul[id]").id;
+              this.onContextMenuClick(e, deloId);
+            });
+          });
+        }
         this.changeTableHeight();
       });
       window.addEventListener("resize", () => {
         this.changeTableHeight();
       });
     } catch (e) {
-      this.$store.dispatch("errorsModal/changeContent", { title: e.message });
+      this.$Notice.warning({
+        title: "Ошибка получения данных",
+        desc: e.message,
+        duration: 10
+      });
     }
   },
   destroyed() {
@@ -196,8 +210,58 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
+            let items = [
+              {
+                name: `Открыть дело №${params.row.deloN} в новой вкладке`
+              }
+            ];
             return h("div", [
-              h("p", { class: { "color-blue": true } }, params.row.regno)
+              h(
+                "a",
+                {
+                  domProps: {
+                    href: "javascript:void(0)"
+                  },
+                  class: { "color-blue": true },
+                  on: {
+                    click: e => {
+                      this.getDelo(params.row, e);
+                    }
+                  }
+                },
+                params.row.regno
+              ),
+              h(
+                "ul",
+                {
+                  domProps: {
+                    id: params.row.deloId
+                  },
+                  class: {
+                    "context-menu": true
+                  },
+                  on: {
+                    mouseleave: this.outsideContextMenuClick
+                  }
+                },
+                [
+                  items.map(item => {
+                    return h("li", [
+                      h(
+                        "span",
+                        {
+                          on: {
+                            click: e => {
+                              this.getDeloNewTab(params.row);
+                            }
+                          }
+                        },
+                        item.name
+                      )
+                    ]);
+                  })
+                ]
+              )
             ]);
           }
         },
@@ -217,36 +281,42 @@ export default {
           }
         },
         {
-          title: 'Номер дела', // Индефикационный номер
-          key: 'deloId',
+          title: "Номер дела", // Индефикационный номер
+          key: "deloId",
           minWidth: 80,
           ellipsis: true,
           visible: false,
           tooltip: true,
           renderHeader: (h, params) => {
-            return h('div', [
-              h('p', {
-                class: {
-                  'color-dark-medium': true,
-                  'adm-text-big': true,
-                  'txt-normal': true,
+            return h("div", [
+              h(
+                "p",
+                {
+                  class: {
+                    "color-dark-medium": true,
+                    "adm-text-big": true,
+                    "txt-normal": true
+                  }
                 },
-              }, params.column.title),
-              h('p', {
-                class: {
-                  'color-dark-base': true,
-                  'adm-12': true,
-                  'line-height100': true,
-                  'txt-truncate': true,
-                  'txt-normal': true
+                params.column.title
+              ),
+              h(
+                "p",
+                {
+                  class: {
+                    "color-dark-base": true,
+                    "adm-12": true,
+                    "line-height100": true,
+                    "txt-truncate": true,
+                    "txt-normal": true
+                  }
                 },
-              }, 'идентификационный номер'),
-            ])
+                "идентификационный номер"
+              )
+            ]);
           },
           render: (h, params) => {
-            return h('div', [
-              h('p', params.row.deloId),
-            ])
+            return h("div", [h("p", params.row.deloId)]);
           }
         },
         {
@@ -266,10 +336,10 @@ export default {
         },
         {
           title: "Дата и время рассмотрения",
-          key: "DateRasmr",
+          key: "dateRasmr",
           minWidth: 180,
           ellipsis: true,
-          referenceName: "DateRasmr",
+          referenceName: "dateRasmr",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
@@ -280,7 +350,7 @@ export default {
               h(
                 "p",
                 this.$options.filters.formatDateTime(
-                  params.row.DateRasmr,
+                  params.row.dateRasmr,
                   "DD.MM.YYYY HH:mm"
                 )
               )
@@ -347,7 +417,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      dataStore: "deloReestrForPostGetData",
+      dataStore: "deloReestrForPostGetData"
     }),
     data() {
       let res = [];
@@ -450,9 +520,9 @@ export default {
         await this.$store.dispatch("deloReestrForPostSetSelectId", data);
       }
     },
-    rowClassName (row, index) {
+    rowClassName(row, index) {
       if (row.errors) {
-        return "custom-table--row-error"
+        return "custom-table--row-error";
       }
       return "";
     },
@@ -667,6 +737,10 @@ export default {
     },
     getDelo(delo, e) {
       try {
+        if (e && e.ctrlKey) {
+          this.getDeloNewTab(delo);
+          return;
+        }
         let params = {
           deloId: delo.deloId,
           title: "Поиск дел"
@@ -678,6 +752,44 @@ export default {
           notRemoved: false,
           params: params,
           withCreate: true
+        });
+      } catch (e) {
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
+      }
+    },
+    outsideContextMenuClick(e) {
+      let menus = document.querySelectorAll(".context-menu");
+      menus.forEach(item => {
+        item.style.display = "none";
+      });
+    },
+    onContextMenuClick(e, id) {
+      let menus = document.querySelectorAll(".context-menu");
+      menus.forEach(item => {
+        item.style.display = "none";
+      });
+
+      if (id) {
+        let contextMenu = document.getElementById(id);
+        contextMenu.style.display = "block";
+        contextMenu.style.top = e.y - 15 + "px";
+        contextMenu.style.left = e.x - 15 + "px";
+      }
+    },
+    getDeloNewTab(delo) {
+      try {
+        let params = {
+          deloId: delo.deloId,
+          title: "Поиск дел"
+        };
+
+        formStack.toNextNewTab({
+          module: this.$store.state.deloTreeCardView,
+          vm: this,
+          notRemoved: false,
+          params: params,
+          withCreate: true,
+          withTransition: false
         });
       } catch (e) {
         this.$store.dispatch("errorsModal/changeContent", { title: e.message });
@@ -768,14 +880,29 @@ export default {
 </style>
 
 <style lang="scss">
- .ivu-table .ivu-table-row.custom-table--row-error {
-   &:hover {
-     td {
-       background: rgba(249, 27, 27, 0.25) !important;
-     }
-   }
-   td {
-      background: rgba(249, 27, 27, 0.25);
-   }
- } 
+.ivu-table .ivu-table-row.custom-table--row-error {
+  &:hover {
+    td {
+      background: rgba(249, 27, 27, 0.25) !important;
+    }
+  }
+  td {
+    background: rgba(249, 27, 27, 0.25);
+  }
+}
+.context-menu {
+  background: white;
+  position: fixed;
+  z-index: 1;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 6px;
+  border-color: #515a6e;
+  cursor: pointer;
+  display: none;
+
+  li {
+    padding: 10px;
+  }
+}
 </style>

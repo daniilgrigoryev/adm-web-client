@@ -117,13 +117,27 @@ export default {
   updated() {
     try {
       this.$nextTick(() => {
+        let tableBodyTr = document.querySelectorAll(".ivu-table-body tr");
+        if (tableBodyTr) {
+          tableBodyTr.forEach(item => {
+            item.addEventListener("contextmenu", e => {
+              e.preventDefault();
+              let deloId = item.querySelector("ul[id]").id;
+              this.onContextMenuClick(e, deloId);
+            });
+          });
+        }
         this.changeTableHeight();
       });
       window.addEventListener("resize", () => {
         this.changeTableHeight();
       });
     } catch (e) {
-      this.$store.dispatch("errorsModal/changeContent", { title: e.message });
+      this.$Notice.warning({
+        title: "Ошибка получения данных",
+        desc: e.message,
+        duration: 10
+      });
     }
   },
   destroyed() {
@@ -215,6 +229,11 @@ export default {
             ]);
           },
           render: (h, params) => {
+            let items = [
+              {
+                name: `Открыть дело с документом №${params.row.docN} в новой вкладке`
+              }
+            ];
             let date = this.$options.filters.formatDateTime(
               params.row.signTime,
               "DD.MM.YYYY HH:mm"
@@ -223,8 +242,53 @@ export default {
               ? "Подписан " + date
               : "не подписано";
             return h("div", [
-              h("p", { class: { "color-blue": true } }, params.row.regno),
-              h("p", status)
+              h(
+                "a",
+                {
+                  domProps: {
+                    href: "javascript:void(0)"
+                  },
+                  class: { "color-blue": true },
+                  on: {
+                    click: e => {
+                      this.getDelo(params.row, e);
+                    }
+                  }
+                },
+                params.row.regno
+              ),
+              h("p", status),
+              h(
+                "ul",
+                {
+                  domProps: {
+                    id: params.row.deloId
+                  },
+                  class: {
+                    "context-menu": true
+                  },
+                  on: {
+                    mouseleave: this.outsideContextMenuClick
+                  }
+                },
+                [
+                  items.map(item => {
+                    return h("li", [
+                      h(
+                        "span",
+                        {
+                          on: {
+                            click: e => {
+                              this.getDeloNewTab(params.row);
+                            }
+                          }
+                        },
+                        item.name
+                      )
+                    ]);
+                  })
+                ]
+              )
             ]);
           }
         },
@@ -544,7 +608,7 @@ export default {
       let eventResponse = await RequestApi.prepareData({
         method: "getDocTipDict"
       });
-      let {data} = JSON.parse(eventResponse.response);
+      let { data } = JSON.parse(eventResponse.response);
       this.docTipDict = data.map(item => {
         return {
           label: item.DOC_TIP_NAME,
@@ -604,6 +668,10 @@ export default {
     },
     getDelo(delo, e) {
       try {
+        if (e && e.ctrlKey) {
+          this.getDeloNewTab(delo);
+          return;
+        }
         let params = {
           deloId: delo.deloId,
           title: "Поиск дел"
@@ -614,6 +682,44 @@ export default {
           notRemoved: false,
           params: params,
           withCreate: true
+        });
+      } catch (e) {
+        this.$store.dispatch("errorsModal/changeContent", { title: e.message });
+      }
+    },
+    outsideContextMenuClick(e) {
+      let menus = document.querySelectorAll(".context-menu");
+      menus.forEach(item => {
+        item.style.display = "none";
+      });
+    },
+    onContextMenuClick(e, id) {
+      let menus = document.querySelectorAll(".context-menu");
+      menus.forEach(item => {
+        item.style.display = "none";
+      });
+
+      if (id) {
+        let contextMenu = document.getElementById(id);
+        contextMenu.style.display = "block";
+        contextMenu.style.top = e.y - 15 + "px";
+        contextMenu.style.left = e.x - 15 + "px";
+      }
+    },
+    getDeloNewTab(delo) {
+      try {
+        let params = {
+          deloId: delo.deloId,
+          title: "Поиск дел"
+        };
+
+        formStack.toNextNewTab({
+          module: this.$store.state.deloTreeCardView,
+          vm: this,
+          notRemoved: false,
+          params: params,
+          withCreate: true,
+          withTransition: false
         });
       } catch (e) {
         this.$store.dispatch("errorsModal/changeContent", { title: e.message });
@@ -702,3 +808,21 @@ export default {
   }
 }
 </style>
+<style lang="scss">
+.context-menu {
+  background: white;
+  position: fixed;
+  z-index: 1;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 6px;
+  border-color: #515a6e;
+  cursor: pointer;
+  display: none;
+
+  li {
+    padding: 10px;
+  }
+}
+</style>
+
