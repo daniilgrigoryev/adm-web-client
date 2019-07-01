@@ -17,7 +17,7 @@
         <div class="items-wrap">
           <view-data-item
             label="Дата решения по жалобе"
-            :value="body.dateSost"
+            :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')"
           />
           <!-- TODO -->
           <view-data-item

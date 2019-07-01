@@ -22,6 +22,8 @@
       FrmEdDocsOpred: () => import('~/components/delo/FrmEdDocsOpred'),
       FrmEdDocsPost: () => import('~/components/delo/FrmEdDocsPost'),
       FrmEdPetition: () => import('~/components/delo/FrmEdPetition'),
+      DlgAppeal: () => import('~/components/delo/DlgAppeal'),
+      FrmEdDecisionOnAppeal: () => import('~/components/delo/FrmEdDecisionOnAppeal'),
 
       FrmEdDecisShtraf: () => import('~/components/delo/decis/FrmEdDecisShtraf'),
       FrmEdDecisRasm: () => import('~/components/delo/decis/FrmEdDecisRasm'),
@@ -156,6 +158,14 @@
           }
           case 'FrmEdPetition': {
             res = 'FrmEdPetition';
+            break;
+          }
+          case 'DlgAppeal': {
+            res = 'DlgAppeal';
+            break;
+          }
+          case 'FrmEdDecisionOnAppeal': {
+            res = 'FrmEdDecisionOnAppeal';
             break;
           }
         }

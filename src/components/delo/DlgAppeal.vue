@@ -17,7 +17,7 @@
         <div class="items-wrap">
           <view-data-item
             label="Дата регистрации обращения"
-            :value="body.dateSost"
+            :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')"
           />
           <!-- TODO -->
           <view-data-item
@@ -103,7 +103,7 @@
 
           let prepareParams = {
             method: 'restore',
-            cid: currentForm.cid
+            cid: currentForm.cid,
           };
           if (funcUtils.isEmpty(currentForm.restore)) {
             prepareParams.method = 'getData';
@@ -116,6 +116,7 @@
           }
           innerFormStack.updateCurrent(currentForm);
           let eventResponse = await RequestApi.prepareData(prepareParams);
+          debugger;
           await this.$store.dispatch('fillModule', {'event': eventResponse});
         } catch (e) {
           this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
