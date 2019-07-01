@@ -1615,7 +1615,6 @@
         return sortObj;
       },
       async sortClick(name) {
-        console.log(name);
         this.from = 0;
         let fields = this.sort;
         let nameArr = name.column.referenceName.split(",");
