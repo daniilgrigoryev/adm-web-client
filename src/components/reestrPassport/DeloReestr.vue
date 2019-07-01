@@ -569,6 +569,8 @@
                   minWidth: 160,
                   position: 3,
                   ellipsis: true,
+                  referenceName: "stotvKod",
+                  sortable: 'custom',
                   tooltip: true,
                   visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('stotvKod'),
                   renderHeader: (h, params) => {
@@ -1224,6 +1226,8 @@
                   title: 'ГРЗ', // РегЗнак
                   key: 'regno',
                   position: 5,
+                  referenceName: "regno",
+                  sortable: 'custom',
                   visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('regno'),
                   minWidth: 180,
                   ellipsis: true,
@@ -1316,6 +1320,8 @@
                   title: 'ЛВОК', // бывшее - участник
                   key: 'uchastName',
                   position: 4,
+                  referenceName: "uchastName",
+                  sortable: 'custom',
                   minWidth: 230,
                   visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('uchastName'),
                   ellipsis: true,
@@ -1609,6 +1615,7 @@
         return sortObj;
       },
       async sortClick(name) {
+        console.log(name);
         this.from = 0;
         let fields = this.sort;
         let nameArr = name.column.referenceName.split(",");
