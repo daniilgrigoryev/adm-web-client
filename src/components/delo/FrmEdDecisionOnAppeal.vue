@@ -19,6 +19,7 @@
             label="Дата решения по жалобе"
             :value="body.dateSost"
           />
+          <!-- TODO -->
           <view-data-item
             label="Решение по жалобе/статус"
             :value="body.vxodNumb"

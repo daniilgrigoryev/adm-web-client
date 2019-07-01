@@ -19,17 +19,20 @@
             label="Дата регистрации обращения"
             :value="body.dateSost"
           />
+          <!-- TODO -->
           <view-data-item
             label="Входящий номер"
             :value="body.claimThemeId"
           />
+          <!-- TODO -->
           <view-data-item
             label="Дата контроля"
             :value="body.vin"
           />
+          <!-- TODO -->
           <view-data-item
-            label="Тематика"
-            :value="body.vin"
+            label="Тема"
+            :value="body.claimThemeId"
           />
           <view-data-item
             label="ФИО ответственного"
