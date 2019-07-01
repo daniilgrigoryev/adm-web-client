@@ -1320,7 +1320,7 @@
                   title: 'ЛВОК', // бывшее - участник
                   key: 'uchastName',
                   position: 4,
-                  referenceName: "uchastName",
+                  referenceName: "birthday",
                   sortable: 'custom',
                   minWidth: 230,
                   visible: funcUtils.isEmpty(this.dataStore.fields) ? true : this.dataStore.fields.includes('uchastName'),
