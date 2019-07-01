@@ -22,7 +22,7 @@
           <!-- TODO -->
           <view-data-item
             label="Входящий номер"
-            :value="body.claimThemeId"
+            :value="body.baseDocCat"
           />
           <!-- TODO -->
           <view-data-item
@@ -116,7 +116,6 @@
           }
           innerFormStack.updateCurrent(currentForm);
           let eventResponse = await RequestApi.prepareData(prepareParams);
-          debugger;
           await this.$store.dispatch('fillModule', {'event': eventResponse});
         } catch (e) {
           this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
