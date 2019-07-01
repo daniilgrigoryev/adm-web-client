@@ -75,7 +75,7 @@
         switch (numDocTip) {
           case 3: { // Военный билет
             return {
-              regex: '[А-Я]{2} [0-9]{7}',
+              regex: '[А-Я0-9]{2} [0-9]{7}',
               casing: 'upper',
               placeholder: '',
             }
@@ -97,7 +97,7 @@
           }
           case 9: { // ВУ
             return {
-              regex: '[0-9]{2} [А-Я]{2} [0-9]{6}',
+              regex: '[0-9]{2} [А-Я0-9]{2} [0-9]{6}',
               casing: 'upper',
               placeholder: ''
             }
