@@ -336,10 +336,10 @@ export default {
         },
         {
           title: "Дата и время рассмотрения",
-          key: "dateRasmr",
+          key: "dateRasm",
           minWidth: 180,
           ellipsis: true,
-          referenceName: "dateRasmr",
+          referenceName: "dateRasm",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
@@ -350,7 +350,7 @@ export default {
               h(
                 "p",
                 this.$options.filters.formatDateTime(
-                  params.row.dateRasmr,
+                  params.row.dateRasm,
                   "DD.MM.YYYY HH:mm"
                 )
               )
