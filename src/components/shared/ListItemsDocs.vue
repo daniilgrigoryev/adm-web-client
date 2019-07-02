@@ -5,7 +5,7 @@
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="22" :md="22" :lg="22">
           <div class="list-docs">
-            <div v-for="(item, index) in items" :key="item.index" class="doc-item">
+            <div v-for="(item, index) in items" :key="item.index" class="doc-item" :title="item.name">
               <label class="list-docs__checkbox" :class="{ checked: item.check}" v-if="!disabledFields.check">
                 <input type="checkbox" v-model="item.check" @change="change">
                 <div class="check-block">
@@ -107,12 +107,10 @@
     align-items: flex-start;
     .list-docs {
       display: grid;
-      justify-content: flex-start;
       grid-gap: 10px;
 
       .doc-item {
         position: relative;
-        width: 500px;
         display: flex;
         align-items: center;
 
