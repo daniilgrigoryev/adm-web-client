@@ -98,7 +98,7 @@ export default {
 			flex-direction: column-reverse;
 		}
 		.gallery__active-item {
-			min-height: 300px;
+			height: 300px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
