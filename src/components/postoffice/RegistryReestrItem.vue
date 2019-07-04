@@ -4,7 +4,14 @@
     <div class="layout-wrap">
       <div class="adm-form">
         <div class="adm-form__container">
-          <h2 class="adm-form__headding" id="head">Почтовый реестр №{{body.curIssue}}</h2>
+          <div class="flex-parent flex-parent--space-between-main adm-form__headding">
+            <h2 class="adm-form__headding" id="head">Почтовый реестр №{{body.curIssue}}</h2>
+            <div>
+              <Button @click="putSendingsInCover" :disabled="body.status !== 3" type="primary">Разложить отправления по конвертам</Button>
+              <Button @click="sendReestr" :disabled="body.status !== 1 && body.status !== 2" type="primary">Подготовить к отправке</Button>
+              <Button @click="sendReestr" :disabled="body.status !== 3" type="primary">Отправить</Button>
+            </div>
+          </div>
           <div class="view-data">
             <div class="view-data__container">
               <div class="items-wrap">
@@ -63,18 +70,18 @@
                 <th>Дело</th>
                 <th>Получатель</th>
               </tr>
-              <tr v-for="(item, index) in sendingDeloList" 
-                  :key="index" 
-                  class="item" 
-                  :class="{selected: item.select}" 
+              <tr v-for="(item, index) in sendingDeloList"
+                  :key="index"
+                  class="item"
+                  :class="{selected: item.select}"
                   @click="toggleSelecedItem(item)"
               >
                 <td>{{item.createIspName}}</td>
                 <td>{{item.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
                 <td>
                   <div>Дело № {{item.deloN}}</div>
-                  <div v-if="item.checked" 
-                      class="status" 
+                  <div v-if="item.checked"
+                      class="status"
                       :class="[
                         {red:item.hasWarning},
                         {orange:item.hasError},
@@ -222,6 +229,24 @@ export default {
       let responseData = JSON.parse(eventResponse.response).data;
       if (responseData) {
         this.freeSlotCount = responseData;
+      }
+    },
+    async putSendingsInCover() {
+      let eventResponse = await RequestApi.prepareData({
+        method: "putSendingsInCover"
+      });
+      let responseData = JSON.parse(eventResponse.response).data;
+      if (responseData) {
+        this.init();
+      }
+    },
+    async sendReestr() {
+      let eventResponse = await RequestApi.prepareData({
+        method: "sendReestr"
+      });
+      let responseData = JSON.parse(eventResponse.response).data;
+      if (responseData) {
+        this.init();
       }
     },
     async findDeloList() {
