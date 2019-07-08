@@ -42,18 +42,11 @@
                   :value="body.statusName"
                   style="grid-column: span 2;"
                 />
-
-                <div v-if="sendings && sendings.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
-                  <p class="adm-14 color-dark-lighter">Список отправлений</p>
-                  <div v-for="(item, index) in sendings" :key="index">
-                    <p class="adm-text-big color-dark-base">{{ item.addrFull }}</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div class="adm-form__container">
           <h2 class="adm-form__headding" id="creating-shipments">Создание отправлений</h2>
           <div class="creating-shipments">
@@ -96,6 +89,32 @@
               </tr>
             </table>
           </div>
+        </div>
+
+        <div class="adm-form__container">
+          <h2 class="adm-form__headding" id="list-sendings">Список отправлений</h2>
+          <table v-if="sendings && sendings.length" class="table">
+            <tr class="head">
+              <th>Статус</th>
+              <th>Адрес получателя</th>
+              <th>Описание дела</th>
+              <th>Описание участника</th>
+              <th>Время выгрузки</th>
+              <th>Конверт</th>
+            </tr>
+            <tr v-for="(item, index) in sendings"
+                :key="index"
+                class="item"
+                @click="getSending(item.id)"
+            >
+              <td>{{item.unloadStateName}}</td>
+              <td>{{item.addrFull}}</td>
+              <td>{{item.deloDescr}}</td>
+              <td>{{item.uchastName}}</td>
+              <td>{{item.unloadDate | formatDateTime('DD.MM.YYYY HH:mm')}}</td>
+              <td>{{item.cover ? item.cover.upi :""}}</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
@@ -154,7 +173,11 @@ export default {
         {
           title: "Создание отправлений",
           name: "creating-shipments"
-        }
+        },
+        {
+          title: "Список отправлений",
+          name: "list-sendings"
+        },
       ]
     };
   },
@@ -303,6 +326,19 @@ export default {
         });
       });
     },
+    getSending(id) {
+      let params = {
+        id: id,
+        title: `Почтовый реестр №${this.body.curIssue}`
+      };
+      formStack.toNext({
+        module: this.$store.state.postSendingItem,
+        vm: this,
+        notRemoved: false,
+        params: params,
+        withCreate: true
+      });
+    },
     async getPrev() {
       try {
         await formStack.toPrev({
@@ -329,123 +365,6 @@ export default {
   border: none;
 }
 
-.delo-menu {
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 80px;
-  align-items: center;
-  @media screen and (max-width: 1300px) {
-    grid-gap: 10px;
-  }
-  .delo-menu--body-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .delo-menu--poptip {
-      display: flex;
-      align-items: center;
-      .search-wrap {
-        border-bottom: 1px solid #cccccc;
-        height: 40px;
-        padding: 5px 15px;
-        display: flex;
-        align-items: center;
-        img {
-          margin-right: 10px;
-        }
-        .search {
-          width: 100%;
-          height: 100%;
-          border: none;
-          font-size: 14px;
-          &::placeholder {
-            font-style: italic;
-            color: #cccccc;
-          }
-        }
-      }
-      .delo-menu__poptip-list {
-        width: 350px;
-        padding: 10px 0;
-        li {
-          display: flex;
-          align-items: center;
-          button {
-            text-align: left;
-            white-space: normal;
-            border-radius: 0;
-            width: 100%;
-            margin: 3px 0;
-            padding: 3px 15px;
-          }
-        }
-      }
-    }
-  }
-  .action-button {
-    display: flex;
-    align-items: center;
-    color: #1888cc;
-    margin: 0 10px;
-    transition: 0.3s ease;
-    &:disabled {
-      opacity: 0.3;
-      .ivu-icon-md-arrow-dropdown {
-        opacity: 0;
-      }
-    }
-    img {
-      width: 1em;
-      height: 1em;
-      font-size: 36px;
-    }
-    .text {
-      padding: 0 5px 0 5px;
-    }
-  }
-  .special-buttons-wrap {
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: 20px;
-    align-items: center;
-    padding: 0 20px;
-    button {
-      width: 1em;
-      height: 1em;
-      font-size: 48px;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      img {
-        position: relative;
-      }
-      &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 0;
-        height: 0;
-        transition: 0.3s ease;
-        background: #dce4f7;
-        border-radius: 50%;
-        z-index: -1;
-      }
-      &:hover {
-        &:before {
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-  }
-}
-
 .creating-shipments {
   .creating-shipments__head {
     position: sticky;
@@ -462,42 +381,44 @@ export default {
       margin-left: 20px;
     }
   }
-  .table {
-    background: #fff;
-    width: 100%;
-    border: none;
-    font-size: 14px;
-    .head {
-      background: #f3f3f3;
-      position: sticky;
-      top: 90px;
-      th {
-        border: none;
-        padding: 15px;
-      }
+}
+.table {
+  background: #fff;
+  width: 100%;
+  border: none;
+  font-size: 14px;
+  .head {
+    background: #f3f3f3;
+    position: sticky;
+    top: 90px;
+    th {
+      border: none;
+      padding: 15px;
+      white-space: nowrap;
+      font-weight: 600;
     }
-    .item {
+  }
+  .item {
+    border-bottom: 1px solid #e4e4e4;
+    box-sizing: border-box;
+    cursor: pointer;
+    &.selected {
+      background: #e4e4e4;
+    }
+    td {
+      border: none;
       border-bottom: 1px solid #e4e4e4;
-      box-sizing: border-box;
-      cursor: pointer;
-      &.selected {
-        background: #e4e4e4;
-      }
-      td {
-        border: none;
-        border-bottom: 1px solid #e4e4e4;
-        padding: 8px 15px;
-        .status {
-          max-width: 150px;
-          &.red {
-            color: red;
-          }
-          &.orange {
-            color: orange;
-          }
-          &.limegreen {
-            color: limegreen;
-          }
+      padding: 8px 15px;
+      .status {
+        max-width: 150px;
+        &.red {
+          color: red;
+        }
+        &.orange {
+          color: orange;
+        }
+        &.limegreen {
+          color: limegreen;
         }
       }
     }

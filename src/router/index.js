@@ -169,6 +169,12 @@ const router = new Router({
       component: () => import('~/components/postoffice/RegistryReestrItem'),
       props: true
     },
+    {
+      path: '/postSendingItem',
+      name: 'PostSendingItem',
+      component: () => import('~/components/postoffice/PostSendingItem'),
+      props: true
+    },
 
 
     {

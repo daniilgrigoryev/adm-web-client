@@ -66,16 +66,6 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Отправлений в конверте</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <Input class="adm-input adm-input--regular" @on-input-change="store" v-model="postRegistry.coverLimit"></Input>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
                 <small class="adm-form__label">Дата рассмотрения</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
