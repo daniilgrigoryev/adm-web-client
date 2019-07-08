@@ -373,7 +373,7 @@ export default {
                 props: {
                   placement: "left",
                   content: params.column.title,
-                  transfer: true
+                  transfer: true,
                 }
               },
               [h("div", [h("p", params.column.title)])]
@@ -388,7 +388,8 @@ export default {
                 },
                 style: {
                   cursor: "pointer",
-                  color: "#2d8cf0"
+                  color: params.row.canEdit ?"#2d8cf0": "gray",
+                  pointerEvents: params.row.canEdit ? "all": "none",
                 },
                 attrs: {
                   title: "Редактирование"
