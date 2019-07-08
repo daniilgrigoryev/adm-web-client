@@ -18,28 +18,6 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Дата отправки реестра</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="postRegistry.sendDate" @change="store" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
-                <small class="adm-form__label">Тип реестра</small>
-                <div class="adm-form__item_content">
-                  <Row :gutter="16" type="flex" align="middle">
-                    <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.regType" clearable filterable  @on-change="changeRegType">
-                        <Option class=" " v-for="item in postRegTypeDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                      </CustomSelect>
-                    </Col>
-                  </Row>
-                </div>
-              </div>
-              <div class="adm-form__item">
                 <small class="adm-form__label">Статус реестра</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">

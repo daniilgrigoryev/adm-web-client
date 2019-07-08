@@ -18,25 +18,30 @@
           <view-data-item
             label="Дата регистрации обращения"
             :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')"
+            style="grid-column: span 2;"
           />
           <!-- TODO -->
           <view-data-item
             label="Входящий номер"
-            :value="body.baseDocCat"
+            :value="body.baseDocId"
+            style="grid-column: span 2;"
           />
           <!-- TODO -->
           <view-data-item
             label="Дата контроля"
             :value="body.vin"
+            style="grid-column: span 2;"
           />
           <!-- TODO -->
           <view-data-item
             label="Тема"
             :value="body.claimThemeId"
+            style="grid-column: span 2;"
           />
           <view-data-item
             label="ФИО ответственного"
             :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')"
+            style="grid-column: span 2;"
           />
         </div>
       </div>

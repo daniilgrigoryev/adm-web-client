@@ -203,6 +203,37 @@ export default {
           }
         },
         {
+          title: "№ Документа",
+          key: "authorName",
+          minWidth: 180,
+          ellipsis: true,
+          referenceName: "authorName",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [
+              h(
+                "a",
+                {
+                  domProps: {
+                    href: "javascript:void(0)"
+                  },
+                  class: { "color-blue": true },
+                  on: {
+                    click: e => {
+                      this.getDelo(params.row, e);
+                    }
+                  }
+                },
+                params.row.docN
+              ),
+            ]);
+          }
+        },
+        {
           title: "ГРЗ", // Исходящий номер
           key: "regno",
           minWidth: 180,

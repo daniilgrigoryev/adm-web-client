@@ -63,7 +63,7 @@
         </div>
 
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
-              :stripe="false" :height="tableHeight" @on-row-dblclick="editRegistry" @on-sort-change="sortClick"></Table>
+              :stripe="false" :height="tableHeight" @on-row-dblclick="showRegistry" @on-sort-change="sortClick"></Table>
       </div>
     </div>
   </div>
@@ -367,24 +367,6 @@ export default {
           },
           render: (h, params) => {
             return h("div", [
-              h("Icon", {
-                props: {
-                  type: "ios-open-outline",
-                  size: 22
-                },
-                style: {
-                  cursor: "pointer",
-                  color: "#2d8cf0"
-                },
-                attrs: {
-                  title: "Просмотр"
-                },
-                on: {
-                  click: () => {
-                    this.showRegistry(params.row);
-                  }
-                }
-              }),
               h("Icon", {
                 props: {
                   type: "md-create",

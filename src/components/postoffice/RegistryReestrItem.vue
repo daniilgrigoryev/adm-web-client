@@ -4,14 +4,14 @@
     <div class="layout-wrap">
       <div class="adm-form">
         <div class="adm-form__container">
-          <div class="flex-parent flex-parent--space-between-main adm-form__headding">
-            <h2 class="adm-form__headding" id="head">Почтовый реестр №{{body.curIssue}}</h2>
-            <div>
-              <Button @click="putSendingsInCover" :disabled="body.status !== 3" type="primary">Разложить отправления по конвертам</Button>
-              <Button @click="sendReestr" :disabled="body.status !== 1 && body.status !== 2" type="primary">Подготовить к отправке</Button>
-              <Button @click="sendReestr" :disabled="body.status !== 3" type="primary">Отправить</Button>
-            </div>
-          </div>
+            <h2 class="adm-form__headding" id="head">
+              Почтовый реестр №{{body.curIssue}}
+              <div class="buttons-wrap">
+                <Button @click="putSendingsInCover" :disabled="body.status !== 3" type="primary">Разложить отправления по конвертам</Button>
+                <Button @click="sendReestr" :disabled="body.status !== 1 && body.status !== 2" type="primary">Подготовить к отправке</Button>
+                <Button @click="sendReestr" :disabled="body.status !== 3" type="primary">Отправить</Button>
+              </div>
+            </h2>
           <div class="view-data">
             <div class="view-data__container">
               <div class="items-wrap">
@@ -53,6 +53,7 @@
             </div>
           </div>
         </div>
+        
         <div class="adm-form__container">
           <h2 class="adm-form__headding" id="creating-shipments">Создание отправлений</h2>
           <div class="creating-shipments">
@@ -505,4 +506,15 @@ export default {
 main .bot-wrap {
   justify-content: space-between;
 }
+.adm-form__headding {
+  display: flex;
+  justify-content: space-between;
+  .buttons-wrap {
+    display: flex;
+    button {
+      margin: 0 10px;
+    }
+  }
+}
+
 </style>
