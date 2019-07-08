@@ -20,7 +20,6 @@
             :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
           />
-          <!-- TODO -->
           <view-data-item
             label="Входящий номер"
             :value="body.baseDocId"
@@ -29,13 +28,13 @@
           <!-- TODO -->
           <view-data-item
             label="Дата контроля"
-            :value="body.vin"
+            :value="null"
             style="grid-column: span 2;"
           />
           <!-- TODO -->
           <view-data-item
             label="Тема"
-            :value="body.claimThemeId"
+            :value="null"
             style="grid-column: span 2;"
           />
           <view-data-item

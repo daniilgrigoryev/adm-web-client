@@ -20,7 +20,6 @@
             :value="body.dateSost | formatDateTime('DD.MM.YYYY HH:mm')"
             style="grid-column: span 2;"
           />
-          <!-- TODO -->
           <view-data-item
             label="Решение по жалобе/статус"
             :value="body.stotvName"
