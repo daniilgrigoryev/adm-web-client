@@ -212,7 +212,21 @@ export default {
           },
           render: (h, params) => {
             return h("div", [
-              h("p", { class: { "color-blue": true } }, params.row.curIssue),
+              h(
+                "a",
+                {
+                  class: { "color-blue": true },
+                  domProps: {
+                    href: "javascript:void(0)"
+                  },
+                  on: {
+                    click: e => {
+                      this.showRegistry(params.row, e);
+                    }
+                  }
+                },
+                params.row.curIssue
+              ),
               h("p", params.row.statusName)
             ]);
           }

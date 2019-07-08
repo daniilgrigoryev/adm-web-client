@@ -157,6 +157,9 @@ export default {
         this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     },
+    getMediamaterial() {
+      
+    },
     async getPrev() {
       try {
         await formStack.toPrev({

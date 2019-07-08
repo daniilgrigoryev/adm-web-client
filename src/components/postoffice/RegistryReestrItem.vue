@@ -47,7 +47,7 @@
           </div>
         </div>
 
-        <div class="adm-form__container">
+        <!-- <div class="adm-form__container">
           <h2 class="adm-form__headding" id="creating-shipments">Создание отправлений</h2>
           <div class="creating-shipments">
             <div class="creating-shipments__head">
@@ -89,7 +89,7 @@
               </tr>
             </table>
           </div>
-        </div>
+        </div> -->
 
         <div class="adm-form__container">
           <h2 class="adm-form__headding" id="list-sendings">Список отправлений</h2>
@@ -170,10 +170,10 @@ export default {
           title: "Почтовый реестр",
           name: "head"
         },
-        {
-          title: "Создание отправлений",
-          name: "creating-shipments"
-        },
+        // {
+        //   title: "Создание отправлений",
+        //   name: "creating-shipments"
+        // },
         {
           title: "Список отправлений",
           name: "list-sendings"
