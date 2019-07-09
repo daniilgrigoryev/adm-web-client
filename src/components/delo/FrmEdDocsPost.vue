@@ -239,8 +239,9 @@
       },
       async downloadMedia(mediaId) {
         try {
+          let httpUrlFiles = this.$store.state.properties.data.HTTP_URL_FILES;
           let eventResponse = await RequestApi.sendGetMediaFileHttpRequest({
-            url: `${ConstantUtils.HTTP_URL_FILES}/${localStorage.getItem('admSid')}/${mediaId}`
+            url: `${httpUrlFiles}/${localStorage.getItem('admSid')}/${mediaId}`
           });
           let data = null;
           if (eventResponse.response) {

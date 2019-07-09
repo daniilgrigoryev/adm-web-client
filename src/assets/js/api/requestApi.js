@@ -35,7 +35,8 @@ export default class RequestApi {
 
   static _getSocket(vm) {
     if (funcUtils.isEmpty(this.socketInstance)) {
-      let socket = this._setSocket(new WebSocket(ConstantUtils.WS_URL));
+      let wsUrl = vm.$store.state.properties.data.WS_URL;
+      let socket = this._setSocket(new WebSocket(wsUrl));
 
       // When a connection is made
       socket.onopen = () => {
@@ -59,7 +60,7 @@ export default class RequestApi {
       // A connection was closed
       socket.onclose = (code, reason) => {
         if (funcUtils.isNotEmpty(localStorage.getItem('admSid'))) {
-          this._setSocket(new WebSocket(ConstantUtils.WS_URL));
+          this._setSocket(new WebSocket(wsUrl));
         } else {
           console.log(code, reason);
           console.log('Websocket closed');
@@ -92,6 +93,10 @@ export default class RequestApi {
     if (funcUtils.isEmpty(paramsData)) {
       paramsData = null;
     }
+    let sid = payload.sid;
+    if (funcUtils.isUndefined(sid)) {
+      sid = localStorage.getItem('admSid');
+    }
     let cid = payload.cid;
     if (funcUtils.isUndefined(cid)) {
       cid = formStack.getCurrent().cid;
@@ -100,7 +105,7 @@ export default class RequestApi {
     if (funcUtils.isUndefined(beanName)) {
       beanName = '';
     }
-    let requestHead = new RequestEntity.RequestHead(localStorage.getItem('admSid'), sessionStorage.getItem('admWid'), cid, beanName, methodName);
+    let requestHead = new RequestEntity.RequestHead(sid, sessionStorage.getItem('admWid'), cid, beanName, methodName);
     let requestParam = new RequestEntity.RequestParam(requestHead, paramsData);
 
     return this.sendHttpRequest({body: requestParam, withSpinner: withSpinner, handleError: handleError});
@@ -108,6 +113,8 @@ export default class RequestApi {
 
   static sendHttpRequest(payload) {
     let body = payload.body;
+    const url = location.origin + ConstantUtils.HTTP_URL;
+
     let withSpinner = payload.withSpinner;
     let handleError = payload.handleError;
     let spinner;
@@ -130,7 +137,7 @@ export default class RequestApi {
     }
     let xhr = new XMLHttpRequest();
     xhr.timeout = 180000;
-    xhr.open('POST', ConstantUtils.HTTP_URL, true);
+    xhr.open('POST', url, true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify(body, funcUtils.undefinedJSONreplacer));
 

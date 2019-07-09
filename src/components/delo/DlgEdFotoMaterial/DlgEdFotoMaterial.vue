@@ -185,9 +185,10 @@
         if (!coord.getFirst()) {
           coord = [37.632478, 55.749408];
         }
+        let mapStyle = this.$store.state.properties.data.MAP_STYLE;
         this.map = new mapboxgl.Map({
             container: id,
-            style: ConstantUtils.MAP_STYLE,
+            style: mapStyle,
             center: [coord[0], coord[1]],
             zoom: 12,
             showCompass: false,

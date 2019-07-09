@@ -44,6 +44,14 @@ let vue = new Vue({
   data: {},
   render: h => h(App),
   async created() {
+    let eventResponse = await RequestApi.prepareData({
+      method: '_properties',
+      cid: null,
+      sid: null,
+    });
+    let properties = JSON.parse(eventResponse.response);
+    await this.$store.dispatch('propertiesSetData', properties);
+
     let externalSessionStorage = funcUtils.getfromLocalStorage('admWidNew');
     if (funcUtils.isNotEmpty(externalSessionStorage)) {
       let admWid = externalSessionStorage.admWid;
