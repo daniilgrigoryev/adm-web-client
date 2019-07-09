@@ -171,12 +171,11 @@ export default {
           mediaId: mediaId
         }
       });
-      if (response) {
-        
+      let { data } = JSON.parse(response);
+      if (!response || !data) {
+        return;
       }
-      
-      this.pdfData = 'data:application/pdf;base64,' + JSON.parse(response).data;
-      console.log(this.pdfData);
+      this.pdfData = "data:application/pdf;base64," + JSON.parse(response).data;
     },
     async getPrev() {
       try {
