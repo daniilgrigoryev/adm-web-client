@@ -22,7 +22,7 @@
           />
           <view-data-item
             label="Входящий номер"
-            :value="body.baseDocId"
+            :value="body.claimThemeId"
             style="grid-column: span 2;"
           />
           <!-- TODO -->

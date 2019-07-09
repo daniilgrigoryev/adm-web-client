@@ -1,6 +1,10 @@
 <!-- prettier-ignore -->
 <template>
   <aside-template v-if="dataStore && body" :listSectionNav="listSectionNav">
+    <div v-if="pdfData" class="pdf-viewer">
+      <Icon @click="pdfData = null" type="md-close" size="23" class="color-blue-base absolute right mr18 cursor-pointer"/>
+      <embed class="pdf-data" :src="pdfData" />
+    </div>
     <div class="layout-wrap">
       <div class="adm-form">
         <div class="adm-form__container">
@@ -58,7 +62,9 @@
             >
               <td>{{item.name}}</td>
               <td>{{item.enclTypeName}}</td>
-              <td>{{item.mediaId}}</td>
+              <td>
+                <Icon v-if="item.mediaId" type="ios-bookmarks-outline" @click="getMediaBody(item.mediaId)"></Icon>
+              </td>
             </tr>
           </table>
         </div>
@@ -105,6 +111,7 @@ export default {
   data() {
     return {
       freeSlotCount: null,
+      pdfData: null,
       listSectionNav: [
         {
           title: "Почтовый реестр",
@@ -134,7 +141,7 @@ export default {
         res = this.dataStore.enclosures;
       }
       return res;
-    },
+    }
   },
   methods: {
     async init() {
@@ -157,8 +164,19 @@ export default {
         this.$store.dispatch("errorsModal/changeContent", { title: e.message });
       }
     },
-    getMediamaterial() {
+    async getMediaBody(mediaId) {
+      let { response } = await RequestApi.prepareData({
+        method: "getMediaBody",
+        params: {
+          mediaId: mediaId
+        }
+      });
+      if (response) {
+        
+      }
       
+      this.pdfData = 'data:application/pdf;base64,' + JSON.parse(response).data;
+      console.log(this.pdfData);
     },
     async getPrev() {
       try {
@@ -177,6 +195,30 @@ export default {
 .view-data__container {
   background: transparent;
   border: none;
+}
+
+.pdf-viewer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 99;
+  background: rgb(82, 86, 89);
+
+  i {
+    top: 10px;
+    color: #fff;
+  }
+
+  .pdf-data {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 40px;
+  }
 }
 
 .table {
@@ -221,6 +263,4 @@ export default {
     }
   }
 }
-
-
 </style>
