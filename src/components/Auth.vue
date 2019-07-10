@@ -56,13 +56,13 @@
           let userInfo = JSON.parse(eventResponse.response).data;
           funcUtils.addToLocalStorage('admUserInfo', userInfo);
 
-          let { params } = this.$store.state.authorization.data;
+          let authData = this.$store.state.authorization.data;
 
-          if (params) {
-            switch (params.component) {
+          if (authData.params) {
+            switch (authData.params.component) {
               case this.$store.state.deloTreeCardView.moduleName: {
                 let params = {
-                  deloId: params.deloId,
+                  deloId: authData.params.deloId,
                   title: 'Поиск дел',
                 };
 
