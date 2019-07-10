@@ -1,12 +1,12 @@
 <template>
-  <div v-if="body" class="mb18"> 
+  <div v-if="body" class="mb18">
     <div class="adm-title amd-title--sticky px36 py24">
         <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
           <div class="flex-parent flex-parent--center-cross">
             <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24 bg-transparent" title="Редактировать">
               <!-- <img src='../../assets/images/icons/pen.svg' class="wmax-none"> -->
             </Button>
-            <b class="adm-text-big color-dark-lighter">Жалоба</b>
+            <a @click="goToAppeal" class="adm-text-big color-dark-lighter">Жалоба</a>
           </div>
         </div>
     </div>
@@ -125,10 +125,10 @@
           this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
-      toAppeal() {
-        let url = this.$store.state.properties.data;
-        window.open(`https://172.20.255.97:8443/Appeal/#sid=${localStorage.admSid}&remote=theme_open&theme_id=${body.claimThemeId}`,'_blank')
-      }
+      goToAppeal() {
+        let { appealUrl } = this.$store.state.properties.data;
+        window.open(`${appealUrl}#sid=${sessionStorage.getItem('admAuthSid')}&remote=theme_open&theme_id=${this.body.claimThemeId}`,'_blank');
+      },
     }
   }
 </script>

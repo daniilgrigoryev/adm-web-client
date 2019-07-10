@@ -175,8 +175,6 @@ const router = new Router({
       component: () => import('~/components/postoffice/PostSendingItem'),
       props: true
     },
-
-
     {
       path: '/postRegistryEdit',
       name: 'PostRegistryEdit',
@@ -198,10 +196,17 @@ router.beforeEach( async (to, from, next) => {
     if (funcUtils.isNotEmpty(sid)) {
       sessionStorage.setItem('admAuthSid', sid);
       next(false);
-      await router.app.$store.dispatch('authorizationSetData', {
+      let queryParams = {
         auth: true,
-        authorization: false
-      });
+        authorization: false,
+      };
+      if (to.query.component) {
+        queryParams.params = {
+          component: to.query.component,
+          deloId: to.query.delo_id,
+        };
+      }
+      await router.app.$store.dispatch('authorizationSetData', queryParams);
     } else {
       let rootMethods = router.app.$options.methods;
       let current = formStack.getCurrent();

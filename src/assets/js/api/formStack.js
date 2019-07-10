@@ -88,6 +88,10 @@ export async function toPrev(payload) {
   let innerStack = new Stack(current.innerStack);
   let withTransition = funcUtils.isEmpty(payload.withTransition) ? true : payload.withTransition;
   let prev = stack.peek();
+  if (!prev) {
+    vm.$root.getDeloReestr();
+    return;
+  }
   prev.current = true;
 
   if (!current.notRemoved) {

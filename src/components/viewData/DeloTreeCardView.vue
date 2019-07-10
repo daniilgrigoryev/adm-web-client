@@ -718,7 +718,7 @@
           });
 
           let current = formStack.getCurrent();
-          if (current.routeName === this.$store.state.deloTreeCardView.routeName) {
+          if (current && current.routeName === this.$store.state.deloTreeCardView.routeName) {
             await this.init(current.params.deloId);
           }
         } catch (e) {

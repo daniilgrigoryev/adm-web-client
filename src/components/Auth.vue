@@ -6,6 +6,7 @@
   import RequestApi from "~/assets/js/api/requestApi";
   import * as RequestEntity from "~/assets/js/api/requestEntity";
   import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import * as formStack from '~/assets/js/api/formStack';
 
   export default {
     name: 'Authorization',
@@ -55,8 +56,31 @@
           let userInfo = JSON.parse(eventResponse.response).data;
           funcUtils.addToLocalStorage('admUserInfo', userInfo);
 
-          await this.$root.getDeloReestr();
-          this.$store.dispatch('authorizationSetData', {
+          let { params } = this.$store.state.authorization.data;
+
+          if (params) {
+            switch (params.component) {
+              case this.$store.state.deloTreeCardView.moduleName: {
+                let params = {
+                  deloId: params.deloId,
+                  title: 'Поиск дел',
+                };
+
+                await formStack.toNext({
+                  module: this.$store.state.deloTreeCardView,
+                  vm: this,
+                  notRemoved: false,
+                  params: params,
+                  withCreate: true
+                });
+                break;
+              }
+            }
+          } else {
+            await this.$root.getDeloReestr();
+          }
+
+          await this.$store.dispatch('authorizationSetData', {
             auth: false,
             authorization: true
           });
