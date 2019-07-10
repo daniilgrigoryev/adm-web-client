@@ -287,12 +287,10 @@
         if (this.dataStore) {
           let arr = this.deloTree;
           for (let i = 0; i < arr.length; i++) {
-            for (let i = 0; i < arr.length; i++) {
-              let arrElem = arr[i];
-              if (!arrElem.parentCategory) {
-                res = arrElem;
-                break;
-              }
+            let arrElem = arr[i];
+            if (!arrElem.parentCategory) {
+              res = arrElem;
+              break;
             }
           }
         }
