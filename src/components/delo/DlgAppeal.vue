@@ -125,6 +125,10 @@
           this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
+      toAppeal() {
+        let url = this.$store.state.properties.data;
+        window.open(`https://172.20.255.97:8443/Appeal/#sid=${localStorage.admSid}&remote=theme_open&theme_id=${body.claimThemeId}`,'_blank')
+      }
     }
   }
 </script>

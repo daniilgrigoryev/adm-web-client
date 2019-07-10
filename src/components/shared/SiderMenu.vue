@@ -17,7 +17,7 @@
 				<small class="adm-btn-small color-dark-lighter mb12 align-center my12 txt-em">Версия 12.2 обновление 12.09.2018г</small>
 				<div class="user-wrap">
 					<img :src="require('~/assets/images/icons/user-avatar.svg')" class="avatar">
-					<p class="name">Имя пользователя</p>
+					<p class="name">{{name}}</p>
 					<p class="rank">Звание, Должность</p>
 					<a @click="logout" class='logout'>Выйти из профиля</a>
 				</div>
@@ -40,7 +40,12 @@ export default {
     return {
       isCollapsedLocal: this.isCollapsed
     };
-  },
+	},
+	computed: {
+		name() {
+			return JSON.parse(localStorage.admUserInfo).user_name
+		}
+	},
   methods: {
     logout() {
       this.$root.logout();
