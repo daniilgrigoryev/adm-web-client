@@ -15,7 +15,7 @@
         <MenuItem name="4" class="header-menu__item">Состояние выгрузки</MenuItem>
         <MenuItem name="5" class="header-menu__item">Обработка документов</MenuItem>
         <MenuItem name="6" class="header-menu__item">Передача материалов в ФССП</MenuItem>
-        <Poptip>
+        <Poptip ref="poptip">
           <button class="header-menu__item ivu-menu-item">
             Реестры
           </button>
@@ -93,6 +93,7 @@ export default {
           break;
         }
       }
+      this.$refs.poptip.handleClose()
       funcUtils.addToSessionStorage("mainMenuActiveName", activeName);
     }
   }
