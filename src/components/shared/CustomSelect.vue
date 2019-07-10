@@ -99,13 +99,10 @@
         this.query = query;
         this.$emit('on-query-change', query);
       },
-      validateOption({children, elm, propsData}) {
-        const queryNumber = Number(this.query);
+      validateOption({children, elm, propsData}, query) {
+        const queryNumber = Number(query);
         const isQueryNumber = funcUtils.isNumber(queryNumber);
-        if (isQueryNumber) {
-          this.query = queryNumber.toString();
-        }
-        const query = this.query.toLowerCase().trim();
+        const queryFormatted = query.toLowerCase().trim();
         let label = ((elm && elm.textContent) || (children || []).reduce((str, node) => {
           const nodeText = node.elm ? node.elm.textContent : node.text;
           return `${str} ${nodeText}`;
@@ -113,9 +110,9 @@
         let value = (propsData.value + '').toLowerCase();
 
         if (this.filterMethod && isQueryNumber) {
-          return this.filterMethod(label, value).startsWith(query);
+          return this.filterMethod(label, value).startsWith(queryFormatted);
         }
-        return label.includes(query);
+        return label.includes(queryFormatted);
       },
     },
   }

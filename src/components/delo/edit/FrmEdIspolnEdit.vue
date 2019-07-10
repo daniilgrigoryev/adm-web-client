@@ -544,8 +544,6 @@ export default {
       });
     },
     async fillStotvSearchInfo() {
-      // TODO
-      // return
       let eventResponse = await RequestApi.prepareData({
         method: "getStotvSearchInfo",
         params: {

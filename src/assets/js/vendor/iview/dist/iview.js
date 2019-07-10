@@ -4874,7 +4874,7 @@ exports.default = {
                             children = children.filter(function (_ref5) {
                                 var componentOptions = _ref5.componentOptions;
                                 (0, _newArrowCheck3.default)(this, _this3);
-                                return this.validateOption(componentOptions);
+                                return this.validateOption(componentOptions, this.query);
                             }.bind(this));
                         }
 
@@ -4888,7 +4888,7 @@ exports.default = {
                         if (children.length > 0) selectOptions.push((0, _extends4.default)({}, option, { componentOptions: (0, _extends4.default)({}, cOptions, { children: children }) }));
                     } else {
                         if (this.filterQueryChange) {
-                            var optionPassesFilter = this.filterable ? this.validateOption(cOptions) : option;
+                            var optionPassesFilter = this.filterable ? this.validateOption(cOptions, this.query) : option;
                             if (!optionPassesFilter) continue;
                         }
 
