@@ -65,6 +65,12 @@
                   deloId: authData.params.deloId,
                   title: 'Поиск дел',
                 };
+                if (authData.params.docId) {
+                  params.scenarioResult = {
+                    docId: authData.params.docId,
+                    category: authData.params.category,
+                  }
+                }
 
                 await formStack.toNext({
                   module: this.$store.state.deloTreeCardView,

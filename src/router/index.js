@@ -204,6 +204,8 @@ router.beforeEach( async (to, from, next) => {
         queryParams.params = {
           component: to.query.component,
           deloId: to.query.delo_id,
+          docId: to.query.doc_id,
+          category: to.query.category,
         };
       }
       await router.app.$store.dispatch('authorizationSetData', queryParams);
