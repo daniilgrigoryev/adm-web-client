@@ -44,6 +44,15 @@ let vue = new Vue({
   data: {},
   render: h => h(App),
   async created() {
+    let externalSessionStorage = funcUtils.getfromLocalStorage('admWidNew');
+    if (funcUtils.isNotEmpty(externalSessionStorage)) {
+      let admWid = externalSessionStorage.admWid;
+      sessionStorage.removeItem(sessionStorage.getItem('admWid'));
+      sessionStorage.setItem('admWid', admWid);
+      funcUtils.addToSessionStorage(admWid, externalSessionStorage[admWid]);
+      localStorage.removeItem('admWidNew');
+    }
+
     let eventResponse = await RequestApi.prepareData({
       method: '_properties',
       cid: null,
@@ -51,14 +60,6 @@ let vue = new Vue({
     });
     let properties = JSON.parse(eventResponse.response);
     await this.$store.dispatch('propertiesSetData', properties);
-
-    let externalSessionStorage = funcUtils.getfromLocalStorage('admWidNew');
-    if (funcUtils.isNotEmpty(externalSessionStorage)) {
-      let admWid = externalSessionStorage.admWid;
-      sessionStorage.setItem('admWid', admWid);
-      funcUtils.addToSessionStorage(admWid, externalSessionStorage[admWid]);
-      localStorage.removeItem('admWidNew');
-    }
 
     Array.prototype.getFirst = function() {
       return this[0];

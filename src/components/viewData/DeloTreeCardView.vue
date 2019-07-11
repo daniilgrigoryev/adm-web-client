@@ -372,7 +372,7 @@
       },
       findNode(params) {
         return this.deloTree.filter((item) => {
-          return item.docId === params.docId && item.category === params.category;
+          return item.docId == params.docId && item.category == params.category;
         }).getFirst();
       },
       updateSelected() {
@@ -490,21 +490,36 @@
 
         switch (item) {
           case 'ProtAPNAnothFace': {
-            return current.params.recType === constants.DELO;
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
+            return funcUtils.isNotEmpty(delo);
           }
           case 'OpredAPNAnothFace': {
-            return current.params.recType === constants.DELO;
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
+            return funcUtils.isNotEmpty(delo);
           }
           case 'PostAPNAnothFace': {
-            return current.params.recType === constants.DELO;
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
+            return funcUtils.isNotEmpty(delo);
           }
           case 'ApplyDocOnDelo': {
-            return current.params.recType === constants.DELO;
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
+            return funcUtils.isNotEmpty(delo);
           }
           case 'AddFotoVideo': {
             return current.params.recType === constants.DELO;
           }
           case 'ProtAPN': {
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
             let apnDocs = this.dataStore.tree.filter((item) => {
               return item.recType === constants.DOCS_POST || item.recType === constants.DOCS_PROT;
             });
@@ -512,9 +527,12 @@
               return (item.recType === constants.DOCS_OTHER && item.kod === docTipEnum.PROT_ZADER_TC) || item.recType === constants.DOCS_OPRED;
             });
 
-            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && (apnDocs.length === 0 || pztcDocs.length > 0);
+            return funcUtils.isNotEmpty(delo) && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && (apnDocs.length === 0 || pztcDocs.length > 0);
           }
           case 'OpredProvedAP': {
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
             let apnDocs = this.dataStore.tree.filter((item) => {
               return item.recType === constants.DOCS_POST || item.recType === constants.DOCS_PROT;
             });
@@ -541,22 +559,28 @@
                 decisVozbAPN.push(arrElem);
               }
             }
-            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && (decisVozbAPN.length === 0 && apnDocs.length === 0) || (pztcDocs.length > 0 && currentDate > (this.deloContext.deloDate + twoDays));
+            return funcUtils.isNotEmpty(delo) && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && (decisVozbAPN.length === 0 && apnDocs.length === 0) || (pztcDocs.length > 0 && currentDate > (this.deloContext.deloDate + twoDays));
           }
           case 'PostDeloAPN': {
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
             let apnPost = this.dataStore.tree.filter((item) => {
               return item.recType === constants.DOCS_POST;
             });
             let apnProt = this.dataStore.tree.filter((item) => {
               return item.recType === constants.DOCS_PROT;
             });
-            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && apnProt.length > 0 && apnPost.length === 0;
+            return funcUtils.isNotEmpty(delo) && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) && apnProt.length > 0 && apnPost.length === 0;
           }
           case 'PostPrekrDeloAPN': {
-            let docsPost = this.dataStore.tree.filter((item) => {
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
+            /*let docsPost = this.dataStore.tree.filter((item) => {
               return item.recType === constants.DOCS_POST;
-            });
-            return current.params.recType === constants.DELO && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW) || (current.params.recType === constants.DELO && docsPost.length > 0);
+            });*/
+            return funcUtils.isNotEmpty(delo) && (this.deloContext.stadKod === constants.STAD_VOZB || this.deloContext.stadKod === constants.STAD_REVIEW); // || docsPost.length > 0
           }
           case 'Izvesh': {
             let nodeInfo = JSON.parse(current.params.nodeInfo);
@@ -576,7 +600,10 @@
             return current.params.recType === constants.DECIS && this.deloContext.stadKod !== constants.STAD_TERMINATED;
           }
           case 'AddUchast': {
-            return current.params.recType === constants.DELO;
+            let delo = this.deloTree.filter((item) => {
+              return item.recType === constants.DELO;
+            }).getFirst();
+            return funcUtils.isNotEmpty(delo);
           }
           case 'Petition': {
             return current.params.recType === constants.DOCS_OTHER && current.params.docTip === docTipEnum.PETITION;
@@ -766,7 +793,10 @@
       },
       addUchastWizard() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let delo = this.deloTree.filter((item) => {
+            return item.recType === constants.DELO;
+          }).getFirst();
+          let copyNode = this.getCopyObj(delo, 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'AddUchast',
             node: copyNode,
@@ -906,7 +936,10 @@
       },
       createWizardScenarioProtTaxi(newDelo) {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let delo = this.deloTree.filter((item) => {
+            return item.recType === constants.DELO;
+          }).getFirst();
+          let copyNode = this.getCopyObj(delo, 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode,
@@ -927,7 +960,10 @@
       },
       createWizardScenarioDefinitionTaxi(newDelo) {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let delo = this.deloTree.filter((item) => {
+            return item.recType === constants.DELO;
+          }).getFirst();
+          let copyNode = this.getCopyObj(delo, 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode,
@@ -948,7 +984,10 @@
       },
       createWizardScenarioPost(newDelo) {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let delo = this.deloTree.filter((item) => {
+            return item.recType === constants.DELO;
+          }).getFirst();
+          let copyNode = this.getCopyObj(delo, 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreatePost',
             node: copyNode,
