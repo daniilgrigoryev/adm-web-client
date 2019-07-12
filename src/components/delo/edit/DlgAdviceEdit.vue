@@ -603,7 +603,7 @@
           let eventResponse = await RequestApi.prepareData({
             method: 'getSinspList',
             params: {
-              inspKod: this.dataAdvice.inspUtvKod
+              inspKod: null
             }
           });
           this.inspUtvModal.srcList = JSON.parse(eventResponse.response).data;
