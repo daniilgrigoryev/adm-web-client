@@ -896,7 +896,10 @@
       },
       createWizardScenarioDefinition() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let delo = this.deloTree.filter((item) => {
+            return item.recType === constants.DELO;
+          }).getFirst();
+          let copyNode = this.getCopyObj(delo, 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: this.isTaxi() ? 'CreateDefinitionTaxi' : 'CreateDefinition',
             node: copyNode,
@@ -916,7 +919,10 @@
       },
       createWizardScenarioAPN() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let delo = this.deloTree.filter((item) => {
+            return item.recType === constants.DELO;
+          }).getFirst();
+          let copyNode = this.getCopyObj(delo, 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: this.isTaxi() ? 'CreateProtTaxi' : 'CreateProtAPN',
             node: copyNode,
@@ -1008,7 +1014,10 @@
       },
       createWizardProtStopDelo() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let delo = this.deloTree.filter((item) => {
+            return item.recType === constants.DELO;
+          }).getFirst();
+          let copyNode = this.getCopyObj(delo, 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateProtStopDelo',
             node: copyNode,
@@ -1028,7 +1037,10 @@
       },
       createWizardScenarioPostDecisDelo() {
         try {
-          let copyNode = this.getCopyObj(this.getSelectedNode(), 'selected', 'children', 'height', 'nodeParams');
+          let delo = this.deloTree.filter((item) => {
+            return item.recType === constants.DELO;
+          }).getFirst();
+          let copyNode = this.getCopyObj(delo, 'selected', 'children', 'height', 'nodeParams');
           let params = {
             scenarioName: 'CreateProtDecisDelo',
             node: copyNode,

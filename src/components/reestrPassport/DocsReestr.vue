@@ -383,7 +383,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      dataStore: "docsReestrGetData"
+      dataStore: "docsReestrGetData",
+      selectedIds: 'docsReestrGetSelectedIds'
     }),
     data() {
       let res = [];
@@ -391,6 +392,7 @@ export default {
         for (let i = this.from; i < this.to; i++) {
           let item = this.dataStore.deloList[i];
           if (item) {
+            item.selected = funcUtils.isNotEmpty(this.selectedIds) && this.selectedIds.includes(item.cardId);
             res.push(item);
           }
         }
@@ -473,12 +475,14 @@ export default {
       this.setSelectId();
     },
     setSelectId() {
+      let selectedList = this.selectedList.map(el => el.cardId);
       RequestApi.prepareData({
         method: "setSelectId",
         params: {
-          selectId: this.selectedList.map(el => el.cardId)
+          selectId: selectedList
         }
       });
+      this.$store.dispatch("docsReestrSetSelectId", selectedList);
     },
     async getSelectId() {
       let eventResponse = await RequestApi.prepareData({

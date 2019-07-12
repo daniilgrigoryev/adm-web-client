@@ -61,7 +61,7 @@
         await this.init();
 
         let vm = this;
-        this.$store.watch(this.$store.getters.frmEdDecisVozbDeloGetCommand, async () => {
+        this.$store.watch(this.$store.getters.frmEdDecisPrekrDeloGetCommand, async () => {
           try {
             let currentForm = innerFormStack.getCurrent();
             let eventResponse = await RequestApi.prepareData({
@@ -78,12 +78,12 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdDecisVozbDeloSetCid', null);
-      this.$store.dispatch('frmEdDecisVozbDeloSetData', null);
+      this.$store.dispatch('frmEdDecisPrekrDeloSetCid', null);
+      this.$store.dispatch('frmEdDecisPrekrDeloSetData', null);
     },
     computed: {
       ...mapGetters({
-        dataStore: 'frmEdDecisVozbDeloGetData'
+        dataStore: 'frmEdDecisPrekrDeloGetData'
       }),
       body() {
         let res = null;
@@ -97,7 +97,7 @@
       async init() {
         try {
           let currentForm = innerFormStack.getCurrent();
-          await this.$store.dispatch('frmEdDecisVozbDeloSetCid', currentForm.cid);
+          await this.$store.dispatch('frmEdDecisPrekrDeloSetCid', currentForm.cid);
 
           let prepareParams = {
             method: 'restore',

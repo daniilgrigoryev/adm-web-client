@@ -19,7 +19,7 @@ export default {
     docsReestrSetCommand(state, command) {
       state.command = command;
     },
-    
+
     docsReestrToggleSelected(state, item) {
       let storeItem = state.data.deloList.find((el) => el.cardId === item.cardId);
         storeItem.selected = !storeItem.errors && !storeItem.selected;
@@ -66,7 +66,7 @@ export default {
     docsReestrSetSelectId({commit}, payload) {
       commit("docsReestrSetSelectId", payload)
     },
-    
+
   },
   getters: {
     docsReestrGetCommand: state => () => {
@@ -77,6 +77,9 @@ export default {
     },
     docsReestrGetCid: state => {
       return state.cid
+    },
+    docsReestrGetSelectedIds: state => {
+      return state.selectId
     },
   }
 };

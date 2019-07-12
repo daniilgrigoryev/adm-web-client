@@ -137,7 +137,7 @@
         await this.init();
 
         let vm = this;
-        this.$store.watch(this.$store.getters.frmEdProtPZTCGetCommand, async () => {
+        this.$store.watch(this.$store.getters.frmEdDocsOtherPZTCGetCommand, async () => {
           try {
             let currentForm = innerFormStack.getCurrent();
             let eventResponse = await RequestApi.prepareData({
@@ -154,12 +154,12 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdProtPZTCSetCid', null);
-      this.$store.dispatch('frmEdProtPZTCSetData', null);
+      this.$store.dispatch('frmEdDocsOtherPZTCSetCid', null);
+      this.$store.dispatch('frmEdDocsOtherPZTCSetData', null);
     },
     computed: {
       ...mapGetters({
-        dataStore: 'frmEdProtPZTCGetData'
+        dataStore: 'frmEdDocsOtherPZTCGetData'
       }),
       body() {
         let res = null;
@@ -173,7 +173,7 @@
       async init() {
         try {
           let currentForm = innerFormStack.getCurrent();
-          await this.$store.dispatch('frmEdProtPZTCSetCid', currentForm.cid);
+          await this.$store.dispatch('frmEdDocsOtherPZTCSetCid', currentForm.cid);
 
           let prepareParams = {
             method: 'restore',
@@ -204,7 +204,7 @@
           };
 
           formStack.toNext({
-            module: this.$store.state.frmEdProtPZTCEdit,
+            module: this.$store.state.frmEdDocsOtherPZTCEdit,
             vm: this,
             notRemoved: false,
             params: params,
