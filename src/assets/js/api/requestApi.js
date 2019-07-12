@@ -113,7 +113,10 @@ export default class RequestApi {
 
   static sendHttpRequest(payload) {
     let body = payload.body;
-    const url = location.origin + ConstantUtils.HTTP_URL;
+    const url = (process.env.NODE_ENV 
+      ? "http://172.20.255.251:8080" 
+      : location.origin) 
+    + ConstantUtils.HTTP_URL;
 
     let withSpinner = payload.withSpinner;
     let handleError = payload.handleError;

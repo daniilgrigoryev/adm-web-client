@@ -4,6 +4,8 @@
       <div class="layout">
         <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
         <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
+        <wizard-modal v-if="inspUtvModal.visible" :columnsOptions="inspUtvModal.columnsOptions" :data="inspUtvModal.inspUtvList" @showModal="showInspUtvModal" @onRowDbClick="onInspUtvClick"></wizard-modal>
+
         <div class="adm-form">
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="head">Редактирование Извещения {{ dataAdvice.docN ? "№" + dataAdvice.docN : "" }}</h2>
@@ -599,7 +601,10 @@
       async showInspUtvModal(visible) {
         if (funcUtils.isEmpty(this.inspUtvModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
-            method: 'getSinspList'
+            method: 'getSinspList',
+            params: {
+              inspKod: this.dataAdvice.inspUtvKod
+            }
           });
           this.inspUtvModal.srcList = JSON.parse(eventResponse.response).data;
         }

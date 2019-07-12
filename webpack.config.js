@@ -106,6 +106,9 @@ module.exports = (options = {}) => ({
     hints: false
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(options.dev)
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']
     }),
