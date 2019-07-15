@@ -1,5 +1,5 @@
 <template>
-  <aside-template :listSectionNav="listSectionNav" title="Решение по делу" v-if="decis">
+  <aside-template :listSectionNav="listSectionNav" v-if="decis">
     <div class="layout-wrap">
       <div class="layout">
         <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
@@ -10,7 +10,10 @@
               <component
                 :is="decisComponentName"
                 :decis="decis"
-                @store="store()"
+                @store="store"
+                @showOrganModal="showOrganModal"
+                @calcDateVstup="calcDateVstup"
+                @changeOrganNapravlKod="changeOrganNapravlKod"
               />
               <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.warning)"></div>-->
               <!--    <div v-if="decis.decisKod && showByDecisKod(decisKods.observ)"></div>-->
@@ -271,6 +274,7 @@
         return true;
       },
       async showOrganModal(visible) {
+        console.log(visible);
         if (visible && funcUtils.isEmpty(this.organModal.srcList)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'getGibddDict',
