@@ -82,8 +82,10 @@
         <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
           <div class="action-bar__title">Подписать выбранные документы</div>
           <div class="action-bar__body">
-            <Button type="primary" @click="sign('person')">Подписать очно</Button>
-            <Button type="primary" @click="sign('absentia')">Подписать заочно</Button>
+            <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings">
+              <Option class="wmax360 " v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </CustomSelect>
+            <Button :disabled="!sertificateNumber" type="primary" @click="signData">Подписать</Button>
           </div>
         </div>
       </div>
@@ -96,6 +98,7 @@ import * as funcUtils from "~/assets/js/utils/funcUtils";
 import * as formStack from "~/assets/js/api/formStack";
 import RequestApi from "~/assets/js/api/requestApi";
 import { mapGetters } from "vuex";
+import 'crypto-pro';
 
 export default {
   name: "DocsReestr",
@@ -179,11 +182,12 @@ export default {
             return h("Checkbox", {
               class: ["amd-checkbox"],
               attrs: {
-                value: !this.columnChecked
+                value: this.columnChecked,
+                disabled: !this.columnSigned
               },
               on: {
-                "on-change": () => {
-                  this.toggleSelectedColumn();
+                "on-change": (e) => {
+                  this.toggleSelectedColumn(e);
                 }
               }
             });
@@ -192,7 +196,8 @@ export default {
             return h("Checkbox", {
               class: ["amd-checkbox"],
               attrs: {
-                value: params.row.selected
+                value: params.row.selected,
+                disabled: funcUtils.isNotEmpty(params.row.signTime)
               },
               on: {
                 "on-change": () => {
@@ -378,7 +383,10 @@ export default {
             ]);
           }
         }
-      ]
+      ],
+      signList: [],
+      sertificateObj: {},
+      sertificateNumber: null,
     };
   },
   computed: {
@@ -392,7 +400,7 @@ export default {
         for (let i = this.from; i < this.to; i++) {
           let item = this.dataStore.deloList[i];
           if (item) {
-            item.selected = funcUtils.isNotEmpty(this.selectedIds) && this.selectedIds.includes(item.cardId);
+            item.selected = funcUtils.isEmpty(item.signTime) && funcUtils.isNotEmpty(this.selectedIds) && this.selectedIds.includes(item.cardId);
             res.push(item);
           }
         }
@@ -415,7 +423,10 @@ export default {
       return this.data.filter(el => el.selected);
     },
     columnChecked() {
-      return this.selectedListOnPage.length !== this.data.length;
+      return this.selectedList.length > 0;
+    },
+    columnSigned() {
+      return this.dataStore.deloList.filter(el => funcUtils.isEmpty(el.signTime)).length > 0;
     }
   },
   methods: {
@@ -466,23 +477,23 @@ export default {
       this.$store.commit("docsReestrToggleSelected", item);
       this.setSelectId();
     },
-    toggleSelectedColumn() {
-      let columnItemsSelected = this.data.filter(el => el.selected);
-      this.$store.commit("docsReestrChangeSelectionItems", {
-        items: this.data,
-        action: this.columnChecked
+    toggleSelectedColumn(selected) {
+      this.dataStore.deloList.forEach((item) => {
+        if (funcUtils.isEmpty(item.signTime)) {
+          this.$set(item, 'selected', selected);
+        }
       });
       this.setSelectId();
     },
-    setSelectId() {
+    async setSelectId() {
       let selectedList = this.selectedList.map(el => el.cardId);
-      RequestApi.prepareData({
+      await RequestApi.prepareData({
         method: "setSelectId",
         params: {
           selectId: selectedList
         }
       });
-      this.$store.dispatch("docsReestrSetSelectId", selectedList);
+      await this.$store.dispatch("docsReestrSetSelectId", selectedList);
     },
     async getSelectId() {
       let eventResponse = await RequestApi.prepareData({
@@ -491,6 +502,198 @@ export default {
       let { data } = JSON.parse(eventResponse.response);
       if (data.length) {
         await this.$store.dispatch("docsReestrSetSelectId", data);
+      }
+    },
+    async fillSignList() {
+      try {
+        let signList = await this.getSignList();
+        let sName = signList['SubjectName'];
+        let sNumber = signList['SerialNumber'];
+        let vFromDate = signList['ValidFromDate'];
+        let vToDate = signList['ValidToDate'];
+
+        let nameSplit = sName.split(";");
+        let numberSplit = sNumber.split(";");
+        let fDateSplit = vFromDate.split(";");
+        let tDateSplit = vToDate.split(";");
+
+        this.signList = [];
+        for (let i = 0; i < nameSplit.length; i++) {
+          if (numberSplit[i].length > 0) {
+            this.signList.push({
+              label: nameSplit[i] + "; " + numberSplit[i] + "; " + fDateSplit[i] + "; " + tDateSplit[i],
+              value: numberSplit[i]
+            });
+            this.sertificateObj[numberSplit[i]] = {
+              IssuerName: '',
+              SubjectName: nameSplit[i],
+              SerialNumber: numberSplit[i],
+              ValidFromDate: fDateSplit[i],
+              ValidToDate: tDateSplit[i]
+            }
+          }
+        }
+      } catch (e) {
+        this.$store.dispatch('errorsModal/changeContent', {title: e,});
+      }
+    },
+    getSignList() {
+      let CADESCOM_CADES_BES = 1;
+      let CAPICOM_CURRENT_USER_STORE = 2;
+      let CAPICOM_MY_STORE = "My";
+      let CAPICOM_STORE_OPEN_MAXIMUM_ALLOWED = 2;
+      let CAPICOM_CERTIFICATE_FIND_SUBJECT_NAME = 1;
+
+      return new Promise(function (resolve, reject) {
+        cadesplugin.async_spawn(function* (args) {
+          try {
+            let oStore = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
+            yield oStore.Open(CAPICOM_CURRENT_USER_STORE, CAPICOM_MY_STORE,
+              CAPICOM_STORE_OPEN_MAXIMUM_ALLOWED);
+
+            let CertificatesObj = yield oStore.Certificates;
+
+            let cnt = yield CertificatesObj.Count;
+            let res = {};
+            res.SubjectName = '';
+            res.SerialNumber = '';
+            res.ValidFromDate = '';
+            res.ValidToDate = '';
+            for (let i = 1; i <= cnt; i++) {
+              let oCertificates = yield CertificatesObj.Item(i);
+              let name = yield oCertificates.SubjectName;
+              name = name.replace(new RegExp("\\n", 'g'), ',');
+              res.SubjectName = res.SubjectName + ';' + name;
+              let num = yield oCertificates.SerialNumber;
+              res.SerialNumber = res.SerialNumber + ';' + num;
+              let fdate = yield oCertificates.ValidFromDate;
+              res.ValidFromDate = res.ValidFromDate + ';' + fdate;
+              let tdate = yield oCertificates.ValidToDate;
+              res.ValidToDate = res.ValidToDate + ';' + tdate;
+            }
+
+            yield oStore.Close();
+
+            args[0](res);
+          } catch (e) {
+            args[1]("Failed to create signature. Error: " + cadesplugin.getLastError(e));
+          }
+        }, resolve, reject);
+      });
+    },
+    openSings(opened) {
+      if (opened) {
+        this.fillSignList();
+      }
+    },
+    signCreate(certSerialNumber, dataToSign) {
+      let CADESCOM_CADES_BES = 1;
+      let CAPICOM_CURRENT_USER_STORE = 2;
+      let CAPICOM_MY_STORE = "My";
+      let CAPICOM_STORE_OPEN_MAXIMUM_ALLOWED = 2;
+      let CAPICOM_CERTIFICATE_FIND_SUBJECT_NAME = 1;
+
+      return new Promise(function (resolve, reject) {
+        cadesplugin.async_spawn(function* (args) {
+          try {
+            let oStore = yield cadesplugin.CreateObjectAsync("CAdESCOM.Store");
+            yield oStore.Open(CAPICOM_CURRENT_USER_STORE, CAPICOM_MY_STORE,
+              CAPICOM_STORE_OPEN_MAXIMUM_ALLOWED);
+
+            let CertificatesObj = yield oStore.Certificates;
+            let oCertificate = {};
+            let cnt = yield CertificatesObj.Count;
+            for (let i = 1; i <= cnt; i++) {
+              let vCertificate = yield CertificatesObj.Item(i);
+              let num = yield vCertificate.SerialNumber;
+              if (certSerialNumber == num) {
+                oCertificate = vCertificate;
+                break;
+              }
+            }
+
+            let oSigner = yield cadesplugin.CreateObjectAsync("CAdESCOM.CPSigner");
+            yield oSigner.propset_Certificate(oCertificate);
+
+            let oSignedData = yield cadesplugin.CreateObjectAsync("CAdESCOM.CadesSignedData");
+            yield oSignedData.propset_ContentEncoding(cadesplugin.CADESCOM_BASE64_TO_BINARY);
+            yield oSignedData.propset_Content(dataToSign);
+
+            let resObj = {};
+
+            let sSignedMessage = yield oSignedData.SignCades(oSigner, cadesplugin.CADESCOM_CADES_BES, true);
+
+            resObj.Message = sSignedMessage;
+            resObj.SubjectName = yield oCertificate.SubjectName;
+            resObj.SerialNumber = yield oCertificate.SerialNumber;
+            resObj.IssuerName = yield oCertificate.IssuerName;
+            resObj.ValidFromDate = yield oCertificate.ValidFromDate;
+            resObj.ValidToDate = yield oCertificate.ValidToDate;
+
+            yield oStore.Close();
+
+            args[2](resObj);
+          } catch (e) {
+            args[3]("Failed to create signature. Error: " + cadesplugin.getLastError(e));
+          }
+        }, certSerialNumber, dataToSign, resolve, reject);
+      });
+    },
+    async signData() {
+      try {
+        let res = 0;
+        for (let i = 0; i < this.dataStore.deloList.length; i++) {
+          let selectedObj = this.dataStore.deloList[i];
+          if (!selectedObj.selected) {
+            continue;
+          }
+          let signObjectResponse = await RequestApi.prepareData({
+            method: "getSignObj",
+            params: {
+              cardId: selectedObj.cardId
+            }
+          });
+          let signObj = JSON.parse(signObjectResponse.response);
+          if (signObj.data) {
+            let dataToSign = window.btoa(unescape(encodeURIComponent(signObj.data.sourceData)));
+            let sign = await this.signCreate(this.sertificateNumber, dataToSign);
+            if (sign) {
+              this.sertificateObj[this.sertificateNumber].IssuerName = sign.IssuerName;
+              signObj.data.signDataBase64 = sign.Message;
+              signObj.data.certSerialNumber = sign.SerialNumber;
+              signObj.data.certSubject = sign.SubjectName;
+              signObj.data.certIssuer = sign.IssuerName;
+              signObj.data.certValidFrom = sign.ValidFromDate;
+              signObj.data.certValidTo = sign.ValidToDate;
+
+              let saveSignResponse = await RequestApi.prepareData({
+                method: "saveSign",
+                params: {
+                  sign: signObj.data
+                }
+              });
+              let saveSign = JSON.parse(saveSignResponse.response);
+              if (!saveSign.data) {
+                this.$store.dispatch('errorsModal/changeContent', {title: 'Не удалось подписать документ' + (selectedObj.docN !== null ? '№ ' + selectedObj.docN : '') + '<br />' + saveSign.error.errorMsg + '<br />' + 'Подписано документов успешно ' + res, desc: saveSign.error.errorDesc});
+                return;
+              } else {
+                this.$set(selectedObj, 'selected', false);
+                this.$set(selectedObj, 'signTime', new Date());
+                res++;
+              }
+            }
+          } else {
+            this.$store.dispatch('errorsModal/changeContent', {title: 'Не удалось подписать документ' + (selectedObj.docN !== null ? '№ ' + selectedObj.docN : '') + '<br />' + signObj.error.errorMsg + '<br />' + 'Подписано документов успешно ' + res, desc: signObj.error.errorDesc});
+            return;
+          }
+        }
+        if (res > 0) {
+          this.$store.dispatch('errorsModal/changeContent', {title: 'Документы успешно подписаны: ' + res});
+          await this.setSelectId();
+          await this.filterClick();
+        }
+      } catch (e) {
+        this.$store.dispatch('errorsModal/changeContent', {title: e, desc: e,});
       }
     },
     declOfNum(number, titles) {
@@ -571,16 +774,6 @@ export default {
         height -= this.$refs.actionBar.getBoundingClientRect().height;
       }
       this.tableHeight = height;
-    },
-    async sign(method) {
-      return;
-      // TODO
-      await RequestApi.prepareData({
-        method: method,
-        params: {
-          items: this.selectedList
-        }
-      });
     },
     getFilterFields() {
       let filterObj = {};

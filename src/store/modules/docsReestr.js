@@ -45,7 +45,6 @@ export default {
     docsReestrSetData({state}, data) {
       if (data !== null && data.deloList) {
         data.deloList.forEach(el => {
-          el.errors = state.deloErrors.length ? state.deloErrors.includes(el.deloId): false;
           el.selected = state.selectId.length ? (!el.errors && state.selectId.includes(el.deloId)): false;
         });
       }
