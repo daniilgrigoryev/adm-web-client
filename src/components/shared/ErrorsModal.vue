@@ -27,6 +27,7 @@ import { createNamespacedHelpers } from "vuex";
 const { mapState, mapActions } = createNamespacedHelpers("errorsModal");
 
 export default {
+  name: "ErrorsModal",
   computed: {
     ...mapState(["status", "content", "descShow"])
   },

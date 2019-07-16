@@ -688,7 +688,7 @@ export default {
           }
         }
         if (res > 0) {
-          this.$store.dispatch('errorsModal/changeContent', {title: 'Документы успешно подписаны: ' + res});
+          this.$store.dispatch('dialogModal/changeContent', {title: 'Документы успешно подписаны: ' + res});
           await this.setSelectId();
           await this.filterClick();
         }

@@ -16,6 +16,7 @@
     <authorization v-if="!isLogged && !isAuth"></authorization>
     <auth v-if="isAuth"></auth>
     <errors-modal></errors-modal>
+    <dialog-modal></dialog-modal>
   </div>
 </template>
 
@@ -32,7 +33,8 @@
       SiderMenu: () => import('~/components/shared/SiderMenu'),
       Authorization: () => import('~/components/Authorization'),
       Auth: () => import('~/components/Auth'),
-      ErrorsModal: () => import('~/components/shared/ErrorsModal')
+      ErrorsModal: () => import('~/components/shared/ErrorsModal'),
+      DialogModal: () => import('~/components/shared/DialogModal'),
     },
     data() {
       return {

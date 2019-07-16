@@ -151,7 +151,7 @@
           let dataToSign = window.btoa(unescape(encodeURIComponent(this.signature.sourceData)));
           let sign = await this.signCreate(this.sertificateNumber, dataToSign);
           if (sign) {
-            this.$store.dispatch('errorsModal/changeContent', {title: 'Успешно'});
+            this.$store.dispatch('dialogModal/changeContent', {title: 'Документ подписан'});
             this.sertificateObj[this.sertificateNumber].IssuerName = sign.IssuerName;
             this.signature.signDataBase64 = sign.Message;
             this.signature.certSerialNumber = sign.SerialNumber;

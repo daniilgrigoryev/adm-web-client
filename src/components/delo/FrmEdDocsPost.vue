@@ -87,14 +87,14 @@
     </div>
     <div v-if="docSignatures" class="errors-table errors-table--v2">
       <div class="errors-table__container">
-        <h2  @click="hideMore = !hideMore" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
+        <h2  @click="hideMoreSignatures = !hideMoreSignatures" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
           <span class="adm-h4 color-dark-lighter" style="line-height: inherit;">Подписи</span>
           <Button type="text" class="bg-transparent" style="box-shadow: none;">
-            <Icon v-if="hideMore" type="md-remove" class="color-gray" :size="25" title="свернуть" />
+            <Icon v-if="hideMoreSignatures" type="md-remove" class="color-gray" :size="25" title="свернуть" />
             <Icon v-else type="md-add" class="color-gray" :size="25" title="развернуть"/>
           </Button>
         </h2>
-        <div class="errors-table__content" v-show="hideMore">
+        <div class="errors-table__content" v-show="hideMoreSignatures">
           <table class='adm-table-simple table table--fixed border--0'>
             <thead>
             <tr class="bg-white-light">
@@ -131,6 +131,53 @@
               </td>
               <td class="align-middle">
                 <img class="error-image" alt="img" src="../../assets/images/icons/pdf.svg" title="Скачать документ" v-for="(itemMedia, itemMediaIdx) in item.media" :key="itemMediaIdx" @click="downloadMedia(itemMedia.mediaId)" />
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div v-if="hardCopies" class="errors-table errors-table--v2">
+      <div class="errors-table__container">
+        <h2  @click="hideMoreHardCopies = !hideMoreHardCopies" class="adm-form__headding bg-white cursor-pointer flex-parent flex-parent--space-between-main">
+          <span class="adm-h4 color-dark-lighter" style="line-height: inherit;">Твердые копии</span>
+          <Button type="text" class="bg-transparent" style="box-shadow: none;">
+            <Icon v-if="hideMoreHardCopies" type="md-remove" class="color-gray" :size="25" title="свернуть" />
+            <Icon v-else type="md-add" class="color-gray" :size="25" title="развернуть"/>
+          </Button>
+        </h2>
+        <div class="errors-table__content" v-show="hideMoreHardCopies">
+          <table class='adm-table-simple table table--fixed border--0'>
+            <thead>
+            <tr class="bg-white-light">
+              <th class="w180 align-middle">
+                <p class="adm-text-big txt-normal color-dark-lighter">Инспектор, создавший документ</p>
+              </th>
+              <th class="w180 align-middle">
+                <p class="adm-text-big txt-normal color-dark-lighter">Время создания</p>
+              </th>
+              <th class="w180 align-middle">
+                <p class="adm-text-big txt-normal color-dark-lighter">Примечание</p>
+              </th>
+              <th class="w180 align-middle">
+                <p class="adm-text-big txt-normal color-dark-lighter">Список файлов</p>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(item, itemIdx) in hardCopies" :key="itemIdx">
+              <td class="align-middle">
+                <p class="adm-14 color-dark-base">{{item.createIspName}}</p>
+              </td>
+              <td class="align-middle">
+                <p class="adm-14 color-dark-base">{{item.createTime | formatDateTime('DD.MM.YYYY HH:mm')}}</p>
+              </td>
+              <td class="align-middle">
+                <p class="adm-14 color-dark-base">{{item.comments}}</p>
+              </td>
+              <td class="align-middle">
+                <img class="error-image" alt="img" src="../../assets/images/icons/pdf.svg" title="Скачать документ" @click="downloadMedia(item.mediaId)" />
               </td>
             </tr>
             </tbody>
@@ -184,7 +231,9 @@
     data() {
       return {
         docSignatures: null,
-        hideMore: false,
+        hardCopies: null,
+        hideMoreSignatures: false,
+        hideMoreHardCopies: false,
       }
     },
     computed: {
@@ -222,6 +271,7 @@
           let eventResponse = await RequestApi.prepareData(prepareParams);
           await this.$store.dispatch('fillModule', {'event': eventResponse});
           this.fillDocSignatures();
+          this.fillHardCopies();
         } catch (e) {
           this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
@@ -235,6 +285,17 @@
         let responseData = JSON.parse(eventResponse.response).data;
         if (responseData && responseData.length) {
           this.docSignatures = responseData.sort((a,b)=> b.sign.createTime - a.sign.createTime);
+        }
+      },
+      async fillHardCopies() {
+        let currentForm = innerFormStack.getCurrent();
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getHardCopies',
+          cid: currentForm.cid
+        });
+        let responseData = JSON.parse(eventResponse.response).data;
+        if (responseData && responseData.length) {
+          this.hardCopies = responseData.sort((a,b)=> b.sign.createTime - a.sign.createTime);
         }
       },
       async downloadMedia(mediaId) {
