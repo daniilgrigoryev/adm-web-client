@@ -6,7 +6,7 @@
             <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24 bg-transparent" title="Редактировать">
               <!-- <img src='../../assets/images/icons/pen.svg' class="wmax-none"> -->
             </Button>
-            <a @click="goToAppeal" class="adm-text-big color-dark-lighter">Жалоба</a>
+            <b class="adm-text-big color-dark-lighter">Жалоба</b>
           </div>
         </div>
     </div>
@@ -42,6 +42,7 @@
             :value="body.inspSostKod, body.inspSostName  | concatByDelimiter('-')"
             style="grid-column: span 2;"
           />
+          <Button @click="goToAppeal" type="primary" class="search-secondary-cases-btn">Открыть жалобу в системе "Обращения граждан"</Button>
         </div>
       </div>
     </div>
