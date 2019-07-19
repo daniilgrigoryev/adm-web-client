@@ -1,12 +1,12 @@
 <template>
-  <!-- Протокол апн погрузки и разгрузки -->
-  <aside-template :listSectionNav="listSectionNav()" title="Протокол АПН погрузки и разгрузки">
+  <!-- Протокол апн по зеленым насаждениям -->
+  <aside-template :listSectionNav="listSectionNav()" title="Протокол АПН по зеленым насаждениям">
     <div class="layout-wrap">
       <Layout ref="Main" class="layout">
         <div class="adm-form">
           <div class="adm-form__container">
             <h2 class="adm-form__headding" id="head">
-              Ввод данных по протоколу об административном правонарушении погрузки и разгрузки
+              Ввод данных по протоколу об административном правонарушении по зеленым насаждениям
             </h2>
             <div class="adm-form__content">
               <wizard-item-prot-one-apn id="DocProtApnOne" v-if="isVisible('DocProtApnOne')" ref="DocProtApnOne" :info="getInfo('DocProtApnOne')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-prot-one-apn>
@@ -92,7 +92,7 @@
   import RequestApi from "~/assets/js/api/requestApi";
 
   export default {
-    name: "WizardScenarioProtCargo",
+    name: "WizardScenarioProtGreen",
     props: {
       pathes: Object
     },
@@ -117,7 +117,7 @@
       listSectionNav() {
         return [
           {
-            title: "Ввод данных по протоколу об АПН погрузки и разгрузки",
+            title: "Ввод данных по протоколу об АПН по зеленым насаждениям",
             name: "head",
           },
           {

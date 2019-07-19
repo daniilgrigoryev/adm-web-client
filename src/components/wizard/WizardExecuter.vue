@@ -15,6 +15,7 @@
       WizardScenarioPost: () => import('~/components/wizard/WizardScenarioPost'),
       WizardScenarioProtAPN: () => import('~/components/wizard/WizardScenarioProtAPN'),
       WizardScenarioProtCargo: () => import('~/components/wizard/WizardScenarioProtCargo'),
+      WizardScenarioProtGreen: () => import('~/components/wizard/WizardScenarioProtGreen'),
       WizardScenarioProtEvac: () => import('~/components/wizard/WizardScenarioProtEvac'),
       WizardScenarioDefinition: () => import('~/components/wizard/WizardScenarioDefinition'),
       WizardScenarioAddPredDoc: () => import('~/components/wizard/WizardScenarioAddPredDoc'),
@@ -141,6 +142,12 @@
           case 'CreateProtCargo': {
             res = {
               name: 'WizardScenarioProtCargo'
+            };
+            break;
+          }
+          case 'CreateProtGreen': {
+            res = {
+              name: 'WizardScenarioProtGreen'
             };
             break;
           }

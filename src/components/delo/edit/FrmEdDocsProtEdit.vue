@@ -197,7 +197,7 @@
                   </Row>
                 </div>
               </div>
-              <div v-if="!isTaxi && !isCargo" class="adm-form__item">
+              <div v-if="!isTaxi && !isCargo && !isGreen" class="adm-form__item">
                 <small class="adm-form__label"></small>
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="22">
@@ -634,11 +634,20 @@
         }
         return res;
       },
+      isGreen() {
+        let res = null;
+        if (this.deloTags) {
+          res = funcUtils.isNotEmpty(this.deloTags) && this.deloTags.includes(constants.TAG_GREEN);
+        }
+        return res;
+      },
       title() {
         let res = 'Протокол об АПН';
         if (this.docsProt) {
           if (this.isCargo) {
             res += ' погрузки и разгрузки ';
+          } else if (this.isGreen) {
+            res += ' по зеленым насаждениям ';
           }
           res += ' ' + (this.docsProt.docN ? '№' + this.docsProt.docN : '') + ' от ' + funcUtils.parseDateTime(this.docsProt.dateSost, 'DD.MM.YYYY');
         }

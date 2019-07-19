@@ -61,8 +61,8 @@
             style="grid-column: span 2;"
           />
 
-          <hr v-if="!isTaxi && !isCargo">
-          <view-data-item v-if="!isTaxi && !isCargo"
+          <hr v-if="!isTaxi && !isCargo && !isGreen">
+          <view-data-item v-if="!isTaxi && !isCargo && !isGreen"
             label="Было снятие ТС с эвакуатора"
             :value="isRemovedFromEvac"
             style="grid-column: span 2;"
@@ -178,11 +178,20 @@
         }
         return res;
       },
+      isGreen() {
+        let res = null;
+        if (this.dataStore) {
+          res = funcUtils.isNotEmpty(this.dataStore.deloTag) && this.dataStore.deloTag.includes(constants.TAG_GREEN);
+        }
+        return res;
+      },
       title() {
         let res = 'Протокол об АПН';
         if (this.dataStore) {
           if (this.isCargo) {
             res += ' погрузки и разгрузки ';
+          } else if (this.isGreen) {
+            res += ' по зеленым насаждениям ';
           }
           res += ' ' + (this.body.docN ? '№' + this.body.docN : '') + ' от ' + funcUtils.parseDateTime(this.body.dateSost, 'DD.MM.YYYY');
         }
