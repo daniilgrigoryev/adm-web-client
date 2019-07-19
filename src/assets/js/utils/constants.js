@@ -1,7 +1,13 @@
+/**Тэг мобильного инспектора*/
+export const TAG_MI=1;
 /**Тэг эвакуации*/
 export const TAG_EVAC=4;
 /**Тэг такси*/
 export const TAG_TAXI=5;
+/**Тэг зеленых насаждений*/
+export const TAG_GREEN=6;
+/**Тэг погрузки и разгрузки*/
+export const TAG_CARGO=7;
 
 /**Тип участника ИП*/
 export const UCHAST_INDIVID=3;

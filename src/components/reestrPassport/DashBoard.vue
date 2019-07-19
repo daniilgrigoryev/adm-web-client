@@ -62,7 +62,7 @@ export default {
       defoultList: [
         {
           title: "Протоколом",
-          desc: "АПН, такси, эвакуация",
+          desc: "АПН, такси, эвакуация, погрузки и разгрузки",
           icon: require("~/assets/images/icons/protokol.svg"),
           value: [
             {
@@ -77,6 +77,11 @@ export default {
                   title: "Эвакуация",
                   value: "CreateProtAPN",
                   name: "Протокол об административном правонарушении"
+                },
+                {
+                  title: "Погрузка и разгрузка",
+                  value: "CreateProtCargo",
+                  name: "Протокол об административном правонарушении погрузки и разгрузки"
                 },
                 {
                   title: "КоАП г. Москвы",
@@ -235,6 +240,7 @@ export default {
     imageByWizardName(wizardName) {
       switch (wizardName) {
         case "CreateProtAPN":
+        case "CreateProtCargo":
         case "CreateProt2025":
         case "CreateProtEvac":
         case "CreateProtIzyat":

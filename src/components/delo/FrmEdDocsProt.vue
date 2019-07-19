@@ -6,7 +6,7 @@
           <Button @click="getDocsProtEdit()" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
-          <b class="adm-text-big color-dark-lighter">Протокол об АПН  {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
+          <b class="adm-text-big color-dark-lighter">{{ title }}</b>
         </div>
         <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/icons/wiki.svg' class="wmax-none">
@@ -61,20 +61,20 @@
             style="grid-column: span 2;"
           />
 
-          <hr v-if="!isTaxi">
-          <view-data-item v-if="!isTaxi"
+          <hr v-if="!isTaxi && !isCargo">
+          <view-data-item v-if="!isTaxi && !isCargo"
             label="Было снятие ТС с эвакуатора"
             :value="isRemovedFromEvac"
             style="grid-column: span 2;"
           />
-          <div v-if="body.annexesList && body.annexesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
+          <div v-if="isTaxi && body.annexesList && body.annexesList.length > 0" style="grid-column: span 2;margin: 5px 0;padding-left: 60px;">
             <p class="adm-14 color-dark-lighter ">Список приложений</p>
             <div v-for="(item, index) in body.annexesList" :key="index" >
               <p class="adm-text-big color-dark-base">{{ item.name }} <span v-if="item.sheets_quantity">(Количество листов - {{item.sheets_quantity}})</span></p>
             </div>
           </div>
 
-          <div class="items-wrap" v-if="isTaxi">
+          <div v-if="isTaxi" class="items-wrap">
             <view-data-item
               label="Номер разрешения такси"
               :value="body.tlNumber"
@@ -168,6 +168,23 @@
         let res = null;
         if (this.dataStore) {
           res = funcUtils.isNotEmpty(this.dataStore.deloTag) &&  this.dataStore.deloTag.includes(constants.TAG_TAXI);
+        }
+        return res;
+      },
+      isCargo() {
+        let res = null;
+        if (this.dataStore) {
+          res = funcUtils.isNotEmpty(this.dataStore.deloTag) && this.dataStore.deloTag.includes(constants.TAG_CARGO);
+        }
+        return res;
+      },
+      title() {
+        let res = 'Протокол об АПН';
+        if (this.dataStore) {
+          if (this.isCargo) {
+            res += ' погрузки и разгрузки ';
+          }
+          res += ' ' + (this.body.docN ? '№' + this.body.docN : '') + ' от ' + funcUtils.parseDateTime(this.body.dateSost, 'DD.MM.YYYY');
         }
         return res;
       },

@@ -9,8 +9,7 @@
 
         <div class="adm-form">
           <div class="adm-form__container">
-            <h2 class="adm-form__headding" id="head">Протокол об АПН {{ docsProt.docN ? "№" + docsProt.docN : "" }} от {{ docsProt.dateSost |
-              formatDateTime('DD.MM.YYYY HH:mm') }}</h2>
+            <h2 class="adm-form__headding" id="head">{{ title }}</h2>
             <div class="adm-form__content">
               <div class="adm-form__item">
                 <small class="adm-form__label">Протокол №</small>
@@ -198,7 +197,7 @@
                   </Row>
                 </div>
               </div>
-              <div class="adm-form__item">
+              <div v-if="!isTaxi && !isCargo" class="adm-form__item">
                 <small class="adm-form__label"></small>
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="14" :lg="22">
@@ -208,7 +207,7 @@
                   </Col>
                 </Row>
               </div>
-              <list-items-docs :items="docsProt.annexesList" title="Список приложений" :disabledFields="{ check: true }" @change="store"></list-items-docs>
+              <list-items-docs v-if="isTaxi" :items="docsProt.annexesList" title="Список приложений" :disabledFields="{ check: true }" @change="store"></list-items-docs>
             </div>
           </div>
           <div v-if="isTaxi">
@@ -360,7 +359,7 @@
         stotvSearchInfoList: null,
         listSectionNav: [
           {
-            title: "Протокол об АПН",
+            title: 'Протокол об АПН',
             name: "head",
           },
           {
@@ -625,6 +624,23 @@
         let res = null;
         if (this.deloTags) {
           res = funcUtils.isNotEmpty(this.deloTags) && this.deloTags.includes(constants.TAG_TAXI);
+        }
+        return res;
+      },
+      isCargo() {
+        let res = null;
+        if (this.deloTags) {
+          res = funcUtils.isNotEmpty(this.deloTags) && this.deloTags.includes(constants.TAG_CARGO);
+        }
+        return res;
+      },
+      title() {
+        let res = 'Протокол об АПН';
+        if (this.docsProt) {
+          if (this.isCargo) {
+            res += ' погрузки и разгрузки ';
+          }
+          res += ' ' + (this.docsProt.docN ? '№' + this.docsProt.docN : '') + ' от ' + funcUtils.parseDateTime(this.docsProt.dateSost, 'DD.MM.YYYY');
         }
         return res;
       },

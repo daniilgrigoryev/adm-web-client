@@ -54,7 +54,7 @@
         </Row>
       </div>
     </div>
-    <div class="adm-form__item">
+    <div class="adm-form__item" v-if="!isCargo">
       <small class="adm-form__label"></small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
@@ -67,10 +67,21 @@
 
 <script>
   import WizardItemProtFour from "~/components/wizard/items/WizardItemProtFour";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
+  import * as constants from "~/assets/js/utils/constants";
 
   export default {
     name: "WizardItemProtFour",
-    extends: WizardItemProtFour
+    extends: WizardItemProtFour,
+    computed: {
+      isCargo() {
+        let res = null;
+        if (this.info) {
+          res = funcUtils.isNotEmpty(this.info.deloTag) && this.info.deloTag === constants.TAG_CARGO;
+        }
+        return res;
+      },
+    },
   }
 </script>
 
