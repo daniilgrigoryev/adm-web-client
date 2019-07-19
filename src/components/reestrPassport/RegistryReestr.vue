@@ -215,7 +215,10 @@ export default {
               h(
                 "a",
                 {
-                  class: { "color-blue": true },
+                  class: {
+                    "color-blue": true,
+                    'break-text': true
+                  },
                   domProps: {
                     href: "javascript:void(0)"
                   },
@@ -243,7 +246,30 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.authorName)]);
+            return h("div", [h("p", {
+              class: {
+                'break-text': true
+              },
+            }, params.row.authorName)]);
+          }
+        },
+        {
+          title: "Тип доставки реестра",
+          key: "deliveryTypeName",
+          minWidth: 100,
+          ellipsis: true,
+          referenceName: "deliveryTypeName",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [h("p", params.column.title)]);
+          },
+          render: (h, params) => {
+            return h("div", [h("p", {
+              class: {
+                'break-text': true
+              },
+            }, params.row.deliveryTypeName)]);
           }
         },
         {
@@ -258,7 +284,11 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.contractName)]);
+            return h("div", [h("p", {
+              class: {
+                'break-text': true
+              },
+            }, params.row.contractName)]);
           }
         },
         {
@@ -275,7 +305,11 @@ export default {
           render: (h, params) => {
             return h("div", [
               h(
-                "p",
+                "p", {
+                  class: {
+                    'break-text': true
+                  },
+                },
                 this.$options.filters.formatDateTime(
                   params.row.creationDate,
                   "DD.MM.YYYY HH:mm"
@@ -298,7 +332,11 @@ export default {
           render: (h, params) => {
             return h("div", [
               h(
-                "p",
+                "p", {
+                  class: {
+                    'break-text': true
+                  },
+                },
                 this.$options.filters.formatDateTime(
                   params.row.sendDate,
                   "DD.MM.YYYY HH:mm"
@@ -319,7 +357,11 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.sendingsNum)]);
+            return h("div", [h("p", {
+              class: {
+                'break-text': true
+              },
+            }, params.row.sendingsNum)]);
           }
         },
         {
@@ -336,7 +378,11 @@ export default {
           render: (h, params) => {
             return h("div", [
               h(
-                "p",
+                "p", {
+                  class: {
+                    'break-text': true
+                  },
+                },
                 this.$options.filters.formatDateTime(
                   params.row.unloadDate,
                   "DD.MM.YYYY HH:mm"
@@ -357,7 +403,11 @@ export default {
             return h("div", [h("p", params.column.title)]);
           },
           render: (h, params) => {
-            return h("div", [h("p", params.row.unloadState)]);
+            return h("div", [h("p", {
+              class: {
+                'break-text': true
+              },
+            }, params.row.unloadState)]);
           }
         },
         {
@@ -783,6 +833,13 @@ export default {
   }
 };
 </script>
+
+<style lang='scss'>
+  .break-text {
+    white-space: normal;
+    word-break: break-word;
+  }
+</style>
 <style lang='scss' scoped>
 .breadcrumbs {
   height: 46px;
@@ -833,5 +890,9 @@ export default {
       }
     }
   }
+}
+.break-text {
+  white-space: normal;
+  word-break: break-word;
 }
 </style>
