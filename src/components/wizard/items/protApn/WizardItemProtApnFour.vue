@@ -54,7 +54,7 @@
         </Row>
       </div>
     </div>
-    <div class="adm-form__item" v-if="!isCargo &7 !isGreen">
+    <div class="adm-form__item" v-if="!isCargo && !isGreen">
       <small class="adm-form__label"></small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="22">
