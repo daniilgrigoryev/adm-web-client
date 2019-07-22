@@ -4,7 +4,7 @@
       <small class="adm-form__label">Список документов из дела</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" filterable clearable @on-change="changeDocLVOK">
+          <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.docId" filterable clearable @on-change="changeDocLVOK" @on-enter="changeDocLVOK">
             <Option class="wmax360 " v-for="item in lvokDeloDocsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>
@@ -14,7 +14,7 @@
       <small class="adm-form__label">Тип документа</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId !== null" placeholder="" v-model="data.docTip" filterable clearable @on-change="changeDocTip">
+          <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" :disabled="data.docId !== null" placeholder="" v-model="data.docTip" filterable clearable @on-change="changeDocTip" @on-enter="changeDocTip">
             <Option class="wmax360 " v-for="item in tipDocList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>

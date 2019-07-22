@@ -2,7 +2,7 @@
   <div v-if="data">
     <wizard-modal v-if="dolzModal.visible" :columnsOptions="dolzModal.columnsOptions" :data="dolzModal.sispList" @showModal="showDolzModal" @onRowDbClick="onSispClick"></wizard-modal>
     <wizard-modal v-if="organModal.visible" :columnsOptions="organModal.columnsOptions" :data="organModal.gibddList" @showModal="showOrganModal" @onRowDbClick="onGibddClick"></wizard-modal>
-    
+
 
     <div class="adm-form__item">
       <small class="adm-form__label">Дата стадии исполнения</small>
@@ -19,7 +19,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="changeIspolnKod">
+            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stadIspolnKod" clearable filterable @on-change="changeIspolnKod" @on-enter="changeIspolnKod">
               <Option class=" " v-for="item in ispolnList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </CustomSelect>
           </Col>
@@ -53,7 +53,7 @@
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="24" :lg="24">
-            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateStadIspoln" @on-change="storeElementData" :filterMethod="filterStotv">
+            <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="data.stotvId" clearable filterable :disabled="!data.dateStadIspoln" @on-change="storeElementData" @on-enter="storeElementData" :filterMethod="filterStotv">
               <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value , item.label | concatByDelimiter(",")}}</Option>
             </CustomSelect>
           </Col>
@@ -97,8 +97,8 @@
         </Row>
       </div>
     </div>
-    
-    
+
+
   </div>
 </template>
 

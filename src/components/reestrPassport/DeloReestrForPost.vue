@@ -9,7 +9,7 @@
       <div class="content">
         <div class="adm-form__item">
           <div class="adm-form__item-label">Тег дела *</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.tag">
+          <CustomSelect class="adm-input adm-input--big" v-model="filter.tag" @on-enter="filterClick">
             <Option :value="4">Эвакуация</Option>
             <Option :value="5">Такси</Option>
             <Option :value="6">Зеленых насаждений</Option>
@@ -18,11 +18,11 @@
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">ГРЗ</div>
-          <Input class="adm-input adm-input--big" v-model="filter.regno" clearable/>
+          <Input class="adm-input adm-input--big" v-model="filter.regno" @on-enter="filterClick" clearable/>
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">Название участника</div>
-          <Input class="adm-input adm-input--big"  v-model="filter.name" placeholder="ФИО или название организации" clearable />
+          <Input class="adm-input adm-input--big"  v-model="filter.name" @on-enter="filterClick" placeholder="ФИО или название организации" clearable />
         </div>
         <div class="buttons-wrap">
           <Button @click="filterClick" type="default" class="adm-btn adm-btn--blue">Найти</Button>

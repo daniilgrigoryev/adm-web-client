@@ -4,7 +4,7 @@
       <small class="adm-form__label">Вид присутствия</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col>
-          <CustomSelect class="wmin360 adm-input adm-input--regular" placeholder="" v-model="data.presentVid" clearable @on-change="changePresentVids">
+          <CustomSelect class="wmin360 adm-input adm-input--regular" placeholder="" v-model="data.presentVid" clearable @on-change="changePresentVids" @on-enter="changePresentVids">
             <Option class="wmin360" v-for="item in presentVidsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>
@@ -14,7 +14,7 @@
       <small class="adm-form__label">Список представителей из дела</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="adm-input adm-input--regular wmax360" v-model="data.uchastId" :disabled="!data.presentVid" filterable clearable @on-change="storeElementData" placeholder="">
+          <CustomSelect class="adm-input adm-input--regular wmax360" v-model="data.uchastId" :disabled="!data.presentVid" filterable clearable @on-change="storeElementData" @on-enter="storeElementData" placeholder="">
             <Option v-for="item in representList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>

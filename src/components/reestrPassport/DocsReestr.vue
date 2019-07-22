@@ -9,17 +9,17 @@
       <div class="content">
         <div class="adm-form__item">
           <div class="adm-form__item-label">Тип документа *</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.docType" filterable clearable>
+          <CustomSelect class="adm-input adm-input--big" v-model="filter.docType" filterable clearable @on-enter="filterClick">
             <Option v-for="item in docTipDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
           </CustomSelect>
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">Название участника</div>
-          <Input class="adm-input adm-input--big"  v-model="filter.name" placeholder="ФИО или название организации" clearable />
+          <Input class="adm-input adm-input--big"  v-model="filter.name" @on-enter="filterClick" placeholder="ФИО или название организации" clearable />
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">ГРЗ</div>
-          <Input class="adm-input adm-input--big" v-model="filter.regno" clearable/>
+          <Input class="adm-input adm-input--big" v-model="filter.regno" @on-enter="filterClick" clearable/>
         </div>
         <div class="buttons-wrap">
           <Button @click="filterClick" type="default" class="adm-btn adm-btn--blue">Найти</Button>
@@ -27,7 +27,7 @@
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">Статус подписания *</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.sign">
+          <CustomSelect class="adm-input adm-input--big" v-model="filter.sign" @on-enter="filterClick">
             <Option :value="0">Все</Option>
             <Option :value="1">Не подписанные</Option>
             <Option :value="2">Подписанные</Option>
@@ -82,7 +82,7 @@
         <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
           <div class="action-bar__title">Подписать выбранные документы</div>
           <div class="action-bar__body">
-            <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings">
+            <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings" @on-enter="signData">
               <Option class="wmax360 " v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </CustomSelect>
             <Button :disabled="!sertificateNumber" type="primary" @click="signData">Подписать</Button>

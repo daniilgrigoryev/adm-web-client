@@ -22,7 +22,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.markaAvto"
-                              clearable @on-clear="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
+                              clearable @on-enter="changeMarkaAvto" @on-change="changeMarkaAvto" filterable>
                         <Option v-for="item in markAvtoList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -35,7 +35,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.modavtoName"
-                              clearable @on-change="store" :disabled="!isNotEmptyMarkId()" filterable>
+                              clearable @on-change="store" @on-enter="store" :disabled="!isNotEmptyMarkId()" filterable>
                         <Option v-for="item in modelList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -108,7 +108,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.katcKod"
-                              clearable @on-clear="store" @on-change="store" filterable>
+                              clearable @on-enter="store" @on-change="store" filterable>
                         <Option v-for="item in categoryTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -121,7 +121,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tiptcKod"
-                              clearable @on-change="changeTipTc" filterable>
+                              clearable @on-change="changeTipTc" @on-enter="changeTipTc" filterable>
                         <Option v-for="item in typeTCList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -134,7 +134,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.tipkuzKod"
-                              :disabled="!isNotEmptyTipTcKod()" clearable @on-change="store" filterable>
+                              :disabled="!isNotEmptyTipTcKod()" clearable @on-change="store" @on-enter="store" filterable>
                         <Option v-for="item in kuzovTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -147,7 +147,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorTip"
-                              clearable @on-clear="store" @on-change="store" filterable>
+                              clearable @on-enter="store" @on-change="store" filterable>
                         <Option v-for="item in motorTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -160,7 +160,7 @@
                   <Row type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
                       <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="vehsAMTC.motorEcologClass"
-                              clearable @on-clear="store" @on-change="store" filterable>
+                              clearable @on-enter="store" @on-change="store" filterable>
                         <Option v-for="item in motorEcologClassList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>

@@ -76,7 +76,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="22">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="dataAdvice.stotvId" clearable filterable  @on-change="store" :filterMethod="filterStotv">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="dataAdvice.stotvId" clearable filterable  @on-change="store" @on-enter="store" :filterMethod="filterStotv">
                         <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </CustomSelect>
                     </Col>

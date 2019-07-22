@@ -3,10 +3,10 @@
 
     <div class="adm-form">
       <div class="adm-form__container">
-        <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings">
+        <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings" @on-enter="signData">
           <Option class="wmax360 " v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </CustomSelect>
-        <Button @click="signData" type="primary" class="ml12">Подписать</Button>
+        <Button :disabled="!sertificateNumber" @click="signData" type="primary" class="ml12">Подписать</Button>
       </div>
     </div>
 

@@ -9,13 +9,13 @@
       <div class="content">
         <div class="adm-form__item">
           <div class="adm-form__item-label">Тип реестра</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.type" filterable clearable>
+          <CustomSelect class="adm-input adm-input--big" v-model="filter.type" filterable clearable @on-enter="filterClick">
             <Option v-for="item in postRegTypeDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
           </CustomSelect>
         </div>
         <div class="adm-form__item">
           <div class="adm-form__item-label">Статус</div>
-          <CustomSelect class="adm-input adm-input--big" v-model="filter.status" filterable clearable>
+          <CustomSelect class="adm-input adm-input--big" v-model="filter.status" filterable clearable @on-enter="filterClick">
             <Option v-for="item in postRegStatusDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
           </CustomSelect>
         </div>

@@ -23,7 +23,7 @@
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
               <Input class="adm-input adm-input--regular" v-model="deloModal.paramValue" @on-input-change="changeDeloValue">
-                  <CustomSelect class="adm-input adm-input--regular w180 align-l" v-model="deloModal.paramKey" slot="prepend">
+                  <CustomSelect class="adm-input adm-input--regular w180 align-l" v-model="deloModal.paramKey" slot="prepend" @on-enter="storeElementData">
                       <Option value="deloNum">По номеру дела</Option>
                       <Option value="postNum">По номеру постановления</Option>
                   </CustomSelect>
@@ -40,7 +40,7 @@
           </small>
 					<Row :gutter="16" type="flex" align="middle">
 						<Col :xs="24" :md="14" :lg="16">
-              <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect">
+              <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" filterable @on-change="onDeloSelect" @on-enter="onDeloSelect">
                 <Option class="wmax360 " v-for="item in deloModal.deloList" :value="item.value.delo" :key="item.value.id">{{ item.label }}</Option>
               </CustomSelect>
 						</Col>

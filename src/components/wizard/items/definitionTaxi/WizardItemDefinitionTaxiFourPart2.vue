@@ -7,7 +7,7 @@
           <small class="adm-form__label">Тип источника</small>
           <Row :gutter="16" type="flex" align="middle">
             <Col>
-              <CustomSelect class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.vsTypeId" clearable @on-change="storeElementData">
+              <CustomSelect class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.vsTypeId" clearable @on-change="storeElementData" @on-enter="storeElementData">
                 <Option class="wmax360 " v-for="item in violSourceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
               </CustomSelect>
             </Col>
@@ -48,7 +48,7 @@
           <div class="adm-form__item_content">
             <Row :gutter="16" type="flex" align="middle">
               <Col :xs="24" :md="24" :lg="24">
-                <CustomSelect class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="data.vsFlSex" clearable filterable @on-change="storeElementData">
+                <CustomSelect class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="data.vsFlSex" clearable filterable @on-change="storeElementData" @on-enter="storeElementData">
                   <Option class="" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </CustomSelect>
               </Col>
@@ -96,7 +96,7 @@
           <small class="adm-form__label">Статус держателя лицензии</small>
           <Row type="flex" align="middle">
             <Col span="12">
-              <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="storeElementData">
+              <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="storeElementData" @on-enter="storeElementData">
                 <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
               </CustomSelect>
             </Col>

@@ -4,7 +4,7 @@
       <small class="adm-form__label">Статус участника</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-        <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+        <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.status" clearable @on-change="changeStatus" @on-enter="changeStatus">
           <Option class="wmax360" v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
         </CustomSelect>
         </Col>
@@ -14,7 +14,7 @@
       <small class="adm-form__label">Вид</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.vid" clearable @on-change="changeVid">
+          <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.vid" clearable @on-change="changeVid" @on-enter="changeVid">
             <Option class="wmax360" v-for="item in vidList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>
@@ -24,7 +24,7 @@
       <small class="adm-form__label">Список ТС</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.vehsId" clearable @on-change="storeElementData">
+          <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.vehsId" clearable @on-change="storeElementData" @on-enter="storeElementData">
             <Option class="wmax360" v-for="item in vehsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>
@@ -34,7 +34,7 @@
       <small class="adm-form__label">Тип участника</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.tip" clearable @on-change="storeElementData" :disabled="!data.status">
+          <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="data.tip" clearable @on-change="storeElementData" @on-enter="storeElementData" :disabled="!data.status">
             <Option class="wmax360" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>

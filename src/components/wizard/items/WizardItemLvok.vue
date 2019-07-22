@@ -5,7 +5,7 @@
       <div class="adm-form__item_content">
         <Row type="flex" align="middle">
           <Col span="12">
-            <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus">
+            <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.status" clearable @on-change="changeStatus" @on-enter="changeStatus">
               <Option class="wmax360 " v-for="item in statusList" :value="item.value" :key="item.value">{{ item.label }}</Option>
             </CustomSelect>
           </Col>
@@ -19,7 +19,7 @@
     </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Тип участника</small>
-      <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.tip" clearable @on-change="storeElementData">
+      <CustomSelect class="wmax360 wmin180 adm-input adm-input--regular" placeholder="" v-model="data.tip" clearable @on-change="storeElementData" @on-enter="storeElementData">
         <Option class="wmax360" v-for="item in tipList" :value="item.value" :key="item.value">{{ item.label }}</Option>
       </CustomSelect>
     </div>

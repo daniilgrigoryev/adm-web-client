@@ -73,7 +73,7 @@
       <small class="adm-form__label">Тип ЮЛ</small>
       <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tip" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+          <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.tip" filterable clearable @on-enter="storeElementData" @on-change="storeElementData">
             <Option class="wmax360 " v-for="item in tipULList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>
@@ -83,7 +83,7 @@
       <small class="adm-form__label">Форма собственности</small>
       <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.fsobstKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+          <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.fsobstKod" filterable clearable @on-enter="storeElementData" @on-change="storeElementData">
             <Option class="wmax360 " v-for="item in formSobstvList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>
@@ -93,7 +93,7 @@
       <small class="adm-form__label">ОПФ</small>
       <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.orgformKod" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+          <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" placeholder="" v-model="data.orgformKod" filterable clearable @on-enter="storeElementData" @on-change="storeElementData">
             <Option class="wmax360 " v-for="item in orgFormList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>
@@ -103,7 +103,7 @@
       <small class="adm-form__label">Ведомство</small>
       <Row :gutter="16" type="flex" align="middle">
           <Col :xs="24" :md="14" :lg="16">
-          <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" v-model="data.vedomstvoId" filterable clearable @on-clear="storeElementData" @on-change="storeElementData">
+          <CustomSelect class="adm-input adm-input--regular wmax240 wmin180" v-model="data.vedomstvoId" filterable clearable @on-enter="storeElementData" @on-change="storeElementData">
             <Option class="wmax360 " v-for="item in vedomstList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </CustomSelect>
         </Col>

@@ -114,7 +114,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.pnpaId" clearable filterable @on-change="store" :filterMethod="filterStotv">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.pnpaId" clearable filterable @on-change="store" @on-enter="store" :filterMethod="filterStotv">
                         <Option class=" " v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -126,7 +126,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.stotvId" clearable filterable @on-change="store" :filterMethod="filterStotv">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.stotvId" clearable filterable @on-change="store" @on-enter="store" :filterMethod="filterStotv">
                         <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -168,7 +168,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.proceedingsFixingType" clearable filterable @on-change="store">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="protPZTC.proceedingsFixingType" clearable filterable @on-change="store" @on-enter="store">
                         <Option class=" " v-for="item in proceedingsFixingList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>

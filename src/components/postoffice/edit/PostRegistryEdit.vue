@@ -22,7 +22,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.status" clearable filterable  @on-change="store">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.status" clearable filterable  @on-change="store" @on-enter="store">
                         <Option class=" " v-for="item in postRegStatusDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -34,7 +34,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.deliveryType" :disabled="!postRegistry.regType" clearable filterable  @on-change="store">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.deliveryType" :disabled="!postRegistry.regType" clearable filterable  @on-change="store" @on-enter="store">
                         <Option class=" " v-for="item in deliveryTypeDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -46,7 +46,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.postNum" clearable filterable  @on-change="store">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.postNum" clearable filterable  @on-change="store" @on-enter="store">
                         <Option class=" " v-for="item in postOfficesDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -58,7 +58,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.contractId" clearable filterable  @on-change="store">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.contractId" clearable filterable  @on-change="store" @on-enter="store">
                         <Option class=" " v-for="item in contractsDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>

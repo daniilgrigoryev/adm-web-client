@@ -26,7 +26,7 @@
               <div class="adm-form__item_content">
                 <Row :gutter="16" type="flex" align="middle">
                   <Col :xs="24" :md="24" :lg="24">
-                    <CustomSelect class="adm-input adm-input--regular wmin180" placeholder="Ввод страны" v-model="data.countryCode" filterable clearable @on-change="storeElementData">
+                    <CustomSelect class="adm-input adm-input--regular wmin180" placeholder="Ввод страны" v-model="data.countryCode" filterable clearable @on-change="storeElementData" @on-enter="storeElementData">
                       <Option class="" v-for="item in countryList" :value="item.value" :key="item.value">{{item.label }}</Option>
                     </CustomSelect>
                   </Col>
@@ -39,7 +39,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular wmin180" placeholder="Ввод региона" v-model="data.regionId" filterable clearable :disabled="!isNotEmptyContryCode()" @on-change="storeElementData">
+                      <CustomSelect class="adm-input adm-input--regular wmin180" placeholder="Ввод региона" v-model="data.regionId" filterable clearable :disabled="!isNotEmptyContryCode()" @on-change="storeElementData" @on-enter="storeElementData">
                         <Option class="" v-for="item in regionsList" :value="item.regionId" :key="item.regionId">{{item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -51,7 +51,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular wmin180" placeholder="Ввод района" ref="rayon" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon">
+                      <CustomSelect class="adm-input adm-input--regular wmin180" placeholder="Ввод района" ref="rayon" v-model="data.rayonId" filterable clearable :disabled="!isNotEmptyRegionId()" @on-change="changeRayon" @on-enter="changeRayon">
                         <Option class="" v-for="item in rayonsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -63,7 +63,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular wmin180" ref="city" placeholder="Ввод населенного пункта"  v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity">
+                      <CustomSelect class="adm-input adm-input--regular wmin180" ref="city" placeholder="Ввод населенного пункта"  v-model="data.cityId" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId()" @on-query-change="changeCity" @on-clear="changeCity" @on-enter="changeCity">
                         <Option class="" v-for="item in citiesList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -76,7 +76,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="24" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular" ref="street" placeholder="Ввод улицы"  v-model="data.streetId" @on-query-change="changeStreet" @on-clear="changeStreet"  filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()">
+                      <CustomSelect class="adm-input adm-input--regular" ref="street" placeholder="Ввод улицы"  v-model="data.streetId" @on-query-change="changeStreet" @on-clear="changeStreet" @on-enter="changeStreet" filterable clearable :disabled="!isNotEmptyRegionId() && !isNotEmptyRayonId() && !isNotEmptyCityId()">
                         <Option class=" " v-for="item in streetsList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>

@@ -104,7 +104,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.pnpaId" clearable filterable @on-change="store" :filterMethod="filterStotv">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.pnpaId" clearable filterable @on-change="store" @on-enter="store" :filterMethod="filterStotv">
                         <Option class=" " v-for="item in pnpaList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -116,7 +116,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="22" :md="22" :lg="22">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.stotvId" clearable filterable @on-change="changeStotv" :filterMethod="filterStotv">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="docsOpred.stotvId" clearable filterable @on-change="changeStotv" @on-enter="changeStotv" :filterMethod="filterStotv">
                         <Option class=" " v-for="item in stotvSearchInfoList" :value="item.id" :key="item.id">{{ item.value + ', ' + item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -153,7 +153,7 @@
                   <small class="adm-form__label">Тип источника</small>
                   <Row :gutter="16" type="flex" align="middle">
                     <Col>
-                      <CustomSelect class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="docsOpred.vsTypeId" clearable @on-change="store">
+                      <CustomSelect class="wmax240 wmin180 adm-input adm-input--regular" placeholder="" v-model="docsOpred.vsTypeId" clearable @on-change="store" @on-enter="store">
                         <Option class="wmax360 " v-for="item in violSourceTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -194,7 +194,7 @@
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
-                        <CustomSelect class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="docsOpred.vsFlSex" clearable filterable @on-change="store">
+                        <CustomSelect class="adm-input adm-input--regular wmin180 wmax240" placeholder="" v-model="docsOpred.vsFlSex" clearable filterable @on-change="store" @on-enter="store">
                           <Option class="" v-for="item in sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                         </CustomSelect>
                       </Col>
