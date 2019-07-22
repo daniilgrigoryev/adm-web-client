@@ -1,39 +1,39 @@
 export default {
     state: {
-      moduleName: 'frmEdProtPZTCEdit',
+      moduleName: 'frmEdDocsOtherPZTCEdit',
       cid: null,
       bean: 'FrmEdDocsOtherPZTCEdit',
-      routeName: 'FrmEdProtPZTCEdit',
+      routeName: 'FrmEdDocsOtherPZTCEdit',
       data: null,
       command: null
     },
     mutations: {
-      frmEdProtPZTCEditSetCid(state, cid) {
+      frmEdDocsOtherPZTCEditSetCid(state, cid) {
         state.cid = cid;
       },
-      frmEdProtPZTCEditSetData(state, data) {
+      frmEdDocsOtherPZTCEditSetData(state, data) {
         state.data = data;
       },
-      frmEdProtPZTCEditSetCommand(state, command) {
+      frmEdDocsOtherPZTCEditSetCommand(state, command) {
         state.command = command;
       }
     },
     actions: {
-      frmEdProtPZTCEditSetCid(vm, cid) {
+      frmEdDocsOtherPZTCEditSetCid(vm, cid) {
         vm.state.cid = cid;
       },
-      frmEdProtPZTCEditSetData(vm, data) {
+      frmEdDocsOtherPZTCEditSetData(vm, data) {
         vm.state.data = data;
       },
-      frmEdProtPZTCEditSetCommand(vm, command) {
+      frmEdDocsOtherPZTCEditSetCommand(vm, command) {
         vm.state.command = command;
       }
     },
     getters: {
-      frmEdProtPZTCEditGetCommand: state => () => {
+      frmEdDocsOtherPZTCEditGetCommand: state => () => {
         return state.command
       },
-      frmEdProtPZTCEditGetData: state => {
+      frmEdDocsOtherPZTCEditGetData: state => {
         return state.data
       }
     }

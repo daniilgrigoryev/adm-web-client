@@ -110,9 +110,9 @@ const router = new Router({
       props: true
     },
     {
-      path: '/frmEdProtPZTCEdit',
-      name: 'FrmEdProtPZTCEdit',
-      component: () => import('~/components/delo/edit/FrmEdProtPZTCEdit'),
+      path: '/frmEdDocsOtherPZTCEdit',
+      name: 'FrmEdDocsOtherPZTCEdit',
+      component: () => import('~/components/delo/edit/FrmEdDocsOtherPZTCEdit'),
       props: true
     },
     {

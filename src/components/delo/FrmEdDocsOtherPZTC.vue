@@ -126,7 +126,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: "FrmEdProtPZTC",
+    name: "FrmEdDocsOtherPZTC",
     props: {
       delo: Object
     },

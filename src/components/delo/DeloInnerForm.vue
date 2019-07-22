@@ -37,7 +37,7 @@
 
       FrmEdIspolnShtraf: () => import('~/components/delo/FrmEdIspolnShtraf'),
       FrmEdVehsAMTC: () => import('~/components/delo/FrmEdVehsAMTC'),
-      FrmEdProtPZTC: () => import('~/components/delo/FrmEdProtPZTC'),
+      FrmEdDocsOtherPZTC: () => import('~/components/delo/FrmEdDocsOtherPZTC'),
       FrmEdUchastFL: () => import('~/components/delo/FrmEdUchastFL'),
       FrmEdDocsProt: () => import('~/components/delo/FrmEdDocsProt'),
       FrmEdDelo: () => import('~/components/delo/FrmEdDelo'),
@@ -116,14 +116,14 @@
             res = 'FrmEdDecisPost';
             break;
           }
-          case 'FrmEdIspoln': 
-          case 'FrmEdIspolnOther': 
-          case 'FrmEdIspolnFSSP': 
-          case 'FrmEdIspolnPered': 
-          case 'FrmEdIspolnPeredArest': 
-          case 'FrmEdIspolnPrecrashIsp': 
-          case 'FrmEdIspolnPriostVozobn': 
-          case 'FrmEdIspolnShtraf': 
+          case 'FrmEdIspoln':
+          case 'FrmEdIspolnOther':
+          case 'FrmEdIspolnFSSP':
+          case 'FrmEdIspolnPered':
+          case 'FrmEdIspolnPeredArest':
+          case 'FrmEdIspolnPrecrashIsp':
+          case 'FrmEdIspolnPriostVozobn':
+          case 'FrmEdIspolnShtraf':
           case 'FrmEdIspolnVozvVU': {
             res = 'FrmEdIspolnShtraf';
             break;
@@ -133,7 +133,7 @@
             break;
           }
           case 'FrmEdDocsOtherPZTC': {
-            res = 'FrmEdProtPZTC';
+            res = 'FrmEdDocsOtherPZTC';
             break;
           }
           case 'FrmEdDocsProt': {

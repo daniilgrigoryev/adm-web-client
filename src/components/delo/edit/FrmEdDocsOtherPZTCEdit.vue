@@ -276,7 +276,7 @@
   import RequestApi from "~/assets/js/api/requestApi";
 
   export default {
-    name: "FrmEdProtPZTCEdit",
+    name: "FrmEdDocsOtherPZTCEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
@@ -284,7 +284,7 @@
     async created() {
       try {
         let current = formStack.getCurrent();
-        await this.$store.dispatch('frmEdProtPZTCEditSetCid', current.cid);
+        await this.$store.dispatch('frmEdDocsOtherPZTCEditSetCid', current.cid);
         let prepareParams = {
           method: 'restore'
         };
@@ -317,8 +317,8 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdProtPZTCEditSetCid', null);
-      this.$store.dispatch('frmEdProtPZTCEditSetData', null);
+      this.$store.dispatch('frmEdDocsOtherPZTCEditSetCid', null);
+      this.$store.dispatch('frmEdDocsOtherPZTCEditSetData', null);
     },
     data() {
       return {

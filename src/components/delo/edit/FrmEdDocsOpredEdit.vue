@@ -299,7 +299,7 @@
   import * as constants from "~/assets/js/utils/constants";
 
   export default {
-    name: "FrmEdProtPZTCEdit",
+    name: "FrmEdDocsOpredEdit",
     components: {
       AsideTemplate: () => import('~/components/templates/AsideTemplate'),
       WizardModal: () => import('~/components/wizard/items/WizardModal'),
@@ -307,7 +307,7 @@
     async created() {
       try {
         let current = formStack.getCurrent();
-        await this.$store.dispatch('frmEdProtPZTCEditSetCid', current.cid);
+        await this.$store.dispatch('frmEdDocsOpredEditSetCid', current.cid);
         let prepareParams = {
           method: 'restore'
         };
@@ -340,8 +340,8 @@
       }
     },
     destroyed() {
-      this.$store.dispatch('frmEdProtPZTCEditSetCid', null);
-      this.$store.dispatch('frmEdProtPZTCEditSetData', null);
+      this.$store.dispatch('frmEdDocsOpredEditSetCid', null);
+      this.$store.dispatch('frmEdDocsOpredEditSetData', null);
     },
     data() {
       return {
