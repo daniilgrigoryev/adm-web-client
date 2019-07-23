@@ -594,26 +594,6 @@
                     ])
                   },
                   render: (h, params) => {
-                   return h('div', {}, [
-                      h('Tooltip', {
-                        props: {
-                          disabled: funcUtils.isEmpty(params.row.opredN) ? true : false,
-                          content: params.row.opredN,
-                          transfer: true,
-                          maxWidth: 250,
-                          placement: 'left'
-                        },
-                      }, [
-                        h('p', {
-                          class: {
-                            'txt-truncate': true,
-                            'txt-uppercase': true,
-                          }
-                        }, params.row.opredN),
-                      ]),
-                    ])
-                  },
-                  render: (h, params) => {
                     return h('div', {}, [
                       h('Tooltip', {
                         props: {
@@ -751,6 +731,35 @@
                           }
                         }, params.row.stadIspolnNameLast),
                       ]),
+                    ])
+                  }
+                });
+                break;
+              }
+              case 'dateNar': {
+                this.columnsOptions.push({
+                  title: 'Дата нарушения', // дата реш.
+                  key: 'dateNar',
+                  position: 7,
+                  minWidth: 220,
+                  ellipsis: true,
+                  visible: funcUtils.isEmpty(this.dataStore.fields) ? false : this.dataStore.fields.includes('dateNar'),
+                  tooltip: true,
+                  renderHeader: (h, params) => {
+                    return h('div', [
+                      h('p', {
+                        class: {
+                          'color-dark-medium': true,
+                          'adm-text-big': true,
+                          'txt-normal': true,
+                        },
+                      }, params.column.title),
+                    ])
+                  },
+                  render: (h, params) => {
+                    let parsedDate = funcUtils.isNotEmpty(params.row.dateNar) ? funcUtils.parseDateTime(params.row.dateNar, 'DD.MM.YYYY') : '';
+                    return h('div', {}, [
+                      h('p', parsedDate),
                     ])
                   }
                 });

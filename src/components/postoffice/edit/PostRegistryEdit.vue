@@ -34,7 +34,7 @@
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.deliveryType" :disabled="!postRegistry.regType" clearable filterable  @on-change="store" @on-enter="store">
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.deliveryType" clearable filterable  @on-change="changeDeliveryType" @on-enter="changeDeliveryType">
                         <Option class=" " v-for="item in deliveryTypeDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
@@ -42,24 +42,24 @@
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Список почтовых отделений</small>
+                <small class="adm-form__label">Ассоциированный контракт</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.postNum" clearable filterable  @on-change="store" @on-enter="store">
-                        <Option class=" " v-for="item in postOfficesDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.contractId" clearable filterable  @on-change="changeContract" @on-enter="changeContract">
+                        <Option class=" " v-for="item in contractsDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
                   </Row>
                 </div>
               </div>
               <div class="adm-form__item">
-                <small class="adm-form__label">Список ассоциированных контрактов</small>
+                <small class="adm-form__label">Почтовое отделение</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="24">
-                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.contractId" clearable filterable  @on-change="store" @on-enter="store">
-                        <Option class=" " v-for="item in contractsDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      <CustomSelect class="adm-input adm-input--regular  wmin180" placeholder="" v-model="postRegistry.postNum" clearable filterable  @on-change="store" @on-enter="store">
+                        <Option class=" " v-for="item in postOfficesDict" :value="item.value" :key="item.value">{{ item.label }}</Option>
                       </CustomSelect>
                     </Col>
                   </Row>
@@ -125,7 +125,6 @@
     data() {
       return {
         postRegistry: null,
-        postRegTypeDict: [],
         postRegStatusDict: [],
         deliveryTypeDict: [],
         postOfficesDict: [],
@@ -165,39 +164,24 @@
           } else {
             this.postRegistry = postRegistry;
 
-            await this.fillPostRegTypeDict();
             await this.fillPostRegStatusDict();
             await this.fillPostOfficesDict();
             await this.fillContractsDict();
-            if (funcUtils.isNotEmpty(postRegistry.regType)) {
-              await this.fillDeliveryTypeDict();
-            }
+            await this.fillDeliveryTypeDict();
 
           }
         } catch (e) {
           this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
         }
       },
-      async changeRegType() {
-        this.postRegistry.deliveryType = null;
-        if (this.postRegistry.regType) {
-          await this.fillDeliveryTypeDict();
-        }
+      async changeDeliveryType() {
         await this.store();
+        await this.fillContractsDict();
+        await this.fillPostOfficesDict();
       },
-      async fillPostRegTypeDict() {
-        let postRegTypeDict = [];
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getPostRegTypeDictionary'
-        });
-        let postRegTypeList = JSON.parse(eventResponse.response).data;
-        postRegTypeList.forEach((item) => {
-          postRegTypeDict.push({
-            label: item.values['NAME'],
-            value: item.values['ID']
-          })
-        });
-        this.postRegTypeDict = postRegTypeDict;
+      async changeContract() {
+        await this.store();
+        await this.fillPostOfficesDict();
       },
       async fillPostRegStatusDict() {
         let postRegStatusDict = [];
@@ -235,8 +219,8 @@
         let postOfficesList = JSON.parse(eventResponse.response).data;
         postOfficesList.forEach((item) => {
           postOfficesDict.push({
-            label: item.values['NAME'],
-            value: item.values['ID']
+            label: item.name,
+            value: item.id
           })
         });
         this.postOfficesDict = postOfficesDict;

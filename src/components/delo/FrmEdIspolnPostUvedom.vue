@@ -49,6 +49,11 @@
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/map.svg')"
           />
+          <view-data-item
+            label="Комментарий"
+            :value="body.dopSved"
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>

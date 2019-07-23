@@ -55,8 +55,11 @@
             :value="body.organIspolnName"
             style="grid-column: span 2;"
           />
-          
-          
+          <view-data-item
+            label="Комментарий"
+            :value="body.dopSved"
+            style="grid-column: span 2;"
+          />
         </div>
       </div>
     </div>
