@@ -45,7 +45,7 @@
       <small class="adm-form__label">Телефон</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="22" :lg="22">
-          <masked-input inputClass="adm-input adm-input--regular" :maskProps="{mask: '99999999999', placeholder: '',}" v-model="data.phone" @onInputChange="storeElementData"></masked-input>
+          <masked-input inputClass="adm-input adm-input--regular" :maskProps="{regex: '[0-9]{12}', placeholder: ''}" v-model="data.phone" @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
     </div>
