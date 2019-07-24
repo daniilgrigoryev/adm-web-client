@@ -456,6 +456,10 @@ export default {
         let current = formStack.getCurrent();
         await this.$store.dispatch("deloReestrForPostSetCid", current.cid);
         let cid = funcUtils.getfromLocalStorage("admDeloReestrForPost");
+        let scenarioResult;
+        if (funcUtils.isNotEmpty(current.params)) {
+          scenarioResult = current.params.scenarioResult;
+        }
         let eventResponse;
 
         if (funcUtils.isNull(cid)) {
@@ -473,6 +477,13 @@ export default {
           });
           let filter = JSON.parse(eventResponse.response).data.find;
           this.parseFilter(filter);
+
+          if (funcUtils.isNotEmpty(scenarioResult)) {
+            await this.filterClick();
+            delete current.params;
+            formStack.updateCurrent(current);
+            return;
+          }
         }
         await this.getSelectId();
         await this.fillModule(eventResponse);

@@ -29,7 +29,8 @@
       WizardScenarioAddDefinitionPetition: () => import('~/components/wizard/WizardScenarioAddDefinitionPetition.vue'),
       WizardScenarioAddPetition: () => import('~/components/wizard/WizardScenarioAddPetition'),
       WizardScenarioPostStopDelo: () => import('~/components/wizard/WizardScenarioPostStopDelo'),
-      WizardScenarioPostDecisDelo: () => import('~/components/wizard/WizardScenarioPostDecisDelo')
+      WizardScenarioPostDecisDelo: () => import('~/components/wizard/WizardScenarioPostDecisDelo'),
+      WizardScenarioPostDecisDeloList: () => import('~/components/wizard/WizardScenarioPostDecisDeloList')
     },
     async created() {
       try {
@@ -217,7 +218,12 @@
             };
             break;
           }
-          case 'CreateProtDecisDeloList':
+          case 'CreateProtDecisDeloList': {
+            res = {
+              name: 'WizardScenarioPostDecisDeloList'
+            };
+            break;
+          }
           case 'CreateProtDecisDelo': {
             res = {
               name: 'WizardScenarioPostDecisDelo'
