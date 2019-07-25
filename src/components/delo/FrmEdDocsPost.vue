@@ -4,11 +4,11 @@
     <div class="amd-title amd-title--sticky px36 pt24 pb18"><!-- wmax940 mx-auto -->
       <div class="flex-parent flex-parent--space-between-main flex-parent--center-cross">
         <div class="flex-parent flex-parent--center-cross">
-          <Button  @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
+          <Button v-if="body.docTip !== docTipEnum.POST_VIDEOFX" @click="getDocsPostEdit" type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer mr24" title="Редактировать">
             <img src='../../assets/images/icons/pen.svg' class="wmax-none">
           </Button>
           <b class="adm-text-big color-dark-lighter">Постановление  {{ body.docN ? "№" + body.docN : "" }} от {{ body.dateSost | formatDateTime('DD.MM.YYYY') }}</b>
-          <Button @click="getSignatureEdit" type="primary" class="ml12">Подписать</Button>
+          <Button v-if="body.docTip !== docTipEnum.POST_VIDEOFX" @click="getSignatureEdit" type="primary" class="ml12">Подписать</Button>
         </div>
         <!-- <Button type="text" style="outline: 0!important;" class="px0 py0 cursor-pointer">
           <img src='../../assets/images/icons/wiki.svg' class="wmax-none">
@@ -189,7 +189,7 @@
 </template>
 
 <script>
-  import * as ConstantUtils from '~/assets/js/utils/constantUtils';
+  import docTipEnum from '~/assets/js/utils/docTipEnum';
   import * as funcUtils from "~/assets/js/utils/funcUtils";
   import RequestApi from "~/assets/js/api/requestApi";
   import * as formStack from '~/assets/js/api/formStack';
@@ -234,6 +234,7 @@
         hardCopies: null,
         hideMoreSignatures: false,
         hideMoreHardCopies: false,
+        docTipEnum
       }
     },
     computed: {
