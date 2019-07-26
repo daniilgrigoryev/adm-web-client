@@ -37,7 +37,7 @@
             style="grid-column: span 2;"
           />
           <view-data-item
-            label="Инспектор, на чье имя ходатайство"
+            label="Руководитель, на чье имя ходатайство"
             :value="body.inspUtvKod, body.inspUtvName  | concatByDelimiter('-')"
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/police.svg')"

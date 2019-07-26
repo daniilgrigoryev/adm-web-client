@@ -1,6 +1,12 @@
 <template>
   <div v-if="data">
     <div class="adm-form__item">
+      <small class="adm-form__label">Дата, до которой продлевается срок</small>
+      <div class="adm-form__item_content">
+        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.prolongUntilDate" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
+      </div>
+    </div>
+    <div class="adm-form__item">
       <small class="adm-form__label">Основание продления сроков</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
@@ -8,12 +14,6 @@
             <Input inputClass="adm-input adm-input--regular wmin120" v-model="data.reason" @onInputChange="storeElementData"></Input>
           </Col>
         </Row>
-      </div>
-    </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Дата, до которой продлевается срок</small>
-      <div class="adm-form__item_content">
-        <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.prolongUntilDate" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
       </div>
     </div>
     <div class="adm-form__item">
