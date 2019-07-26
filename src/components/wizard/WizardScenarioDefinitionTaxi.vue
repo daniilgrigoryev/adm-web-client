@@ -44,7 +44,7 @@
             <wizard-item-address v-if="isVisible('DocDefinitionTaxiFour.Organization.factAddr')" ref="DocDefinitionTaxiFour.Organization.factAddr" :info="getInfo('DocDefinitionTaxiFour.Organization.factAddr')" title="Фактический адрес" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
           </wizard-item-definition-taxi-four-part2>
           <div class="adm-form__container">
-            <h2 id="definition" class="adm-form__headding">Сведения о рассмотрении</h2>
+            <h2 id="definition" class="adm-form__headding">Сведения о явке</h2>
             <div class="adm-form__content">
               <wizard-item-definition-five v-if="isVisible('DocDefinitionTaxiFive')" ref="DocDefinitionTaxiFive" :info="getInfo('DocDefinitionTaxiFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-five>
             </div>
@@ -127,7 +127,7 @@
             name: "permission-details"
           },
           {
-            title: "Сведения о рассмотрении",
+            title: "Сведения о явке",
             name: "definition"
           },
           {

@@ -58,7 +58,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Инспектор утвердивший документ</small>
+      <small class="adm-form__label">Подписывающий</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="4" :md="4" :lg="4">

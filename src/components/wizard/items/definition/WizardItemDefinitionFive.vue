@@ -4,7 +4,7 @@
     <wizard-modal v-if="inspUtvModal.visible" :columnsOptions="inspUtvModal.columnsOptions" :data="inspUtvModal.inspUtvList" @showModal="showInspUtvModal" @onRowDbClick="onInspUtvClick"></wizard-modal>
 
     <div class="adm-form__item">
-      <small class="adm-form__label">Дата и время рассмотрения</small>
+      <small class="adm-form__label">Дата и время явки</small>
       <Row :gutter="16" type="flex" align="middle">
         <Col :xs="24" :md="14" :lg="16">
           <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180 ivu-date-picker" v-model="data.dateRasm" @change="storeElementData" clearable type="datetime" placeholder="дд/мм/гггг чч:мм" momentFormat="DD/MM/YYYY HH:mm" maskFormat="dd/mm/yyyy HH:MM"></DatePickerMask>
@@ -38,7 +38,7 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Инспектор утвердивший документ</small>
+      <small class="adm-form__label">Подписывающий</small>
       <div class="adm-form__item_content">
         <Row :gutter="16" type="flex" align="middle">
           <Col :xs="4" :md="4" :lg="4">

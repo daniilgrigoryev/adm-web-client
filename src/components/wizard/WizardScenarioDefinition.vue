@@ -48,7 +48,7 @@
             </div>
           </div>
           <div class="adm-form__container">
-            <h2 id="definition" class="adm-form__headding">Сведения о рассмотрении</h2>
+            <h2 id="definition" class="adm-form__headding">Сведения о явке</h2>
             <div class="adm-form__content">
               <wizard-item-definition-five v-if="isVisible('DocDefinitionFive')" ref="DocDefinitionFive" :info="getInfo('DocDefinitionFive')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-definition-five>
             </div>
@@ -114,7 +114,7 @@
             name: "nar"
           },
           {
-            title: "Сведения о рассмотрении",
+            title: "Сведения о явке",
             name: "definition"
           },
         ]
