@@ -885,8 +885,10 @@
         });
       },
       tlDateBegChange() {
-        let d = new Date(this.docsOpred.tlDateBeg);
-        this.docsOpred.tlDateEnd = d.setFullYear(d.getFullYear() + 5);
+        let d = new Date(this.docsProt.tlDateBeg);
+        d.setFullYear(d.getFullYear() + 5);
+        d.setDate(d.getDate() + 1)
+        this.docsProt.tlDateEnd = d
         this.store();
       },
       async getDeloTag() {

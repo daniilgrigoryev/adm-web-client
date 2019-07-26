@@ -900,7 +900,9 @@
       },
       tlDateBegChange() {
         let d = new Date(this.docsProt.tlDateBeg);
-        this.docsProt.tlDateEnd = d.setFullYear(d.getFullYear() + 5);
+        d.setFullYear(d.getFullYear() + 5);
+        d.setDate(d.getDate() + 1)
+        this.docsProt.tlDateEnd = d
         this.store();
       },
       async getDeloTag() {
