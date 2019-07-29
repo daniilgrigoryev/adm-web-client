@@ -35,7 +35,7 @@
               </div>
 
               <div class="my12 adm-form__item">
-                <small class="adm-form__label">Номер документа</small>
+                <small class="adm-form__label">Серия и номер</small>
                 <div class="adm-form__item_content">
                   <Row :gutter="16" type="flex" align="middle">
                     <Col :xs="24" :md="14" :lg="16">

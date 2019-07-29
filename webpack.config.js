@@ -1,123 +1,85 @@
-const resolve = require('path').resolve;
-const webpack = require('webpack');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const url = require('url');
-const publicPath = '/admWeb/';
+const merge = require('webpack-merge');
+const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const devserver = require('./webpack/devserver');
+const sass = require('./webpack/sass');
+const extractCSS = require('./webpack/css.extract');
+const css = require('./webpack/css');
+const vue = require('./webpack/vue');
+const sourceMap = require('./webpack/sourceMap');
+const files = require('./webpack/files');
+const babel = require('./webpack/babel');
+const favicon = require('./webpack/favicon');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const resolveConfig = require('./webpack/webpack.config.resolve')();
 
-module.exports = (options = {}) => ({
-  entry: ['./src/main.js'],
-  output: {
-    path: resolve(__dirname, 'admWeb'),
-    filename: options.dev ? '[name].js' : '[name].js?[chunkhash]',
-    chunkFilename: '[id].js?[chunkhash]',
-    publicPath: options.dev ? '/assets/' : publicPath
-  },
-  module: {
-    noParse: /(mapbox-gl)\.js$/,
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
+const publicPath = 'admWeb';
+const PATHS = {
+  source: path.join(__dirname, 'src'),
+};
+
+const commonConfig = function common(env, argv) {
+  return merge([
+    {
+      entry: ['./src/main.js'],
+      output: {
+        path: path.resolve(__dirname, publicPath),
+        filename: '[name].[hash].js',
+        publicPath: `/${publicPath}/`,
       },
-      {
-        test: /\.scss$/,
-        use: [{
-          loader: "style-loader"
-        }, {
-          loader: "css-loader"
-        }, {
-          loader: "sass-loader",
-          options: {
-            javascriptEnabled: true
-          }
-        }]
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            css: ['vue-style-loader', {
-              loader: 'css-loader',
-            }],
-            js: [
-              'babel-loader',
-            ],
-            query: {
-              presets: ['es2015'],
-            }
-          }
+      resolve: resolveConfig.resolve,
+      plugins: [
+        new VueLoaderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+          template: PATHS.source + '/index.html',
+          filename: 'index.html',
+        }),
+        new webpack.DefinePlugin({
+          'process.env.devHost': JSON.stringify(argv.devHost),
+        }),
+      ],
+      optimization: {
+        namedModules: true,
+        concatenateModules: true,
+        minimize: true,
+        minimizer: [
+          new UglifyJsPlugin({
+            cache: false,
+            sourceMap: false,
+          }),
+        ],
+        splitChunks: {
+          chunks: 'all',
         },
       },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        options: {
-          presets: ["es2015", "stage-0"],
-          plugins: ['transform-runtime']
-        },
-        exclude: /node_modules/
-      },
-      {
-        test: /\.json$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: 'json/'
-        }
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|otf|svg|svgz)(\?.+)?$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 64
-          }
-        }]
-      }
-    ]
-  },
-  resolve: {
-    alias: {
-      '~': resolve(__dirname, 'src'),
-      'scss': resolve(__dirname, 'src/assets/scss'),
-      'img': resolve(__dirname, 'src/assets/img')
     },
-    extensions: ['.js', '.vue', '.json', '.css', '.html']
-  },
- devServer: {
-    host: '0.0.0.0',
-    disableHostCheck: true,
-    port: 8040,
-    open: true,
-    historyApiFallback: {
-      index: url.parse(options.dev ? '/assets/' : publicPath).pathname
-    },
-    contentBase: resolve('./src/assets'),
-    watchContentBase: true,
-    watchOptions: {
-      ignored: /node_modules/
-    }
-  },
-  devtool: options.dev ? '#eval-source-map' : '#source-map',
-  performance: {
-    hints: false
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(options.dev)
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    }),
-    new FaviconsWebpackPlugin({
-      logo: "./src/assets/images/favicon.png",
-      inject: true,
-    })
-  ]
-});
+    files(),
+    babel(),
+    vue(),
+  ]);
+};
+
+module.exports = (env, argv) => {
+  if (!argv) {
+    argv = {
+      mode: 'development',
+      devHost: '',
+    };
+  }
+  if (argv.mode === 'production') {
+    return merge([commonConfig(env, argv), extractCSS(), favicon()]);
+  }
+  if (argv.mode === 'development') {
+    return merge([
+      commonConfig(env, argv),
+      devserver(`/${publicPath}/`),
+      sass(),
+      css(),
+      sourceMap(),
+    ]);
+  }
+};
+

@@ -17,8 +17,10 @@
         "libraryName": "element-ui",
         "styleLibraryName": "theme-chalk"
       },
+      "syntax-dynamic-import",
       "transform-vue-jsx",
-      "syntax-dynamic-import"
+      "transform-object-rest-spread",
+      "transform-es2015-destructuring"
     ]
   ]
 }

@@ -200,9 +200,9 @@
         },
         addDocumentList: [
           {
-            text: "Приложить документ к делу",
-            visible: "ApplyDocOnDelo",
-            action: this.addDocPhotoWizard,
+            text: "Определение о проведении АР",
+            visible: "OpredProvedAP",
+            action: this.createWizardScenarioDefinition,
           },
           {
             text: "Протокол об АПН",
@@ -210,9 +210,19 @@
             action: this.createWizardScenarioAPN,
           },
           {
-            text: "Определение о проведении АР",
-            visible: "OpredProvedAP",
-            action: this.createWizardScenarioDefinition,
+            text: "Ходатайство о продлении сроков АР",
+            visible: "HodatayProdlSrok",
+            action: this.createWizardAddPetition,
+          },
+          {
+            text: "Определение по ходатайству",
+            visible: "Petition",
+            action: this.createWizardAddDefinitionPetition,
+          },
+          {
+            text: "Извещение",
+            visible: "Izvesh",
+            action: this.createWizardAddAdvice,
           },
           {
             text: "Постановление по делу об АПН",
@@ -225,29 +235,14 @@
             action: this.createWizardProtStopDelo,
           },
           {
-            text: "Извещение",
-            visible: "Izvesh",
-            action: this.createWizardAddAdvice,
-          },
-          {
-            text: "Перенос даты рассмотрения дела",
-            visible: "ChangeDateRasmDelo",
-            action: "",
-          },
-          {
-            text: "Ходатайство о продлении сроков административного расследования",
-            visible: "HodatayProdlSrok",
-            action: this.createWizardAddPetition,
-          },
-          {
-            text: "Определение по ходатайству",
-            visible: "Petition",
-            action: this.createWizardAddDefinitionPetition,
-          },
-          {
             text: "Документ участника",
             visible: "DocumentUchast",
             action: this.addPredDocWizard,
+          },
+          {
+            text: "Приложить документ к делу",
+            visible: "ApplyDocOnDelo",
+            action: this.addDocPhotoWizard,
           },
         ],
         searchForAddDocumentList: "",
