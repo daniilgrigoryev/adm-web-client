@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const devserver = require('./webpack/devserver');
 const sass = require('./webpack/sass');
 const extractCSS = require('./webpack/css.extract');
@@ -13,7 +12,7 @@ const files = require('./webpack/files');
 const babel = require('./webpack/babel');
 const favicon = require('./webpack/favicon');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const resolveConfig = require('./webpack/webpack.config.resolve')();
+const configProps = require('./webpack/webpack.config.props');
 
 const publicPath = 'admWeb';
 const PATHS = {
@@ -29,7 +28,7 @@ const commonConfig = function common(env, argv) {
         filename: '[name].[hash].js',
         publicPath: `/${publicPath}/`,
       },
-      resolve: resolveConfig.resolve,
+      resolve: configProps(env, argv).resolve,
       plugins: [
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -41,20 +40,7 @@ const commonConfig = function common(env, argv) {
           'process.env.devHost': JSON.stringify(argv.devHost),
         }),
       ],
-      optimization: {
-        namedModules: true,
-        concatenateModules: true,
-        minimize: true,
-        minimizer: [
-          new UglifyJsPlugin({
-            cache: false,
-            sourceMap: false,
-          }),
-        ],
-        splitChunks: {
-          chunks: 'all',
-        },
-      },
+      optimization: configProps(env, argv).optimization,
     },
     files(),
     babel(),
