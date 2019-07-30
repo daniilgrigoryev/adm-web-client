@@ -26,6 +26,7 @@
 <script>
   import RequestApi from "~/assets/js/api/requestApi";
   import * as constants from "~/assets/js/utils/constants";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
 
   export default {
     name: "WizardItemPresent",
@@ -57,7 +58,7 @@
 
         await this.fillPresentVidsList();
 
-        if (this.data.presentVid) {
+        if (funcUtils.isNotEmpty(this.data.presentVid)) {
           await this.fillRepresentList();
         }
       },
@@ -76,7 +77,7 @@
           if (presentVidsDict.hasOwnProperty(prop)) {
             presentVidsList.push({
               label: presentVidsDict[prop],
-              value: prop
+              value: funcUtils.isNotEmpty(prop) ? +prop : prop
             });
           }
         }
@@ -88,9 +89,7 @@
           params: {
             eCID: this.info.eCID,
             methodName: 'getRepresentList',
-            data: JSON.stringify({
-              status: this.data.status
-            })
+            data: null
           }
         });
         let representList = [];
@@ -107,7 +106,7 @@
       async changePresentVids() {
         await this.storeElementData();
         this.data.uchastId = null;
-        if (this.data.presentVid && this.data.presentVid != constants.PRESENT_OUT) {
+        if (funcUtils.isNotEmpty(this.data.presentVid) && this.data.presentVid != constants.PRESENT_OUT) {
           await this.fillRepresentList();
         }
       },

@@ -58,6 +58,7 @@
 
 <script>
   import RequestApi from "~/assets/js/api/requestApi";
+  import * as funcUtils from "~/assets/js/utils/funcUtils";
 
   export default {
     name: "WizardItemLvok2025",
@@ -92,7 +93,7 @@
         await this.fillBirthList();
         await this.fillGragdanstvoList();
 
-        if (this.data.status) {
+        if (funcUtils.isNotEmpty(this.data.status)) {
           await this.fillPresenceTypeList();
         }
       },
@@ -180,7 +181,7 @@
       },
       async changeStatus() {
         this.data.presentType = null;
-        if (this.data.status) {
+        if (funcUtils.isNotEmpty(this.data.status)) {
           await this.fillPresenceTypeList();
         }
         await this.storeElementData();

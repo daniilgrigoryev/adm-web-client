@@ -190,7 +190,7 @@
         await this.storeElementData();
       },
       async storeElementData() {
-        if (this.data.docNum) {
+        if (funcUtils.isNotEmpty(this.data.docNum)) {
           this.data.docNum = this.data.docNum.replace(/\s+/g, '');
         }
         return new Promise((resolve, reject) => {

@@ -336,6 +336,16 @@
     border-radius: 4px;
     box-shadow: 0 1px 6px rgba(0,0,0,.2);
 
+    .ivu-date-picker-header {
+      .ivu-date-picker-prev-btn-arrow {
+        margin-left: 10px;
+      }
+
+      .ivu-date-picker-next-btn-arrow {
+        margin-right: 10px;
+      }
+    }
+
     .header-title {
       .header-title-item {
         font-weight: 600;

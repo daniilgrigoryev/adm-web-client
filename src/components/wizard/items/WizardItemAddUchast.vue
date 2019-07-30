@@ -126,7 +126,7 @@
       },
       async fillTipList() {
         let tipList = [];
-        if (this.data.status) {
+        if (funcUtils.isNotEmpty(this.data.status)) {
           let eventResponse = await RequestApi.prepareData({
             method: 'invokeElementMethod',
             params: {

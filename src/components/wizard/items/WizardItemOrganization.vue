@@ -10,10 +10,18 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Телефон</small>
+      <small class="adm-form__label">ОГРН</small>
       <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="22" :lg="22">
-          <masked-input inputClass="adm-input adm-input--regular wmax360" :maskProps="{regex: '[0-9]{12}', placeholder: ''}" v-model="data.phone" @onInputChange="storeElementData"></masked-input>
+        <Col :xs="24" :md="6" :lg="6">
+          <Input class="adm-input adm-input--regular" v-model="data.ogrn" @on-input-change="storeElementData" ></Input>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
+      <small class="adm-form__label">Дата регистрации</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="16">
+          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateReg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
         </Col>
       </Row>
     </div>
@@ -34,18 +42,10 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Дата регистрации</small>
+      <small class="adm-form__label">Телефон</small>
       <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="14" :lg="16">
-          <DatePickerMask class="adm-input adm-input--regular wmin120 wmax180" v-model="data.dateReg" @change="storeElementData" clearable type="date" placeholder="дд/мм/гггг" momentFormat="DD/MM/YYYY" maskFormat="dd/mm/yyyy"></DatePickerMask>
-        </Col>
-      </Row>
-    </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">ОГРН</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="6" :lg="6">
-          <Input class="adm-input adm-input--regular" v-model="data.ogrn" @on-input-change="storeElementData" ></Input>
+        <Col :xs="24" :md="22" :lg="22">
+          <masked-input inputClass="adm-input adm-input--regular wmax360" :maskProps="{regex: '[0-9]{12}', placeholder: ''}" v-model="data.phone" @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
     </div>

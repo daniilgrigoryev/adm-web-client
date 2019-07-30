@@ -4,22 +4,22 @@
     <div v-if="!visibleTime && !isOnlyTime" class="date-panels">
       <div class="date-panel-first">
         <div class="ivu-date-picker-header">
-      <span @click="subtractYearFirst" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow-double">
-        <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
-      </span>
-          <span @click="subtractMonthFirst" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow">
-        <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
-      </span>
-          <span class="header-title">
-        <span class="header-title-item">{{capitalizeFirstLetter(monthFirst)}}</span>
-        <span class="header-title-item">{{yearFirst}}</span>
-      </span>
-          <span @click="addYearFirst" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow-double">
-        <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
-      </span>
-          <span @click="addMonthFirst" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow">
-        <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
-      </span>
+          <span @click="subtractYearFirst" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow-double">
+            <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
+          </span>
+              <span @click="subtractMonthFirst" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow">
+            <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
+          </span>
+              <span class="header-title">
+            <span class="header-title-item">{{capitalizeFirstLetter(monthFirst)}}</span>
+            <span class="header-title-item">{{yearFirst}}</span>
+          </span>
+              <span @click="addYearFirst" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow-double">
+            <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
+          </span>
+              <span @click="addMonthFirst" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow">
+            <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
+          </span>
         </div>
 
         <div class="ivu-picker-panel-content">
@@ -54,22 +54,22 @@
       </div>
       <div class="date-panel-second">
         <div class="ivu-date-picker-header">
-      <span @click="subtractYearSecond" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow-double">
-        <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
-      </span>
-          <span @click="subtractMonthSecond" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow">
-        <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
-      </span>
-          <span class="header-title">
-        <span class="header-title-item">{{capitalizeFirstLetter(monthSecond)}}</span>
-        <span class="header-title-item">{{yearSecond}}</span>
-      </span>
-          <span @click="addYearSecond" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow-double">
-        <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
-      </span>
-          <span @click="addMonthSecond" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow">
-        <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
-      </span>
+          <span @click="subtractYearSecond" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow-double">
+            <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
+          </span>
+              <span @click="subtractMonthSecond" class="ivu-picker-panel-icon-btn ivu-date-picker-prev-btn ivu-date-picker-prev-btn-arrow">
+            <i class="ivu-icon ivu-icon-ios-arrow-back"></i>
+          </span>
+              <span class="header-title">
+            <span class="header-title-item">{{capitalizeFirstLetter(monthSecond)}}</span>
+            <span class="header-title-item">{{yearSecond}}</span>
+          </span>
+              <span @click="addYearSecond" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow-double">
+            <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
+          </span>
+              <span @click="addMonthSecond" class="ivu-picker-panel-icon-btn ivu-date-picker-next-btn ivu-date-picker-next-btn-arrow">
+            <i class="ivu-icon ivu-icon-ios-arrow-forward"></i>
+          </span>
         </div>
 
         <div class="ivu-picker-panel-content">
@@ -589,6 +589,16 @@
     box-sizing: border-box;
     border-radius: 4px;
     box-shadow: 0 1px 6px rgba(0,0,0,.2);
+
+    .ivu-date-picker-header {
+      .ivu-date-picker-prev-btn-arrow {
+        margin-left: 10px;
+      }
+
+      .ivu-date-picker-next-btn-arrow {
+        margin-right: 10px;
+      }
+    }
 
     .date-panels {
       display: flex;

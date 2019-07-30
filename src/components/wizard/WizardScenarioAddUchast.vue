@@ -19,10 +19,10 @@
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization')">
               <h2 class="adm-form__headding" id="organization">Организация</h2>
-              <wizard-item-organization-uchast v-if="isVisible('Uchast.Organization')" ref="Uchast.Organization" :info="getInfo('Uchast.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization-uchast>
+              <wizard-item-organization v-if="isVisible('Uchast.Organization')" ref="Uchast.Organization" :info="getInfo('Uchast.Organization')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-organization>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization.regAddr')">
-              <wizard-item-address title="Адрес регистрации" v-if="isVisible('Uchast.Organization.regAddr')" ref="Uchast.Organization.regAddr" :info="getInfo('Uchast.Organization.regAddr')"  @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
+              <wizard-item-address title="Юридический адрес" v-if="isVisible('Uchast.Organization.regAddr')" ref="Uchast.Organization.regAddr" :info="getInfo('Uchast.Organization.regAddr')"  @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
             </div>
             <div class="adm-form__container" v-if="isVisible('Uchast.Organization.factAddr')">
               <wizard-item-address title="Фактический адрес" v-if="isVisible('Uchast.Organization.factAddr')" ref="Uchast.Organization.factAddr" :info="getInfo('Uchast.Organization.factAddr')" @storeElementData="storeElementData" @updateComponents="updateComponents"></wizard-item-address>
@@ -49,7 +49,7 @@
       WizardItemAddUchast: () => import('~/components/wizard/items/WizardItemAddUchast'),
       WizardItemAddress: () => import('~/components/wizard/items/WizardItemAddress'),
       WizardItemIndividual: () => import('~/components/wizard/items/WizardItemIndividual'),
-      WizardItemOrganizationUchast: () => import('~/components/wizard/items/addUchast/WizardItemOrganizationUchast'),
+      WizardItemOrganization: () => import('~/components/wizard/items/WizardItemOrganization'),
     },
     data() {
       return {

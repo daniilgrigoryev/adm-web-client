@@ -1,22 +1,6 @@
 <template>
   <div v-if="data">
 
-    <div v-if="individualStatus === constants.UCHAST_INDIVID" class="adm-form__item">
-      <small class="adm-form__label">ИНН</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="22" :lg="22">
-          <masked-input inputClass="adm-input adm-input--regular wmax360" :maxlength="12" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="data.inn" @onInputChange="storeElementData"></masked-input>
-        </Col>
-      </Row>
-    </div>
-    <div v-if="individualStatus === constants.UCHAST_INDIVID" class="adm-form__item">
-      <small class="adm-form__label">ОГРНИП</small>
-      <Row :gutter="16" type="flex" align="middle">
-        <Col :xs="24" :md="22" :lg="22">
-          <masked-input inputClass="adm-input adm-input--regular wmax360" :maxlength="15" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="data.ogrn" @onInputChange="storeElementData"></masked-input>
-        </Col>
-      </Row>
-    </div>
     <div class="adm-form__item">
       <small class="adm-form__label">Фамилия</small>
       <div class="adm-form__item_content">
@@ -48,6 +32,17 @@
       </div>
     </div>
     <div class="adm-form__item">
+      <small class="adm-form__label">Пол</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="14" :lg="22">
+          <CustomSelect class="adm-input adm-input--regular wmin180 wmax360" v-model="data.sex" filterable @on-change="storeElementData" @on-enter="storeElementData" placeholder="">
+            <Option value="М">Мужской</Option>
+            <Option value="Ж">Женский</Option>
+          </CustomSelect>
+        </Col>
+      </Row>
+    </div>
+    <div class="adm-form__item">
       <small class="adm-form__label">Дата рождения</small>
       <Row :gutter="16" type="flex" align="middle">
       <Col :xs="24" :md="14" :lg="22">
@@ -74,23 +69,28 @@
       </Row>
     </div>
     <div class="adm-form__item">
-      <small class="adm-form__label">Пол</small>
+      <small class="adm-form__label">Гражданство</small>
       <Row :gutter="16" type="flex" align="middle">
-      <Col :xs="24" :md="14" :lg="22">
-          <CustomSelect class="adm-input adm-input--regular wmin180 wmax360" v-model="data.sex" filterable @on-change="storeElementData" @on-enter="storeElementData" placeholder="">
-            <Option value="М">Мужской</Option>
-            <Option value="Ж">Женский</Option>
+        <Col :xs="24" :md="14" :lg="22">
+          <CustomSelect class="adm-input adm-input--regular wmin180 wmax360" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" @on-enter="storeElementData" placeholder="">
+            <Option class="" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{item.label}}</Option>
           </CustomSelect>
         </Col>
       </Row>
     </div>
-    <div class="adm-form__item">
-      <small class="adm-form__label">Гражданство</small>
+    <div v-if="individualStatus === constants.UCHAST_INDIVID" class="adm-form__item">
+      <small class="adm-form__label">ИНН</small>
       <Row :gutter="16" type="flex" align="middle">
-      <Col :xs="24" :md="14" :lg="22">
-          <CustomSelect class="adm-input adm-input--regular wmin180 wmax360" v-model="data.gragdKod" filterable clearable @on-change="storeElementData" @on-enter="storeElementData" placeholder="">
-            <Option class="" v-for="item in gragdanstvoList" :value="item.value" :key="item.value">{{item.label}}</Option>
-          </CustomSelect>
+        <Col :xs="24" :md="22" :lg="22">
+          <masked-input inputClass="adm-input adm-input--regular wmax360" :maxlength="12" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="data.inn" @onInputChange="storeElementData"></masked-input>
+        </Col>
+      </Row>
+    </div>
+    <div v-if="individualStatus === constants.UCHAST_INDIVID" class="adm-form__item">
+      <small class="adm-form__label">ОГРНИП</small>
+      <Row :gutter="16" type="flex" align="middle">
+        <Col :xs="24" :md="22" :lg="22">
+          <masked-input inputClass="adm-input adm-input--regular wmax360" :maxlength="15" :maskProps="{regex: '[0-9]+', placeholder: ''}" v-model="data.ogrn" @onInputChange="storeElementData"></masked-input>
         </Col>
       </Row>
     </div>
