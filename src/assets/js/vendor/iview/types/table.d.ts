@@ -1,10 +1,10 @@
-// Type definitions for iview 3.1.0
+// Type definitions for iview 3.3.1
 // Project: https://github.com/iview/iview
 // Definitions by: yangdan
 // Definitions: https://github.com/yangdan8/iview.git
 import Vue, { VNode, CreateElement } from "vue";
 
-export declare interface Table extends Vue {
+export declare class Table extends Vue {
     /**
      * 显示的结构化数据，其中，字段 cellClassName 用于设置任意单元格的样式名称，
      * 因此数据不能使用该字段，详见示例特定样式。
@@ -41,6 +41,10 @@ export declare interface Table extends Vue {
      */
     height?: number | string;
     /**
+     * 表格最大高度，单位 px，设置后，如果表格内容大于此值，会固定表头
+     */
+    'max-height'?: number | string;
+    /**
      * 表格是否加载中
      * @default false
      */
@@ -76,6 +80,21 @@ export declare interface Table extends Vue {
      */
     "no-filtered-data-text"?: string;
     /**
+     * 是否开启拖拽调整行顺序，需配合 @on-drag-drop 事件使用
+     * @default false
+     */
+    "draggable"?: boolean;
+    /**
+     * 列使用 tooltip 时，配置它的主题，可选值为 dark 或 light
+     * @default dark
+     */
+    "tooltip-theme"?: string;
+    /**
+     * 是否强制使用内置的 row-key，开启后可能会影响性能
+     * @default false
+     */
+    "row-key"?: boolean;
+    /**
      * 开启 highlight-row 后有效，当表格的当前行发生变化的时候会触发
      * currentRow：当前高亮行的数据
      * oldCurrentRow：上一次高亮的数据
@@ -106,6 +125,11 @@ export declare interface Table extends Vue {
      * selection：已选项数据
      */
     $emit(eventName: "on-select-all", selection: object[]): this;
+    /**
+     * 在多选模式下有效，点击取消全选时触发
+     * selection：已选项数据
+     */
+    $emit(eventName: "on-select-all-cancel", selection: object[]): this;
     /**
      * 在多选模式下有效，只要选中项发生变化时就会触发
      * selection：已选项数据
@@ -150,6 +174,12 @@ export declare interface Table extends Vue {
      */
     $emit(eventName: "on-expand", row: object, status: string): this;
     /**
+     * 拖拽排序松开时触发，返回置换的两行数据索引
+     * index1
+     * index2
+     */
+    $emit(eventName: "on-drag-drop", index1: number, index2: number): this;
+    /**
      * 导出数据
      */
     exportCsv(params: TableExportCsvParams): void;
@@ -180,7 +210,7 @@ export declare interface Table extends Vue {
     };
 }
 
-export declare interface TableColumn {
+export declare class TableColumn {
     /**
      * 列类型，可选值为 index、selection、expand、html
      */
@@ -251,6 +281,16 @@ export declare interface TableColumn {
         params?: TableColumnRenderHeadParams
     ) => VNode;
     /**
+     * type 为 index 时可用，自定义序号
+     * @param row 当前行数据
+     */
+    indexMethod?: (row?: object) => string | number;
+    /**
+     * 自定义渲染列，使用 slot-scope 写法
+     * 声明 slot 后，就可以在 Table 的 slot 中使用 slot-scope
+     */
+    slot?: string;
+    /**
      * 对应列是否可以排序，如果设置为 custom，则代表用户希望远程排序，
      * 需要监听 Table 的 on- sort - change 事件,默认false
      * @default false
@@ -292,7 +332,7 @@ export declare interface TableColumn {
     children?: object[];
 }
 
-export declare interface TableRenderCreateElementData {
+export declare class TableRenderCreateElementData {
     /**
      * 和`v-bind:class`一样的 API
      */
@@ -342,7 +382,7 @@ export declare interface TableRenderCreateElementData {
     ref?: string;
 }
 
-export declare interface TableColumnRenderParams {
+export declare class TableColumnRenderParams {
     /**
      * 当前行数据
      */
@@ -357,7 +397,7 @@ export declare interface TableColumnRenderParams {
     index?: number;
 }
 
-export declare interface TableColumnRenderHeadParams {
+export declare class TableColumnRenderHeadParams {
     /**
      * 当前列数据
      */
@@ -368,7 +408,7 @@ export declare interface TableColumnRenderHeadParams {
     index?: number;
 }
 
-export declare interface TableExportCsvParams {
+export declare class TableExportCsvParams {
     /**
      * 文件名，默认为 table.csv
      */
@@ -392,7 +432,7 @@ export declare interface TableExportCsvParams {
     /**
      * 添加此函数后，不会下载，而是返回数据
      */
-    callback?: () => void;
+    callback?: (data?: string) => void;
     /**
      * 数据分隔符，默认是逗号(,)
      * @default ,
