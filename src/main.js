@@ -1,21 +1,21 @@
 import Vue from 'vue'
-import App from './App'
-import store from './store'
-import router from './router'
+import App from '~/App'
+import store from '~/store'
+import router from '~/router'
 import $ from "jquery";
-import './components/shared/Filters'
+import '~/components/shared/Filters'
 import '@mapbox/assembly/dist/assembly.min.css';
 import '@mapbox/assembly/dist/assembly.js';
-import iView from '~/assets/js/vendor/iview';
+import iView from '~/assets/js/vendor/iview/dist/iview.min';
 import locale from '~/assets/js/vendor/iview/dist/locale/ru-RU';
 import '~/assets/js/vendor/iview/dist/styles/iview.css';
-import './assets/scss/common.scss';
+import '~/assets/scss/common.scss';
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import * as constantUtils from "~/assets/js/utils/constantUtils";
 import RequestApi from "~/assets/js/api/requestApi";
 import * as formStack from '~/assets/js/api/formStack';
 import * as RequestEntity from "~/assets/js/api/requestEntity";
-import Fingerprint from "~/assets/js/vendor/fingerprint";
+import Fingerprint from "fingerprintjs";
 import Stack from '~/assets/js/api/stack';
 import CustomSelect from '~/components/shared/CustomSelect';
 import DatePickerMask from '~/components/shared/dateTimePicker/DatePickerMask';
