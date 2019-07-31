@@ -3,13 +3,13 @@ import App from '~/App';
 import store from '~/store';
 import router from '~/router';
 import $ from "jquery";
+import iView from '~/assets/js/vendor/iview/src/index';
+import locale from '~/assets/js/vendor/iview/src/locale/lang/ru-RU';
+import '~/assets/js/vendor/iview/src/styles/index.less';
+import '~/assets/scss/common.scss';
 import '~/components/shared/Filters'
 import '@mapbox/assembly/dist/assembly.min.css';
 import '@mapbox/assembly/dist/assembly.js';
-import iView from '~/assets/js/vendor/iview/dist/iview.min';
-import locale from '~/assets/js/vendor/iview/dist/locale/ru-RU';
-import '~/assets/js/vendor/iview/dist/styles/iview.css';
-import '~/assets/scss/common.scss';
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import * as constantUtils from "~/assets/js/utils/constantUtils";
 import RequestApi from "~/assets/js/api/requestApi";
@@ -35,7 +35,12 @@ Vue.component('ViewDataItem', ViewDataItem);
 Vue.use(iView, {
   locale
 });
-Vue.config.productionTip = false;
+
+if (process.env.mode === 'production') {
+  Vue.config.productionTip = true;
+} else if (process.env.mode === 'development') {
+  Vue.config.productionTip = false;
+}
 
 let vue = new Vue({
   el: '#app',

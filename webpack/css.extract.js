@@ -14,6 +14,21 @@ module.exports = (paths) => ({
           { loader: 'sass-loader' },
         ]
       },
+      {
+        test: /\.(less)$/,
+        include: paths,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+            }
+          },
+        ]
+      }
     ],
   },
   plugins: [
