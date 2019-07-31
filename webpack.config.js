@@ -38,6 +38,7 @@ const commonConfig = function common(env, argv) {
         }),
         new webpack.DefinePlugin({
           'process.env.devHost': JSON.stringify(argv.devHost),
+          'process.env.mode': JSON.stringify(argv.mode),
         }),
       ],
       optimization: configProps(env, argv).optimization,

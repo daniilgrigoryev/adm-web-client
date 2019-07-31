@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from '~/App'
-import store from '~/store'
-import router from '~/router'
+import Vue from 'vue';
+import App from '~/App';
+import store from '~/store';
+import router from '~/router';
 import $ from "jquery";
 import '~/components/shared/Filters'
 import '@mapbox/assembly/dist/assembly.min.css';
@@ -23,9 +23,9 @@ import MaskedInput from '~/components/shared/MaskedInput';
 import ListItemsDocs from '~/components/shared/ListItemsDocs';
 import ViewDataItem from '~/components/shared/ui/view-data-item';
 import filterSelectHelper from '~/components/mixins/filterSelectHelper';
-
 import moment from 'moment';
 moment.locale('ru');
+
 Vue.mixin(filterSelectHelper);
 Vue.component('CustomSelect', CustomSelect);
 Vue.component('DatePickerMask', DatePickerMask);
