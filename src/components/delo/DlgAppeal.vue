@@ -27,12 +27,6 @@
           />
           <!-- TODO -->
           <view-data-item
-            label="Дата контроля"
-            :value="null"
-            style="grid-column: span 2;"
-          />
-          <!-- TODO -->
-          <view-data-item
             label="Тема"
             :value="null"
             style="grid-column: span 2;"
