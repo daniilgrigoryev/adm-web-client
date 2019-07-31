@@ -17,7 +17,7 @@
         <div class="items-wrap">
           <view-data-item
             label="Дата, до которой продлевается срок"
-            :value="body.prolongUntilDate | formatDateTime('DD.MM.YYYY HH:mm')"
+            :value="body.prolongUntilDate | formatDateTime('DD.MM.YYYY')"
             style="grid-column: span 2;"
             :icon="require('../../../assets/images/icons/time.svg')"
           />
