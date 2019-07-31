@@ -81,12 +81,18 @@
     methods: {
       onClear() {
         this.$emit('on-clear');
+        this.$emit('input', null);
+        this.$emit('on-change', null);
       },
       input(value) {
-        this.$emit('input', value);
+        if (funcUtils.isNotEmpty(value)) {
+          this.$emit('input', value);
+        }
       },
       onChange(value) {
-        this.$emit('on-change', value);
+        if (funcUtils.isNotEmpty(value)) {
+          this.$emit('on-change', value);
+        }
       },
       onOpenChange(state) {
         this.$emit('on-open-change', state);
