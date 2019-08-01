@@ -1,18 +1,44 @@
 <template>
   <aside-template :listSectionNav="listSectionNav" title="ЭЦП" v-if="signature">
-
-    <div class="adm-form">
-      <div class="adm-form__container">
-        <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings" @on-enter="signData">
-          <Option class="wmax360 " v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-        </CustomSelect>
-        <Button :disabled="!sertificateNumber" @click="signData" type="primary" class="ml12">Подписать</Button>
+    <div class="layout-wrap">
+      <div class="layout">
+        <div class="adm-form">
+          <div class="adm-form__container">
+            <div class="adm-form__content">
+              <div class="adm-form__item">
+                <small class="adm-form__label">Почтовые реестры</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="signature.postRegId" clearable filterable @on-change="store" @on-enter="store">
+                        <Option class="wmax360 " v-for="item in openedPostRegistryList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </CustomSelect>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+              <div class="adm-form__item">
+                <small class="adm-form__label">Список сертификатов</small>
+                <div class="adm-form__item_content">
+                  <Row :gutter="16" type="flex" align="middle">
+                    <Col :xs="24" :md="24" :lg="24">
+                      <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings" @on-enter="signData">
+                        <Option class="wmax360 " v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                      </CustomSelect>
+                      <Button :disabled="!sertificateNumber" @click="signData" type="primary" class="ml12">Подписать</Button>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="bot-wrap">
       <Button @click="getPrev" type="text">Отменить изменения</Button>
-      <Button @click="save" type="primary" class="ml12">Сохранить</Button>
+      <Button @click="save" :disabled="!signed" type="primary" class="ml12">Сохранить</Button>
     </div>
   </aside-template>
 </template>
@@ -49,6 +75,7 @@
           this.$store.dispatch('errorsModal/changeContent', {title: error.errorMsg, desc: error.errorDesc,});
         } else {
           this.signature = signature;
+          await this.fillOpenedPostRegistry();
         }
       } catch (e) {
         this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
@@ -63,12 +90,29 @@
         signature: null,
         listSectionNav: [],
         signList: [],
+        openedPostRegistryList: [],
         sertificateObj: {},
         sertificateNumber: null,
-        sign: null,
+        signed: false,
       }
     },
     methods: {
+      async fillOpenedPostRegistry() {
+        let eventResponse = await RequestApi.prepareData({
+          method: 'getOpenedPostRegistry'
+        });
+        let openedPostRegistryList = [];
+        let openedPostRegistry = JSON.parse(eventResponse.response).data;
+        for (let prop in openedPostRegistry) {
+          if (openedPostRegistry.hasOwnProperty(prop)) {
+            openedPostRegistryList.push({
+              label: openedPostRegistry[prop],
+              value: +prop
+            });
+          }
+        }
+        this.openedPostRegistryList = openedPostRegistryList;
+      },
       async fillSignList() {
         try {
           let signList = await this.getSignList();
@@ -160,9 +204,19 @@
             this.signature.certValidFrom = sign.ValidFromDate;
             this.signature.certValidTo = sign.ValidToDate;
             this.store();
+            this.signed = true;
           }
         } catch (e) {
           this.$store.dispatch('errorsModal/changeContent', {title: e, desc: e,});
+          this.sertificateObj[this.sertificateNumber].IssuerName = '';
+          this.signature.signDataBase64 = null;
+          this.signature.certSerialNumber = null;
+          this.signature.certSubject = null;
+          this.signature.certIssuer = null;
+          this.signature.certValidFrom = null;
+          this.signature.certValidTo = null;
+          this.store();
+          this.signed = false;
         }
       },
       signCreate(certSerialNumber, dataToSign) {
@@ -258,21 +312,4 @@
 
 
 <style scoped lang="scss">
-  .adm-form__item{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 12px;
-    // outline: 1px solid red;
-    padding-bottom: 12px;
-    // min-height: 90px;
-  }
-  .adm-form__label{
-    padding: 0;
-    padding-right: 12px;
-    min-width: 210px;
-  }
-  .adm-form__item_content{
-    width: 100%;
-  }
 </style>

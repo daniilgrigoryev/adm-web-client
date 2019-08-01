@@ -5,11 +5,11 @@ import router from '~/router';
 import $ from "jquery";
 import iView from '~/assets/js/vendor/iview/src/index';
 import locale from '~/assets/js/vendor/iview/src/locale/lang/ru-RU';
+import '@mapbox/assembly/dist/assembly.min.css';
+import '@mapbox/assembly/dist/assembly.js';
 import '~/assets/js/vendor/iview/src/styles/index.less';
 import '~/assets/scss/common.scss';
 import '~/components/shared/Filters'
-import '@mapbox/assembly/dist/assembly.min.css';
-import '@mapbox/assembly/dist/assembly.js';
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import * as constantUtils from "~/assets/js/utils/constantUtils";
 import RequestApi from "~/assets/js/api/requestApi";

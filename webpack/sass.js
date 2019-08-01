@@ -17,7 +17,6 @@ module.exports = (paths) => ({
               javascriptEnabled: true,
             },
           },
-
         ],
       },
       {
