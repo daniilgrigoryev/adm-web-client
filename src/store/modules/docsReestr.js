@@ -1,3 +1,7 @@
+import * as funcUtils from '~/assets/js/utils/funcUtils';
+import * as formStack from '~/assets/js/api/formStack';
+import RequestApi from '~/assets/js/api/requestApi';
+
 export default {
   state: {
     moduleName: 'docsReestr',
@@ -7,7 +11,10 @@ export default {
     data: null,
     command: null,
     deloErrors: [],
-    selectId: [],
+    selectId: {
+      toSign: [],
+      toReestr: [],
+    },
   },
   mutations: {
     docsReestrSetCid(state, cid) {
@@ -20,65 +27,129 @@ export default {
       state.command = command;
     },
 
-    docsReestrToggleSelected(state, item) {
+    docsReestrToggleSelectedToSign(state, item) {
       let storeItem = state.data.deloList.find((el) => el.cardId === item.cardId);
-        storeItem.selected = !storeItem.errors && !storeItem.selected;
+      storeItem.selected.toSign = !storeItem.selected.toSign;
     },
-    docsReestrChangeSelectionItems(state, payload) {
+    docsReestrToggleSelectedToReestr(state, item) {
+      let storeItem = state.data.deloList.find((el) => el.cardId === item.cardId);
+      storeItem.selected.toReestr = !storeItem.selected.toReestr;
+    },
+    docsReestrToggleSelectedToSignAll(state, payload) {
       state.data.deloList.forEach((el) => {
-        if (payload.items.includes(el) && !el.errors) {
-          el.selected = payload.action;
-        }
+        el.selected.toSign = funcUtils.isEmpty(el.signTime) && payload;
+      });
+    },
+    docsReestrToggleSelectedToReestrAll(state, payload) {
+      state.data.deloList.forEach((el) => {
+        el.selected.toReestr = payload;
       });
     },
     docsReestrSetDeloErrors(state, payload) {
       state.deloErrors = payload;
     },
-    docsReestrSetSelectId(state, payload) {
-      state.selectId = payload;
+    docsReestrGetSelectToSign(state, payload) {
+      state.selectId.toSign = payload;
+    },
+    docsReestrGetSelectToReestr(state, payload) {
+      state.selectId.toReestr = payload;
+    },
+    docsReestrSetItemSignTime(state, item) {
+      item = new Date();
     },
   },
   actions: {
     docsReestrSetCid(vm, cid) {
       vm.state.cid = cid;
     },
-    docsReestrSetData({state}, data) {
+    docsReestrSetData({ commit, state }, data) {
       if (data !== null && data.deloList) {
-        data.deloList.forEach(el => {
-          el.selected = state.selectId.length ? (!el.errors && state.selectId.includes(el.deloId)): false;
+        data.deloList.forEach((el) => {
+          el.selected = {
+            toSign: state.selectId.toSign.length
+              ? funcUtils.isEmpty(el.signTime) && state.selectId.toSign.includes(el.cardId)
+              : false,
+            toReestr: state.selectId.toReestr.length
+              ? state.selectId.toReestr.includes(el.cardId)
+              : false,
+          };
         });
       }
-      state.data = data;
+      commit('docsReestrSetData', data);
     },
     docsReestrSetCommand(vm, command) {
       vm.state.command = command;
     },
-    docsReestrToggleSelected({commit}, payload) {
-      commit("docsReestrToggleSelected", payload)
+    docsReestrToggleSelectedToSign({ commit, dispatch }, payload) {
+      commit('docsReestrToggleSelectedToSign', payload);
+      dispatch('docsReestrSetSelectId');
     },
-    docsReestrChangeSelectionItems({commit}, payload) {
-      commit("docsReestrChangeSelectionItems", payload)
+    docsReestrToggleSelectedToReestr({ commit, dispatch }, payload) {
+      commit('docsReestrToggleSelectedToReestr', payload);
+      dispatch('docsReestrSetSelectPostId');
     },
-    docsReestrSetDeloErrors({commit}, payload) {
-      commit("docsReestrSetDeloErrors", payload)
+    docsReestrToggleSelectedToSignAll({ commit, dispatch }, payload) {
+      commit('docsReestrToggleSelectedToSignAll', payload);
+      dispatch('docsReestrSetSelectId');
     },
-    docsReestrSetSelectId({commit}, payload) {
-      commit("docsReestrSetSelectId", payload)
+    docsReestrToggleSelectedToReestrAll({ commit, dispatch }, payload) {
+      commit('docsReestrToggleSelectedToReestrAll', payload);
+      dispatch('docsReestrSetSelectPostId');
     },
-
+    docsReestrSetSelectId({ state, commit }) {
+      let listId = state.data.deloList.filter((el) => el.selected.toSign).map((el) => el.cardId);
+      RequestApi.prepareData({
+        method: 'setSelectId',
+        params: {
+          selectId: listId,
+        },
+      });
+      commit('docsReestrGetSelectToSign', listId);
+    },
+    docsReestrSetSelectPostId({ state, commit }) {
+      let listId = state.data.deloList.filter((el) => el.selected.toReestr).map((el) => el.cardId);
+      RequestApi.prepareData({
+        method: 'setSelectPostId',
+        params: {
+          selectPostId: listId,
+        },
+      });
+      commit('docsReestrGetSelectToReestr', listId);
+    },
+    async docsReestrGetSelectToSign({ commit }) {
+      let eventResponse = await RequestApi.prepareData({
+        method: 'getSelectId',
+      });
+      let { data } = JSON.parse(eventResponse.response);
+      if (data.length) {
+        commit('docsReestrGetSelectToSign', data);
+      }
+    },
+    async docsReestrGetSelectToReestr({ commit }) {
+      let eventResponse = await RequestApi.prepareData({
+        method: 'getSelectPostId',
+      });
+      let { data } = JSON.parse(eventResponse.response);
+      if (data.length) {
+        commit('docsReestrGetSelectToReestr', data);
+      }
+    },
+    docsReestrSetDeloErrors({ commit }, payload) {
+      commit('docsReestrSetDeloErrors', payload);
+    },
+    docsReestrSetItemSignTime({ commit }, payload) {
+      commit('docsReestrSetItemSignTime', payload);
+    },
   },
   getters: {
-    docsReestrGetCommand: state => () => {
-      return state.command
+    docsReestrGetCommand: (state) => () => {
+      return state.command;
     },
-    docsReestrGetData: state => {
-      return state.data
+    docsReestrGetData: (state) => {
+      return state.data;
     },
-    docsReestrGetCid: state => {
-      return state.cid
+    docsReestrGetCid: (state) => {
+      return state.cid;
     },
-    docsReestrGetSelectedIds: state => {
-      return state.selectId
-    },
-  }
+  },
 };

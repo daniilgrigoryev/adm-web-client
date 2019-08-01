@@ -79,13 +79,35 @@
 
         <Table class="custom-table custom-table--sort" ref="selection" :columns="tableFilteredColumns" :data="data" size="large"
                :stripe="false" :height="tableHeight" @on-row-dblclick="getDelo" @on-sort-change="sortClick"></Table>
-        <div v-if="selectedListOnPage.length" ref="actionBar" class="action-bar">
+        <div v-if="selectedToSignList.length || selectedToReestrList.length" ref="actionBar" class="action-bar">
           <div class="action-bar__title">Подписать выбранные документы</div>
           <div class="action-bar__body">
-            <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings" @on-enter="signData">
-              <Option class="wmax360 " v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </CustomSelect>
-            <Button :disabled="!sertificateNumber" type="primary" @click="signData">Подписать</Button>
+            <div class="select-items-count-wrap">
+              <div class="count-block" v-if="selectedToSignList.length">
+                <small class="adm-form__label">На подписание</small>
+                <b>{{selectedToSignList.length}}</b>
+              </div>
+              <div class="count-block" v-if="selectedToReestrList.length">
+                <small class="adm-form__label">В рееста</small>
+                <b>{{selectedToReestrList.length}}</b>
+              </div>
+            </div>
+            <template v-if="selectedToSignList.length">
+              <small class="adm-form__label">Имя подписи</small>
+              <CustomSelect class="adm-input adm-input--regular wmax360 wmin180" placeholder="" v-model="sertificateNumber" clearable filterable @on-open-change="openSings" @on-enter="signData">
+                <Option class="wmax360 " v-for="item in signList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </CustomSelect>
+            </template>
+            <div class="button-wrap">
+              <Button :disabled="!sertificateNumber && !selectedToReestrList.length" type="primary" @click="submit()">
+                {{ selectedToSignList.length && selectedToReestrList.length 
+                  ? "Подписать и добавить"
+                  : selectedToSignList.length
+                    ? "Подписать"
+                    : "Добавить"
+                }}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -97,7 +119,7 @@
 import * as funcUtils from "~/assets/js/utils/funcUtils";
 import * as formStack from "~/assets/js/api/formStack";
 import RequestApi from "~/assets/js/api/requestApi";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 import 'crypto-pro';
 
 export default {
@@ -171,37 +193,78 @@ export default {
       sort: {},
       columnsOptions: [
         {
-          title: "Статус",
-          key: "check",
-          maxWidth: 50,
+          title: "На подписание",
+          key: "toSign",
+          width: 180,
           ellipsis: true,
-          referenceName: "check",
+          referenceName: "toSign",
           visible: true,
           tooltip: true,
           renderHeader: (h, params) => {
-            return h("Checkbox", {
-              class: ["amd-checkbox"],
-              attrs: {
-                value: this.columnChecked,
-                disabled: !this.columnSigned
-              },
-              on: {
-                "on-change": (e) => {
-                  this.toggleSelectedColumn(e);
+            return h("div", [
+              h("Checkbox", {
+                class: ["amd-checkbox"],
+                attrs: {
+                  value: this.AllSelectedToSign,
+                  disabled: !this.columnSigned
+                },
+                on: {
+                  "on-change": (e) => {
+                    this.docsReestrToggleSelectedToSignAll(e);
+                  }
                 }
-              }
-            });
+              }),
+              h("span", params.column.title),
+            ]);
           },
           render: (h, params) => {
             return h("Checkbox", {
               class: ["amd-checkbox"],
               attrs: {
-                value: params.row.selected,
+                value: params.row.selected.toSign,
                 disabled: funcUtils.isNotEmpty(params.row.signTime)
               },
               on: {
                 "on-change": () => {
-                  this.toggleSelected(params.row);
+                  this.docsReestrToggleSelectedToSign(params.row);
+                }
+              }
+            });
+          }
+        },
+        {
+          title: "В реестр",
+          key: "toReestr",
+          width: 150,
+          ellipsis: true,
+          referenceName: "toReestr",
+          visible: true,
+          tooltip: true,
+          renderHeader: (h, params) => {
+            return h("div", [
+              h("Checkbox", {
+                class: ["amd-checkbox"],
+                attrs: {
+                  value: this.AllSelectedToReestr,
+                },
+                on: {
+                  "on-change": (e) => {
+                    this.docsReestrToggleSelectedToReestrAll(e);
+                  }
+                }
+              }),
+              h("span", params.column.title),
+            ]);
+          },
+          render: (h, params) => {
+            return h("Checkbox", {
+              class: ["amd-checkbox"],
+              attrs: {
+                value: params.row.selected.toReestr,
+              },
+              on: {
+                "on-change": () => {
+                  this.docsReestrToggleSelectedToReestr(params.row);
                 }
               }
             });
@@ -392,7 +455,6 @@ export default {
   computed: {
     ...mapGetters({
       dataStore: "docsReestrGetData",
-      selectedIds: 'docsReestrGetSelectedIds'
     }),
     data() {
       let res = [];
@@ -400,7 +462,6 @@ export default {
         for (let i = this.from; i < this.to; i++) {
           let item = this.dataStore.deloList[i];
           if (item) {
-            item.selected = funcUtils.isEmpty(item.signTime) && funcUtils.isNotEmpty(this.selectedIds) && this.selectedIds.includes(item.cardId);
             res.push(item);
           }
         }
@@ -415,15 +476,18 @@ export default {
         column => !["status"].includes(column.key)
       );
     },
-    selectedList() {
-      return this.dataStore.deloList.filter(el => el.selected);
+
+    selectedToSignList() {
+      return this.dataStore.deloList.filter(el => el.selected.toSign);
     },
-    selectedListOnPage() {
-      // Выбранные в текущей странице
-      return this.data.filter(el => el.selected);
+    selectedToReestrList() {
+      return this.dataStore.deloList.filter(el => el.selected.toReestr);
     },
-    columnChecked() {
-      return this.selectedList.length > 0;
+    AllSelectedToSign() {
+      return this.selectedToSignList.length > 0;
+    },
+    AllSelectedToReestr() {
+      return this.selectedToReestrList.length > 0;
     },
     columnSigned() {
       return this.dataStore.deloList.filter(el => funcUtils.isEmpty(el.signTime)).length > 0;
@@ -454,7 +518,8 @@ export default {
           let filter = JSON.parse(eventResponse.response).data.find;
           this.parseFilter(filter);
         }
-        await this.getSelectId();
+        await this.docsReestrGetSelectToSign();
+        await this.docsReestrGetSelectToReestr();
         await this.fillModule(eventResponse);
         await this.fillDocTipDict();
       } catch (e) {
@@ -472,37 +537,18 @@ export default {
         funcUtils.isEmpty(this.dataStore.deloList)
       );
     },
+    ...mapActions([
+      "docsReestrToggleSelectedToSign",
+      "docsReestrToggleSelectedToSignAll",
+      "docsReestrToggleSelectedToReestr",
+      "docsReestrToggleSelectedToReestrAll",
+      "docsReestrGetSelectToSign",
+      "docsReestrGetSelectToReestr",
+      "docsReestrSetItemSignTime",
+    ]),
 
-    toggleSelected(item) {
-      this.$store.commit("docsReestrToggleSelected", item);
-      this.setSelectId();
-    },
-    toggleSelectedColumn(selected) {
-      this.dataStore.deloList.forEach((item) => {
-        if (funcUtils.isEmpty(item.signTime)) {
-          this.$set(item, 'selected', selected);
-        }
-      });
-      this.setSelectId();
-    },
-    async setSelectId() {
-      let selectedList = this.selectedList.map(el => el.cardId);
-      await RequestApi.prepareData({
-        method: "setSelectId",
-        params: {
-          selectId: selectedList
-        }
-      });
-      await this.$store.dispatch("docsReestrSetSelectId", selectedList);
-    },
-    async getSelectId() {
-      let eventResponse = await RequestApi.prepareData({
-        method: "getSelectId"
-      });
-      let { data } = JSON.parse(eventResponse.response);
-      if (data.length) {
-        await this.$store.dispatch("docsReestrSetSelectId", data);
-      }
+    async submit() {
+      await this.signData()
     },
     async fillSignList() {
       try {
@@ -641,12 +687,8 @@ export default {
     },
     async signData() {
       try {
-        let res = 0;
-        for (let i = 0; i < this.dataStore.deloList.length; i++) {
-          let selectedObj = this.dataStore.deloList[i];
-          if (!selectedObj.selected) {
-            continue;
-          }
+        let successSignCount = 0;
+        for (const selectedObj of this.selectedToSignList) {
           let signObjectResponse = await RequestApi.prepareData({
             method: "getSignObj",
             params: {
@@ -674,22 +716,22 @@ export default {
               });
               let saveSign = JSON.parse(saveSignResponse.response);
               if (!saveSign.data) {
-                this.$store.dispatch('errorsModal/changeContent', {title: 'Не удалось подписать документ' + (selectedObj.docN !== null ? '№ ' + selectedObj.docN : '') + '<br />' + saveSign.error.errorMsg + '<br />' + 'Подписано документов успешно ' + res, desc: saveSign.error.errorDesc});
+                this.$store.dispatch('errorsModal/changeContent', {title: 'Не удалось подписать документ' + (selectedObj.docN !== null ? '№ ' + selectedObj.docN : '') + '<br />' + saveSign.error.errorMsg + '<br />' + 'Подписано документов успешно ' + successSignCount, desc: saveSign.error.errorDesc});
                 return;
               } else {
-                this.$set(selectedObj, 'selected', false);
-                this.$set(selectedObj, 'signTime', new Date());
-                res++;
+                this.docsReestrToggleSelectedToSign(selectedObj)
+                this.docsReestrSetItemSignTime(selectedObj)
+                successSignCount++;
               }
             }
           } else {
-            this.$store.dispatch('errorsModal/changeContent', {title: 'Не удалось подписать документ' + (selectedObj.docN !== null ? '№ ' + selectedObj.docN : '') + '<br />' + signObj.error.errorMsg + '<br />' + 'Подписано документов успешно ' + res, desc: signObj.error.errorDesc});
+            this.$store.dispatch('errorsModal/changeContent', {title: 'Не удалось подписать документ' + (selectedObj.docN !== null ? '№ ' + selectedObj.docN : '') + '<br />' + signObj.error.errorMsg + '<br />' + 'Подписано документов успешно ' + successSignCount, desc: signObj.error.errorDesc});
             return;
           }
-        }
-        if (res > 0) {
-          this.$store.dispatch('dialogModal/changeContent', {title: 'Документы успешно подписаны: ' + res});
-          await this.setSelectId();
+        };
+        if (successSignCount > 0) {
+          this.$store.dispatch('dialogModal/changeContent', {title: 'Документы успешно подписаны: ' + successSignCount});
+          await this.docsReestrGetSelectToSign();
           await this.filterClick();
         }
       } catch (e) {
@@ -830,6 +872,20 @@ export default {
           sort: this.getSortedFields()
         }
       });
+      await RequestApi.prepareData({
+        method: 'setSelectId',
+        params: {
+          selectId: [],
+        },
+      });
+      await RequestApi.prepareData({
+        method: 'setSelectPostId',
+        params: {
+          selectPostId: [],
+        },
+      });
+      await this.docsReestrGetSelectToSign();
+      await this.docsReestrGetSelectToReestr();
       await this.fillModule(eventResponse);
     },
     async fillDocTipDict() {
@@ -892,6 +948,8 @@ export default {
           sort: sort
         }
       });
+      await this.docsReestrGetSelectToSign();
+      await this.docsReestrGetSelectToReestr();
       await this.fillModule(eventResponse);
     },
     getDelo(delo, e) {
@@ -1030,7 +1088,33 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    button {
+    position: relative;
+    .select-items-count-wrap {
+      position: absolute;
+      left: 35px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      .count-block {
+        margin-right: 30px;
+        b {
+          font-size: 16px;
+        }
+      }
+    }
+    .adm-form__label {
+      text-align: right;
+      font-size: 14px;
+      color: #797979;
+      line-height: 1;
+      font-weight: 500;
+      line-height: 16px;
+      padding-right: 10px;
+    }
+    .button-wrap {
+      width: 160px;
       margin: 0 20px;
     }
   }
