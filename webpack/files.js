@@ -7,7 +7,7 @@ module.exports = () => ({
           {
             loader: 'url-loader',
             options: {
-              name: 'images/[name].[ext]',
+              name: 'images/[name].[hash].[ext]',
               limit: 64,
             },
           },
@@ -19,7 +19,7 @@ module.exports = () => ({
           {
             loader: 'url-loader',
             options: {
-              name: 'fonts/[name].[ext]',
+              name: 'fonts/[name].[hash].[ext]',
               limit: 64,
             },
           },

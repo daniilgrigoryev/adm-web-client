@@ -25,7 +25,7 @@ const commonConfig = function common(env, argv) {
       entry: ['./src/main.js'],
       output: {
         path: path.resolve(__dirname, publicPath),
-        filename: '[name].[hash].js',
+        filename: 'js/[name].[hash].js',
         publicPath: `/${publicPath}/`,
       },
       resolve: configProps(env, argv).resolve,
