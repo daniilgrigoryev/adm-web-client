@@ -59,23 +59,6 @@
                     <Col :xs="24" :md="24" :lg="11">
                       <div class="flex-parent flex-parent--end-cross h-full">
                         <div class="w-full adm-form__item">
-                          <div class="adm-12 color-dark-lighter search-label">Документ дела</div>
-                          <CustomSelect class="adm-input adm-input--big" v-model="filter.docVid" filterable clearable @on-enter="filterClick">
-                            <Option v-for="item in documentVidDict" :value="item.value" :key="item.value">{{ item.label}}</Option>
-                          </CustomSelect>
-                        </div>
-                      </div>
-                    </Col>
-                    <Col :xs="24" :md="24" :lg="2">
-                      <div class="flex-parent flex-parent--center-main flex-parent--end-cross h-full">
-                        <div class="adm-form__item">
-                          <Icon type="ios-link" size="30" color="#CCCCCC" title="связанные поля" />
-                        </div>
-                      </div>
-                    </Col>
-                    <Col :xs="24" :md="24" :lg="11">
-                      <div class="flex-parent flex-parent--end-cross h-full">
-                        <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">№ документа</div>
                           <Input class="adm-input adm-input--big" @on-enter="filterClick" v-model="filter.docN" placeholder="" clearable></Input>
                         </div>
@@ -87,7 +70,6 @@
 
               <Row type="flex" justify="start" :gutter="20" v-show="hideMore">
                 <Col :xs="24" :md="12" :lg="12">
-                      <!-- <div class="adm-12 color-dark-lighter search-label">Физическое лицо</div> -->
                       <Row type="flex" :gutter="20">
                         <Col :xs="8" :md="8" :lg="8">
                           <div class="flex-parent flex-parent--end-cross h-full">
@@ -203,9 +185,6 @@
                         <div class="w-full adm-form__item">
                           <div class="adm-12 color-dark-lighter search-label">Тип дела об АПН</div>
                           <CustomSelect :disabled="true" class="adm-input adm-input--big" filterable clearable>
-                            <!-- TODO -->
-                          <!-- <CustomSelect class="adm-input adm-input--big" v-model="filter.deloTag" filterable clearable> -->
-                            <!-- <Option v-for="item in stateDeloDict" :value="item.value" :key="item.value">{{ item.label}}</Option> -->
                           </CustomSelect>
                         </div>
                       </div>
@@ -313,7 +292,6 @@
         await this.fillModule(eventResponse);
 
         this.fillStateDeloDict();
-        this.fillDocumentVidDict();
         this.fillArticleProcDict();
       } catch (e) {
         this.$store.dispatch('errorsModal/changeContent', {title: e.message,});
@@ -360,14 +338,12 @@
         columnsOptionsVisible: false,
         hideMore: false,
         stateDeloDict: [],
-        documentVidDict: [],
         articleProcDict: [],
         filter: {
           flagYear: 'true',
           deloN: null,
           deloDatStart: null,
           deloDatEnd: null,
-          docVid: null,
           stadDeloKod: null,
           stotvId: null,
           checkPriority: null,
@@ -470,7 +446,6 @@
                     this.filter[prop] = new Date(item);
                     break;
                   }
-                  case 'docVid':
                   case 'flagYear':
                   case 'stadDeloKod':
                   case 'stotvId':
@@ -1669,20 +1644,6 @@
           })
         });
         this.stateDeloDict = stateDeloDict;
-      },
-      async fillDocumentVidDict() {
-        let documentVidDict = [];
-        let eventResponse = await RequestApi.prepareData({
-          method: 'getDocumetVidDictionary'
-        });
-        let documentVidList = JSON.parse(eventResponse.response).data;
-        documentVidList.forEach((item) => {
-          documentVidDict.push({
-            label: item.values['DOC_VID_NAME'],
-            value: item.values['DOC_VID'] + ''
-          })
-        });
-        this.documentVidDict = documentVidDict;
       },
       async fillArticleProcDict() {
         let articleProcDict = [];
