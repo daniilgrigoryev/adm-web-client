@@ -44,6 +44,11 @@
             :value="body.placeIspoln.placeFull"
             style="grid-column: span 2;"
           />
+          <view-data-item
+            label="Сумма оплаты"
+            :value="body.sumOpl + ' руб.'"
+            style="grid-column: span 2;"
+          />
           <hr>
           <view-data-item
             label="Должностное лицо"
