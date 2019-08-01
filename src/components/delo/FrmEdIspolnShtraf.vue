@@ -21,13 +21,13 @@
             style="grid-column: span 2;"
             :icon="require('../../assets/images/icons/time.svg')"
           />
+          <view-data-item
+            label="Сумма оплаты штрафа"
+            :value="body.sumOpl"
+            style="grid-column: span 2;"
+            :icon="require('../../assets/images/icons/rub_gray.svg')"
+          />
           <template v-if="[constants.UPL_SHTRAF_GIBDD,constants.UPL_SHTRAF_SSP].includes(body.stadIspolnKod)">
-            <view-data-item
-              label="Сумма оплаты штрафа"
-              :value="body.sumOpl"
-              style="grid-column: span 2;"
-              :icon="require('../../assets/images/icons/rub_gray.svg')"
-            />
             <view-data-item
               label="УИП"
               :value="body.uip"
@@ -42,11 +42,6 @@
           <view-data-item
             label="Место исполнения"
             :value="body.placeIspoln.placeFull"
-            style="grid-column: span 2;"
-          />
-          <view-data-item
-            label="Сумма оплаты"
-            :value="body.sumOpl + ' руб.'"
             style="grid-column: span 2;"
           />
           <hr>
