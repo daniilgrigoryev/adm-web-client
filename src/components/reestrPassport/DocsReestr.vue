@@ -88,7 +88,7 @@
                 <b>{{selectedToSignList.length}}</b>
               </div>
               <div class="count-block" v-if="selectedToReestrList.length">
-                <small class="adm-form__label">В рееста</small>
+                <small class="adm-form__label">В реестр</small>
                 <b>{{selectedToReestrList.length}}</b>
               </div>
             </div>
@@ -99,7 +99,7 @@
               </CustomSelect>
             </template>
             <div class="button-wrap">
-              <Button :disabled="!sertificateNumber && !selectedToReestrList.length" type="primary" @click="submit()">
+              <Button :disabled="!sertificateNumber && !selectedToReestrList.length" type="primary" @click="submit">
                 {{ selectedToSignList.length && selectedToReestrList.length 
                   ? "Подписать и добавить"
                   : selectedToSignList.length

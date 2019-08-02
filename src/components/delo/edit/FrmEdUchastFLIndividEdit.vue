@@ -172,21 +172,21 @@
               </div>
               <template v-if="uchastIndivid.uchastStatus === constants.UCHAST_INDIVID">
                 <div class="adm-form__item">
-                  <small class="adm-form__label">ИНН</small>
-                  <div class="adm-form__item_content">
-                    <Row :gutter="16" type="flex" align="middle">
-                      <Col :xs="24" :md="24" :lg="24">
-                        <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.inn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-                <div class="adm-form__item">
                   <small class="adm-form__label">ОГРНИП</small>
                   <div class="adm-form__item_content">
                     <Row :gutter="16" type="flex" align="middle">
                       <Col :xs="24" :md="24" :lg="24">
                         <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.ogrn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+                <div class="adm-form__item">
+                  <small class="adm-form__label">ИНН</small>
+                  <div class="adm-form__item_content">
+                    <Row :gutter="16" type="flex" align="middle">
+                      <Col :xs="24" :md="24" :lg="24">
+                        <masked-input inputClass="adm-input adm-input--regular wmax360" @onInputChange="store" v-model="uchastIndivid.individ.inn" :maskProps="{regex: '[0-9]+', casing: 'upper', placeholder: ''}" :maxlength="15"></masked-input>
                       </Col>
                     </Row>
                   </div>
